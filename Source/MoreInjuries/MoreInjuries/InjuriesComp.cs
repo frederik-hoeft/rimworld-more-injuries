@@ -83,8 +83,7 @@ public class InjuriesComp : ThingComp
     public void Bruise()
     {
         Pawn targetPawn = parent as Pawn;
-
-        List<Hediff> Bruises = targetPawn.health.hediffSet.hediffs.FindAll(Bruise => Bruise.def == HediffDefOf.Bruise);
+        List<Hediff> Bruises = targetPawn.health.hediffSet.hediffs.FindAll(Bruise => Bruise.def.defName == "Bruise");
         List<Hediff> SevereBruises = Bruises.FindAll(SevereBruise => SevereBruise.Severity >= 14);
         List<Hediff> LegBruises = Bruises.FindAll(LegBruise => LegBruise.sourceBodyPartGroup == BodyPartGroupDefOf.Legs);
         if (Bruises?.Count > 15 | SevereBruises?.Count > 10 | LegBruises.Count > 5)
@@ -95,18 +94,7 @@ public class InjuriesComp : ThingComp
             }
         }
     }
-    public void PuttingOnTourniqet()
-    {
-        Pawn targetPawn = parent as Pawn;
-        List<Hediff_Injury> TendableInjuries = new();
-        if (targetPawn.health.hediffSet.GetInjuriesTendable() != null)
-        {
-            TendableInjuries = targetPawn.health.hediffSet.GetInjuriesTendable() as List<Hediff_Injury>;
-        }
 
-        List<Hediff_Injury> Injuries_to_Turnip = new();
-
-    }
     public DamageInfo pope;
 
     public MoreInjuriesSettings Settings
@@ -172,7 +160,7 @@ public class InjuriesComp : ThingComp
         #region some choking stuff
         if (Settings.choking)
         {
-            foreach (Hediff_Injury injury in papa.health.hediffSet.GetInjuriesTendable())
+            foreach (Hediff_Injury injury in papa.health.hediffSet.GetHediffsTendable().OfType<Hediff_Injury>())
             {
 
                 if (injury.Part.def.tags.Contains(BodyPartTagDefOf.BreathingSource) | injury.Part.def.tags.Contains(BodyPartTagDefOf.BreathingPathway) && injury.Bleeding && injury.BleedRate >= 0.20f)
@@ -285,18 +273,19 @@ public class InjuriesComp : ThingComp
 
     public void burnLungs(DamageInfo burninfo)
     {
-        if ((burninfo.Def?.hediff ?? null) == HediffDefOf.Burn)
+        HediffDef burnHediff = DamageDefOf.Burn.hediff;
+        if ((burninfo.Def?.hediff ?? null) == burnHediff)
         {
             IEnumerable<BodyPartRecord> lungs = dad.health.hediffSet.GetNotMissingParts().Where(x => x.def.defName == "Lung");
 
             foreach (BodyPartRecord? lung in lungs)
             {
-                Hediff lungBurnHediff = new() { def = HediffDefOf.Burn, Severity = 200f, Part = lung, pawn = dad };
+                Hediff lungBurnHediff = new() { def = burnHediff, Severity = 200f, Part = lung, pawn = dad };
 
-                if (dad.health.hediffSet.hediffs.Any(x => x.Part?.def?.defName == "Lung" && x.def == HediffDefOf.Burn))
+                if (dad.health.hediffSet.hediffs.Any(x => x.Part?.def?.defName == "Lung" && x.def == burnHediff))
                 {
 
-                    List<Hediff> lungburns = dad.health.hediffSet.hediffs.FindAll(x => x.Part?.def?.defName == "Lung" && x.def == HediffDefOf.Burn);
+                    List<Hediff> lungburns = dad.health.hediffSet.hediffs.FindAll(x => x.Part?.def?.defName == "Lung" && x.def == burnHediff);
 
                     foreach (Hediff? idk in lungburns)
                     {
@@ -514,8 +503,7 @@ public class InjuriesComp : ThingComp
                 }
             }
         }
-
-        Hediff lol = HediffMaker.MakeHediff(HediffDefOf.Stab, targetPawn) as Hediff_Injury;
+        Hediff lol = HediffMaker.MakeHediff(DamageDefOf.Stab.hediff, targetPawn) as Hediff_Injury;
 
         if (LoadedModManager.GetMod<MoreInjuriesMod>().GetSettings<MoreInjuriesSettings>().AdrenalineBool)
         {

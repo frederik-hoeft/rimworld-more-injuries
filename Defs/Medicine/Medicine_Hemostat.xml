@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <HediffDef ParentName="DiseaseBase">
-    <defName>hemostatised</defName>
-    <label>hemostatised</label>
-    <description>A hemostatic agent has been apllied to this wound, decreasing it's bleeding
+    <defName>HemostatApplied</defName>
+    <label>HemostatApplied</label>
+    <description>A hemostatic agent has been applied to this wound, decreasing its bleeding
       heavily. When tending, injuries bleeding the most are prioritized.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0,152,0)</defaultLabelColor>
@@ -12,7 +12,7 @@
         <severityPerDay>-1</severityPerDay>
       </li>
       <li>
-        <compClass>Oof.HemoHefComp</compClass>
+        <compClass>MoreInjuries.Hemostat.HemostatHediffComp</compClass>
       </li>
     </comps>
     <stages>
@@ -58,16 +58,16 @@
     </recipeMaker> -->
 
     <modExtensions>
-      <li Class="Oof.HemostatModExtension">
-        <CoagulationMultiplier>0.2</CoagulationMultiplier>
-        <ApplyTime>30</ApplyTime>
+      <li Class="MoreInjuries.Hemostat.HemostatModExtension">
+        <_coagulationMultiplier>0.2</_coagulationMultiplier>
+        <_applyTime>30</_applyTime>
       </li>
     </modExtensions>
   </ThingDef>
 
   <JobDef>
-    <defName>UseHemo</defName>
-    <driverClass>Oof.UseHemostat</driverClass>
+    <defName>UseHemostat</defName>
+    <driverClass>MoreInjuries.Hemostat.UseHemostat</driverClass>
     <reportString>Use hemostat.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>

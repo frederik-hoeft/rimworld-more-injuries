@@ -2,21 +2,21 @@
 <Defs>
 	<JobDef>
 		<defName>DOCPR</defName>
-		<driverClass>Oof.DOCPR</driverClass>
+		<driverClass>MoreInjuries.DOCPR</driverClass>
 		<reportString>Performing CPR.</reportString>
 		<casualInterruptible>false</casualInterruptible>
 	</JobDef>
 
 	<JobDef>
 		<defName>cbvnm</defName>
-		<driverClass>Oof.fixleg</driverClass>
+		<driverClass>MoreInjuries.fixleg</driverClass>
 		<reportString>Splinting a leg.</reportString>
 		<casualInterruptible>false</casualInterruptible>
 	</JobDef>
 
 	<JobDef>
 		<defName>tourni</defName>
-		<driverClass>Oof.PutOnTheThing</driverClass>
+		<driverClass>MoreInjuries.PutOnTheThing</driverClass>
 		<reportString>Applying a tourniquet.</reportString>
 		<casualInterruptible>false</casualInterruptible>
 	</JobDef>

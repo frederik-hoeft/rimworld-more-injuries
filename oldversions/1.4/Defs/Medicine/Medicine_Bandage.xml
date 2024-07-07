@@ -47,9 +47,9 @@
       </recipeUsers>
     </recipeMaker>
     <modExtensions>
-      <li Class="Oof.HemostatModExtension">
-        <CoagulationMultiplier>0.5</CoagulationMultiplier>
-        <ApplyTime>90</ApplyTime>
+      <li Class="Oof.hemostat_modext">
+        <coagulation_mult>0.5</coagulation_mult>
+        <applytime>90</applytime>
       </li>
     </modExtensions>
   </ThingDef>

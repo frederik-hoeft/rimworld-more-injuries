@@ -26,7 +26,7 @@ public class DamageWorker_SetOnFire : DamageWorker_Flame
                 {
                     foreach (BodyPartRecord? lung in p.health.hediffSet.GetNotMissingParts().Where(x => x.def.defName == "Lung"))
                     {
-                        Hediff HediffBurn = HediffMaker.MakeHediff(HediffDefOf.Burn, p, lung);
+                        Hediff HediffBurn = HediffMaker.MakeHediff(DamageDefOf.Burn.hediff, p, lung);
 
                         HediffBurn.Severity = Rand.Range(dinfo.Amount, dinfo.Amount * 2f);
 

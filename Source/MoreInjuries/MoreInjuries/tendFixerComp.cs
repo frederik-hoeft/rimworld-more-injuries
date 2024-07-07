@@ -11,7 +11,7 @@ public class tendFixerComp : HediffComp
         if (quality > 0.8f)
         {
             SemiFixed = true;
-            this.parent.Severity = Math.Min(0.15f, this.parent.Severity);
+            parent.Severity = Math.Min(0.15f, parent.Severity);
         }
     }
 

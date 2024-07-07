@@ -19,11 +19,11 @@ namespace Oof
 	}
 
 
-    public class HemostatModExtension : DefModExtension
+    public class hemostat_modext : DefModExtension
     {
-        public float CoagulationMultiplier;
+        public float coagulation_mult;
 
-		public int ApplyTime;
+		public int applytime;
     }
 
     public class hemostat_comp : ThingComp
@@ -38,20 +38,20 @@ namespace Oof
         {
 			if (OofMod.settings.individualFloatMenus)
 			{
-				if (selPawn.inventory.innerContainer.Any(iran => iran.def.HasModExtension<HemostatModExtension>()))
+				if (selPawn.inventory.innerContainer.Any(iran => iran.def.HasModExtension<hemostat_modext>()))
 				{
 
 					Pawn parent = this.parent as Pawn;
 
-					var hemo = selPawn.inventory.innerContainer.ToList().Find(iran => iran.def.HasModExtension<HemostatModExtension>());
+					var hemo = selPawn.inventory.innerContainer.ToList().Find(iran => iran.def.HasModExtension<hemostat_modext>());
 
-					var hemoprops = hemo.def.GetModExtension<HemostatModExtension>();
+					var hemoprops = hemo.def.GetModExtension<hemostat_modext>();
 
 					foreach (BetterInjury injury in parent.health.hediffSet.GetInjuriesTendable())
 					{
 						if (injury.Part != null && injury.Bleeding && !injury.hemod && injury.Part.depth == BodyPartDepth.Outside)
 						{
-							float newbleedrate = injury.Severity * injury.def.injuryProps.bleedRate * injury.Part.def.bleedRate * hemoprops.CoagulationMultiplier;
+							float newbleedrate = injury.Severity * injury.def.injuryProps.bleedRate * injury.Part.def.bleedRate * hemoprops.coagulation_mult;
 
 							tagged_float = newbleedrate;
 
@@ -60,7 +60,7 @@ namespace Oof
 								{
 									injur = injury;
 
-									Job jobber = new Job { def = HemoDefOf.UseHemo, targetA = parent, targetB = selPawn.inventory.innerContainer.ToList().Find(iran => iran.def.HasModExtension<HemostatModExtension>()) };
+									Job jobber = new Job { def = HemoDefOf.UseHemo, targetA = parent, targetB = selPawn.inventory.innerContainer.ToList().Find(iran => iran.def.HasModExtension<hemostat_modext>()) };
 
 									selPawn.jobs.StartJob(jobber, JobCondition.InterruptForced);
 								}
@@ -72,7 +72,7 @@ namespace Oof
 				}
 			}
 
-			if (selPawn.inventory.innerContainer.Any(x => x.def.HasModExtension<HemostatModExtension>()) | !selPawn.ThingsInRange().Where(x => x.def.HasModExtension<HemostatModExtension>()).EnumerableNullOrEmpty()
+			if (selPawn.inventory.innerContainer.Any(x => x.def.HasModExtension<hemostat_modext>()) | !selPawn.ThingsInRange().Where(x => x.def.HasModExtension<hemostat_modext>()).EnumerableNullOrEmpty()
 				&& !((Pawn)this.parent).health.hediffSet.GetInjuriesTendable().EnumerableNullOrEmpty())
 			{
 				yield return new FloatMenuOption("Provide first aid",
@@ -122,9 +122,9 @@ namespace Oof
 			Toil toil = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
 			yield return toil;
 
-			var varA1 = TargetB.Thing.def.GetModExtension<HemostatModExtension>();
+			var varA1 = TargetB.Thing.def.GetModExtension<hemostat_modext>();
 
-			Toil toil2 = Toils_General.Wait(varA1.ApplyTime);
+			Toil toil2 = Toils_General.Wait(varA1.applytime);
 			toil2.AddFinishAction(delegate
 			{
 				var varC = Patient.TryGetComp<hemostat_comp>().injur;

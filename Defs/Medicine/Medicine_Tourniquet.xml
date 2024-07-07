@@ -13,7 +13,7 @@
         <severityPerDay>-0.5</severityPerDay>
       </li>
       <li>
-        <compClass>Oof.TourniHediffComp</compClass>
+        <compClass>MoreInjuries.TourniHediffComp</compClass>
       </li>
     </comps>
     <stages>

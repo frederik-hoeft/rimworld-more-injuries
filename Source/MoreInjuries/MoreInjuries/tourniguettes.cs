@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MoreInjuries.Hemostat;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -19,8 +20,8 @@ public class A_JobDefOf : DefOf
     public static HediffDef ChokingOnTourni;
 
     public static BodyPartDef Skull;
-
 }
+
 [StaticConstructorOnStartup]
 public class FuckPatching
 {
@@ -28,15 +29,15 @@ public class FuckPatching
     {
         A_JobDefOf.Skull.hitPoints = 35;
 
-        BodyPartDefOf.Brain.hitPoints = 10;
+        //BodyPartDefOf.Brain.hitPoints = 10;
 
         BodyPartDefOf.Head.hitPoints = 20;
 
-        BodyPartDefOf.Jaw.hitPoints = 20;
+        //BodyPartDefOf.Jaw.hitPoints = 20;
 
         ThingDefOf.Human.comps.Add(new CompProperties { compClass = typeof(TourniComp) });
 
-        ThingDefOf.Human.comps.Add(new CompProperties { compClass = typeof(hemostat_comp) });
+        ThingDefOf.Human.comps.Add(new CompProperties { compClass = typeof(HemostatComp) });
 
         if (MoreInjuriesMod.Settings.HearDMG)
         {
@@ -67,7 +68,7 @@ public class TourniComp : ThingComp
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        Pawn dad = (Pawn)this.parent;
+        Pawn dad = (Pawn)parent;
         if (dad.Downed)
         {
             if (dad.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation) > 0.19f)
@@ -96,7 +97,13 @@ public class TourniComp : ThingComp
 
                                         taggedBodyPart = bodypart;
 
-                                        taggedInjuries = parent.health.hediffSet.GetInjuriesTendable().ToList().FindAll(ttt => (ttt.Bleeding) && (ttt.Part == taggedBodyPart | (bodypart.parts?.Contains(ttt.Part) ?? false) | (bodypart.parts?.Any(ppp => ppp.parts?.Contains(ttt.Part) ?? false) ?? false)));
+                                        taggedInjuries = parent.health.hediffSet.GetHediffsTendable()
+                                            .OfType<Hediff_Injury>()
+                                            .Where(ttt => (ttt.Bleeding) 
+                                                && (ttt.Part == taggedBodyPart 
+                                                    | (bodypart.parts?.Contains(ttt.Part) ?? false) 
+                                                    | (bodypart.parts?.Any(ppp => ppp.parts?.Contains(ttt.Part) ?? false) ?? false)))
+                                            .ToList();
 
                                         BodyPartRecord varA = parent.TryGetComp<TourniComp>().taggedBodyPart;
                                         Hediff varB = HediffMaker.MakeHediff(A_JobDefOf.tournihed, parent, varA);
@@ -110,8 +117,8 @@ public class TourniComp : ThingComp
 
                                                     if (injur is BetterInjury)
                                                     {
-                                                        ((BetterInjury)injur).isBase = false;
-                                                        ((BetterInjury)injur).BleedRateSet = 0.01f;
+                                                        ((BetterInjury)injur).IsBase = false;
+                                                        ((BetterInjury)injur).OverriddenBleedRate = 0.01f;
                                                     }
                                                 }
                                             }
@@ -168,7 +175,7 @@ public class TourniComp : ThingComp
 
                                     taggedBodyPart = bodypart;
 
-                                    taggedInjuries = parent.health.hediffSet.GetInjuriesTendable().ToList().FindAll(ttt => (ttt.Bleeding) && (ttt.Part == taggedBodyPart | (bodypart.parts?.Contains(ttt.Part) ?? false) | (bodypart.parts?.Any(ppp => ppp.parts?.Contains(ttt.Part) ?? false) ?? false)));
+                                    taggedInjuries = parent.health.hediffSet.GetHediffsTendable().OfType<Hediff_Injury>().ToList().FindAll(ttt => (ttt.Bleeding) && (ttt.Part == taggedBodyPart | (bodypart.parts?.Contains(ttt.Part) ?? false) | (bodypart.parts?.Any(ppp => ppp.parts?.Contains(ttt.Part) ?? false) ?? false)));
 
                                     Job varA = new() { def = A_JobDefOf.tourni, targetA = this.parent, targetB = dad.inventory.innerContainer.ToList().Find(K => K.def.defName == "tourniquet") };
                                     dad.jobs.StartJob(varA, JobCondition.InterruptForced);
@@ -233,7 +240,7 @@ public class TourniComp : ThingComp
 
                             taggedBodyPart = bodypart;
 
-                            taggedInjuries = parent.health.hediffSet.GetInjuriesTendable().ToList().FindAll(ttt => (ttt.Bleeding) && (ttt.Part == taggedBodyPart | (bodypart.parts?.Contains(ttt.Part) ?? false) | ttt.Part == bodypart | ((!bodypart.parent?.IsCorePart ?? false) && (bodypart.parent?.parts?.Contains(ttt.Part) ?? false)) | (bodypart.parts?.Any(ppp => ppp.parts?.Contains(ttt.Part) ?? false) ?? false)));
+                            taggedInjuries = parent.health.hediffSet.GetHediffsTendable().OfType<Hediff_Injury>().ToList().FindAll(ttt => (ttt.Bleeding) && (ttt.Part == taggedBodyPart | (bodypart.parts?.Contains(ttt.Part) ?? false) | ttt.Part == bodypart | ((!bodypart.parent?.IsCorePart ?? false) && (bodypart.parent?.parts?.Contains(ttt.Part) ?? false)) | (bodypart.parts?.Any(ppp => ppp.parts?.Contains(ttt.Part) ?? false) ?? false)));
 
                             Job varA = new() { def = A_JobDefOf.tourni, targetA = this.parent, targetB = selPawn.inventory.innerContainer.ToList().Find(K => K.def.defName == "tourniquet") };
                             selPawn.jobs.StartJob(varA, JobCondition.InterruptForced);
@@ -264,7 +271,7 @@ public class PutOnTheThing : JobDriver
     {
         get
         {
-            return (Pawn)this.job.GetTarget(TargetIndex.A).Thing;
+            return (Pawn)job.GetTarget(TargetIndex.A).Thing;
         }
     }
 
@@ -272,13 +279,13 @@ public class PutOnTheThing : JobDriver
     {
         get
         {
-            return this.pawn;
+            return pawn;
         }
     }
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return this.Doctor.Reserve(this.Patient, this.job, 1, 1, null, errorOnFailed);
+        return Doctor.Reserve(Patient, job, 1, 1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()
@@ -303,8 +310,8 @@ public class PutOnTheThing : JobDriver
                     {
                         if (injur is BetterInjury)
                         {
-                            ((BetterInjury)injur).isBase = false;
-                            ((BetterInjury)injur).BleedRateSet = 0.01f;
+                            ((BetterInjury)injur).IsBase = false;
+                            ((BetterInjury)injur).OverriddenBleedRate = 0.01f;
                         }
                     }
                 }
@@ -366,7 +373,7 @@ public class TourniHediffComp : HediffComp
                 {
                     if (injur is BetterInjury)
                     {
-                        ((BetterInjury)injur).isBase = true;
+                        ((BetterInjury)injur).IsBase = true;
                     }
                 }
             }
@@ -376,11 +383,11 @@ public class TourniHediffComp : HediffComp
 
     public override void CompPostMake()
     {
-        if (this.parent.Part.def.defName == "Neck")
+        if (parent.Part.def.defName == "Neck")
         {
-            Hediff hed = HediffMaker.MakeHediff(A_JobDefOf.ChokingOnTourni, this.parent.pawn);
+            Hediff hed = HediffMaker.MakeHediff(A_JobDefOf.ChokingOnTourni, parent.pawn);
 
-            this.parent.pawn.health.AddHediff(hed);
+            parent.pawn.health.AddHediff(hed);
         }
 
         base.CompPostMake();

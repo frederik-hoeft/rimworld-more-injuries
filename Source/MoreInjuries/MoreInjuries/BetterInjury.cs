@@ -1,42 +1,79 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using Verse;
 
 namespace MoreInjuries;
 
 public class BetterInjury : Hediff_Injury
 {
-    public bool isBase = true;
+    private static readonly Color _closedWoundColor = new(115, 115, 115);
+    private static readonly Color _hemostatColor = new(90, 155, 220);
 
-    public float BleedRateSet;
+    private float _overriddenBleedRate;
+    private bool _isHemostatApplied = false;
+    private int _hemoDuration = 120000;
+    private bool _isDiagnosed = false;
+    private bool _isBase = true;
 
-    public float hemoMult;
+    public float HemostatMultiplier { get; set; }
 
-    public bool hemod = false;
-
-    public int hemoDuration = 120000;
-
-    public bool AmIInternal
-    {
-        get
-        {
-            return (this.Part?.depth ?? BodyPartDepth.Undefined) == BodyPartDepth.Inside;
-        }
+    public bool IsBase 
+    { 
+        get => _isBase;
+        set => _isBase = value;
     }
 
-    public bool Plugged
+    public bool IsDiagnosed 
+    { 
+        get => _isDiagnosed; 
+        set => _isDiagnosed = value; 
+    }
+
+    public float OverriddenBleedRate 
+    { 
+        get => _overriddenBleedRate; 
+        set => _overriddenBleedRate = value; 
+    }
+
+    public bool IsHemostatApplied 
+    { 
+        get => _isHemostatApplied; 
+        set => _isHemostatApplied = value; 
+    }
+
+    public bool IsInternalInjury => Part is { depth: BodyPartDepth.Inside };
+
+    /// <summary>
+    /// Returns true if this is an internal injury that is still bleeding and all related external injuries are tended, hemostat applied, or aren't bleeding
+    /// </summary>
+    public bool IsClosedInternalWound
     {
         get
         {
-            if (this.Part != null)
+            // prefer early return
+            if (Part is null || !IsInternalInjury || def.injuryProps.bleedRate <= 0 || this.IsPermanent())
             {
-                var injuryList = this.pawn.health.hediffSet.GetInjuriesTendable().Where(x => x.Part.depth == BodyPartDepth.Outside && x is BetterInjury).Select(y => y as BetterInjury);
-
-                injuryList = injuryList.Where(x => !x.IsPermanent() && x.def.injuryProps.bleedRate > 0 && x.Part == this.Part | x.Part == this.Part?.parent | x.Part?.parent == this.Part | x.Part?.parent == this.Part?.parent);
-
-                return injuryList.All(x => (x.IsTended() | x.hemod)) && AmIInternal && !this.IsPermanent() && this.def.injuryProps.bleedRate > 0;
+                return false;
             }
-            return false;
+
+            // returns true if we are an internal injury and all related external injuries are tended to the best of our ability
+            // so Plugged <=> this is an internal injury that is still bleeding and all related external injuries are tended, hemostat applied, or aren't bleeding
+            foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+            {
+                // must be an external injury that is still bleeding
+                if (hediff is BetterInjury { Part.depth: BodyPartDepth.Outside, def.injuryProps.bleedRate: > 0 } injury
+                    // must be related to this injury
+                    && (injury.Part == Part || injury.Part == Part.parent || injury.Part.parent == Part || injury.Part.parent == Part.parent)
+                    // must be tendable now (an active injury)
+                    && injury.TendableNow())
+                {
+                    // if the external injury is still bleeding (not tended), we are not plugged
+                    if (!injury.IsHemostatApplied && !injury.IsTended())
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 
@@ -44,22 +81,22 @@ public class BetterInjury : Hediff_Injury
     {
         get
         {
-            float result = 0f;
-            if (isBase | this.IsTended())
+            float result;
+            if (IsBase || this.IsTended())
             {
                 result = base.BleedRate;
             }
             else
             {
-                result = BleedRateSet;
+                result = OverriddenBleedRate;
             }
 
-            if (hemod)
+            if (IsHemostatApplied)
             {
-                result *= hemoMult;
+                result *= HemostatMultiplier;
             }
 
-            if (Plugged && AmIInternal)
+            if (IsClosedInternalWound)
             {
                 result *= MoreInjuriesMod.Settings.PlugMult;
             }
@@ -71,29 +108,28 @@ public class BetterInjury : Hediff_Injury
     public override void Tick()
     {
         base.Tick();
-        if (hemod)
+        if (IsHemostatApplied)
         {
-            hemoDuration--;
-            if (hemoDuration <= 0f)
+            _hemoDuration--;
+            if (_hemoDuration <= 0f)
             {
-                hemod = false;
+                IsHemostatApplied = false;
             }
         }
     }
 
-    public bool diagnosed = false;
     public override bool Visible
     {
         get
         {
             if (MoreInjuriesMod.Settings.fuckYourFun)
             {
-                if (this.Part?.depth == BodyPartDepth.Outside)
+                if (Part?.depth == BodyPartDepth.Outside)
                 {
                     return true;
                 }
 
-                return diagnosed;
+                return IsDiagnosed;
             }
             return true;
         }
@@ -101,41 +137,31 @@ public class BetterInjury : Hediff_Injury
 
     public override void ExposeData()
     {
-        Scribe_Values.Look<bool>(ref isBase, "isBased");
-        Scribe_Values.Look<bool>(ref diagnosed, "diagnose");
-        Scribe_Values.Look<bool>(ref hemod, "diagnose");
-        Scribe_Values.Look<float>(ref BleedRateSet, "BleedRateSet");
-        Scribe_Values.Look<int>(ref hemoDuration, "hemoDuration", 120000);
+        Scribe_Values.Look(ref _isBase, "isBase");
+        Scribe_Values.Look(ref _isDiagnosed, "isDiagnosed");
+        Scribe_Values.Look(ref _isHemostatApplied, "isHemoStatApplied");
+        Scribe_Values.Look(ref _overriddenBleedRate, "BleedRateSet");
+        Scribe_Values.Look(ref _hemoDuration, "hemoDuration", 120000);
         base.ExposeData();
     }
 
-    public override Color LabelColor
+    public override Color LabelColor => (IsHemostatApplied, IsClosedInternalWound) switch
     {
-        get
-        {
-            if (hemod)
-            {
-                return new Color(90, 155, 220);
-            }
-
-            if (Plugged)
-            {
-                return new Color(115, 115, 115);
-            }
-            return base.LabelColor;
-        }
-    }
+        (true, _) => _hemostatColor,
+        (_, true) => _closedWoundColor,
+        _ => base.LabelColor
+    };
 
     public override string TipStringExtra
     {
         get
         {
             string result = base.TipStringExtra;
-            if (Plugged)
+            if (IsClosedInternalWound)
             {
                 result += "\nClosed wound, bleeding rate decreased";
             }
-            if (hemod)
+            if (IsHemostatApplied)
             {
                 result += "\nHemostaised, bleeding rate heavily decreased";
             }

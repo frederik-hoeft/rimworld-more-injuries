@@ -9,7 +9,7 @@ public class BetterPartMissing : Hediff_MissingPart
     {
         get
         {
-            if (BleedRateInt != -1f && !this.IsTended() && this.IsFresh)
+            if (BleedRateInt != -1f && !this.IsTended() && IsFresh)
             {
                 return BleedRateInt;
             }

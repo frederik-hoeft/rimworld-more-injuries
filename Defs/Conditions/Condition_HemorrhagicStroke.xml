@@ -23,7 +23,7 @@
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
       <li>
-        <compClass>Oof.tendFixerComp</compClass>
+        <compClass>MoreInjuries.tendFixerComp</compClass>
       </li>
     </comps>
     <stages>

@@ -42,7 +42,7 @@
         <useDuration>600</useDuration>
       </li>
       <li Class="CompProperties_UseEffect">
-        <compClass>Oof.fixlung</compClass>
+        <compClass>MoreInjuries.Jobs.fixlung</compClass>
       </li>
       <li Class="CompProperties_UseEffect">
         <compClass>CompUseEffect_DestroySelf</compClass>

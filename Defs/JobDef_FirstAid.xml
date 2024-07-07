@@ -2,14 +2,14 @@
 <Defs>
     <JobDef>
         <defName>FirstAid</defName>
-        <driverClass>Oof.JobDriver_HardTending</driverClass>
+        <driverClass>MoreInjuries.JobDriver_HardTending</driverClass>
         <reportString>Performing first aid</reportString>
         <casualInterruptible>false</casualInterruptible>
     </JobDef>
 
     <JobDef>
         <defName>ClearAirway</defName>
-        <driverClass>Oof.ClearAirway</driverClass>
+        <driverClass>MoreInjuries.Jobs.ClearAirway</driverClass>
         <reportString>Clearing TargetA 's airways.</reportString>
         <casualInterruptible>false</casualInterruptible>
     </JobDef>

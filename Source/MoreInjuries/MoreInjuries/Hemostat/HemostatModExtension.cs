@@ -2,9 +2,16 @@
 
 namespace MoreInjuries.Hemostat;
 
+// members initialized via XML defs
 public class HemostatModExtension : DefModExtension
 {
-    public float CoagulationMultiplier { get; init; }
+    // don't rename this field. XML defs depend on this name
+    private readonly float _coagulationMultiplier;
 
-    public int ApplyTime { get; init; }
+    // don't rename this field. XML defs depend on this name
+    private readonly int _applyTime;
+
+    public float CoagulationMultiplier => _coagulationMultiplier;
+
+    public int ApplyTime => _applyTime;
 }

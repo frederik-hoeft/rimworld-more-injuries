@@ -16,21 +16,21 @@ public class UseHemostat : JobDriver
     {
         this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
         this.FailOnAggroMentalState(TargetIndex.A);
-        Toil toil = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
-        yield return toil;
+        Toil toilGotoPatient = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+        yield return toilGotoPatient;
 
         HemostatModExtension varA1 = TargetB.Thing.def.GetModExtension<HemostatModExtension>();
 
-        Toil toil2 = Toils_General.Wait(varA1.ApplyTime);
-        toil2.AddFinishAction(delegate
+        Toil toilApplyHempstat = Toils_General.Wait(varA1.ApplyTime);
+        toilApplyHempstat.AddFinishAction(() =>
         {
-            BetterInjury varC = Patient.TryGetComp<hemostat_comp>().injur;
+            BetterInjury injury = Patient.TryGetComp<HemostatComp>().Injury;
 
-            varC.isBase = false;
+            injury.IsBase = false;
 
-            varC.BleedRateSet = Patient.TryGetComp<hemostat_comp>().tagged_float;
+            injury.OverriddenBleedRate = Patient.TryGetComp<HemostatComp>().BleedRate;
 
-            //Hediff hedf = HediffMaker.MakeHediff(HemoDefOf.hemostatised, Patient, varC.Part);
+            //Hediff hedf = HediffMaker.MakeHediff(HemoDefOf.HemostatApplied, Patient, varC.Part);
 
             //hedf.Severity = 1f;
 
@@ -38,11 +38,11 @@ public class UseHemostat : JobDriver
 
             //Patient.health.AddHediff(hedf);
 
-            varC.hemod = true;
+            injury.IsHemostatApplied = true;
 
             if (TargetB.Thing.stackCount > 0)
             {
-                --TargetB.Thing.stackCount;
+                TargetB.Thing.stackCount--;
             }
             else
             {
@@ -54,7 +54,7 @@ public class UseHemostat : JobDriver
                 TargetB.Thing.Destroy();
             }
         });
-        yield return toil2;
+        yield return toilApplyHempstat;
         yield break;
     }
 }

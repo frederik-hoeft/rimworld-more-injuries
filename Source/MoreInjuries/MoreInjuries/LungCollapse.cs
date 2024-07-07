@@ -17,9 +17,9 @@ public class LungCollapse : BetterInjury
     public override void Tended(float quality, float maxQuality, int batchPosition = 0)
     {
         IsFresh = false;
-        if (this.pawn.health.hediffSet.hediffs.Any(x => x.def.defName == "AirwayBlocked"))
+        if (pawn.health.hediffSet.hediffs.Any(x => x.def.defName == "AirwayBlocked"))
         {
-            this.pawn.health.RemoveHediff(this.pawn.health.hediffSet.hediffs.Find(x => x.def.defName == "AirwayBlocked"));
+            pawn.health.RemoveHediff(pawn.health.hediffSet.hediffs.Find(x => x.def.defName == "AirwayBlocked"));
         }
         base.Tended(quality, maxQuality, batchPosition);
     }
@@ -42,17 +42,17 @@ public class LungCollapse : BetterInjury
         {
             if (Rand.Chance( /*0.003f*/ 1f))
             {
-                BodyPartRecord? neck = this.pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def.defName == "Neck").FirstOrFallback();
-                Hediff hediff = HediffMaker.MakeHediff(InjuryDefOf.AirwayBlocked, this.pawn, neck);
+                BodyPartRecord? neck = pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def.defName == "Neck").FirstOrFallback();
+                Hediff hediff = HediffMaker.MakeHediff(InjuryDefOf.AirwayBlocked, pawn, neck);
 
-                this.pawn.health.AddHediff(hediff, neck);
+                pawn.health.AddHediff(hediff, neck);
             }
         }
     }
 
     public override void ExposeData()
     {
-        Scribe_Values.Look<bool>(ref IsFresh, "IsFresh");
+        Scribe_Values.Look(ref IsFresh, "IsFresh");
     }
 
     public override TextureAndColor StateIcon => base.StateIcon;

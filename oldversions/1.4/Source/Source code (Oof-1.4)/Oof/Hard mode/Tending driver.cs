@@ -61,22 +61,22 @@ namespace Oof
                 yield return t1;
             }
 
-            List<Thing> devices = actor.inventory.innerContainer.Where(x => x.def.HasModExtension<HemostatModExtension>()).ToList();
+            List<Thing> devices = actor.inventory.innerContainer.Where(x => x.def.HasModExtension<hemostat_modext>()).ToList();
 
-            if (!patient.ThingsInRange().Where(x => x.def.HasModExtension<HemostatModExtension>()).EnumerableNullOrEmpty())
+            if (!patient.ThingsInRange().Where(x => x.def.HasModExtension<hemostat_modext>()).EnumerableNullOrEmpty())
             {
-                devices.AddRange(patient.ThingsInRange().Where(x => x.def.HasModExtension<HemostatModExtension>()));
+                devices.AddRange(patient.ThingsInRange().Where(x => x.def.HasModExtension<hemostat_modext>()));
             }
 
             foreach (BetterInjury injury in patient.health.hediffSet.GetHediffsTendable().Where(x => x is BetterInjury && x.Part?.depth == BodyPartDepth.Outside).OrderBy(x => x.BleedRate))
             {
                 if (/*injury.Bleeding &&*/ injury.BleedRate > 0.15f && injury.isBase)
                 {
-                    var fastestTendDevice = devices.MinBy(x => x.def.GetModExtension<HemostatModExtension>().ApplyTime);
+                    var fastestTendDevice = devices.MinBy(x => x.def.GetModExtension<hemostat_modext>().applytime);
 
-                    var deviceModExt = fastestTendDevice.def.GetModExtension<HemostatModExtension>();
+                    var deviceModExt = fastestTendDevice.def.GetModExtension<hemostat_modext>();
 
-                    var ToilApply = Toils_General.Wait((int)(deviceModExt.ApplyTime / actor.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation)));
+                    var ToilApply = Toils_General.Wait((int)(deviceModExt.applytime / actor.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation)));
 
                     ToilApply.AddPreInitAction
                         (delegate
@@ -91,8 +91,8 @@ namespace Oof
                             {
                                 injury.hemod = true;
 
-                                //Log.Message(deviceModExt.CoagulationMultiplier + fastestTendDevice.Label);
-                                injury.hemoMult = deviceModExt.CoagulationMultiplier;
+                                //Log.Message(deviceModExt.coagulation_mult + fastestTendDevice.Label);
+                                injury.hemoMult = deviceModExt.coagulation_mult;
 
                                 var smallInjuries = patient.health.hediffSet.GetHediffsTendable().Where(x =>
                                 x is BetterInjury

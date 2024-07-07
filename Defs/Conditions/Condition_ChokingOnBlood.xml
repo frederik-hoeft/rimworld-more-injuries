@@ -21,7 +21,7 @@
         <message>{0} is choking on blood!</message>
         <messageType>NegativeHealthEvent</messageType>
       </li>
-      <li Class="Oof.chokingcompProperties">
+      <li Class="MoreInjuries.Jobs.chokingcompProperties">
         <ABCD>900</ABCD>
         <coughSound>Cough</coughSound>
       </li>

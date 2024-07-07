@@ -13,7 +13,7 @@ public class fixleg : JobDriver
     {
         get
         {
-            return (Pawn)this.job.GetTarget(TargetIndex.A).Thing;
+            return (Pawn)job.GetTarget(TargetIndex.A).Thing;
         }
     }
 
@@ -21,7 +21,7 @@ public class fixleg : JobDriver
     {
         get
         {
-            return this.pawn;
+            return pawn;
         }
     }
 
@@ -41,7 +41,7 @@ public class fixleg : JobDriver
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        return this.Doctor.Reserve(this.Patient, this.job, 1, -1, null, errorOnFailed);
+        return Doctor.Reserve(Patient, job, 1, -1, null, errorOnFailed);
     }
 
     protected override IEnumerable<Toil> MakeNewToils()

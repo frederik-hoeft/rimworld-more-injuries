@@ -6,7 +6,7 @@ public class ShockCompProps : HediffCompProperties
 {
     public ShockCompProps() : base()
     {
-        this.compClass = typeof(ShockComp);
+        compClass = typeof(ShockComp);
     }
 
     public SimpleCurve BleedSeverityCurve;

@@ -16,6 +16,6 @@ public class JobDriver_HardTending : JobDriver
 
     protected override IEnumerable<Toil> MakeNewToils()
     {
-        return DeviceToilsUtils.UseBleedDecreaser((Pawn)this.TargetA.Thing, GetActor());
+        return DeviceToilsUtils.UseBleedDecreaser((Pawn)TargetA.Thing, GetActor());
     }
 }

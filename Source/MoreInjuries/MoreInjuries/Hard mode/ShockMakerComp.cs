@@ -12,14 +12,14 @@ public class ShockMakerComp : HediffComp
     {
         base.CompPostTick(ref severityAdjustment);
 
-        if (this.parent.pawn.RaceProps?.Humanlike ?? false)
+        if (parent.pawn.RaceProps?.Humanlike ?? false)
         {
             ++ticks;
             if (ticks >= 600 && !addedOne)
             {
-                if (Rand.Chance(curve.Evaluate(this.parent.Severity)) && !this.parent.pawn.health.hediffSet.HasHediff(ShockDefOf.HypovolemicShock))
+                if (Rand.Chance(curve.Evaluate(parent.Severity)) && !parent.pawn.health.hediffSet.HasHediff(ShockDefOf.HypovolemicShock))
                 {
-                    this.parent.pawn.health.AddHediff(HediffMaker.MakeHediff(ShockDefOf.HypovolemicShock, this.parent.pawn));
+                    parent.pawn.health.AddHediff(HediffMaker.MakeHediff(ShockDefOf.HypovolemicShock, parent.pawn));
                     addedOne = true;
                 }
                 ticks = 0;

@@ -11,7 +11,7 @@
         <severityPerDay>-1</severityPerDay>
       </li>
       <li>
-        <compClass>Oof.HemoHefComp</compClass>
+        <compClass>MoreInjuries.Hemostat.HemostatHediffComp</compClass>
       </li>
     </comps>
   </HediffDef>
@@ -47,9 +47,9 @@
       </recipeUsers>
     </recipeMaker>
     <modExtensions>
-      <li Class="Oof.HemostatModExtension">
-        <CoagulationMultiplier>0.5</CoagulationMultiplier>
-        <ApplyTime>90</ApplyTime>
+      <li Class="MoreInjuries.Hemostat.HemostatModExtension">
+        <_coagulationMultiplier>0.5</_coagulationMultiplier>
+        <_applyTime>90</_applyTime>
       </li>
     </modExtensions>
   </ThingDef>
