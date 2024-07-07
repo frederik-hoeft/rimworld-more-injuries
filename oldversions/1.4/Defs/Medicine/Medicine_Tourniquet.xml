@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+
+  <HediffDef ParentName="DiseaseBase">
+    <defName>tournihed</defName>
+    <label>tourniquet</label>
+    <description>An applied tourniquet.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0,152,0)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.5</severityPerDay>
+      </li>
+      <li>
+        <compClass>Oof.TourniHediffComp</compClass>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <partEfficiencyOffset>-0.20</partEfficiencyOffset>
+        <painOffset>0.15</painOffset>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>tourniquet</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>tourniquet</label>
+    <description>Designed put tension on blood vessels, decreasing bleeding of a limb. Can be
+      applied to oneself or someone else.</description>
+    <graphicData>
+      <texPath>Thing/Tour</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <!-- <shaderType>CutoutComplex</shaderType> -->
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>500</stackLimit>
+    <tradeNeverStack>false</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <Mass>0.01</Mass>
+      <MarketValue>5</MarketValue>
+      <MaxHitPoints>5</MaxHitPoints>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <!-- <costStuffCount>5</costStuffCount>
+    <stuffCategories>
+      <li>Fabric</li>
+    <li>Leathery</li>
+    </stuffCategories>
+    <recipeMaker>
+      <recipeUsers>
+    <li>TableMachining</li>
+        <li>CraftingSpot</li>
+      </recipeUsers>
+    </recipeMaker> -->
+  </ThingDef>
+
+  <RecipeDef>
+    <defName>Make_TourniBulk</defName>
+    <label>make tourniquets x10</label>
+    <description>Make 10 tourniquets.</description>
+    <jobString>Making 10 tourniquets.</jobString>
+    <workAmount>1000</workAmount>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <useIngredientsForColor>false</useIngredientsForColor>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Textiles</li>
+            <li>Leathers</li>
+          </categories>
+        </filter>
+        <count>50</count>
+      </li>
+    </ingredients>
+    <products>
+      <tourniquet>10</tourniquet>
+    </products>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Textiles</li>
+        <li>Leathers</li>
+      </categories>
+    </fixedIngredientFilter>
+    <recipeUsers>
+      <li>TableMachining</li>
+      <li>CraftingSpot</li>
+    </recipeUsers>
+  </RecipeDef>
+</Defs>

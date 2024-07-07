@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <HediffDef ParentName="InjuryBase">
+        <defName>traumaticbraininjury</defName>
+        <label>traumatic brain injury</label>
+        <description>An injury to the brain caused by an external force.</description>
+        <comps>
+          <li Class="HediffCompProperties_TendDuration">
+            <labelTendedWell>tended</labelTendedWell>
+            <labelTendedWellInner>tended</labelTendedWellInner>
+            <labelSolidTendedWell>tended</labelSolidTendedWell>
+          </li>
+        </comps>
+        <injuryProps>
+          <painPerSeverity>0.100</painPerSeverity>
+          <canMerge>true</canMerge>
+          <destroyedLabel>crushed</destroyedLabel>
+          <destroyedOutLabel>crushed</destroyedOutLabel>
+        </injuryProps>
+    </HediffDef>
+</Defs>

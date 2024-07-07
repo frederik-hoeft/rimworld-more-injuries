@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="ResourceBase" Name="MedicalDeviceBase" Abstract="True">
+    <stackLimit>10</stackLimit>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <uiIconForStackCount>1</uiIconForStackCount>
+    <soundInteract>Standard_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <statBases>
+      <MaxHitPoints>60</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>MedicalDevice</li>
+    </thingCategories>
+    <!--<orderedTakeGroup>Medicine</orderedTakeGroup>-->
+  </ThingDef>
+
+
+  <ThingCategoryDef>
+    <defName>MedicalDevice</defName>
+    <label>medical devices</label>
+    <parent>Items</parent>
+  </ThingCategoryDef>
+
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>splint</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>splint</label>
+    <description>Designed to secure and hold damaged bones together, usually with fractures. Can be
+      applied via operation or by ordering another pawn that has splints in inventory</description>
+    <graphicData>
+      <texPath>Thing/Splint</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>500</stackLimit>
+    <tradeNeverStack>false</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <Mass>0.01</Mass>
+      <MarketValue>5</MarketValue>
+      <MaxHitPoints>100</MaxHitPoints>
+    </statBases>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <!-- <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+    </stuffCategories>
+    <costStuffCount>5</costStuffCount> -->
+    <!-- <recipeMaker>
+      <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+    <workSkill>Intellectual</workSkill>
+      <recipeUsers>
+        <li>TableMachining</li>
+    <li>CraftingSpot</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>1</Crafting>
+    </skillRequirements>
+    </recipeMaker> -->
+  </ThingDef>
+
+  <RecipeDef>
+    <defName>Make_SplintBulk</defName>
+    <label>make splints x10</label>
+    <description>Make 10 splints</description>
+    <jobString>Making 10 splints.</jobString>
+    <workAmount>900</workAmount>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <useIngredientsForColor>false</useIngredientsForColor>
+    <ingredients>
+      <li>
+        <filter>
+          <stuffCategoriesToAllow>
+            <li>Metallic</li>
+            <li>Woody</li>
+          </stuffCategoriesToAllow>
+        </filter>
+        <count>50</count>
+      </li>
+    </ingredients>
+    <products>
+      <splint>10</splint>
+    </products>
+    <fixedIngredientFilter>
+      <stuffCategoriesToAllow>
+        <li>Metallic</li>
+        <li>Woody</li>
+      </stuffCategoriesToAllow>
+    </fixedIngredientFilter>
+    <defaultIngredientFilter>
+      <disallowedThingDefs>
+        <li>Silver</li>
+        <li>Gold</li>
+      </disallowedThingDefs>
+    </defaultIngredientFilter>
+    <recipeUsers>
+      <li>TableMachining</li>
+      <li>CraftingSpot</li>
+    </recipeUsers>
+  </RecipeDef>
+</Defs>

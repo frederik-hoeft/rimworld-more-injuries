@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <BodyPartDef>
+    <defName>smolinstestine</defName>
+    <label>small intestine</label>
+    <hitPoints>24</hitPoints>
+    <permanentInjuryChanceFactor>2.5</permanentInjuryChanceFactor>
+    <skinCovered>false</skinCovered>
+    <solid>false</solid>
+    <bleedRate>12</bleedRate>
+    <tags>
+      <li>MetabolismSource</li>
+    </tags>
+    <canSuggestAmputation>true</canSuggestAmputation>
+    <destroyableByDamage>true</destroyableByDamage>
+    <spawnThingOnRemoved>smallintestine</spawnThingOnRemoved>
+  </BodyPartDef>
+
+
+  <ThingDef ParentName="BodyPartNaturalBase">
+    <defName>smallintestine</defName>
+    <label>small intestine</label>
+    <description>Biological human small intestine.</description>
+    <descriptionHyperlinks>
+      <RecipeDef>Installsmallintestine</RecipeDef>
+    </descriptionHyperlinks>
+    <statBases>
+      <MarketValue>500</MarketValue>
+      <Mass>1</Mass>
+    </statBases>
+  </ThingDef>
+
+  <RecipeDef ParentName="SurgeryInstallBodyPartNaturalBase">
+    <defName>Installsmallintestine</defName>
+    <label>install small intestine</label>
+    <description>Install a small intestine.</description>
+    <descriptionHyperlinks>
+      <ThingDef>smallintestine</ThingDef>
+    </descriptionHyperlinks>
+    <jobString>Installing small intestine.</jobString>
+    <deathOnFailedSurgeryChance>0.25</deathOnFailedSurgeryChance>
+    <skillRequirements>
+      <Medicine>6</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>smallintestine</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>smallintestine</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <appliedOnFixedBodyParts>
+      <li>smolinstestine</li>
+    </appliedOnFixedBodyParts>
+  </RecipeDef>
+
+  <!-- Bio[B]ic -->
+  <HediffDef ParentName="AddedBodyPartBase">
+    <defName>BionicInestine</defName>
+    <label>bionic small intestine</label>
+    <labelNoun>a bionic small intestine</labelNoun>
+    <description>An installed bionic small intestine.</description>
+    <descriptionHyperlinks>
+      <ThingDef>BionicIntestineSM</ThingDef>
+    </descriptionHyperlinks>
+    <spawnThingOnRemoved>BionicIntestineSM</spawnThingOnRemoved>
+    <addedPartProps>
+      <solid>true</solid>
+      <partEfficiency>1.35</partEfficiency>
+      <betterThanNatural>true</betterThanNatural>
+    </addedPartProps>
+  </HediffDef>
+
+  <ThingDef ParentName="BodyPartBionicBase">
+    <defName>BionicIntestineSM</defName>
+    <label>bionic small intestine</label>
+    <description>An advanced artificial intestine. A set of sensors and chemical synthesizers efficiently digest nearly any energy-bearing foodstuff. An integrated lattice-dust healing system automatically repairs any damage caused by the powerful acids. It is better than a biological stomach in almost every way.</description>
+    <descriptionHyperlinks>
+      <RecipeDef>InstallBionicIntestineSM</RecipeDef>
+    </descriptionHyperlinks>
+    <costList>
+      <Plasteel>15</Plasteel>
+      <ComponentSpacer>3</ComponentSpacer>
+    </costList>
+    <statBases>
+      <Mass>2</Mass>
+    </statBases>
+  </ThingDef>
+
+  <RecipeDef ParentName="SurgeryInstallBodyPartArtificialBase">
+    <defName>InstallBionicIntestineSM</defName>
+    <label>install bionic small intestine</label>
+    <description>Install a bionic small intestine.</description>
+    <descriptionHyperlinks>
+      <ThingDef>BionicIntestineSM</ThingDef>
+    </descriptionHyperlinks>
+    <jobString>Installing bionic intestine.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>BionicIntestineSM</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>BionicIntestineSM</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <appliedOnFixedBodyParts>
+      <li>smolinstestine</li>
+    </appliedOnFixedBodyParts>
+    <addsHediff>BionicInestine</addsHediff>
+  </RecipeDef>
+
+
+  <!-- ===================Large intestine====================== -->
+  <BodyPartDef>
+    <defName>largeinstestine</defName>
+    <label>Large intestine</label>
+    <hitPoints>20</hitPoints>
+    <permanentInjuryChanceFactor>2</permanentInjuryChanceFactor>
+    <skinCovered>false</skinCovered>
+    <solid>false</solid>
+    <bleedRate>14</bleedRate>
+    <tags>
+      <li>MetabolismSource</li>
+    </tags>
+    <canSuggestAmputation>true</canSuggestAmputation>
+    <destroyableByDamage>true</destroyableByDamage>
+    <spawnThingOnRemoved>largeinstestine</spawnThingOnRemoved>
+  </BodyPartDef>
+
+  <ThingDef ParentName="BodyPartNaturalBase">
+    <defName>largeinstestine</defName>
+    <label>large intestine</label>
+    <description>Biological large intestine.</description>
+    <descriptionHyperlinks>
+      <RecipeDef>Installlargeinstestine</RecipeDef>
+    </descriptionHyperlinks>
+    <statBases>
+      <MarketValue>500</MarketValue>
+      <Mass>1</Mass>
+    </statBases>
+  </ThingDef>
+
+  <RecipeDef ParentName="SurgeryInstallBodyPartNaturalBase">
+    <defName>Installlargeinstestine</defName>
+    <label>install large instestine</label>
+    <description>Install a large instestine.</description>
+    <descriptionHyperlinks>
+      <ThingDef>largeinstestine</ThingDef>
+    </descriptionHyperlinks>
+    <jobString>Installing large intestine.</jobString>
+    <deathOnFailedSurgeryChance>0.30</deathOnFailedSurgeryChance>
+    <skillRequirements>
+      <Medicine>6</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>largeinstestine</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>largeinstestine</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <appliedOnFixedBodyParts>
+      <li>largeinstestine</li>
+    </appliedOnFixedBodyParts>
+  </RecipeDef>
+
+  <!-- Abdomen -->
+  <BodyPartDef>
+    <defName>abdomennn</defName>
+    <label>abdomen</label>
+    <hitPoints>25</hitPoints>
+    <permanentInjuryChanceFactor>1</permanentInjuryChanceFactor>
+    <skinCovered>false</skinCovered>
+    <solid>false</solid>
+    <bleedRate>1.0</bleedRate>
+    <tags></tags>
+    <canSuggestAmputation>false</canSuggestAmputation>
+    <destroyableByDamage>false</destroyableByDamage>
+  </BodyPartDef>
+
+
+  <HediffDef ParentName="InjuryBase">
+    <defName>StomachAcidBurn</defName>
+    <label>chemical peritonitis</label>
+    <description>As a result of a perforating injury to intestines or stomach, gastric acid has inflicted tissue damage on surrounding organs, causing inflammation. Carries a major risk of infection.</description>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>tended</labelTendedWell>
+        <labelTendedWellInner>tended</labelTendedWellInner>
+        <labelSolidTendedWell>tended</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>2.10</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>burn scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.020</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <canMerge>true</canMerge>
+      <destroyedLabel>Burned off</destroyedLabel>
+      <destroyedOutLabel>Burned out</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+</Defs>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>suctiondevice</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>Airway suction device</label>
+    <description>A medical device designed to remove blood from airways.</description>
+    <graphicData>
+      <texPath>Thing/ASD</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>1</stackLimit>
+    <tradeNeverStack>true</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <Mass>0.01</Mass>
+      <MarketValue>200</MarketValue>
+      <MaxHitPoints>80</MaxHitPoints>
+    </statBases>
+    <drawGUIOverlay>false</drawGUIOverlay>
+    <costList>
+      <Steel>10</Steel>
+      <Chemfuel>20</Chemfuel>
+    </costList>
+    <recipeMaker>
+      <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+      <workSkill>Intellectual</workSkill>
+      <recipeUsers>
+        <li>TableMachining</li>
+      </recipeUsers>
+      <researchPrerequisite>MedicineProduction</researchPrerequisite>
+      <skillRequirements>
+        <Crafting>4</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <comps>
+      <li Class="CompProperties_Usable">
+        <useJob>UseItem</useJob>
+        <useLabel>Use airway suction device</useLabel>
+        <useDuration>600</useDuration>
+      </li>
+      <li Class="CompProperties_UseEffect">
+        <compClass>Oof.fixlung</compClass>
+      </li>
+      <li Class="CompProperties_UseEffect">
+        <compClass>CompUseEffect_DestroySelf</compClass>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>

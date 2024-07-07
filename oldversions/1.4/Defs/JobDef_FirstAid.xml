@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <JobDef>
+        <defName>FirstAid</defName>
+        <driverClass>Oof.JobDriver_HardTending</driverClass>
+        <reportString>Performing first aid</reportString>
+        <casualInterruptible>false</casualInterruptible>
+    </JobDef>
+
+    <JobDef>
+        <defName>ClearAirway</defName>
+        <driverClass>Oof.ClearAirway</driverClass>
+        <reportString>Clearing TargetA 's airways.</reportString>
+        <casualInterruptible>false</casualInterruptible>
+    </JobDef>
+</Defs>

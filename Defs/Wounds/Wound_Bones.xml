@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <HediffDef ParentName="DiseaseBase">
+    <defName>Fracture</defName>
+    <label>Bone fracture</label>
+    <description>Bone fracture. Must be surgically repaired or by applying a splint</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <comps></comps>
+    <stages>
+      <li>
+        <partEfficiencyOffset>-1.0</partEfficiencyOffset>
+      </li>
+    </stages>
+    <defaultLabelColor>(153, 92, 92)</defaultLabelColor>
+  </HediffDef>
+
+  <HediffDef ParentName="DiseaseBase">
+    <defName>FractureHealing</defName>
+    <label>healing bone fracture</label>
+    <description>Bone fracture.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.2</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_Discoverable">
+        <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <minSeverity>0.10</minSeverity>
+        <label>Nearly healed</label>
+        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.25</minSeverity>
+        <partEfficiencyOffset>-0.2</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.50</minSeverity>
+        <partEfficiencyOffset>-0.3</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.75</minSeverity>
+        <partEfficiencyOffset>-0.4</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.95</minSeverity>
+        <partEfficiencyOffset>-0.7</partEfficiencyOffset>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="InjuryBase">
+    <defName>BoneCut</defName>
+    <label>cut (bone fragments)</label>
+    <labelNoun>a bone fragment cut</labelNoun>
+    <description>A cut caused by fragments of a bone.</description>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.25</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>cut scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0250</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.09</bleedRate>
+      <canMerge>false</canMerge>
+      <destroyedLabel>Cut off</destroyedLabel>
+      <destroyedOutLabel>Cut out</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+
+</Defs>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="InjuryBase">
+    <defName>InternalSuffocation</defName>
+    <label>Organ hypoxia</label>
+    <labelNoun>insufficient oxygen</labelNoun>
+    <description>Damage from lack of oxygen to the organ. Most commonly caused by blood loss.</description>
+    <defaultLabelColor>(100, 15, 15)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>tended</labelTendedWell>
+        <labelTendedWellInner>tended</labelTendedWellInner>
+        <labelSolidTendedWell>tended</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>Permanent hypoxia damage</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.005</painPerSeverity>
+      <averagePainPerSeverityPermanent>0</averagePainPerSeverityPermanent>
+      <bleedRate>0</bleedRate>
+      <canMerge>true</canMerge>
+      <destroyedLabel>Dead</destroyedLabel>
+      <destroyedOutLabel>Dead</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+
+  <HediffDef ParentName="InfectionBase">
+    <defName>AirwayBlocked</defName>
+    <label>Blocked airway</label>
+    <description>Damaged lung is blocking the windpipe. Tend the lung collapse to remove this.</description>
+    <makesSickThought>false</makesSickThought>
+    <lethalSeverity>1.4</lethalSeverity>
+    <tendable>false</tendable>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>0.5</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_Discoverable">
+        <sendLetterWhenDiscovered>True</sendLetterWhenDiscovered>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.125</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.90</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.45</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

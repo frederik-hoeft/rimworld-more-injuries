@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="InfectionBase">
+    <defName>hemorrhagicstroke</defName>
+    <label>hemorrhagic stroke</label>
+    <description>A life-threatening condition caused by a rupture of a blood vessel in the brain. Can be removed via surgical intervention.</description>
+    <tendable>true</tendable>
+    <makesSickThought>true</makesSickThought>
+    <lethalSeverity>1</lethalSeverity>
+    <defaultLabelColor>(255, 158, 158)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>4</baseTendDurationHours>
+        <severityPerDayTended>-1.0</severityPerDayTended>
+      </li>
+      <li Class="HediffCompProperties_Immunizable">
+        <severityPerDayNotImmune>4.0</severityPerDayNotImmune>
+        <immunityPerDaySick>0.7</immunityPerDaySick>
+        <severityPerDayImmune>-8.70</severityPerDayImmune>
+        <immunityPerDayNotSick>-8.70</immunityPerDayNotSick>
+      </li>
+      <li Class="HediffCompProperties_Discoverable">
+        <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
+      </li>
+      <li>
+        <compClass>Oof.tendFixerComp</compClass>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <lifeThreatening>true</lifeThreatening>
+        <becomeVisible>true</becomeVisible>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+      </li>
+      <li>
+        <lifeThreatening>true</lifeThreatening>
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>0.20</minSeverity>
+        <partEfficiencyOffset>-0.95</partEfficiencyOffset>
+      </li>
+      <li>
+        <lifeThreatening>true</lifeThreatening>
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>0.99</minSeverity>
+        <partEfficiencyOffset>-0.99</partEfficiencyOffset>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

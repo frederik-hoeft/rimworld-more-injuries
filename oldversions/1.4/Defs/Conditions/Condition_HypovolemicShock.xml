@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="InfectionBase">
+    <defName>HypovolemicShock</defName>
+    <label>Hypovolemic shock</label>
+    <description>A life threating state caused by insufficient blood flow to body. Has chance to cause hypoxia damage to internal organs. Severity scales directly with blood loss severity until 60% severity. To cure it you must tend it to certain quality percentages based on severity. These are: \n \n 10% for 0-14% severity; \n 40% on 15-24%; \n 75% on 25-44%; \n 100% on 45%-79%; \n 120% for 80%-89%; \n 200% for 90% onwards.</description>
+    <tendable>true</tendable>
+    <makesSickThought>true</makesSickThought>
+    <lethalSeverity>1</lethalSeverity>
+    <defaultLabelColor>(255, 158, 158)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>4</baseTendDurationHours>
+        <severityPerDayTended>-1.5</severityPerDayTended>
+      </li>
+      <li Class="HediffCompProperties_Discoverable">
+        <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
+      </li>
+      <li Class="HediffCompProperties_MessageAfterTicks">
+        <ticks>10</ticks>
+        <message>{0} is developing hypovolemic shock!</message>
+        <messageType>NegativeHealthEvent</messageType>
+      </li>
+      <li Class="Oof.ShockCompProps">
+        <BleedSeverityCurve>
+          <points>
+            <li>0, 0.10</li>
+            <li>0.15, 0.30</li>
+            <li>0.25, 0.40</li>
+            <li>0.30, 0.75</li>
+            <li>0.45, 1</li>
+            <li>0.8, 1.2</li>
+            <li>0.9, 2</li>
+          </points>
+        </BleedSeverityCurve>
+      </li>
+    </comps>
+    <stages>
+      <li></li>
+    </stages>
+  </HediffDef>
+</Defs>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Rah's Bionics and Surgery Expansion</li>
+        </mods>
+        <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="smallintestine" or defName="largeinstestine"]</xpath>
+            <value>
+                <comps>
+                    <li Class="CompProperties_Rottable">
+                        <daysToRotStart>0.6</daysToRotStart>
+                        <rotDestroys>true</rotDestroys>
+                    </li>
+                </comps>
+            </value>
+        </match>
+    </Operation>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Rah's Bionics and Surgery Expansion</li>
+        </mods>
+        <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="smallintestine" or defName="largeinstestine"]</xpath>
+            <value>
+                <tickerType>Rare</tickerType>
+            </value>
+        </match>
+    </Operation>
+</Patch>

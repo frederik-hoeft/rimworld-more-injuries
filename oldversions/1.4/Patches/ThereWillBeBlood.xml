@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>There Will Be Blood - Revived</li>
+        </mods>
+        <match Class="PatchOperationAdd">
+            <xpath>/Defs/RecipeDef[defName="BloodIV"]</xpath>
+            <value>
+                <removesHediff>HypovolemicShock</removesHediff>
+            </value>
+        </match>
+    </Operation>
+</Patch>

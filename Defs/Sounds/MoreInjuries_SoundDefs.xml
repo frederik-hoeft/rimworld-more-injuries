@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- choking on blood -->
+  <SoundDef>
+    <defName>Cough</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>2</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>ChokingOnBlood</clipPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>10</min>
+          <max>20</max>
+        </volumeRange>
+        <pitchRange>
+          <min>0.9</min>
+          <max>1.1</max>
+        </pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+
+  <SoundDef>
+    <defName>MoreInjuries_BoneSnap</defName>
+    <context>MapOnly</context>
+    <eventNames />
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>BoneSnap</clipFolderPath>
+          </li>
+        </grains>
+        <pitchRange>
+          <min>0.9</min>
+          <max>1.2</max>
+        </pitchRange>
+        <volumeRange>
+          <min>20</min>
+          <max>30</max>
+        </volumeRange>
+        <distRange>
+          <min>0</min>
+          <max>30</max>
+        </distRange>
+        <repeatMode>NeverTwice</repeatMode>
+        <sustainLoop>False</sustainLoop>
+      </li>
+    </subSounds>
+  </SoundDef>
+
+</Defs>

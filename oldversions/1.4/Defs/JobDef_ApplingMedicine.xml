@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<JobDef>
+		<defName>DOCPR</defName>
+		<driverClass>Oof.DOCPR</driverClass>
+		<reportString>Performing CPR.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>cbvnm</defName>
+		<driverClass>Oof.fixleg</driverClass>
+		<reportString>Splinting a leg.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+
+	<JobDef>
+		<defName>tourni</defName>
+		<driverClass>Oof.PutOnTheThing</driverClass>
+		<reportString>Applying a tourniquet.</reportString>
+		<casualInterruptible>false</casualInterruptible>
+	</JobDef>
+</Defs>

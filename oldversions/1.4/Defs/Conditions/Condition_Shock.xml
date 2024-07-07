@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <HediffDef ParentName="InfectionBase">
+    <defName>Shock</defName>
+    <label>Shock</label>
+    <description>Shock is the state of insufficient blood flow to the tissues of the body as a result of problems with the circulatory system. Initial symptoms of shock may include weakness, fast heart rate, fast breathing, sweating, anxiety. This may be followed by confusion, unconsciousness, or cardiac arrest, as complications worsen.</description>
+    <makesSickThought>true</makesSickThought>
+    <defaultLabelColor>(255, 51, 51)</defaultLabelColor>
+    <lethalSeverity>1</lethalSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>4</baseTendDurationHours>
+        <severityPerDayTended>-0.50</severityPerDayTended>
+      </li>
+      <li Class="HediffCompProperties_Immunizable">
+        <severityPerDayNotImmune>2.0</severityPerDayNotImmune>
+        <immunityPerDaySick>1.4</immunityPerDaySick>
+        <severityPerDayImmune>-0.70</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.40</immunityPerDayNotSick>
+      </li>
+      <li Class="HediffCompProperties_Discoverable">
+        <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+      </li>
+    </comps>
+    <stages>
+
+      <li>
+        <minSeverity>0.15</minSeverity>
+        <label>initial</label>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.15</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.5</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.30</minSeverity>
+        <label>moderate</label>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.65</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.2</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.60</minSeverity>
+        <label>extreme</label>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

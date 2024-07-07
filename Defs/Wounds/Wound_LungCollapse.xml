@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <HediffDef ParentName="DiseaseBase">
+    <defName>LungCollapse</defName>
+    <label>Lung Collapse</label>
+    <description>A buildup of air inside the chest cavity creates pressure against the lung. Causes shortness of breath, possibly progressing to suffocation. Must be surgically repaired.</description>
+    <defaultLabelColor>(255, 129, 56)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>1.00</severityPerDay>
+        <showHoursToRecover>false</showHoursToRecover>
+      </li>
+    </comps>
+
+    <stages>
+      <li>
+        <label>early</label>
+        <becomeVisible>true</becomeVisible>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+      </li>
+      <li>
+
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>0.05</minSeverity>
+        <partEfficiencyOffset>-1.0</partEfficiencyOffset>
+      </li>
+
+    </stages>
+  </HediffDef>
+
+</Defs>

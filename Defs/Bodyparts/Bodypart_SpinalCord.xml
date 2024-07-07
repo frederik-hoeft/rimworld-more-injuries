@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <BodyPartDef>
+    <defName>SPinarCord</defName>
+    <label>Spinal Cord</label>
+    <hitPoints>8</hitPoints>
+    <permanentInjuryChanceFactor>100</permanentInjuryChanceFactor>
+    <skinCovered>false</skinCovered>
+    <solid>false</solid>
+    <bleedRate>0.9</bleedRate>
+    <tags>
+      <li>Spine</li>
+      <!--<li>ConsciousnessSource</li>-->
+    </tags>
+    <canSuggestAmputation>false</canSuggestAmputation>
+    <destroyableByDamage>false</destroyableByDamage>
+  </BodyPartDef>
+
+  <HediffDef ParentName="DiseaseBase">
+    <defName>SpinarCordPapasyliz</defName>
+    <label>Paralysis</label>
+    <description>Damage of spinal cord caused irrepairable movement disability.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <comps></comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.00</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

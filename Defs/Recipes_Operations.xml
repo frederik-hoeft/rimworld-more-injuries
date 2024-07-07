@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>UnCollapseLung</defName>
+    <label>repair collapsed lung</label>
+    <description>Repair a collapsed lung.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Repairing a collapsed lung.</jobString>
+    <workAmount>4500</workAmount>
+    <removesHediff>LungCollapse</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s collapsed lung.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.05</deathOnFailedSurgeryChance>
+    <skillRequirements>
+      <Medicine>8</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
+  </RecipeDef>
+
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RepairFracture</defName>
+    <label>Repair a fracture</label>
+    <description>Repair a bone fracture.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Repairing a fracture.</jobString>
+    <workAmount>4500</workAmount>
+    <removesHediff>Fracture</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s bone fracture.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.00</deathOnFailedSurgeryChance>
+    <anesthetize>false</anesthetize>
+    <skillRequirements>
+      <Medicine>5</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>splint</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>splint</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>900</surgerySuccessChanceFactor>
+  </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RemoveStroke</defName>
+    <label>Cure stroke</label>
+    <description>Cure a stroke.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Fixing a stroke</jobString>
+    <workAmount>4500</workAmount>
+    <removesHediff>hemorrhagicstroke</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully cured {1}'s stroke.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.20</deathOnFailedSurgeryChance>
+    <anesthetize>false</anesthetize>
+    <skillRequirements>
+      <Medicine>5</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>MedicineIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>0.9</surgerySuccessChanceFactor>
+  </RecipeDef>
+</Defs>
