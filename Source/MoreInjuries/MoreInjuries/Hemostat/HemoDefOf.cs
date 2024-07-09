@@ -10,5 +10,5 @@ public class HemoDefOf : DefOf
 {
     public static HediffDef HemostatHediffDef { get; } = null!;
 
-    public static JobDef UseHemostat { get; } = null!;
+    public static JobDef ApplyHemostatJob { get; } = null!;
 }

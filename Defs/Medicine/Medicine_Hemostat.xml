@@ -66,8 +66,8 @@
   </ThingDef>
 
   <JobDef>
-    <defName>UseHemostat</defName>
-    <driverClass>MoreInjuries.Hemostat.UseHemostat</driverClass>
+    <defName>ApplyHemostatJob</defName>
+    <driverClass>MoreInjuries.Hemostat.ApplyHemostatJob</driverClass>
     <reportString>Use hemostat.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
