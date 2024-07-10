@@ -4,7 +4,7 @@ using RimWorld;
 using Verse.AI;
 using Verse.Sound;
 using Verse;
-using MoreInjuries.Jobs;
+using MoreInjuries.Choking;
 
 namespace MoreInjuries;
 
@@ -19,7 +19,7 @@ public class InjuriesComp : ThingComp
         Pawn papa = parent as Pawn;
         if (selPawn != papa)
         {
-            if (papa.health.hediffSet.hediffs.Any(o => o.def.label == "Heart attack" | o.def == Caula_DefOf.ChokingOnBlood))
+            if (papa.health.hediffSet.hediffs.Any(o => o.def.label == "Heart attack" | o.def == MoreInjuriesHediffDefOf.ChokingOnBlood))
             {
                 yield return new FloatMenuOption("Perform CPR", delegate
                 {
@@ -65,10 +65,10 @@ public class InjuriesComp : ThingComp
 
         if (Rand.Chance(DealtDamageChance))
         {
-            if (!lowan.health.hediffSet.HasHediff(Caula_DefOf.adrenalinedump))
+            if (!lowan.health.hediffSet.HasHediff(MoreInjuriesHediffDefOf.adrenalinedump))
             {
-                lowan.health.AddHediff(HediffMaker.MakeHediff(Caula_DefOf.adrenalinedump, lowan));
-                Hediff AdrenalineOnPawn = lowan.health.hediffSet.GetFirstHediffOfDef(Caula_DefOf.adrenalinedump);
+                lowan.health.AddHediff(HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.adrenalinedump, lowan));
+                Hediff AdrenalineOnPawn = lowan.health.hediffSet.GetFirstHediffOfDef(MoreInjuriesHediffDefOf.adrenalinedump);
                 float bloat = Rand.Range(DealtDamageChance * -10f, DealtDamageChance * 2);
                 AdrenalineOnPawn.Severity = bloat;
 
@@ -76,7 +76,7 @@ public class InjuriesComp : ThingComp
             else
             {
                 float bloat = Rand.Range(DealtDamageChance * -10f, DealtDamageChance * 2);
-                lowan.health.hediffSet.GetFirstHediffOfDef(Caula_DefOf.adrenalinedump).Severity += bloat;
+                lowan.health.hediffSet.GetFirstHediffOfDef(MoreInjuriesHediffDefOf.adrenalinedump).Severity += bloat;
             }
         }
     }
@@ -90,7 +90,7 @@ public class InjuriesComp : ThingComp
         {
             if (Rand.Chance(0.07f))
             {
-                targetPawn.health.AddHediff(Caula_DefOf.hemorrhagicstroke, targetPawn.health.hediffSet.GetBrain());
+                targetPawn.health.AddHediff(MoreInjuriesHediffDefOf.hemorrhagicstroke, targetPawn.health.hediffSet.GetBrain());
             }
         }
     }
@@ -167,8 +167,8 @@ public class InjuriesComp : ThingComp
                 {
                     if (Rand.Chance(0.70f))
                     {
-                        papa.health.AddHediff(Caula_DefOf.ChokingOnBlood);
-                        papa.health.hediffSet.GetFirstHediffOfDef(Caula_DefOf.ChokingOnBlood).TryGetComp<chokingcomp>().source = injury;
+                        papa.health.AddHediff(MoreInjuriesHediffDefOf.ChokingOnBlood);
+                        papa.health.hediffSet.GetFirstHediffOfDef(MoreInjuriesHediffDefOf.ChokingOnBlood).TryGetComp<ChokingHediffComp>().Source = injury;
                         //////
                     }
                 }
@@ -183,7 +183,7 @@ public class InjuriesComp : ThingComp
             {
                 foreach (Hediff part in papa.health.hediffSet.hediffs.FindAll(x => x.def.addedPartProps != null && x.def.addedPartProps.betterThanNatural && x.Part != null))
                 {
-                    Hediff hediff = HediffMaker.MakeHediff(Caula_DefOf.EMPTurnOff, papa, part.Part);
+                    Hediff hediff = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.EMPTurnOff, papa, part.Part);
                     hediff.Severity = 1f;
                     papa.health.AddHediff(hediff, part.Part);
 
@@ -261,7 +261,7 @@ public class InjuriesComp : ThingComp
             {
                 foreach (BodyPartRecord? lung in Lungs)
                 {
-                    Hediff hediff = HediffMaker.MakeHediff(Caula_DefOf.Crush, dad, lung);
+                    Hediff hediff = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.Crush, dad, lung);
 
                     hediff.Severity = Rand.Range(1f, lung.def.hitPoints * 0.75f);
 
@@ -428,7 +428,7 @@ public class InjuriesComp : ThingComp
                             {
                                 if (Rand.Chance(bullet_mult))
                                 {
-                                    Hediff lom = HediffMaker.MakeHediff(Caula_DefOf.cut_spall, owan, bodyPart);
+                                    Hediff lom = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.cut_spall, owan, bodyPart);
                                     lom.Severity = Rand.Range(0.25f, dinfo.Amount / 6);
                                     owan.health.AddHediff(lom);
                                 }
@@ -452,11 +452,11 @@ public class InjuriesComp : ThingComp
         {
             if (damage.parts != null)
             {
-                if (damage.parts.Any(rpg => rpg.def == Caula_DefOf.SPinarCord))
+                if (damage.parts.Any(rpg => rpg.def == MoreInjuriesHediffDefOf.SPinarCord))
                 {
-                    Hediff hedf = HediffMaker.MakeHediff(Caula_DefOf.SpinarCordPapasyliz, targetPawn, damage.parts.Find(pp => pp.def == Caula_DefOf.SPinarCord));
+                    Hediff hedf = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.SpinarCordPapasyliz, targetPawn, damage.parts.Find(pp => pp.def == MoreInjuriesHediffDefOf.SPinarCord));
 
-                    targetPawn.health.AddHediff(hedf, damage.parts.Find(pp => pp.def == Caula_DefOf.SPinarCord));
+                    targetPawn.health.AddHediff(hedf, damage.parts.Find(pp => pp.def == MoreInjuriesHediffDefOf.SPinarCord));
                 }
             }
         }
@@ -482,7 +482,7 @@ public class InjuriesComp : ThingComp
                     {
                         if (Rand.Chance(0.10f))
                         {
-                            targetPawn.health.AddHediff(HediffMaker.MakeHediff(Caula_DefOf.hemorrhagicstroke, targetPawn));
+                            targetPawn.health.AddHediff(HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.hemorrhagicstroke, targetPawn));
                         }
                     }
                 }
@@ -498,7 +498,7 @@ public class InjuriesComp : ThingComp
                 if ((damDef?.hediff?.injuryProps?.bleedRate ?? 0f) > 0f)
                 {
                     BodyPartRecord recorder = damage.parts.Find(pp => pp.def.defName == "Lung");
-                    Hediff hediff = HediffMaker.MakeHediff(Caula_DefOf.LungCollapse, targetPawn, recorder);
+                    Hediff hediff = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.LungCollapse, targetPawn, recorder);
                     targetPawn.health.AddHediff(hediff);
                 }
             }

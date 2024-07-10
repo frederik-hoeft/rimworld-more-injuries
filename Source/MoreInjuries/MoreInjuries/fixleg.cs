@@ -27,7 +27,7 @@ public class fixleg : JobDriver
 
     public JobCondition wtf(Pawn hurtdude)
     {
-        if (!hurtdude.health.hediffSet.hediffs.Any(O => O.def == Caula_DefOf.ChokingOnBlood))
+        if (!hurtdude.health.hediffSet.hediffs.Any(O => O.def == MoreInjuriesHediffDefOf.ChokingOnBlood))
         {
             return JobCondition.Succeeded;
         }

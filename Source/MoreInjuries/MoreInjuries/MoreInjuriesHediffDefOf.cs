@@ -4,7 +4,7 @@ using Verse;
 namespace MoreInjuries;
 
 [DefOf]
-public static class Caula_DefOf
+public static class MoreInjuriesHediffDefOf
 {
     public static HediffDef? Shock;
     public static HediffDef? Concussion;

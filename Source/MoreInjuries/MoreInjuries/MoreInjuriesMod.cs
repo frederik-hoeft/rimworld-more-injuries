@@ -40,7 +40,7 @@ public class MoreInjuriesMod : Mod
                 "(at 1, the chance of creating spall is 0 with armor having 100% hp, 0.01 with armor 99% hp etc.) " + Settings.MinSpallHealth, 2);
         Settings.MinSpallHealth = listingStandard.Slider(Settings.MinSpallHealth, 0.1f, 1f);
 
-        listingStandard.CheckboxLabeled("Toggle  choking sounds", ref Settings.somesound, "Toggle  choking sounds");
+        listingStandard.CheckboxLabeled("Toggle  choking sounds", ref Settings.ChokingSoundsEnabled, "Toggle  choking sounds");
 
         listingStandard.CheckboxLabeled("Toggle spalling mechanics", ref Settings.spall, "Toggle  spalling mechanics");
 
@@ -59,13 +59,13 @@ public class MoreInjuriesMod : Mod
 
         listingStandard.CheckboxLabeled("Show individual options for hemostat usage alongside 'Provide first aid option'", ref Settings.individualFloatMenus);
 
-        listingStandard.CheckboxLabeled("Enable advanced shock mechanics (requires game reload)", ref Settings.advancedShock);
+        listingStandard.CheckboxLabeled("Enable advanced shock mechanics (requires game reload)", ref Settings.HypovolemicShockEnabled);
 
         listingStandard.CheckboxLabeled("Toggle inhalation of fire's fuel when set on fire ", ref Settings.fireInhalation);
 
-        listingStandard.Label("Chance of shock to cause organ hypoxia (every 300 ticks/5s) " + Settings.hypoxiaChance);
+        listingStandard.Label("Chance of shock to cause organ hypoxia (every 300 ticks/5s) " + Settings.OrganHypoxiaChance);
 
-        Settings.hypoxiaChance = (float)Math.Round(listingStandard.Slider(Settings.hypoxiaChance, 0f, 1f), 2);
+        Settings.OrganHypoxiaChance = (float)Math.Round(listingStandard.Slider(Settings.OrganHypoxiaChance, 0f, 1f), 2);
 
         //listingStandard.CheckboxLabeled("Enable coloration of labels")
 

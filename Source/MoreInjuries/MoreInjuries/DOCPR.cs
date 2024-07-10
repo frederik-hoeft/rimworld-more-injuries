@@ -27,7 +27,7 @@ public class DOCPR : JobDriver
 
     public JobCondition wtf(Pawn hurtdude)
     {
-        if (!hurtdude.health.hediffSet.hediffs.Any(O => O.def == Caula_DefOf.ChokingOnBlood))
+        if (!hurtdude.health.hediffSet.hediffs.Any(O => O.def == MoreInjuriesHediffDefOf.ChokingOnBlood))
         {
             return JobCondition.Succeeded;
         }
@@ -53,7 +53,7 @@ public class DOCPR : JobDriver
         toil.AddFinishAction(delegate { Patient.jobs.posture = PawnPosture.LayingOnGroundFaceUp; });
         yield return toil;
         Toil toil2 = Toils_General.Wait(60);
-        Hediff heffid = Patient.health.hediffSet.GetFirstHediffOfDef(Caula_DefOf.ChokingOnBlood);
+        Hediff heffid = Patient.health.hediffSet.GetFirstHediffOfDef(MoreInjuriesHediffDefOf.ChokingOnBlood);
         toil2.AddFinishAction(delegate
         {
 
@@ -70,7 +70,7 @@ public class DOCPR : JobDriver
         });
         Func<JobCondition> func = delegate
         {
-            if (Patient.health.hediffSet.hediffs.Any(kurwa => kurwa.def == Caula_DefOf.ChokingOnBlood | kurwa.def.label == "heart attack"))
+            if (Patient.health.hediffSet.hediffs.Any(kurwa => kurwa.def == MoreInjuriesHediffDefOf.ChokingOnBlood | kurwa.def.label == "heart attack"))
             {
                 ////
                 return JobCondition.Ongoing;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <HediffDef ParentName="InjuryBase">
-    <defName>InternalSuffocation</defName>
+    <defName>OrganHypoxia</defName>
     <label>Organ hypoxia</label>
     <labelNoun>insufficient oxygen</labelNoun>
     <description>Damage from lack of oxygen to the organ. Most commonly caused by blood loss.</description>

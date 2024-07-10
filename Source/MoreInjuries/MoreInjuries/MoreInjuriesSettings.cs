@@ -8,7 +8,7 @@ public class MoreInjuriesSettings : ModSettings
     public bool HydroStaticShockBool = false;
     public bool BruiseStroke = true;
     public bool choking = true;
-    public bool somesound = false;
+    public bool ChokingSoundsEnabled = false;
     public bool lungcollapse = true;
     public bool spall = false;
     public float MinSpallHealth;
@@ -20,12 +20,13 @@ public class MoreInjuriesSettings : ModSettings
     public float PlugMult = 0.75f;
     public float fractureTreshold = 8f;
     public bool individualFloatMenus = false;
-    public bool advancedShock = true;
-    public float hypoxiaChance = 0.65f;
+    public bool HypovolemicShockEnabled = true;
+    public float OrganHypoxiaChance = 0.65f;
     public bool anyColoration = true;
     public bool fireInhalation = true;
     internal bool enableLogging;
     internal bool enableVerboseLogging;
+    internal float OrganHypoxiaChanceReductionFactor;
 
     public override void ExposeData()
     {
@@ -33,7 +34,7 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref HydroStaticShockBool, "hydrobool");
         Scribe_Values.Look(ref BruiseStroke, "bruisebool");
         Scribe_Values.Look(ref choking, "chokebool");
-        Scribe_Values.Look(ref somesound, "asounf");
+        Scribe_Values.Look(ref ChokingSoundsEnabled, "asounf");
         Scribe_Values.Look(ref spall, "amungsuussssad");
         Scribe_Values.Look(ref lungcollapse, "amungsuussssad2");
         Scribe_Values.Look(ref MinSpallHealth, "stroekaonfweiabdwuabduwbao");
@@ -44,8 +45,8 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref PlugMult, "thisNamesoundsAwful");
         Scribe_Values.Look(ref fractureTreshold, "tresholdFracture");
         Scribe_Values.Look(ref individualFloatMenus, "floatmenu");
-        Scribe_Values.Look(ref hypoxiaChance, "hypoxia");
-        Scribe_Values.Look(ref advancedShock, "advancxedshock");
+        Scribe_Values.Look(ref OrganHypoxiaChance, "hypoxia");
+        Scribe_Values.Look(ref HypovolemicShockEnabled, "advancxedshock");
         Scribe_Values.Look(ref smolBoniShits, "smallBonyShits");
         Scribe_Values.Look(ref fireInhalation, "firesnorty");
 

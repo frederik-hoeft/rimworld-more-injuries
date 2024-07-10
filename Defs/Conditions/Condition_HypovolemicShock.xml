@@ -21,8 +21,8 @@
         <message>{0} is developing hypovolemic shock!</message>
         <messageType>NegativeHealthEvent</messageType>
       </li>
-      <li Class="MoreInjuries.ShockCompProps">
-        <BleedSeverityCurve>
+      <li Class="MoreInjuries.HypovolemicShock.ShockHediffCompProperties">
+        <_bleedSeverityCurve>
           <points>
             <li>0, 0.10</li>
             <li>0.15, 0.30</li>
@@ -32,7 +32,7 @@
             <li>0.8, 1.2</li>
             <li>0.9, 2</li>
           </points>
-        </BleedSeverityCurve>
+        </_bleedSeverityCurve>
       </li>
     </comps>
     <stages>

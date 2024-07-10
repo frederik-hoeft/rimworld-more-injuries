@@ -7,6 +7,7 @@ using Verse.AI;
 
 namespace MoreInjuries;
 
+// seems to be just first aid, contains some weird hemostat stuff
 public class JobDriver_HardTending : JobDriver
 {
 
@@ -51,35 +52,29 @@ public class JobDriver_HardTending : JobDriver
 
                 Toil ToilApply = Toils_General.Wait((int)(deviceModExt.ApplyTime / actor.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation)));
 
-                ToilApply.AddPreInitAction
-                    (delegate
+                // TODO: are we sure that we want to decrease the stack count before it has been applied (would cause waste if aborted)?
+                ToilApply.AddPreInitAction(fastestTendDevice.DecreaseStack);
+
+                ToilApply.AddFinishAction(() =>
+                {
+                    injury.IsHemostatApplied = true;
+
+                    injury.HemostatMultiplier = deviceModExt.CoagulationMultiplier;
+
+                    IEnumerable<BetterInjury?> smallInjuries = patient.health.hediffSet.GetHediffsTendable().Where(x =>
+                    x is BetterInjury
+                    && x != injury
+                    && x.BleedRate > 0
+                    && x.BleedRate < 0.2f
+                    && x.Part == injury.Part).Select(x => x as BetterInjury).Where(x => !x.IsHemostatApplied);
+
+                    foreach (BetterInjury? injur in smallInjuries)
                     {
-                        fastestTendDevice.DecreaseStack();
-                    });
-
-                ToilApply.AddFinishAction
-                    (
-                        delegate
-                        {
-                            injury.IsHemostatApplied = true;
-
-                            injury.HemostatMultiplier = deviceModExt.CoagulationMultiplier;
-
-                            IEnumerable<BetterInjury?> smallInjuries = patient.health.hediffSet.GetHediffsTendable().Where(x =>
-                            x is BetterInjury
-                            && x != injury
-                            && x.BleedRate > 0
-                            && x.BleedRate < 0.2f
-                            && x.Part == injury.Part).Select(x => x as BetterInjury).Where(x => !x.IsHemostatApplied);
-
-                            foreach (BetterInjury? injur in smallInjuries)
-                            {
-                                injur.IsBase = false;
-                                injur.IsHemostatApplied = true;
-                                injury.HemostatMultiplier = 0f;
-                            }
-                        }
-                    );
+                        injur.IsBase = false;
+                        injur.IsHemostatApplied = true;
+                        injury.HemostatMultiplier = 0f;
+                    }
+                });
 
                 yield return ToilApply;
             }

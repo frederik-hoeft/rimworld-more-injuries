@@ -8,8 +8,8 @@
     </JobDef>
 
     <JobDef>
-        <defName>ClearAirway</defName>
-        <driverClass>MoreInjuries.Jobs.ClearAirway</driverClass>
+        <defName>ClearAirwayJob</defName>
+        <driverClass>MoreInjuries.Jobs.ClearAirwayJob</driverClass>
         <reportString>Clearing TargetA 's airways.</reportString>
         <casualInterruptible>false</casualInterruptible>
     </JobDef>

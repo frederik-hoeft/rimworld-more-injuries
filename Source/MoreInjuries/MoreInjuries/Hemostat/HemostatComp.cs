@@ -1,8 +1,7 @@
-﻿using System.Collections.Frozen;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -14,9 +13,8 @@ public class HemostatComp : ThingComp
     private static readonly Color _bodyPartLabelColor = new(26, 49, 20);
     private static readonly Color _injuryLabelColor = new(26, 49, 20);
 
-    // frozen dictionary pulled in via NuGet (thanks for nothing, ancient .NET version :P)
-    private static FrozenDictionary<string, string> _bodyPartLabelCache = new Dictionary<string, string>().ToFrozenDictionary();
-    private static FrozenDictionary<string, string> _injuryLabelCache = new Dictionary<string, string>().ToFrozenDictionary();
+    private static readonly ConcurrentDictionary<string, string> _bodyPartLabelCache = [];
+    private static readonly ConcurrentDictionary<string, string> _injuryLabelCache = [];
 
     public BetterInjury? InjuryContext { get; set; }
 
@@ -37,21 +35,16 @@ public class HemostatComp : ThingComp
                 // do some pattern matching to check if the hediff is a BetterInjury and if it's an external injury that is bleeding and hasn't had a hemostat applied
                 if (hediff is BetterInjury { Part.depth: BodyPartDepth.Outside, Bleeding: true, IsHemostatApplied: false } injury)
                 {
-                    // load colorized labels for the injury and the body part from cache, or recomplie the caches if the entry is missing
-                    // snap a stack-local copy of the cache reference
-                    FrozenDictionary<string, string> bodyPartLabelCache = Volatile.Read(ref _bodyPartLabelCache);
-                    if (!bodyPartLabelCache.TryGetValue(injury.Part.def.defName, out string? bodyPartLabel))
+                    // load colorized labels for the injury and the body part from cache, or create them if they don't exist
+                    if (!_bodyPartLabelCache.TryGetValue(injury.Part.def.defName, out string? bodyPartLabel))
                     {
                         bodyPartLabel = injury.Part.Label.Colorize(_bodyPartLabelColor);
-                        // re-compile the cache with the new entry added (should only happen once per body part, after that everything is cached and read-only)
-                        // volatile write back to the static field, may overwrite other threads' changes leading to eventual complete-ness
-                        Volatile.Write(ref _bodyPartLabelCache, bodyPartLabelCache.CopyAndAdd(injury.Part.def.defName, bodyPartLabel));
+                        _bodyPartLabelCache.TryAdd(injury.Part.def.defName, bodyPartLabel);
                     }
-                    FrozenDictionary<string, string> injuryLabelCache = Volatile.Read(ref _injuryLabelCache);
-                    if (!injuryLabelCache.TryGetValue(injury.def.defName, out string? injuryLabel))
+                    if (!_injuryLabelCache.TryGetValue(injury.def.defName, out string? injuryLabel))
                     {
                         injuryLabel = injury.Label.Colorize(_injuryLabelColor);
-                        Volatile.Write(ref _injuryLabelCache, injuryLabelCache.CopyAndAdd(injury.def.defName, injuryLabel));
+                        _injuryLabelCache.TryAdd(injury.def.defName, injuryLabel);
                     }
 
                     StringBuilder labelBuilder = new(capacity: 128);
@@ -90,18 +83,5 @@ public class HemostatComp : ThingComp
                 targetA = parent
             }, JobCondition.InterruptForced));
         }
-    }
-}
-
-file static class FrozenDictionaryExtensions
-{
-    public static FrozenDictionary<TKey, TValue> CopyAndAdd<TKey, TValue>(this FrozenDictionary<TKey, TValue> source, TKey newKey, TValue newValue) where TKey : notnull
-    {
-        KeyValuePair<TKey, TValue>[] newData =
-        [
-            .. source,
-            new KeyValuePair<TKey, TValue>(newKey, newValue)
-        ];
-        return newData.ToFrozenDictionary();
     }
 }

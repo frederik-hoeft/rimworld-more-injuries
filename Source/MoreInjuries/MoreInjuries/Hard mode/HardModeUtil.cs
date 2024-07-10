@@ -31,6 +31,6 @@ public static class HardModeUtil
         {
             t.Destroy();
         }
-        --t.stackCount;
+        t.stackCount--;
     }
 }

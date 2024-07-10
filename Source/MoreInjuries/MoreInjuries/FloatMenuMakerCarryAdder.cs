@@ -21,10 +21,10 @@ public static class FloatMenuMakerCarryAdder
             foreach (LocalTargetInfo localTargetInfo in GenUI.TargetsAt(clickPos, TargetingParameters.ForRescue(pawn), true, null))
             {
                 Pawn target = (Pawn)localTargetInfo.Thing;
-                bool flag2 = !target.health.hediffSet.HasHediff(Caula_DefOf.ChokingOnBlood);
-                if (pawn.inventory.innerContainer.ToList().FindAll(AAA => AAA.def == Caula_DefOf.suctiondevice) != null)
+                bool flag2 = !target.health.hediffSet.HasHediff(MoreInjuriesHediffDefOf.ChokingOnBlood);
+                if (pawn.inventory.innerContainer.ToList().FindAll(AAA => AAA.def == MoreInjuriesHediffDefOf.suctiondevice) != null)
                 {
-                    bool flag69nice = pawn.inventory.innerContainer.ToList().FindAll(AAA => AAA.def == Caula_DefOf.suctiondevice).Count > 0;
+                    bool flag69nice = pawn.inventory.innerContainer.ToList().FindAll(AAA => AAA.def == MoreInjuriesHediffDefOf.suctiondevice).Count > 0;
                     if (flag69nice)
                     {
                         if (!flag2)
@@ -32,7 +32,7 @@ public static class FloatMenuMakerCarryAdder
                             bool flag3 = !pawn.CanReserveAndReach(target, PathEndMode.OnCell, Danger.Deadly, 1, -1, null, true);
                             if (!flag3)
                             {
-                                JobDef stabilizeJD = Caula_DefOf.ClearAirway;
+                                JobDef stabilizeJD = MoreInjuriesHediffDefOf.ClearAirway;
                                 Action action = delegate ()
                                 {
                                     Job job = new(stabilizeJD, target);

@@ -37,7 +37,6 @@ Copy-Item -Path "${mod_root}/oldversions/*" -Recurse -Destination $upload_dir â€
 New-Item -ItemType Directory "${upload_dir}/${game_version}/Assemblies"
 # copy assemblies (deps should be handled via mod dependencies from the workshop)
 Copy-Item -LiteralPath "${mod_root}/artifacts/${project_name}.dll" -Destination "${upload_dir}/${game_version}/Assemblies"
-Copy-Item -LiteralPath "${mod_root}/artifacts/System.Collections.Immutable.dll" -Destination "${upload_dir}/${game_version}/Assemblies"
 # if there is a Patches directory in the mod root, copy that as well (to the latest version)
 if (Test-Path -LiteralPath "${mod_root}/Patches") {
 	Copy-Item -LiteralPath "${mod_root}/Patches" -Recurse -Destination "${upload_dir}/${game_version}" â€“Container
