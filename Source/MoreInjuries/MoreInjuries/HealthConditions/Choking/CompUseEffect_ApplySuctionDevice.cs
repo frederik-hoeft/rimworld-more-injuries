@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace MoreInjuries.Choking;
+namespace MoreInjuries.HealthConditions.Choking;
 
 public class CompUseEffect_ApplySuctionDevice : CompUseEffect
 {

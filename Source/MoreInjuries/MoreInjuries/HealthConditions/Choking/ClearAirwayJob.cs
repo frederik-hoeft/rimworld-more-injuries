@@ -2,7 +2,7 @@
 using Verse;
 using Verse.AI;
 
-namespace MoreInjuries.Choking;
+namespace MoreInjuries.HealthConditions.Choking;
 
 internal class ClearAirwayJob : JobDriver
 {

@@ -122,13 +122,8 @@ public class BetterInjury : Hediff_Injury
     {
         get
         {
-            if (MoreInjuriesMod.Settings.fuckYourFun)
+            if (MoreInjuriesMod.Settings.fuckYourFun && Part?.depth is not BodyPartDepth.Outside)
             {
-                if (Part?.depth == BodyPartDepth.Outside)
-                {
-                    return true;
-                }
-
                 return IsDiagnosed;
             }
             return true;

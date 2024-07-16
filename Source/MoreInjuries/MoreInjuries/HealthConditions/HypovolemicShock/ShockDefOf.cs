@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace MoreInjuries.HypovolemicShock;
+namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
 // loaded from XML defs
 // TODO: ensure XML defs can initialize get-only members (was public static field)

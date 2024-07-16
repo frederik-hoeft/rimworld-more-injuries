@@ -23,7 +23,7 @@ public class MoreInjuriesSettings : ModSettings
     public bool HypovolemicShockEnabled = true;
     public float OrganHypoxiaChance = 0.65f;
     public bool anyColoration = true;
-    public bool fireInhalation = true;
+    public bool enableFireInhalation = true;
     internal bool enableLogging;
     internal bool enableVerboseLogging;
     internal float OrganHypoxiaChanceReductionFactor;
@@ -48,7 +48,7 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref OrganHypoxiaChance, "hypoxia");
         Scribe_Values.Look(ref HypovolemicShockEnabled, "advancxedshock");
         Scribe_Values.Look(ref smolBoniShits, "smallBonyShits");
-        Scribe_Values.Look(ref fireInhalation, "firesnorty");
+        Scribe_Values.Look(ref enableFireInhalation, "firesnorty");
 
         base.ExposeData();
     }

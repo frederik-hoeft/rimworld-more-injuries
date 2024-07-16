@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace MoreInjuries.HypovolemicShock;
+namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
 public class ShockHediffCompProperties : HediffCompProperties
 {

@@ -1,7 +1,7 @@
 ﻿using Verse;
 using Verse.Sound;
 
-namespace MoreInjuries.Choking;
+namespace MoreInjuries.HealthConditions.Choking;
 
 public class ChokingHediffComp : HediffComp
 {

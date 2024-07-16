@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace MoreInjuries.Choking;
+namespace MoreInjuries.HealthConditions.Choking;
 
 // members initialized via XML defs
 public class ChokingHediffCompProperties : HediffCompProperties

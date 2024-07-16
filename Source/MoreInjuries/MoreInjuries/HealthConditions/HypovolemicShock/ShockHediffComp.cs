@@ -3,7 +3,7 @@ using MoreInjuries.Logging;
 using RimWorld;
 using Verse;
 
-namespace MoreInjuries.HypovolemicShock;
+namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
 public class ShockHediffComp : HediffComp
 {
@@ -61,7 +61,7 @@ public class ShockHediffComp : HediffComp
         if (_ticks >= 300 && !preventHypoxia && Rand.Chance(MoreInjuriesMod.Settings.OrganHypoxiaChance))
         {
             BodyPartRecord hypoxiaTarget = parent.pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Middle, BodyPartDepth.Inside)
-                .Where(bodyPart => bodyPart.def != BodyPartDefOf.Heart 
+                .Where(bodyPart => bodyPart.def != BodyPartDefOf.Heart
                     && bodyPart.def.bleedRate > 0f)
                 .RandomElement();
             Hediff hediff = HediffMaker.MakeHediff(ShockDefOf.OrganHypoxia, parent.pawn, hypoxiaTarget);

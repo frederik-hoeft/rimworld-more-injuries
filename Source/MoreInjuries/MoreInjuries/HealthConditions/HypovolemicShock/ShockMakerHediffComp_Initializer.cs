@@ -4,9 +4,9 @@ using Verse;
 namespace MoreInjuries.HypovolemicShock;
 
 [StaticConstructorOnStartup]
-internal class Bootstrap_Shock
+internal class ShockMakerHediffComp_Initializer
 {
-    static Bootstrap_Shock()
+    static ShockMakerHediffComp_Initializer()
     {
         // TODO: this implementation requires a full game restart to take effect (not optimal)
         if (MoreInjuriesMod.Settings.HypovolemicShockEnabled)

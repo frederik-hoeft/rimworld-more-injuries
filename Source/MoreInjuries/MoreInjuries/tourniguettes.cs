@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MoreInjuries.HealthConditions.HearingLoss;
 using MoreInjuries.Hemostat;
 using RimWorld;
 using UnityEngine;
@@ -48,7 +49,7 @@ public class FuckPatching
                 {
                     def.comps = new List<CompProperties>();
                 }
-                def.comps.Add(new CompProperties { compClass = typeof(DeafComp) });
+                def.comps.Add(new CompProperties { compClass = typeof(HearingLossComp) });
             }
         }
 

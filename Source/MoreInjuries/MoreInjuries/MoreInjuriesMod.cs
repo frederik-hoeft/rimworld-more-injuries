@@ -61,7 +61,7 @@ public class MoreInjuriesMod : Mod
 
         listingStandard.CheckboxLabeled("Enable advanced shock mechanics (requires game reload)", ref Settings.HypovolemicShockEnabled);
 
-        listingStandard.CheckboxLabeled("Toggle inhalation of fire's fuel when set on fire ", ref Settings.fireInhalation);
+        listingStandard.CheckboxLabeled("Toggle inhalation of fire's fuel when set on fire ", ref Settings.enableFireInhalation);
 
         listingStandard.Label("Chance of shock to cause organ hypoxia (every 300 ticks/5s) " + Settings.OrganHypoxiaChance);
 
@@ -82,7 +82,7 @@ public class MoreInjuriesMod : Mod
                     {
                         FixerModExt supPartDef = hed.def.GetModExtension<FixerModExt>();
 
-                        System.Collections.Generic.IEnumerable<BodyPartRecord> PosSupParts = human.health.hediffSet.GetNotMissingParts().Where(p => supPartDef.bodyparts.Contains(p.def));
+                        System.Collections.Generic.IEnumerable<BodyPartRecord> PosSupParts = human.health.hediffSet.GetNotMissingParts().Where(p => supPartDef.BodyParts.Contains(p.def));
 
                         if (PosSupParts.Count() <= 0)
                         {

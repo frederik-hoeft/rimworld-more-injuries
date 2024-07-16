@@ -4,7 +4,7 @@ using RimWorld;
 using Verse.AI;
 using Verse.Sound;
 using Verse;
-using MoreInjuries.Choking;
+using MoreInjuries.HealthConditions.Choking;
 
 namespace MoreInjuries;
 

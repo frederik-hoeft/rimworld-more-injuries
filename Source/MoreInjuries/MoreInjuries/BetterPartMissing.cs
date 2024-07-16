@@ -5,6 +5,7 @@ namespace MoreInjuries;
 public class BetterPartMissing : Hediff_MissingPart
 {
     public float BleedRateInt = -1f;
+
     public override float BleedRate
     {
         get
