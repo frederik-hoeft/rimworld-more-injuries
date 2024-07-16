@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace MoreInjuries.HypovolemicShock;
+namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
 [StaticConstructorOnStartup]
 internal class ShockMakerHediffComp_Initializer
@@ -12,9 +12,9 @@ internal class ShockMakerHediffComp_Initializer
         if (MoreInjuriesMod.Settings.HypovolemicShockEnabled)
         {
             HediffDefOf.BloodLoss.comps ??= [];
-            HediffDefOf.BloodLoss.comps.Add(new HediffCompProperties 
-            { 
-                compClass = typeof(ShockMakerHediffComp) 
+            HediffDefOf.BloodLoss.comps.Add(new HediffCompProperties
+            {
+                compClass = typeof(ShockMakerHediffComp)
             });
             HediffDefOf.BloodLoss.hediffClass = typeof(HediffWithComps);
         }
