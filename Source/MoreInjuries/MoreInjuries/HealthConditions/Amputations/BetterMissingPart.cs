@@ -1,10 +1,10 @@
 ﻿using Verse;
 
-namespace MoreInjuries;
+namespace MoreInjuries.HealthConditions.Amputations;
 
-public class BetterPartMissing : Hediff_MissingPart
+public class BetterMissingPart : Hediff_MissingPart
 {
-    public float BleedRateInt = -1f;
+    public float BleedRateInt { get; set; } = -1f;
 
     public override float BleedRate
     {

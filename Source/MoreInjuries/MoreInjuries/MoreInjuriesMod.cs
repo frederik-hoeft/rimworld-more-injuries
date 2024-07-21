@@ -3,6 +3,7 @@ using RimWorld;
 using HarmonyLib;
 using Verse;
 using UnityEngine;
+using MoreInjuries.InitializationPatches;
 
 namespace MoreInjuries;
 
@@ -76,11 +77,11 @@ public class MoreInjuriesMod : Mod
                 System.Collections.Generic.IEnumerable<Pawn> A = Find.CurrentMap.mapPawns.AllPawns.Where(x => x.def == ThingDefOf.Human);
                 foreach (Pawn human in A)
                 {
-                    System.Collections.Generic.List<Hediff> B = human.health.hediffSet.hediffs.FindAll(x => x.def.addedPartProps != null && x.def.HasModExtension<FixerModExt>());
+                    System.Collections.Generic.List<Hediff> B = human.health.hediffSet.hediffs.FindAll(x => x.def.addedPartProps != null && x.def.HasModExtension<FixMisplacedBionicsModExtension>());
 
                     foreach (Hediff hed in B)
                     {
-                        FixerModExt supPartDef = hed.def.GetModExtension<FixerModExt>();
+                        FixMisplacedBionicsModExtension supPartDef = hed.def.GetModExtension<FixMisplacedBionicsModExtension>();
 
                         System.Collections.Generic.IEnumerable<BodyPartRecord> PosSupParts = human.health.hediffSet.GetNotMissingParts().Where(p => supPartDef.BodyParts.Contains(p.def));
 

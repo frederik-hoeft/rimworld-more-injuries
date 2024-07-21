@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using MoreInjuries.HealthConditions.Amputations;
+using Verse;
 
 namespace MoreInjuries;
 
@@ -13,7 +14,7 @@ public class InjuryClassChanger
         }
         foreach (HediffDef hediffdef in DefDatabase<HediffDef>.AllDefsListForReading.FindAll(t => t.hediffClass == typeof(Hediff_MissingPart)))
         {
-            hediffdef.hediffClass = typeof(BetterPartMissing);
+            hediffdef.hediffClass = typeof(BetterMissingPart);
         }
     }
 }

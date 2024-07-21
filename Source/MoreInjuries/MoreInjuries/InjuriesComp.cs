@@ -5,6 +5,7 @@ using Verse.AI;
 using Verse.Sound;
 using Verse;
 using MoreInjuries.HealthConditions.Choking;
+using MoreInjuries.HealthConditions.Fractures;
 
 namespace MoreInjuries;
 
@@ -213,7 +214,7 @@ public class InjuriesComp : ThingComp
                     {
                         Hediff fracture = HediffMaker.MakeHediff(DefDatabase<HediffDef>.AllDefs.ToList().Find(x => x.defName == "Fracture"), targetPawn, bone);
                         targetPawn.health.AddHediff(fracture);
-                        somedefof.MoreInjuries_BoneSnap.PlayOneShot(new TargetInfo(targetPawn.PositionHeld, targetPawn.Map));
+                        FractureDefOf.MoreInjuries_BoneSnap.PlayOneShot(new TargetInfo(targetPawn.PositionHeld, targetPawn.Map));
                         if (MoreInjuriesMod.Settings.smolBoniShits)
                         {
                             foreach (BodyPartRecord part in bone.parent.GetDirectChildParts())
