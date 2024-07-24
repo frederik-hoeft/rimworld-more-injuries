@@ -305,7 +305,7 @@ public class InjuriesComp : ThingComp
     public override void PostPreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
     {
         damDef = dinfo.Def;
-        Patch_Thing_TakeDamage.Active = true;
+        Patch_Thing_TakeDamage.IsActive = true;
         pope = dinfo;
         Pawn papa = parent as Pawn;
 

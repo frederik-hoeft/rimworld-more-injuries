@@ -3,15 +3,17 @@ using Verse;
 
 namespace MoreInjuries;
 
-[HarmonyPatch(typeof(Thing), "TakeDamage")]
+[HarmonyPatch(typeof(Thing), nameof(Thing.TakeDamage))]
 public static class Patch_Thing_TakeDamage
 {
-    public static bool Active = false;
+    internal static bool IsActive { get; set; } = false;
 
-    static void Postfix(Thing __instance, DamageWorker.DamageResult __result)
+    internal static void Postfix(Thing __instance, DamageWorker.DamageResult __result)
     {
-        if (!Active)
+        if (!IsActive)
+        {
             return;
+        }
 
         if (__instance is Pawn compHolder)
         {
@@ -19,7 +21,7 @@ public static class Patch_Thing_TakeDamage
             comp.PostDamageFull(__result);
         }
 
-        Active = false;
+        IsActive = false;
     }
 }
 

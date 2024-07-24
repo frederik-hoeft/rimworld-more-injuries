@@ -3,7 +3,7 @@ using RimWorld;
 using HarmonyLib;
 using Verse;
 using UnityEngine;
-using MoreInjuries.InitializationPatches;
+using MoreInjuries.Initialization;
 
 namespace MoreInjuries;
 

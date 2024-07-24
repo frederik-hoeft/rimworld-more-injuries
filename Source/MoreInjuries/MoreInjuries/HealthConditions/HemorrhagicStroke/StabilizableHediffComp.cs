@@ -1,27 +1,27 @@
 ﻿using Verse;
 
-namespace MoreInjuries;
+namespace MoreInjuries.HealthConditions.HemorrhagicStroke;
 
-public class tendFixerComp : HediffComp
+public class StabilizableHediffComp : HediffComp
 {
-    public bool SemiFixed = false;
+    private bool _stabilized;
+
     public override void CompTended(float quality, float maxQuality, int batchPosition = 0)
     {
         base.CompTended(quality, maxQuality, batchPosition);
-        if (quality > 0.8f)
+        if (quality > Rand.Range(0.7f, 0.9f))
         {
-            SemiFixed = true;
+            _stabilized = true;
             parent.Severity = Math.Min(0.15f, parent.Severity);
         }
     }
 
     public override void CompPostTick(ref float severityAdjustment)
     {
-        if (SemiFixed)
+        if (_stabilized)
         {
             severityAdjustment = 0.00001f;
         }
         base.CompPostTick(ref severityAdjustment);
-
     }
 }

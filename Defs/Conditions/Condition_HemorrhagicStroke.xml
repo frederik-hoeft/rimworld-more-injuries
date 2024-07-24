@@ -23,7 +23,7 @@
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
       <li>
-        <compClass>MoreInjuries.tendFixerComp</compClass>
+        <compClass>MoreInjuries.HealthConditions.HemorrhagicStroke.StabilizableHediffComp</compClass>
       </li>
     </comps>
     <stages>

@@ -2,7 +2,7 @@
 using System.Linq;
 using Verse;
 
-namespace MoreInjuries.InitializationPatches;
+namespace MoreInjuries.Initialization;
 
 [StaticConstructorOnStartup]
 public class FixMisplacedBionics_Initializer

@@ -42,13 +42,10 @@ public class FuckPatching
 
         if (MoreInjuriesMod.Settings.HearDMG)
         {
-            List<ThingDef> GunList = DefDatabase<ThingDef>.AllDefsListForReading.FindAll(t => t.Verbs != null && t.Verbs.Any(t2 => t2.range > 0));
-            foreach (ThingDef def in GunList)
+            IEnumerable<ThingDef> guns = DefDatabase<ThingDef>.AllDefsListForReading.Where(def => def.Verbs?.Any(t2 => t2.range > 0) is true);
+            foreach (ThingDef def in guns)
             {
-                if (def.comps == null)
-                {
-                    def.comps = new List<CompProperties>();
-                }
+                def.comps ??= [];
                 def.comps.Add(new CompProperties { compClass = typeof(HearingLossComp) });
             }
         }

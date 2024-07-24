@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Verse;
 
-namespace MoreInjuries.InitializationPatches;
+namespace MoreInjuries.Initialization;
 
 public class FixMisplacedBionicsModExtension : DefModExtension
 {
