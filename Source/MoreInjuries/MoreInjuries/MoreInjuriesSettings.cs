@@ -4,10 +4,10 @@ namespace MoreInjuries;
 
 public class MoreInjuriesSettings : ModSettings
 {
-    public bool AdrenalineBool = false;
-    public bool HydroStaticShockBool = false;
+    public bool UseAdrenaline = false;
+    public bool UseHydrostaticShock = false;
     public bool BruiseStroke = true;
-    public bool choking = true;
+    public bool ChokingEnabled = true;
     public bool ChokingSoundsEnabled = false;
     public bool lungcollapse = true;
     public bool spall = false;
@@ -16,7 +16,7 @@ public class MoreInjuriesSettings : ModSettings
     public bool toggleFractures = true;
     public bool EMPdisablesBionics = true;
     public bool fuckYourFun = false;
-    public bool smolBoniShits = false;
+    public bool UseBoneFragmentLacerations = false;
     public float PlugMult = 0.75f;
     public float fractureTreshold = 8f;
     public bool individualFloatMenus = false;
@@ -30,10 +30,10 @@ public class MoreInjuriesSettings : ModSettings
 
     public override void ExposeData()
     {
-        Scribe_Values.Look(ref AdrenalineBool, "adrbool");
-        Scribe_Values.Look(ref HydroStaticShockBool, "hydrobool");
+        Scribe_Values.Look(ref UseAdrenaline, "adrbool");
+        Scribe_Values.Look(ref UseHydrostaticShock, "hydrobool");
         Scribe_Values.Look(ref BruiseStroke, "bruisebool");
-        Scribe_Values.Look(ref choking, "chokebool");
+        Scribe_Values.Look(ref ChokingEnabled, "chokebool");
         Scribe_Values.Look(ref ChokingSoundsEnabled, "asounf");
         Scribe_Values.Look(ref spall, "amungsuussssad");
         Scribe_Values.Look(ref lungcollapse, "amungsuussssad2");
@@ -47,7 +47,7 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref individualFloatMenus, "floatmenu");
         Scribe_Values.Look(ref OrganHypoxiaChance, "hypoxia");
         Scribe_Values.Look(ref HypovolemicShockEnabled, "advancxedshock");
-        Scribe_Values.Look(ref smolBoniShits, "smallBonyShits");
+        Scribe_Values.Look(ref UseBoneFragmentLacerations, "smallBonyShits");
         Scribe_Values.Look(ref enableFireInhalation, "firesnorty");
 
         base.ExposeData();

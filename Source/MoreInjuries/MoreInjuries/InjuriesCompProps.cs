@@ -5,6 +5,7 @@ namespace MoreInjuries;
 
 public class InjuriesCompProps : CompProperties
 {
+    // TODO: are these even used?
     public HediffDef Concussion;
     public HediffDef Shock;
     public NeedDef polak;

@@ -6,236 +6,239 @@ using Verse.Sound;
 using Verse;
 using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.HealthConditions.Fractures;
+using MoreInjuries.Bcl;
+using MoreInjuries.Debug;
+using UnityEngine;
 
 namespace MoreInjuries;
 
+// TODO: split into classes and namespaces
 public class InjuriesComp : ThingComp
 {
-    #region fields and misc stuff
-    public InjuriesCompProps Props => (InjuriesCompProps)props;
+    // TODO: do we need a Postfix patch? (if not, remove these)
+    private DamageDef? _damageDef;
+    private DamageInfo _damageInfo;
 
-    public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
+    // Choking + Fractures
+    public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn)
     {
-
-        Pawn papa = parent as Pawn;
-        if (selPawn != papa)
+        Pawn patient = (Pawn)parent;
+        // can't perform CPR on yourself, that would be pretty alpha
+        if (!ReferenceEquals(selectedPawn, patient))
         {
-            if (papa.health.hediffSet.hediffs.Any(o => o.def.label == "Heart attack" | o.def == MoreInjuriesHediffDefOf.ChokingOnBlood))
+            if (patient.health.hediffSet.hediffs.Any(PerformCprJob.CanBeTreatedWithCpr))
             {
-                yield return new FloatMenuOption("Perform CPR", delegate
+                yield return new FloatMenuOption("Perform CPR", () => selectedPawn.jobs.StartJob(new Job(def: MoreInjuriesJobDefOf.PerformCpr, targetA: patient), JobCondition.InterruptForced));
+            }
+        }
+        if (selectedPawn.skills.GetSkill(SkillDefOf.Medicine).Level > 0 
+            && patient.health.hediffSet.hediffs.Any(hediff => hediff.def == FractureDefOf.Fracture) 
+            && selectedPawn.inventory.innerContainer.Any(thing => thing.def == MoreInjuriesThingDefOf.Splint))
+        {
+            yield return new FloatMenuOption("Fix fracture", () => selectedPawn.jobs.StartJob(new Job(def: MoreInjuriesJobDefOf.ApplySplint, targetA: patient), JobCondition.InterruptForced));
+        }
+    }
+
+    // Adrenaline Dump
+    public void DumpAdrenaline(float totalDamageDealt)
+    {
+        if (!MoreInjuriesMod.Settings.UseAdrenaline)
+        {
+            return;
+        }
+        Pawn patient = (Pawn)parent;
+        if (Rand.Chance(totalDamageDealt))
+        {
+            if (!patient.health.hediffSet.TryGetHediff(MoreInjuriesHediffDefOf.AdrenalineDump, out Hediff? adrenalineDump))
+            {
+                // add new hediff
+                adrenalineDump = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.AdrenalineDump, patient);
+                adrenalineDump.Severity = 0;
+                patient.health.AddHediff(adrenalineDump);
+            }
+            // TODO: negative severity?
+            float severity = Rand.Range(totalDamageDealt * -10f, totalDamageDealt * 2);
+            adrenalineDump.Severity += severity;
+        }
+    }
+
+    // Hemorrhagic Stroke
+    public void ApplyHemorrhagicStroke()
+    {
+        // TODO: rename
+        if (!MoreInjuriesMod.Settings.BruiseStroke)
+        {
+            return;
+        }
+        Pawn patient = (Pawn)parent;
+        int totalBruises = 0;
+        int severeBruises = 0;
+        int legBruises = 0;
+
+        foreach (Hediff hediff in patient.health.hediffSet.hediffs)
+        {
+            if (hediff.def.defName is HediffDefNameOf.Bruise)
+            {
+                totalBruises++;
+                if (hediff.Severity >= 14)
                 {
-
-                    selPawn.jobs.StartJob(new Job(def: DefDatabase<JobDef>.AllDefs.ToList().Find(K => K.defName == "DOCPR"), targetA: papa), JobCondition.InterruptForced);
-                });
-            }
-        }
-        if (selPawn.skills.GetSkill(SkillDefOf.Medicine).Level > 0)
-        {
-            if (papa.health.hediffSet.hediffs.Any(o => o.def.label == "Bone fracture") && selPawn.inventory.innerContainer.Any(tt33 => tt33.def.defName == "splint"))
-            {
-                yield return new FloatMenuOption("Fix fracture", delegate
+                    severeBruises++;
+                }
+                if (hediff.sourceBodyPartGroup == BodyPartGroupDefOf.Legs)
                 {
-                    selPawn.jobs.StartJob(new Job(def: DefDatabase<JobDef>.AllDefs.ToList().Find(K => K.defName == "cbvnm"), targetA: papa), JobCondition.InterruptForced);
-                });
+                    legBruises++;
+                }
             }
         }
-    }
-
-    public DamageDef damDef;
-
-    public float touse;
-
-    public float bullet_mult = 0.05f;
-
-    public int concussions_suffered = 0;
-
-    public Need pawns_need;
-    public override void Initialize(CompProperties props)
-    {
-
-        Pawn lowan = parent as Pawn;
-        //pawns_need.CurLevelPercentage = 0.5f;
-
-        //lowan.needs.TryGetNeed<Need_Adrenaline>.
-        base.Initialize(props);
-    }
-
-    public void DumpAdrenaline(float DealtDamageChance)
-    {
-        Pawn lowan = parent as Pawn;
-
-        if (Rand.Chance(DealtDamageChance))
+        // TODO: add a setting for the chance
+        // apply hemorrhagic stroke if any of the thresholds are met
+        if ((totalBruises > 16 || severeBruises > 8 || legBruises > 4) && Rand.Chance(0.07f))
         {
-            if (!lowan.health.hediffSet.HasHediff(MoreInjuriesHediffDefOf.adrenalinedump))
-            {
-                lowan.health.AddHediff(HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.adrenalinedump, lowan));
-                Hediff AdrenalineOnPawn = lowan.health.hediffSet.GetFirstHediffOfDef(MoreInjuriesHediffDefOf.adrenalinedump);
-                float bloat = Rand.Range(DealtDamageChance * -10f, DealtDamageChance * 2);
-                AdrenalineOnPawn.Severity = bloat;
-
-            }
-            else
-            {
-                float bloat = Rand.Range(DealtDamageChance * -10f, DealtDamageChance * 2);
-                lowan.health.hediffSet.GetFirstHediffOfDef(MoreInjuriesHediffDefOf.adrenalinedump).Severity += bloat;
-            }
-        }
-    }
-    public void Bruise()
-    {
-        Pawn targetPawn = parent as Pawn;
-        List<Hediff> Bruises = targetPawn.health.hediffSet.hediffs.FindAll(Bruise => Bruise.def.defName == "Bruise");
-        List<Hediff> SevereBruises = Bruises.FindAll(SevereBruise => SevereBruise.Severity >= 14);
-        List<Hediff> LegBruises = Bruises.FindAll(LegBruise => LegBruise.sourceBodyPartGroup == BodyPartGroupDefOf.Legs);
-        if (Bruises?.Count > 15 | SevereBruises?.Count > 10 | LegBruises.Count > 5)
-        {
-            if (Rand.Chance(0.07f))
-            {
-                targetPawn.health.AddHediff(MoreInjuriesHediffDefOf.hemorrhagicstroke, targetPawn.health.hediffSet.GetBrain());
-            }
+            patient.health.AddHediff(MoreInjuriesHediffDefOf.HemorrhagicStroke, patient.health.hediffSet.GetBrain());
         }
     }
 
-    public DamageInfo pope;
-
-    public MoreInjuriesSettings Settings
-    {
-        get
-        {
-            return LoadedModManager.GetMod<MoreInjuriesMod>().GetSettings<MoreInjuriesSettings>();
-        }
-    }
-
-    public override void PostExposeData()
-    {
-
-        Scribe_Values.Look(ref concussions_suffered, "pawnsufferedthismanyconcussionsusedforTBImechanic");
-        base.PostExposeData();
-    }
-
-    public void nreTEst(List<BodyPartRecord> dd)
+    // Intestinal Spill
+    private void InstestinalSpill(DamageWorker.DamageResult damage)
     {
         Pawn targetPawn = (Pawn)parent;
-        foreach (BodyPartRecord bodp in dd)
+        if (damage.parts is null)
         {
-            if (targetPawn.health.hediffSet.hediffs.FindAll(o => o.Part != null && o.Part == bodp).Any(K => K.Bleeding))
+            return;
+        }
+
+        if (damage.parts.Any(bodyPart => 
+            bodyPart.def == KnownBodyPartDefOf.SmallIntestine 
+            || bodyPart.def == KnownBodyPartDefOf.LargeIntestine 
+            || bodyPart.def == KnownBodyPartDefOf.Stomach))
+        {
+            ReadOnlySpan<BodyPartDef> affectedOrgans =
+            [
+                KnownBodyPartDefOf.SmallIntestine,
+                KnownBodyPartDefOf.LargeIntestine,
+                KnownBodyPartDefOf.Stomach,
+                KnownBodyPartDefOf.Kidney,
+                KnownBodyPartDefOf.Liver
+            ];
+
+            foreach (BodyPartRecord bodyPart in targetPawn.health.hediffSet.GetNotMissingParts())
             {
-                Hediff brun = HediffMaker.MakeHediff(DefDatabase<HediffDef>.AllDefs.ToList().Find(gg => gg != null && gg.defName == "StomachAcidBurn"), targetPawn, bodp);
-                if (Rand.Chance(0.45f))
+                // if we have spillage from the intestines and any of the affected organs are bleeding, there's a chance to cause acid burns
+                if (affectedOrgans.Contains(bodyPart.def)
+                    && targetPawn.health.hediffSet.hediffs.Any(hediff => hediff is { Part: not null, Bleeding: true } && hediff.Part == bodyPart) 
+                    && Rand.Chance(0.45f))
                 {
-                    brun.Severity = Rand.Range(1, 7f);
-                    targetPawn.health.AddHediff(brun);
+                    Hediff burn = HediffMaker.MakeHediff(InjuryDefOf.StomachAcidBurn, targetPawn, bodyPart);
+                    burn.Severity = Rand.Range(1, 7f);
+                    targetPawn.health.AddHediff(burn);
                 }
             }
         }
     }
-    public List<BodyPartRecord> nrechaseagain()
+
+    // Choking
+    private void Choke()
     {
-        Pawn targetPawn = (Pawn)parent;
-        return targetPawn.health.hediffSet.GetNotMissingParts().ToList().FindAll(x => (x.def?.defName ?? "null") == "smolinstestine" | (x.def?.defName ?? "null") == "largeinstestine"
-            | (x.def?.defName ?? "null") == "Stomach"
-            | (x.def?.defName ?? "null") == "Kidney"
-            | (x.def?.defName ?? "null") == "Liver"
-        );
-    }
-    public void InstestinalSpill(DamageWorker.DamageResult damage)
-    {
-        Pawn targetPawn = (Pawn)parent;
-        if (damage.parts?.Any(x => x.def?.defName == "smolinstestine" | x.def?.defName == "largeinstestine" | x.def?.defName == "Stomach") ?? false)
+        if (!MoreInjuriesMod.Settings.ChokingEnabled)
         {
-
-            List<BodyPartRecord> dd = nrechaseagain();
-            //dd.Add(targetPawn.health.hediffSet.getpart().ToList().FindAll(x => x.def.defName == "smolinstestine" | x.def.defName == "largeinstestine" | x.def.defName == "Stomach"))
-            nreTEst(dd);
-
+            return;
+        }
+        Pawn patient = (Pawn)parent;
+        foreach (Hediff_Injury injury in patient.health.hediffSet.GetHediffsTendable().OfType<Hediff_Injury>())
+        {
+            if (injury is { Bleeding: true, BleedRate: >= 0.20f }
+                && injury.Part.def.tags.Any(tag => tag == BodyPartTagDefOf.BreathingSource || tag == BodyPartTagDefOf.BreathingPathway) 
+                && Rand.Chance(0.70f))
+            {
+                Hediff choking = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.ChokingOnBlood, patient);
+                if (choking.TryGetComp(out ChokingHediffComp? comp))
+                {
+                    comp!.Source = injury;
+                    patient.health.AddHediff(choking);
+                    return;
+                }
+                Log.Error("Failed to get ChokingHediffComp from choking hediff");
+            }
         }
     }
 
-    #endregion
+    // EMP Damage to Bionics
+    private void DisableBionicsFromEmp(ref readonly DamageInfo dinfo)
+    {
+        if (!MoreInjuriesMod.Settings.EMPdisablesBionics)
+        {
+            return;
+        }
+        Pawn patient = (Pawn)parent;
+        
+        if (dinfo.Def == DamageDefOf.EMP || dinfo.Def == DamageDefOf.ElectricalBurn)
+        {
+            foreach (Hediff part in patient.health.hediffSet.hediffs.Where(hediff => hediff is { Part: not null, def.addedPartProps.betterThanNatural: true } ))
+            {
+                Hediff hediff = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.EmpShutdown, patient, part.Part);
+                hediff.Severity = 1f;
+                patient.health.AddHediff(hediff, part.Part);
+            }
+        }
+    }
 
-    #region misc damage stuff which doesnt need damageresult
     public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
     {
-        Pawn papa = parent as Pawn;
+        Choke();
+        DisableBionicsFromEmp(in dinfo);
 
-        #region some choking stuff
-        if (Settings.choking)
-        {
-            foreach (Hediff_Injury injury in papa.health.hediffSet.GetHediffsTendable().OfType<Hediff_Injury>())
-            {
-
-                if (injury.Part.def.tags.Contains(BodyPartTagDefOf.BreathingSource) | injury.Part.def.tags.Contains(BodyPartTagDefOf.BreathingPathway) && injury.Bleeding && injury.BleedRate >= 0.20f)
-                {
-                    if (Rand.Chance(0.70f))
-                    {
-                        papa.health.AddHediff(MoreInjuriesHediffDefOf.ChokingOnBlood);
-                        papa.health.hediffSet.GetFirstHediffOfDef(MoreInjuriesHediffDefOf.ChokingOnBlood).TryGetComp<ChokingHediffComp>().Source = injury;
-                        //////
-                    }
-                }
-            }
-        }
-        #endregion
-
-        #region EMP disabling all bionics
-        if (MoreInjuriesMod.Settings.EMPdisablesBionics)
-        {
-            if (dinfo.Def == DamageDefOf.EMP | dinfo.Def.defName == "Electrical")
-            {
-                foreach (Hediff part in papa.health.hediffSet.hediffs.FindAll(x => x.def.addedPartProps != null && x.def.addedPartProps.betterThanNatural && x.Part != null))
-                {
-                    Hediff hediff = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.EMPTurnOff, papa, part.Part);
-                    hediff.Severity = 1f;
-                    papa.health.AddHediff(hediff, part.Part);
-
-                }
-            }
-        }
-        #endregion
         base.PostPostApplyDamage(dinfo, totalDamageDealt);
     }
 
-    public void FractureMeth(DamageWorker.DamageResult damage)
+    // Fractures
+    private void Fracture(DamageWorker.DamageResult damage)
     {
-        if (Settings.toggleFractures)
+        if (!MoreInjuriesMod.Settings.toggleFractures || damage.totalDamageDealt < MoreInjuriesMod.Settings.fractureTreshold)
         {
-            if (damage.totalDamageDealt < MoreInjuriesMod.Settings.fractureTreshold)
+            return;
+        }
+
+        StatDef? armorRatingStat = _damageDef?.armorCategory?.armorRatingStat;
+        if (armorRatingStat != StatDefOf.ArmorRating_Sharp && armorRatingStat != StatDefOf.ArmorRating_Blunt)
+        {
+            // unable to apply unknown damage type
+            return;
+        }
+
+        Pawn patient = (Pawn)parent;
+
+        if (damage.parts is not null)
+        {
+            // get all solid body parts that received a non-bleeding injury
+            // (note from maintainer: no idea why we are checking for skin coverage)
+            IEnumerable<BodyPartRecord> affectedBones = damage.parts.Where(bodyPart => 
+                bodyPart.def.IsSolid(bodyPart, patient.health.hediffSet.hediffs) 
+                && !bodyPart.def.IsSkinCovered(bodyPart, patient.health.hediffSet) 
+                && bodyPart.def.bleedRate == 0);
+
+            foreach (BodyPartRecord bone in affectedBones)
             {
-                return;
-            }
-            if ((damDef?.armorCategory?.armorRatingStat ?? null) == StatDefOf.ArmorRating_Sharp | (damDef?.armorCategory?.armorRatingStat ?? null) == StatDefOf.ArmorRating_Blunt)
-            {
-                Pawn targetPawn = (Pawn)parent;
-                if (damage?.parts?.Any(x => x.def.IsSolid(x, targetPawn.health.hediffSet.hediffs) && !x.def.IsSkinCovered(x, targetPawn.health.hediffSet) && x.def.bleedRate == 0) ?? false)
+                Hediff fracture = HediffMaker.MakeHediff(FractureDefOf.Fracture, patient, bone);
+                patient.health.AddHediff(fracture);
+                FractureDefOf.MoreInjuries_BoneSnap.PlayOneShot(new TargetInfo(patient.PositionHeld, patient.Map));
+                if (MoreInjuriesMod.Settings.UseBoneFragmentLacerations)
                 {
-                    List<BodyPartRecord> partsbony = damage.parts.FindAll(x => x.def.IsSolid(x, targetPawn.health.hediffSet.hediffs) && !x.def.IsSkinCovered(x, targetPawn.health.hediffSet) && x.def.bleedRate == 0);
-
-                    foreach (BodyPartRecord bone in partsbony)
+                    foreach (BodyPartRecord sibling in bone.parent.GetDirectChildParts())
                     {
-                        Hediff fracture = HediffMaker.MakeHediff(DefDatabase<HediffDef>.AllDefs.ToList().Find(x => x.defName == "Fracture"), targetPawn, bone);
-                        targetPawn.health.AddHediff(fracture);
-                        FractureDefOf.MoreInjuries_BoneSnap.PlayOneShot(new TargetInfo(targetPawn.PositionHeld, targetPawn.Map));
-                        if (MoreInjuriesMod.Settings.smolBoniShits)
+                        // TODO: add a setting for the chance
+                        if (Rand.Chance(0.10f))
                         {
-                            foreach (BodyPartRecord part in bone.parent.GetDirectChildParts())
+                            Hediff shards = HediffMaker.MakeHediff(FractureDefOf.BoneFragmentLaceration, patient, sibling);
+                            shards.Severity = Rand.Range(1f, 5f);
+                            patient.health.AddHediff(shards);
+                        }
+                        foreach (BodyPartRecord child in sibling.GetDirectChildParts())
+                        {
+                            if (Rand.Chance(0.10f))
                             {
-                                if (Rand.Chance(0.10f))
-                                {
-                                    Hediff shards = HediffMaker.MakeHediff(DefDatabase<HediffDef>.AllDefs.ToList().Find(x => x.defName == "BoneCut"), targetPawn, part);
-                                    shards.Severity = Rand.Range(1f, 5f);
-                                    targetPawn.health.AddHediff(shards);
-
-                                }
-                                foreach (BodyPartRecord part2 in part.GetDirectChildParts())
-                                {
-                                    if (Rand.Chance(0.10f))
-                                    {
-                                        Hediff shards = HediffMaker.MakeHediff(DefDatabase<HediffDef>.AllDefs.ToList().Find(x => x.defName == "BoneCut"), targetPawn, part2);
-                                        shards.Severity = Rand.Range(1f, 5f);
-                                        targetPawn.health.AddHediff(shards);
-
-                                    }
-                                }
+                                Hediff shards = HediffMaker.MakeHediff(FractureDefOf.BoneFragmentLaceration, patient, child);
+                                shards.Severity = Rand.Range(1f, 5f);
+                                patient.health.AddHediff(shards);
                             }
                         }
                     }
@@ -244,59 +247,134 @@ public class InjuriesComp : ThingComp
         }
     }
 
-    public Pawn dad => parent as Pawn;
-
-    public void ExtendedExplosion(DamageInfo info)
+    // Lung Collapse / Thermobaric damage
+    private void CollapseLungs(ref readonly DamageInfo info)
     {
-        if (
-            info.Def.defName == "Bomb"
-            |
-            info.Def.defName == "Thermobaric"
-            &&
-                false
-            )
+        if (!MoreInjuriesMod.Settings.lungcollapse)
         {
-            IEnumerable<BodyPartRecord> Lungs = dad.health.hediffSet.GetNotMissingParts().Where(x => x.def.defName == "Lung");
+            return;
+        }
+        Pawn patient = (Pawn)parent;
+        if (info.Def == DamageDefOf.Bomb || info.Def.defName is "Thermobaric")
+        {
+            IEnumerable<BodyPartRecord> lungs = patient.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def == BodyPartDefOf.Lung);
 
-            if (!Lungs.EnumerableNullOrEmpty())
+            foreach (BodyPartRecord lung in lungs)
             {
-                foreach (BodyPartRecord? lung in Lungs)
+                Hediff hediff = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.LungCollapse, patient, lung);
+                hediff.Severity = Rand.Range(1f, Mathf.Max(lung.def.hitPoints * 0.75f, 1f));
+                patient.health.AddHediff(hediff, lung);
+            }
+        }
+    }
+
+    // Thermal Inhalation Injury
+    private void BurnLungs(ref readonly DamageInfo burninfo)
+    {
+        if (!MoreInjuriesMod.Settings.enableFireInhalation)
+        {
+            return;
+        }
+        HediffDef burnHediffDef = DamageDefOf.Burn.hediff;
+        Pawn patient = (Pawn)parent;
+        if (burninfo.Def.hediff == burnHediffDef)
+        {
+            IEnumerable<BodyPartRecord> lungs = patient.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def == BodyPartDefOf.Lung);
+            foreach (BodyPartRecord lung in lungs)
+            {
+                bool hasBurnedLung = false;
+                // get burn injuries on that lung
+                foreach (Hediff lungBurn in patient.health.hediffSet.hediffs.Where(hediff => hediff.Part == lung && hediff.def == burnHediffDef))
                 {
-                    Hediff hediff = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.Crush, dad, lung);
-
-                    hediff.Severity = Rand.Range(1f, lung.def.hitPoints * 0.75f);
-
-                    dad.health.AddHediff(hediff, lung);
+                    hasBurnedLung = true;
+                    lungBurn.Severity += 8f;
+                }
+                if (!hasBurnedLung)
+                {
+                    Hediff lungBurn = HediffMaker.MakeHediff(burnHediffDef, patient, lung);
+                    lungBurn.Severity = 200f;
+                    patient.health.AddHediff(lungBurn, lung);
                 }
             }
         }
     }
 
-    public void burnLungs(DamageInfo burninfo)
+    // Spalling
+    private void Spall(ref readonly DamageInfo dinfo)
     {
-        HediffDef burnHediff = DamageDefOf.Burn.hediff;
-        if ((burninfo.Def?.hediff ?? null) == burnHediff)
+        if (!MoreInjuriesMod.Settings.spall || dinfo.Def != DamageDefOf.Bullet)
         {
-            IEnumerable<BodyPartRecord> lungs = dad.health.hediffSet.GetNotMissingParts().Where(x => x.def.defName == "Lung");
+            return;
+        }
+        Pawn patient = (Pawn)parent;
 
-            foreach (BodyPartRecord? lung in lungs)
+        // if there is no armor there is nothing for the bullet to fragment off of (quick check)
+        if (patient.apparel?.WornApparel.Count is not > 0)
+        {
+            return;
+        }
+
+        IEnumerable<Apparel> armoredVests = patient.apparel.WornApparel.Where(apparel => apparel.def.apparel.CoversBodyPart(patient.health.hediffSet.GetBodyPartRecord(BodyPartDefOf.Torso)));
+
+        // get the best armor currently worn
+        float maxArmorRating = 0f;
+        Apparel? bestArmor = null;
+        foreach (Apparel armor in armoredVests)
+        {
+            if (armor.GetStatValue(StatDefOf.ArmorRating_Sharp) > maxArmorRating)
             {
-                Hediff lungBurnHediff = new() { def = burnHediff, Severity = 200f, Part = lung, pawn = dad };
+                maxArmorRating = armor.GetStatValue(StatDefOf.ArmorRating_Sharp);
+                bestArmor = armor;
+            }
+        }
+        // if there is no armor there or the armor is too weak to stop the bullet, then there is nothing for the bullet to fragment off of (slow check)
+        if (bestArmor?.def is null || dinfo.ArmorPenetrationInt >= maxArmorRating)
+        {
+            return;
+        }
+        // disable spall for cataphracts and similar
+        if (bestArmor.def.techLevel > TechLevel.Industrial)
+        {
+            return;
+        }
+        // if combat extended is loaded, disable spall for low damage bullets (approximation)
+        if (MoreInjuriesMod.CombatExtendedLoaded)
+        {
+            if (dinfo.Amount < 13)
+            {
+                return;
+            }
+        }
 
-                if (dad.health.hediffSet.hediffs.Any(x => x.Part?.def?.defName == "Lung" && x.def == burnHediff))
+        float chance = MoreInjuriesMod.Settings.MinSpallHealth - bestArmor.HitPoints * 1f / (bestArmor.def.BaseMaxHitPoints * 1f);
+        if (Rand.Chance(chance))
+        {
+            // likelihood of spall increases as the angle of the bullet approaches 90 degrees (perpendicular impact)
+            // for narrow angles, the bullet is more likely to be deflected and less energy is transferred to deformation and fragmentation
+            // normalize the angle to the range [0, 180)
+            float normalizedAngle = MathEx.Modulo(Mathf.Abs(dinfo.Angle), 180f);
+            // normalize to the range [0, 90] (of any side)
+            if (normalizedAngle > 90f)
+            {
+                normalizedAngle = 180f - normalizedAngle;
+            }
+            // Calculate the bullet multiplier as a percentage between straight on and 90 degrees, in 1% increments
+            // We want the multiplier to be 1 at 90 degrees and 0 at 0 degrees
+            float bulletMultiplier = (float)Math.Round(normalizedAngle / 90f, 2);
+            // apply random magic factor to the multiplier (not sure why)
+            bulletMultiplier *= dinfo.Amount / 18f;
+            // apply armor thickness to the multiplier
+            float armorStopValue = bestArmor.HitPoints * 1f / (bestArmor.def.BaseMaxHitPoints * 1f);
+            bulletMultiplier /= armorStopValue * 40f;
+
+            // apply spall to all body parts that can be cut, according to the hit chance factor
+            foreach (BodyPartRecord bodyPart in patient.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside).Where(bodyPart => bodyPart.def.GetHitChanceFactorFor(DamageDefOf.Cut) > 0))
+            {
+                if (Rand.Chance(bulletMultiplier))
                 {
-
-                    List<Hediff> lungburns = dad.health.hediffSet.hediffs.FindAll(x => x.Part?.def?.defName == "Lung" && x.def == burnHediff);
-
-                    foreach (Hediff? idk in lungburns)
-                    {
-                        idk.Severity += 8f;
-                    }
-                }
-                else
-                {
-
-                    dad.health.AddHediff(lungBurnHediff, lung);
+                    Hediff spall = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.CutSpall, patient, bodyPart);
+                    spall.Severity = Rand.Range(0.25f, Mathf.Max(dinfo.Amount / 6f, 0.25f));
+                    patient.health.AddHediff(spall);
                 }
             }
         }
@@ -304,212 +382,64 @@ public class InjuriesComp : ThingComp
 
     public override void PostPreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
     {
-        damDef = dinfo.Def;
+        _damageDef = dinfo.Def;
         Patch_Thing_TakeDamage.IsActive = true;
-        pope = dinfo;
-        Pawn papa = parent as Pawn;
+        _damageInfo = dinfo;
 
-        ExtendedExplosion(dinfo);
-
-        touse = dinfo.ArmorPenetrationInt;
-        #region spall
-        Pawn owan = (Pawn)parent;
-
-        if ((owan.apparel?.WornApparel.Count ?? 0) > 0)
-        {
-
-            List<Apparel> armored = owan.apparel.WornApparel?.FindAll(k => k.def.apparel.CoversBodyPart(owan.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Undefined).ToList().Find(P => P.def == BodyPartDefOf.Torso)));
-            float touse2 = 0f;
-
-            Apparel aparpub = new();
-            if ((armored?.Count ?? 0) > 0)
-            {
-                foreach (Apparel apar in armored)
-                {
-                    if (apar.GetStatValue(StatDefOf.ArmorRating_Sharp) > touse2)
-                    {
-                        touse2 = apar.GetStatValue(StatDefOf.ArmorRating_Sharp);
-                        aparpub = apar;
-                    }
-                }
-            }
-
-            if (Settings.spall)
-            {
-                if (dinfo.Def != null && aparpub != null)
-                {
-                    #region disable spall for cataphracts and similar
-
-                    bool dospall = (aparpub?.def?.techLevel ?? TechLevel.Animal) > TechLevel.Industrial;
-
-                    #endregion
-
-                    #region attempt to make pistols not apply spall with CE
-                    bool CE_PistolBool = true;
-
-                    if (ModLister.HasActiveModWithName("Combat Extended"))
-                    {
-                        if (dinfo.Amount < 13)
-                        {
-                            CE_PistolBool = false;
-                        }
-                    }
-
-                    #endregion seems to function alright
-
-                    if (dinfo.Def == DamageDefOf.Bullet && touse < touse2 && CE_PistolBool && dospall)
-                    {
-
-                        if (Rand.Chance(Settings.MinSpallHealth - aparpub.HitPoints * 1f / (aparpub.def.BaseMaxHitPoints * 1f)))
-                        {
-                            /////
-
-                            #region Angle calculations
-
-                            float BulletAngleNinety = dinfo.Angle;
-
-                            if (BulletAngleNinety < 90f)
-                            {
-                                //
-                            }
-                            if (BulletAngleNinety > 91f && BulletAngleNinety < 180f)
-                            {
-                                //
-                                BulletAngleNinety -= 90f;
-                            }
-                            if (BulletAngleNinety > 181f && BulletAngleNinety < 270f)
-                            {
-                                //
-                                BulletAngleNinety -= 180f;
-                            }
-                            if (BulletAngleNinety > 271f && BulletAngleNinety < 359f)
-                            {
-                                //
-                                BulletAngleNinety -= 270f;
-
-                            }
-
-                            BulletAngleNinety /= 90f;
-
-                            BulletAngleNinety = (float)Math.Round(BulletAngleNinety, 1);
-
-                            //
-
-                            bullet_mult = BulletAngleNinety;
-
-                            #endregion
-                            #region Blunt pen and damage multipliers
-
-                            ///Blunt pen isn't vanilla. WTF.
-                            if (ModLister.HasActiveModWithName("Combat Extended"))
-                            {
-                                ///in the patch, put this as an "out"
-                                float BluntPenRatio = 1f;
-
-                                bullet_mult *= BluntPenRatio;
-                            }
-
-                            bullet_mult *= dinfo.Amount / 18;
-
-                            float armorstopvalue = aparpub.HitPoints * 1f / (aparpub.def.BaseMaxHitPoints * 1f);
-
-                            //
-
-                            bullet_mult /= armorstopvalue * 40;
-
-                            #endregion
-
-                            //Color coolcolor1 = new Color(252, 121, 88);
-
-                            //Color coolcolor2 = new Color(156, 40, 115);
-
-                            //
-
-                            foreach (BodyPartRecord bodyPart in owan.health.hediffSet.GetNotMissingParts(BodyPartHeight.Undefined, BodyPartDepth.Outside).ToList().FindAll(P => P.def.GetHitChanceFactorFor(DamageDefOf.Cut) > 0))
-                            {
-                                if (Rand.Chance(bullet_mult))
-                                {
-                                    Hediff lom = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.cut_spall, owan, bodyPart);
-                                    lom.Severity = Rand.Range(0.25f, dinfo.Amount / 6);
-                                    owan.health.AddHediff(lom);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        #endregion
+        CollapseLungs(in dinfo);
+        BurnLungs(in dinfo);
+        Spall(in dinfo);
 
         base.PostPreApplyDamage(ref dinfo, out absorbed);
     }
-    #endregion
+
+    // Spinal Cord Paralysis
+    private void Paralyze(DamageWorker.DamageResult damage)
+    {
+        if (damage.parts is null)
+        {
+            return;
+        }
+        Pawn patient = (Pawn)parent;
+        if (damage.parts.FirstOrDefault(rpg => rpg.def == MoreInjuriesHediffDefOf.SpinalCord) is BodyPartRecord spinalCord)
+        {
+            Hediff paralysis = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.SpinalCordParalysis, patient, spinalCord);
+            patient.health.AddHediff(paralysis, spinalCord);
+        }
+    }
+
+    // Hydrostatic Shock
+    // TODO: controversial
+    private void ApplyHydrostaticShock(DamageWorker.DamageResult damage)
+    {
+        if (!MoreInjuriesMod.Settings.UseHydrostaticShock)
+        {
+            return;
+        }
+        Pawn patient = (Pawn)parent;
+        if (!damage.diminished && damage.totalDamageDealt > 31 && _damageInfo.Def == DamageDefOf.Bullet)
+        {
+            if (Rand.Chance(0.10f))
+            {
+                patient.health.AddHediff(HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.HemorrhagicStroke, patient));
+            }
+        }
+    }
+
     public void PostDamageFull(DamageWorker.DamageResult damage)
     {
-        Pawn targetPawn = (Pawn)parent;
+        DebugAssert.NotNull(damage, "damage is null in PostDamageFull");
+
         InstestinalSpill(damage);
-
-        if (damage != null)
-        {
-            if (damage.parts != null)
-            {
-                if (damage.parts.Any(rpg => rpg.def == MoreInjuriesHediffDefOf.SPinarCord))
-                {
-                    Hediff hedf = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.SpinarCordPapasyliz, targetPawn, damage.parts.Find(pp => pp.def == MoreInjuriesHediffDefOf.SPinarCord));
-
-                    targetPawn.health.AddHediff(hedf, damage.parts.Find(pp => pp.def == MoreInjuriesHediffDefOf.SPinarCord));
-                }
-            }
-        }
-
-        FractureMeth(damage);
-        if (Settings.BruiseStroke)
-        {
-            Bruise();
-        }
-
-        if (damage.LastHitPart != null && damage != null)
-        {
-            BodyPartRecord dahitpart = damage.LastHitPart;
-        }
-
-        if (LoadedModManager.GetMod<MoreInjuriesMod>().GetSettings<MoreInjuriesSettings>().HydroStaticShockBool)
-        {
-            if (!damage.diminished && damage != null)
-            {
-                if (damage.totalDamageDealt > 31)
-                {
-                    if (pope.Def == DamageDefOf.Bullet)
-                    {
-                        if (Rand.Chance(0.10f))
-                        {
-                            targetPawn.health.AddHediff(HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.hemorrhagicstroke, targetPawn));
-                        }
-                    }
-                }
-            }
-        }
-
-        List<BodyPartRecord> list = new();
-
-        if (Settings.lungcollapse)
-        {
-            if ((damage?.parts?.Any(pp => pp.def.defName == "Lung") ?? false) && (damage?.totalDamageDealt ?? 5) >= 9)
-            {
-                if ((damDef?.hediff?.injuryProps?.bleedRate ?? 0f) > 0f)
-                {
-                    BodyPartRecord recorder = damage.parts.Find(pp => pp.def.defName == "Lung");
-                    Hediff hediff = HediffMaker.MakeHediff(MoreInjuriesHediffDefOf.LungCollapse, targetPawn, recorder);
-                    targetPawn.health.AddHediff(hediff);
-                }
-            }
-        }
-        Hediff lol = HediffMaker.MakeHediff(DamageDefOf.Stab.hediff, targetPawn) as Hediff_Injury;
-
-        if (LoadedModManager.GetMod<MoreInjuriesMod>().GetSettings<MoreInjuriesSettings>().AdrenalineBool)
-        {
-            DumpAdrenaline(damage.totalDamageDealt);
-        }
+        Paralyze(damage);
+        Fracture(damage);
+        ApplyHemorrhagicStroke();
+        ApplyHydrostaticShock(damage);
+        DumpAdrenaline(damage.totalDamageDealt);
     }
 }
 
+file static class MathEx
+{
+    public static float Modulo(float a, float b) => a - (b * Mathf.Floor(a / b));
+}

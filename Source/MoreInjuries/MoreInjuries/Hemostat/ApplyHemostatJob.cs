@@ -29,7 +29,7 @@ public class ApplyHemostatJob : JobDriver
         toilApplyHempstat.AddFinishAction(() =>
         {
             Pawn patient = Patient;
-            HemostatComp? hemostatComp = patient.TryGetComp<HemostatComp>();
+            HemostatThingComp? hemostatComp = patient.TryGetComp<HemostatThingComp>();
             BetterInjury injury = hemostatComp?.InjuryContext
                 ?? throw new NullReferenceException("No HemostatComp found in the current context");
 

@@ -38,7 +38,7 @@ public class FuckPatching
 
         ThingDefOf.Human.comps.Add(new CompProperties { compClass = typeof(TourniComp) });
 
-        ThingDefOf.Human.comps.Add(new CompProperties { compClass = typeof(HemostatComp) });
+        ThingDefOf.Human.comps.Add(new CompProperties { compClass = typeof(HemostatThingComp) });
 
         if (MoreInjuriesMod.Settings.HearDMG)
         {

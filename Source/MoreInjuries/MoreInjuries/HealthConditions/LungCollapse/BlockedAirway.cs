@@ -40,7 +40,7 @@ public class BlockedAirway : BetterInjury
     {
         if (_isFresh && Rand.Chance(0.05f))
         {
-            BodyPartRecord? neck = pawn.health.hediffSet.GetNotMissingParts().FirstOrDefault(x => x.def.defName is BodyPartNameDefOf.Neck)
+            BodyPartRecord? neck = pawn.health.hediffSet.GetNotMissingParts().FirstOrDefault(x => x.def.defName is BodyPartDefNameOf.Neck)
                 // honestly, the neck should never be missing, but just in case
                 ?? throw new InvalidOperationException("Cannot apply airway blockage to a pawn without a neck. What's going on here?");
             Hediff hediff = HediffMaker.MakeHediff(InjuryDefOf.AirwayBlocked, pawn, neck);

@@ -2,7 +2,7 @@
 <Defs>
 
   <HediffDef ParentName="InjuryBase">
-    <defName>cut_spall</defName>
+    <defName>CutSpall</defName>
     <label>cut (spall)</label>
     <labelNoun>a spall fragment cut</labelNoun>
     <description>A cut caused by spall of a bullet and armor fragments.</description>

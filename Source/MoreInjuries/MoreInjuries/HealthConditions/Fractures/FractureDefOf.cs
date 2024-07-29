@@ -6,9 +6,11 @@ namespace MoreInjuries.HealthConditions.Fractures;
 [DefOf]
 public class FractureDefOf : DefOf
 {
-    public static HediffDef FractureHealing { get; } = null!;
+    public static HediffDef FractureHealing = null!;
 
-    public static HediffDef Fracture { get; } = null!;
+    public static HediffDef Fracture = null!;
 
-    public static SoundDef MoreInjuries_BoneSnap { get; } = null!;
+    public static HediffDef BoneFragmentLaceration = null!;
+
+    public static SoundDef MoreInjuries_BoneSnap = null!;
 }

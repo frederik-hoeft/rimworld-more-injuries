@@ -67,7 +67,7 @@
         <value>
             <parts>
                 <li>
-                    <def>SPinarCord</def>
+                    <def>SpinalCord</def>
                     <coverage>0.75</coverage>
                     <depth>Inside</depth>
                     <groups>

@@ -4,12 +4,17 @@ using HarmonyLib;
 using Verse;
 using UnityEngine;
 using MoreInjuries.Initialization;
+using MoreInjuries.Debug;
 
 namespace MoreInjuries;
 
 public class MoreInjuriesMod : Mod
 {
+    private static bool? _combatExtendedLoaded = null;
+
     public static MoreInjuriesSettings Settings { get; private set; } = null!;
+
+    internal static bool CombatExtendedLoaded => _combatExtendedLoaded ??= LoadedModManager.RunningModsListForReading.Any(mod => mod.PackageIdPlayerFacing?.Equals("CETeam.CombatExtended") is true);
 
     public MoreInjuriesMod(ModContentPack content) : base(content)
     {
@@ -18,6 +23,8 @@ public class MoreInjuriesMod : Mod
         Harmony harmony = new("Caulaflower.Extended_Injuries.oof");
 
         harmony.PatchAll();
+
+        DebugAssert.DefOfsAreNotNull();
     }
     public override void DoSettingsWindowContents(Rect inRect)
     {
@@ -25,17 +32,17 @@ public class MoreInjuriesMod : Mod
         listingStandard.Begin(inRect);
         listingStandard.Label("Green - mechanic is turned ON. Red the opposite");
 
-        listingStandard.CheckboxLabeled("Toggle adrenaline mechanics", ref Settings.AdrenalineBool, "Toggle adrenaline mechanics");
+        listingStandard.CheckboxLabeled("Toggle adrenaline mechanics", ref Settings.UseAdrenaline, "Toggle adrenaline mechanics");
 
         listingStandard.CheckboxLabeled("Toggle bone fractures", ref Settings.toggleFractures, "Toggle fractures");
 
-        listingStandard.CheckboxLabeled("Toggle bone fragments from fractures", ref Settings.smolBoniShits, "Toggle bone fragments from fractures");
+        listingStandard.CheckboxLabeled("Toggle bone fragments from fractures", ref Settings.UseBoneFragmentLacerations, "Toggle bone fragments from fractures");
 
         listingStandard.CheckboxLabeled("Toggle bruise shock mechanics", ref Settings.BruiseStroke, "Toggle  bruise shock mechanics");
 
         listingStandard.CheckboxLabeled("Toggle EMP disabling bionics", ref Settings.EMPdisablesBionics, "Toggle EMP disabling bionics. Credits for the idea for the mechanic to I Play Minecraft");
 
-        listingStandard.CheckboxLabeled("Toggle  choking on blood mechanics", ref Settings.choking, "Toggle  choking on blood mechanics");
+        listingStandard.CheckboxLabeled("Toggle  choking on blood mechanics", ref Settings.ChokingEnabled, "Toggle  choking on blood mechanics");
 
         listingStandard.TextEntry("Base chance of armor creating spall " +
                 "(at 1, the chance of creating spall is 0 with armor having 100% hp, 0.01 with armor 99% hp etc.) " + Settings.MinSpallHealth, 2);

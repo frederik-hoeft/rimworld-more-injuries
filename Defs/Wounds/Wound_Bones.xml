@@ -54,7 +54,7 @@
   </HediffDef>
 
   <HediffDef ParentName="InjuryBase">
-    <defName>BoneCut</defName>
+    <defName>BoneFragmentLaceration</defName>
     <label>cut (bone fragments)</label>
     <labelNoun>a bone fragment cut</labelNoun>
     <description>A cut caused by fragments of a bone.</description>

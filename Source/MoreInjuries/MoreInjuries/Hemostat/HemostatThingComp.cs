@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace MoreInjuries.Hemostat;
 
-public class HemostatComp : ThingComp
+public class HemostatThingComp : ThingComp
 {
     private static readonly Color _bodyPartLabelColor = new(26, 49, 20);
     private static readonly Color _injuryLabelColor = new(26, 49, 20);

@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace MoreInjuries.HealthConditions.Fractures;
 
-public class TendFractureJob : JobDriver
+public class ApplySplintJob : JobDriver
 {
     private Pawn Patient => (Pawn)job.targetA.Thing;
 

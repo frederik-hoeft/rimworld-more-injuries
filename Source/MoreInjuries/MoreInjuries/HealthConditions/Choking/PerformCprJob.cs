@@ -45,7 +45,7 @@ public class PerformCprJob : JobDriver
         });
     }
 
-    private static bool CanBeTreatedWithCpr(Hediff hediff) =>
+    internal static bool CanBeTreatedWithCpr(Hediff hediff) =>
         hediff.def == MoreInjuriesHediffDefOf.ChokingOnBlood
         || hediff.def.defName is "HeartAttack";
 }

@@ -2,6 +2,8 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+# IMPORTANT: change to Release for stable deployments
+$configuration = "Debug"
 $project_name = "MoreInjuries"
 $game_version = "1.5"
 $mod_root = (Get-Item -LiteralPath "${PSScriptRoot}/../../../..").FullName
@@ -17,9 +19,9 @@ dotnet clean "${project_path}"
 if (!$?) { exit $LASTEXITCODE }
 dotnet restore "${project_path}" --no-cache
 if (!$?) { exit $LASTEXITCODE }
-dotnet build "${project_path}" -c Release
+dotnet build "${project_path}" -c "${configuration}"
 if (!$?) { exit $LASTEXITCODE }
-dotnet publish "${project_path}" -c Release -p:PublishProfile=release
+dotnet publish "${project_path}" -c "${configuration}" -p:PublishProfile=$configuration
 if (!$?) { exit $LASTEXITCODE }
 
 # clean upload dir

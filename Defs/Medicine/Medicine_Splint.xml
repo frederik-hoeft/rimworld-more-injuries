@@ -23,7 +23,7 @@
   </ThingCategoryDef>
 
   <ThingDef ParentName="MedicalDeviceBase">
-    <defName>splint</defName>
+    <defName>Splint</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>splint</label>
     <description>Designed to secure and hold damaged bones together, usually with fractures. Can be

@@ -14,7 +14,7 @@ public class HearingLossComp : ThingComp
         if (pawn.apparel is { WornApparel.Count: > 0 })
         {
             // first, we need to get the ears
-            IEnumerable<BodyPartRecord> ears = pawn.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def.defName is BodyPartNameDefOf.Ear);
+            IEnumerable<BodyPartRecord> ears = pawn.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def.defName is BodyPartDefNameOf.Ear);
             // does it cover the ears?
             if (ears.FirstOrDefault() is BodyPartRecord ear && pawn.apparel.WornApparel.Any(clothing => clothing.def.apparel.CoversBodyPart(ear)))
             {

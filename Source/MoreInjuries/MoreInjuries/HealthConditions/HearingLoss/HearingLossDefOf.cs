@@ -8,4 +8,3 @@ public class HearingLossDefOf : DefOf
 {
     public static HediffDef HearingLoss;
 }
-
