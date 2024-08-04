@@ -2,6 +2,7 @@
 
 namespace MoreInjuries.HealthConditions.HemorrhagicStroke;
 
+// used by XML definitions
 public class StabilizableHediffComp : HediffComp
 {
     private bool _stabilized;

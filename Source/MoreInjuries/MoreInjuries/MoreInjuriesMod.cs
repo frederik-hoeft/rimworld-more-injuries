@@ -10,11 +10,12 @@ namespace MoreInjuries;
 
 public class MoreInjuriesMod : Mod
 {
-    private static bool? _combatExtendedLoaded = null;
+    private static bool? s_combatExtendedLoaded = null;
 
     public static MoreInjuriesSettings Settings { get; private set; } = null!;
 
-    internal static bool CombatExtendedLoaded => _combatExtendedLoaded ??= LoadedModManager.RunningModsListForReading.Any(mod => mod.PackageIdPlayerFacing?.Equals("CETeam.CombatExtended") is true);
+    internal static bool CombatExtendedLoaded => 
+        s_combatExtendedLoaded ??= LoadedModManager.RunningModsListForReading.Any(mod => mod.PackageIdPlayerFacing?.Equals("CETeam.CombatExtended") is true);
 
     public MoreInjuriesMod(ModContentPack content) : base(content)
     {

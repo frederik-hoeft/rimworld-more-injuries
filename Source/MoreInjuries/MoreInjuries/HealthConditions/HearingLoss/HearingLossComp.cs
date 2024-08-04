@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MoreInjuries.KnownDefs;
 using RimWorld;
 using Verse;
 
@@ -14,7 +15,7 @@ public class HearingLossComp : ThingComp
         if (pawn.apparel is { WornApparel.Count: > 0 })
         {
             // first, we need to get the ears
-            IEnumerable<BodyPartRecord> ears = pawn.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def.defName is BodyPartDefNameOf.Ear);
+            IEnumerable<BodyPartRecord> ears = pawn.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def == KnownBodyPartDefOf.Ear);
             // does it cover the ears?
             if (ears.FirstOrDefault() is BodyPartRecord ear && pawn.apparel.WornApparel.Any(clothing => clothing.def.apparel.CoversBodyPart(ear)))
             {
@@ -58,9 +59,9 @@ public class HearingLossComp : ThingComp
                 float hearingDamageMultiplier = GetHearingDamageMultiplier(otherPawn);
                 if (Rand.Chance(hearingDamageMultiplier / 10f))
                 {
-                    if (!otherPawn.health.hediffSet.TryGetHediff(HearingLossDefOf.HearingLoss, out Hediff? hearingLoss))
+                    if (!otherPawn.health.hediffSet.TryGetHediff(KnownHediffDefOf.HearingLoss, out Hediff? hearingLoss))
                     {
-                        hearingLoss = HediffMaker.MakeHediff(HearingLossDefOf.HearingLoss, otherPawn);
+                        hearingLoss = HediffMaker.MakeHediff(KnownHediffDefOf.HearingLoss, otherPawn);
                         otherPawn.health.AddHediff(hearingLoss);
                     }
                     hearingLoss.Severity += hearingDamageMultiplier / 100f;

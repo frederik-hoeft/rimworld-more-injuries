@@ -84,20 +84,14 @@
             <xpath>/Defs/ThingDef[defName="Human"]</xpath>
             <value>
                 <comps>
-                    <li Class="MoreInjuries.InjuriesCompProps">
-                        <Concussion>Concussion</Concussion>
-                        <Shock>Shock</Shock>
-                    </li>
+                    <li Class="MoreInjuries.InjuryCompProps"></li>
                 </comps>
             </value>
         </nomatch>
         <match Class="PatchOperationAdd">
             <xpath>/Defs/ThingDef[defName="Human"]/comps</xpath>
             <value>
-                <li Class="MoreInjuries.InjuriesCompProps">
-                    <Concussion>Concussion</Concussion>
-                    <Shock>Shock</Shock>
-                </li>
+                <li Class="MoreInjuries.InjuryCompProps"></li>
             </value>
         </match>
     </Operation>
@@ -116,20 +110,14 @@
                     <value>
                         <comps>
                             
-                            <li Class="MoreInjuries.InjuriesCompProps">
-                            <Concussion>Concussion</Concussion>
-                            <Shock>Shock</Shock>
-                            </li>
+                            <li Class="MoreInjuries.InjuryCompProps"></li>
                         </comps>
                     </value>
                 </nomatch>
                 <match Class="PatchOperationAdd">
                     <xpath>/Defs/AlienRace.ThingDef_AlienRace/alienRace/compatibility[isFlesh="true"]/../../comps</xpath>
                     <value>
-                        <li Class="MoreInjuries.InjuriesCompProps">
-                            <Concussion>Concussion</Concussion>
-                            <Shock>Shock</Shock>
-                        </li>
+                        <li Class="MoreInjuries.InjuryCompProps"></li>
                     </value>
                 </match>
             </li>

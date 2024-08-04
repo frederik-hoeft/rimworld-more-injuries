@@ -1,4 +1,5 @@
-﻿using MoreInjuries.Hemostat;
+﻿using MoreInjuries.HealthConditions;
+using MoreInjuries.HealthConditions.HeavyBleeding.Hemostat;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;

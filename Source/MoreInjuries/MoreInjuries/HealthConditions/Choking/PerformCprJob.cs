@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MoreInjuries.KnownDefs;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -46,6 +47,6 @@ public class PerformCprJob : JobDriver
     }
 
     internal static bool CanBeTreatedWithCpr(Hediff hediff) =>
-        hediff.def == MoreInjuriesHediffDefOf.ChokingOnBlood
-        || hediff.def.defName is "HeartAttack";
+        hediff.def == KnownHediffDefOf.ChokingOnBlood
+        || hediff.def == KnownHediffDefOf.HeartAttack;
 }

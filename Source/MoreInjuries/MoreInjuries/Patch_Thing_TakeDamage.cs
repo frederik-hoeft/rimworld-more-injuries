@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using MoreInjuries.HealthConditions;
 using Verse;
 
 namespace MoreInjuries;
@@ -17,7 +18,7 @@ public static class Patch_Thing_TakeDamage
 
         if (__instance is Pawn compHolder)
         {
-            InjuriesComp comp = compHolder.GetComp<InjuriesComp>();
+            InjuryComp comp = compHolder.GetComp<InjuryComp>();
             comp.PostDamageFull(__result);
         }
 

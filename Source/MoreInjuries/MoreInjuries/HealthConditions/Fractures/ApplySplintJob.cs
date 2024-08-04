@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MoreInjuries.KnownDefs;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -31,10 +32,10 @@ public class ApplySplintJob : JobDriver
         Toil tendPatientToil = Toils_General.Wait(ticks: (int)Math.Round(480f / medicalSkill / manipulationCapacity));
         tendPatientToil.AddFinishAction(() =>
         {
-            Hediff? fracture = Patient.health.hediffSet.hediffs.Find(hediff => hediff.def == FractureDefOf.Fracture);
+            Hediff? fracture = Patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.Fracture);
             if (fracture?.Part is not null)
             {
-                Hediff healingFracture = HediffMaker.MakeHediff(FractureDefOf.FractureHealing, Patient, fracture.Part);
+                Hediff healingFracture = HediffMaker.MakeHediff(KnownHediffDefOf.FractureHealing, Patient, fracture.Part);
                 healingFracture.Severity = 1f;
                 Patient.health.AddHediff(healingFracture);
                 // NOTE: previously, all hediffs with defname "Fracture" were removed here, now we only remove the one we're healing

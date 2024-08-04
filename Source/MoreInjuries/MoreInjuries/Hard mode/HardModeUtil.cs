@@ -1,5 +1,6 @@
 ﻿using Verse;
 using RimWorld;
+using MoreInjuries.HealthConditions;
 
 namespace MoreInjuries;
 

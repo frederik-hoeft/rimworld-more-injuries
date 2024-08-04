@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using MoreInjuries.KnownDefs;
+using System.Linq;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.LungCollapse;
@@ -40,10 +41,10 @@ public class BlockedAirway : BetterInjury
     {
         if (_isFresh && Rand.Chance(0.05f))
         {
-            BodyPartRecord? neck = pawn.health.hediffSet.GetNotMissingParts().FirstOrDefault(x => x.def.defName is BodyPartDefNameOf.Neck)
+            BodyPartRecord? neck = pawn.health.hediffSet.GetNotMissingParts().FirstOrDefault(x => x.def == KnownBodyPartDefOf.Neck)
                 // honestly, the neck should never be missing, but just in case
                 ?? throw new InvalidOperationException("Cannot apply airway blockage to a pawn without a neck. What's going on here?");
-            Hediff hediff = HediffMaker.MakeHediff(InjuryDefOf.AirwayBlocked, pawn, neck);
+            Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.AirwayBlocked, pawn, neck);
             pawn.health.AddHediff(hediff, neck);
         }
     }

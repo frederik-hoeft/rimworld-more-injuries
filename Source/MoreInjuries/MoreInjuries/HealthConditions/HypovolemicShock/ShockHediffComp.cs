@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using MoreInjuries.Logging;
+using MoreInjuries.KnownDefs;
 using RimWorld;
 using Verse;
 
@@ -7,8 +7,8 @@ namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
 public class ShockHediffComp : HediffComp
 {
-    public bool _fixedNow = false;
-    public int _ticks = 0;
+    private bool _fixedNow = false;
+    private int _ticks = 0;
 
     private ShockHediffCompProperties Properties => (ShockHediffCompProperties)props;
 
@@ -64,7 +64,7 @@ public class ShockHediffComp : HediffComp
                 .Where(bodyPart => bodyPart.def != BodyPartDefOf.Heart
                     && bodyPart.def.bleedRate > 0f)
                 .RandomElement();
-            Hediff hediff = HediffMaker.MakeHediff(ShockDefOf.OrganHypoxia, parent.pawn, hypoxiaTarget);
+            Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.OrganHypoxia, parent.pawn, hypoxiaTarget);
             hediff.Severity = Rand.Range(2f, 5f);
             parent.pawn.health.AddHediff(hediff, hypoxiaTarget);
             _ticks = 0;

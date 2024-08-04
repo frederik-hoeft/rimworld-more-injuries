@@ -1,10 +1,11 @@
-﻿using Verse;
+﻿using MoreInjuries.KnownDefs;
+using Verse;
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
 public class ShockMakerHediffComp : HediffComp
 {
-    private static readonly SimpleCurve _curve = new(
+    private static readonly SimpleCurve s_curve = new(
     [
         new(0f, 0f),
         new(15f, 5f),
@@ -29,9 +30,9 @@ public class ShockMakerHediffComp : HediffComp
             }
             if (!_hasShock)
             {
-                if (Rand.Chance(_curve.Evaluate(parent.Severity)) && !parent.pawn.health.hediffSet.HasHediff(ShockDefOf.HypovolemicShock))
+                if (Rand.Chance(s_curve.Evaluate(parent.Severity)) && !parent.pawn.health.hediffSet.HasHediff(KnownHediffDefOf.HypovolemicShock))
                 {
-                    parent.pawn.health.AddHediff(HediffMaker.MakeHediff(ShockDefOf.HypovolemicShock, parent.pawn));
+                    parent.pawn.health.AddHediff(HediffMaker.MakeHediff(KnownHediffDefOf.HypovolemicShock, parent.pawn));
                     _hasShock = true;
                 }
                 _ticks = 0;

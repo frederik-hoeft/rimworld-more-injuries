@@ -5,6 +5,7 @@ using Verse.AI;
 using HarmonyLib;
 using Verse;
 using UnityEngine;
+using MoreInjuries.KnownDefs;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
@@ -22,7 +23,7 @@ public static class FloatMenuMakerMap_AddHumanlikeOrders_Patch
         {
             return;
         }
-        bool hasSuctionDevice = pawn.inventory.innerContainer.Any(thing => thing.def == MoreInjuriesHediffDefOf.SuctionDevice);
+        bool hasSuctionDevice = pawn.inventory.innerContainer.Any(thing => thing.def == KnownThingDefOf.SuctionDevice);
         if (!hasSuctionDevice)
         {
             return;
@@ -32,12 +33,12 @@ public static class FloatMenuMakerMap_AddHumanlikeOrders_Patch
             Pawn target = (Pawn)localTargetInfo.Thing;
 
             // add clear airway option if target is choking on blood and pawn can reach target
-            if (target.health.hediffSet.HasHediff(MoreInjuriesHediffDefOf.ChokingOnBlood)
+            if (target.health.hediffSet.HasHediff(KnownHediffDefOf.ChokingOnBlood)
                 && pawn.CanReserveAndReach(target, PathEndMode.OnCell, Danger.Deadly, maxPawns: 1, stackCount: -1, layer: null, ignoreOtherReservations: true))
             {
                 void startClearAirwayJob()
                 {
-                    Job job = new(MoreInjuriesJobDefOf.ClearAirway, target)
+                    Job job = new(KnownJobDefOf.ClearAirway, target)
                     {
                         count = 1
                     };
