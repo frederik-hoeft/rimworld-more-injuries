@@ -58,7 +58,7 @@
         <filter>
           <thingDefs>
             <li>Steel</li>
-            <li>Wood</li>
+            <li>WoodLog</li>
           </thingDefs>
         </filter>
         <count>40</count>
@@ -73,12 +73,12 @@
       </li>
     </ingredients>
     <products>
-      <splint>10</splint>
+      <Splint>10</Splint>
     </products>
     <fixedIngredientFilter>
       <thingDefs>
         <li>Steel</li>
-        <li>Wood</li>
+        <li>WoodLog</li>
       </thingDefs>
       <categories>
         <li>Textiles</li>

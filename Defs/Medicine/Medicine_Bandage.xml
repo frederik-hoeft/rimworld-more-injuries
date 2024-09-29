@@ -75,7 +75,7 @@
       </li>
     </ingredients>
     <products>
-      <bandage>5</bandage>
+      <Bandage>5</Bandage>
     </products>
     <fixedIngredientFilter>
       <categories>

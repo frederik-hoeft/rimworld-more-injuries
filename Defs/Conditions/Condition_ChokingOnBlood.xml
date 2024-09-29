@@ -108,9 +108,7 @@
   <HediffDef ParentName="InfectionBase">
     <defName>ChokingOnTourniquet</defName>
     <label>Choking on tourniquet</label>
-    <description>
-      A severe lack of intellect caused a potentially fatal mishap in form of a misapplied tourniquet.
-    </description>
+    <description>A severe lack of intellect caused a potentially fatal mishap in form of a misapplied tourniquet.</description>
     <makesSickThought>false</makesSickThought>
     <lethalSeverity>1</lethalSeverity>
     <tendable>false</tendable>

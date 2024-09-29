@@ -61,7 +61,7 @@
         <filter>
           <thingDefs>
             <li>Steel</li>
-            <li>Wood</li>
+            <li>WoodLog</li>
           </thingDefs>
         </filter>
         <count>10</count>
@@ -77,7 +77,7 @@
       </li>
     </ingredients>
     <products>
-      <tourniquet>10</tourniquet>
+      <Tourniquet>10</Tourniquet>
     </products>
     <fixedIngredientFilter>
       <categories>
@@ -86,7 +86,7 @@
       </categories>
       <thingDefs>
         <li>Steel</li>
-        <li>Wood</li>
+        <li>WoodLog</li>
       </thingDefs>
     </fixedIngredientFilter>
     <recipeUsers>

@@ -90,7 +90,7 @@
       </li>
     </ingredients>
     <products>
-      <hemostat>5</hemostat>
+      <Hemostat>5</Hemostat>
     </products>
     <fixedIngredientFilter>
       <thingDefs>

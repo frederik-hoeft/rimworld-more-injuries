@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <HediffDef ParentName="InjuryBase">
-    <defName>CutSpall</defName>
+    <defName>SpallFragmentCut</defName>
     <label>cut (spall)</label>
     <labelNoun>a spall fragment cut</labelNoun>
     <description>A cut caused by spall of a bullet and armor fragments.</description>
