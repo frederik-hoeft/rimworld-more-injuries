@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThingDef ParentName="MedicalDeviceBase">
-    <defName>suctiondevice</defName>
+    <defName>SuctionDevice</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>Airway suction device</label>
     <description>A medical device designed to remove blood from airways.</description>
@@ -41,7 +41,7 @@
         <useDuration>600</useDuration>
       </li>
       <li Class="CompProperties_UseEffect">
-        <compClass>MoreInjuries.Jobs.CompUseEffect_ApplySuctionDevice</compClass>
+        <compClass>MoreInjuries.HealthConditions.Choking.CompUseEffect_ApplySuctionDevice</compClass>
       </li>
       <li Class="CompProperties_UseEffect">
         <compClass>CompUseEffect_DestroySelf</compClass>

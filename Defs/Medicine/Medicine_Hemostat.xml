@@ -12,7 +12,7 @@
         <severityPerDay>-1</severityPerDay>
       </li>
       <li>
-        <compClass>MoreInjuries.Hemostat.HemostatHediffComp</compClass>
+        <compClass>MoreInjuries.HealthConditions.HeavyBleeding.Hemostats.HemostatHediffComp</compClass>
       </li>
     </comps>
     <stages>
@@ -23,7 +23,7 @@
   </HediffDef>
 
   <ThingDef ParentName="MedicalDeviceBase">
-    <defName>hemostat</defName>
+    <defName>Hemostat</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>hemostat</label>
     <description>Special agent which clots when in contact with blood, which makes it perfect for
@@ -44,21 +44,9 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <drawGUIOverlay>true</drawGUIOverlay>
-    <!-- <costList>
-      <Chemfuel>20</Chemfuel>
-    </costList> -->
-    <!-- <costStuffCount>5</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-    </stuffCategories> -->
-    <!-- <recipeMaker>
-      <recipeUsers>
-        <li>TableMachining</li>
-      </recipeUsers>
-    </recipeMaker> -->
 
     <modExtensions>
-      <li Class="MoreInjuries.Hemostat.HemostatModExtension">
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Hemostats.HemostatModExtension">
         <_coagulationMultiplier>0.2</_coagulationMultiplier>
         <_applyTime>30</_applyTime>
       </li>
@@ -67,13 +55,13 @@
 
   <JobDef>
     <defName>ApplyHemostatJob</defName>
-    <driverClass>MoreInjuries.Hemostat.ApplyHemostatJob</driverClass>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Hemostats.ApplyHemostatJob</driverClass>
     <reportString>Use hemostat.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
   <RecipeDef>
-    <defName>Make_HmoesFive</defName>
+    <defName>Make_HemostatFive</defName>
     <label>make hemostats x5</label>
     <description>Make 5 hemostats.</description>
     <jobString>Making 5 hemostats.</jobString>

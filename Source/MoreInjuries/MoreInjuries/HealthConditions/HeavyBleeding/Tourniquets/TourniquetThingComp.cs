@@ -53,7 +53,7 @@ public class TourniquetThingComp : ThingComp
                         {
                             Job applyTourniquet = new()
                             {
-                                def = KnownJobDefOf.ApplyTourniquet,
+                                def = KnownJobDefOf.ApplyTourniquetJob,
                                 targetA = patient,
                                 targetB = tourniquet
                             };
@@ -114,7 +114,7 @@ public class TourniquetThingComp : ThingComp
 
                     Job applyTourniquet = new() 
                     { 
-                        def = KnownJobDefOf.ApplyTourniquet, 
+                        def = KnownJobDefOf.ApplyTourniquetJob, 
                         targetA = patient, 
                         targetB = tourniquet
                     };

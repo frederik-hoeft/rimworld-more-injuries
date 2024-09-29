@@ -1,13 +1,13 @@
-﻿using Verse;
+﻿using System.Diagnostics.CodeAnalysis;
+using Verse;
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
+[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "Cannot use auto property for XML defs")]
 public class ShockHediffCompProperties : HediffCompProperties
 {
-#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
     // don't rename this field. XML defs depend on this name
     private readonly SimpleCurve _bleedSeverityCurve = default!;
-#pragma warning restore CS0649 // Field is never assigned to, and will always have its default value
 
     public ShockHediffCompProperties() => compClass = typeof(ShockHediffComp);
 

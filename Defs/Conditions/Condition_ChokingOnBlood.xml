@@ -9,7 +9,6 @@
     <lethalSeverity>1</lethalSeverity>
     <tendable>false</tendable>
     <comps>
-
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>2.0</severityPerDay>
       </li>
@@ -21,9 +20,8 @@
         <message>{0} is choking on blood!</message>
         <messageType>NegativeHealthEvent</messageType>
       </li>
-      <li Class="MoreInjuries.Jobs.ChokingHediffCompProperties">
+      <li Class="MoreInjuries.HealthConditions.Choking.ChokingHediffCompProperties">
         <_chokingIntervalTicks>900</_chokingIntervalTicks>
-        <_coughSoundDef>Cough</_coughSoundDef>
       </li>
     </comps>
     <stages>
@@ -108,15 +106,15 @@
   </HediffDef>
 
   <HediffDef ParentName="InfectionBase">
-    <defName>ChokingOnTourni</defName>
+    <defName>ChokingOnTourniquet</defName>
     <label>Choking on tourniquet</label>
-    <description>A severe lack of intellect caused a potentially fatal mishap in form of a
-      misapplied tourniquet.</description>
+    <description>
+      A severe lack of intellect caused a potentially fatal mishap in form of a misapplied tourniquet.
+    </description>
     <makesSickThought>false</makesSickThought>
     <lethalSeverity>1</lethalSeverity>
     <tendable>false</tendable>
     <comps>
-
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>8.0</severityPerDay>
       </li>
@@ -134,7 +132,6 @@
           </li>
         </capMods>
       </li>
-
       <li>
         <minSeverity>0.15</minSeverity>
         <label>initial</label>
@@ -145,7 +142,6 @@
           </li>
         </capMods>
       </li>
-
       <li>
         <minSeverity>0.250</minSeverity>
         <label>moderate</label>
@@ -157,7 +153,6 @@
           </li>
         </capMods>
       </li>
-
       <li>
         <minSeverity>0.450</minSeverity>
         <label>moderate</label>
@@ -169,7 +164,6 @@
           </li>
         </capMods>
       </li>
-
       <li>
         <minSeverity>0.650</minSeverity>
         <label>moderate</label>
@@ -181,7 +175,6 @@
           </li>
         </capMods>
       </li>
-
       <li>
         <minSeverity>0.750</minSeverity>
         <label>extreme</label>

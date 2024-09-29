@@ -6,7 +6,7 @@ using Verse.AI;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
-internal class ClearAirwayJob : JobDriver
+internal class ClearAirwayJobDriver : JobDriver
 {
     private Pawn Patient => (Pawn)job.targetA.Thing;
 

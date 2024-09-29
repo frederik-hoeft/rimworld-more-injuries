@@ -38,7 +38,7 @@ public static class FloatMenuMakerMap_AddHumanlikeOrders_Patch
             {
                 void startClearAirwayJob()
                 {
-                    Job job = new(KnownJobDefOf.ClearAirway, target)
+                    Job job = new(KnownJobDefOf.ClearAirwayJob, target)
                     {
                         count = 1
                     };

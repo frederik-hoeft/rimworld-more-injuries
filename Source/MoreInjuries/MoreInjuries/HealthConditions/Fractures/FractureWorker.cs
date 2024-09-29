@@ -21,7 +21,7 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
         {
             return
             [
-                new FloatMenuOption("Fix fracture", () => selectedPawn.jobs.StartJob(new Job(def: KnownJobDefOf.ApplySplint, targetA: patient), JobCondition.InterruptForced))
+                new FloatMenuOption("Fix fracture", () => selectedPawn.jobs.StartJob(new Job(def: KnownJobDefOf.ApplySplintJob, targetA: patient), JobCondition.InterruptForced))
             ];
         }
         return [];
@@ -60,7 +60,7 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
                 }
                 Hediff fracture = HediffMaker.MakeHediff(KnownHediffDefOf.Fracture, patient, bone);
                 patient.health.AddHediff(fracture);
-                KnownSoundDefOf.MoreInjuries_BoneSnap.PlayOneShot(new TargetInfo(patient.PositionHeld, patient.Map));
+                KnownSoundDefOf.BoneSnapSound.PlayOneShot(new TargetInfo(patient.PositionHeld, patient.Map));
                 if (MoreInjuriesMod.Settings.EnableBoneFragmentLacerations)
                 {
                     foreach (BodyPartRecord sibling in bone.parent.GetDirectChildParts())

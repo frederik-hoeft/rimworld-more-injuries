@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
   <HediffDef>
-    <defName>adrenalinedump</defName>
+    <defName>AdrenalineRush</defName>
     <hediffClass>HediffWithComps</hediffClass>
-    <label>Adrenaline dump</label>
-    <labelNoun>an adrenaline dump</labelNoun>
+    <label>adrenaline rush</label>
+    <labelNoun>an adrenaline rush</labelNoun>
     <description>A rush of adrenaline temporarily boosts moving capabilitites and numbs the perception of pain.</description>
     <defaultLabelColor>(25, 255, 136)</defaultLabelColor>
     <scenarioCanAdd>true</scenarioCanAdd>

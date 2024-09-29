@@ -12,9 +12,7 @@
     <thingCategories>
       <li>MedicalDevice</li>
     </thingCategories>
-    <!--<orderedTakeGroup>Medicine</orderedTakeGroup>-->
   </ThingDef>
-
 
   <ThingCategoryDef>
     <defName>MedicalDevice</defName>
@@ -42,22 +40,6 @@
       <MaxHitPoints>100</MaxHitPoints>
     </statBases>
     <drawGUIOverlay>true</drawGUIOverlay>
-    <!-- <stuffCategories>
-      <li>Metallic</li>
-      <li>Woody</li>
-    </stuffCategories>
-    <costStuffCount>5</costStuffCount> -->
-    <!-- <recipeMaker>
-      <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
-    <workSkill>Intellectual</workSkill>
-      <recipeUsers>
-        <li>TableMachining</li>
-    <li>CraftingSpot</li>
-      </recipeUsers>
-      <skillRequirements>
-        <Crafting>1</Crafting>
-    </skillRequirements>
-    </recipeMaker> -->
   </ThingDef>
 
   <RecipeDef>
@@ -65,7 +47,7 @@
     <label>make splints x10</label>
     <description>Make 10 splints</description>
     <jobString>Making 10 splints.</jobString>
-    <workAmount>900</workAmount>
+    <workAmount>600</workAmount>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_CookMeal</soundWorking>
@@ -74,29 +56,34 @@
     <ingredients>
       <li>
         <filter>
-          <stuffCategoriesToAllow>
-            <li>Metallic</li>
-            <li>Woody</li>
-          </stuffCategoriesToAllow>
+          <thingDefs>
+            <li>Steel</li>
+            <li>Wood</li>
+          </thingDefs>
         </filter>
-        <count>50</count>
+        <count>40</count>
+      </li>
+      <li>
+        <filter>
+          <categories>
+            <li>Textiles</li>
+          </categories>
+        </filter>
+        <count>10</count>
       </li>
     </ingredients>
     <products>
       <splint>10</splint>
     </products>
     <fixedIngredientFilter>
-      <stuffCategoriesToAllow>
-        <li>Metallic</li>
-        <li>Woody</li>
-      </stuffCategoriesToAllow>
+      <thingDefs>
+        <li>Steel</li>
+        <li>Wood</li>
+      </thingDefs>
+      <categories>
+        <li>Textiles</li>
+      </categories>
     </fixedIngredientFilter>
-    <defaultIngredientFilter>
-      <disallowedThingDefs>
-        <li>Silver</li>
-        <li>Gold</li>
-      </disallowedThingDefs>
-    </defaultIngredientFilter>
     <recipeUsers>
       <li>TableMachining</li>
       <li>CraftingSpot</li>

@@ -8,9 +8,13 @@ namespace MoreInjuries.KnownDefs;
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Cannot encapsulate DefOf fields in properties, required for reflection. Name must match XML def name.")]
 public static class KnownThingDefOf
 {
+    public static ThingDef Bandage = null!;
+
+    public static ThingDef Hemostat = null!;
+
     public static ThingDef Splint = null!;
 
-    public static ThingDef Tourniquet = null!;
-
     public static ThingDef SuctionDevice = null!;
+
+    public static ThingDef Tourniquet = null!;
 }

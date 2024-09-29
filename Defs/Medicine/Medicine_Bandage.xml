@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <HediffDef ParentName="DiseaseBase">
-    <defName>bandagedhdf</defName>
+    <defName>Bandaged</defName>
     <label>bandaged</label>
     <description>Tightly applied bandaged which reduces bleeding rate.</description>
     <hediffClass>HediffWithComps</hediffClass>
@@ -11,15 +11,15 @@
         <severityPerDay>-1</severityPerDay>
       </li>
       <li>
-        <compClass>MoreInjuries.Hemostat.HemostatHediffComp</compClass>
+        <compClass>MoreInjuries.HealthConditions.HeavyBleeding.Hemostats.HemostatHediffComp</compClass>
       </li>
     </comps>
   </HediffDef>
 
   <ThingDef ParentName="MedicalDeviceBase">
-    <defName>bandage</defName>
+    <defName>Bandage</defName>
     <thingClass>ThingWithComps</thingClass>
-    <label>Bandage</label>
+    <label>bandage</label>
     <description>Pieces of fabric prepared to slow the flow of blood from wounds. Slow to apply.</description>
     <graphicData>
       <texPath>Thing/Bandage</texPath>
@@ -47,7 +47,7 @@
       </recipeUsers>
     </recipeMaker>
     <modExtensions>
-      <li Class="MoreInjuries.Hemostat.HemostatModExtension">
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Hemostats.HemostatModExtension">
         <_coagulationMultiplier>0.5</_coagulationMultiplier>
         <_applyTime>90</_applyTime>
       </li>
@@ -55,7 +55,7 @@
   </ThingDef>
 
   <RecipeDef>
-    <defName>Make_BandagoFive</defName>
+    <defName>Make_BandageFive</defName>
     <label>make bandages x5</label>
     <description>Make 5 bandages.</description>
     <jobString>Making 5 bandages.</jobString>

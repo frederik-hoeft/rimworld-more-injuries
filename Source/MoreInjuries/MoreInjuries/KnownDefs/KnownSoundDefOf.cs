@@ -8,5 +8,6 @@ namespace MoreInjuries.KnownDefs;
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Cannot encapsulate DefOf fields in properties, required for reflection. Name must match XML def name.")]
 public static class KnownSoundDefOf
 {
-    public static SoundDef MoreInjuries_BoneSnap = null!;
+    public static SoundDef BoneSnapSound = null!;
+    public static SoundDef ChokingSound = null!;
 }

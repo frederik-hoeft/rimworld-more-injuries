@@ -6,6 +6,10 @@ public class MoreInjuriesSettings : ModSettings
 {
     internal bool EnableAdrenaline = false;
     internal bool EnableHydrostaticShock = false;
+    internal bool EnableEmpDamageToBionics = true;
+    internal bool HideUndiagnosedInternalInjuries = false;
+    internal float ClosedInternalWouldBleedingModifier = 0.75f;
+    internal bool UseIndividualFloatMenus = false;
 
     internal bool EnableHemorrhagicStroke = true;
     internal float HemorrhagicStrokeChance = 0.07f;
@@ -28,10 +32,6 @@ public class MoreInjuriesSettings : ModSettings
     internal bool EnableBoneFragmentLacerations = false;
     internal float BoneFragmentLacerationChance = 0.1f;
 
-    internal bool EnableEmpDamageToBionics = true;
-    internal bool HideUndiagnosedInternalInjuries = false;
-    internal float ClosedInternalWouldBleedingModifier = 0.75f;
-    internal bool UseIndividualFloatMenus = false;
     internal bool EnableHypovolemicShock = true;
     internal float OrganHypoxiaChance = 0.65f;
     internal float OrganHypoxiaChanceReductionFactor;

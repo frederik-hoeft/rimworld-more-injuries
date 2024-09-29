@@ -3,7 +3,7 @@
   <HediffDef ParentName="InfectionBase">
     <defName>HypovolemicShock</defName>
     <label>Hypovolemic shock</label>
-    <description>A life threating state caused by insufficient blood flow to body. Has chance to cause hypoxia damage to internal organs. Severity scales directly with blood loss severity until 60% severity. To cure it you must tend it to certain quality percentages based on severity. These are: \n \n 10% for 0-14% severity; \n 40% on 15-24%; \n 75% on 25-44%; \n 100% on 45%-79%; \n 120% for 80%-89%; \n 200% for 90% onwards.</description>
+    <description>A life threating state caused by insufficient blood flow to body. Has chance to cause hypoxia damage to internal organs. Severity scales directly with blood loss severity until 60% severity. Must be treated with blood transfusion.</description>
     <tendable>true</tendable>
     <makesSickThought>true</makesSickThought>
     <lethalSeverity>1</lethalSeverity>
@@ -21,7 +21,7 @@
         <message>{0} is developing hypovolemic shock!</message>
         <messageType>NegativeHealthEvent</messageType>
       </li>
-      <li Class="MoreInjuries.HypovolemicShock.ShockHediffCompProperties">
+      <li Class="MoreInjuries.HealthConditions.HypovolemicShock.ShockHediffCompProperties">
         <_bleedSeverityCurve>
           <points>
             <li>0, 0.10</li>

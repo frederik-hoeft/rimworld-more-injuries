@@ -9,29 +9,30 @@ namespace MoreInjuries.KnownDefs;
 public static class KnownHediffDefOf
 {
     // default defs not available through HediffDefOf
-    public static HediffDef HeartAttack = null!;
     public static HediffDef Bruise = null!;
+    public static HediffDef HeartAttack = null!;
     // added by MoreInjuries
-    public static HediffDef AirwayBlocked = null!;
-    public static HediffDef StomachAcidBurn = null!;
-    public static HediffDef TourniquetApplied = null!;
-    public static HediffDef ChokingOnTourniquet = null!;
-    public static HediffDef Shock = null!;
-    public static HediffDef Concussion = null!;
     public static HediffDef AdrenalineRush = null!;
-    public static HediffDef LungCollapse = null!;
-    public static HediffDef HemorrhagicStroke = null!;
-    public static HediffDef ChokingOnBlood = null!;
-    public static HediffDef SpallFragmentCut = null!;
-    public static HediffDef SpinalCordParalysis = null!;
-    public static HediffDef TraumaticBrainInjury = null!;
-    public static HediffDef EmpShutdown = null!;
-    public static HediffDef Crush = null!;
-    public static HediffDef FractureHealing = null!;
-    public static HediffDef Fracture = null!;
+    public static HediffDef AirwayBlocked = null!;
+    public static HediffDef Bandaged = null!;
     public static HediffDef BoneFragmentLaceration = null!; 
+    public static HediffDef ChokingOnBlood = null!;
+    public static HediffDef ChokingOnTourniquet = null!;
+    public static HediffDef Concussion = null!; // TODO: currently unused
+    public static HediffDef Crush = null!;
+    public static HediffDef EmpShutdown = null!;
+    public static HediffDef Fracture = null!;
+    public static HediffDef FractureHealing = null!;
     public static HediffDef HearingLoss = null!;
+    public static HediffDef HemorrhagicStroke = null!;
     public static HediffDef HemostatApplied = null!;
     public static HediffDef HypovolemicShock = null!;
+    public static HediffDef LungCollapse = null!;
     public static HediffDef OrganHypoxia = null!;
+    public static HediffDef Shock = null!; // TODO: currently unused
+    public static HediffDef SpallFragmentCut = null!;
+    public static HediffDef SpinalCordParalysis = null!;
+    public static HediffDef StomachAcidBurn = null!;
+    public static HediffDef TourniquetApplied = null!;
+    public static HediffDef TraumaticBrainInjury = null!; // TODO: currently unused
 }

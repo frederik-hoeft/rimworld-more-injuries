@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using MoreInjuries.Debug;
 using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-    <JobDef>
-        <defName>FirstAid</defName>
-        <driverClass>MoreInjuries.JobDriver_HardTending</driverClass>
-        <reportString>Performing first aid</reportString>
-        <casualInterruptible>false</casualInterruptible>
-    </JobDef>
+  <JobDef>
+    <defName>ProvideFirstAidJob</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.ProvideFirstAidJobDriver</driverClass>
+    <reportString>Performing first aid</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
 
-    <JobDef>
-        <defName>ClearAirwayJob</defName>
-        <driverClass>MoreInjuries.Jobs.ClearAirwayJob</driverClass>
-        <reportString>Clearing TargetA 's airways.</reportString>
-        <casualInterruptible>false</casualInterruptible>
-    </JobDef>
+  <JobDef>
+    <defName>ClearAirwayJob</defName>
+    <driverClass>MoreInjuries.HealthConditions.Choking.ClearAirwayJobDriver</driverClass>
+    <reportString>Clearing TargetA 's airways.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
 </Defs>

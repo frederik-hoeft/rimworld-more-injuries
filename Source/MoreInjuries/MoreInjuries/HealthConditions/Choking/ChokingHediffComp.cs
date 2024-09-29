@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using MoreInjuries.KnownDefs;
+using Verse;
 using Verse.Sound;
 
 namespace MoreInjuries.HealthConditions.Choking;
@@ -16,7 +17,7 @@ public class ChokingHediffComp : HediffComp
         _ticksThisInterval = Properties.ChokingIntervalTicks;
         if (MoreInjuriesMod.Settings.EnableChokingSounds)
         {
-            Properties.CoughSoundDef.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
+            KnownSoundDefOf.ChokingSound.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
         }
 
         base.CompPostMake();
@@ -40,7 +41,7 @@ public class ChokingHediffComp : HediffComp
             {
                 if (MoreInjuriesMod.Settings.EnableChokingSounds)
                 {
-                    Properties.CoughSoundDef.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
+                    KnownSoundDefOf.ChokingSound.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
                 }
                 parent.Severity += change;
                 _ticksThisInterval = Properties.ChokingIntervalTicks;
@@ -50,7 +51,7 @@ public class ChokingHediffComp : HediffComp
         {
             if (MoreInjuriesMod.Settings.EnableChokingSounds)
             {
-                Properties.CoughSoundDef.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
+                KnownSoundDefOf.ChokingSound.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
             }
             float change = 0.25f;
             if (Source.IsTended())

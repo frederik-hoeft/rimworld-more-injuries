@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>UnCollapseLung</defName>
+    <defName>RepairCollapsedLung</defName>
     <label>repair collapsed lung</label>
     <description>Repair a collapsed lung.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
@@ -30,7 +30,6 @@
     </fixedIngredientFilter>
   </RecipeDef>
 
-
   <RecipeDef ParentName="SurgeryFlesh">
     <defName>RepairFracture</defName>
     <label>Repair a fracture</label>
@@ -49,7 +48,7 @@
       <li>
         <filter>
           <thingDefs>
-            <li>splint</li>
+            <li>Splint</li>
           </thingDefs>
         </filter>
         <count>1</count>
@@ -57,20 +56,20 @@
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
-        <li>splint</li>
+        <li>Splint</li>
       </thingDefs>
     </fixedIngredientFilter>
     <surgerySuccessChanceFactor>900</surgerySuccessChanceFactor>
   </RecipeDef>
 
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>RemoveStroke</defName>
-    <label>Cure stroke</label>
+    <defName>RemoveHemorrhagicStroke</defName>
+    <label>Cure hemorrhagic stroke</label>
     <description>Cure a stroke.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
     <jobString>Fixing a stroke</jobString>
     <workAmount>4500</workAmount>
-    <removesHediff>hemorrhagicstroke</removesHediff>
+    <removesHediff>HemorrhagicStroke</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully cured {1}'s stroke.</successfullyRemovedHediffMessage>
     <deathOnFailedSurgeryChance>0.20</deathOnFailedSurgeryChance>
     <anesthetize>false</anesthetize>

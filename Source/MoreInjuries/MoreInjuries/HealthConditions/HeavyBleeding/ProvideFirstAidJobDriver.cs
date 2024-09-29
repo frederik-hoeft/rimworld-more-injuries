@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding;
 
-public class StopBleedingJob : JobDriver
+public class ProvideFirstAidJobDriver : JobDriver
 {
     public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
 

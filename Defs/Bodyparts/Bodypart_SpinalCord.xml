@@ -10,7 +10,6 @@
     <bleedRate>0.9</bleedRate>
     <tags>
       <li>Spine</li>
-      <!--<li>ConsciousnessSource</li>-->
     </tags>
     <canSuggestAmputation>false</canSuggestAmputation>
     <destroyableByDamage>false</destroyableByDamage>
@@ -33,5 +32,4 @@
       </li>
     </stages>
   </HediffDef>
-
 </Defs>

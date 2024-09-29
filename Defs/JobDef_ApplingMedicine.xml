@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-	<JobDef>
-		<defName>PerformCpr</defName>
-		<driverClass>MoreInjuries.HealthConditions.Choking.PerformCprJob</driverClass>
-		<reportString>Performing CPR.</reportString>
-		<casualInterruptible>false</casualInterruptible>
-	</JobDef>
-
-	<JobDef>
-		<defName>ApplySplint</defName>
-		<driverClass>MoreInjuries.HealthConditions.Fractures.ApplySplintJob</driverClass>
-		<reportString>Splinting a leg.</reportString>
-		<casualInterruptible>false</casualInterruptible>
-	</JobDef>
-
-	<JobDef>
-		<defName>tourni</defName>
-		<driverClass>MoreInjuries.PutOnTheThing</driverClass>
-		<reportString>Applying a tourniquet.</reportString>
-		<casualInterruptible>false</casualInterruptible>
-	</JobDef>
+  <JobDef>
+    <defName>PerformCprJob</defName>
+    <driverClass>MoreInjuries.HealthConditions.Choking.PerformCprJobDriver</driverClass>
+    <reportString>Performing CPR.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+  <JobDef>
+    <defName>ApplySplintJob</defName>
+    <driverClass>MoreInjuries.HealthConditions.Fractures.ApplySplintJobDriver</driverClass>
+    <reportString>Splinting a leg.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+  <JobDef>
+    <defName>ApplyTourniquetJob</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.ApplyTourniquetJobDriver</driverClass>
+    <reportString>Applying a tourniquet.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
 </Defs>

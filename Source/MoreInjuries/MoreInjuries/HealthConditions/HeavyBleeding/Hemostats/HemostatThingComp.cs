@@ -63,7 +63,7 @@ public class HemostatThingComp : ThingComp
                         InjuryContext = injury;
                         Job job = new()
                         {
-                            def = KnownJobDefOf.ApplyHemostat,
+                            def = KnownJobDefOf.ApplyHemostatJob,
                             targetA = patient,
                             targetB = hemostat
                         };
@@ -80,7 +80,7 @@ public class HemostatThingComp : ThingComp
         {
             yield return new FloatMenuOption("Provide first aid", action: () => selectedPawn.jobs.StartJob(new Job
             {
-                def = KnownJobDefOf.ProvideFirstAid,
+                def = KnownJobDefOf.ProvideFirstAidJob,
                 targetA = parent
             }, JobCondition.InterruptForced));
         }

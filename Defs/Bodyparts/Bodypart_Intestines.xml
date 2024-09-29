@@ -16,13 +16,12 @@
     <spawnThingOnRemoved>SmallIntestine</spawnThingOnRemoved>
   </BodyPartDef>
 
-
   <ThingDef ParentName="BodyPartNaturalBase">
     <defName>SmallIntestine</defName>
     <label>small intestine</label>
     <description>Biological human small intestine.</description>
     <descriptionHyperlinks>
-      <RecipeDef>Installsmallintestine</RecipeDef>
+      <RecipeDef>InstallSmallIntestine</RecipeDef>
     </descriptionHyperlinks>
     <statBases>
       <MarketValue>500</MarketValue>
@@ -200,7 +199,6 @@
     <canSuggestAmputation>false</canSuggestAmputation>
     <destroyableByDamage>false</destroyableByDamage>
   </BodyPartDef>
-
 
   <HediffDef ParentName="InjuryBase">
     <defName>StomachAcidBurn</defName>

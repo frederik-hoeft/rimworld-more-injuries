@@ -2,6 +2,7 @@
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Hemostats;
 
+// also used by bandages
 public class HemostatHediffComp : HediffComp
 {
     public BetterInjury? Injury { get; set; }

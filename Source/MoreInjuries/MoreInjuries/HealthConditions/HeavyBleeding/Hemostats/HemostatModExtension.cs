@@ -3,6 +3,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Hemostats;
 
+// also used by bandages
 // members initialized via XML defs
 [SuppressMessage("Style", "IDE0032:Use auto property", Justification = "Cannot use auto property for XML defs")]
 public class HemostatModExtension : DefModExtension

@@ -55,8 +55,17 @@ public class MoreInjuriesMod : Mod
         Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable logging", ref Settings.EnableLogging);
         list.CheckboxLabeled("Enable verbose logging", ref Settings.EnableVerboseLogging);
+        list.GapLine();
+        Text.Font = GameFont.Medium;
+        list.Label("Gameplay Settings");
+        Text.Font = GameFont.Small;
         list.CheckboxLabeled("Show individual options for hemostat usage alongside 'Provide first aid option'", ref Settings.UseIndividualFloatMenus);
-
+        list.CheckboxLabeled("Hide undiagnosed internal injuries", ref Settings.HideUndiagnosedInternalInjuries,
+            """
+            If enabled, internal injuries that have not been diagnosed by a doctor will not be shown in the health tab.
+            This can make it harder to determine the exact state of a pawn's health, but can also add a sense of realism to the game.
+            Only enable this if you want to make the game more challenging.
+            """);
         // TODO: not sure if or how this works
         if (Find.CurrentMap is not null)
         {

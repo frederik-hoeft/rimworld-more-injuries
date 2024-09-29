@@ -17,11 +17,11 @@ internal class ChokingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPos
         // can't perform CPR on yourself, though that would be pretty wild
         if (!ReferenceEquals(selectedPawn, patient))
         {
-            if (patient.health.hediffSet.hediffs.Any(PerformCprJob.CanBeTreatedWithCpr))
+            if (patient.health.hediffSet.hediffs.Any(PerformCprJobDriver.CanBeTreatedWithCpr))
             {
                 return 
                 [
-                    new FloatMenuOption("Perform CPR", () => selectedPawn.jobs.StartJob(new Job(def: KnownJobDefOf.PerformCpr, targetA: patient), JobCondition.InterruptForced))
+                    new FloatMenuOption("Perform CPR", () => selectedPawn.jobs.StartJob(new Job(def: KnownJobDefOf.PerformCprJob, targetA: patient), JobCondition.InterruptForced))
                 ];
             }
         }
