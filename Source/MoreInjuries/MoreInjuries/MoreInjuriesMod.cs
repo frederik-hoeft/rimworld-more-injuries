@@ -6,6 +6,7 @@ using UnityEngine;
 using MoreInjuries.Initialization;
 using MoreInjuries.Debug;
 using System.Collections.Generic;
+using MoreInjuries.Extensions;
 
 namespace MoreInjuries;
 
@@ -81,11 +82,11 @@ public class MoreInjuriesMod : Mod
                     {
                         FixMisplacedBionicsModExtension modExtension = hediff.def.GetModExtension<FixMisplacedBionicsModExtension>();
 
-                        IEnumerable<BodyPartRecord> bodyParts = human.health.hediffSet.GetNotMissingParts().Where(p => modExtension.BodyParts.Contains(p.def));
+                        List<BodyPartRecord> bodyParts = [.. human.health.hediffSet.GetNotMissingParts().Where(p => modExtension.BodyParts.Contains(p.def))];
 
                         if (bodyParts.Any())
                         {
-                            hediff.Part = bodyParts.RandomElement();
+                            hediff.Part = bodyParts.SelectRandom();
                         }
                         else
                         {

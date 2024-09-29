@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
 using RimWorld;
 using Verse;
@@ -63,7 +64,8 @@ public class ShockHediffComp : HediffComp
             BodyPartRecord hypoxiaTarget = parent.pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Middle, BodyPartDepth.Inside)
                 .Where(bodyPart => bodyPart.def != BodyPartDefOf.Heart
                     && bodyPart.def.bleedRate > 0f)
-                .RandomElement();
+                .ToList()
+                .SelectRandom();
             Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.OrganHypoxia, parent.pawn, hypoxiaTarget);
             hediff.Severity = Rand.Range(2f, 5f);
             parent.pawn.health.AddHediff(hediff, hypoxiaTarget);
