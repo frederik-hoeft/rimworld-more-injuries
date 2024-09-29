@@ -10,7 +10,7 @@ namespace MoreInjuries.HealthConditions.Fractures;
 
 internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler, ICompFloatMenuOptionsHandler
 {
-    public override bool IsEnabled => MoreInjuriesMod.Settings.toggleFractures;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableFractures;
 
     public IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn)
     {
@@ -29,7 +29,7 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {
-        if (damage.totalDamageDealt < MoreInjuriesMod.Settings.fractureTreshold)
+        if (damage.totalDamageDealt < MoreInjuriesMod.Settings.FractureDamageTreshold)
         {
             return;
         }
@@ -54,10 +54,14 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
 
             foreach (BodyPartRecord bone in affectedBones)
             {
+                if (!Rand.Chance(MoreInjuriesMod.Settings.FractureChanceOnDamage))
+                {
+                    continue;
+                }
                 Hediff fracture = HediffMaker.MakeHediff(KnownHediffDefOf.Fracture, patient, bone);
                 patient.health.AddHediff(fracture);
                 KnownSoundDefOf.MoreInjuries_BoneSnap.PlayOneShot(new TargetInfo(patient.PositionHeld, patient.Map));
-                if (MoreInjuriesMod.Settings.UseBoneFragmentLacerations)
+                if (MoreInjuriesMod.Settings.EnableBoneFragmentLacerations)
                 {
                     foreach (BodyPartRecord sibling in bone.parent.GetDirectChildParts())
                     {

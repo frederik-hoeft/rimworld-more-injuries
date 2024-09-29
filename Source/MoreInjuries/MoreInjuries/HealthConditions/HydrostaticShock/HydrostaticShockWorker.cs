@@ -7,7 +7,7 @@ namespace MoreInjuries.HealthConditions.HydrostaticShock;
 // TODO: controversial
 internal class HydrostaticShockWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
-    public override bool IsEnabled => MoreInjuriesMod.Settings.UseHydrostaticShock;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableHydrostaticShock;
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {

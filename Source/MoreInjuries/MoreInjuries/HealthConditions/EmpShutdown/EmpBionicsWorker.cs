@@ -7,7 +7,7 @@ namespace MoreInjuries.HealthConditions.EmpShutdown;
 
 internal class EmpBionicsWorker(InjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
-    public override bool IsEnabled => MoreInjuriesMod.Settings.EMPdisablesBionics;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableEmpDamageToBionics;
 
     public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
     {

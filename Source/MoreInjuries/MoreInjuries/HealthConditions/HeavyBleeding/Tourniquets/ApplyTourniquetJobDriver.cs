@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MoreInjuries.Debug;
+using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
 using RimWorld;
 using Verse;
@@ -48,9 +49,7 @@ public class ApplyTourniquetJobDriver : JobDriver
             if (hediff is Hediff_Injury { Bleeding: true } injury 
                 && injury.TendableNow() 
                 // and the injury must be on the targeted body part or one of its children
-                && (injury.Part == bodyPart || bodyPart.parts is { Count: > 0 }
-                    && (bodyPart.parts.Contains(injury.Part)
-                        || bodyPart.parts.Any(part => part.parts?.Contains(injury.Part) is true))))
+                && injury.IsOnBodyPartOrChildren(bodyPart))
             {
                 treatedInjuries.Add(injury);
                 if (injury is BetterInjury betterInjury)

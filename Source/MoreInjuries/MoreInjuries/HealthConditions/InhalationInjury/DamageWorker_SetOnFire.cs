@@ -9,7 +9,7 @@ public class DamageWorker_SetOnFire : DamageWorker_Flame
     public override DamageResult Apply(DamageInfo dinfo, Thing victim)
     {
         DamageResult result = base.Apply(dinfo, victim);
-        if (MoreInjuriesMod.Settings.enableFireInhalation
+        if (MoreInjuriesMod.Settings.EnableFireInhalation
             && victim is Pawn p
             && Rand.Chance(0.125f * p.GetStatValue(StatDefOf.ToxicResistance))
             && p.IsBurning())

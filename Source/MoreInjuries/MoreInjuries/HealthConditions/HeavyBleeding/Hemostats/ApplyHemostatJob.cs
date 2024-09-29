@@ -2,7 +2,7 @@
 using Verse;
 using Verse.AI;
 
-namespace MoreInjuries.HealthConditions.HeavyBleeding.Hemostat;
+namespace MoreInjuries.HealthConditions.HeavyBleeding.Hemostats;
 
 // expects:
 // - targetA: patient
@@ -38,14 +38,7 @@ public class ApplyHemostatJob : JobDriver
             injury.IsHemostatApplied = true;
 
             Thing hemostat = TargetB.Thing;
-            if (hemostat.stackCount > 1)
-            {
-                hemostat.stackCount--;
-            }
-            else
-            {
-                hemostat.Destroy();
-            }
+            hemostat.DecreaseStack();
         });
         yield return toilApplyHempstat;
         yield break;

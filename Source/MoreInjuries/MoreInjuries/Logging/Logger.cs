@@ -4,7 +4,7 @@ internal static class Logger
 {
     public static void Log(string message)
     {
-        if (MoreInjuriesMod.Settings.enableLogging)
+        if (MoreInjuriesMod.Settings.EnableLogging)
         {
             Verse.Log.Message($"[{nameof(MoreInjuries)}] {message}");
         }
@@ -12,7 +12,7 @@ internal static class Logger
 
     public static void LogVerbose(string message)
     {
-        if (MoreInjuriesMod.Settings.enableVerboseLogging)
+        if (MoreInjuriesMod.Settings.EnableVerboseLogging)
         {
             Log(message);
         }

@@ -9,7 +9,7 @@ namespace MoreInjuries.HealthConditions.Choking;
 
 internal class ChokingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler, ICompFloatMenuOptionsHandler
 {
-    public override bool IsEnabled => MoreInjuriesMod.Settings.ChokingEnabled;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableChoking;
 
     public IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn)
     {
@@ -35,7 +35,7 @@ internal class ChokingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPos
         {
             if (injury is { Bleeding: true, BleedRate: >= 0.20f }
                 && injury.Part.def.tags.Any(tag => tag == BodyPartTagDefOf.BreathingSource || tag == BodyPartTagDefOf.BreathingPathway)
-                && Rand.Chance(0.70f))
+                && Rand.Chance(MoreInjuriesMod.Settings.ChokingChanceOnDamage))
             {
                 Hediff choking = HediffMaker.MakeHediff(KnownHediffDefOf.ChokingOnBlood, patient);
                 if (choking.TryGetComp(out ChokingHediffComp? comp))

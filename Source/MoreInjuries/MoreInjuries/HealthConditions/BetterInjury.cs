@@ -10,7 +10,7 @@ public class BetterInjury : Hediff_Injury
 
     private float _overriddenBleedRate;
     private bool _isHemostatApplied = false;
-    private int _hemoDuration = 120000;
+    private int _hemostatTickDuration = 120000;
     private bool _isDiagnosed = false;
     private bool _isBase = true;
 
@@ -98,7 +98,7 @@ public class BetterInjury : Hediff_Injury
 
             if (IsClosedInternalWound)
             {
-                result *= MoreInjuriesMod.Settings.PlugMult;
+                result *= MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier;
             }
 
             return result;
@@ -110,8 +110,8 @@ public class BetterInjury : Hediff_Injury
         base.Tick();
         if (IsHemostatApplied)
         {
-            _hemoDuration--;
-            if (_hemoDuration <= 0f)
+            _hemostatTickDuration--;
+            if (_hemostatTickDuration <= 0f)
             {
                 IsHemostatApplied = false;
             }
@@ -122,7 +122,7 @@ public class BetterInjury : Hediff_Injury
     {
         get
         {
-            if (MoreInjuriesMod.Settings.fuckYourFun && Part?.depth is not BodyPartDepth.Outside)
+            if (MoreInjuriesMod.Settings.HideUndiagnosedInternalInjuries && Part?.depth is not BodyPartDepth.Outside)
             {
                 return IsDiagnosed;
             }
@@ -132,11 +132,11 @@ public class BetterInjury : Hediff_Injury
 
     public override void ExposeData()
     {
-        Scribe_Values.Look(ref _isBase, "isBase");
-        Scribe_Values.Look(ref _isDiagnosed, "isDiagnosed");
-        Scribe_Values.Look(ref _isHemostatApplied, "isHemoStatApplied");
-        Scribe_Values.Look(ref _overriddenBleedRate, "BleedRateSet");
-        Scribe_Values.Look(ref _hemoDuration, "hemoDuration", 120000);
+        Scribe_Values.Look(ref _isBase, nameof(_isBase));
+        Scribe_Values.Look(ref _isDiagnosed, nameof(_isDiagnosed));
+        Scribe_Values.Look(ref _isHemostatApplied, nameof(_isHemostatApplied));
+        Scribe_Values.Look(ref _overriddenBleedRate, nameof(_overriddenBleedRate));
+        Scribe_Values.Look(ref _hemostatTickDuration, nameof(_hemostatTickDuration), 120000);
         base.ExposeData();
     }
 

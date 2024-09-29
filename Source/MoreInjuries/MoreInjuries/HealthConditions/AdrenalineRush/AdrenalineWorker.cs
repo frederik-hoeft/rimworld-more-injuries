@@ -5,11 +5,12 @@ namespace MoreInjuries.HealthConditions.AdrenalineRush;
 
 internal class AdrenalineWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
-    public override bool IsEnabled => MoreInjuriesMod.Settings.UseAdrenaline;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableAdrenaline;
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {
         Pawn patient = Target;
+        // TODO: is totalDamageDealt even capped at 1.0f?
         if (Rand.Chance(damage.totalDamageDealt))
         {
             if (!patient.health.hediffSet.TryGetHediff(KnownHediffDefOf.AdrenalineRush, out Hediff? adrenalineDump))

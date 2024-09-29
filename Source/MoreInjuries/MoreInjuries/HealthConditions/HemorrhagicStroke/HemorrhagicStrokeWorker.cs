@@ -6,8 +6,7 @@ namespace MoreInjuries.HealthConditions.HemorrhagicStroke;
 
 public class HemorrhagicStrokeWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
-    // TODO: rename
-    public override bool IsEnabled => MoreInjuriesMod.Settings.BruiseStroke;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableHemorrhagicStroke;
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {

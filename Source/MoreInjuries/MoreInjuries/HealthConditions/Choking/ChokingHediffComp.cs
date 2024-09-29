@@ -14,7 +14,7 @@ public class ChokingHediffComp : HediffComp
     public override void CompPostMake()
     {
         _ticksThisInterval = Properties.ChokingIntervalTicks;
-        if (MoreInjuriesMod.Settings.ChokingSoundsEnabled)
+        if (MoreInjuriesMod.Settings.EnableChokingSounds)
         {
             Properties.CoughSoundDef.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
         }
@@ -38,7 +38,7 @@ public class ChokingHediffComp : HediffComp
             }
             if (_ticksThisInterval == 0)
             {
-                if (MoreInjuriesMod.Settings.ChokingSoundsEnabled)
+                if (MoreInjuriesMod.Settings.EnableChokingSounds)
                 {
                     Properties.CoughSoundDef.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
                 }
@@ -48,7 +48,7 @@ public class ChokingHediffComp : HediffComp
         }
         else if (_ticksThisInterval == 0)
         {
-            if (MoreInjuriesMod.Settings.ChokingSoundsEnabled)
+            if (MoreInjuriesMod.Settings.EnableChokingSounds)
             {
                 Properties.CoughSoundDef.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
             }

@@ -7,7 +7,7 @@ namespace MoreInjuries.HealthConditions.InhalationInjury;
 
 internal class InhalationInjuryWorker(InjuryComp parent) : InjuryWorker(parent), IPostPreApplyDamageHandler
 {
-    public override bool IsEnabled => MoreInjuriesMod.Settings.enableFireInhalation;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableFireInhalation;
 
     public void PostPreApplyDamage(ref readonly DamageInfo dinfo)
     {

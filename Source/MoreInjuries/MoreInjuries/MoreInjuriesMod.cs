@@ -5,6 +5,7 @@ using Verse;
 using UnityEngine;
 using MoreInjuries.Initialization;
 using MoreInjuries.Debug;
+using System.Collections.Generic;
 
 namespace MoreInjuries;
 
@@ -27,91 +28,233 @@ public class MoreInjuriesMod : Mod
 
         DebugAssert.DefOfsAreNotNull();
     }
-    public override void DoSettingsWindowContents(Rect inRect)
+
+    private Vector2 _scrollPosition;
+    private const float MIN_CONTENT_HEIGHT = 256f;
+    private float _knownContentHeight = MIN_CONTENT_HEIGHT;
+    private bool _requiresScrolling = false;
+
+    public override void DoSettingsWindowContents(Rect canvas)
     {
-        Listing_Standard listingStandard = new();
-        listingStandard.Begin(inRect);
-        listingStandard.Label("Green - mechanic is turned ON. Red the opposite");
-
-        listingStandard.CheckboxLabeled("Toggle adrenaline mechanics", ref Settings.UseAdrenaline, "Toggle adrenaline mechanics");
-
-        listingStandard.CheckboxLabeled("Toggle bone fractures", ref Settings.toggleFractures, "Toggle fractures");
-
-        listingStandard.CheckboxLabeled("Toggle bone fragments from fractures", ref Settings.UseBoneFragmentLacerations, "Toggle bone fragments from fractures");
-
-        listingStandard.CheckboxLabeled("Toggle bruise shock mechanics", ref Settings.BruiseStroke, "Toggle  bruise shock mechanics");
-
-        listingStandard.CheckboxLabeled("Toggle EMP disabling bionics", ref Settings.EMPdisablesBionics, "Toggle EMP disabling bionics. Credits for the idea for the mechanic to I Play Minecraft");
-
-        listingStandard.CheckboxLabeled("Toggle  choking on blood mechanics", ref Settings.ChokingEnabled, "Toggle  choking on blood mechanics");
-
-        listingStandard.TextEntry("Base chance of armor creating spall " +
-                "(at 1, the chance of creating spall is 0 with armor having 100% hp, 0.01 with armor 99% hp etc.) " + Settings.MinSpallHealth, 2);
-        Settings.MinSpallHealth = listingStandard.Slider(Settings.MinSpallHealth, 0.1f, 1f);
-
-        listingStandard.CheckboxLabeled("Toggle  choking sounds", ref Settings.ChokingSoundsEnabled, "Toggle  choking sounds");
-
-        listingStandard.CheckboxLabeled("Toggle spalling mechanics", ref Settings.spall, "Toggle  spalling mechanics");
-
-        listingStandard.CheckboxLabeled("Toggle lung collapses", ref Settings.lungcollapse, "Toggle lung collapses");
-
-        listingStandard.CheckboxLabeled("Toggle hearing damage mechanics (requires game reload)", ref Settings.HearDMG, "Toggle hearing damage mechanics (requires game reload)");
-
-        listingStandard.Label("Slider for 'plugging' internal injuries bleedrate mult: " + Settings.PlugMult.ToString(), -1,
-            "Let's say a pawn gets shot in the stomach. Now he has a gunshot on stomach and on torso. If you put a bandage, hemostat or tend the torso hit stomach shot's value will be multiplied by this value");
-
-        Settings.PlugMult = (float)Math.Round(listingStandard.Slider(Settings.PlugMult, 0f, 1f), 2);
-
-        listingStandard.Label("Choose fracture damage treshold. Current treshold " + Settings.fractureTreshold);
-
-        Settings.fractureTreshold = (float)Math.Ceiling(listingStandard.Slider(Settings.fractureTreshold, 1, 20));
-
-        listingStandard.CheckboxLabeled("Show individual options for hemostat usage alongside 'Provide first aid option'", ref Settings.individualFloatMenus);
-
-        listingStandard.CheckboxLabeled("Enable advanced shock mechanics (requires game reload)", ref Settings.HypovolemicShockEnabled);
-
-        listingStandard.CheckboxLabeled("Toggle inhalation of fire's fuel when set on fire ", ref Settings.enableFireInhalation);
-
-        listingStandard.Label("Chance of shock to cause organ hypoxia (every 300 ticks/5s) " + Settings.OrganHypoxiaChance);
-
-        Settings.OrganHypoxiaChance = (float)Math.Round(listingStandard.Slider(Settings.OrganHypoxiaChance, 0f, 1f), 2);
-
-        //listingStandard.CheckboxLabeled("Enable coloration of labels")
-
-        if (Find.CurrentMap != null)
+        if (Settings is null)
         {
-            if (listingStandard.ButtonText("Fix misplaced bionics"))
+            Logger.Error("Settings was null!");
+            throw new ArgumentNullException(nameof(Settings));
+        }
+        float scrollbarMargin = _requiresScrolling ? 25f : 0f;
+        Listing_Standard list = new();
+        Rect content = new(canvas.x, canvas.y, canvas.width - scrollbarMargin, _knownContentHeight);
+        Rect view = new(canvas.x, canvas.y, canvas.width, canvas.height);
+        if (_requiresScrolling)
+        {
+            Widgets.BeginScrollView(view, ref _scrollPosition, content);
+        }
+        list.Begin(content);
+        Text.Font = GameFont.Medium;
+        list.Label("General Settings");
+        Text.Font = GameFont.Small;
+        list.CheckboxLabeled("Enable logging", ref Settings.EnableLogging);
+        list.CheckboxLabeled("Enable verbose logging", ref Settings.EnableVerboseLogging);
+        list.CheckboxLabeled("Show individual options for hemostat usage alongside 'Provide first aid option'", ref Settings.UseIndividualFloatMenus);
+
+        // TODO: not sure if or how this works
+        if (Find.CurrentMap is not null)
+        {
+            if (list.ButtonText("Fix misplaced bionics"))
             {
-                System.Collections.Generic.IEnumerable<Pawn> A = Find.CurrentMap.mapPawns.AllPawns.Where(x => x.def == ThingDefOf.Human);
-                foreach (Pawn human in A)
+                IEnumerable<Pawn> humans = Find.CurrentMap.mapPawns.AllPawns.Where(x => x.def == ThingDefOf.Human);
+                foreach (Pawn human in humans)
                 {
-                    System.Collections.Generic.List<Hediff> B = human.health.hediffSet.hediffs.FindAll(x => x.def.addedPartProps != null && x.def.HasModExtension<FixMisplacedBionicsModExtension>());
+                    List<Hediff> hediffs = human.health.hediffSet.hediffs.FindAll(x => x.def.addedPartProps is not null && x.def.HasModExtension<FixMisplacedBionicsModExtension>());
 
-                    foreach (Hediff hed in B)
+                    foreach (Hediff hediff in hediffs)
                     {
-                        FixMisplacedBionicsModExtension supPartDef = hed.def.GetModExtension<FixMisplacedBionicsModExtension>();
+                        FixMisplacedBionicsModExtension modExtension = hediff.def.GetModExtension<FixMisplacedBionicsModExtension>();
 
-                        System.Collections.Generic.IEnumerable<BodyPartRecord> PosSupParts = human.health.hediffSet.GetNotMissingParts().Where(p => supPartDef.BodyParts.Contains(p.def));
+                        IEnumerable<BodyPartRecord> bodyParts = human.health.hediffSet.GetNotMissingParts().Where(p => modExtension.BodyParts.Contains(p.def));
 
-                        if (PosSupParts.Count() <= 0)
+                        if (bodyParts.Any())
                         {
-                            human.health.RemoveHediff(hed);
+                            hediff.Part = bodyParts.RandomElement();
                         }
                         else
                         {
-                            hed.Part = PosSupParts.RandomElement();
+                            human.health.RemoveHediff(hediff);
                         }
                     }
                 }
             }
         }
-        listingStandard.End();
-        base.DoSettingsWindowContents(inRect);
+        list.GapLine();
+        Text.Font = GameFont.Medium;
+        list.Label("Feature Flags and Values");
+        Text.Font = GameFont.Small;
+        // fractures
+        list.GapLine();
+        list.Label("Fractures");
+        list.CheckboxLabeled("Enable bone fractures", ref Settings.EnableFractures,
+            """
+            If enabled, pawns that take certain types of damage may, as a result, receive bone fractures from the impact. This is especially likely for blunt damage.
+            """);
+        list.Label($"Minimum damage threshold for fractures: {Settings.FractureDamageTreshold}", -1,
+            """
+            The minimum amount of damage required to cause a bone fracture.
+            Being punched by a squirrel is unlikely to cause a fracture, but being hit by a club or a bullet is a different story.
+            """);
+        Settings.FractureDamageTreshold = (float)Math.Ceiling(list.Slider(Settings.FractureDamageTreshold, 1, 20));
+        list.Label($"Chance of bone fractures on damage: {Settings.FractureChanceOnDamage}", -1,
+            """
+            The likelihood of a bone fracture actually being applied to an affected body part after all conditions for a fracture have been met. 
+            Simulates the complex geometry of the human body and its susceptibility to fractures through random chance.
+            """);
+        Settings.FractureChanceOnDamage = (float)Math.Round(list.Slider(Settings.FractureChanceOnDamage, 0f, 1f), 2);
+        list.CheckboxLabeled("Enable bone fragment lacerations", ref Settings.EnableBoneFragmentLacerations,
+            """
+            If enabled, pawns that receive bone fractures may also receive lacerations from the bone fragments that result from the fracture.
+            """);
+        list.Label($"Chance of bone fragment lacerations: {Settings.BoneFragmentLacerationChance}", -1,
+            """
+            The likelihood of bone fragment laceration to occur on nearby body parts after a bone fracture has been applied.
+            """);
+        Settings.BoneFragmentLacerationChance = (float)Math.Round(list.Slider(Settings.BoneFragmentLacerationChance, 0f, 1f), 2);
+        // respiratory conditions
+        list.GapLine();
+        list.Label("Respiratory Conditions");
+        // Choking
+        list.CheckboxLabeled("Enable choking on blood mechanics", ref Settings.EnableChoking,
+            """
+            If enabled, pawns that receive severe lacerations to the respiratory system may choke on their own blood, leading to asphyxiation and death if not treated in time.
+            A gruesome reminder of the fragility of life.
+            """);
+        list.CheckboxLabeled("Enable choking sounds", ref Settings.EnableChokingSounds,
+            """
+            Whether to play a sound effect when a pawn starts choking on their own blood.
+            Potentially disturbing, but adds a sense of urgency to the situation.
+            """);
+        list.Label($"Chance of choking on blood after severe damage: {Settings.ChokingChanceOnDamage}", -1,
+            """
+            The likelihood of a pawn choking on their own blood after receiving severe, bleeding injuries to the respiratory system.
+            """);
+        Settings.ChokingChanceOnDamage = (float)Math.Round(list.Slider(Settings.ChokingChanceOnDamage, 0f, 1f), 2);
+        list.CheckboxLabeled("Enable inhalation injuries", ref Settings.EnableFireInhalation,
+            """
+            If enabled, pawns that are exposed to fire or other sources of smoke and hot gases may suffer from inhalation injuries, causing severe damage to the respiratory system.
+            Smoking is bad for your health, but inhaling smoke from a burning building or residue from thermobaric munitions is even worse.
+            """);
+        list.CheckboxLabeled("Enable lung collapses", ref Settings.EnableLungCollapse,
+            """
+            If enabled, thermobaric weapons and other high-explosive devices can cause the lungs to rupture and collapse due to the sudden pressure changes. May be fatal if not treated in time.
+            """);
+        // Spalling
+        list.GapLine();
+        list.Label("Spalling");
+        list.CheckboxLabeled("Enable spalling mechanics", ref Settings.EnableSpalling,
+            """
+            When high-velocity projectiles are stopped by armor, the large amount of kinetic energy can cause the projectile and top layer of the armor to shatter and send fragments flying in all directions.
+            The amount of spalling depends on the angle of impact and the hardness and condition of the armor.
+            Spalling can cause additional injuries to the wearer of the armor, even if the projectile itself did not penetrate the armor.
+            """);
+        list.TextEntry(
+            $"""
+            Base chance of armor creating spall based on condition (at 1, the chance of creating spall is 0 with armor having 100% hp, 0.01 with armor 99% hp etc.): {Settings.ArmorHealthSpallingThreshold}
+            Modern armor is designed to prevent spalling by adding softer layers above the hard armor plates to catch and absorb bullet fragments.
+            As armor condition deteriorates after absorbing damage, the chance of spalling naturally increases when these absorbing layers are compromised.
+            At 0.8, the chance of spalling remains 0 until the armor is at 80% hp, etc. At 0, spalling is disabled.
+            """, 2);
+        Settings.ArmorHealthSpallingThreshold = list.Slider(Settings.ArmorHealthSpallingThreshold, 0.1f, 1f);
+        list.Label($"Chance of spalling injuries: {Settings.SpallingChance}", -1,
+            """
+            The likelihood of exposed body parts receiving spalling injuries after spalling has occurred. Evaluated per body part.
+            """);
+        Settings.SpallingChance = (float)Math.Round(list.Slider(Settings.SpallingChance, 0f, 1f), 2);
+        // hypovolemic shock
+        list.GapLine();
+        list.Label("Blood Loss (Hypovolemic Shock)");
+        list.CheckboxLabeled("Enable hypovolemic shock mechanics (requires game reload)", ref Settings.EnableHypovolemicShock,
+            """
+            If enabled, pawns that lose a significant amount of blood may suffer from hypovolemic shock, which can be fatal if not treated in time with a blood transfusion.
+            The body needs a certain amount of blood to function properly, and losing too much can lead to organ failure and death.
+            """);
+        list.Label($"Chance of hypovolemic shock to cause organ hypoxia (every 300 ticks/5s): {Settings.OrganHypoxiaChance}", -1,
+            """
+            Loosing a lot of blood will lead to organs not receiving enough oxygen to function properly. This can ultimately lead to organ failure and death.
+            Treat the patient with a blood transfusion in time to prevent this from happening.
+            """);
+        Settings.OrganHypoxiaChance = (float)Math.Round(list.Slider(Settings.OrganHypoxiaChance, 0f, 1f), 2);
+        list.Label($"Reduction factor for organ hypoxia chance when patient is tended: {Settings.OrganHypoxiaChanceReductionFactor}", -1,
+            """
+            Tending the hypovolemic shock condition will reduce the chance of organ hypoxia by this factor and will slow down the progression of the shock.
+            Note that this will not prevent the shock from progressing, but only slow it down. To fully stabilize the patient, a blood transfusion is required.
+            """);
+        Settings.OrganHypoxiaChanceReductionFactor = (float)Math.Round(list.Slider(Settings.OrganHypoxiaChanceReductionFactor, 0f, 1f), 2);
+        // hemorrhagic stroke after blunt trauma
+        list.GapLine();
+        list.Label("Traumatic Head Injuries (Hemorrhagic Stroke)");
+        list.CheckboxLabeled("Enable hemorrhagic stroke mechanics", ref Settings.EnableHemorrhagicStroke,
+            """
+            If enabled, pawns that receive major blunt trauma may suffer from a hemorrhagic stroke, which can be fatal if not treated in time.
+            Beating up your prisoners may have more severe consequences than you think.
+            """);
+        list.Label($"Chance of hemorrhagic stroke on blunt trauma: {Settings.HemorrhagicStrokeChance}", -1,
+            """
+            The likelihood of a hemorrhagic stroke being applied to a pawn after receiving a massive amount of blunt trauma.
+            """);
+        Settings.HemorrhagicStrokeChance = (float)Math.Round(list.Slider(Settings.HemorrhagicStrokeChance, 0f, 1f), 2);
+        // miscellaneous
+        list.GapLine();
+        list.Label("Miscellaneous");
+        list.CheckboxLabeled("Enable adrenaline mechanics", ref Settings.EnableAdrenaline,
+            """
+            If enabled, pawns that take damage may receive a rush of adrenaline that temporarily boosts moving capabilitites and numbs the perception of pain.
+            """);
+        list.CheckboxLabeled("Enable EMP damage to bionics", ref Settings.EnableEmpDamageToBionics,
+            """
+            If enabled, electromagnetic pulse (EMP) damage can cause bionic implants to malfunction and shut down temporarily.
+            Sophisticated technology can be a double-edged sword.
+            """);
+        list.CheckboxLabeled("Enable hearing damage mechanics (requires game reload)", ref Settings.EnableHearingDamage,
+            """
+            If enabled, pawns shooting or being close to loud weapons may suffer from hearing loss, especially if indoors or not wearing ear protection.
+            Helmets and other apparel that covers the ears can reduce the risk of hearing damage.
+            Apparently, gunshots are loud. Who knew?
+            """);
+        list.Label($"Multiplier for bleeding from closed internal injuries: {Settings.ClosedInternalWouldBleedingModifier}", -1,
+            """
+            Assume a pawn is shot in the torso and the bullet penetrates the skin and stomach, causing internal and external bleeding.
+            Simply applying a bandage to the skin wound will not stop the internal bleeding, but may still slow it down.
+            This modifier determines how much the internal bleeding is reduced by applying a bandage to the skin wound.
+            A value of 1 means that the internal bleeding is not affected by the bandage, while a value of 0 means that the internal bleeding is completely stopped.
+            """);
+        Settings.ClosedInternalWouldBleedingModifier = (float)Math.Round(list.Slider(Settings.ClosedInternalWouldBleedingModifier, 0f, 1f), 2);
+
+        // FIXME: this isn't great, but it works
+        // we basically do an initial draw with a rather small height, and see if it's enough
+        // - if it is, we remember the exact height of the content and resize the window to fit
+        // - otherwise CurHeight will be smaller than a known epsilon, so we start at the epsilon and double it with each draw until it's big enough
+        // - once we have enough space, we clamp the height to the known content height
+        // if the content is too small to fit everything, CurHeight will be 23.something, (don't ask me why)
+        if (list.CurHeight < MIN_CONTENT_HEIGHT)
+        {
+            // so on each draw, we double the known content height until it's big enough
+            // yes, we could also just set it to an unreasonably high value, but that seems a bit wasteful
+            // we should arrive at the correct height in O(log n) iterations anyway
+            _knownContentHeight = Mathf.Max(2 * _knownContentHeight, MIN_CONTENT_HEIGHT);
+        }
+        else
+        {
+            // when we have enough space, we remember the height
+            _knownContentHeight = list.CurHeight;
+        }
+        list.End();
+        bool requiresScrolling = _knownContentHeight > canvas.height;
+        if (_requiresScrolling)
+        {
+            Widgets.EndScrollView();
+        }
+        _requiresScrolling = requiresScrolling;
+        base.DoSettingsWindowContents(canvas);
     }
 
-    public override string SettingsCategory()
-    {
-        return "More Injuries";
-    }
+    public override string SettingsCategory() => "More Injuries 1.5";
 }
 

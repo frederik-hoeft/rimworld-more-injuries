@@ -9,7 +9,7 @@ internal class ShockMakerHediffComp_Initializer
     static ShockMakerHediffComp_Initializer()
     {
         // TODO: this implementation requires a full game restart to take effect (not optimal)
-        if (MoreInjuriesMod.Settings.HypovolemicShockEnabled)
+        if (MoreInjuriesMod.Settings.EnableHypovolemicShock)
         {
             HediffDefOf.BloodLoss.comps ??= [];
             HediffDefOf.BloodLoss.comps.Add(new HediffCompProperties

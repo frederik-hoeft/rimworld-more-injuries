@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace MoreInjuries.HealthConditions.HeavyBleeding.Hemostat;
+namespace MoreInjuries.HealthConditions.HeavyBleeding.Hemostats;
 
 public class HemostatHediffComp : HediffComp
 {

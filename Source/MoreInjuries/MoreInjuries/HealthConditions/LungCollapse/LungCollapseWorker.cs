@@ -9,7 +9,7 @@ namespace MoreInjuries.HealthConditions.LungCollapse;
 
 public class LungCollapseWorker(InjuryComp parent) : InjuryWorker(parent), IPostPreApplyDamageHandler
 {
-    public override bool IsEnabled => MoreInjuriesMod.Settings.lungcollapse;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableLungCollapse;
 
     public void PostPreApplyDamage(ref readonly DamageInfo dinfo)
     {

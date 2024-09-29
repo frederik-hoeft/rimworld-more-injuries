@@ -7,7 +7,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace MoreInjuries.HealthConditions.HeavyBleeding.Hemostat;
+namespace MoreInjuries.HealthConditions.HeavyBleeding.Hemostats;
 
 public class HemostatThingComp : ThingComp
 {
@@ -26,7 +26,7 @@ public class HemostatThingComp : ThingComp
         Thing? hemostat = selectedPawn.inventory.innerContainer.FirstOrDefault(inventoryItem => inventoryItem.def.HasModExtension<HemostatModExtension>());
 
         // if the selected pawn has a hemostat in their inventory and the option to show "apply hemostat" is enabled
-        if (MoreInjuriesMod.Settings.individualFloatMenus && hemostat is not null)
+        if (MoreInjuriesMod.Settings.UseIndividualFloatMenus && hemostat is not null)
         {
             // ModExtension seems to store additional data for the defs (additional properties, inheritence through delegation)
             HemostatModExtension hemostatProperties = hemostat.def.GetModExtension<HemostatModExtension>();
