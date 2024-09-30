@@ -2,7 +2,7 @@
 <Patch>
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>Rah's Bionics and Surgery Expansion</li>
+      <li>RBSE</li>
     </mods>
     <match Class="PatchOperationAdd">
       <xpath>Defs/ThingDef[defName="SmallIntestine" or defName="LargeIntestine"]</xpath>
@@ -19,7 +19,7 @@
 
   <Operation Class="PatchOperationFindMod">
     <mods>
-      <li>Rah's Bionics and Surgery Expansion</li>
+      <li>RBSE</li>
     </mods>
     <match Class="PatchOperationAdd">
       <xpath>Defs/ThingDef[defName="SmallIntestine" or defName="LargeIntestine"]</xpath>
