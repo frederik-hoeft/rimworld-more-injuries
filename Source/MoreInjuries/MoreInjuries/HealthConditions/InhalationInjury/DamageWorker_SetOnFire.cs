@@ -2,7 +2,7 @@
 using RimWorld;
 using Verse;
 
-namespace MoreInjuries.HealthConditions.AirwayBurns;
+namespace MoreInjuries.HealthConditions.InhalationInjury;
 
 public class DamageWorker_SetOnFire : DamageWorker_Flame
 {

@@ -4,7 +4,6 @@ using HarmonyLib;
 using Verse;
 using UnityEngine;
 using MoreInjuries.Initialization;
-using MoreInjuries.Debug;
 using System.Collections.Generic;
 using MoreInjuries.Extensions;
 
@@ -22,13 +21,8 @@ public class MoreInjuriesMod : Mod
     public MoreInjuriesMod(ModContentPack content) : base(content)
     {
         Settings = GetSettings<MoreInjuriesSettings>();
-
-        Harmony harmony = new("Caulaflower.Extended_Injuries.oof");
-
+        Harmony harmony = new("Th3Fr3d.MoreInjuries");
         harmony.PatchAll();
-
-        // TODO: this fails
-        //DebugAssert.DefOfsAreNotNull();
     }
 
     private Vector2 _scrollPosition;
@@ -165,13 +159,13 @@ public class MoreInjuriesMod : Mod
             The amount of spalling depends on the angle of impact and the hardness and condition of the armor.
             Spalling can cause additional injuries to the wearer of the armor, even if the projectile itself did not penetrate the armor.
             """);
-        list.TextEntry(
+        list.Label(
             $"""
             Base chance of armor creating spall based on condition (at 1, the chance of creating spall is 0 with armor having 100% hp, 0.01 with armor 99% hp etc.): {Settings.ArmorHealthSpallingThreshold}
             Modern armor is designed to prevent spalling by adding softer layers above the hard armor plates to catch and absorb bullet fragments.
             As armor condition deteriorates after absorbing damage, the chance of spalling naturally increases when these absorbing layers are compromised.
             At 0.8, the chance of spalling remains 0 until the armor is at 80% hp, etc. At 0, spalling is disabled.
-            """, 2);
+            """);
         Settings.ArmorHealthSpallingThreshold = list.Slider(Settings.ArmorHealthSpallingThreshold, 0.1f, 1f);
         list.Label($"Chance of spalling injuries: {Settings.SpallingChance}", -1,
             """
@@ -211,18 +205,49 @@ public class MoreInjuriesMod : Mod
             The likelihood of a hemorrhagic stroke being applied to a pawn after receiving a massive amount of blunt trauma.
             """);
         Settings.HemorrhagicStrokeChance = (float)Math.Round(list.Slider(Settings.HemorrhagicStrokeChance, 0f, 1f), 2);
-        // miscellaneous
+        // EMP damage to bionics
         list.GapLine();
-        list.Label("Miscellaneous");
-        list.CheckboxLabeled("Enable adrenaline mechanics", ref Settings.EnableAdrenaline,
-            """
-            If enabled, pawns that take damage may receive a rush of adrenaline that temporarily boosts moving capabilitites and numbs the perception of pain.
-            """);
+        list.Label("EMP Damage to Bionics");
         list.CheckboxLabeled("Enable EMP damage to bionics", ref Settings.EnableEmpDamageToBionics,
             """
             If enabled, electromagnetic pulse (EMP) damage can cause bionic implants to malfunction and shut down temporarily.
             Sophisticated technology can be a double-edged sword.
             """);
+        list.Label($"Chance of EMP damage to bionics: {Settings.EmpDamageToBionicsChance}", -1,
+            """
+            The likelihood of EMP damage causing bionic implants to shut down temporarily. Evaluated per bionic implant after EMP damage has been applied.
+            """);
+        Settings.EmpDamageToBionicsChance = (float)Math.Round(list.Slider(Settings.EmpDamageToBionicsChance, 0f, 1f), 2);
+        // adrenaline
+        list.GapLine();
+        list.Label("Adrenaline");
+        list.CheckboxLabeled("Enable adrenaline mechanics", ref Settings.EnableAdrenaline,
+            """
+            If enabled, pawns that take damage may receive a rush of adrenaline that temporarily boosts moving capabilitites and numbs the perception of pain.
+            """);
+        list.Label($"Chance of adrenaline rush on damage: {Settings.AdrenalineChanceOnDamage}", -1,
+            """
+            The likelihood of a pawn receiving an adrenaline rush after taking damage. Evaluated per damage event.
+            The intensity of the rush depends on the amount of damage taken.
+            """);
+        Settings.AdrenalineChanceOnDamage = (float)Math.Round(list.Slider(Settings.AdrenalineChanceOnDamage, 0f, 1f), 2);
+        // hydrostatic shock (controversial)
+        list.GapLine();
+        list.Label("Hydrostatic Shock (Controversial)");
+        list.CheckboxLabeled("Enable hydrostatic shock mechanics", ref Settings.EnableHydrostaticShock,
+            """
+            Hydrostatic shock, also known as Hydro-shock, is the controversial concept that a penetrating projectile (such as a bullet) can produce a pressure wave that causes "remote neural damage", "subtle damage in neural tissues" and "rapid effects" in living targets.
+            If enabled, pawns that are hit by very-high-energy projectiles may suffer from hydrostatic shock, a type of intracerebral hemorrhage (rupture of blood vessels in the brain), which can be fatal if not treated in time.
+            The existence of hydrostatic shock is a topic of debate among medical professionals and firearms experts. Use at your own discretion.
+            """);
+        list.Label($"Chance of hydrostatic shock on damage: {Settings.HydrostaticShockChanceOnDamage}", -1,
+            """
+            The likelihood of a pawn suffering from hydrostatic shock after being hit by a very-high-energy projectile. Evaluated per damage event.
+            """);
+        Settings.HydrostaticShockChanceOnDamage = (float)Math.Round(list.Slider(Settings.HydrostaticShockChanceOnDamage, 0f, 1f), 2);
+        // miscellaneous
+        list.GapLine();
+        list.Label("Miscellaneous");
         list.CheckboxLabeled("Enable hearing damage mechanics (requires game reload)", ref Settings.EnableHearingDamage,
             """
             If enabled, pawns shooting or being close to loud weapons may suffer from hearing loss, especially if indoors or not wearing ear protection.
@@ -237,6 +262,16 @@ public class MoreInjuriesMod : Mod
             A value of 1 means that the internal bleeding is not affected by the bandage, while a value of 0 means that the internal bleeding is completely stopped.
             """);
         Settings.ClosedInternalWouldBleedingModifier = (float)Math.Round(list.Slider(Settings.ClosedInternalWouldBleedingModifier, 0f, 1f), 2);
+        list.Label($"Paralysis damage threshold (50% point): {Settings.ParalysisDamageTreshold50Percent}", -1,
+            """
+            The amount of spinal cord damage required to cause paralysis in 50% of all cases. The actual chance of paralysis scales linearly with the damage dealt.
+            """);
+        Settings.ParalysisDamageTreshold50Percent = (float)Math.Round(list.Slider(Settings.ParalysisDamageTreshold50Percent, 1f, 20f));
+        list.Label($"Chance of intestinal spilling on damage: {Settings.IntestinalSpillingChanceOnDamage}", -1,
+            """
+            The likelihood of a pawn suffering from intestinal spilling after receiving severe damage to the abdomen. Can lead to severe infections and stomach acid burns.
+            """);
+        Settings.IntestinalSpillingChanceOnDamage = (float)Math.Round(list.Slider(Settings.IntestinalSpillingChanceOnDamage, 0f, 1f), 2);
 
         // FIXME: this isn't great, but it works
         // we basically do an initial draw with a rather small height, and see if it's enough

@@ -58,15 +58,23 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
                 {
                     continue;
                 }
+                if (patient.health.hediffSet.PartIsMissing(bone))
+                {
+                    continue;
+                }
                 Hediff fracture = HediffMaker.MakeHediff(KnownHediffDefOf.Fracture, patient, bone);
                 patient.health.AddHediff(fracture);
                 KnownSoundDefOf.BoneSnapSound.PlayOneShot(new TargetInfo(patient.PositionHeld, patient.Map));
                 if (MoreInjuriesMod.Settings.EnableBoneFragmentLacerations)
                 {
+                    float chance = MoreInjuriesMod.Settings.BoneFragmentLacerationChance;
                     foreach (BodyPartRecord sibling in bone.parent.GetDirectChildParts())
                     {
-                        // TODO: add a setting for the chance
-                        if (Rand.Chance(0.10f))
+                        if (patient.health.hediffSet.PartIsMissing(sibling))
+                        {
+                            continue;
+                        }
+                        if (Rand.Chance(chance))
                         {
                             Hediff shards = HediffMaker.MakeHediff(KnownHediffDefOf.BoneFragmentLaceration, patient, sibling);
                             shards.Severity = Rand.Range(1f, 5f);
@@ -74,7 +82,11 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
                         }
                         foreach (BodyPartRecord child in sibling.GetDirectChildParts())
                         {
-                            if (Rand.Chance(0.10f))
+                            if (patient.health.hediffSet.PartIsMissing(child))
+                            {
+                                continue;
+                            }
+                            if (Rand.Chance(chance))
                             {
                                 Hediff shards = HediffMaker.MakeHediff(KnownHediffDefOf.BoneFragmentLaceration, patient, child);
                                 shards.Severity = Rand.Range(1f, 5f);

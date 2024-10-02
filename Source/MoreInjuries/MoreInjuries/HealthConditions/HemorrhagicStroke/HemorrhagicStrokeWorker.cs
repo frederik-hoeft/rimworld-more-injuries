@@ -30,9 +30,8 @@ public class HemorrhagicStrokeWorker(InjuryComp parent) : InjuryWorker(parent), 
                 }
             }
         }
-        // TODO: add a setting for the chance
-        // apply hemorrhagic stroke if any of the thresholds are met
-        if ((totalBruises > 16 || severeBruises > 8 || legBruises > 4) && Rand.Chance(0.07f))
+        // apply hemorrhagic stroke if any of the thresholds are met and the random chance is successful
+        if ((totalBruises > 16 || severeBruises > 8 || legBruises > 4) && Rand.Chance(MoreInjuriesMod.Settings.HemorrhagicStrokeChance))
         {
             patient.health.AddHediff(KnownHediffDefOf.HemorrhagicStroke, patient.health.hediffSet.GetBrain());
         }

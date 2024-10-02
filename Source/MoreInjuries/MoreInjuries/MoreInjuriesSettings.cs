@@ -5,11 +5,17 @@ namespace MoreInjuries;
 public class MoreInjuriesSettings : ModSettings
 {
     internal bool EnableAdrenaline = false;
+    internal float AdrenalineChanceOnDamage = 0.75f;
+
     internal bool EnableHydrostaticShock = false;
-    internal bool EnableEmpDamageToBionics = true;
+    internal float HydrostaticShockChanceOnDamage = 0.2f;
+
     internal bool HideUndiagnosedInternalInjuries = false;
     internal float ClosedInternalWouldBleedingModifier = 0.75f;
     internal bool UseIndividualFloatMenus = false;
+
+    internal bool EnableEmpDamageToBionics = true;
+    internal float EmpDamageToBionicsChance = 0.8f;
 
     internal bool EnableHemorrhagicStroke = true;
     internal float HemorrhagicStrokeChance = 0.07f;
@@ -34,19 +40,23 @@ public class MoreInjuriesSettings : ModSettings
 
     internal bool EnableHypovolemicShock = true;
     internal float OrganHypoxiaChance = 0.65f;
-    internal float OrganHypoxiaChanceReductionFactor;
+    internal float OrganHypoxiaChanceReductionFactor = 0.5f;
     internal bool EnableFireInhalation = true;
     internal bool EnableLogging;
     internal bool EnableVerboseLogging;
 
+    internal float ParalysisDamageTreshold50Percent = 6f;
+
+    internal float IntestinalSpillingChanceOnDamage = 0.45f;
+
     public override void ExposeData()
     {
         // logging
-        // TODO: settings
         Scribe_Values.Look(ref EnableLogging, nameof(EnableLogging));
         Scribe_Values.Look(ref EnableVerboseLogging, nameof(EnableVerboseLogging));
         // feature flags
         Scribe_Values.Look(ref EnableAdrenaline, nameof(EnableAdrenaline));
+        Scribe_Values.Look(ref AdrenalineChanceOnDamage, nameof(AdrenalineChanceOnDamage));
         // fractures
         Scribe_Values.Look(ref EnableFractures, nameof(EnableFractures));
         Scribe_Values.Look(ref FractureDamageTreshold, nameof(FractureDamageTreshold));
@@ -64,19 +74,24 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref EnableSpalling, nameof(EnableSpalling));
         Scribe_Values.Look(ref ArmorHealthSpallingThreshold, nameof(ArmorHealthSpallingThreshold));
         Scribe_Values.Look(ref SpallingChance, nameof(SpallingChance));
-
-        Scribe_Values.Look(ref EnableLungCollapse, nameof(EnableLungCollapse));
+        // hydrostatic shock
         Scribe_Values.Look(ref EnableHydrostaticShock, nameof(EnableHydrostaticShock));
+        Scribe_Values.Look(ref HydrostaticShockChanceOnDamage, nameof(HydrostaticShockChanceOnDamage));
+        Scribe_Values.Look(ref EnableLungCollapse, nameof(EnableLungCollapse));
         Scribe_Values.Look(ref EnableHearingDamage, nameof(EnableHearingDamage));
+        // EMP
         Scribe_Values.Look(ref EnableEmpDamageToBionics, nameof(EnableEmpDamageToBionics));
+        Scribe_Values.Look(ref EmpDamageToBionicsChance, nameof(EmpDamageToBionicsChance));
+
         Scribe_Values.Look(ref HideUndiagnosedInternalInjuries, nameof(HideUndiagnosedInternalInjuries));
         Scribe_Values.Look(ref ClosedInternalWouldBleedingModifier, nameof(ClosedInternalWouldBleedingModifier));
         Scribe_Values.Look(ref UseIndividualFloatMenus, nameof(UseIndividualFloatMenus));
         Scribe_Values.Look(ref OrganHypoxiaChance, nameof(OrganHypoxiaChance));
         Scribe_Values.Look(ref EnableHypovolemicShock, nameof(EnableHypovolemicShock));
         Scribe_Values.Look(ref EnableFireInhalation, nameof(EnableFireInhalation));
-        // TODO: settings
         Scribe_Values.Look(ref OrganHypoxiaChanceReductionFactor, nameof(OrganHypoxiaChanceReductionFactor));
+        Scribe_Values.Look(ref ParalysisDamageTreshold50Percent, nameof(ParalysisDamageTreshold50Percent));
+        Scribe_Values.Look(ref IntestinalSpillingChanceOnDamage, nameof(IntestinalSpillingChanceOnDamage));
 
         base.ExposeData();
     }

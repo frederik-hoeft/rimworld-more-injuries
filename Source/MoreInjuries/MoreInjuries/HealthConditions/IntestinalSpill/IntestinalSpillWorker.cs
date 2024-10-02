@@ -31,12 +31,13 @@ internal class IntestinalSpillWorker(InjuryComp parent) : InjuryWorker(parent), 
                 KnownBodyPartDefOf.Liver
             ];
 
+            float chance = MoreInjuriesMod.Settings.IntestinalSpillingChanceOnDamage;
             foreach (BodyPartRecord bodyPart in targetPawn.health.hediffSet.GetNotMissingParts())
             {
                 // if we have spillage from the intestines and any of the affected organs are bleeding, there's a chance to cause acid burns
                 if (affectedOrgans.Contains(bodyPart.def)
                     && targetPawn.health.hediffSet.hediffs.Any(hediff => hediff is { Part: not null, Bleeding: true } && hediff.Part == bodyPart)
-                    && Rand.Chance(0.45f))
+                    && Rand.Chance(chance))
                 {
                     Hediff burn = HediffMaker.MakeHediff(KnownHediffDefOf.StomachAcidBurn, targetPawn, bodyPart);
                     burn.Severity = Rand.Range(1, 7f);

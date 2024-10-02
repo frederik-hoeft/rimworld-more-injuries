@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace MoreInjuries.HealthConditions.AirwayBurns;
+namespace MoreInjuries.HealthConditions.InhalationInjury;
 
 [StaticConstructorOnStartup]
 public class DamageWorker_SetOnFire_Initializer

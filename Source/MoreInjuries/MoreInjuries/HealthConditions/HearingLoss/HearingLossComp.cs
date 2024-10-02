@@ -17,6 +17,7 @@ public class HearingLossComp : ThingComp
             // first, we need to get the ears
             IEnumerable<BodyPartRecord> ears = pawn.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def == KnownBodyPartDefOf.Ear);
             // does it cover the ears?
+            // TODO: I don't think we need the specific ear here, just using the defs and building up a cache of covered body parts should be enough
             if (ears.FirstOrDefault() is BodyPartRecord ear && pawn.apparel.WornApparel.Any(clothing => clothing.def.apparel.CoversBodyPart(ear)))
             {
                 result /= 5f;
@@ -50,21 +51,25 @@ public class HearingLossComp : ThingComp
             radius *= 1.25f;
         }
         // get all pawns in the vicinity of the shooter and apply hearing damage
+        // TODO FIXME: may attempt to get cells outside of the map :(
         IEnumerable<IntVec3> cellsInVicinity = GenRadial.RadialCellsAround(pawn.Position, radius, useCenter: true);
         foreach (IntVec3 cell in cellsInVicinity)
         {
-            IEnumerable<Pawn> pawnsInCell = cell.GetThingList(pawn.Map).OfType<Pawn>();
-            foreach (Pawn otherPawn in pawnsInCell)
+            List<Thing> pawnsInCell = cell.GetThingList(pawn.Map);
+            for (int i = 0; i < pawnsInCell.Count; i++)
             {
-                float hearingDamageMultiplier = GetHearingDamageMultiplier(otherPawn);
-                if (Rand.Chance(hearingDamageMultiplier / 10f))
+                if (pawnsInCell[i] is Pawn otherPawn)
                 {
-                    if (!otherPawn.health.hediffSet.TryGetHediff(KnownHediffDefOf.HearingLoss, out Hediff? hearingLoss))
+                    float hearingDamageMultiplier = GetHearingDamageMultiplier(otherPawn);
+                    if (Rand.Chance(hearingDamageMultiplier / 10f))
                     {
-                        hearingLoss = HediffMaker.MakeHediff(KnownHediffDefOf.HearingLoss, otherPawn);
-                        otherPawn.health.AddHediff(hearingLoss);
+                        if (!otherPawn.health.hediffSet.TryGetHediff(KnownHediffDefOf.HearingLoss, out Hediff? hearingLoss))
+                        {
+                            hearingLoss = HediffMaker.MakeHediff(KnownHediffDefOf.HearingLoss, otherPawn);
+                            otherPawn.health.AddHediff(hearingLoss);
+                        }
+                        hearingLoss.Severity += hearingDamageMultiplier / 100f;
                     }
-                    hearingLoss.Severity += hearingDamageMultiplier / 100f;
                 }
             }
         }

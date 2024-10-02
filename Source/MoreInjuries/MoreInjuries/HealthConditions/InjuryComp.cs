@@ -18,8 +18,9 @@ namespace MoreInjuries.HealthConditions;
 public class InjuryComp : ThingComp
 {
     private DamageInfo _damageInfo;
-
     private readonly InjuryWorker[] _pipeline;
+
+    public bool CallbackActive { get; private set; } = false;
 
     public InjuryComp()
     {
@@ -68,7 +69,7 @@ public class InjuryComp : ThingComp
 
     public override void PostPreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
     {
-        Patch_Thing_TakeDamage.IsActive = true;
+        CallbackActive = true;
         _damageInfo = dinfo;
 
         foreach (InjuryWorker component in _pipeline)
@@ -84,6 +85,7 @@ public class InjuryComp : ThingComp
 
     public void PostDamageFull(DamageWorker.DamageResult damage)
     {
+        DebugAssert.IsTrue(CallbackActive, "CallbackActive is false in PostDamageFull");
         DebugAssert.NotNull(damage, "damage is null in PostDamageFull");
 
         foreach (InjuryWorker component in _pipeline)
@@ -93,5 +95,7 @@ public class InjuryComp : ThingComp
                 handler.PostTakeDamage(damage, in _damageInfo);
             }
         }
+        CallbackActive = false;
+        _damageInfo = default;
     }
 }

@@ -1,8 +1,4 @@
-﻿using RimWorld;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
+﻿using System.Diagnostics;
 
 namespace MoreInjuries.Debug;
 
@@ -18,18 +14,11 @@ internal static class DebugAssert
     }
 
     [Conditional("DEBUG")]
-    public static void DefOfsAreNotNull()
+    public static void IsTrue(bool condition, string message)
     {
-        List<string> nullDefOfs = typeof(DebugAssert).Assembly.GetTypes()
-            .Where(t => t.GetCustomAttribute<DefOf>() is not null)
-            .SelectMany(t => t.GetFields(BindingFlags.Public | BindingFlags.Static))
-            .Where(f => f.FieldType.Name.EndsWith("Def") && f.GetValue(null) is null)
-            .Select(f => $"{f.DeclaringType?.Name}::{f.Name}")
-            .ToList();
-
-        if (nullDefOfs.Count > 0)
+        if (!condition)
         {
-            throw new InvalidOperationException($"DefOfs are null: {string.Join(", ", nullDefOfs)}");
+            throw new InvalidOperationException(message);
         }
     }
 }

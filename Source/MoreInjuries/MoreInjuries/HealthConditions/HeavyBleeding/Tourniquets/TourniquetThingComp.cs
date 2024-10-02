@@ -142,7 +142,7 @@ public class TourniquetThingComp : ThingComp
             // otherwise, check the patient's inventory
             tourniquet = patient.inventory.innerContainer.FirstOrDefault(thing => thing.def == KnownThingDefOf.Tourniquet);
         }
-        if (tourniquet is null)
+        if (tourniquet is null && patient.Map is not null)
         {
             // search in the patient's vicinity
             foreach (IntVec3 cell in patient.CellsAdjacent8WayAndInside())

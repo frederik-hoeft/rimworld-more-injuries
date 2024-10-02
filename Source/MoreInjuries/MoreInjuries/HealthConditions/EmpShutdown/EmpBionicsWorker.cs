@@ -15,11 +15,17 @@ internal class EmpBionicsWorker(InjuryComp parent) : InjuryWorker(parent), IPost
 
         if (dinfo.Def == DamageDefOf.EMP || dinfo.Def == DamageDefOf.ElectricalBurn)
         {
-            foreach (Hediff part in patient.health.hediffSet.hediffs.Where(hediff => hediff is { Part: not null, def.addedPartProps.betterThanNatural: true }))
+            // make a snapshot of the bionic hediffs to avoid modifying the collection while iterating
+            Hediff[] bionicHediffSnapshot = [.. patient.health.hediffSet.hediffs.Where(hediff => hediff is { Part: not null, def.addedPartProps.betterThanNatural: true })];
+            float chance = MoreInjuriesMod.Settings.EmpDamageToBionicsChance;
+            foreach (Hediff part in bionicHediffSnapshot)
             {
-                Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.EmpShutdown, patient, part.Part);
-                hediff.Severity = 1f;
-                patient.health.AddHediff(hediff, part.Part);
+                if (Rand.Chance(chance))
+                {
+                    Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.EmpShutdown, patient, part.Part);
+                    hediff.Severity = 1f;
+                    patient.health.AddHediff(hediff, part.Part);
+                }
             }
         }
     }
