@@ -301,5 +301,5 @@ public class MoreInjuriesMod : Mod
         base.DoSettingsWindowContents(canvas);
     }
 
-    public override string SettingsCategory() => "More Injuries 1.5";
+    public override string SettingsCategory() => "More Injuries (Continued)";
 }
