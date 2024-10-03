@@ -10,7 +10,7 @@ public class DamageWorker_SetOnFire : DamageWorker_Flame
     {
         DamageResult result = base.Apply(dinfo, victim);
         if (MoreInjuriesMod.Settings.EnableFireInhalation
-            && victim is Pawn p
+            && victim is Pawn { Dead: false } p
             && Rand.Chance(0.125f * p.GetStatValue(StatDefOf.ToxicResistance))
             && p.IsBurning())
         {

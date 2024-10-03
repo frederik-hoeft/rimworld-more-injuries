@@ -7,11 +7,11 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.SpallingInjury;
 
-internal class SpallingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPreApplyDamageHandler
+internal class SpallingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableSpalling;
 
-    public void PostPreApplyDamage(ref readonly DamageInfo dinfo)
+    public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
     {
         if (dinfo.Def != DamageDefOf.Bullet)
         {
@@ -51,7 +51,7 @@ internal class SpallingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPr
         // if combat extended is loaded, disable spall for low damage bullets (approximation)
         if (MoreInjuriesMod.CombatExtendedLoaded)
         {
-            if (dinfo.Amount < 13)
+            if (dinfo.Amount < 8f)
             {
                 return;
             }
@@ -59,7 +59,6 @@ internal class SpallingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPr
 
         // calculate the chance of spall based on the armor health
         float chance = MoreInjuriesMod.Settings.ArmorHealthSpallingThreshold - (bestArmor.HitPoints / (float)bestArmor.def.BaseMaxHitPoints);
-        Logger.Log($"Spalling chance for {patient.Name} is {chance}");
         if (chance > 0f && Rand.Chance(chance))
         {
             // likelihood of spall increases as the angle of the bullet approaches 90 degrees (perpendicular impact)
@@ -75,13 +74,12 @@ internal class SpallingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPr
             // We want the multiplier to be 1 at 90 degrees and 0 at 0 degrees
             float bulletMultiplier = (float)Math.Round(normalizedAngle / 90f, 2);
             // apply random magic factor to the multiplier (not sure why)
-            bulletMultiplier *= dinfo.Amount / 18f;
+            bulletMultiplier *= dinfo.Amount / 8f;
             // apply armor thickness to the multiplier
-            float armorStopValue = bestArmor.HitPoints * 1f / (bestArmor.def.BaseMaxHitPoints * 1f);
-            bulletMultiplier /= armorStopValue * 40f;
+            float armorStopValue = bestArmor.HitPoints / (float)bestArmor.def.BaseMaxHitPoints;
+            bulletMultiplier /= armorStopValue * 24f;
             // apply user setting to the multiplier
             bulletMultiplier *= MoreInjuriesMod.Settings.SpallingChance;
-            Logger.Log($"Applying spall to {patient.Name} with a multiplier of {bulletMultiplier}");
 
             // apply spall to all body parts that can be cut, according to the hit chance factor
             foreach (BodyPartRecord bodyPart in patient.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside).Where(bodyPart => bodyPart.def.GetHitChanceFactorFor(DamageDefOf.Cut) > 0))
@@ -89,7 +87,7 @@ internal class SpallingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPr
                 if (Rand.Chance(bulletMultiplier))
                 {
                     Hediff spall = HediffMaker.MakeHediff(KnownHediffDefOf.SpallFragmentCut, patient, bodyPart);
-                    spall.Severity = Rand.Range(0.25f, Mathf.Max(dinfo.Amount / 6f, 0.25f));
+                    spall.Severity = Rand.Range(0.1f, Mathf.Max(dinfo.Amount / 6f, 0.1f));
                     patient.health.AddHediff(spall);
                 }
             }

@@ -29,6 +29,7 @@ public class ApplySplintJobDriver : JobDriver
         }
 
         // TODO: shouldn't we multiply by manipulationCapacity here? isn't that a percentage between 0 and 1?
+        // TODO: if medical skill is 0, we are dividing by 0 here?
         Toil tendPatientToil = Toils_General.Wait(ticks: (int)Math.Round(480f / medicalSkill / manipulationCapacity));
         tendPatientToil.AddFinishAction(() =>
         {

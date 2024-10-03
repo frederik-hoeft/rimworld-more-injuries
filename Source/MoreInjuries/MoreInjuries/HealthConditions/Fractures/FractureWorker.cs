@@ -43,7 +43,7 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
 
         Pawn patient = Target;
 
-        if (damage.parts is not null)
+        if (damage.parts is not null && patient is { Dead: false, Map: not null})
         {
             // get all solid body parts that received a non-bleeding injury
             // (note from maintainer: no idea why we are checking for skin coverage)

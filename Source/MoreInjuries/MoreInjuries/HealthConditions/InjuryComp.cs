@@ -74,9 +74,9 @@ public class InjuryComp : ThingComp
 
         foreach (InjuryWorker component in _pipeline)
         {
-            if (component is IPostPostApplyDamageHandler { IsEnabled: true } handler)
+            if (component is IPostPreApplyDamageHandler { IsEnabled: true } handler)
             {
-                handler.PostPostApplyDamage(in dinfo);
+                handler.PostPreApplyDamage(in dinfo);
             }
         }
 
