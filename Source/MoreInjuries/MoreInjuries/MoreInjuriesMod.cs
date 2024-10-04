@@ -52,9 +52,11 @@ public class MoreInjuriesMod : Mod
         list.CheckboxLabeled("Enable logging", ref Settings.EnableLogging);
         list.CheckboxLabeled("Enable verbose logging", ref Settings.EnableVerboseLogging);
         list.GapLine();
+        list.Gap();
         Text.Font = GameFont.Medium;
         list.Label("Gameplay Settings");
         Text.Font = GameFont.Small;
+        list.GapLine();
         list.CheckboxLabeled("Show individual options for hemostat usage alongside 'Provide first aid option'", ref Settings.UseIndividualFloatMenus);
         list.CheckboxLabeled("Hide undiagnosed internal injuries", ref Settings.HideUndiagnosedInternalInjuries,
             """
@@ -91,12 +93,15 @@ public class MoreInjuriesMod : Mod
             }
         }
         list.GapLine();
+        list.Gap();
         Text.Font = GameFont.Medium;
         list.Label("Feature Flags and Values");
         Text.Font = GameFont.Small;
         // fractures
         list.GapLine();
+        Text.Font = GameFont.Medium;
         list.Label("Fractures");
+        Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable bone fractures", ref Settings.EnableFractures,
             """
             If enabled, pawns that take certain types of damage may, as a result, receive bone fractures from the impact. This is especially likely for blunt damage.
@@ -124,8 +129,9 @@ public class MoreInjuriesMod : Mod
         Settings.BoneFragmentLacerationChance = (float)Math.Round(list.Slider(Settings.BoneFragmentLacerationChance, 0f, 1f), 2);
         // respiratory conditions
         list.GapLine();
+        Text.Font = GameFont.Medium;
         list.Label("Respiratory Conditions");
-        // Choking
+        Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable choking on blood mechanics", ref Settings.EnableChoking,
             """
             If enabled, pawns that receive severe lacerations to the respiratory system may choke on their own blood, leading to asphyxiation and death if not treated in time.
@@ -148,11 +154,26 @@ public class MoreInjuriesMod : Mod
             """);
         list.CheckboxLabeled("Enable lung collapses", ref Settings.EnableLungCollapse,
             """
-            If enabled, thermobaric weapons and other high-explosive devices can cause the lungs to rupture and collapse due to the sudden pressure changes. May be fatal if not treated in time.
+            If enabled, thermobaric weapons and other high-explosive devices can cause the lungs to rupture and collapse due to the sudden pressure changes. Must be surgically repaired.
+            May be fatal if not treated in time.
             """);
+        list.Label($"Chance of lung collapse on thermobaric damage: {Settings.LungCollapseChanceOnDamage}", -1,
+            """
+            The likelihood of a pawn suffering from lung collapse after being hit by a thermobaric weapon or other high-explosive device.
+            """);
+        Settings.LungCollapseChanceOnDamage = (float)Math.Round(list.Slider(Settings.LungCollapseChanceOnDamage, 0f, 1f), 2);
+        list.Label($"Square root of the maximum initial severity of lung collapse: {Settings.LungCollapseMaxSeverityRoot}", -1,
+            """
+            The maximum initial severity of lung collapse is determined by a random factor between 0 and this value, squared. Stacks with subsequent exposure to thermobaric damage.
+            The resulting severity of lung collapse therefore follows a quadratic distribution, with a higher likelihood of low severities and a small chance of very high severities.
+            For example, at 0.5, the severity of lung collapse will follow a quadratic distribution between 0 and 0.25.
+            """);
+        Settings.LungCollapseMaxSeverityRoot = (float)Math.Round(list.Slider(Settings.LungCollapseMaxSeverityRoot, 0.1f, 1f), 2);
         // Spalling
         list.GapLine();
+        Text.Font = GameFont.Medium;
         list.Label("Spalling");
+        Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable spalling mechanics", ref Settings.EnableSpalling,
             """
             When high-velocity projectiles are stopped by armor, the large amount of kinetic energy can cause the projectile and top layer of the armor to shatter and send fragments flying in all directions.
@@ -174,7 +195,9 @@ public class MoreInjuriesMod : Mod
         Settings.SpallingChance = (float)Math.Round(list.Slider(Settings.SpallingChance, 0f, 1f), 2);
         // hypovolemic shock
         list.GapLine();
+        Text.Font = GameFont.Medium;
         list.Label("Blood Loss (Hypovolemic Shock)");
+        Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable hypovolemic shock mechanics (requires game reload)", ref Settings.EnableHypovolemicShock,
             """
             If enabled, pawns that lose a significant amount of blood may suffer from hypovolemic shock, which can be fatal if not treated in time with a blood transfusion.
@@ -194,7 +217,9 @@ public class MoreInjuriesMod : Mod
         Settings.OrganHypoxiaChanceReductionFactor = (float)Math.Round(list.Slider(Settings.OrganHypoxiaChanceReductionFactor, 0f, 1f), 2);
         // hemorrhagic stroke after blunt trauma
         list.GapLine();
+        Text.Font = GameFont.Medium;
         list.Label("Traumatic Head Injuries (Hemorrhagic Stroke)");
+        Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable hemorrhagic stroke mechanics", ref Settings.EnableHemorrhagicStroke,
             """
             If enabled, pawns that receive major blunt trauma may suffer from a hemorrhagic stroke, which can be fatal if not treated in time.
@@ -207,7 +232,9 @@ public class MoreInjuriesMod : Mod
         Settings.HemorrhagicStrokeChance = (float)Math.Round(list.Slider(Settings.HemorrhagicStrokeChance, 0f, 1f), 2);
         // EMP damage to bionics
         list.GapLine();
+        Text.Font = GameFont.Medium;
         list.Label("EMP Damage to Bionics");
+        Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable EMP damage to bionics", ref Settings.EnableEmpDamageToBionics,
             """
             If enabled, electromagnetic pulse (EMP) damage can cause bionic implants to malfunction and shut down temporarily.
@@ -220,7 +247,9 @@ public class MoreInjuriesMod : Mod
         Settings.EmpDamageToBionicsChance = (float)Math.Round(list.Slider(Settings.EmpDamageToBionicsChance, 0f, 1f), 2);
         // adrenaline
         list.GapLine();
+        Text.Font = GameFont.Medium;
         list.Label("Adrenaline");
+        Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable adrenaline mechanics", ref Settings.EnableAdrenaline,
             """
             If enabled, pawns that take damage may receive a rush of adrenaline that temporarily boosts moving capabilitites and numbs the perception of pain.
@@ -233,7 +262,9 @@ public class MoreInjuriesMod : Mod
         Settings.AdrenalineChanceOnDamage = (float)Math.Round(list.Slider(Settings.AdrenalineChanceOnDamage, 0f, 1f), 2);
         // hydrostatic shock (controversial)
         list.GapLine();
+        Text.Font = GameFont.Medium;
         list.Label("Hydrostatic Shock (Controversial)");
+        Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable hydrostatic shock mechanics", ref Settings.EnableHydrostaticShock,
             """
             Hydrostatic shock, also known as Hydro-shock, is the controversial concept that a penetrating projectile (such as a bullet) can produce a pressure wave that causes "remote neural damage", "subtle damage in neural tissues" and "rapid effects" in living targets.
@@ -247,7 +278,9 @@ public class MoreInjuriesMod : Mod
         Settings.HydrostaticShockChanceOnDamage = (float)Math.Round(list.Slider(Settings.HydrostaticShockChanceOnDamage, 0f, 1f), 2);
         // miscellaneous
         list.GapLine();
+        Text.Font = GameFont.Medium;
         list.Label("Miscellaneous");
+        Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable hearing damage mechanics (requires game reload)", ref Settings.EnableHearingDamage,
             """
             If enabled, pawns shooting or being close to loud weapons may suffer from hearing loss, especially if indoors or not wearing ear protection.

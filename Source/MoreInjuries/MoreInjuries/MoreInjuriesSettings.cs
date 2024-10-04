@@ -25,6 +25,8 @@ public class MoreInjuriesSettings : ModSettings
     internal bool EnableChokingSounds = false;
 
     internal bool EnableLungCollapse = true;
+    internal float LungCollapseChanceOnDamage = 0.5f;
+    internal float LungCollapseMaxSeverityRoot = 0.85f;
 
     internal bool EnableSpalling = false;
     internal float ArmorHealthSpallingThreshold = 0.95f;
@@ -77,12 +79,15 @@ public class MoreInjuriesSettings : ModSettings
         // hydrostatic shock
         Scribe_Values.Look(ref EnableHydrostaticShock, nameof(EnableHydrostaticShock));
         Scribe_Values.Look(ref HydrostaticShockChanceOnDamage, nameof(HydrostaticShockChanceOnDamage));
+        // lung collapse
         Scribe_Values.Look(ref EnableLungCollapse, nameof(EnableLungCollapse));
-        Scribe_Values.Look(ref EnableHearingDamage, nameof(EnableHearingDamage));
+        Scribe_Values.Look(ref LungCollapseChanceOnDamage, nameof(LungCollapseChanceOnDamage));
+        Scribe_Values.Look(ref LungCollapseMaxSeverityRoot, nameof(LungCollapseMaxSeverityRoot));
         // EMP
         Scribe_Values.Look(ref EnableEmpDamageToBionics, nameof(EnableEmpDamageToBionics));
         Scribe_Values.Look(ref EmpDamageToBionicsChance, nameof(EmpDamageToBionicsChance));
 
+        Scribe_Values.Look(ref EnableHearingDamage, nameof(EnableHearingDamage));
         Scribe_Values.Look(ref HideUndiagnosedInternalInjuries, nameof(HideUndiagnosedInternalInjuries));
         Scribe_Values.Look(ref ClosedInternalWouldBleedingModifier, nameof(ClosedInternalWouldBleedingModifier));
         Scribe_Values.Look(ref UseIndividualFloatMenus, nameof(UseIndividualFloatMenus));

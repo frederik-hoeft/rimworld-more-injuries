@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+  <!-- TODO: add different surgery options to repair collapsed lung (pneumothorax), with different success rates, required medical skill, death rates, and potential long-term effects -->
   <RecipeDef ParentName="SurgeryFlesh">
     <defName>RepairCollapsedLung</defName>
     <label>repair collapsed lung</label>
@@ -9,7 +10,7 @@
     <workAmount>4500</workAmount>
     <removesHediff>LungCollapse</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s collapsed lung.</successfullyRemovedHediffMessage>
-    <deathOnFailedSurgeryChance>0.05</deathOnFailedSurgeryChance>
+    <deathOnFailedSurgeryChance>0.025</deathOnFailedSurgeryChance>
     <skillRequirements>
       <Medicine>8</Medicine>
     </skillRequirements>

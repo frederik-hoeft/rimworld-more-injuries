@@ -2,25 +2,74 @@
 <Defs>
   <HediffDef ParentName="DiseaseBase">
     <defName>LungCollapse</defName>
-    <label>Lung Collapse</label>
-    <description>A buildup of air inside the chest cavity creates pressure against the lung. Causes shortness of breath, possibly progressing to suffocation. Must be surgically repaired.</description>
+    <label>Lung collapse</label>
+    <description>A buildup of air inside the chest cavity creates pressure against the lung, that must be surgically repaired. Otherwise, pressure increases as more air enters this space. The lung collapses, impairing normal breathing causing surrounding structures to shift. When severe enough to cause these shifts and hypotension, it is called a tension pneumothorax. In this life-threatening condition, the increased pressure inside the chest can compress the heart and lead to a collapse of the blood vessels that drain to the heart, causing obstructive shock. With the heart unable to fill, cardiac output drops. Hypotension and shock ensue. If left untreated treated, it can lead to cardiac arrest and death.</description>
     <defaultLabelColor>(255, 129, 56)</defaultLabelColor>
+    <lethalSeverity>1</lethalSeverity>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>1.00</severityPerDay>
+        <severityPerDay>0.5</severityPerDay>
         <showHoursToRecover>false</showHoursToRecover>
       </li>
     </comps>
     <stages>
+      <!-- TODO: add more intermediate stages, tweak maximum effects, extreme stage effects seem to kill instantly -->
       <li>
-        <label>early</label>
-        <becomeVisible>true</becomeVisible>
-        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+        <label>initial</label>
+        <minSeverity>0</minSeverity>
+        <partEfficiencyOffset>-0.35</partEfficiencyOffset>
+        <painOffset>0.1</painOffset>
       </li>
       <li>
-        <becomeVisible>true</becomeVisible>
-        <minSeverity>0.05</minSeverity>
-        <partEfficiencyOffset>-1.0</partEfficiencyOffset>
+        <label>moderate - obstructive shock</label>
+        <minSeverity>0.3</minSeverity>
+        <partEfficiencyOffset>-0.5</partEfficiencyOffset>
+        <painOffset>0.3</painOffset>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.15</offset>
+          </li>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>-0.25</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>severe - obstructive shock</label>
+        <minSeverity>0.75</minSeverity>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+        <painOffset>0.5</painOffset>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.25</offset>
+          </li>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>-0.35</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>extreme - obstructive shock</label>
+        <minSeverity>0.9</minSeverity>
+        <partEfficiencyOffset>-0.95</partEfficiencyOffset>
+        <painOffset>0.7</painOffset>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.35</offset>
+          </li>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>-0.475</offset>
+          </li>
+        </capMods>
       </li>
     </stages>
   </HediffDef>

@@ -43,7 +43,7 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
 
         Pawn patient = Target;
 
-        if (damage.parts is not null && patient is { Dead: false, Map: not null})
+        if (damage.parts is not null && patient is { Dead: false } && patient.Map is Map map)
         {
             // get all solid body parts that received a non-bleeding injury
             // (note from maintainer: no idea why we are checking for skin coverage)
@@ -64,7 +64,7 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
                 }
                 Hediff fracture = HediffMaker.MakeHediff(KnownHediffDefOf.Fracture, patient, bone);
                 patient.health.AddHediff(fracture);
-                KnownSoundDefOf.BoneSnapSound.PlayOneShot(new TargetInfo(patient.PositionHeld, patient.Map));
+                KnownSoundDefOf.BoneSnapSound.PlayOneShot(new TargetInfo(patient.PositionHeld, map));
                 if (MoreInjuriesMod.Settings.EnableBoneFragmentLacerations)
                 {
                     float chance = MoreInjuriesMod.Settings.BoneFragmentLacerationChance;
