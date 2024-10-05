@@ -4,7 +4,7 @@ namespace MoreInjuries;
 
 public class MoreInjuriesSettings : ModSettings
 {
-    internal bool EnableAdrenaline = false;
+    internal bool EnableAdrenaline = true;
     internal float AdrenalineChanceOnDamage = 0.75f;
     internal float CertainAdrenalineThreshold = 15f;
 
@@ -16,38 +16,38 @@ public class MoreInjuriesSettings : ModSettings
     internal bool UseIndividualFloatMenus = false;
 
     internal bool EnableEmpDamageToBionics = true;
-    internal float EmpDamageToBionicsChance = 0.8f;
+    internal float EmpDamageToBionicsChance = 0.45f;
 
     internal bool EnableHemorrhagicStroke = true;
-    internal float HemorrhagicStrokeChance = 0.07f;
+    internal float HemorrhagicStrokeChance = 0.15f;
 
     internal bool EnableChoking = true;
     internal float ChokingChanceOnDamage = 0.75f;
-    internal bool EnableChokingSounds = false;
+    internal bool EnableChokingSounds = true;
 
     internal bool EnableLungCollapse = true;
-    internal float LungCollapseChanceOnDamage = 0.5f;
+    internal float LungCollapseChanceOnDamage = 0.4f;
     internal float LungCollapseMaxSeverityRoot = 0.85f;
 
-    internal bool EnableSpalling = false;
+    internal bool EnableSpalling = true;
     internal float ArmorHealthSpallingThreshold = 0.95f;
     internal float SpallingChance = 0.75f;
 
     internal bool EnableHearingDamage = false;
 
     internal bool EnableFractures = true;
-    internal float FractureDamageTreshold = 8f;
-    internal float FractureChanceOnDamage = 0.75f;
-    internal bool EnableBoneFragmentLacerations = false;
+    internal float FractureDamageTreshold = 10f;
+    internal float FractureChanceOnDamage = 0.25f;
+    internal bool EnableBoneFragmentLacerations = true;
     internal float SplinteringFractureChance = 0.5f;
-    internal float BoneFragmentLacerationChancePerBodyPart = 0.25f;
+    internal float BoneFragmentLacerationChancePerBodyPart = 0.5f;
 
     internal bool EnableHypovolemicShock = true;
     internal float OrganHypoxiaChance = 0.65f;
     internal float OrganHypoxiaChanceReductionFactor = 0.5f;
     internal bool EnableFireInhalation = true;
-    internal bool EnableLogging;
-    internal bool EnableVerboseLogging;
+    internal bool EnableLogging = false;
+    internal bool EnableVerboseLogging = false;
 
     internal float ParalysisDamageTreshold50Percent = 6f;
 

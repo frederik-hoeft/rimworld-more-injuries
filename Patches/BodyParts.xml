@@ -38,7 +38,22 @@
       <li>
         <def>FemoralArtery</def>
         <customLabel>left femoral artery</customLabel>
-        <coverage>0.2</coverage>
+        <coverage>0.125</coverage>
+        <depth>Inside</depth>
+        <groups>
+          <li>Legs</li>
+        </groups>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/BodyDef[defName="Human"]/corePart/parts/li[customLabel="left leg"]/parts</xpath>
+    <value>
+      <li>
+        <def>PoplitealArtery</def>
+        <customLabel>left popliteal artery</customLabel>
+        <coverage>0.075</coverage>
         <depth>Inside</depth>
         <groups>
           <li>Legs</li>
@@ -53,7 +68,22 @@
       <li>
         <def>FemoralArtery</def>
         <customLabel>right femoral artery</customLabel>
-        <coverage>0.2</coverage>
+        <coverage>0.125</coverage>
+        <depth>Inside</depth>
+        <groups>
+          <li>Legs</li>
+        </groups>
+      </li>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/BodyDef[defName="Human"]/corePart/parts/li[customLabel="right leg"]/parts</xpath>
+    <value>
+      <li>
+        <def>PoplitealArtery</def>
+        <customLabel>right popliteal artery</customLabel>
+        <coverage>0.075</coverage>
         <depth>Inside</depth>
         <groups>
           <li>Legs</li>

@@ -1,4 +1,6 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Extensions;
+using MoreInjuries.HealthConditions.Fractures.Lacerations;
+using MoreInjuries.KnownDefs;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,78 @@ namespace MoreInjuries.HealthConditions.Fractures;
 
 internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler, ICompFloatMenuOptionsHandler
 {
+    private static readonly Dictionary<BodyPartDef, ILacerationHandler> s_lacerationRegistry;
+
+    static FractureWorker()
+    {
+        (BodyPartDef def, ILacerationHandler handler)[] lacerationRegistry =
+        [
+            // head
+            (KnownBodyPartDefOf.Skull, new SiblingsAndDecendantsLacerationHandler()),           // any soft tissue in the head
+            (KnownBodyPartDefOf.Jaw, new SiblingsAndDecendantsLacerationHandler(targets:        // nearby soft tissue
+            [
+                KnownBodyPartDefOf.Ear,
+                KnownBodyPartDefOf.Nose,
+                KnownBodyPartDefOf.Tongue
+            ])),
+            (KnownBodyPartDefOf.Nose, new SelfLacerationHandler()),                             // nose
+            // arms
+            (KnownBodyPartDefOf.Clavicle, new ParentLacerationHandler()),                       // shoulder
+            (KnownBodyPartDefOf.Humerus, new ParentLacerationHandler()),                        // arm 
+            (KnownBodyPartDefOf.Radius, new ParentLacerationHandler()),                         // arm
+            (BodyPartDefOf.Arm, new SelfLacerationHandler()),                                   // arm
+            (BodyPartDefOf.Hand, new SelfAndDescendantsLacerationHandler(targets:               // hand + fingers
+            [
+                KnownBodyPartDefOf.Finger
+            ])),
+            (KnownBodyPartDefOf.Finger, new SelfLacerationHandler()),                           // finger
+            // torso
+            (KnownBodyPartDefOf.Ribcage, new SiblingLacerationHandler(targets:                  // nearby soft tissue
+            [
+                BodyPartDefOf.Lung,
+                BodyPartDefOf.Heart,
+                KnownBodyPartDefOf.Liver,
+                KnownBodyPartDefOf.Stomach,
+                KnownBodyPartDefOf.LargeIntestine,
+                KnownBodyPartDefOf.Kidney,
+            ])),
+            (KnownBodyPartDefOf.Sternum, new SiblingLacerationHandler(targets:                  // nearby soft tissue
+            [
+                BodyPartDefOf.Heart,
+                BodyPartDefOf.Lung
+            ])),
+            (KnownBodyPartDefOf.Spine, new DescendantLacerationHandler()),                      // spinal cord
+            (KnownBodyPartDefOf.Pelvis, new FirstSiblingAndDecendantsLacerationHandler(targets: // nearby soft tissue
+            [
+                KnownBodyPartDefOf.Abdomen,
+                KnownBodyPartDefOf.SmallIntestine,
+                KnownBodyPartDefOf.LargeIntestine
+            ])),
+            // legs
+            (BodyPartDefOf.Leg, new SelfAndDescendantsLacerationHandler(targets:                // nearby soft tissue
+            [
+                KnownBodyPartDefOf.FemoralArtery,
+                KnownBodyPartDefOf.PoplitealArtery
+            ])),
+            (KnownBodyPartDefOf.Femur, new ParentAndSiblingsLacerationHandler(targets:          // nearby soft tissue
+            [
+                BodyPartDefOf.Leg,
+                KnownBodyPartDefOf.FemoralArtery
+            ])),
+            (KnownBodyPartDefOf.Tibia, new ParentAndSiblingsLacerationHandler(targets:          // nearby soft tissue
+            [
+                BodyPartDefOf.Leg,
+                KnownBodyPartDefOf.PoplitealArtery
+            ])),
+            (KnownBodyPartDefOf.Foot, new SelfAndDescendantsLacerationHandler(targets:          // foot + toes
+            [
+                KnownBodyPartDefOf.Toe
+            ])),
+            (KnownBodyPartDefOf.Toe, new SelfLacerationHandler())                               // toe
+        ];
+        s_lacerationRegistry = lacerationRegistry.ToDictionary(pair => pair.def, pair => pair.handler);
+    }
+
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableFractures;
 
     public IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn)
@@ -45,12 +119,10 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
 
         if (damage.parts is not null && patient is { Dead: false } && patient.Map is Map map)
         {
-            // get all solid body parts that received a non-bleeding injury
-            // (note from maintainer: no idea why we are checking for skin coverage)
+            // get all breakable body parts that received damage
             IEnumerable<BodyPartRecord> affectedBones = damage.parts.Where(bodyPart =>
-                bodyPart.def.IsSolid(bodyPart, patient.health.hediffSet.hediffs)
-                && !bodyPart.def.IsSkinCovered(bodyPart, patient.health.hediffSet)
-                && bodyPart.def.bleedRate == 0);
+                s_lacerationRegistry.ContainsKey(bodyPart.def) 
+                && !patient.health.hediffSet.PartIsMissing(bodyPart));
 
             foreach (BodyPartRecord bone in affectedBones)
             {
@@ -58,7 +130,8 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
                 {
                     continue;
                 }
-                if (patient.health.hediffSet.PartIsMissing(bone))
+                // the body part shouldn't be already broken
+                if (patient.health.hediffSet.TryGetFirstHediffMatchingPart(bone, KnownHediffDefOf.Fracture, out _))
                 {
                     continue;
                 }
@@ -67,35 +140,17 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
                 KnownSoundDefOf.BoneSnapSound.PlayOneShot(new TargetInfo(patient.PositionHeld, map));
                 if (MoreInjuriesMod.Settings.EnableBoneFragmentLacerations && Rand.Chance(MoreInjuriesMod.Settings.SplinteringFractureChance))
                 {
+                    IEnumerable<BodyPartRecord> lacerationTargets = s_lacerationRegistry[bone.def].GetTargets(patient, bone);
                     float chance = MoreInjuriesMod.Settings.BoneFragmentLacerationChancePerBodyPart;
-                    foreach (BodyPartRecord sibling in bone.parent.GetDirectChildParts())
+                    foreach (BodyPartRecord lacerationTarget in lacerationTargets)
                     {
-                        if (patient.health.hediffSet.PartIsMissing(sibling))
-                        {
-                            continue;
-                        }
                         if (Rand.Chance(chance))
                         {
-                            Hediff shards = HediffMaker.MakeHediff(KnownHediffDefOf.BoneFragmentLaceration, patient, sibling);
+                            Hediff shards = HediffMaker.MakeHediff(KnownHediffDefOf.BoneFragmentLaceration, patient, lacerationTarget);
                             // severity is random between 0 and 5, but with a curve towards lower values
                             float curve = Rand.Range(0f, 1f);
                             shards.Severity = curve * curve * 5f;
                             patient.health.AddHediff(shards);
-                        }
-                        foreach (BodyPartRecord child in sibling.GetDirectChildParts())
-                        {
-                            if (patient.health.hediffSet.PartIsMissing(child))
-                            {
-                                continue;
-                            }
-                            if (Rand.Chance(chance))
-                            {
-                                Hediff shards = HediffMaker.MakeHediff(KnownHediffDefOf.BoneFragmentLaceration, patient, child);
-                                // severity is random between 0.05 and 5, but with a curve towards lower values
-                                float curve = Rand.Range(0.1f, 1f);
-                                shards.Severity = curve * curve * 5f;
-                                patient.health.AddHediff(shards);
-                            }
                         }
                     }
                 }

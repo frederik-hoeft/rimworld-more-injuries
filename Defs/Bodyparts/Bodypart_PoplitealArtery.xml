@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <BodyPartDef>
-    <defName>FemoralArtery</defName>
-    <label>femoral artery</label>
-    <hitPoints>25</hitPoints>
+    <defName>PoplitealArtery</defName>
+    <label>popliteal artery</label>
+    <hitPoints>15</hitPoints>
     <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
     <skinCovered>false</skinCovered>
     <solid>false</solid>
-    <bleedRate>4</bleedRate>
+    <bleedRate>3</bleedRate>
     <tags></tags>
     <canSuggestAmputation>false</canSuggestAmputation>
     <destroyableByDamage>false</destroyableByDamage>
