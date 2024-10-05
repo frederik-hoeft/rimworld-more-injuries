@@ -2,7 +2,7 @@
 <Defs>
   <HediffDef ParentName="InfectionBase">
     <defName>HypovolemicShock</defName>
-    <label>Hypovolemic shock</label>
+    <label>hypovolemic shock</label>
     <description>A life threating state caused by insufficient blood flow to body. Has chance to cause hypoxia damage to internal organs. Severity scales directly with blood loss severity until 60% severity. Must be treated with blood transfusion.</description>
     <tendable>true</tendable>
     <makesSickThought>true</makesSickThought>

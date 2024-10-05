@@ -2,13 +2,14 @@
 <Defs>
   <HediffDef ParentName="DiseaseBase">
     <defName>HearingLoss</defName>
-    <label>Hearing loss</label>
+    <label>hearing loss</label>
     <description>Temporary deafness caused by prolonged exposure to gunfire.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(255, 169, 56)</defaultLabelColor>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-4</severityPerDay>
+        <severityPerDay>-1</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
       </li>
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>

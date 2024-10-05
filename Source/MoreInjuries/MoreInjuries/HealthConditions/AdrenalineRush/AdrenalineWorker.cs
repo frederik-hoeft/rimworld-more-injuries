@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.KnownDefs;
+using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.AdrenalineRush;
@@ -10,20 +11,22 @@ internal class AdrenalineWorker(InjuryComp parent) : InjuryWorker(parent), IPost
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {
         Pawn patient = Target;
-        if (Rand.Chance(MoreInjuriesMod.Settings.AdrenalineChanceOnDamage))
+        // clamp the damage threshold to 1 to avoid division by zero
+        float damageThreshold = Mathf.Max(MoreInjuriesMod.Settings.CertainAdrenalineThreshold, 1f);
+        if (Rand.Chance(MoreInjuriesMod.Settings.AdrenalineChanceOnDamage) || damage.totalDamageDealt > damageThreshold)
         {
-            if (!patient.health.hediffSet.TryGetHediff(KnownHediffDefOf.AdrenalineRush, out Hediff? adrenalineDump))
+            if (!patient.health.hediffSet.TryGetHediff(KnownHediffDefOf.AdrenalineRush, out Hediff? adrenalineRush))
             {
                 // add new hediff
-                adrenalineDump = HediffMaker.MakeHediff(KnownHediffDefOf.AdrenalineRush, patient);
-                adrenalineDump.Severity = 0;
-                patient.health.AddHediff(adrenalineDump);
+                adrenalineRush = HediffMaker.MakeHediff(KnownHediffDefOf.AdrenalineRush, patient);
+                adrenalineRush.Severity = 0;
+                patient.health.AddHediff(adrenalineRush);
             }
-            // possible upperbound of the severity increases with the total damage received, but is capped at 0.5
+            // possible upperbound of the severity increases with the total damage received, but is capped at 0.75
             // 20 damage is a lot, so we use that as the upper threshold
-            float upperbound = Math.Min(damage.totalDamageDealt / 20f * 0.5f, 0.5f);
+            float upperbound = Math.Min(damage.totalDamageDealt / (2f * damageThreshold), 0.75f);
             float severity = Rand.Range(0, upperbound);
-            adrenalineDump.Severity += severity;
+            adrenalineRush.Severity += severity;
         }
     }
 }

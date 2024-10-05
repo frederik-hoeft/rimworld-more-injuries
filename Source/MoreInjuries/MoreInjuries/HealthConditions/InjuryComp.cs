@@ -56,11 +56,14 @@ public class InjuryComp : ThingComp
 
     public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
     {
-        foreach (InjuryWorker component in _pipeline)
+        if (parent.Map is not null)
         {
-            if (component is IPostPostApplyDamageHandler { IsEnabled: true } handler)
+            foreach (InjuryWorker component in _pipeline)
             {
-                handler.PostPostApplyDamage(in dinfo);
+                if (component is IPostPostApplyDamageHandler { IsEnabled: true } handler)
+                {
+                    handler.PostPostApplyDamage(in dinfo);
+                }
             }
         }
 
@@ -72,11 +75,14 @@ public class InjuryComp : ThingComp
         CallbackActive = true;
         _damageInfo = dinfo;
 
-        foreach (InjuryWorker component in _pipeline)
+        if (parent.Map is not null)
         {
-            if (component is IPostPreApplyDamageHandler { IsEnabled: true } handler)
+            foreach (InjuryWorker component in _pipeline)
             {
-                handler.PostPreApplyDamage(in dinfo);
+                if (component is IPostPreApplyDamageHandler { IsEnabled: true } handler)
+                {
+                    handler.PostPreApplyDamage(in dinfo);
+                }
             }
         }
 

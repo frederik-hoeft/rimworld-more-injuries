@@ -127,7 +127,7 @@
   <!-- ===================Large intestine====================== -->
   <BodyPartDef>
     <defName>LargeIntestine</defName>
-    <label>Large intestine</label>
+    <label>large intestine</label>
     <hitPoints>20</hitPoints>
     <permanentInjuryChanceFactor>2</permanentInjuryChanceFactor>
     <skinCovered>false</skinCovered>

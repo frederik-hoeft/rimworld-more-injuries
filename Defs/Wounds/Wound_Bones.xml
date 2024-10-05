@@ -3,7 +3,7 @@
 
   <HediffDef ParentName="DiseaseBase">
     <defName>Fracture</defName>
-    <label>Bone fracture</label>
+    <label>bone fracture</label>
     <description>Bone fracture. Must be surgically repaired or by applying a splint</description>
     <hediffClass>HediffWithComps</hediffClass>
     <comps></comps>

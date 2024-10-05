@@ -6,6 +6,7 @@ public class MoreInjuriesSettings : ModSettings
 {
     internal bool EnableAdrenaline = false;
     internal float AdrenalineChanceOnDamage = 0.75f;
+    internal float CertainAdrenalineThreshold = 15f;
 
     internal bool EnableHydrostaticShock = false;
     internal float HydrostaticShockChanceOnDamage = 0.2f;
@@ -38,7 +39,8 @@ public class MoreInjuriesSettings : ModSettings
     internal float FractureDamageTreshold = 8f;
     internal float FractureChanceOnDamage = 0.75f;
     internal bool EnableBoneFragmentLacerations = false;
-    internal float BoneFragmentLacerationChance = 0.1f;
+    internal float SplinteringFractureChance = 0.5f;
+    internal float BoneFragmentLacerationChancePerBodyPart = 0.25f;
 
     internal bool EnableHypovolemicShock = true;
     internal float OrganHypoxiaChance = 0.65f;
@@ -56,15 +58,16 @@ public class MoreInjuriesSettings : ModSettings
         // logging
         Scribe_Values.Look(ref EnableLogging, nameof(EnableLogging));
         Scribe_Values.Look(ref EnableVerboseLogging, nameof(EnableVerboseLogging));
-        // feature flags
+        // adrenaline
         Scribe_Values.Look(ref EnableAdrenaline, nameof(EnableAdrenaline));
         Scribe_Values.Look(ref AdrenalineChanceOnDamage, nameof(AdrenalineChanceOnDamage));
+        Scribe_Values.Look(ref CertainAdrenalineThreshold, nameof(CertainAdrenalineThreshold));
         // fractures
         Scribe_Values.Look(ref EnableFractures, nameof(EnableFractures));
         Scribe_Values.Look(ref FractureDamageTreshold, nameof(FractureDamageTreshold));
         Scribe_Values.Look(ref FractureChanceOnDamage, nameof(FractureChanceOnDamage));
         Scribe_Values.Look(ref EnableBoneFragmentLacerations, nameof(EnableBoneFragmentLacerations));
-        Scribe_Values.Look(ref BoneFragmentLacerationChance, nameof(BoneFragmentLacerationChance));
+        Scribe_Values.Look(ref BoneFragmentLacerationChancePerBodyPart, nameof(BoneFragmentLacerationChancePerBodyPart));
         // hemorrhagic stroke after blunt trauma
         Scribe_Values.Look(ref EnableHemorrhagicStroke, nameof(EnableHemorrhagicStroke));
         Scribe_Values.Look(ref HemorrhagicStrokeChance, nameof(HemorrhagicStrokeChance));

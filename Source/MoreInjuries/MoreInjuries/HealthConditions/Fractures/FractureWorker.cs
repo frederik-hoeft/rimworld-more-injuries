@@ -21,7 +21,7 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
         {
             return
             [
-                new FloatMenuOption("Fix fracture", () => selectedPawn.jobs.StartJob(new Job(def: KnownJobDefOf.ApplySplintJob, targetA: patient), JobCondition.InterruptForced))
+                new FloatMenuOption("Splint fracture", () => selectedPawn.jobs.StartJob(new Job(def: KnownJobDefOf.ApplySplintJob, targetA: patient), JobCondition.InterruptForced))
             ];
         }
         return [];
@@ -65,9 +65,9 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
                 Hediff fracture = HediffMaker.MakeHediff(KnownHediffDefOf.Fracture, patient, bone);
                 patient.health.AddHediff(fracture);
                 KnownSoundDefOf.BoneSnapSound.PlayOneShot(new TargetInfo(patient.PositionHeld, map));
-                if (MoreInjuriesMod.Settings.EnableBoneFragmentLacerations)
+                if (MoreInjuriesMod.Settings.EnableBoneFragmentLacerations && Rand.Chance(MoreInjuriesMod.Settings.SplinteringFractureChance))
                 {
-                    float chance = MoreInjuriesMod.Settings.BoneFragmentLacerationChance;
+                    float chance = MoreInjuriesMod.Settings.BoneFragmentLacerationChancePerBodyPart;
                     foreach (BodyPartRecord sibling in bone.parent.GetDirectChildParts())
                     {
                         if (patient.health.hediffSet.PartIsMissing(sibling))
@@ -77,7 +77,9 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
                         if (Rand.Chance(chance))
                         {
                             Hediff shards = HediffMaker.MakeHediff(KnownHediffDefOf.BoneFragmentLaceration, patient, sibling);
-                            shards.Severity = Rand.Range(1f, 5f);
+                            // severity is random between 0 and 5, but with a curve towards lower values
+                            float curve = Rand.Range(0f, 1f);
+                            shards.Severity = curve * curve * 5f;
                             patient.health.AddHediff(shards);
                         }
                         foreach (BodyPartRecord child in sibling.GetDirectChildParts())
@@ -89,7 +91,9 @@ internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTa
                             if (Rand.Chance(chance))
                             {
                                 Hediff shards = HediffMaker.MakeHediff(KnownHediffDefOf.BoneFragmentLaceration, patient, child);
-                                shards.Severity = Rand.Range(1f, 5f);
+                                // severity is random between 0.05 and 5, but with a curve towards lower values
+                                float curve = Rand.Range(0.1f, 1f);
+                                shards.Severity = curve * curve * 5f;
                                 patient.health.AddHediff(shards);
                             }
                         }

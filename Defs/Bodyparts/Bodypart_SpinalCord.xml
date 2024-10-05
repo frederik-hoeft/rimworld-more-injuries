@@ -2,7 +2,7 @@
 <Defs>
   <BodyPartDef>
     <defName>SpinalCord</defName>
-    <label>Spinal Cord</label>
+    <label>spinal cord</label>
     <hitPoints>8</hitPoints>
     <permanentInjuryChanceFactor>100</permanentInjuryChanceFactor>
     <skinCovered>false</skinCovered>
@@ -17,7 +17,7 @@
 
   <HediffDef ParentName="DiseaseBase">
     <defName>SpinalCordParalysis</defName>
-    <label>Paralysis</label>
+    <label>paralysis</label>
     <description>Damage of spinal cord caused irrepairable movement disability.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <comps></comps>

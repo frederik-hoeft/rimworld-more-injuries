@@ -29,6 +29,7 @@ public class MoreInjuriesMod : Mod
     private const float MIN_CONTENT_HEIGHT = 256f;
     private float _knownContentHeight = MIN_CONTENT_HEIGHT;
     private bool _requiresScrolling = false;
+    private bool _hasMap = false;
 
     public override void DoSettingsWindowContents(Rect canvas)
     {
@@ -67,6 +68,11 @@ public class MoreInjuriesMod : Mod
         // TODO: not sure if or how this works
         if (Find.CurrentMap is not null)
         {
+            if (!_hasMap)
+            {
+                _hasMap = true;
+                _knownContentHeight = MIN_CONTENT_HEIGHT;
+            }
             if (list.ButtonText("Fix misplaced bionics"))
             {
                 IEnumerable<Pawn> humans = Find.CurrentMap.mapPawns.AllPawns.Where(x => x.def == ThingDefOf.Human);
@@ -92,6 +98,11 @@ public class MoreInjuriesMod : Mod
                 }
             }
         }
+        else if (_hasMap)
+        {
+            _hasMap = false;
+            _knownContentHeight = MIN_CONTENT_HEIGHT;
+        }
         list.GapLine();
         list.Gap();
         Text.Font = GameFont.Medium;
@@ -111,7 +122,7 @@ public class MoreInjuriesMod : Mod
             The minimum amount of damage required to cause a bone fracture.
             Being punched by a squirrel is unlikely to cause a fracture, but being hit by a club or a bullet is a different story.
             """);
-        Settings.FractureDamageTreshold = (float)Math.Ceiling(list.Slider(Settings.FractureDamageTreshold, 1, 20));
+        Settings.FractureDamageTreshold = (float)Math.Ceiling(list.Slider(Mathf.Clamp(Settings.FractureDamageTreshold, 1f, 20f), 1f, 20f));
         list.Label($"Chance of bone fractures on damage: {Settings.FractureChanceOnDamage}", -1,
             """
             The likelihood of a bone fracture actually being applied to an affected body part after all conditions for a fracture have been met. 
@@ -122,11 +133,16 @@ public class MoreInjuriesMod : Mod
             """
             If enabled, pawns that receive bone fractures may also receive lacerations from the bone fragments that result from the fracture.
             """);
-        list.Label($"Chance of bone fragment lacerations: {Settings.BoneFragmentLacerationChance}", -1,
+        list.Label($"Change of bone fragment lacerations: {Settings.SplinteringFractureChance}", -1,
             """
-            The likelihood of bone fragment laceration to occur on nearby body parts after a bone fracture has been applied.
+            The likelihood that a fracture may cause the bone to splinter, which can cause additional lacerations to nearby body parts.
             """);
-        Settings.BoneFragmentLacerationChance = (float)Math.Round(list.Slider(Settings.BoneFragmentLacerationChance, 0f, 1f), 2);
+        Settings.SplinteringFractureChance = (float)Math.Round(list.Slider(Settings.SplinteringFractureChance, 0f, 1f), 2);
+        list.Label($"Chance of bone fragment lacerations per body part: {Settings.BoneFragmentLacerationChancePerBodyPart}", -1,
+            """
+            The likelihood that a nearby body part may receive bone fragment lacerations after a splintering fracture has occurred.
+            """);
+        Settings.BoneFragmentLacerationChancePerBodyPart = (float)Math.Round(list.Slider(Settings.BoneFragmentLacerationChancePerBodyPart, 0f, 1f), 2);
         // respiratory conditions
         list.GapLine();
         Text.Font = GameFont.Medium;
@@ -168,7 +184,7 @@ public class MoreInjuriesMod : Mod
             The resulting severity of lung collapse therefore follows a quadratic distribution, with a higher likelihood of low severities and a small chance of very high severities.
             For example, at 0.5, the severity of lung collapse will follow a quadratic distribution between 0 and 0.25.
             """);
-        Settings.LungCollapseMaxSeverityRoot = (float)Math.Round(list.Slider(Settings.LungCollapseMaxSeverityRoot, 0.1f, 1f), 2);
+        Settings.LungCollapseMaxSeverityRoot = (float)Math.Round(list.Slider(Mathf.Clamp(Settings.LungCollapseMaxSeverityRoot, 0.1f, 1f), 0.1f, 1f), 2);
         // Spalling
         list.GapLine();
         Text.Font = GameFont.Medium;
@@ -187,7 +203,7 @@ public class MoreInjuriesMod : Mod
             As armor condition deteriorates after absorbing damage, the chance of spalling naturally increases when these absorbing layers are compromised.
             At 0.8, the chance of spalling remains 0 until the armor is at 80% hp, etc. At 0, spalling is disabled.
             """);
-        Settings.ArmorHealthSpallingThreshold = list.Slider(Settings.ArmorHealthSpallingThreshold, 0.1f, 1f);
+        Settings.ArmorHealthSpallingThreshold = list.Slider(Mathf.Clamp(Settings.ArmorHealthSpallingThreshold, 0.1f, 1f), 0.1f, 1f);
         list.Label($"Chance of spalling injuries: {Settings.SpallingChance}", -1,
             """
             The likelihood of exposed body parts receiving spalling injuries after spalling has occurred. Evaluated per body part.
@@ -260,6 +276,12 @@ public class MoreInjuriesMod : Mod
             The intensity of the rush depends on the amount of damage taken.
             """);
         Settings.AdrenalineChanceOnDamage = (float)Math.Round(list.Slider(Settings.AdrenalineChanceOnDamage, 0f, 1f), 2);
+        list.Label($"Damage threshold for certain adrenaline rush: {Settings.CertainAdrenalineThreshold}", -1,
+            """
+            The amount of damage required to always cause an adrenaline rush, which provides a significant boost to moving capabilities and numbs the perception of pain for a short time.
+            If the damage taken exceeds this threshold, an adrenaline rush is guaranteed to occur. Otherwise, the chance is determined by the adrenaline chance on damage.
+            """);
+        Settings.CertainAdrenalineThreshold = (float)Math.Round(list.Slider(Mathf.Clamp(Settings.CertainAdrenalineThreshold, 1f, 50f), 1f, 50f));
         // hydrostatic shock (controversial)
         list.GapLine();
         Text.Font = GameFont.Medium;
@@ -299,7 +321,7 @@ public class MoreInjuriesMod : Mod
             """
             The amount of spinal cord damage required to cause paralysis in 50% of all cases. The actual chance of paralysis scales linearly with the damage dealt.
             """);
-        Settings.ParalysisDamageTreshold50Percent = (float)Math.Round(list.Slider(Settings.ParalysisDamageTreshold50Percent, 1f, 20f));
+        Settings.ParalysisDamageTreshold50Percent = (float)Math.Round(list.Slider(Mathf.Clamp(Settings.ParalysisDamageTreshold50Percent, 1f, 20f), 1f, 20f));
         list.Label($"Chance of intestinal spilling on damage: {Settings.IntestinalSpillingChanceOnDamage}", -1,
             """
             The likelihood of a pawn suffering from intestinal spilling after receiving severe damage to the abdomen. Can lead to severe infections and stomach acid burns.
@@ -317,7 +339,7 @@ public class MoreInjuriesMod : Mod
             // so on each draw, we double the known content height until it's big enough
             // yes, we could also just set it to an unreasonably high value, but that seems a bit wasteful
             // we should arrive at the correct height in O(log n) iterations anyway
-            _knownContentHeight = Mathf.Max(2 * _knownContentHeight, MIN_CONTENT_HEIGHT);
+            _knownContentHeight = 1000000f;
         }
         else
         {

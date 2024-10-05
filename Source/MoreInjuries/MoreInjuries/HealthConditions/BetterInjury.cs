@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using MoreInjuries.KnownDefs;
+using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions;
@@ -146,6 +148,33 @@ public class BetterInjury : Hediff_Injury
         (_, true) => s_closedWoundColor,
         _ => base.LabelColor
     };
+
+    public override void PostAdd(DamageInfo? dinfo)
+    {
+        if (def == KnownHediffDefOf.Fracture || def == KnownHediffDefOf.BoneFragmentLaceration || def == KnownHediffDefOf.SpallFragmentCut)
+        {
+            // these injuries were added by us, so override "Added injury to <part> but it should be impossible to hit" error
+            // the correct way to do this would be to transpile the error check in the base implementation, but we don't do that for the following reasons:
+            // 1. it's a lot of work for a small gain
+            // 2. it may cause incompatibilities with other mods that transpile the same method
+            // 3. we can actually abuse the base implementation to achieve the same effect
+            // the base implementation throws that error if it thinks the damage def is not supposed to hit the body part
+            // but a built-in suppression mechanism exists for the surgical cut damage def
+            // so, we abuse that mechanism by setting the damage def to surgical cut, bypassing the error check, and hopefully not having any side effects :fingers_crossed:
+            DamageInfo fakeInfo = new
+            (
+                // the only damage def that bypasses the coverage check is surgical cut
+                def: DamageDefOf.SurgicalCut,
+                // and choose other parameters to reduce possible side effects as much as possible
+                amount: 0,
+                instigatorGuilty: false,
+                spawnFilth: false,
+                checkForJobOverride: false
+            );
+            dinfo = fakeInfo;
+        }
+        base.PostAdd(dinfo);
+    }
 
     public override string TipStringExtra
     {

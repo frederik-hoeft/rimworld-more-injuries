@@ -2,7 +2,7 @@
 <Defs>
   <HediffDef ParentName="InjuryBase">
     <defName>OrganHypoxia</defName>
-    <label>Organ hypoxia</label>
+    <label>organ hypoxia</label>
     <labelNoun>insufficient oxygen</labelNoun>
     <description>Damage from lack of oxygen to the organ. Most commonly caused by blood loss.</description>
     <defaultLabelColor>(100, 15, 15)</defaultLabelColor>

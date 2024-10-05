@@ -2,7 +2,7 @@
 <Defs>
   <HediffDef ParentName="InfectionBase">
     <defName>Shock</defName>
-    <label>Shock</label>
+    <label>shock</label>
     <description>Shock is the state of insufficient blood flow to the tissues of the body as a result of problems with the circulatory system. Initial symptoms of shock may include weakness, fast heart rate, fast breathing, sweating, anxiety. This may be followed by confusion, unconsciousness, or cardiac arrest, as complications worsen.</description>
     <makesSickThought>true</makesSickThought>
     <defaultLabelColor>(255, 51, 51)</defaultLabelColor>

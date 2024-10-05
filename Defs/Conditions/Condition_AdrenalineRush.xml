@@ -12,7 +12,7 @@
     <isBad>false</isBad>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-2</severityPerDay>
+        <severityPerDay>-3</severityPerDay>
         <showHoursToRecover>true</showHoursToRecover>
       </li>
     </comps>
@@ -41,7 +41,7 @@
         </capMods>
       </li>
       <li>
-        <label>medium amount</label>
+        <label>moderate amount</label>
         <minSeverity>0.3</minSeverity>
         <painFactor>0.8</painFactor>
         <painOffset>-0.10</painOffset>
@@ -65,7 +65,7 @@
         </capMods>
       </li>
       <li>
-        <label>extreme amount</label>
+        <label>very high amount</label>
         <minSeverity>0.8</minSeverity>
         <painFactor>0.75</painFactor>
         <painOffset>-0.20</painOffset>
@@ -76,7 +76,18 @@
           </li>
         </capMods>
       </li>
+      <li>
+        <label>extreme amount</label>
+        <minSeverity>0.9</minSeverity>
+        <painFactor>0.7</painFactor>
+        <painOffset>-0.4</painOffset>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>0.25</offset>
+          </li>
+        </capMods>
+      </li>
     </stages>
   </HediffDef>
-
 </Defs>

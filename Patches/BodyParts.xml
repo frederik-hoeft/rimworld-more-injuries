@@ -5,7 +5,7 @@
     <value>
       <li>
         <def>Abdomen</def>
-        <coverage>0.15</coverage>
+        <coverage>0.14</coverage>
         <depth>Outside</depth>
         <groups>
           <li>Torso</li>
@@ -38,7 +38,7 @@
       <li>
         <def>FemoralArtery</def>
         <customLabel>left femoral artery</customLabel>
-        <coverage>0.25</coverage>
+        <coverage>0.2</coverage>
         <depth>Inside</depth>
         <groups>
           <li>Legs</li>
@@ -53,7 +53,7 @@
       <li>
         <def>FemoralArtery</def>
         <customLabel>right femoral artery</customLabel>
-        <coverage>0.25</coverage>
+        <coverage>0.2</coverage>
         <depth>Inside</depth>
         <groups>
           <li>Legs</li>

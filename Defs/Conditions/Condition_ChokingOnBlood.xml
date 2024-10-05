@@ -3,7 +3,7 @@
 
   <HediffDef ParentName="InfectionBase">
     <defName>ChokingOnBlood</defName>
-    <label>Choking on blood</label>
+    <label>choking on blood</label>
     <description>Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. Potentially fatal unless treated. Can be cleared by performing CPR or using a specialized airway suction device. \nTo clear it, use an airway suction device, or order a skilled doctor to perform CPR.</description>
     <makesSickThought>false</makesSickThought>
     <lethalSeverity>1</lethalSeverity>
@@ -107,7 +107,7 @@
 
   <HediffDef ParentName="InfectionBase">
     <defName>ChokingOnTourniquet</defName>
-    <label>Choking on tourniquet</label>
+    <label>choking on tourniquet</label>
     <description>A severe lack of intellect caused a potentially fatal mishap in form of a misapplied tourniquet.</description>
     <makesSickThought>false</makesSickThought>
     <lethalSeverity>1</lethalSeverity>
