@@ -207,7 +207,7 @@ public class MoreInjuriesMod : Mod
             "As armor condition deteriorates after absorbing damage, the chance of spalling naturally increases when these absorbing layers are compromised. " +
             "For example, at 0.8, the chance of spalling remains 0 until the armor is at 80% hp, etc. At 0, spalling is disabled."
             );
-        Settings.ArmorHealthSpallingThreshold = (float)Math.Round(list.Slider(Mathf.Clamp(Settings.ArmorHealthSpallingThreshold, 0.1f, 1f), 0.1f, 1f));
+        Settings.ArmorHealthSpallingThreshold = (float)Math.Round(list.Slider(Mathf.Clamp(Settings.ArmorHealthSpallingThreshold, 0.1f, 1f), 0.1f, 1f), 2);
         list.Label($"Chance of spalling injuries: {Settings.SpallingChance} (default: 0.75)", -1,
             """
             The likelihood of exposed body parts receiving spalling injuries after spalling has occurred. Evaluated per body part.
@@ -315,7 +315,7 @@ public class MoreInjuriesMod : Mod
         bool advancedHearingDamage = Settings.EnableAdvancedHearingDamage;
         list.CheckboxLabeled("Enable advanced hearing damage simulation (default: false)", ref advancedHearingDamage,
             """
-            If enabled, bystanding pawns near a shooter may also suffer from hearing damage, especially if the shooter is using a loud weapon or firing in an enclosed space.
+            Requires basic hearing damage to be enabled. If enabled, bystanding pawns near a shooter may also suffer from hearing damage, especially if the shooter is using a loud weapon or firing in an enclosed space.
 
             Disabled by default, may reduce performance during large battles, especially with Combat Extended loaded, due to the increased number of calculations required.
             """);
