@@ -30,6 +30,7 @@ public static class KnownBodyPartDefOf
     public static BodyPartDef Femur = null!;
     public static BodyPartDef Tibia = null!;
     public static BodyPartDef Toe = null!;
+    public static BodyPartDef Brain = null!;
     // added by MoreInjuries
     public static BodyPartDef SmallIntestine = null!;
     public static BodyPartDef LargeIntestine = null!;

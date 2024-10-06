@@ -5,7 +5,7 @@ namespace MoreInjuries.HealthConditions.Fractures.Lacerations;
 
 internal class ParentLacerationHandler() : ILacerationHandler
 {
-    public BodyPartDef[]? TargetDefs => null;
+    public HashSet<BodyPartDef>? TargetDefs => null;
 
     public IEnumerable<BodyPartRecord> GetTargets(Pawn patient, BodyPartRecord fracture) => [fracture.parent];
 }

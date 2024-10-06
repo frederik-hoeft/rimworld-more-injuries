@@ -19,7 +19,8 @@ public class MoreInjuriesSettings : ModSettings
     internal float EmpDamageToBionicsChance = 0.45f;
 
     internal bool EnableHemorrhagicStroke = true;
-    internal float HemorrhagicStrokeChance = 0.15f;
+    internal float HemorrhagicStrokeChance = 0.75f;
+    internal float HemorrhagicStrokeThreshold = 15f;
 
     internal bool EnableChoking = true;
     internal float ChokingChanceOnDamage = 0.75f;
@@ -71,6 +72,7 @@ public class MoreInjuriesSettings : ModSettings
         // hemorrhagic stroke after blunt trauma
         Scribe_Values.Look(ref EnableHemorrhagicStroke, nameof(EnableHemorrhagicStroke));
         Scribe_Values.Look(ref HemorrhagicStrokeChance, nameof(HemorrhagicStrokeChance));
+        Scribe_Values.Look(ref HemorrhagicStrokeThreshold, nameof(HemorrhagicStrokeThreshold));
         // choking on blood
         Scribe_Values.Look(ref EnableChoking, nameof(EnableChoking));
         Scribe_Values.Look(ref EnableChokingSounds, nameof(EnableChokingSounds));

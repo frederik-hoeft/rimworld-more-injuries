@@ -64,16 +64,62 @@
   </RecipeDef>
 
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>RemoveHemorrhagicStroke</defName>
-    <label>Cure hemorrhagic stroke</label>
-    <description>Cure a stroke.</description>
+    <defName>RemoveHemorrhagicStroke_Ultratech</defName>
+    <label>Cure stroke: stereotactic surgery</label>
+    <description>Perform stereotactic surgery to cure a hemorrhagic stroke.
+Stereotactic surgery is a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of the ruptured blood vessel while minimizing damage to surrounding tissues.
+\nA very complex and delicate procedure that requires a high level of skill and precision but yields a very high success rate.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
-    <jobString>Fixing a stroke</jobString>
+    <jobString>Performing stereotactic surgery</jobString>
     <workAmount>4500</workAmount>
     <removesHediff>HemorrhagicStroke</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully cured {1}'s stroke.</successfullyRemovedHediffMessage>
-    <deathOnFailedSurgeryChance>0.20</deathOnFailedSurgeryChance>
-    <anesthetize>false</anesthetize>
+    <deathOnFailedSurgeryChance>0.01</deathOnFailedSurgeryChance>
+    <anesthetize>true</anesthetize>
+    <skillRequirements>
+      <Medicine>8</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineIndustrial</li>
+            <li>MedicineUltratech</li>
+          </thingDefs>
+        </filter>
+        <count>4</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineUltratech</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>MedicineIndustrial</li>
+        <li>MedicineUltratech</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>0.99</surgerySuccessChanceFactor>
+  </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RemoveHemorrhagicStroke_Industrial</defName>
+    <label>Cure stroke: decompressive craniectomy</label>
+    <description>Perform a decompressive craniectomy to cure a hemorrhagic stroke.
+Decompressive craniectomy is a neurosurgical procedure in which part of the skull is removed to allow a swelling or herniating brain room to expand without being squeezed. It is performed on victims of traumatic brain injury, stroke, Chiari malformation, and other conditions associated with raised intracranial pressure. Use of this surgery is controversial and associated with a higher risk of complications, but it can be life-saving in cases of severe brain swelling.
+\nA challenging surgery that requires familiarity with neurosurgical techniques and a steady hand. Yields a moderate success rate.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Performing a decompressive craniectomy</jobString>
+    <workAmount>3000</workAmount>
+    <removesHediff>HemorrhagicStroke</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully cured {1}'s stroke.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.025</deathOnFailedSurgeryChance>
+    <anesthetize>true</anesthetize>
     <skillRequirements>
       <Medicine>5</Medicine>
     </skillRequirements>
@@ -82,16 +128,56 @@
         <filter>
           <thingDefs>
             <li>MedicineIndustrial</li>
+            <li>MedicineUltratech</li>
           </thingDefs>
         </filter>
-        <count>5</count>
+        <count>3</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>
       <thingDefs>
         <li>MedicineIndustrial</li>
+        <li>MedicineUltratech</li>
       </thingDefs>
     </fixedIngredientFilter>
     <surgerySuccessChanceFactor>0.9</surgerySuccessChanceFactor>
+  </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RemoveHemorrhagicStroke_Tribal</defName>
+    <label>Cure stroke: trepanation</label>
+    <description>Perform a trepanation to cure a hemorrhagic stroke.
+Trepanation is a surgical intervention in which a hole is drilled or scraped into the human skull to treat health problems related to intracranial diseases or release pressured blood buildup from an injury. It is one of the oldest surgical procedures known to humanity, with evidence of its practice dating back to the Neolithic era. While it is a simple and straightforward procedure, it carries a high risk of infection and complications.
+\nA basic surgery that can be performed by anyone with rudimentary medical knowledge. Yields a low success rate.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Pefroming a trepanation</jobString>
+    <workAmount>1500</workAmount>
+    <removesHediff>HemorrhagicStroke</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully cured {1}'s stroke. The patient is lucky to be alive.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.075</deathOnFailedSurgeryChance>
+    <anesthetize>false</anesthetize>
+    <skillRequirements>
+      <Medicine>2</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineHerbal</li>
+            <li>MedicineIndustrial</li>
+            <li>MedicineUltratech</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>MedicineHerbal</li>
+        <li>MedicineIndustrial</li>
+        <li>MedicineUltratech</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>0.7</surgerySuccessChanceFactor>
   </RecipeDef>
 </Defs>

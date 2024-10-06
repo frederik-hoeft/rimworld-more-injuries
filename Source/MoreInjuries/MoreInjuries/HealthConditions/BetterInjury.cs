@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.KnownDefs;
 using RimWorld;
+using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
@@ -9,6 +10,22 @@ public class BetterInjury : Hediff_Injury
 {
     private static readonly Color s_closedWoundColor = new(115, 115, 115);
     private static readonly Color s_hemostatColor = new(90, 155, 220);
+
+    private static HashSet<string>? s_indirectlyAddedInjuries;
+
+    public static HashSet<string> IndirectlyAddedInjuries
+    {
+        get
+        {
+            s_indirectlyAddedInjuries ??=
+            [
+                KnownHediffDefOf.Fracture.defName,
+                KnownHediffDefOf.BoneFragmentLaceration.defName,
+                KnownHediffDefOf.SpallFragmentCut.defName
+            ];
+            return s_indirectlyAddedInjuries;
+        }
+    }
 
     private float _overriddenBleedRate;
     private bool _isHemostatApplied = false;
@@ -151,7 +168,8 @@ public class BetterInjury : Hediff_Injury
 
     public override void PostAdd(DamageInfo? dinfo)
     {
-        if (def == KnownHediffDefOf.Fracture || def == KnownHediffDefOf.BoneFragmentLaceration || def == KnownHediffDefOf.SpallFragmentCut)
+        // CE isn't playing nicely with us, so we have to do this
+        if (Part is { coverageAbs: <= 0f } && (MoreInjuriesMod.CombatExtendedLoaded || IndirectlyAddedInjuries.Contains(def.defName)))
         {
             // these injuries were added by us, so override "Added injury to <part> but it should be impossible to hit" error
             // the correct way to do this would be to transpile the error check in the base implementation, but we don't do that for the following reasons:

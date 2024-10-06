@@ -6,7 +6,9 @@
       <li>RepairCollapsedLung</li>
       <li>RepairFracture</li>
       <li>InstallBionicSmallIntestine</li>
-      <li>RemoveHemorrhagicStroke</li>
+      <li>RemoveHemorrhagicStroke_Ultratech</li>
+      <li>RemoveHemorrhagicStroke_Industrial</li>
+      <li>RemoveHemorrhagicStroke_Tribal</li>
     </value>
   </Operation>
 </Patch>

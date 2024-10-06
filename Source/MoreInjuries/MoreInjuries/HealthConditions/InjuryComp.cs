@@ -5,13 +5,13 @@ using MoreInjuries.HealthConditions.Fractures;
 using MoreInjuries.Debug;
 using MoreInjuries.HealthConditions.Paralysis;
 using MoreInjuries.HealthConditions.IntestinalSpill;
-using MoreInjuries.HealthConditions.HemorrhagicStroke;
 using MoreInjuries.HealthConditions.AdrenalineRush;
 using MoreInjuries.HealthConditions.HydrostaticShock;
 using MoreInjuries.HealthConditions.LungCollapse;
 using MoreInjuries.HealthConditions.InhalationInjury;
 using MoreInjuries.HealthConditions.SpallingInjury;
 using MoreInjuries.HealthConditions.EmpShutdown;
+using MoreInjuries.HealthConditions.HeadInjury;
 
 namespace MoreInjuries.HealthConditions;
 

@@ -51,7 +51,7 @@ internal class SpallingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPo
         // if combat extended is loaded, disable spall for low damage bullets (approximation)
         if (MoreInjuriesMod.CombatExtendedLoaded)
         {
-            if (dinfo.Amount < 8f)
+            if (dinfo.Amount < 6f)
             {
                 return;
             }

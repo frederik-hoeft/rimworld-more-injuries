@@ -5,13 +5,13 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Fractures.Lacerations;
 
-internal class SiblingsAndDecendantsLacerationHandler(BodyPartDef[]? targets = null) : ILacerationHandler
+internal class SiblingsAndDecendantsLacerationHandler(HashSet<BodyPartDef>? targets = null) : ILacerationHandler
 {
-    public BodyPartDef[]? TargetDefs { get; } = targets;
+    public HashSet<BodyPartDef>? TargetDefs { get; } = targets;
 
     public IEnumerable<BodyPartRecord> GetTargets(Pawn patient, BodyPartRecord fracture)
     {
-        BodyPartDef[]? targets = TargetDefs;
+        HashSet<BodyPartDef>? targets = TargetDefs;
         return fracture.GetSiblingsAndDecendants(patient)
             .Where(bodyPart =>
                 targets is null && !bodyPart.def.IsSolidInDefinition_Debug

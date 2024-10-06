@@ -1,8 +1,9 @@
 ﻿using Verse;
 
-namespace MoreInjuries.HealthConditions.HemorrhagicStroke;
+namespace MoreInjuries.HealthConditions;
 
 // used by XML definitions
+// TODO: likely obsolete, remove if not used
 public class StabilizableHediffComp : HediffComp
 {
     private bool _stabilized;

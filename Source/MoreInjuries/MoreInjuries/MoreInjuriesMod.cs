@@ -26,7 +26,7 @@ public class MoreInjuriesMod : Mod
     }
 
     private Vector2 _scrollPosition;
-    private const float MIN_CONTENT_HEIGHT = 256f;
+    private const float MIN_CONTENT_HEIGHT = 512f;
     private float _knownContentHeight = MIN_CONTENT_HEIGHT;
     private bool _requiresScrolling = false;
     private bool _hasMap = false;
@@ -207,7 +207,7 @@ public class MoreInjuriesMod : Mod
             "As armor condition deteriorates after absorbing damage, the chance of spalling naturally increases when these absorbing layers are compromised. " +
             "For example, at 0.8, the chance of spalling remains 0 until the armor is at 80% hp, etc. At 0, spalling is disabled."
             );
-        Settings.ArmorHealthSpallingThreshold = list.Slider(Mathf.Clamp(Settings.ArmorHealthSpallingThreshold, 0.1f, 1f), 0.1f, 1f);
+        Settings.ArmorHealthSpallingThreshold = (float)Math.Round(list.Slider(Mathf.Clamp(Settings.ArmorHealthSpallingThreshold, 0.1f, 1f), 0.1f, 1f));
         list.Label($"Chance of spalling injuries: {Settings.SpallingChance} (default: 0.75)", -1,
             """
             The likelihood of exposed body parts receiving spalling injuries after spalling has occurred. Evaluated per body part.
@@ -239,18 +239,20 @@ public class MoreInjuriesMod : Mod
         // hemorrhagic stroke after blunt trauma
         list.GapLine();
         Text.Font = GameFont.Medium;
-        list.Label("Traumatic Head Injuries (Hemorrhagic Stroke)");
+        list.Label("Hemorrhagic Stroke (Head Injury)");
         Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable hemorrhagic stroke mechanics (default: true)", ref Settings.EnableHemorrhagicStroke,
             """
-            If enabled, pawns that receive major blunt trauma may suffer from a hemorrhagic stroke, which can be fatal if not treated in time.
-
-            Beating up your prisoners may have more severe consequences than you think.
+            If enabled, pawns that receive severe head injuries may suffer from a hemorrhagic stroke, which can be fatal if not treated in time.
             """);
-        list.Label($"Chance of hemorrhagic stroke on blunt trauma: {Settings.HemorrhagicStrokeChance} (default: 0.15)", -1,
-            """
-            The likelihood of a hemorrhagic stroke being applied to a pawn after receiving a massive amount of blunt trauma.
-            """);
+        list.Label($"Raw head trauma threshold for guaranteed hemorrhagic stroke: {Settings.HemorrhagicStrokeThreshold} (default: 15)", -1,
+            "The equivalent amount of damage dealt to the skull required to cause a hemorrhagic stroke in 100% of all cases. " +
+            "The actual chance is evaluated based on the location on the head and the severity of the damage (e.g. being punched on the nose vs. being stabbed in the brain). " +
+            "The final chance is then scaled by the hemorrhagic stroke chance.");
+        Settings.HemorrhagicStrokeThreshold = (float)Math.Ceiling(list.Slider(Mathf.Clamp(Settings.HemorrhagicStrokeThreshold, 1f, 50f), 1f, 50f));
+        list.Label($"Chance of hemorrhagic stroke after severe head injuries: {Settings.HemorrhagicStrokeChance} (default: 0.75)", -1,
+            "Scaling factor for the calculated chance of a hemorrhagic stroke after severe head injuries. Evaluated per damage event. " +
+            "If set to 1, the calculated chance is used as-is. Lower values allow to reduce the overall chance of hemorrhagic strokes, even if the damage threshold is met.");
         Settings.HemorrhagicStrokeChance = (float)Math.Round(list.Slider(Settings.HemorrhagicStrokeChance, 0f, 1f), 2);
         // EMP damage to bionics
         list.GapLine();

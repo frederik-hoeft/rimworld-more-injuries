@@ -147,6 +147,10 @@ public class TourniquetThingComp : ThingComp
             // search in the patient's vicinity
             foreach (IntVec3 cell in patient.CellsAdjacent8WayAndInside())
             {
+                if (!cell.InBounds(patient.Map))
+                {
+                    continue;
+                }
                 tourniquet = cell.GetFirstThing(patient.Map, KnownThingDefOf.Tourniquet);
                 if (tourniquet is not null)
                 {
