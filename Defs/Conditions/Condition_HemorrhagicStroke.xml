@@ -23,9 +23,6 @@
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
-      <li>
-        <compClass>MoreInjuries.HealthConditions.StabilizableHediffComp</compClass>
-      </li>
     </comps>
     <stages>
       <li>

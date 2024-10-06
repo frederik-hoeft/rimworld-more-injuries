@@ -16,8 +16,8 @@ public class HearingLossComp : ThingComp
     {
         // scale to the inverse of the distance between the shooter and the target
         float distance = shooter.Position.DistanceTo(target.Position);
-        // cap the distance to 0.5f to avoid values approaching infinity
-        distance = Mathf.Max(0.5f, distance);
+        // cap the distance to 0.2f to avoid values approaching infinity
+        distance = Mathf.Max(0.2f, distance);
         float result = 1f / distance;
         // check if anything is worn that covers the ears
         if (target.apparel is { WornApparel.Count: > 0 })
@@ -51,7 +51,7 @@ public class HearingLossComp : ThingComp
                 // if the apparel covers the ears, the hearing damage is reduced (stacks with the number of layers)
                 if (coversEars)
                 {
-                    result /= 5f;
+                    result *= 0.05f;
                 }
             }
         }
@@ -66,6 +66,11 @@ public class HearingLossComp : ThingComp
 
     public override void Notify_UsedWeapon(Pawn shooter)
     {
+        bool advancedHearingDamage = MoreInjuriesMod.Settings.EnableAdvancedHearingDamage;
+        if (!MoreInjuriesMod.Settings.EnableBasicHearingDamage && !advancedHearingDamage)
+        {
+            return;
+        }
         // early exit if the pawn is not a human
         if (shooter.def != ThingDefOf.Human)
         {
@@ -73,6 +78,13 @@ public class HearingLossComp : ThingComp
         }
         // early exit if the pawn is not equipped with a gun
         if (shooter.equipment?.Primary?.TryGetComp<CompEquippable>()?.PrimaryVerb.verbProps is not VerbProperties { range: > 0 } gunProperties)
+        {
+            return;
+        }
+        // apply hearing damage to the shooter
+        ApplyHearingDamage(shooter, shooter);
+        // apply hearing damage to nearby pawns if enabled (excluding the shooter)
+        if (!advancedHearingDamage)
         {
             return;
         }
@@ -94,20 +106,25 @@ public class HearingLossComp : ThingComp
             // cannot use iterator here because apparently the list is concurrently modified (sketch!)
             for (int i = 0; i < pawnsInCell.Count; i++)
             {
-                if (pawnsInCell[i] is Pawn otherPawn)
+                if (pawnsInCell[i] is Pawn otherPawn && shooter != otherPawn)
                 {
-                    float hearingDamageMultiplier = GetHearingDamageMultiplier(shooter, otherPawn);
-                    if (Rand.Chance(hearingDamageMultiplier / 10f))
-                    {
-                        if (!otherPawn.health.hediffSet.TryGetHediff(KnownHediffDefOf.HearingLoss, out Hediff? hearingLoss))
-                        {
-                            hearingLoss = HediffMaker.MakeHediff(KnownHediffDefOf.HearingLoss, otherPawn);
-                            otherPawn.health.AddHediff(hearingLoss);
-                        }
-                        hearingLoss.Severity += hearingDamageMultiplier / 100f;
-                    }
+                    ApplyHearingDamage(shooter, otherPawn);
                 }
             }
+        }
+    }
+
+    private void ApplyHearingDamage(Pawn shooter, Pawn otherPawn)
+    {
+        float hearingDamageMultiplier = GetHearingDamageMultiplier(shooter, otherPawn);
+        if (Rand.Chance(hearingDamageMultiplier / 10f))
+        {
+            if (!otherPawn.health.hediffSet.TryGetHediff(KnownHediffDefOf.HearingLoss, out Hediff? hearingLoss))
+            {
+                hearingLoss = HediffMaker.MakeHediff(KnownHediffDefOf.HearingLoss, otherPawn);
+                otherPawn.health.AddHediff(hearingLoss);
+            }
+            hearingLoss.Severity += hearingDamageMultiplier / 100f;
         }
     }
 

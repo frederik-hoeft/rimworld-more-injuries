@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <!-- tweak some of the body part coverage changes made by Combat Extended -->
+  <!-- 0.04 to spend -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li[def="Ribcage"]/coverage</xpath>
+      <value>
+        <coverage>0.054</coverage>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li[def="Pelvis"]/coverage</xpath>
+      <value>
+        <coverage>0.038</coverage>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li[def="Stomach"]/coverage</xpath>
+      <value>
+        <coverage>0.038</coverage>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li[def="Heart"]/coverage</xpath>
+      <value>
+        <coverage>0.03</coverage>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li[def="Lung"]/coverage</xpath>
+      <value>
+        <coverage>0.041</coverage>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li[def="Kidney"]/coverage</xpath>
+      <value>
+        <coverage>0.023</coverage>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationReplace">
+      <xpath>Defs/BodyDef[defName="Human"]/corePart/parts/li[def="Liver"]/coverage</xpath>
+      <value>
+        <coverage>0.044</coverage>
+      </value>
+    </match>
+  </Operation>
+</Patch>

@@ -304,14 +304,25 @@ public class MoreInjuriesMod : Mod
         // miscellaneous
         list.GapLine();
         Text.Font = GameFont.Medium;
-        list.Label("Miscellaneous");
+        list.Label("Hearing Damage");
         Text.Font = GameFont.Small;
-        list.CheckboxLabeled("Enable hearing damage mechanics (requires game reload, default: false)", ref Settings.EnableHearingDamage,
+        list.CheckboxLabeled("Enable hearing damage mechanics (default: true)", ref Settings.EnableBasicHearingDamage,
             """
-            If enabled, pawns shooting or being close to loud weapons may suffer from hearing loss, especially if indoors or not wearing ear protection. Helmets and other apparel that covers the ears can reduce the risk of hearing damage.
+            If enabled, pawns shooting or being exposed to explosions may suffer from hearing loss, especially if indoors or not wearing ear protection. Helmets and other apparel that covers the ears can reduce the risk of hearing damage. Being exposed to an explosion will likely cause hearing damage no matter what.
 
             Apparently, gunshots are loud. Who knew?
             """);
+        bool advancedHearingDamage = Settings.EnableAdvancedHearingDamage;
+        list.CheckboxLabeled("Enable advanced hearing damage simulation (default: false)", ref advancedHearingDamage,
+            """
+            If enabled, bystanding pawns near a shooter may also suffer from hearing damage, especially if the shooter is using a loud weapon or firing in an enclosed space.
+
+            Disabled by default, may reduce performance during large battles, especially with Combat Extended loaded, due to the increased number of calculations required.
+            """);
+        Settings.EnableAdvancedHearingDamage = Settings.EnableBasicHearingDamage && advancedHearingDamage;
+        list.GapLine();
+        list.Label("Miscellaneous");
+        Text.Font = GameFont.Small;
         list.Label($"Multiplier for bleeding from closed internal injuries: {Settings.ClosedInternalWouldBleedingModifier} (default: 0.75)", -1,
             "Assume a pawn is shot in the torso and the bullet penetrates the skin and stomach, causing internal and external bleeding. " +
             "Simply applying a bandage to the skin wound will not stop the internal bleeding, but may still slow it down. " +

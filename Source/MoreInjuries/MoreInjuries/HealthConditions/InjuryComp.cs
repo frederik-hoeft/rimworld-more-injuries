@@ -12,6 +12,7 @@ using MoreInjuries.HealthConditions.InhalationInjury;
 using MoreInjuries.HealthConditions.SpallingInjury;
 using MoreInjuries.HealthConditions.EmpShutdown;
 using MoreInjuries.HealthConditions.HeadInjury;
+using MoreInjuries.HealthConditions.HearingLoss;
 
 namespace MoreInjuries.HealthConditions;
 
@@ -36,7 +37,8 @@ public class InjuryComp : ThingComp
             new InhalationInjuryWorker(this),
             new SpallingWorker(this),
             new ChokingWorker(this),
-            new EmpBionicsWorker(this)
+            new EmpBionicsWorker(this),
+            new HearingLossExplosionsWorker(this),
         ];
     }
 

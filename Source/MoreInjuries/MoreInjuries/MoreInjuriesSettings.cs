@@ -34,7 +34,8 @@ public class MoreInjuriesSettings : ModSettings
     internal float ArmorHealthSpallingThreshold = 0.95f;
     internal float SpallingChance = 0.75f;
 
-    internal bool EnableHearingDamage = false;
+    internal bool EnableBasicHearingDamage = true;
+    internal bool EnableAdvancedHearingDamage = false;
 
     internal bool EnableFractures = true;
     internal float FractureDamageTreshold = 10f;
@@ -91,8 +92,10 @@ public class MoreInjuriesSettings : ModSettings
         // EMP
         Scribe_Values.Look(ref EnableEmpDamageToBionics, nameof(EnableEmpDamageToBionics));
         Scribe_Values.Look(ref EmpDamageToBionicsChance, nameof(EmpDamageToBionicsChance));
+        // hearing damage
+        Scribe_Values.Look(ref EnableBasicHearingDamage, nameof(EnableBasicHearingDamage));
+        Scribe_Values.Look(ref EnableAdvancedHearingDamage, nameof(EnableAdvancedHearingDamage));
 
-        Scribe_Values.Look(ref EnableHearingDamage, nameof(EnableHearingDamage));
         Scribe_Values.Look(ref HideUndiagnosedInternalInjuries, nameof(HideUndiagnosedInternalInjuries));
         Scribe_Values.Look(ref ClosedInternalWouldBleedingModifier, nameof(ClosedInternalWouldBleedingModifier));
         Scribe_Values.Look(ref UseIndividualFloatMenus, nameof(UseIndividualFloatMenus));

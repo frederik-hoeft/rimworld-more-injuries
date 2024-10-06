@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
-  <!-- TODO: CE modifies the body coverage, so add compatibility patches for CE -->
   <Operation Class="PatchOperationAdd">
     <xpath>/Defs/BodyDef[defName="Human"]/corePart/parts</xpath>
     <value>
       <li>
         <def>Abdomen</def>
-        <coverage>0.14</coverage>
+        <coverage>0.1</coverage>
         <depth>Outside</depth>
         <groups>
           <li>Torso</li>

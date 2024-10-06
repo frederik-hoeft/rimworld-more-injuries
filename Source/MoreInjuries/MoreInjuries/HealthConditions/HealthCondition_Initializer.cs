@@ -21,17 +21,14 @@ public static class HealthCondition_Initializer
         ThingDefOf.Human.comps.Add(new CompProperties { compClass = typeof(TourniquetThingComp) });
         ThingDefOf.Human.comps.Add(new CompProperties { compClass = typeof(HemostatThingComp) });
 
-        if (MoreInjuriesMod.Settings.EnableHearingDamage)
+        IEnumerable<ThingDef> guns = DefDatabase<ThingDef>.AllDefsListForReading.Where(def => def.Verbs?.Any(verb => verb.range > 0) is true);
+        foreach (ThingDef def in guns)
         {
-            IEnumerable<ThingDef> guns = DefDatabase<ThingDef>.AllDefsListForReading.Where(def => def.Verbs?.Any(verb => verb.range > 0) is true);
-            foreach (ThingDef def in guns)
+            def.comps ??= [];
+            def.comps.Add(new CompProperties
             {
-                def.comps ??= [];
-                def.comps.Add(new CompProperties
-                {
-                    compClass = typeof(HearingLossComp)
-                });
-            }
+                compClass = typeof(HearingLossComp)
+            });
         }
     }
 }
