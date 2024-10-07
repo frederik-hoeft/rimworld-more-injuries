@@ -7,6 +7,7 @@
     <description>Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. Potentially fatal unless treated. Can be cleared by performing CPR or using a specialized airway suction device. \nTo clear it, use an airway suction device, or order a skilled doctor to perform CPR.</description>
     <makesSickThought>false</makesSickThought>
     <lethalSeverity>1</lethalSeverity>
+    <defaultLabelColor>(255, 102, 102)</defaultLabelColor>
     <tendable>false</tendable>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
@@ -143,7 +144,7 @@
       <li>
         <minSeverity>0.250</minSeverity>
         <label>moderate</label>
-        <lifeThreatening>false</lifeThreatening>
+        <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Breathing</capacity>
@@ -154,7 +155,7 @@
       <li>
         <minSeverity>0.450</minSeverity>
         <label>moderate</label>
-        <lifeThreatening>false</lifeThreatening>
+        <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Breathing</capacity>
@@ -165,7 +166,7 @@
       <li>
         <minSeverity>0.650</minSeverity>
         <label>moderate</label>
-        <lifeThreatening>false</lifeThreatening>
+        <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Breathing</capacity>
@@ -176,7 +177,7 @@
       <li>
         <minSeverity>0.750</minSeverity>
         <label>extreme</label>
-        <lifeThreatening>false</lifeThreatening>
+        <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Breathing</capacity>

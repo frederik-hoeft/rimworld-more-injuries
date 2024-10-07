@@ -35,7 +35,7 @@ public class ShockHediffComp : HediffComp
         base.CompPostTick(ref severityAdjustment);
 
         Hediff? bloodLoss = GetBloodLoss();
-        if (bloodLoss?.Severity is null or < 0.15f || _fixedNow)
+        if (bloodLoss?.Severity is null or < 0.45f || _fixedNow)
         {
             // the patient is stable, start recovery
             parent.Severity -= 0.000025f;

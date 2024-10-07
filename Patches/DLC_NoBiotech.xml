@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Biotech</li>
+    </mods>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+        <RecipeDef ParentName="SurgeryFlesh">
+          <defName>BloodTransfusion_Fallback_Tribal</defName>
+          <label>blood transfusion (herbal)</label>
+          <description>Perform a blood transfusion on a patient to combat blood loss and prevent hypovolemic shock. Each blood transfusion restores 20% blood volume.
+\nThis is a fallback recipe for non-biotech owners.</description>
+          <jobString>performing blood transfusion on TargetA.</jobString>
+          <workAmount>500</workAmount>
+          <hideBodyPartNames>true</hideBodyPartNames>
+          <targetsBodyPart>false</targetsBodyPart>
+          <anesthetize>false</anesthetize>
+          <workerClass>MoreInjuries.HealthConditions.HypovolemicShock.Recipe_BloodTransfusion_Fallback</workerClass>
+          <surgeryOutcomeEffect IsNull="True" /> <!-- Always succeeds -->
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>MedicineHerbal</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>MedicineHerbal</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+        </RecipeDef>
+        <RecipeDef ParentName="SurgeryFlesh">
+          <defName>BloodTransfusion_Fallback_Industrial</defName>
+          <label>blood transfusion (industrial)</label>
+          <description>Perform a blood transfusion on a patient to combat blood loss and prevent hypovolemic shock. Each blood transfusion restores 35% blood volume.
+\nThis is a fallback recipe for non-biotech owners.</description>
+          <jobString>performing blood transfusion on TargetA.</jobString>
+          <workAmount>500</workAmount>
+          <hideBodyPartNames>true</hideBodyPartNames>
+          <targetsBodyPart>false</targetsBodyPart>
+          <anesthetize>false</anesthetize>
+          <workerClass>MoreInjuries.HealthConditions.HypovolemicShock.Recipe_BloodTransfusion_Fallback</workerClass>
+          <surgeryOutcomeEffect IsNull="True" /> <!-- Always succeeds -->
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>MedicineIndustrial</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>MedicineIndustrial</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+        </RecipeDef>
+        <RecipeDef ParentName="SurgeryFlesh">
+          <defName>BloodTransfusion_Fallback_Ultratech</defName>
+          <label>blood transfusion (glitterworld)</label>
+          <description>Perform a blood transfusion on a patient to combat blood loss and prevent hypovolemic shock. Restores 100% blood volume.
+\nThis is a fallback recipe for non-biotech owners.</description>
+          <jobString>performing blood transfusion on TargetA.</jobString>
+          <workAmount>500</workAmount>
+          <hideBodyPartNames>true</hideBodyPartNames>
+          <targetsBodyPart>false</targetsBodyPart>
+          <anesthetize>false</anesthetize>
+          <workerClass>MoreInjuries.HealthConditions.HypovolemicShock.Recipe_BloodTransfusion_Fallback</workerClass>
+          <surgeryOutcomeEffect IsNull="True" /> <!-- Always succeeds -->
+          <ingredients>
+            <li>
+              <filter>
+                <thingDefs>
+                  <li>MedicineUltratech</li>
+                </thingDefs>
+              </filter>
+              <count>2</count>
+            </li>
+          </ingredients>
+          <fixedIngredientFilter>
+            <thingDefs>
+              <li>MedicineUltratech</li>
+            </thingDefs>
+          </fixedIngredientFilter>
+        </RecipeDef>
+      </value>
+    </nomatch>
+  </Operation>
+</Patch>

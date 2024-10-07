@@ -1,4 +1,5 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Extensions;
+using MoreInjuries.KnownDefs;
 using RimWorld;
 using Verse;
 
@@ -11,12 +12,17 @@ internal class HydrostaticShockWorker(MoreInjuryComp parent) : InjuryWorker(pare
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {
         Pawn patient = Target;
-        if (!damage.diminished && damage.totalDamageDealt > 31f && dinfo.Def == DamageDefOf.Bullet)
+        if (damage is { diminished: false, totalDamageDealt: > 31f } 
+            && dinfo.Def == DamageDefOf.Bullet 
+            && Rand.Chance(MoreInjuriesMod.Settings.HydrostaticShockChanceOnDamage) 
+            && patient.health.hediffSet.GetBrain() is BodyPartRecord brain)
         {
-            if (Rand.Chance(MoreInjuriesMod.Settings.HydrostaticShockChanceOnDamage))
+            if (!patient.health.hediffSet.TryGetFirstHediffMatchingPart(brain, KnownHediffDefOf.HemorrhagicStroke, out Hediff? trauma))
             {
-                patient.health.AddHediff(HediffMaker.MakeHediff(KnownHediffDefOf.HemorrhagicStroke, patient));
+                trauma = HediffMaker.MakeHediff(KnownHediffDefOf.HemorrhagicStroke, patient);
+                patient.health.AddHediff(trauma, brain);
             }
+            trauma!.Severity += 0.1f;
         }
     }
 }
