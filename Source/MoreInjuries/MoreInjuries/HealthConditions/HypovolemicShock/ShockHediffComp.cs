@@ -6,8 +6,6 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
-// TODO: add built-in blood transfusion support (currently requires Biotech DLC)
-// can probably copy textures from the DLC
 public class ShockHediffComp : HediffComp
 {
     private bool _fixedNow = false;

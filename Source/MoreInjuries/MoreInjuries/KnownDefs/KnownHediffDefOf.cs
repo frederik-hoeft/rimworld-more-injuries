@@ -30,10 +30,8 @@ public static class KnownHediffDefOf
     public static HediffDef HypovolemicShock = null!;
     public static HediffDef LungCollapse = null!;
     public static HediffDef OrganHypoxia = null!;
-    public static HediffDef Shock = null!; // TODO: currently unused
     public static HediffDef SpallFragmentCut = null!;
     public static HediffDef SpinalCordParalysis = null!;
     public static HediffDef StomachAcidBurn = null!;
     public static HediffDef TourniquetApplied = null!;
-    public static HediffDef TraumaticBrainInjury = null!; // TODO: currently unused
 }

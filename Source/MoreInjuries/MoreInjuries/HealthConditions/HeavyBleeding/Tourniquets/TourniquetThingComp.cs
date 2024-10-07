@@ -46,7 +46,7 @@ public class TourniquetThingComp : ThingComp
 
                 foreach (BodyPartRecord bodyPart in limbs)
                 {
-                    options.Add(new FloatMenuOption($"Apply a tourniquet to {bodyPart.Label.Colorize(Color.green)}", async () =>
+                    options.Add(new FloatMenuOption($"Apply a tourniquet to {bodyPart.Label.Colorize(Color.green)}", () =>
                     {
                         TargetedBodyPart = bodyPart;
                         if (!patient.Downed)
@@ -59,25 +59,6 @@ public class TourniquetThingComp : ThingComp
                             };
                             patient.jobs.StartJob(applyTourniquet, JobCondition.InterruptForced);
                             return;
-                        }
-                        // can't really run a job since the pawn is downed, so we'll just run the job driver directly
-                        // when running the "real" job driver, a 1 second delay is added to simulate the time it takes to apply a tourniquet
-                        // it makes no sense for the tourniquet to be applied instantly, especially when the pawn is downed
-                        // so we attempt to add an even longer delay here
-                        // TODO: the theory is there, but no idea if Unity actually respects this (do some testing!)
-                        if (SynchronizationContext.Current is not null)
-                        {
-                            Logger.LogVerbose("Trusting Unity's synchronization context implementation to post ApplyTourniquet job continuation back to the main thread after asynchronous delay");
-                            // as this is an *async void* that isn't awaited, we can only do this if we are certain that there is a synchronization context
-                            // so that the continuation can be marshaled back onto the main thread
-                            // if there is no synchronization context, we can't do this, because async/await will cause concurrency issues and we can't just block the main thread either
-                            await Task.Delay(2000).ConfigureAwait(continueOnCapturedContext: true);
-                            _ = SynchronizationContext.Current ?? throw new InvalidOperationException("Failed to marshal async void continuation back to the main thread :C");
-                            Logger.LogVerbose("Synchronization context is still present, indicating a successful task continuation on the main thread");
-                        }
-                        else
-                        {
-                            Logger.Log("No synchronization context present, cannot apply tourniquet delay without risking concurrency issues");
                         }
                         ApplyTourniquetJobDriver.ApplyTourniquet(patient, tourniquet!, this);
                     }));

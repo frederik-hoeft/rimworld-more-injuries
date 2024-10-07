@@ -14,11 +14,8 @@
         <baseTendDurationHours>4</baseTendDurationHours>
         <severityPerDayTended>-2.5</severityPerDayTended>
       </li>
-      <li Class="HediffCompProperties_Immunizable">
-        <severityPerDayNotImmune>2.5</severityPerDayNotImmune>
-        <immunityPerDaySick>0</immunityPerDaySick>
-        <severityPerDayImmune>0</severityPerDayImmune>
-        <immunityPerDayNotSick>0</immunityPerDayNotSick>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>2.5</severityPerDay>
       </li>
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
