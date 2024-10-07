@@ -114,14 +114,14 @@
       <xpath>/Defs/ThingDef[defName="Human"]</xpath>
       <value>
         <comps>
-          <li Class="MoreInjuries.HealthConditions.InjuryCompProps"></li>
+          <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProps"></li>
         </comps>
       </value>
     </nomatch>
     <match Class="PatchOperationAdd">
       <xpath>/Defs/ThingDef[defName="Human"]/comps</xpath>
       <value>
-        <li Class="MoreInjuries.HealthConditions.InjuryCompProps"></li>
+        <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProps"></li>
       </value>
     </match>
   </Operation>
@@ -139,15 +139,14 @@
           <xpath>/Defs/AlienRace.ThingDef_AlienRace/alienRace/compatibility[isFlesh="true"]/../../comps</xpath>
           <value>
             <comps>
-              
-              <li Class="MoreInjuries.InjuryCompProps"></li>
+              <li Class="MoreInjuries.MoreInjuryCompProps"></li>
             </comps>
           </value>
         </nomatch>
         <match Class="PatchOperationAdd">
           <xpath>/Defs/AlienRace.ThingDef_AlienRace/alienRace/compatibility[isFlesh="true"]/../../comps</xpath>
           <value>
-            <li Class="MoreInjuries.InjuryCompProps"></li>
+            <li Class="MoreInjuries.MoreInjuryCompProps"></li>
           </value>
         </match>
       </li>

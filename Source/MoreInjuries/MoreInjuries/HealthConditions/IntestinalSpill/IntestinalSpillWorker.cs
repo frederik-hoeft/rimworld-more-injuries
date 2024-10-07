@@ -6,7 +6,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.IntestinalSpill;
 
-internal class IntestinalSpillWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+internal class IntestinalSpillWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     private static readonly HashSet<BodyPartDef> s_afflictedOrgans =
     [

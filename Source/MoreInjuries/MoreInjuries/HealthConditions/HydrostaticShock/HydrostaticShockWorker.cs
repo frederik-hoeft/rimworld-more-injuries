@@ -4,7 +4,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HydrostaticShock;
 
-internal class HydrostaticShockWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+internal class HydrostaticShockWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableHydrostaticShock;
 

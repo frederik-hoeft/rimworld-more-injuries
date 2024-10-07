@@ -1,22 +1,30 @@
-﻿using MoreInjuries.Extensions;
+﻿using MoreInjuries.HealthConditions.HeadInjury.Concussions;
+using MoreInjuries.HealthConditions.HeadInjury.HemorrhagicStroke;
 using MoreInjuries.KnownDefs;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeadInjury;
 
-public abstract class HeadInjuryWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+public class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
-    private protected const object? __ = null;
+    private const object? __ = null;
+
+    private readonly HeadInjuryGiver[] _headInjuryGivers =
+    [
+        new ConcussionGiver(),
+        new HemorrhagicStrokeGiver(),
+    ];
 
     public static HashSet<string> DamageDefNameWhitelist { get; }
 
+    public override bool IsEnabled => _headInjuryGivers.Any(giver => giver.IsEnabled);
+
     static HeadInjuryWorker()
     {
-        // allowed damage types that may cause a hemorrhagic stroke when applied to the head
+        // allowed damage types that may cause a head injury when applied to the head
         DamageDefNameWhitelist =
         [
             "Arrow",
@@ -37,13 +45,7 @@ public abstract class HeadInjuryWorker(InjuryComp parent) : InjuryWorker(parent)
         ];
     }
 
-    protected abstract float SettingsMaximumEquivalentDamageSkull { get; }
-
-    protected abstract float SettingsChance { get; }
-
-    protected abstract HediffDef HediffDef { get; }
-
-    protected virtual float CalculateSeverityFactor(BodyPartDef bodyPart) => __ switch
+    private float CalculateSeverityFactor(BodyPartDef bodyPart) => __ switch
     {
         _ when bodyPart == KnownBodyPartDefOf.Brain => 3.0f,
         _ when bodyPart == KnownBodyPartDefOf.Skull => 1.5f,
@@ -64,6 +66,7 @@ public abstract class HeadInjuryWorker(InjuryComp parent) : InjuryWorker(parent)
             return;
         }
         Pawn patient = Target;
+        // assuming an even distribution of the damage across all affected body parts, we can calculate the weighted damage to the head
         float weightedHeadTrauma = 0;
         float aggregatedBodyTrauma = bodyParts.Sum(bodyPart => bodyPart.coverage);
         foreach (BodyPartRecord bodyPart in bodyParts)
@@ -81,22 +84,14 @@ public abstract class HeadInjuryWorker(InjuryComp parent) : InjuryWorker(parent)
         {
             return;
         }
-        // HemorrhagicStrokeThreshold is the equivalent damage directly applied to the skull to cause a hemorrhagic stroke
-        // and scale everything accordingly to the defined chance
-        float chance = Mathf.Clamp01(weightedHeadTrauma / (1.5f * SettingsMaximumEquivalentDamageSkull));
-        float adjustedChance = chance * SettingsChance;
-        if (Rand.Chance(adjustedChance) && patient.health.hediffSet.GetBrain() is BodyPartRecord brain)
+        // equivalentHeadTrauma is the equivalent damage directly applied to the skull to determine the maximum likeliness of the head injury
+        float equivalentHeadTrauma = weightedHeadTrauma / 1.5f;
+        foreach (HeadInjuryGiver giver in _headInjuryGivers)
         {
-            if (!patient.health.hediffSet.TryGetFirstHediffMatchingPart(brain, HediffDef, out Hediff? stroke))
+            if (giver.IsEnabled)
             {
-                stroke = HediffMaker.MakeHediff(HediffDef, patient);
-                stroke.Severity = 0.001f;
-                patient.health.AddHediff(stroke, brain);
-                Logger.LogVerbose($"Added hemorrhagic stroke to {patient.Name}");
+                giver.TryGiveInjury(patient, equivalentHeadTrauma);
             }
-            // scale the initial severity of the stroke with quadratic distribution based on the calculated chance
-            float severityFactor = Rand.Range(0.01f, Mathf.Max(chance, 0.01f));
-            stroke!.Severity += severityFactor * severityFactor;
         }
     }
 }

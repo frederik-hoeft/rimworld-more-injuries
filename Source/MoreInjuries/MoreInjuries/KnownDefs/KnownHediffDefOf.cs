@@ -19,7 +19,7 @@ public static class KnownHediffDefOf
     public static HediffDef BoneFragmentLaceration = null!; 
     public static HediffDef ChokingOnBlood = null!;
     public static HediffDef ChokingOnTourniquet = null!;
-    public static HediffDef Concussion = null!; // TODO: currently unused
+    public static HediffDef Concussion = null!;
     public static HediffDef Crush = null!;
     public static HediffDef EmpShutdown = null!;
     public static HediffDef Fracture = null!;

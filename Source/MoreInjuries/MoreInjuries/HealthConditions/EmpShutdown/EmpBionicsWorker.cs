@@ -5,7 +5,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.EmpShutdown;
 
-internal class EmpBionicsWorker(InjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
+internal class EmpBionicsWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableEmpDamageToBionics;
 

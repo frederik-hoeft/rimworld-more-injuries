@@ -10,7 +10,7 @@ using Verse.Sound;
 
 namespace MoreInjuries.HealthConditions.Fractures;
 
-internal class FractureWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler, ICompFloatMenuOptionsHandler
+internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler, ICompFloatMenuOptionsHandler
 {
     private static readonly Dictionary<BodyPartDef, ILacerationHandler> s_lacerationRegistry;
 

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Verse;
+using MoreInjuries.Debug;
 using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.HealthConditions.Fractures;
-using MoreInjuries.Debug;
 using MoreInjuries.HealthConditions.Paralysis;
 using MoreInjuries.HealthConditions.IntestinalSpill;
 using MoreInjuries.HealthConditions.AdrenalineRush;
@@ -13,23 +13,24 @@ using MoreInjuries.HealthConditions.SpallingInjury;
 using MoreInjuries.HealthConditions.EmpShutdown;
 using MoreInjuries.HealthConditions.HeadInjury;
 using MoreInjuries.HealthConditions.HearingLoss;
+using MoreInjuries.HealthConditions.HeadInjury.Concussions;
 
 namespace MoreInjuries.HealthConditions;
 
-public class InjuryComp : ThingComp
+public class MoreInjuryComp : ThingComp
 {
     private DamageInfo _damageInfo;
     private readonly InjuryWorker[] _pipeline;
 
     public bool CallbackActive { get; private set; } = false;
 
-    public InjuryComp()
+    public MoreInjuryComp()
     {
         _pipeline =
         [
             new ParalysisWorker(this),
             new IntestinalSpillWorker(this),
-            new HemorrhagicStrokeWorker(this),
+            new HeadInjuryWorker(this),
             new AdrenalineWorker(this),
             new HydrostaticShockWorker(this),
             new FractureWorker(this),
@@ -39,6 +40,7 @@ public class InjuryComp : ThingComp
             new ChokingWorker(this),
             new EmpBionicsWorker(this),
             new HearingLossExplosionsWorker(this),
+            new ConcussionExplosionsWorker(this),
         ];
     }
 
@@ -76,17 +78,6 @@ public class InjuryComp : ThingComp
     {
         CallbackActive = true;
         _damageInfo = dinfo;
-
-        if (parent.Map is not null)
-        {
-            foreach (InjuryWorker component in _pipeline)
-            {
-                if (component is IPostPreApplyDamageHandler { IsEnabled: true } handler)
-                {
-                    handler.PostPreApplyDamage(in dinfo);
-                }
-            }
-        }
 
         base.PostPreApplyDamage(ref dinfo, out absorbed);
     }

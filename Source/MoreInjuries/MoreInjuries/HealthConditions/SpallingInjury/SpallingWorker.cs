@@ -7,7 +7,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.SpallingInjury;
 
-internal class SpallingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
+internal class SpallingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableSpalling;
 

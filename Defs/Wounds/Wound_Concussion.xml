@@ -3,55 +3,126 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>Concussion</defName>
     <label>concussion</label>
-    <description>Traumatic head injury. May affect consciousness, motor functions and vision.</description>
+    <labelNoun>a concussion</labelNoun>
+    <description>A concussion, also known as a mild traumatic brain injury (mTBI), is a head injury that temporarily affects brain functioning. Symptoms may include loss of consciousness; memory loss; headaches; difficulty with thinking, concentration, or balance; nausea; blurred vision; dizziness; sleep disturbances, and mood changes.
+\nShould resolve on its own within a few days, but can be worsened by repeated head injuries.</description>
     <isBad>true</isBad>
-    <initialSeverity>1</initialSeverity>
     <maxSeverity>1</maxSeverity>
     <defaultLabelColor>(140,140,0)</defaultLabelColor>
     <comps>
-      <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>45000~120000</disappearsAfterTicks>
-      </li>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-2.0</severityPerDay>
+        <severityPerDay>-0.5</severityPerDay>
       </li>
     </comps>
     <stages>
       <li>
-        <label>confused</label>
-        <vomitMtbDays>0.25</vomitMtbDays>
+        <label>headache</label>
+        <minSeverity>0</minSeverity>
+        <painOffset>0.15</painOffset>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <setMax>0.8</setMax>
-          </li>
-          <li>
-            <capacity>Manipulation</capacity>
-            <offset>-0.1</offset>
-          </li>
-          <li>
-            <capacity>Talking</capacity>
-            <offset>-0.2</offset>
+            <setMax>0.95</setMax>
           </li>
         </capMods>
-        <forgetMemoryThoughtMtbDays>5</forgetMemoryThoughtMtbDays>
       </li>
       <li>
-        <label>blind and confused</label>
-        <minSeverity>0.6</minSeverity>
-        <vomitMtbDays>4</vomitMtbDays>
+        <label>severe headache</label>
+        <minSeverity>0.15</minSeverity>
+        <vomitMtbDays>1.5</vomitMtbDays>
+        <painOffset>0.35</painOffset>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <setMax>0.7</setMax>
+            <setMax>0.85</setMax>
           </li>
           <li>
             <capacity>Sight</capacity>
-            <offset>-0.7</offset>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>confused</label>
+        <minSeverity>0.35</minSeverity>
+        <vomitMtbDays>1</vomitMtbDays>
+        <painOffset>0.3</painOffset>
+        <forgetMemoryThoughtMtbDays>1</forgetMemoryThoughtMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.75</setMax>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.1</offset>
+          </li>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>-0.25</offset>
+          </li>
+          <li>
+            <capacity>Hearing</capacity>
+            <offset>-0.15</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>blind and confused</label>
+        <minSeverity>0.5</minSeverity>
+        <vomitMtbDays>0.5</vomitMtbDays>
+        <painOffset>0.3</painOffset>
+        <forgetMemoryThoughtMtbDays>0.75</forgetMemoryThoughtMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.5</setMax>
+          </li>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>-0.75</offset>
           </li>
           <li>
             <capacity>Moving</capacity>
             <offset>-0.25</offset>
+          </li>
+          <li>
+            <capacity>Hearing</capacity>
+            <offset>-0.45</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>intermittent consciousness</label>
+        <minSeverity>0.7</minSeverity>
+        <painOffset>0.3</painOffset>
+        <forgetMemoryThoughtMtbDays>0.5</forgetMemoryThoughtMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.25</setMax>
+          </li>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>-0.75</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.25</offset>
+          </li>
+          <li>
+            <capacity>Hearing</capacity>
+            <offset>-0.45</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>uncounscious</label>
+        <minSeverity>0.9</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
           </li>
         </capMods>
       </li>

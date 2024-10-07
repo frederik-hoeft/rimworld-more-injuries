@@ -6,7 +6,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.InhalationInjury;
 
-internal class InhalationInjuryWorker(InjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
+internal class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableFireInhalation;
 

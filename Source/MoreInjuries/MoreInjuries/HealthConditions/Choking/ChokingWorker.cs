@@ -7,7 +7,7 @@ using Verse.AI;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
-internal class ChokingWorker(InjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler, ICompFloatMenuOptionsHandler
+internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler, ICompFloatMenuOptionsHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableChoking;
 

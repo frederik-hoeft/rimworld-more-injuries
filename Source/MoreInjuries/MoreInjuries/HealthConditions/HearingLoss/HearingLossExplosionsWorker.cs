@@ -7,20 +7,14 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HearingLoss;
 
-public class HearingLossExplosionsWorker(InjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
+public class HearingLossExplosionsWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableBasicHearingDamage;
-
-    public static Lazy<HashSet<string>> ExplosionDamageDefNames { get; } = new Lazy<HashSet<string>>(() => 
-    [
-        DamageDefOf.Bomb.defName,
-        "Thermobaric"
-    ], LazyThreadSafetyMode.None);
 
     public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
     {
         Pawn patient = Target;
-        if (dinfo.Def is not null && ExplosionDamageDefNames.Value.Contains(dinfo.Def.defName))
+        if (dinfo.Def is not null && KnownDamageGroupNames.Explosions.Value.Contains(dinfo.Def.defName))
         {
             const float E_INVERSE = 1f / (float)Math.E;
             float chance = E_INVERSE * dinfo.Amount / ((E_INVERSE * dinfo.Amount) + 1);

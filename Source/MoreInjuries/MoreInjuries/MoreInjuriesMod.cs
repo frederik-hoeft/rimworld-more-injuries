@@ -236,6 +236,25 @@ public class MoreInjuriesMod : Mod
             "Tending the hypovolemic shock condition will reduce the chance of organ hypoxia by this factor and will slow down the progression of the shock. " +
             "Note that this will not prevent the shock from progressing, but only slow it down. To fully stabilize the patient, a blood transfusion is required.");
         Settings.OrganHypoxiaChanceReductionFactor = (float)Math.Round(list.Slider(Settings.OrganHypoxiaChanceReductionFactor, 0f, 1f), 2);
+        // concussion after blunt trauma
+        list.GapLine();
+        Text.Font = GameFont.Medium;
+        list.Label("Concussion (Head Injury)");
+        Text.Font = GameFont.Small;
+        list.CheckboxLabeled("Enable concussion mechanics (default: true)", ref Settings.EnableConcussion,
+            """
+            If enabled, pawns that receive head injuries may suffer from concussions, causing temporary loss of consciousness and disorientation.
+            """);
+        list.Label($"Raw head trauma threshold for guaranteed concussion: {Settings.ConcussionThreshold} (default: 6)", -1,
+            "The equivalent amount of damage dealt to the skull required to cause a concussion in 100% of all cases. " +
+            "The actual chance is evaluated based on the location on the head and the severity of the damage (e.g. being punched on the nose vs. being clubbed on the brain). " +
+            "The final chance is then scaled by the concussion chance.");
+        Settings.ConcussionThreshold = (float)Math.Ceiling(list.Slider(Mathf.Clamp(Settings.ConcussionThreshold, 1f, 50f), 1f, 50f));
+        list.Label($"Chance of concussion after severe head injuries: {Settings.ConcussionChance} (default: 0.75)", -1,
+            "Scaling factor for the calculated chance of a concussion after severe head injuries. Evaluated per damage event. " +
+            "If set to 1, the calculated chance is used as-is (every head injury surpassing the configured threshold leads to concussion). " +
+            "Lower values allow to reduce the overall chance of concussions, even if the damage threshold is met.");
+        Settings.ConcussionChance = (float)Math.Round(list.Slider(Settings.ConcussionChance, 0f, 1f), 2);
         // hemorrhagic stroke after blunt trauma
         list.GapLine();
         Text.Font = GameFont.Medium;
@@ -250,9 +269,10 @@ public class MoreInjuriesMod : Mod
             "The actual chance is evaluated based on the location on the head and the severity of the damage (e.g. being punched on the nose vs. being stabbed in the brain). " +
             "The final chance is then scaled by the hemorrhagic stroke chance.");
         Settings.HemorrhagicStrokeThreshold = (float)Math.Ceiling(list.Slider(Mathf.Clamp(Settings.HemorrhagicStrokeThreshold, 1f, 50f), 1f, 50f));
-        list.Label($"Chance of hemorrhagic stroke after severe head injuries: {Settings.HemorrhagicStrokeChance} (default: 0.75)", -1,
+        list.Label($"Chance of hemorrhagic stroke after severe head injuries: {Settings.HemorrhagicStrokeChance} (default: 0.25)", -1,
             "Scaling factor for the calculated chance of a hemorrhagic stroke after severe head injuries. Evaluated per damage event. " +
-            "If set to 1, the calculated chance is used as-is. Lower values allow to reduce the overall chance of hemorrhagic strokes, even if the damage threshold is met.");
+            "If set to 1, the calculated chance is used as-is (every head injury surpassing the configured threshold leads to a hemorrhagic stroke). " +
+            "Lower values allow to reduce the overall chance of hemorrhagic strokes, even if the damage threshold is met.");
         Settings.HemorrhagicStrokeChance = (float)Math.Round(list.Slider(Settings.HemorrhagicStrokeChance, 0f, 1f), 2);
         // EMP damage to bionics
         list.GapLine();
@@ -321,6 +341,7 @@ public class MoreInjuriesMod : Mod
             """);
         Settings.EnableAdvancedHearingDamage = Settings.EnableBasicHearingDamage && advancedHearingDamage;
         list.GapLine();
+        Text.Font = GameFont.Medium;
         list.Label("Miscellaneous");
         Text.Font = GameFont.Small;
         list.Label($"Multiplier for bleeding from closed internal injuries: {Settings.ClosedInternalWouldBleedingModifier} (default: 0.75)", -1,

@@ -7,7 +7,6 @@
     <labelNoun>an adrenaline rush</labelNoun>
     <description>A rush of adrenaline temporarily boosts moving capabilitites and numbs the perception of pain.</description>
     <defaultLabelColor>(25, 255, 136)</defaultLabelColor>
-    <scenarioCanAdd>true</scenarioCanAdd>
     <maxSeverity>1.0</maxSeverity>
     <isBad>false</isBad>
     <comps>

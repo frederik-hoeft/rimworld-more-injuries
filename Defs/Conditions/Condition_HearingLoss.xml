@@ -18,7 +18,7 @@
     <stages>
       <li>
         <minSeverity>0.10</minSeverity>
-        <label>Initial</label>
+        <label>initial</label>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -33,7 +33,7 @@
       </li>
       <li>
         <minSeverity>0.25</minSeverity>
-        <label>Medium</label>
+        <label>moderate</label>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -48,7 +48,7 @@
       </li>
       <li>
         <minSeverity>0.50</minSeverity>
-        <label>Severe</label>
+        <label>severe</label>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -63,7 +63,7 @@
       </li>
       <li>
         <minSeverity>0.75</minSeverity>
-        <label>Very severe</label>
+        <label>very severe</label>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -78,7 +78,7 @@
       </li>
       <li>
         <minSeverity>0.95</minSeverity>
-        <label>Extreme</label>
+        <label>extreme</label>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>

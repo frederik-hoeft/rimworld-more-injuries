@@ -4,7 +4,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.AdrenalineRush;
 
-internal class AdrenalineWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+internal class AdrenalineWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableAdrenaline;
 

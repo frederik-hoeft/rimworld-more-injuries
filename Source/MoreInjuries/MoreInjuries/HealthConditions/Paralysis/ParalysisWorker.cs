@@ -4,7 +4,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Paralysis;
 
-internal class ParalysisWorker(InjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+internal class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     public override bool IsEnabled => true;
 
