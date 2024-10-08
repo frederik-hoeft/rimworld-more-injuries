@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef ParentName="ResourceBase" Name="MedicalDeviceBase" Abstract="True">
-    <stackLimit>10</stackLimit>
-    <healthAffectsPrice>false</healthAffectsPrice>
-    <uiIconForStackCount>1</uiIconForStackCount>
-    <soundInteract>Standard_Drop</soundInteract>
-    <soundDrop>Standard_Drop</soundDrop>
-    <statBases>
-      <MaxHitPoints>60</MaxHitPoints>
-    </statBases>
-    <thingCategories>
-      <li>MedicalDevice</li>
-    </thingCategories>
-  </ThingDef>
-
-  <ThingCategoryDef>
-    <defName>MedicalDevice</defName>
-    <label>medical devices</label>
-    <parent>Items</parent>
-  </ThingCategoryDef>
-
+  
   <ThingDef ParentName="MedicalDeviceBase">
     <defName>Splint</defName>
     <thingClass>ThingWithComps</thingClass>
@@ -31,7 +12,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
-    <stackLimit>500</stackLimit>
+    <stackLimit>75</stackLimit>
     <tradeNeverStack>false</tradeNeverStack>
     <useHitPoints>true</useHitPoints>
     <statBases>

@@ -34,7 +34,7 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
-    <stackLimit>500</stackLimit>
+    <stackLimit>75</stackLimit>
     <tradeNeverStack>false</tradeNeverStack>
     <useHitPoints>true</useHitPoints>
     <statBases>

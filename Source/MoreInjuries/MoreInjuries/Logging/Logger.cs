@@ -1,4 +1,6 @@
-﻿namespace MoreInjuries.Logging;
+﻿using System.Diagnostics;
+
+namespace MoreInjuries.Logging;
 
 internal static class Logger
 {
@@ -16,6 +18,12 @@ internal static class Logger
         {
             Log(message);
         }
+    }
+
+    [Conditional("DEBUG")]
+    public static void LogDebug(string message)
+    {
+        Log(message);
     }
 
     public static void Error(string message) =>

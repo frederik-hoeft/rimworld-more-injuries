@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef ParentName="ResourceBase" Name="MedicalDeviceBase" Abstract="True">
+    <stackLimit>10</stackLimit>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <uiIconForStackCount>1</uiIconForStackCount>
+    <soundInteract>Standard_Drop</soundInteract>
+    <soundDrop>Standard_Drop</soundDrop>
+    <statBases>
+      <MaxHitPoints>60</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>MedicalDevice</li>
+    </thingCategories>
+    <orderedTakeGroup>MedicalDevice</orderedTakeGroup>
+  </ThingDef>
+
+  <ThingCategoryDef>
+    <defName>MedicalDevice</defName>
+    <label>medical devices</label>
+    <parent>Items</parent>
+  </ThingCategoryDef>
+
+  <OrderedTakeGroupDef>
+    <defName>MedicalDevice</defName>
+    <label>medical device</label>
+    <max>10</max>
+  </OrderedTakeGroupDef>
+</Defs>

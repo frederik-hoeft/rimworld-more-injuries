@@ -27,13 +27,13 @@
     <thingClass>ThingWithComps</thingClass>
     <label>tourniquet</label>
     <description>Designed put tension on blood vessels, decreasing bleeding of a limb. Can be
-      applied to oneself or someone else.</description>
+applied to oneself or someone else.</description>
     <graphicData>
       <texPath>Thing/Tour</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
-    <stackLimit>500</stackLimit>
+    <stackLimit>75</stackLimit>
     <tradeNeverStack>false</tradeNeverStack>
     <useHitPoints>true</useHitPoints>
     <statBases>

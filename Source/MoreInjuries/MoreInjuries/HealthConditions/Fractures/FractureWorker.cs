@@ -1,6 +1,7 @@
 ﻿using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.Fractures.Lacerations;
 using MoreInjuries.KnownDefs;
+using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,16 +90,35 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
     public IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn)
     {
         Pawn patient = Target;
-        if (selectedPawn.skills.GetSkill(SkillDefOf.Medicine).Level > 0
-            && patient.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.Fracture)
-            && selectedPawn.inventory.innerContainer.Any(thing => thing.def == KnownThingDefOf.Splint))
+        if (!patient.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.Fracture))
+        {
+            return [];
+        }
+        if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
         {
             return
             [
-                new FloatMenuOption("Splint fracture", () => selectedPawn.jobs.StartJob(new Job(def: KnownJobDefOf.ApplySplintJob, targetA: patient), JobCondition.InterruptForced))
+                new FloatMenuOption("Cannot splint fracture: medical care disabled", null)
             ];
         }
-        return [];
+        Thing? splint = MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Splint, KnownHediffDefOf.Fracture);
+        if (splint is null)
+        {
+            return
+            [
+                new FloatMenuOption("Cannot splint fracture: no splint available", null)
+            ];
+        }
+        void startSplinting()
+        {
+            Job job = JobMaker.MakeJob(KnownJobDefOf.ApplySplintJob, patient, splint);
+            job.count = 1;
+            selectedPawn.jobs.TryTakeOrderedJob(job);
+        }
+        return
+        [
+            new FloatMenuOption("Splint fracture", startSplinting)
+        ];
     }
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)

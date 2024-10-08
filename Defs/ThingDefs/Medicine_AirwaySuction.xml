@@ -10,7 +10,8 @@
       <graphicClass>Graphic_Single</graphicClass>
     </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
-    <stackLimit>1</stackLimit>
+    <stackLimit>25</stackLimit>
+    <drawGUIOverlay>true</drawGUIOverlay>
     <tradeNeverStack>true</tradeNeverStack>
     <useHitPoints>true</useHitPoints>
     <statBases>
@@ -18,7 +19,6 @@
       <MarketValue>200</MarketValue>
       <MaxHitPoints>80</MaxHitPoints>
     </statBases>
-    <drawGUIOverlay>false</drawGUIOverlay>
     <costList>
       <Steel>10</Steel>
       <Chemfuel>20</Chemfuel>
