@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+  <!-- TODO: add an actual copy of the Biotech blood transfusion mechanics -->
+  <!-- TODO: add saline transfusion mechanics for stabilizing patients, at the risk of kidney failure at high volumes. But at least saline solution is cheap and easy to make. -->
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>Biotech</li>

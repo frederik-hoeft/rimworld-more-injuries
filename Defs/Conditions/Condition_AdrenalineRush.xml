@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+  <!-- TODO: add epinephrine autoinjector item for temporary treatment of hypovolemic shock and to use as a combat stimulant -->
+  <!-- TODO: add negative effect of adrenaline to aiming accuracy and manipulation -->
+  <!-- TODO: adrenaline / epinephrine should increase the consciousness level, allowing to counteract low-consciousness effects of concussions, brain injuries, and blood loss for a short time -->
+  <!-- TODO: add overdose effects of adrenaline, increasing the risk of heart attack and stroke -->
   <HediffDef>
     <defName>AdrenalineRush</defName>
     <hediffClass>HediffWithComps</hediffClass>

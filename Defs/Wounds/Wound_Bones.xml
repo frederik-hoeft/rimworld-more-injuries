@@ -4,12 +4,14 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>Fracture</defName>
     <label>bone fracture</label>
-    <description>Bone fracture. Must be surgically repaired or by applying a splint</description>
+    <description>A partial or complete break of a bone caused by trauma, overuse, or disease. The bone may be cracked, splintered, or completely broken into two or more pieces. Until properly treated, the affected limb will be unable to bear weight or move properly, causing severe pain and loss of function.
+\nMust either be splinted to immobilize the bone and promote healing over time, or surgically repaired to realign and stabilize the bone, allowing for quick recovery.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <comps></comps>
     <stages>
       <li>
         <partEfficiencyOffset>-1.0</partEfficiencyOffset>
+        <painOffset>0.15</painOffset>
       </li>
     </stages>
     <defaultLabelColor>(153, 92, 92)</defaultLabelColor>
@@ -18,11 +20,13 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>FractureHealing</defName>
     <label>healing bone fracture</label>
-    <description>Bone fracture.</description>
+    <description>A bone fracture that is in the process of healing. The bone is still weak and restricted in movement, but the limb is slowly regaining function as the bone knits back together.
+\nOver time, the bone will become stronger and the limb will regain full function.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>-0.2</severityPerDay>
+        <showDaysToRecover>true</showDaysToRecover>
       </li>
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
@@ -30,8 +34,8 @@
     </comps>
     <stages>
       <li>
-        <minSeverity>0.10</minSeverity>
         <label>Nearly healed</label>
+        <minSeverity>0</minSeverity>
         <partEfficiencyOffset>-0.1</partEfficiencyOffset>
       </li>
       <li>
@@ -39,15 +43,23 @@
         <partEfficiencyOffset>-0.2</partEfficiencyOffset>
       </li>
       <li>
-        <minSeverity>0.50</minSeverity>
+        <minSeverity>0.4</minSeverity>
+        <painOffset>0.05</painOffset>
         <partEfficiencyOffset>-0.3</partEfficiencyOffset>
       </li>
       <li>
-        <minSeverity>0.75</minSeverity>
+        <minSeverity>0.6</minSeverity>
+        <painOffset>0.1</painOffset>
         <partEfficiencyOffset>-0.4</partEfficiencyOffset>
       </li>
       <li>
+        <minSeverity>0.75</minSeverity>
+        <painOffset>0.1</painOffset>
+        <partEfficiencyOffset>-0.5</partEfficiencyOffset>
+      </li>
+      <li>
         <minSeverity>0.95</minSeverity>
+        <painOffset>0.15</painOffset>
         <partEfficiencyOffset>-0.7</partEfficiencyOffset>
       </li>
     </stages>
@@ -80,5 +92,4 @@
       <destroyedOutLabel>Cut out</destroyedOutLabel>
     </injuryProps>
   </HediffDef>
-
 </Defs>

@@ -68,11 +68,9 @@ public class ApplySplintJobDriver : JobDriver
         this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
         this.FailOn(() =>
         {
-            // TODO: double-check this logic (doctor should be able to resupply splints if they are null)
-            // we can't apply a splint if there is no splint
-            if (SplintUsed is null
-                // we can't apply a splint if the patient is set to no medical care
-                || doctor.Faction == Faction.OfPlayer && patient.playerSettings?.medCare is MedicalCareCategory.NoCare
+            // NOTE: maybe missing an exit condition for when no more splints are available
+            // we can't apply a splint if the patient is set to no medical care
+            if (doctor.Faction == Faction.OfPlayer && patient.playerSettings?.medCare is MedicalCareCategory.NoCare
                 // we can't apply a splint if the doctor wants to tend himself but is set to no self-tend
                 || doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
             {
@@ -146,8 +144,7 @@ public class ApplySplintJobDriver : JobDriver
             }
             return !ReachabilityImmediate.CanReachImmediate(doctor, patient.SpawnedParentOrMe, _pathEndMode);
         });
-        // TODO: was inverted in the original code, but it seems like it should be the other way around, verify!
-        yield return Toils_Jump.JumpIf(waitToil, () => doctor.inventory.Contains(SplintUsed));
+        yield return Toils_Jump.JumpIf(waitToil, () => SplintUsed is not null && doctor.inventory.Contains(SplintUsed));
         yield return Toils_MedicalDevice.PickupDevice(TargetIndex.B, patient, KnownHediffDefOf.Fracture).FailOnDestroyedOrNull(TargetIndex.B);
         yield return waitToil;
         yield return Toils_MedicalDevice.FinalizeApplyDevice(patient, ApplySplint);
@@ -161,7 +158,10 @@ public class ApplySplintJobDriver : JobDriver
         if (fracture is { Part: BodyPartRecord part })
         {
             Hediff healingFracture = HediffMaker.MakeHediff(KnownHediffDefOf.FractureHealing, patient, part);
-            healingFracture.Severity = 1f;
+            // base severity on doctor's medical skill and a random factor
+            float medicalSkill = doctor.GetStatValue(StatDefOf.MedicalTendQuality);
+            float severityRaw = 1.5f - medicalSkill * medicalSkill + Rand.Range(-0.5f, 0.5f);
+            healingFracture.Severity = Mathf.Clamp(severityRaw, 0.2f, 1f);
             patient.health.AddHediff(healingFracture);
             patient.health.RemoveHediff(fracture);
             splint?.DecreaseStack();
