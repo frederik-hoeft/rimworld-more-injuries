@@ -21,7 +21,7 @@
     </comps>
     <stages>
       <li>
-        <label>tiny amount</label>
+        <label>initial</label>
         <painFactor>0.95</painFactor>
         <painOffset>-0.05</painOffset>
         <capMods>
@@ -32,7 +32,7 @@
         </capMods>
       </li>
       <li>
-        <label>small amount</label>
+        <label>minor</label>
         <minSeverity>0.2</minSeverity>
         <painFactor>0.95</painFactor>
         <painOffset>-0.10</painOffset>
@@ -44,7 +44,7 @@
         </capMods>
       </li>
       <li>
-        <label>moderate amount</label>
+        <label>moderate</label>
         <minSeverity>0.3</minSeverity>
         <painFactor>0.9</painFactor>
         <painOffset>-0.10</painOffset>
@@ -56,7 +56,7 @@
         </capMods>
       </li>
       <li>
-        <label>high amount</label>
+        <label>severe</label>
         <minSeverity>0.4</minSeverity>
         <painFactor>0.8</painFactor>
         <painOffset>-0.1</painOffset>
@@ -68,7 +68,7 @@
         </capMods>
       </li>
       <li>
-        <label>very high amount</label>
+        <label>very severe</label>
         <minSeverity>0.8</minSeverity>
         <painFactor>0.8</painFactor>
         <painOffset>-0.2</painOffset>
@@ -80,7 +80,7 @@
         </capMods>
       </li>
       <li>
-        <label>extreme amount</label>
+        <label>extreme</label>
         <minSeverity>0.9</minSeverity>
         <painFactor>0.75</painFactor>
         <painOffset>-0.3</painOffset>

@@ -15,7 +15,8 @@ internal class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWorker(pare
         Pawn patient = Target;
         if (dinfo.Def?.hediff == KnownHediffDefOf.Burn)
         {
-            IEnumerable<BodyPartRecord> lungs = patient.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def == BodyPartDefOf.Lung);
+            // defensive snapshot enumeration to avoid adding a lung burn hediff that destroys the lung and modifies the collection
+            List<BodyPartRecord> lungs = [.. patient.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def == BodyPartDefOf.Lung)];
             foreach (BodyPartRecord lung in lungs)
             {
                 bool hasBurnedLung = false;
