@@ -94,22 +94,15 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
         {
             return [];
         }
-        if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
+        string? failure = MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, "Splint fracture");
+        if (failure is not null)
         {
             return
             [
-                new FloatMenuOption("Splint fracture: medical care disabled", null)
+                new FloatMenuOption(failure, null)
             ];
         }
-        // check if the selected pawn has medical skill disabled
-        if (selectedPawn.skills.GetSkill(SkillDefOf.Medicine).TotallyDisabled)
-        {
-            return
-            [
-                new FloatMenuOption("Splint fracture: incapable of medical care", null)
-            ];
-        }
-        Thing? splint = MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Splint, KnownHediffDefOf.Fracture);
+        Thing? splint = MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Splint, JobDriver_ApplySplint.TargetHediffDefs);
         if (splint is null)
         {
             return

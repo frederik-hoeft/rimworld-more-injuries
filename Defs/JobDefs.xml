@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JobDef>
+    <defName>ProvideFirstAidJob</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.ProvideFirstAidJobDriver</driverClass>
+    <reportString>Performing first aid</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>ClearAirwayJob</defName>
+    <driverClass>MoreInjuries.HealthConditions.Choking.JobDriver_ClearAirways</driverClass>
+    <reportString>Clearing TargetA 's airways.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+  
+  <JobDef>
+    <defName>PerformCprJob</defName>
+    <driverClass>MoreInjuries.HealthConditions.Choking.JobDriver_PerformCpr</driverClass>
+    <reportString>Performing CPR.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>ApplySplintJob</defName>
+    <driverClass>MoreInjuries.HealthConditions.Fractures.JobDriver_ApplySplint</driverClass>
+    <reportString>Splinting a leg.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>ApplyTourniquetJob</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.ApplyTourniquetJobDriver</driverClass>
+    <reportString>Applying a tourniquet.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+</Defs>

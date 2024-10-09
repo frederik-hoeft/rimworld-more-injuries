@@ -48,27 +48,44 @@ public class ShockHediffComp : HediffComp
             return;
         }
         bool preventHypoxia = false;
+        float maxSeverityIncrease = 0.00005f * bloodLoss.Severity;
         if (parent.IsTended())
         {
             // if the patient is tended, the severity should increase slower, with a bit of randomness
-            parent.Severity += Rand.Range(0, 0.00005f);
+            parent.Severity += Rand.Range(0, maxSeverityIncrease);
             preventHypoxia = Rand.Chance(MoreInjuriesMod.Settings.OrganHypoxiaChanceReductionFactor);
         }
         else
         {
-            parent.Severity += 0.00005f;
+            parent.Severity += maxSeverityIncrease;
         }
         _ticks++;
-        if (_ticks >= 300 && !preventHypoxia && Rand.Chance(MoreInjuriesMod.Settings.OrganHypoxiaChance))
+        if (_ticks >= 300)
         {
-            BodyPartRecord hypoxiaTarget = parent.pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Middle, BodyPartDepth.Inside)
-                .Where(bodyPart => bodyPart.def != BodyPartDefOf.Heart
-                    && bodyPart.def.bleedRate > 0f)
-                .ToList()
-                .SelectRandom();
-            Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.OrganHypoxia, parent.pawn, hypoxiaTarget);
-            hediff.Severity = Rand.Range(2f, 5f);
-            parent.pawn.health.AddHediff(hediff, hypoxiaTarget);
+            if (!preventHypoxia && Rand.Chance(MoreInjuriesMod.Settings.OrganHypoxiaChance))
+            {
+                BodyPartRecord hypoxiaTarget = parent.pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Middle, BodyPartDepth.Inside)
+                    .Where(bodyPart => bodyPart.def != BodyPartDefOf.Heart
+                        && bodyPart.def.bleedRate > 0f)
+                    .ToList()
+                    .SelectRandom();
+                Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.OrganHypoxia, parent.pawn, hypoxiaTarget);
+                hediff.Severity = Rand.Range(2f, 5f);
+                parent.pawn.health.AddHediff(hediff, hypoxiaTarget);
+            }
+            // cardiac arrest chance is higher for higher blood loss
+            float cardiacArrestChance = MoreInjuriesMod.Settings.CardiacArrestChanceOnHighBloodLoss * bloodLoss.Severity / 0.8f;
+            if (MoreInjuriesMod.Settings.EnableCardiacArrestOnHighBloodLoss && Rand.Chance(cardiacArrestChance))
+            {
+                if (parent.pawn.health.hediffSet.GetBodyPartRecord(BodyPartDefOf.Heart) is BodyPartRecord heart
+                    && !parent.pawn.health.hediffSet.PartIsMissing(heart) 
+                    && !parent.pawn.health.hediffSet.TryGetFirstHediffMatchingPart(heart, KnownHediffDefOf.CardiacArrest, out Hediff? cardiacArrest))
+                {
+                    cardiacArrest = HediffMaker.MakeHediff(KnownHediffDefOf.CardiacArrest, parent.pawn);
+                    cardiacArrest.Severity = 0.01f;
+                    parent.pawn.health.AddHediff(cardiacArrest, heart);
+                }
+            }
             _ticks = 0;
         }
     }

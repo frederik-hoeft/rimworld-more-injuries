@@ -9,15 +9,44 @@ public static class MedicalDeviceHelper
 {
     internal const int MAX_MEDICAL_DEVICE_RESERVATIONS = 10;
 
-    public static int GetMedicalDeviceCountToFullyHeal(Pawn pawn, HediffDef hediffDef)
+    public static string? GetReasonForDisabledProcedure(Pawn doctor, Pawn patient, string jobTitle)
+    {
+        if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
+        {
+            return $"{jobTitle}: medical care for {patient} disabled";
+        }
+        if (!doctor.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+        {
+            return $"{jobTitle}: {doctor} is incapable of manipulation";
+        }
+        if (!doctor.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+        {
+            return $"{jobTitle}: {doctor} is blind";
+        }
+        if (doctor.WorkTagIsDisabled(WorkTags.Caring))
+        {
+            return $"{jobTitle}: {doctor} is incapable of caring";
+        }
+        if (doctor.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
+        {
+            return $"{jobTitle}: {doctor} is incapable of medicine";
+        }
+        return null;
+    }
+
+    public static int GetMedicalDeviceCountToFullyHeal(Pawn pawn, HediffDef[] hediffDefs)
     {
         int count = 0;
         List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
-        for (int index = 0; index < hediffs.Count; ++index)
+        for (int i = 0; i < hediffs.Count; ++i)
         {
-            if (hediffs[index].def == hediffDef)
+            for (int j = 0; j < hediffDefs.Length; ++j)
             {
-                ++count;
+                if (hediffs[i].def == hediffDefs[j])
+                {
+                    count++;
+                    break;
+                }
             }
         }
         return count;
@@ -42,13 +71,13 @@ public static class MedicalDeviceHelper
 
     private static bool CanDoctorGetDevice(Pawn doctor, Thing device) => !device.IsForbidden(doctor) && doctor.CanReserve(device, MAX_MEDICAL_DEVICE_RESERVATIONS, stackCount: 1);
 
-    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, HediffDef hediffDef)
+    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, HediffDef[] hediffDefs)
     {
         if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
         {
             return null;
         }
-        if (GetMedicalDeviceCountToFullyHeal(patient, hediffDef) <= 0)
+        if (GetMedicalDeviceCountToFullyHeal(patient, hediffDefs) <= 0)
         {
             return null;
         }

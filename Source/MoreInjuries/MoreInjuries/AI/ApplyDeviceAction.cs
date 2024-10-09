@@ -1,5 +1,5 @@
 ﻿using Verse;
 
-namespace MoreInjuries.Things;
+namespace MoreInjuries.AI;
 
 public delegate void ApplyDeviceAction(Pawn doctor, Pawn patient, Thing? medicalDevice);

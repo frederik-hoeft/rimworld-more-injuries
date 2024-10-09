@@ -16,12 +16,12 @@ public class ConcussionExplosionsWorker(MoreInjuryComp parent) : InjuryWorker(pa
             // ((1 / e) * x) / ((1 / e) * x + 1)
             const float E_INVERSE = 1f / (float)Math.E;
             float chance = E_INVERSE * dinfo.Amount / ((E_INVERSE * dinfo.Amount) + 1);
-            if (Rand.Chance(chance * MoreInjuriesMod.Settings.ConcussionChance))
+            if (Rand.Chance(chance * MoreInjuriesMod.Settings.ConcussionChance) && patient.health.hediffSet.GetBrain() is BodyPartRecord brain)
             {
                 if (!patient.health.hediffSet.TryGetHediff(KnownHediffDefOf.Concussion, out Hediff? concussion))
                 {
                     concussion = HediffMaker.MakeHediff(KnownHediffDefOf.Concussion, patient);
-                    patient.health.AddHediff(concussion);
+                    patient.health.AddHediff(concussion, brain);
                 }
                 // the base severity is a random value between 0 and the initial chance distribution
                 // commonly between 0.6 and 0.9, possibly even higher for very high damage

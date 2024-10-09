@@ -29,6 +29,7 @@ public class MoreInjuriesSettings : ModSettings
     internal bool EnableChoking = true;
     internal float ChokingChanceOnDamage = 0.75f;
     internal bool EnableChokingSounds = true;
+    internal float ChokingSuctionDeviceSuccessRate = 0.5f;
 
     internal bool EnableLungCollapse = true;
     internal float LungCollapseChanceOnDamage = 0.4f;
@@ -49,8 +50,11 @@ public class MoreInjuriesSettings : ModSettings
     internal float BoneFragmentLacerationChancePerBodyPart = 0.5f;
 
     internal bool EnableHypovolemicShock = true;
-    internal float OrganHypoxiaChance = 0.65f;
+    internal float OrganHypoxiaChance = 0.35f;
     internal float OrganHypoxiaChanceReductionFactor = 0.5f;
+    internal bool EnableCardiacArrestOnHighBloodLoss = true;
+    internal float CardiacArrestChanceOnHighBloodLoss = 0.05f;
+
     internal bool EnableFireInhalation = true;
     internal bool EnableLogging = false;
     internal bool EnableVerboseLogging = false;
@@ -86,6 +90,7 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref EnableChoking, nameof(EnableChoking));
         Scribe_Values.Look(ref EnableChokingSounds, nameof(EnableChokingSounds));
         Scribe_Values.Look(ref ChokingChanceOnDamage, nameof(ChokingChanceOnDamage));
+        Scribe_Values.Look(ref ChokingSuctionDeviceSuccessRate, nameof(ChokingSuctionDeviceSuccessRate));
         // spalling
         Scribe_Values.Look(ref EnableSpalling, nameof(EnableSpalling));
         Scribe_Values.Look(ref ArmorHealthSpallingThreshold, nameof(ArmorHealthSpallingThreshold));
@@ -103,14 +108,17 @@ public class MoreInjuriesSettings : ModSettings
         // hearing damage
         Scribe_Values.Look(ref EnableBasicHearingDamage, nameof(EnableBasicHearingDamage));
         Scribe_Values.Look(ref EnableAdvancedHearingDamage, nameof(EnableAdvancedHearingDamage));
+        // hypovolemic shock
+        Scribe_Values.Look(ref EnableHypovolemicShock, nameof(EnableHypovolemicShock));
+        Scribe_Values.Look(ref OrganHypoxiaChance, nameof(OrganHypoxiaChance));
+        Scribe_Values.Look(ref OrganHypoxiaChanceReductionFactor, nameof(OrganHypoxiaChanceReductionFactor));
+        Scribe_Values.Look(ref EnableCardiacArrestOnHighBloodLoss, nameof(EnableCardiacArrestOnHighBloodLoss));
+        Scribe_Values.Look(ref CardiacArrestChanceOnHighBloodLoss, nameof(CardiacArrestChanceOnHighBloodLoss));
 
         Scribe_Values.Look(ref HideUndiagnosedInternalInjuries, nameof(HideUndiagnosedInternalInjuries));
         Scribe_Values.Look(ref ClosedInternalWouldBleedingModifier, nameof(ClosedInternalWouldBleedingModifier));
         Scribe_Values.Look(ref UseIndividualFloatMenus, nameof(UseIndividualFloatMenus));
-        Scribe_Values.Look(ref OrganHypoxiaChance, nameof(OrganHypoxiaChance));
-        Scribe_Values.Look(ref EnableHypovolemicShock, nameof(EnableHypovolemicShock));
         Scribe_Values.Look(ref EnableFireInhalation, nameof(EnableFireInhalation));
-        Scribe_Values.Look(ref OrganHypoxiaChanceReductionFactor, nameof(OrganHypoxiaChanceReductionFactor));
         Scribe_Values.Look(ref ParalysisDamageTreshold50Percent, nameof(ParalysisDamageTreshold50Percent));
         Scribe_Values.Look(ref IntestinalSpillingChanceOnDamage, nameof(IntestinalSpillingChanceOnDamage));
 

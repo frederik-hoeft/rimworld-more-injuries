@@ -1,13 +1,14 @@
-﻿using RimWorld;
+﻿using MoreInjuries.Things;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
 
-namespace MoreInjuries.Things;
+namespace MoreInjuries.AI;
 
 internal static class Toils_MedicalDevice
 {
-    public static Toil ReserveDevice(TargetIndex targetIndex, Pawn patient, HediffDef hediffDef)
+    public static Toil ReserveDevice(TargetIndex targetIndex, Pawn patient, HediffDef[] hediffDefs)
     {
         Toil toil = ToilMaker.MakeToil(nameof(ReserveDevice));
         toil.initAction = () =>
@@ -16,7 +17,7 @@ internal static class Toils_MedicalDevice
             Job curJob = actor.jobs.curJob;
             Thing thing = curJob.GetTarget(targetIndex).Thing;
             int availableDevices = actor.Map.reservationManager.CanReserveStack(actor, thing, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS);
-            if (availableDevices > 0 && actor.Reserve(thing, curJob, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, Mathf.Min(availableDevices, MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, hediffDef))))
+            if (availableDevices > 0 && actor.Reserve(thing, curJob, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, Mathf.Min(availableDevices, MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, hediffDefs))))
             {
                 return;
             }
@@ -28,7 +29,7 @@ internal static class Toils_MedicalDevice
         return toil;
     }
 
-    public static Toil PickupDevice(TargetIndex targetIndex, Pawn patient, HediffDef hediffDef)
+    public static Toil PickupDevice(TargetIndex targetIndex, Pawn patient, HediffDef[] hediffDefs)
     {
         Toil toil = ToilMaker.MakeToil(nameof(PickupDevice));
         toil.initAction = () =>
@@ -36,7 +37,7 @@ internal static class Toils_MedicalDevice
             Pawn actor = toil.actor;
             Job curJob = actor.jobs.curJob;
             Thing thing = curJob.GetTarget(targetIndex).Thing;
-            int countToFullyHeal = MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, hediffDef);
+            int countToFullyHeal = MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, hediffDefs);
             if (actor.carryTracker.CarriedThing is not null)
             {
                 countToFullyHeal -= actor.carryTracker.CarriedThing.stackCount;

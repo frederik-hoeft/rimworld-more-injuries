@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="InfectionBase">
+    <defName>CardiacArrest</defName>
+    <label>cardiac arrest</label>
+    <description>Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.
+\nA skilled doctor can perform CPR to restore blood flow and potentially restart the heart. If the patient is not treated within a few minutes, the patient will die.</description>
+    <makesSickThought>false</makesSickThought>
+    <lethalSeverity>1</lethalSeverity>
+    <defaultLabelColor>(255, 52, 52)</defaultLabelColor>
+    <tendable>false</tendable>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>8.0</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_Discoverable">
+        <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
+      </li>
+      <li Class="HediffCompProperties_MessageAfterTicks">
+        <ticks>10</ticks>
+        <message>{0} is going into cardiac arrest!</message>
+        <messageType>NegativeHealthEvent</messageType>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>clinical death</label>
+        <lifeThreatening>true</lifeThreatening>
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>0</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

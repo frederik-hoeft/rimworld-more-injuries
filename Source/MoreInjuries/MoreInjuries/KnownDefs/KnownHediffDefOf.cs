@@ -10,7 +10,6 @@ public static class KnownHediffDefOf
 {
     // default defs not available through HediffDefOf
     public static HediffDef Bruise = null!;
-    public static HediffDef HeartAttack = null!;
     public static HediffDef Burn = null!;
     // added by MoreInjuries
     public static HediffDef AdrenalineRush = null!;
@@ -34,4 +33,5 @@ public static class KnownHediffDefOf
     public static HediffDef SpinalCordParalysis = null!;
     public static HediffDef StomachAcidBurn = null!;
     public static HediffDef TourniquetApplied = null!;
+    public static HediffDef CardiacArrest = null!;
 }

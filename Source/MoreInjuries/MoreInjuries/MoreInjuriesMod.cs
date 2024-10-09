@@ -167,6 +167,11 @@ public class MoreInjuriesMod : Mod
             The likelihood of a pawn choking on their own blood after receiving severe bleeding injuries to the respiratory system.
             """);
         Settings.ChokingChanceOnDamage = (float)Math.Round(list.Slider(Settings.ChokingChanceOnDamage, 0f, 1f), 2);
+        list.Label($"Suction device success rate for unskilled users: {Settings.ChokingSuctionDeviceSuccessRate} (default: 0.5)", -1,
+            """
+            The likelihood of a suction device successfully removing blood from the airways of a choking pawn when used by an unskilled user (Medicine skill < 5).
+            """);
+        Settings.ChokingSuctionDeviceSuccessRate = (float)Math.Round(list.Slider(Settings.ChokingSuctionDeviceSuccessRate, 0f, 1f), 2);
         list.CheckboxLabeled("Enable inhalation injuries (default: true)", ref Settings.EnableFireInhalation,
             """
             If enabled, pawns that are exposed to fire or other sources of smoke and hot gases may suffer from inhalation injuries, causing severe damage to the respiratory system.
@@ -225,7 +230,7 @@ public class MoreInjuriesMod : Mod
             
             Must be treated with a blood transfusion to stabilize the patient.
             """);
-        list.Label($"Chance of hypovolemic shock to cause organ hypoxia (every 300 ticks/5s): {Settings.OrganHypoxiaChance} (default: 0.65)", -1,
+        list.Label($"Chance of hypovolemic shock to cause organ hypoxia (every 300 ticks/5s): {Settings.OrganHypoxiaChance} (default: 0.35)", -1,
             """
             Loosing a lot of blood will lead to organs not receiving enough oxygen to function properly. This can ultimately lead to organ failure and death.
 
@@ -236,6 +241,18 @@ public class MoreInjuriesMod : Mod
             "Tending the hypovolemic shock condition will reduce the chance of organ hypoxia by this factor and will slow down the progression of the shock. " +
             "Note that this will not prevent the shock from progressing, but only slow it down. To fully stabilize the patient, a blood transfusion is required.");
         Settings.OrganHypoxiaChanceReductionFactor = (float)Math.Round(list.Slider(Settings.OrganHypoxiaChanceReductionFactor, 0f, 1f), 2);
+        list.CheckboxLabeled("Enable cardiac arrest on high blood loss (default: true)", ref Settings.EnableCardiacArrestOnHighBloodLoss,
+            "If enabled, pawns that lose a very large amount of blood may suffer from cardiac arrest, which can be fatal if not treated in time. " +
+            "The heart needs a certain amount of blood to function properly, and losing too much can lead to heart failure and death. " +
+            """
+
+            A skilled doctor can attempt to resuscitate the patient with CPR.
+            """);
+        list.Label($"Chance of cardiac arrest on high blood loss: {Settings.CardiacArrestChanceOnHighBloodLoss} (default: 0.05)", -1,
+            """
+            The likelihood of a pawn suffering from cardiac arrest after losing a very large amount of blood. Evaluated every 300 ticks/5s.
+            """);
+        Settings.CardiacArrestChanceOnHighBloodLoss = (float)Math.Round(list.Slider(Settings.CardiacArrestChanceOnHighBloodLoss, 0f, 1f), 2);
         // concussion after blunt trauma
         list.GapLine();
         Text.Font = GameFont.Medium;
