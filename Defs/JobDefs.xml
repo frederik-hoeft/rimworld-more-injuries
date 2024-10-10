@@ -1,37 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <JobDef>
-    <defName>ProvideFirstAidJob</defName>
-    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.ProvideFirstAidJobDriver</driverClass>
-    <reportString>Performing first aid</reportString>
-    <casualInterruptible>false</casualInterruptible>
-  </JobDef>
-
-  <JobDef>
-    <defName>ClearAirwayJob</defName>
-    <driverClass>MoreInjuries.HealthConditions.Choking.JobDriver_ClearAirways</driverClass>
+    <defName>UseSuctionDevice</defName>
+    <driverClass>MoreInjuries.HealthConditions.Choking.JobDriver_UseSuctionDevice</driverClass>
     <reportString>Clearing TargetA 's airways.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
   
   <JobDef>
-    <defName>PerformCprJob</defName>
-    <driverClass>MoreInjuries.HealthConditions.Choking.JobDriver_PerformCpr</driverClass>
-    <reportString>Performing CPR.</reportString>
+    <defName>PerformCpr</defName>
+    <driverClass>MoreInjuries.HealthConditions.CardiacArrest.JobDriver_PerformCpr</driverClass>
+    <reportString>Performing CPR on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
   <JobDef>
-    <defName>ApplySplintJob</defName>
-    <driverClass>MoreInjuries.HealthConditions.Fractures.JobDriver_ApplySplint</driverClass>
-    <reportString>Splinting a leg.</reportString>
+    <defName>UseDefibrillator</defName>
+    <driverClass>MoreInjuries.HealthConditions.CardiacArrest.JobDriver_UseDefibrillator</driverClass>
+    <reportString>Using a defibrillator on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
   <JobDef>
-    <defName>ApplyTourniquetJob</defName>
-    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.ApplyTourniquetJobDriver</driverClass>
-    <reportString>Applying a tourniquet.</reportString>
+    <defName>UseSplint</defName>
+    <driverClass>MoreInjuries.HealthConditions.Fractures.JobDriver_UseSplint</driverClass>
+    <reportString>Splinting a fracture on TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>UseTourniquet</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_UseTourniquet</driverClass>
+    <reportString>Applying a tourniquet on TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>RemoveTourniquet</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_RemoveTourniquet</driverClass>
+    <reportString>Remove a tourniquet from TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>UseHemostaticAgent</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents.JobDriver_UseHemostaticAgent</driverClass>
+    <reportString>Using a hemostatic agent on TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>UseBandage</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Bandages.JobDriver_UseBandage</driverClass>
+    <reportString>Banding a wound on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 </Defs>

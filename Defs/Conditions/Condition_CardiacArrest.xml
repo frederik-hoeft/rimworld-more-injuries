@@ -4,7 +4,7 @@
     <defName>CardiacArrest</defName>
     <label>cardiac arrest</label>
     <description>Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.
-\nA skilled doctor can perform CPR to restore blood flow and potentially restart the heart. If the patient is not treated within a few minutes, the patient will die.</description>
+\nA skilled doctor must perform CPR to restore blood flow and hopefully restart the heart. In early stages of cardiac arrest, during ventricular fibrillation, a defibrillator can also be used to shock the heart back into a normal rhythm, which may be faster and more effective than CPR.</description>
     <makesSickThought>false</makesSickThought>
     <lethalSeverity>1</lethalSeverity>
     <defaultLabelColor>(255, 52, 52)</defaultLabelColor>
@@ -24,10 +24,22 @@
     </comps>
     <stages>
       <li>
-        <label>clinical death</label>
+        <label>ventricular fibrillation</label>
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
         <minSeverity>0</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>clinical death</label>
+        <lifeThreatening>true</lifeThreatening>
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>0.65</minSeverity>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>

@@ -1,37 +1,24 @@
-﻿using MoreInjuries.KnownDefs;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
 public class TourniquetHediffComp : HediffComp
 {
-    public List<Hediff_Injury>? Injuries { get; set; }
+    public List<BetterInjury>? Injuries { get; set; }
 
     public override void CompPostPostRemoved()
     {
         if (Injuries is not null)
         {
-            foreach (Hediff_Injury injury in Injuries)
+            foreach (BetterInjury injury in Injuries)
             {
-                if (injury is BetterInjury betterInjury)
-                {
-                    betterInjury.IsBase = true;
-                }
+                injury.IsBase = true;
+                injury.IsCoagulationMultiplierApplied = false;
             }
+            Injuries.Clear();
         }
         base.CompPostPostRemoved();
-    }
-
-    public override void CompPostMake()
-    {
-        if (parent.Part.def == KnownBodyPartDefOf.Neck)
-        {
-            Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.ChokingOnTourniquet, parent.pawn);
-            parent.pawn.health.AddHediff(hediff);
-        }
-
-        base.CompPostMake();
     }
 }
 

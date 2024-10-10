@@ -6,7 +6,6 @@ using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
-using Verse.AI;
 using Verse.Sound;
 
 namespace MoreInjuries.HealthConditions.Fractures;
@@ -87,39 +86,25 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
 
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableFractures;
 
-    public IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn)
+    public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Target;
-        if (!patient.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.Fracture))
+        if (!builder.Keys.Contains(UITreatmentOption.UseSplint) && patient.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.Fracture))
         {
-            return [];
+            builder.Keys.Add(UITreatmentOption.UseSplint);
+            if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_UseSplint.JOB_LABEL) is string failure)
+            {
+                builder.Options.Add(new FloatMenuOption(failure, null));
+            }
+            else if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Splint, JobDriver_UseSplint.TargetHediffDefs) is not Thing thing)
+            {
+                builder.Options.Add(new FloatMenuOption($"{JobDriver_UseSplint.JOB_LABEL}: no splint available", null));
+            }
+            else
+            {
+                builder.Options.Add(new FloatMenuOption(JobDriver_UseSplint.JOB_LABEL, JobDriver_UseSplint.GetDispatcher(selectedPawn, patient, thing).StartJob));
+            }
         }
-        string? failure = MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, "Splint fracture");
-        if (failure is not null)
-        {
-            return
-            [
-                new FloatMenuOption(failure, null)
-            ];
-        }
-        Thing? splint = MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Splint, JobDriver_ApplySplint.TargetHediffDefs);
-        if (splint is null)
-        {
-            return
-            [
-                new FloatMenuOption("Splint fracture: no splint available", null)
-            ];
-        }
-        void startSplinting()
-        {
-            Job job = JobMaker.MakeJob(KnownJobDefOf.ApplySplintJob, patient, splint);
-            job.count = 1;
-            selectedPawn.jobs.TryTakeOrderedJob(job);
-        }
-        return
-        [
-            new FloatMenuOption("Splint fracture", startSplinting)
-        ];
     }
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)

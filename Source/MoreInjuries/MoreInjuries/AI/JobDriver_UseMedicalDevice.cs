@@ -2,6 +2,7 @@
 using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -10,6 +11,9 @@ namespace MoreInjuries.AI;
 
 public abstract class JobDriver_UseMedicalDevice : JobDriver
 {
+    // NOTE: we use a ConditionalWeakTable to store non-essential while the job is scheduled for execution
+    // these parameters are not saved in-between game sessions, so make sure to use sensible defaults if they are lost
+    internal static readonly ConditionalWeakTable<Job, ExtendedJobParameters> s_transientJobParameters = new();
     private const int TICKS_BETWEEN_SELF_TEND_MOTES = 100;
     private const TargetIndex PATIENT_INDEX = TargetIndex.A;
     private const TargetIndex DEVICE_INDEX = TargetIndex.B;
@@ -19,11 +23,12 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
 
     protected PathEndMode _pathEndMode;
     protected bool _usesDevice;
+    protected bool _fromInventoryOnly;
+    protected bool _oneShot;
+    protected bool _oneShotUsed;
 
     protected abstract bool RequiresDevice { get; }
-
-    protected abstract HediffDef[] HediffDefs { get; }
-
+    
     protected abstract ThingDef DeviceDef { get; }
 
     protected Pawn Patient => job.targetA.Pawn;
@@ -36,16 +41,28 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
 
     protected abstract void ApplyDevice(Pawn doctor, Pawn patient, Thing? device);
 
+    protected abstract bool IsTreatable(Hediff hediff);
+
     public override void ExposeData()
     {
         base.ExposeData();
         Scribe_Values.Look(ref _usesDevice, nameof(_usesDevice));
         Scribe_Values.Look(ref _pathEndMode, nameof(_pathEndMode));
+        Scribe_Values.Look(ref _fromInventoryOnly, nameof(_fromInventoryOnly));
+        Scribe_Values.Look(ref _oneShot, nameof(_oneShot));
+        Scribe_Values.Look(ref _oneShotUsed, nameof(_oneShotUsed));
     }
 
     public override void Notify_Starting()
     {
         base.Notify_Starting();
+        if (s_transientJobParameters.TryGetValue(job, out ExtendedJobParameters? parameters))
+        {
+            _fromInventoryOnly = parameters.FromInventoryOnly;
+            _oneShot = parameters.OneShot;
+            s_transientJobParameters.Remove(job);
+        }
+        _oneShotUsed = false;
         _usesDevice = DeviceUsed is not null;
         if (Patient == Doctor)
         {
@@ -75,11 +92,16 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         }
         if (DeviceUsed is not null)
         {
-            // we allow up to 10 pawns to concurrently reserve splints from the same stack (taken from JobDriver_TendPatient)
-            int availableSplints = Doctor.Map.reservationManager.CanReserveStack(Doctor, DeviceUsed, maxPawns: MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS);
+            // we allow up to 10 pawns to concurrently reserve devices from the same stack (taken from JobDriver_TendPatient)
+            int availableDevices = Doctor.Map.reservationManager.CanReserveStack(Doctor, DeviceUsed, maxPawns: MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS);
+            int requiredDevices = 1;
+            if (!_oneShot)
+            {
+                requiredDevices = MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(Patient, IsTreatable);
+            }
             // attempt to reserve a splint
-            if (availableSplints >= 1 && Doctor.Reserve(DeviceUsed, job, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, 
-                Mathf.Min(availableSplints, MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(Patient, HediffDefs)),
+            if (availableDevices >= 1 && Doctor.Reserve(DeviceUsed, job, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, 
+                Mathf.Min(availableDevices, requiredDevices),
                 errorOnFailed: errorOnFailed))
             {
                 return true;
@@ -96,13 +118,11 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         this.FailOnDespawnedNullOrForbidden(PATIENT_INDEX);
         this.FailOn(() =>
         {
-            // NOTE: maybe missing an exit condition for when no more devices are available
             // we can't apply a devices if the patient is set to no medical care
             if (doctor.Faction == Faction.OfPlayer && patient.playerSettings?.medCare is MedicalCareCategory.NoCare
                 // we can't apply a device if the doctor wants to tend himself but is set to no self-tend
                 || doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
             {
-                Log.Warning($"Failed to apply {DeviceDef} to {patient.Name}");
                 return true;
             }
             return false;
@@ -111,8 +131,13 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
 
         AddEndCondition(() =>
         {
+            // if the job is a one-shot and it has been used
+            if (_oneShot && _oneShotUsed)
+            {
+                return JobCondition.Succeeded;
+            }
             // continue tending the patient if they have the target hediff ...
-            if (patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(HediffDefs, hediff.def) != -1)
+            if (patient.health.hediffSet.hediffs.Any(hediff => IsTreatable(hediff))
                 // ... and the doctor is able to tend the patient ...
                 && (doctor.Faction == Faction.OfPlayer && HealthAIUtility.ShouldEverReceiveMedicalCareFromPlayer(Patient)
                 // or if the doctor is forced to tend the patient or belongs to a different faction (AI controlled)
@@ -158,7 +183,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         waitToil.handlingFacing = true;
         waitToil.tickAction = () =>
         {
-            if (doctor == patient && doctor.Faction != Faction.OfPlayer && doctor.IsHashIntervalTick(100) && !doctor.Position.Fogged(doctor.Map))
+            if (doctor == patient && doctor.Faction != Faction.OfPlayer && doctor.IsHashIntervalTick(TICKS_BETWEEN_SELF_TEND_MOTES) && !doctor.Position.Fogged(doctor.Map))
             {
                 // AI self-heal animation
                 FleckMaker.ThrowMetaIcon(doctor.Position, doctor.Map, FleckDefOf.HealingCross, velocitySpeed: 0.42f);
@@ -177,15 +202,21 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             return !ReachabilityImmediate.CanReachImmediate(doctor, patient.SpawnedParentOrMe, _pathEndMode);
         });
         yield return Toils_Jump.JumpIf(waitToil, () => !_usesDevice || DeviceUsed is not null && doctor.inventory.Contains(DeviceUsed));
-        yield return Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, HediffDefs).FailOnDestroyedOrNull(DEVICE_INDEX);
+        yield return Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, IsTreatable).FailOnDestroyedOrNull(DEVICE_INDEX);
         yield return waitToil;
-        yield return Toils_MedicalDevice.FinalizeApplyDevice(patient, ApplyDevice);
+        yield return Toils_MedicalDevice.FinalizeApplyDevice(patient, ApplyDeviceCore);
         if (_usesDevice)
         {
             DebugAssert.NotNull(reserveDevices, $"{nameof(reserveDevices)} cannot be null when using a device");
             yield return FindMoreDevicesToil(doctor, patient, DEVICE_INDEX, job, reserveDevices!);
         }
         yield return Toils_Jump.Jump(gotoPatientToil);
+    }
+
+    private void ApplyDeviceCore(Pawn doctor, Pawn patient, Thing? device)
+    {
+        ApplyDevice(doctor, patient, device);
+        _oneShotUsed = true;
     }
 
     public override void Notify_DamageTaken(DamageInfo dinfo)
@@ -205,7 +236,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         Pawn_InventoryTracker? deviceHolderInventory = deviceUsed.ParentHolder as Pawn_InventoryTracker;
         Pawn otherPawnDeviceHolder = job.targetC.Pawn;
 
-        reserveDevices = Toils_MedicalDevice.ReserveDevice(DEVICE_INDEX, patient, HediffDefs)
+        reserveDevices = Toils_MedicalDevice.ReserveDevice(DEVICE_INDEX, patient, IsTreatable)
             .FailOnDespawnedNullOrForbidden(DEVICE_INDEX);
         s_tmpCollectToils.Add(Toils_Jump.JumpIf(gotoToil, () => deviceUsed is not null && doctor.inventory.Contains(deviceUsed)));
         Toil jumpIfCarriedByOther = Toils_Goto.GotoThing(DEVICE_HOLDER_INDEX, PathEndMode.Touch)
@@ -215,7 +246,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         s_tmpCollectToils.Add(reserveDevices);
         s_tmpCollectToils.Add(Toils_Goto.GotoThing(DEVICE_INDEX, PathEndMode.ClosestTouch)
             .FailOnDespawnedNullOrForbidden(DEVICE_INDEX));
-        s_tmpCollectToils.Add(Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, HediffDefs)
+        s_tmpCollectToils.Add(Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, IsTreatable)
             .FailOnDestroyedOrNull(DEVICE_INDEX));
         s_tmpCollectToils.Add(Toils_Haul.CheckForGetOpportunityDuplicate(reserveDevices, DEVICE_INDEX, TargetIndex.None, takeFromValidStorage: true));
         s_tmpCollectToils.Add(Toils_Jump.Jump(gotoToil));
@@ -225,7 +256,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             deviceUsed,
             doctor.inventory.innerContainer,
             deviceHolderInventory?.innerContainer,
-            MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, HediffDefs),
+            MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, IsTreatable),
             DEVICE_INDEX));
         return s_tmpCollectToils;
     }
@@ -239,7 +270,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             {
                 return;
             }
-            Thing? device = MedicalDeviceHelper.FindMedicalDevice(doctor, patient, DeviceDef, HediffDefs);
+            Thing? device = MedicalDeviceHelper.FindMedicalDevice(doctor, patient, DeviceDef, IsTreatable, _fromInventoryOnly);
             if (device is not null)
             {
                 job.SetTarget(deviceIndex, device);
@@ -248,4 +279,6 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         };
         return toil;
     }
+
+    public record ExtendedJobParameters(bool FromInventoryOnly = false, bool OneShot = false);
 }

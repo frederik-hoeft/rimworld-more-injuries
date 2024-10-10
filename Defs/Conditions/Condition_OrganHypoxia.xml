@@ -28,41 +28,4 @@
       <destroyedOutLabel>Dead</destroyedOutLabel>
     </injuryProps>
   </HediffDef>
-
-  <HediffDef ParentName="InfectionBase">
-    <defName>AirwayBlocked</defName>
-    <label>Blocked airway</label>
-    <description>Damaged lung is blocking the windpipe. Tend the lung collapse to remove this.</description>
-    <makesSickThought>false</makesSickThought>
-    <lethalSeverity>1.4</lethalSeverity>
-    <tendable>false</tendable>
-    <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>0.5</severityPerDay>
-      </li>
-      <li Class="HediffCompProperties_Discoverable">
-        <sendLetterWhenDiscovered>True</sendLetterWhenDiscovered>
-      </li>
-    </comps>
-    <stages>
-      <li>
-        <capMods>
-          <li>
-            <capacity>Breathing</capacity>
-            <offset>-0.125</offset>
-          </li>
-        </capMods>
-      </li>
-      <li>
-        <minSeverity>0.90</minSeverity>
-        <lifeThreatening>true</lifeThreatening>
-        <capMods>
-          <li>
-            <capacity>Breathing</capacity>
-            <offset>-0.45</offset>
-          </li>
-        </capMods>
-      </li>
-    </stages>
-  </HediffDef>
 </Defs>

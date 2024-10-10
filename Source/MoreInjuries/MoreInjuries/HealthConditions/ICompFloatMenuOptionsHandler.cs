@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Verse;
+﻿using Verse;
 
 namespace MoreInjuries.HealthConditions;
 
 public interface ICompFloatMenuOptionsHandler : IInjuryHandler
 {
-    IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn);
+    void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn);
 }

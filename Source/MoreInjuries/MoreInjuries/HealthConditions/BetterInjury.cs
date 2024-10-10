@@ -28,9 +28,9 @@ public class BetterInjury : Hediff_Injury
     }
 
     private float _overriddenBleedRate;
-    private bool _isHemostatApplied = false;
-    private int _hemostatTickDuration = 120000;
-    private bool _isDiagnosed = false;
+    private bool _isCoagulationMultiplierApplied = false;
+    private int _reducedBleedRateTicks = 30000;
+    private int _reducedBleedRateTicksTotal = 30000;
     private bool _isBase = true;
 
     public float HemostatMultiplier { get; set; }
@@ -41,22 +41,26 @@ public class BetterInjury : Hediff_Injury
         set => _isBase = value;
     }
 
-    public bool IsDiagnosed
-    {
-        get => _isDiagnosed;
-        set => _isDiagnosed = value;
-    }
-
-    public float OverriddenBleedRate
+    public float CoagulationMultiplier
     {
         get => _overriddenBleedRate;
         set => _overriddenBleedRate = value;
     }
 
-    public bool IsHemostatApplied
+    public bool IsCoagulationMultiplierApplied
     {
-        get => _isHemostatApplied;
-        set => _isHemostatApplied = value;
+        get => _isCoagulationMultiplierApplied;
+        set => _isCoagulationMultiplierApplied = value;
+    }
+
+    public int ReducedBleedRateTicksTotal
+    {
+        get => _reducedBleedRateTicksTotal;
+        set
+        {
+            _reducedBleedRateTicksTotal = value;
+            _reducedBleedRateTicks = value;
+        }
     }
 
     public bool IsInternalInjury => Part is { depth: BodyPartDepth.Inside };
@@ -86,7 +90,7 @@ public class BetterInjury : Hediff_Injury
                     && injury.TendableNow())
                 {
                     // if the external injury is still bleeding (not tended), we are not plugged
-                    if (!injury.IsHemostatApplied && !injury.IsTended())
+                    if (!injury.IsCoagulationMultiplierApplied && !injury.IsTended())
                     {
                         return false;
                     }
@@ -100,26 +104,36 @@ public class BetterInjury : Hediff_Injury
     {
         get
         {
-            float result;
             if (IsBase || this.IsTended())
             {
-                result = base.BleedRate;
+                return base.BleedRate;
             }
-            else
+            if (IsCoagulationMultiplierApplied)
             {
-                result = OverriddenBleedRate;
+                return base.BleedRate * CoagulationMultiplier;
             }
-
-            if (IsHemostatApplied)
-            {
-                result *= HemostatMultiplier;
-            }
-
             if (IsClosedInternalWound)
             {
-                result *= MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier;
+                return base.BleedRate * MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier;
             }
+            Logger.Error($"BetterInjury {def.defName} on {pawn.Name} fell through all cases in BleedRate calculation");
+            return base.BleedRate;
+        }
+    }
 
+    public override string Label
+    {
+        get
+        {
+            string result = base.Label;
+            if (IsClosedInternalWound)
+            {
+                result += " (enclosed)";
+            }
+            if (IsCoagulationMultiplierApplied)
+            {
+                result += " (tamponaded)";
+            }
             return result;
         }
     }
@@ -127,39 +141,30 @@ public class BetterInjury : Hediff_Injury
     public override void Tick()
     {
         base.Tick();
-        if (IsHemostatApplied)
+        if (IsCoagulationMultiplierApplied && _reducedBleedRateTicks > 0)
         {
-            _hemostatTickDuration--;
-            if (_hemostatTickDuration <= 0f)
+            _reducedBleedRateTicks--;
+            if (_reducedBleedRateTicks <= 0f)
             {
-                IsHemostatApplied = false;
+                IsCoagulationMultiplierApplied = false;
             }
-        }
-    }
-
-    public override bool Visible
-    {
-        get
-        {
-            if (MoreInjuriesMod.Settings.HideUndiagnosedInternalInjuries && Part?.depth is not BodyPartDepth.Outside)
-            {
-                return IsDiagnosed;
-            }
-            return true;
         }
     }
 
     public override void ExposeData()
     {
         Scribe_Values.Look(ref _isBase, nameof(_isBase));
-        Scribe_Values.Look(ref _isDiagnosed, nameof(_isDiagnosed));
-        Scribe_Values.Look(ref _isHemostatApplied, nameof(_isHemostatApplied));
+        Scribe_Values.Look(ref _isCoagulationMultiplierApplied, nameof(_isCoagulationMultiplierApplied));
         Scribe_Values.Look(ref _overriddenBleedRate, nameof(_overriddenBleedRate));
-        Scribe_Values.Look(ref _hemostatTickDuration, nameof(_hemostatTickDuration), 120000);
+        Scribe_Values.Look(ref _reducedBleedRateTicksTotal, nameof(_reducedBleedRateTicksTotal));
+        if (_reducedBleedRateTicks % 300 == 0)
+        {
+            Scribe_Values.Look(ref _reducedBleedRateTicks, nameof(_reducedBleedRateTicks), 30000);
+        }
         base.ExposeData();
     }
 
-    public override Color LabelColor => (IsHemostatApplied, IsClosedInternalWound) switch
+    public override Color LabelColor => (IsCoagulationMultiplierApplied, IsClosedInternalWound) switch
     {
         (true, _) => s_hemostatColor,
         (_, true) => s_closedWoundColor,
@@ -203,9 +208,9 @@ public class BetterInjury : Hediff_Injury
             {
                 result += "\nClosed wound, bleeding rate decreased";
             }
-            if (IsHemostatApplied)
+            if (IsCoagulationMultiplierApplied)
             {
-                result += "\nHemostaised, bleeding rate heavily decreased";
+                result += "\nTemponaded, bleeding rate decreased";
             }
             return result;
         }

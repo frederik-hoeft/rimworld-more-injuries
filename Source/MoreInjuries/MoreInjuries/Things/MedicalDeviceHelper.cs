@@ -34,19 +34,15 @@ public static class MedicalDeviceHelper
         return null;
     }
 
-    public static int GetMedicalDeviceCountToFullyHeal(Pawn pawn, HediffDef[] hediffDefs)
+    public static int GetMedicalDeviceCountToFullyHeal(Pawn pawn, Predicate<Hediff> isTreatableWithDevice)
     {
         int count = 0;
         List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
         for (int i = 0; i < hediffs.Count; ++i)
         {
-            for (int j = 0; j < hediffDefs.Length; ++j)
+            if (isTreatableWithDevice(hediffs[i]))
             {
-                if (hediffs[i].def == hediffDefs[j])
-                {
-                    count++;
-                    break;
-                }
+                count++;
             }
         }
         return count;
@@ -71,13 +67,16 @@ public static class MedicalDeviceHelper
 
     private static bool CanDoctorGetDevice(Pawn doctor, Thing device) => !device.IsForbidden(doctor) && doctor.CanReserve(device, MAX_MEDICAL_DEVICE_RESERVATIONS, stackCount: 1);
 
-    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, HediffDef[] hediffDefs)
+    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, HediffDef[] hediffDefs, bool fromInventoryOnly = false) =>
+        FindMedicalDevice(doctor, patient, deviceDef, hediff => Array.IndexOf(hediffDefs, hediff.def) != -1, fromInventoryOnly);
+
+    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, Predicate<Hediff>? isTreatableWithDevice = null, bool fromInventoryOnly = false)
     {
         if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
         {
             return null;
         }
-        if (GetMedicalDeviceCountToFullyHeal(patient, hediffDefs) <= 0)
+        if (isTreatableWithDevice is not null && GetMedicalDeviceCountToFullyHeal(patient, isTreatableWithDevice) <= 0)
         {
             return null;
         }
@@ -86,24 +85,27 @@ public static class MedicalDeviceHelper
         {
             return deviceInInventory;
         }
-        Thing? thingOnMap = GenClosest.ClosestThing_Global_Reachable(
-            center: patient.Position,
-            map: patient.MapHeld,
-            searchSet: patient.MapHeld.listerThings.ThingsOfDef(deviceDef),
-            peMode: PathEndMode.ClosestTouch,
-            traverseParams: TraverseParms.For(doctor),
-            validator: thing => CanDoctorGetDevice(doctor, thing));
-        if (thingOnMap is Thing deviceOnMap)
+        if (!fromInventoryOnly)
         {
-            return deviceOnMap;
-        }
-        if (doctor.IsColonist && doctor.Map is not null)
-        {
-            foreach (Pawn colonyAnimal in doctor.Map.mapPawns.SpawnedColonyAnimals)
+            Thing? thingOnMap = GenClosest.ClosestThing_Global_Reachable(
+                center: patient.Position,
+                map: patient.MapHeld,
+                searchSet: patient.MapHeld.listerThings.ThingsOfDef(deviceDef),
+                peMode: PathEndMode.ClosestTouch,
+                traverseParams: TraverseParms.For(doctor),
+                validator: thing => CanDoctorGetDevice(doctor, thing));
+            if (thingOnMap is Thing deviceOnMap)
             {
-                if (GetThingFromInventory(colonyAnimal.inventory.innerContainer, deviceDef) is Thing deviceInAnimalInventory)
+                return deviceOnMap;
+            }
+            if (doctor.IsColonist && doctor.Map is not null)
+            {
+                foreach (Pawn colonyAnimal in doctor.Map.mapPawns.SpawnedColonyAnimals)
                 {
-                    return deviceInAnimalInventory;
+                    if (GetThingFromInventory(colonyAnimal.inventory.innerContainer, deviceDef) is Thing deviceInAnimalInventory)
+                    {
+                        return deviceInAnimalInventory;
+                    }
                 }
             }
         }

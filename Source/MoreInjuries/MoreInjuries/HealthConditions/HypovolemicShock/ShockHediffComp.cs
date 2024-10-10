@@ -30,6 +30,13 @@ public class ShockHediffComp : HediffComp
         }
     }
 
+    public override void CompExposeData()
+    {
+        base.CompExposeData();
+
+        Scribe_Values.Look(ref _fixedNow, "fixedNow", false);
+    }
+
     public override void CompPostTick(ref float severityAdjustment)
     {
         base.CompPostTick(ref severityAdjustment);

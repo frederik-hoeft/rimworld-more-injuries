@@ -10,11 +10,13 @@ public static class KnownThingDefOf
 {
     public static ThingDef Bandage = null!;
 
-    public static ThingDef Hemostat = null!;
+    public static ThingDef HemostaticAgent = null!;
 
     public static ThingDef Splint = null!;
 
     public static ThingDef SuctionDevice = null!;
 
     public static ThingDef Tourniquet = null!;
+
+    public static ThingDef Defibrillator = null!;
 }

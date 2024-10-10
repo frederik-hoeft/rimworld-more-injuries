@@ -3,12 +3,15 @@ using MoreInjuries.KnownDefs;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace MoreInjuries.HealthConditions.Fractures;
 
 // tend all fractures on a patient or until there are no more splints
-public class JobDriver_ApplySplint : JobDriver_UseMedicalDevice
+public class JobDriver_UseSplint : JobDriver_UseMedicalDevice_TargetsHediffDefs
 {
+    public const string JOB_LABEL = "Splint fractures";
+
     public static HediffDef[] TargetHediffDefs { get; } = [KnownHediffDefOf.Fracture];
 
     protected override bool RequiresDevice => true;
@@ -33,6 +36,24 @@ public class JobDriver_ApplySplint : JobDriver_UseMedicalDevice
             patient.health.AddHediff(healingFracture);
             patient.health.RemoveHediff(fracture);
             device?.DecreaseStack();
+        }
+    }
+
+    public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device) => new JobDescriptor(doctor, patient, device);
+
+    public class JobDescriptor(Pawn doctor, Pawn patient, Thing device) : IJobDescriptor
+    {
+        public Job CreateJob()
+        {
+            Job job = JobMaker.MakeJob(KnownJobDefOf.UseSplint, patient, device);
+            job.count = 1;
+            return job;
+        }
+
+        public void StartJob()
+        {
+            Job job = CreateJob();
+            doctor.jobs.TryTakeOrderedJob(job);
         }
     }
 }

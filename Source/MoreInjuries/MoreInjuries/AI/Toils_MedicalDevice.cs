@@ -8,7 +8,7 @@ namespace MoreInjuries.AI;
 
 internal static class Toils_MedicalDevice
 {
-    public static Toil ReserveDevice(TargetIndex targetIndex, Pawn patient, HediffDef[] hediffDefs)
+    public static Toil ReserveDevice(TargetIndex targetIndex, Pawn patient, Predicate<Hediff> isTreatableWithDevice)
     {
         Toil toil = ToilMaker.MakeToil(nameof(ReserveDevice));
         toil.initAction = () =>
@@ -17,7 +17,7 @@ internal static class Toils_MedicalDevice
             Job curJob = actor.jobs.curJob;
             Thing thing = curJob.GetTarget(targetIndex).Thing;
             int availableDevices = actor.Map.reservationManager.CanReserveStack(actor, thing, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS);
-            if (availableDevices > 0 && actor.Reserve(thing, curJob, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, Mathf.Min(availableDevices, MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, hediffDefs))))
+            if (availableDevices > 0 && actor.Reserve(thing, curJob, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, Mathf.Min(availableDevices, MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, isTreatableWithDevice))))
             {
                 return;
             }
@@ -29,7 +29,7 @@ internal static class Toils_MedicalDevice
         return toil;
     }
 
-    public static Toil PickupDevice(TargetIndex targetIndex, Pawn patient, HediffDef[] hediffDefs)
+    public static Toil PickupDevice(TargetIndex targetIndex, Pawn patient, Predicate<Hediff> isTreatableWithDevice)
     {
         Toil toil = ToilMaker.MakeToil(nameof(PickupDevice));
         toil.initAction = () =>
@@ -37,7 +37,7 @@ internal static class Toils_MedicalDevice
             Pawn actor = toil.actor;
             Job curJob = actor.jobs.curJob;
             Thing thing = curJob.GetTarget(targetIndex).Thing;
-            int countToFullyHeal = MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, hediffDefs);
+            int countToFullyHeal = MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, isTreatableWithDevice);
             if (actor.carryTracker.CarriedThing is not null)
             {
                 countToFullyHeal -= actor.carryTracker.CarriedThing.stackCount;

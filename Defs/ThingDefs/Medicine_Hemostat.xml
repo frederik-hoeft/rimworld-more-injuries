@@ -1,31 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <HediffDef ParentName="DiseaseBase">
-    <defName>HemostatApplied</defName>
-    <label>HemostatApplied</label>
-    <description>A hemostatic agent has been applied to this wound, decreasing its bleeding
-      heavily. When tending, injuries bleeding the most are prioritized.</description>
-    <hediffClass>HediffWithComps</hediffClass>
-    <defaultLabelColor>(0,152,0)</defaultLabelColor>
-    <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-1</severityPerDay>
-      </li>
-      <li>
-        <compClass>MoreInjuries.HealthConditions.HeavyBleeding.Hemostats.HemostatHediffComp</compClass>
-      </li>
-    </comps>
-    <stages>
-      <li>
-        <painOffset>-0.01</painOffset>
-      </li>
-    </stages>
-  </HediffDef>
-
   <ThingDef ParentName="MedicalDeviceBase">
-    <defName>Hemostat</defName>
+    <defName>HemostaticAgent</defName>
     <thingClass>ThingWithComps</thingClass>
-    <label>hemostat</label>
+    <label>hemostatic agent</label>
     <description>Special agent which clots when in contact with blood, which makes it perfect for
       sealing wounds without medical knowledge, but can only be applied on non internal injuries.
       Can be applied by ordering another pawn with hemostat in their inventory.</description>
@@ -44,27 +22,19 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <drawGUIOverlay>true</drawGUIOverlay>
-
     <modExtensions>
-      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Hemostats.HemostatModExtension">
-        <_coagulationMultiplier>0.2</_coagulationMultiplier>
-        <_applyTime>30</_applyTime>
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HemostasisModExtension">
+        <coagulationMultiplier>0.2</coagulationMultiplier>
+        <disappearsAfterTicks>10000</disappearsAfterTicks>
       </li>
     </modExtensions>
   </ThingDef>
 
-  <JobDef>
-    <defName>ApplyHemostatJob</defName>
-    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Hemostats.ApplyHemostatJob</driverClass>
-    <reportString>Use hemostat.</reportString>
-    <casualInterruptible>false</casualInterruptible>
-  </JobDef>
-
   <RecipeDef>
     <defName>Make_HemostatFive</defName>
-    <label>make hemostats x5</label>
-    <description>Make 5 hemostats.</description>
-    <jobString>Making 5 hemostats.</jobString>
+    <label>make hemostatic agent x5</label>
+    <description>Make 5 hemostatic agents.</description>
+    <jobString>Making 5 hemostatic agents.</jobString>
     <workAmount>900</workAmount>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
@@ -90,7 +60,7 @@
       </li>
     </ingredients>
     <products>
-      <Hemostat>5</Hemostat>
+      <HemostaticAgent>5</HemostaticAgent>
     </products>
     <fixedIngredientFilter>
       <thingDefs>

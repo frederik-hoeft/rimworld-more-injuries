@@ -28,7 +28,7 @@ public class HearingLossComp : ThingComp
                 {
                     if (s_earGroups is null)
                     {
-                        Logger.LogVerbose($"attempting to generate ear group cache from pawn {target.Name}");
+                        Logger.LogDebug($"attempting to generate ear group cache from pawn {target.Name}");
                         // not yet cached, check if the apparel covers the ears
                         BodyPartRecord? ear = target.health.hediffSet.GetNotMissingParts().FirstOrDefault(bodyPart => bodyPart.def == KnownBodyPartDefOf.Ear);
                         if (ear is null)
@@ -38,7 +38,7 @@ public class HearingLossComp : ThingComp
                             break;
                         }
                         s_earGroups = [.. ear.groups];
-                        Logger.Log($"successfully initialized ear group cache with {s_earGroups.Length} groups");
+                        Logger.LogDebug($"successfully initialized ear group cache with {s_earGroups.Length} groups");
                     }
                     // get stack-local reference to allow the JIT to optimize checks
                     BodyPartGroupDef[] earGroups = s_earGroups!;

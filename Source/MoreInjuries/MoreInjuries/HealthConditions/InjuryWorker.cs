@@ -8,5 +8,5 @@ public abstract class InjuryWorker(MoreInjuryComp parent) : IInjuryHandler
 
     protected MoreInjuryComp Parent { get; } = parent;
 
-    protected Pawn Target => (Pawn)Parent.parent;
+    internal protected Pawn Target => (Pawn)Parent.parent;
 }

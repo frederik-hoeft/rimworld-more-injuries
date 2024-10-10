@@ -162,16 +162,23 @@ public class MoreInjuriesMod : Mod
 
             Potentially disturbing, but adds a sense of urgency to the situation.
             """);
+        list.Label($"Minimum bleed rate for choking: {Settings.ChokingMinimumBleedRate} (default: 0.2)", -1,
+            """
+            The minimum bleed rate of respiratory injuries required to cause a pawn to choke on their own blood.
+            """);
+        Settings.ChokingMinimumBleedRate = (float)Math.Round(list.Slider(Settings.ChokingMinimumBleedRate, 0f, 1f), 2);
         list.Label($"Chance of choking on blood after severe damage: {Settings.ChokingChanceOnDamage} (default: 0.75)", -1,
             """
             The likelihood of a pawn choking on their own blood after receiving severe bleeding injuries to the respiratory system.
             """);
         Settings.ChokingChanceOnDamage = (float)Math.Round(list.Slider(Settings.ChokingChanceOnDamage, 0f, 1f), 2);
-        list.Label($"Suction device success rate for unskilled users: {Settings.ChokingSuctionDeviceSuccessRate} (default: 0.5)", -1,
+        list.Label($"Minimum suction device success rate for unskilled users: {Settings.SuctionDeviceMinimumSuccessRate} (default: 0.25)", -1,
             """
-            The likelihood of a suction device successfully removing blood from the airways of a choking pawn when used by an unskilled user (Medicine skill < 5).
+            The minimum likelihood of a suction device successfully removing blood from the airways of a choking pawn when used by an unskilled user (Medicine skill < 8). 
+            
+            The actual success rate scales with the user's medicine skill: max(<this setting>, <medicine skill> / 8).
             """);
-        Settings.ChokingSuctionDeviceSuccessRate = (float)Math.Round(list.Slider(Settings.ChokingSuctionDeviceSuccessRate, 0f, 1f), 2);
+        Settings.SuctionDeviceMinimumSuccessRate = (float)Math.Round(list.Slider(Settings.SuctionDeviceMinimumSuccessRate, 0f, 1f), 2);
         list.CheckboxLabeled("Enable inhalation injuries (default: true)", ref Settings.EnableFireInhalation,
             """
             If enabled, pawns that are exposed to fire or other sources of smoke and hot gases may suffer from inhalation injuries, causing severe damage to the respiratory system.
@@ -253,6 +260,13 @@ public class MoreInjuriesMod : Mod
             The likelihood of a pawn suffering from cardiac arrest after losing a very large amount of blood. Evaluated every 300 ticks/5s.
             """);
         Settings.CardiacArrestChanceOnHighBloodLoss = (float)Math.Round(list.Slider(Settings.CardiacArrestChanceOnHighBloodLoss, 0f, 1f), 2);
+        list.Label($"Minimum defibrillator success rate for unskilled user: {Settings.DefibrillatorMinimumSuccessRate} (default: 0.25)", -1,
+            """
+            The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill < 8). 
+            
+            The actual success rate scales with the user's medicine skill: max(<this setting>, <medicine skill> / 8).
+            """);
+        Settings.DefibrillatorMinimumSuccessRate = (float)Math.Round(list.Slider(Settings.DefibrillatorMinimumSuccessRate, 0f, 1f), 2);
         // concussion after blunt trauma
         list.GapLine();
         Text.Font = GameFont.Medium;

@@ -28,8 +28,9 @@ public class MoreInjuriesSettings : ModSettings
 
     internal bool EnableChoking = true;
     internal float ChokingChanceOnDamage = 0.75f;
+    internal float ChokingMinimumBleedRate = 0.2f;
     internal bool EnableChokingSounds = true;
-    internal float ChokingSuctionDeviceSuccessRate = 0.5f;
+    internal float SuctionDeviceMinimumSuccessRate = 0.25f;
 
     internal bool EnableLungCollapse = true;
     internal float LungCollapseChanceOnDamage = 0.4f;
@@ -54,6 +55,7 @@ public class MoreInjuriesSettings : ModSettings
     internal float OrganHypoxiaChanceReductionFactor = 0.5f;
     internal bool EnableCardiacArrestOnHighBloodLoss = true;
     internal float CardiacArrestChanceOnHighBloodLoss = 0.05f;
+    internal float DefibrillatorMinimumSuccessRate = 0.5f;
 
     internal bool EnableFireInhalation = true;
     internal bool EnableLogging = false;
@@ -89,8 +91,9 @@ public class MoreInjuriesSettings : ModSettings
         // choking on blood
         Scribe_Values.Look(ref EnableChoking, nameof(EnableChoking));
         Scribe_Values.Look(ref EnableChokingSounds, nameof(EnableChokingSounds));
+        Scribe_Values.Look(ref ChokingMinimumBleedRate, nameof(ChokingMinimumBleedRate));
         Scribe_Values.Look(ref ChokingChanceOnDamage, nameof(ChokingChanceOnDamage));
-        Scribe_Values.Look(ref ChokingSuctionDeviceSuccessRate, nameof(ChokingSuctionDeviceSuccessRate));
+        Scribe_Values.Look(ref SuctionDeviceMinimumSuccessRate, nameof(SuctionDeviceMinimumSuccessRate));
         // spalling
         Scribe_Values.Look(ref EnableSpalling, nameof(EnableSpalling));
         Scribe_Values.Look(ref ArmorHealthSpallingThreshold, nameof(ArmorHealthSpallingThreshold));
@@ -114,6 +117,7 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref OrganHypoxiaChanceReductionFactor, nameof(OrganHypoxiaChanceReductionFactor));
         Scribe_Values.Look(ref EnableCardiacArrestOnHighBloodLoss, nameof(EnableCardiacArrestOnHighBloodLoss));
         Scribe_Values.Look(ref CardiacArrestChanceOnHighBloodLoss, nameof(CardiacArrestChanceOnHighBloodLoss));
+        Scribe_Values.Look(ref DefibrillatorMinimumSuccessRate, nameof(DefibrillatorMinimumSuccessRate));
 
         Scribe_Values.Look(ref HideUndiagnosedInternalInjuries, nameof(HideUndiagnosedInternalInjuries));
         Scribe_Values.Look(ref ClosedInternalWouldBleedingModifier, nameof(ClosedInternalWouldBleedingModifier));

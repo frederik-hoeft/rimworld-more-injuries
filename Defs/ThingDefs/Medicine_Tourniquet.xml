@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <HediffDef ParentName="DiseaseBase">
+  <HediffDef ParentName="InjuryBase">
     <defName>TourniquetApplied</defName>
     <label>tourniquet</label>
-    <description>An applied tourniquet.</description>
+    <description>A tourniquet has been applied to a limb, stopping the bleeding but starving the limb of blood. If the tourniquet is not removed in time, ischemia (starvation of oxygen) and necrosis (cell death) will occur, requiring amputation of the affected limb to prevent sepsis.
+\nThe tourniquet should be removed as soon as the patient is in a safe location and can receive proper medical care.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0,152,0)</defaultLabelColor>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-0.5</severityPerDay>
+        <severityPerDay>1</severityPerDay>
       </li>
       <li>
         <compClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.TourniquetHediffComp</compClass>
@@ -16,10 +17,34 @@
     </comps>
     <stages>
       <li>
-        <partEfficiencyOffset>-0.20</partEfficiencyOffset>
-        <painOffset>0.15</painOffset>
+        <minSeverity>0</minSeverity>
+        <label>restricted blood flow</label>
+        <partEfficiencyOffset>-0.4</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>initial ischemia</label>
+        <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>advanced ischemia</label>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>initial necrosis</label>
+        <partEfficiencyOffset>-0.9</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.9</minSeverity>
+        <label>advanced necrosis</label>
+        <partEfficiencyOffset>-1</partEfficiencyOffset>
       </li>
     </stages>
+    <injuryProps>
+      <destroyedLabel>Amputated</destroyedLabel>
+    </injuryProps>
   </HediffDef>
 
   <ThingDef ParentName="MedicalDeviceBase">
@@ -43,6 +68,11 @@ applied to oneself or someone else.</description>
       <WorkToMake>100</WorkToMake>
     </statBases>
     <drawGUIOverlay>true</drawGUIOverlay>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HemostasisModExtension">
+        <coagulationMultiplier>0.05</coagulationMultiplier>
+      </li>
+    </modExtensions>
   </ThingDef>
 
   <RecipeDef>

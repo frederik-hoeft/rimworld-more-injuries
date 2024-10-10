@@ -14,13 +14,23 @@ using MoreInjuries.HealthConditions.EmpShutdown;
 using MoreInjuries.HealthConditions.HeadInjury;
 using MoreInjuries.HealthConditions.HearingLoss;
 using MoreInjuries.HealthConditions.HeadInjury.Concussions;
+using MoreInjuries.HealthConditions.CardiacArrest;
+using MoreInjuries.HealthConditions.HeavyBleeding;
+using System.Linq;
 
 namespace MoreInjuries.HealthConditions;
 
 public class MoreInjuryComp : ThingComp
 {
+    private static readonly UIBuilder<FloatMenuOption> s_floatMenuOptionsBuilder = new([], []);
+    private static readonly UIBuilder<Gizmo> s_gizmosBuilder = new([], []);
+
     private DamageInfo _damageInfo;
     private readonly InjuryWorker[] _pipeline;
+    private readonly ICompGetGizmosExtraHandler[] _compGetGizmosExtraHandlers;
+    private readonly ICompFloatMenuOptionsHandler[] _compFloatMenuOptionsHandlers;
+    private readonly IPostPostApplyDamageHandler[] _postPostApplyDamageHandlers;
+    private readonly IPostTakeDamageHandler[] _postTakeDamageHandlers;
 
     public bool CallbackActive { get; private set; } = false;
 
@@ -30,6 +40,7 @@ public class MoreInjuryComp : ThingComp
         [
             new ParalysisWorker(this),
             new IntestinalSpillWorker(this),
+            new CardiacArrestWorker(this),
             new HeadInjuryWorker(this),
             new AdrenalineWorker(this),
             new HydrostaticShockWorker(this),
@@ -41,30 +52,51 @@ public class MoreInjuryComp : ThingComp
             new EmpBionicsWorker(this),
             new HearingLossExplosionsWorker(this),
             new ConcussionExplosionsWorker(this),
+            new HeavyBleedingWorker(this),
+            new ProvideFirstAidWorker(this)
         ];
+        // cache handlers for performance
+        _compGetGizmosExtraHandlers = _pipeline.OfType<ICompGetGizmosExtraHandler>().ToArray();
+        _compFloatMenuOptionsHandlers = _pipeline.OfType<ICompFloatMenuOptionsHandler>().ToArray();
+        _postPostApplyDamageHandlers = _pipeline.OfType<IPostPostApplyDamageHandler>().ToArray();
+        _postTakeDamageHandlers = _pipeline.OfType<IPostTakeDamageHandler>().ToArray();
+    }
+
+    public override IEnumerable<Gizmo> CompGetGizmosExtra()
+    {
+        UIBuilder<Gizmo> builder = s_gizmosBuilder;
+        builder.Clear();
+        foreach (ICompGetGizmosExtraHandler handler in _compGetGizmosExtraHandlers)
+        {
+            if (handler.IsEnabled)
+            {
+                handler.AddGizmosExtra(builder, (Pawn)parent);
+            }
+        }
+        return builder.Options;
     }
 
     public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn)
     {
-        foreach (InjuryWorker component in _pipeline)
+        UIBuilder<FloatMenuOption> builder = s_floatMenuOptionsBuilder;
+        builder.Clear();
+        foreach (ICompFloatMenuOptionsHandler handler in _compFloatMenuOptionsHandlers)
         {
-            if (component is ICompFloatMenuOptionsHandler { IsEnabled: true } handler)
+            if (handler.IsEnabled)
             {
-                foreach (FloatMenuOption option in handler.CompFloatMenuOptions(selectedPawn))
-                {
-                    yield return option;
-                }
+                handler.AddFloatMenuOptions(builder, selectedPawn);
             }
         }
+        return builder.Options;
     }
 
     public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
     {
         if (parent.Map is not null)
         {
-            foreach (InjuryWorker component in _pipeline)
+            foreach (IPostPostApplyDamageHandler handler in _postPostApplyDamageHandlers)
             {
-                if (component is IPostPostApplyDamageHandler { IsEnabled: true } handler)
+                if (handler.IsEnabled)
                 {
                     handler.PostPostApplyDamage(in dinfo);
                 }
@@ -87,9 +119,9 @@ public class MoreInjuryComp : ThingComp
         DebugAssert.IsTrue(CallbackActive, "CallbackActive is false in PostDamageFull");
         DebugAssert.NotNull(damage, "damage is null in PostDamageFull");
 
-        foreach (InjuryWorker component in _pipeline)
+        foreach (IPostTakeDamageHandler handler in _postTakeDamageHandlers)
         {
-            if (component is IPostTakeDamageHandler { IsEnabled: true } handler)
+            if (handler.IsEnabled)
             {
                 handler.PostTakeDamage(damage, in _damageInfo);
             }

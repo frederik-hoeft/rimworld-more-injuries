@@ -1,10 +1,9 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.HealthConditions.CardiacArrest;
+using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using RimWorld;
-using System.Collections.Generic;
 using System.Linq;
 using Verse;
-using Verse.AI;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
@@ -12,66 +11,41 @@ internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPos
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableChoking;
 
-    public IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn)
+    public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Target;
-        // can never self-treat choking or cardiac arrest
-        if (!ReferenceEquals(selectedPawn, patient))
+        if (selectedPawn == patient)
         {
-            foreach (FloatMenuOption option in CreatePerformCprOptions(selectedPawn, patient))
+            return;
+        }
+        if (!builder.Keys.Contains(UITreatmentOption.PerformCpr) && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
+        {
+            builder.Keys.Add(UITreatmentOption.PerformCpr);
+            if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_PerformCpr.JOB_LABEL) is string failure)
             {
-                yield return option;
+                builder.Options.Add(new FloatMenuOption(failure, null));
             }
-            foreach (FloatMenuOption option in CreateClearAirwaysOptions(selectedPawn, patient))
+            else
             {
-                yield return option;
+                builder.Options.Add(new FloatMenuOption(JobDriver_PerformCpr.JOB_LABEL, JobDriver_PerformCpr.GetDispatcher(selectedPawn, patient).StartJob));
             }
         }
-    }
-
-    private static FloatMenuOption[] CreateClearAirwaysOptions(Pawn doctor, Pawn patient)
-    {
-        if (!patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_ClearAirways.TargetHediffDefs, hediff.def) != -1))
+        if (!builder.Keys.Contains(UITreatmentOption.UseSuctionDevice) && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1))
         {
-            return [];
+            builder.Keys.Add(UITreatmentOption.UseSuctionDevice);
+            if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_UseSuctionDevice.JOB_LABEL) is string failure)
+            {
+                builder.Options.Add(new FloatMenuOption(failure, null));
+            }
+            else if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.SuctionDevice, JobDriver_UseSuctionDevice.TargetHediffDefs) is not Thing suctionDevice)
+            {
+                builder.Options.Add(new FloatMenuOption($"{JobDriver_UseSuctionDevice.JOB_LABEL}: no suction device available", null));
+            }
+            else
+            {
+                builder.Options.Add(new FloatMenuOption(JobDriver_UseSuctionDevice.JOB_LABEL, JobDriver_UseSuctionDevice.GetDispatcher(selectedPawn, patient, suctionDevice).StartJob));
+            }
         }
-        string? failure = MedicalDeviceHelper.GetReasonForDisabledProcedure(doctor, patient, "Clear airways");
-        if (failure is not null)
-        {
-            return [new FloatMenuOption(failure, null)];
-        }
-        Thing? device = MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.SuctionDevice, JobDriver_ClearAirways.TargetHediffDefs);
-        if (device is null)
-        {
-            return [new FloatMenuOption("Clear airways: no suction device available", null)];
-        }
-        void startClearingAirways()
-        {
-            Job job = JobMaker.MakeJob(KnownJobDefOf.ApplySplintJob, patient, device);
-            job.count = 1;
-            doctor.jobs.TryTakeOrderedJob(job);
-        }
-        return [new FloatMenuOption("Clear airways", startClearingAirways)];
-    }
-
-    private static FloatMenuOption[] CreatePerformCprOptions(Pawn doctor, Pawn patient)
-    {
-        if (!patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
-        {
-            return [];
-        }
-        string? failure = MedicalDeviceHelper.GetReasonForDisabledProcedure(doctor, patient, "Perform CPR");
-        if (failure is not null)
-        {
-            return [new FloatMenuOption(failure, null)];
-        }
-        void startCpr()
-        {
-            Job job = JobMaker.MakeJob(KnownJobDefOf.PerformCprJob, patient);
-            job.count = 1;
-            doctor.jobs.TryTakeOrderedJob(job);
-        }
-        return [new FloatMenuOption("Perform CPR", startCpr)];
     }
 
     public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
@@ -79,7 +53,7 @@ internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPos
         Pawn patient = Target;
         foreach (Hediff_Injury injury in patient.health.hediffSet.GetHediffsTendable().OfType<Hediff_Injury>())
         {
-            if (injury is { Bleeding: true, BleedRate: >= 0.20f }
+            if (injury is { Bleeding: true } && injury.BleedRate >= MoreInjuriesMod.Settings.ChokingMinimumBleedRate
                 && injury.Part.def.tags.Any(tag => tag == BodyPartTagDefOf.BreathingSource || tag == BodyPartTagDefOf.BreathingPathway)
                 && Rand.Chance(MoreInjuriesMod.Settings.ChokingChanceOnDamage))
             {
