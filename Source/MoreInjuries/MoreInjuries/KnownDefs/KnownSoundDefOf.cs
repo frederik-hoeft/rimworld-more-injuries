@@ -10,4 +10,5 @@ public static class KnownSoundDefOf
 {
     public static SoundDef BoneSnapSound = null!;
     public static SoundDef ChokingSound = null!;
+    public static SoundDef Defibrillator = null!;
 }

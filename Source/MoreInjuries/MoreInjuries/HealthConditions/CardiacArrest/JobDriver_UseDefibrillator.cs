@@ -17,6 +17,8 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
 
     protected override ThingDef DeviceDef => KnownThingDefOf.Defibrillator;
 
+    protected override SoundDef SoundDef => KnownSoundDefOf.Defibrillator;
+
     protected override int BaseTendDuration => 180;
 
     protected override bool IsTreatable(Hediff hediff) => JobCanTreat(hediff);

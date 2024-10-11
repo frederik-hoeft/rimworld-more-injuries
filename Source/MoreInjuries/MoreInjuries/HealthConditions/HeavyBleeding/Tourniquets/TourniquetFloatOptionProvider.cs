@@ -56,6 +56,10 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                             : JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));
                     }
                 }
+                if (options.Count == 0)
+                {
+                    options.Add(new FloatMenuOption("No tourniquets available", null));
+                }
                 Find.WindowStack.Add(new FloatMenu(options));
             }
         });

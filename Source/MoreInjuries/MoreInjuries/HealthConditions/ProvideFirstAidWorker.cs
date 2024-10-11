@@ -6,6 +6,7 @@ using MoreInjuries.HealthConditions.HeavyBleeding.Bandages;
 using MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents;
 using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
+using RimWorld;
 using Verse;
 using Verse.AI;
 
@@ -25,7 +26,19 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
             {
                 return;
             }
-            builder.Options.Add(new FloatMenuOption("Provide first aid", new JobDescriptor(selectedPawn, patient).StartJob));
+            // check if we can treat any of the known conditions
+            foreach (Hediff hediff in patient.health.hediffSet.hediffs)
+            {
+                if (JobDriver_HemostasisBase.JobCanTreat(hediff) 
+                    || JobDriver_UseDefibrillator.JobCanTreat(hediff) 
+                    || Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1 
+                    || Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1 
+                    || hediff.TendableNow())
+                {
+                    builder.Options.Add(new FloatMenuOption("Provide first aid", new JobDescriptor(selectedPawn, patient).StartJob));
+                    return;
+                }
+            }
         }
     }
 
@@ -96,6 +109,14 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
             if (!performingCpr && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
             {
                 job = JobDriver_PerformCpr.GetDispatcher(doctor, patient).CreateJob();
+                StartOrSchedule(job, ref requiresScheduling);
+            }
+            // start normal vanilla treatment
+            if (patient.health.hediffSet.hediffs.Any(hediff => hediff.TendableNow()))
+            {
+                Thing medicine = HealthAIUtility.FindBestMedicine(doctor, patient, onlyUseInventory: true);
+                job = JobMaker.MakeJob(JobDefOf.TendPatient, patient);
+                job.count = 1;
                 StartOrSchedule(job, ref requiresScheduling);
             }
         }

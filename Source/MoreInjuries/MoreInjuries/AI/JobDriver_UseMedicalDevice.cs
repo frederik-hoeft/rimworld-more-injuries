@@ -37,6 +37,8 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
 
     protected Pawn Doctor => pawn;
 
+    protected virtual SoundDef SoundDef => SoundDefOf.Interact_Tend;
+
     protected virtual int BaseTendDuration => 600;
 
     protected abstract void ApplyDevice(Pawn doctor, Pawn patient, Thing? device);
@@ -150,7 +152,6 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         });
         Toil? reserveDevices = null;
         Toil gotoPatientToil = Toils_Goto.Goto(PATIENT_INDEX, _pathEndMode);
-        gotoPatientToil.AddFinishAction(() => patient.jobs.posture = PawnPosture.LayingOnGroundFaceUp);
         if (_usesDevice)
         {
             List<Toil> collectDeviceToils = CollectDevicesToils(doctor, patient, job, gotoPatientToil, out reserveDevices);
@@ -170,15 +171,22 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         else
         {
             waitToil = Toils_General.WaitWith_NewTemp(PATIENT_INDEX, ticks, maintainPosture: true, face: PATIENT_INDEX, pathEndMode: _pathEndMode);
+            waitToil.initAction = () =>
+            {
+                Job patientWaitJob = JobMaker.MakeJob(JobDefOf.Wait_MaintainPosture, patient.Position);
+                patientWaitJob.expiryInterval = ticks;
+                patient.jobs.StartJob(patientWaitJob, JobCondition.InterruptForced, jobGiver: null, resumeCurJobAfterwards: true, cancelBusyStances: true);
+                patient.jobs.posture = PawnPosture.LayingOnGroundFaceUp;
+            };
             waitToil.AddFinishAction(() =>
             {
-                if (patient != doctor && patient?.CurJob?.def is JobDef jobDef && (jobDef == JobDefOf.Wait || jobDef == JobDefOf.Wait_MaintainPosture))
+                if (patient?.CurJob?.def is JobDef jobDef && (jobDef == JobDefOf.Wait || jobDef == JobDefOf.Wait_MaintainPosture))
                 {
                     patient.jobs.EndCurrentJob(JobCondition.InterruptForced, startNewJob: true, canReturnToPool: true);
                 }
             });
         }
-        waitToil.WithProgressBarToilDelay(PATIENT_INDEX).PlaySustainerOrSound(SoundDefOf.Interact_Tend);
+        waitToil.WithProgressBarToilDelay(PATIENT_INDEX).PlaySustainerOrSound(SoundDef);
         waitToil.activeSkill = () => SkillDefOf.Medicine;
         waitToil.handlingFacing = true;
         waitToil.tickAction = () =>
