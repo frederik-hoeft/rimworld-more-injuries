@@ -33,7 +33,7 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
                     || JobDriver_UseDefibrillator.JobCanTreat(hediff) 
                     || Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1 
                     || Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1 
-                    || hediff.TendableNow())
+                    || patient.Downed && hediff.TendableNow())
                 {
                     builder.Options.Add(new FloatMenuOption("Provide first aid", new JobDescriptor(selectedPawn, patient).StartJob));
                     return;
@@ -111,8 +111,8 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
                 job = JobDriver_PerformCpr.GetDispatcher(doctor, patient).CreateJob();
                 StartOrSchedule(job, ref requiresScheduling);
             }
-            // start normal vanilla treatment
-            if (patient.health.hediffSet.hediffs.Any(hediff => hediff.TendableNow()))
+            // start normal vanilla treatment (only if the patient is downed because otherwise the patient will just get up and walk away)
+            if (patient.Downed && patient.health.hediffSet.hediffs.Any(hediff => hediff.TendableNow()))
             {
                 Thing medicine = HealthAIUtility.FindBestMedicine(doctor, patient, onlyUseInventory: true);
                 job = JobMaker.MakeJob(JobDefOf.TendPatient, patient);

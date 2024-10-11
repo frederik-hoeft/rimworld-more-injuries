@@ -80,8 +80,10 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
             }
 
             bool pawnKnowsWhatTheyreDoing = PawnKnowsWhatTheyreDoing(selectedPawn);
+            int i = 0;
             foreach (BodyPartRecord bodyPart in GetLimbs(patient))
             {
+                Logger.LogDebug($"Checking {bodyPart.Label} for tourniquet application ({i++})");
                 if (patient.health.hediffSet.hediffs.Any(hediff => hediff.Part == bodyPart && hediff.def == KnownHediffDefOf.TourniquetApplied))
                 {
                     builder.Options.Add(new FloatMenuOption($"{JobDriver_RemoveTourniquet.JOB_LABEL} from {bodyPart.Label.Colorize(Color.red)}", 

@@ -2,7 +2,6 @@
 <Defs>
   <!-- TODO: add epinephrine autoinjector item for temporary treatment of hypovolemic shock and to use as a combat stimulant -->
   <!-- TODO: add negative effect of adrenaline to aiming accuracy and manipulation -->
-  <!-- TODO: adrenaline / epinephrine should increase the consciousness level, allowing to counteract low-consciousness effects of concussions, brain injuries, and blood loss for a short time -->
   <!-- TODO: add overdose effects of adrenaline, increasing the risk of heart attack and stroke -->
   <HediffDef>
     <defName>AdrenalineRush</defName>
@@ -29,6 +28,10 @@
             <capacity>Moving</capacity>
             <offset>0.05</offset>
           </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>0.05</offset>
+          </li>
         </capMods>
       </li>
       <li>
@@ -40,6 +43,10 @@
           <li>
             <capacity>Moving</capacity>
             <offset>0.1</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>0.075</offset>
           </li>
         </capMods>
       </li>
@@ -53,6 +60,10 @@
             <capacity>Moving</capacity>
             <offset>0.125</offset>
           </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>0.1</offset>
+          </li>
         </capMods>
       </li>
       <li>
@@ -64,6 +75,10 @@
           <li>
             <capacity>Moving</capacity>
             <offset>0.15</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>0.125</offset>
           </li>
         </capMods>
       </li>
@@ -77,6 +92,10 @@
             <capacity>Moving</capacity>
             <offset>0.15</offset>
           </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>0.15</offset>
+          </li>
         </capMods>
       </li>
       <li>
@@ -87,6 +106,10 @@
         <capMods>
           <li>
             <capacity>Moving</capacity>
+            <offset>0.2</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
             <offset>0.2</offset>
           </li>
         </capMods>

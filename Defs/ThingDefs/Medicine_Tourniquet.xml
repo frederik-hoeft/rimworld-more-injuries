@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+  <!-- TODO: currently nothing happens at 100% severity, if that stage is reached, add dry gangrene as a new hediff to a random child part that causes autoamputation when at 100% severity and the limb simply falls off.
+  if there are no child parts left, gangrene is applied directly to the parent part until that falls off and everything "fixes" itself. -->
   <HediffDef ParentName="InjuryBase">
     <defName>TourniquetApplied</defName>
     <label>tourniquet</label>
     <description>A tourniquet has been applied to a limb, stopping the bleeding but starving the limb of blood. If the tourniquet is not removed in time, ischemia (starvation of oxygen) and necrosis (cell death) will occur, requiring amputation of the affected limb to prevent sepsis.
 \nThe tourniquet should be removed as soon as the patient is in a safe location and can receive proper medical care.</description>
     <hediffClass>HediffWithComps</hediffClass>
-    <defaultLabelColor>(0,152,0)</defaultLabelColor>
+    <defaultLabelColor>(254, 221, 0)</defaultLabelColor>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>1</severityPerDay>
@@ -29,16 +31,19 @@
       <li>
         <minSeverity>0.6</minSeverity>
         <label>advanced ischemia</label>
+        <lifeThreatening>true</lifeThreatening>
         <partEfficiencyOffset>-0.8</partEfficiencyOffset>
       </li>
       <li>
         <minSeverity>0.8</minSeverity>
         <label>initial necrosis</label>
+        <lifeThreatening>true</lifeThreatening>
         <partEfficiencyOffset>-0.9</partEfficiencyOffset>
       </li>
       <li>
         <minSeverity>0.9</minSeverity>
         <label>advanced necrosis</label>
+        <lifeThreatening>true</lifeThreatening>
         <partEfficiencyOffset>-1</partEfficiencyOffset>
       </li>
     </stages>

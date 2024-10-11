@@ -20,24 +20,22 @@
       <MarketValue>1000</MarketValue>
       <MaxHitPoints>80</MaxHitPoints>
     </statBases>
-    <costList>
-      <Steel>25</Steel>
-      <Chemfuel>20</Chemfuel>
-      <ComponentIndustrial>4</ComponentIndustrial>
-      <Plasteel>25</Plasteel>
-      <Gold>10</Gold>
-      <Silver>100</Silver>
-    </costList>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
   </ThingDef>
 
   <RecipeDef>
     <defName>Make_Defibrillator</defName>
     <label>make defibrillator</label>
-    <description>Assemble a defibrillator.</description>
+    <description>Make a defibrillator.</description>
     <jobString>Making a defibrillator.</jobString>
     <workAmount>900</workAmount>
     <effectWorking>Cook</effectWorking>
-    <soundWorking>Recipe_CookMeal</soundWorking>
+    <soundWorking>Recipe_Machining</soundWorking>
     <allowMixingIngredients>true</allowMixingIngredients>
     <ingredients>
       <li>
@@ -78,7 +76,7 @@
             <li>Gold</li>
           </thingDefs>
         </filter>
-        <count>10</count>
+        <count>1</count>
       </li>
       <li>
         <filter>
@@ -86,7 +84,7 @@
             <li>Silver</li>
           </thingDefs>
         </filter>
-        <count>100</count>
+        <count>10</count>
       </li>
     </ingredients>
     <products>

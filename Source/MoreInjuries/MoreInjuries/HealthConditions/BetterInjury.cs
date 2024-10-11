@@ -126,13 +126,25 @@ public class BetterInjury : Hediff_Injury
         get
         {
             string result = base.Label;
+            if (!Bleeding)
+            {
+                return result;
+            }
             if (IsClosedInternalWound)
             {
                 result += " (enclosed)";
             }
             if (IsCoagulationMultiplierApplied)
             {
-                result += " (tamponaded)";
+                if (_reducedBleedRateTicks > 0 && _reducedBleedRateTicksTotal > 0 && _reducedBleedRateTicksTotal > _reducedBleedRateTicks)
+                {
+                    int durationHours = (_reducedBleedRateTicksTotal - _reducedBleedRateTicks) / 2500;
+                    result += $" (tamponaded, {durationHours}h)";
+                }
+                else
+                {
+                    result += " (tamponaded)";
+                }
             }
             return result;
         }
@@ -144,7 +156,7 @@ public class BetterInjury : Hediff_Injury
         if (IsCoagulationMultiplierApplied && _reducedBleedRateTicks > 0)
         {
             _reducedBleedRateTicks--;
-            if (_reducedBleedRateTicks <= 0f)
+            if (_reducedBleedRateTicks <= 0)
             {
                 IsCoagulationMultiplierApplied = false;
             }
@@ -204,15 +216,36 @@ public class BetterInjury : Hediff_Injury
         get
         {
             string result = base.TipStringExtra;
+            if (!Bleeding)
+            {
+                return result;
+            }
             if (IsClosedInternalWound)
             {
-                result += "\nClosed wound, bleeding rate decreased";
+                result += $"\nClosed wound, bleeding rate decreased by {(int)((1f - MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier) * 100f)}%";
             }
             if (IsCoagulationMultiplierApplied)
             {
-                result += "\nTemponaded, bleeding rate decreased";
+                result += $"\nTemponaded, bleeding rate decreased by {(int)((1f - CoagulationMultiplier) * 100f)}%";
             }
             return result;
         }
     }
+}
+
+public readonly struct CoagulationContext(int value)
+{
+    private readonly int _value = value;
+
+    public static implicit operator int(CoagulationContext context) => context._value;
+
+    public static implicit operator CoagulationContext(int value) => new(value);
+
+    public static CoagulationContext None => new(0);
+
+    public static CoagulationContext Bandaged => new(1);
+
+    public static CoagulationContext HemostaticAgent => new(2);
+
+    public static CoagulationContext Touniquet => new(3);
 }

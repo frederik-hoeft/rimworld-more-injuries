@@ -36,7 +36,10 @@
       </li>
     </comps>
     <stages>
-      <li></li>
+      <li>
+        <minSeverity>0</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+      </li>
     </stages>
   </HediffDef>
 </Defs>
