@@ -31,6 +31,10 @@ public static class MedicalDeviceHelper
         {
             return $"{jobTitle}: {doctor} is incapable of medicine";
         }
+        if (doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
+        {
+            return $"{jobTitle}: self-tend disabled";
+        }
         return null;
     }
 

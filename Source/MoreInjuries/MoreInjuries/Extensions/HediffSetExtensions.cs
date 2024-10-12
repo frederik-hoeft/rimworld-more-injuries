@@ -42,4 +42,16 @@ public static class HediffSetExtensions
             }
         }
     }
+
+    public static void RemoveHediffsMatchingPartOrChildren(this HediffSet hediffSet, BodyPartRecord part, Hediff? exception = null)
+    {
+        for (int index = hediffSet.hediffs.Count - 1; index >= 0; --index)
+        {
+            Hediff hediff = hediffSet.hediffs[index];
+            if (hediff != exception && hediff.IsOnBodyPartOrChildren(part))
+            {
+                hediffSet.hediffs.RemoveAt(index);
+            }
+        }
+    }
 }

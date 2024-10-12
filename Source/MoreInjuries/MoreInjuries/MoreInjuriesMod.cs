@@ -9,6 +9,8 @@ using MoreInjuries.Extensions;
 
 namespace MoreInjuries;
 
+using static MoreInjuriesSettings;
+
 public class MoreInjuriesMod : Mod
 {
     private static bool? s_combatExtendedLoaded = null;
@@ -52,19 +54,6 @@ public class MoreInjuriesMod : Mod
         Text.Font = GameFont.Small;
         list.CheckboxLabeled("Enable logging (default: false)", ref Settings.EnableLogging);
         list.CheckboxLabeled("Enable verbose logging (default: false)", ref Settings.EnableVerboseLogging);
-        list.GapLine();
-        list.Gap();
-        Text.Font = GameFont.Medium;
-        list.Label("Gameplay Settings");
-        Text.Font = GameFont.Small;
-        list.GapLine();
-        list.CheckboxLabeled("Show individual options for hemostat usage alongside 'Provide first aid option' (default: false)", ref Settings.UseIndividualFloatMenus);
-        list.CheckboxLabeled("Hide undiagnosed internal injuries (default: false)", ref Settings.HideUndiagnosedInternalInjuries,
-            """
-            If enabled, internal injuries that have not been diagnosed by a doctor will not be shown in the health tab. This can make it harder to determine the exact state of a pawn's health, but can also add a sense of realism to the game.
-            
-            Only enable this if you want to make the game more challenging.
-            """);
         // TODO: not sure if or how this works
         if (Find.CurrentMap is not null)
         {
@@ -352,6 +341,36 @@ public class MoreInjuriesMod : Mod
             The likelihood of a pawn suffering from hydrostatic shock after being hit by a very-high-energy projectile. Evaluated per damage event.
             """);
         Settings.HydrostaticShockChanceOnDamage = (float)Math.Round(list.Slider(Settings.HydrostaticShockChanceOnDamage, 0f, 1f), 2);
+        // tourniquets and gangrene
+        list.GapLine();
+        Text.Font = GameFont.Medium;
+        list.Label("Tourniquets Cause Tissue Damage");
+        Text.Font = GameFont.Small;
+        list.CheckboxLabeled($"Enable tourniquets causing gangrene (default: {TOURNIQUETS_CAN_CAUSE_GANGRENE_DEFAULT})", ref Settings.TourniquetsCanCauseGangrene,
+            """
+            If enabled, pawns that have a tourniquet applied for an extended period of time may suffer from gangrene, a potentially fatal condition caused by the death of body tissue due to a lack of blood flow.
+
+            If only applied for a few hours, a tourniquet can save a life. If applied for a few days, it can cost a limb.
+            """);
+        list.Label($"Mean time between gangrene on tourniquet: {Math.Round(Settings.MeanTimeBetweenGangreneOnTourniquet / 2500f, 1)}h (default: {MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT / 2500f}h)", -1,
+            """
+            The mean time between child body parts (e.g. fingers or toes) suffering from gangrene when the severity of adverse conditions due to the applied tourniquet is at its maximum.
+            """);
+        Settings.MeanTimeBetweenGangreneOnTourniquet = Mathf.Floor(list.Slider((float)Math.Round(Settings.MeanTimeBetweenGangreneOnTourniquet / 2500f, 1), 0.1f, 24f) * 2500f);
+        list.Label($"Chance of dry gangrene on tourniquet: {Settings.DryGangreneChance} (default: {DRY_GANGRENE_CHANCE_DEFAULT})", -1,
+            """
+            If a tourniquet is applied for an extended period of time, the affected body part will starve of oxygen and nutrients, leading to the death of the tissue (gangrene). Gangrene can be either dry or wet. Dry gangrene refers to the death of tissue (loss of the body part) without bacterial infection, while wet gangrene implies an accompanying bacterial infection potentially causing sepsis and death.
+
+            As such, both types of gangrene imply the loss of the affected body part, but wet gangrene can lead to death if not amputated in time. Dry gangrene may develop into wet gangrene over time if bacteria enter the dead tissue.
+
+            If set to 1, the gangrene will always be initially dry. If set to 0.8, there is an 80% chance of the gangrene being initially dry and a 20% chance of it being initially wet.
+            """);
+        Settings.DryGangreneChance = (float)Math.Round(list.Slider(Settings.DryGangreneChance, 0f, 1f), 2);
+        list.Label($"Mean time to infection on dry gangrene: {Math.Round(Settings.DryGangreneMeanTimeToInfection / 60_000f, 1)}d (default: {DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT / 60_000f}d)", -1,
+            """
+            The mean time between dry gangrene becoming infected with bacteria and turning into wet gangrene. Wet gangrene is a life-threatening condition that requires immediate amputation.
+            """);
+        Settings.DryGangreneMeanTimeToInfection = Mathf.Floor(list.Slider((float)Math.Round(Settings.DryGangreneMeanTimeToInfection / 60_000f, 1), 0.1f, 15f) * 60_000f);
         // miscellaneous
         list.GapLine();
         Text.Font = GameFont.Medium;

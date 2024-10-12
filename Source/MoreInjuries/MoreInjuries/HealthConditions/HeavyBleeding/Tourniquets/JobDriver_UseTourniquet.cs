@@ -1,7 +1,6 @@
 ﻿using MoreInjuries.AI;
 using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
-using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
@@ -16,34 +15,36 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
     protected override bool RequiresDevice => true;
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device) =>
-        ApplyDevice(patient, device, _bodyPartWoundAnchorTag);
+        ApplyDevice(patient, device, _bodyPartKey);
 
     protected override bool IsTreatable(Hediff hediff) => true;
 
-    internal static void ApplyDevice(Pawn patient, Thing? device, BodyPartRecord? bodyPart) =>
-        ApplyDevice(patient, device, bodyPart?.woundAnchorTag);
+    // as long as the one-shot job is not completed, the patient will be treated
+    protected override bool RequiresTreatment(Pawn patient) => true;
 
-    private static void ApplyDevice(Pawn patient, Thing? device, string? bodyPartWoundAnchorTag)
+    internal static void ApplyDevice(Pawn patient, Thing? device, BodyPartRecord? bodyPart) =>
+        ApplyDevice(patient, device, GetUniqueBodyPartKey(bodyPart));
+
+    private static void ApplyDevice(Pawn patient, Thing? device, string? bodyPartKey)
     {
-        if (string.IsNullOrEmpty(bodyPartWoundAnchorTag)
+        if (string.IsNullOrEmpty(bodyPartKey)
             || device?.def.GetModExtension<HemostasisModExtension>() is not HemostasisModExtension extension
-            || patient.RaceProps.body.AllParts.Find(part => part.woundAnchorTag == bodyPartWoundAnchorTag) is not BodyPartRecord targetPart)
+            || patient.RaceProps.body.AllParts.Find(part => GetUniqueBodyPartKey(part) == bodyPartKey) is not BodyPartRecord targetPart)
         {
+            Logger.Warning($"Failed to apply tourniquet because of invalid parameters: {patient}, {device}, {bodyPartKey}");
             return;
         }
 
-        List<BetterInjury> treatedInjuries = [];
         foreach (Hediff hediff in patient.health.hediffSet.hediffs)
         {
             // tourniquets can only be applied to bleeding injuries that are tendable
             if (hediff is BetterInjury { Bleeding: true } injury
                 && injury.TendableNow()
+                && !injury.CoagulationFlags.IsSet(CoagulationFlag.Manual)
                 // and the injury must be on the targeted body part or one of its children
                 && injury.IsOnBodyPartOrChildren(targetPart))
             {
-                treatedInjuries.Add(injury);
-                injury.IsBase = false;
-                injury.IsCoagulationMultiplierApplied = true;
+                injury.CoagulationFlags |= CoagulationFlag.Manual;
                 injury.CoagulationMultiplier = extension.CoagulationMultiplier;
             }
         }
@@ -51,7 +52,7 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
         appliedTourniquetHediff.Severity = 0.01f;
         if (appliedTourniquetHediff.TryGetComp(out TourniquetHediffComp comp))
         {
-            comp.Injuries = treatedInjuries;
+            comp.CoagulationMultiplier = extension.CoagulationMultiplier;
         }
         else
         {
@@ -64,6 +65,7 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
             Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.ChokingOnTourniquet, patient);
             patient.health.AddHediff(hediff);
         }
+        device.DecreaseStack();
     }
 
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, BodyPartRecord bodyPart) =>
@@ -75,7 +77,7 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
         {
             TourniquetBaseParameters parameters = ExtendedJobParameters.Create<TourniquetBaseParameters>(oneShot: true);
             // the only thing that is persistent and unique between the limbs is the anchor tag
-            parameters.woundAnchorTag = bodyPart.woundAnchorTag;
+            parameters.bodyPartKey = GetUniqueBodyPartKey(bodyPart);
             Job job = JobMaker.MakeJob(KnownJobDefOf.UseTourniquet, patient, device);
             job.count = 1;
             job.source = parameters;

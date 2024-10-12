@@ -16,7 +16,7 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
     {
         Part.depth: BodyPartDepth.Outside,
         Bleeding: true,
-        IsCoagulationMultiplierApplied: false
+        IsTemporarilyCoagulated: false
     };
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
@@ -30,10 +30,9 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
         if (injury is not null && device?.def.GetModExtension<HemostasisModExtension>() is HemostasisModExtension extension)
         {
             BetterInjury betterInjury = (BetterInjury)injury;
-            betterInjury.IsBase = false;
-            betterInjury.CoagulationMultiplier = extension.CoagulationMultiplier;
+            betterInjury.CoagulationFlags |= CoagulationFlag.Timed;
+            betterInjury.TemporarilyTamponadedMultiplierBase = extension.CoagulationMultiplier;
             betterInjury.ReducedBleedRateTicksTotal = extension.DisappearsAfterTicks;
-            betterInjury.IsCoagulationMultiplierApplied = true;
             device?.DecreaseStack();
         }
     }

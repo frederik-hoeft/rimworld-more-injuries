@@ -123,69 +123,32 @@
     </comps>
     <stages>
       <li>
-        <label>initial</label>
+        <label>struggling</label>
         <capMods>
           <li>
-            <capacity>Breathing</capacity>
-            <offset>-0.15</offset>
+            <capacity>Consciousness</capacity>
+            <setMax>0.5</setMax>
           </li>
         </capMods>
       </li>
       <li>
-        <minSeverity>0.15</minSeverity>
-        <label>initial</label>
+        <minSeverity>0.1</minSeverity>
+        <label>intermittent consciousness</label>
         <capMods>
           <li>
-            <capacity>Breathing</capacity>
-            <offset>-0.25</offset>
+            <capacity>Consciousness</capacity>
+            <setMax>0.25</setMax>
           </li>
         </capMods>
       </li>
       <li>
-        <minSeverity>0.250</minSeverity>
-        <label>moderate</label>
+        <minSeverity>0.25</minSeverity>
+        <label>uncounscious</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
-            <capacity>Breathing</capacity>
-            <offset>-0.40</offset>
-          </li>
-        </capMods>
-      </li>
-      <li>
-        <minSeverity>0.450</minSeverity>
-        <label>moderate</label>
-        <lifeThreatening>true</lifeThreatening>
-        <capMods>
-          <li>
-            <capacity>Breathing</capacity>
-            <offset>-0.550</offset>
-          </li>
-        </capMods>
-      </li>
-      <li>
-        <minSeverity>0.650</minSeverity>
-        <label>moderate</label>
-        <lifeThreatening>true</lifeThreatening>
-        <capMods>
-          <li>
-            <capacity>Breathing</capacity>
-            <offset>-0.70</offset>
-          </li>
-        </capMods>
-      </li>
-      <li>
-        <minSeverity>0.750</minSeverity>
-        <label>extreme</label>
-        <lifeThreatening>true</lifeThreatening>
-        <capMods>
-          <li>
-            <capacity>Breathing</capacity>
+            <capacity>Consciousness</capacity>
             <setMax>0.01</setMax>
-          </li>
-          <li>
-            <capacity>Moving</capacity>
-            <setMax>0</setMax>
           </li>
         </capMods>
       </li>

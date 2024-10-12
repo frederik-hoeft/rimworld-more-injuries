@@ -20,7 +20,8 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
             // pawn is downed and has too low manipulation to do anything
             return;
         }
-        if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL) is not null)
+        string? failure = null;
+        if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL) is string error && !(failure = error).EndsWith("disabled"))
         {
             // no tourniquet available or the selected pawn can't use it
             return;
@@ -39,26 +40,32 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
 
                 // there will never be more than 5 limbs to apply a tourniquet to...
                 List<FloatMenuOption> options = new(capacity: 5);
-
-                bool pawnKnowsWhatTheyreDoing = PawnKnowsWhatTheyreDoing(selectedPawn);
-                foreach (BodyPartRecord bodyPart in GetLimbs(patient))
+                if (failure is null)
                 {
-                    if (patient.health.hediffSet.hediffs.Any(hediff => hediff.Part == bodyPart && hediff.def == KnownHediffDefOf.TourniquetApplied))
+                    bool pawnKnowsWhatTheyreDoing = PawnKnowsWhatTheyreDoing(selectedPawn);
+                    foreach (BodyPartRecord bodyPart in GetLimbs(patient))
                     {
-                        options.Add(new FloatMenuOption($"{JobDriver_RemoveTourniquet.JOB_LABEL} from {bodyPart.Label.Colorize(Color.red)}", patient.Downed
-                            ? () => JobDriver_RemoveTourniquet.ApplyDevice(patient, bodyPart)
-                            : JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                        if (patient.health.hediffSet.hediffs.Any(hediff => hediff.Part == bodyPart && hediff.def == KnownHediffDefOf.TourniquetApplied))
+                        {
+                            options.Add(new FloatMenuOption($"{JobDriver_RemoveTourniquet.JOB_LABEL} from {bodyPart.Label.Colorize(Color.red)}", patient.Downed
+                                ? () => JobDriver_RemoveTourniquet.ApplyDevice(patient, bodyPart)
+                                : JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                        }
+                        else if (tourniquet is not null && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
+                        {
+                            options.Add(new FloatMenuOption($"{JobDriver_UseTourniquet.JOB_LABEL} to {bodyPart.Label.Colorize(Color.green)}", patient.Downed
+                                ? () => JobDriver_UseTourniquet.ApplyDevice(patient, tourniquet, bodyPart)
+                                : JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));
+                        }
                     }
-                    else if (tourniquet is not null && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
+                    if (options.Count == 0)
                     {
-                        options.Add(new FloatMenuOption($"{JobDriver_UseTourniquet.JOB_LABEL} to {bodyPart.Label.Colorize(Color.green)}", patient.Downed
-                            ? () => JobDriver_UseTourniquet.ApplyDevice(patient, tourniquet, bodyPart)
-                            : JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));
+                        options.Add(new FloatMenuOption("No tourniquets available", null));
                     }
                 }
-                if (options.Count == 0)
+                else
                 {
-                    options.Add(new FloatMenuOption("No tourniquets available", null));
+                    options.Add(new FloatMenuOption(failure, null));
                 }
                 Find.WindowStack.Add(new FloatMenu(options));
             }
@@ -73,25 +80,23 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
             builder.Keys.Add(UITreatmentOption.UseTourniquet);
 
             Thing? tourniquet = MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Tourniquet);
-            if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL) is string failure)
+            if (tourniquet is not null && MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL) is string failure)
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));
                 return;
             }
 
             bool pawnKnowsWhatTheyreDoing = PawnKnowsWhatTheyreDoing(selectedPawn);
-            int i = 0;
             foreach (BodyPartRecord bodyPart in GetLimbs(patient))
             {
-                Logger.LogDebug($"Checking {bodyPart.Label} for tourniquet application ({i++})");
                 if (patient.health.hediffSet.hediffs.Any(hediff => hediff.Part == bodyPart && hediff.def == KnownHediffDefOf.TourniquetApplied))
                 {
-                    builder.Options.Add(new FloatMenuOption($"{JobDriver_RemoveTourniquet.JOB_LABEL} from {bodyPart.Label.Colorize(Color.red)}", 
-                        JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                    builder.Options.Add(new FloatMenuOption($"{JobDriver_RemoveTourniquet.JOB_LABEL} from {bodyPart.Label.Colorize(Color.red)} of {patient.Label.Colorize(Color.yellow)}",
+                    JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
                 }
                 else if (tourniquet is not null && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
                 {
-                    builder.Options.Add(new FloatMenuOption($"{JobDriver_UseTourniquet.JOB_LABEL} to {bodyPart.Label.Colorize(Color.green)}", 
+                    builder.Options.Add(new FloatMenuOption($"{JobDriver_UseTourniquet.JOB_LABEL} to {bodyPart.Label.Colorize(Color.green)} of {patient.Label.Colorize(Color.yellow)}", 
                         JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));
                 }
             }
@@ -99,10 +104,11 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
     }
 
     private static IEnumerable<BodyPartRecord> GetLimbs(Pawn patient) => patient.health.hediffSet.GetNotMissingParts()
-        .Where(bodyPart => bodyPart.def == BodyPartDefOf.Shoulder
+        .Where(bodyPart => (bodyPart.def == BodyPartDefOf.Shoulder
             || bodyPart.def == BodyPartDefOf.Leg
             // a nice little easter egg for the less-gifted doctors out there :)
-            || bodyPart.def == KnownBodyPartDefOf.Neck);
+            || bodyPart.def == KnownBodyPartDefOf.Neck)
+            && !bodyPart.def.IsSolid(bodyPart, patient.health.hediffSet.hediffs));
 
     private static bool PawnKnowsWhatTheyreDoing(Pawn pawn)
     {
@@ -126,12 +132,12 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                     // there are only two entries we care about, so we can easily check the other one using some index math
                     if (skillRecords[Math.Abs(i - 1)].InsufficientSkill)
                     {
-                        return true;
+                        return false;
                     }
                 }
             }
         }
-        return false;
+        return true;
     }
 }
 

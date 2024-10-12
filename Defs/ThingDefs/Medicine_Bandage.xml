@@ -33,7 +33,7 @@
     <modExtensions>
       <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HemostasisModExtension">
         <coagulationMultiplier>0.5</coagulationMultiplier>
-        <disappearsAfterTicks>20000</disappearsAfterTicks>
+        <disappearsAfterTicks>30000</disappearsAfterTicks>
       </li>
     </modExtensions>
   </ThingDef>

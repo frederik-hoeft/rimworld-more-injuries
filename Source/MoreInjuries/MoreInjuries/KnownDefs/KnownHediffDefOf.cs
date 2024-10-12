@@ -32,4 +32,6 @@ public static class KnownHediffDefOf
     public static HediffDef StomachAcidBurn = null!;
     public static HediffDef TourniquetApplied = null!;
     public static HediffDef CardiacArrest = null!;
+    public static HediffDef GangreneDry = null!;
+    public static HediffDef GangreneWet = null!;
 }

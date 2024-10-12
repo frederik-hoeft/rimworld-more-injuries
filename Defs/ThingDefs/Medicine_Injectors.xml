@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>Epinephrine</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>epinephrine autoinjector</label>
+    <description>An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose or doses of epinephrine (adrenaline) by means of autoinjector technology.</description>
+    <graphicData>
+      <texPath>Thing/Epinephrine</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>50</stackLimit>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <tradeNeverStack>false</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <Mass>1</Mass>
+      <MarketValue>250</MarketValue>
+      <MaxHitPoints>20</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
+  </ThingDef>
+  
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>Morphine</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>morphine autoinjector</label>
+    <description>TODO</description>
+    <graphicData>
+      <texPath>Thing/Morphine</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>50</stackLimit>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <tradeNeverStack>false</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <Mass>1</Mass>
+      <MarketValue>250</MarketValue>
+      <MaxHitPoints>20</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
+  </ThingDef>
+</Defs>

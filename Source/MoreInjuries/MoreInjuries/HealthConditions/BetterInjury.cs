@@ -1,6 +1,7 @@
 ﻿using MoreInjuries.KnownDefs;
 using RimWorld;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using Verse;
 
@@ -8,9 +9,6 @@ namespace MoreInjuries.HealthConditions;
 
 public class BetterInjury : Hediff_Injury
 {
-    private static readonly Color s_closedWoundColor = new(115, 115, 115);
-    private static readonly Color s_hemostatColor = new(90, 155, 220);
-
     private static HashSet<string>? s_indirectlyAddedInjuries;
 
     public static HashSet<string> IndirectlyAddedInjuries
@@ -27,30 +25,39 @@ public class BetterInjury : Hediff_Injury
         }
     }
 
-    private float _overriddenBleedRate;
-    private bool _isCoagulationMultiplierApplied = false;
-    private int _reducedBleedRateTicks = 30000;
-    private int _reducedBleedRateTicksTotal = 30000;
-    private bool _isBase = true;
-
-    public float HemostatMultiplier { get; set; }
-
-    public bool IsBase
-    {
-        get => _isBase;
-        set => _isBase = value;
-    }
+    private float _coagulationMultiplier = 1;
+    private int _reducedBleedRateTicksRemaining;
+    private int _reducedBleedRateTicksTotal;
+    private float _temporarilyTamponadedMultiplierBase = 1;
+    private int _coagulationFlags = CoagulationFlag.None;
 
     public float CoagulationMultiplier
     {
-        get => _overriddenBleedRate;
-        set => _overriddenBleedRate = value;
+        get => _coagulationMultiplier;
+        set => _coagulationMultiplier = value;
     }
 
-    public bool IsCoagulationMultiplierApplied
+    public float EffectiveBleedRateMultiplier
     {
-        get => _isCoagulationMultiplierApplied;
-        set => _isCoagulationMultiplierApplied = value;
+        get
+        {
+            float multiplier = CoagulationMultiplier;
+            if (IsTemporarilyCoagulated)
+            {
+                multiplier *= TemporarilyTamponadedMultiplier;
+            }
+            if (IsClosedInternalWound)
+            {
+                multiplier *= MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier;
+            }
+            return multiplier;
+        }
+    }
+
+    public CoagulationFlag CoagulationFlags 
+    { 
+        get => (CoagulationFlag)_coagulationFlags;
+        set => _coagulationFlags = value; 
     }
 
     public int ReducedBleedRateTicksTotal
@@ -59,9 +66,19 @@ public class BetterInjury : Hediff_Injury
         set
         {
             _reducedBleedRateTicksTotal = value;
-            _reducedBleedRateTicks = value;
+            _reducedBleedRateTicksRemaining = value;
         }
     }
+
+    public float TemporarilyTamponadedMultiplierBase 
+    { 
+        get => _temporarilyTamponadedMultiplierBase; 
+        set => _temporarilyTamponadedMultiplierBase = value; 
+    }
+
+    public float TemporarilyTamponadedMultiplier => Mathf.Lerp(1, _temporarilyTamponadedMultiplierBase, _reducedBleedRateTicksTotal / _reducedBleedRateTicksRemaining);
+
+    public bool IsTemporarilyCoagulated => !CoagulationFlags.IsEmpty && _reducedBleedRateTicksRemaining > 0 && _reducedBleedRateTicksTotal > 0 && _temporarilyTamponadedMultiplierBase != 1;
 
     public bool IsInternalInjury => Part is { depth: BodyPartDepth.Inside };
 
@@ -90,7 +107,7 @@ public class BetterInjury : Hediff_Injury
                     && injury.TendableNow())
                 {
                     // if the external injury is still bleeding (not tended), we are not plugged
-                    if (!injury.IsCoagulationMultiplierApplied && !injury.IsTended())
+                    if (injury.CoagulationFlags.IsEmpty && !injury.IsTended())
                     {
                         return false;
                     }
@@ -100,88 +117,68 @@ public class BetterInjury : Hediff_Injury
         }
     }
 
-    public override float BleedRate
-    {
-        get
-        {
-            if (IsBase || this.IsTended())
-            {
-                return base.BleedRate;
-            }
-            if (IsCoagulationMultiplierApplied)
-            {
-                return base.BleedRate * CoagulationMultiplier;
-            }
-            if (IsClosedInternalWound)
-            {
-                return base.BleedRate * MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier;
-            }
-            Logger.Error($"BetterInjury {def.defName} on {pawn.Name} fell through all cases in BleedRate calculation");
-            return base.BleedRate;
-        }
-    }
+    public override float BleedRate => base.BleedRate * EffectiveBleedRateMultiplier;
 
     public override string Label
     {
         get
         {
-            string result = base.Label;
-            if (!Bleeding)
+            if (!Bleeding || EffectiveBleedRateMultiplier == 1f)
             {
-                return result;
+                return base.Label;
             }
+            bool hasPreviousInfo = false;
+            StringBuilder builder = new StringBuilder(base.Label)
+                .Append(" (");
             if (IsClosedInternalWound)
             {
-                result += " (enclosed)";
+                builder.AppendInfo("enclosed", ref hasPreviousInfo);
             }
-            if (IsCoagulationMultiplierApplied)
+            if (CoagulationFlags.IsSet(CoagulationFlag.Manual))
             {
-                if (_reducedBleedRateTicks > 0 && _reducedBleedRateTicksTotal > 0 && _reducedBleedRateTicksTotal > _reducedBleedRateTicks)
-                {
-                    int durationHours = (_reducedBleedRateTicksTotal - _reducedBleedRateTicks) / 2500;
-                    result += $" (tamponaded, {durationHours}h)";
-                }
-                else
-                {
-                    result += " (tamponaded)";
-                }
+                builder.AppendInfo("ischemia", ref hasPreviousInfo);
             }
-            return result;
+            if (IsTemporarilyCoagulated)
+            {
+                int durationHours = _reducedBleedRateTicksRemaining / 2500;
+                builder.AppendInfo("hemostasis: ", ref hasPreviousInfo)
+                    .Append(durationHours)
+                    .Append('h');
+            }
+            builder.Append(')');
+            return builder.ToString();
         }
     }
 
     public override void Tick()
     {
         base.Tick();
-        if (IsCoagulationMultiplierApplied && _reducedBleedRateTicks > 0)
+        if (!CoagulationFlags.IsEmpty && _reducedBleedRateTicksRemaining > 0)
         {
-            _reducedBleedRateTicks--;
-            if (_reducedBleedRateTicks <= 0)
+            _reducedBleedRateTicksRemaining--;
+            if (_reducedBleedRateTicksRemaining <= 0)
             {
-                IsCoagulationMultiplierApplied = false;
+                // revert the multiplier
+                TemporarilyTamponadedMultiplierBase = 1;
+                ReducedBleedRateTicksTotal = 0;
+                // remove any temporary tamponade flags
+                CoagulationFlags = CoagulationFlag.Unset(CoagulationFlags, CoagulationFlag.Timed);
             }
         }
     }
 
     public override void ExposeData()
     {
-        Scribe_Values.Look(ref _isBase, nameof(_isBase));
-        Scribe_Values.Look(ref _isCoagulationMultiplierApplied, nameof(_isCoagulationMultiplierApplied));
-        Scribe_Values.Look(ref _overriddenBleedRate, nameof(_overriddenBleedRate));
-        Scribe_Values.Look(ref _reducedBleedRateTicksTotal, nameof(_reducedBleedRateTicksTotal));
-        if (_reducedBleedRateTicks % 300 == 0)
+        Scribe_Values.Look(ref _coagulationFlags, "coagulationFlags");
+        Scribe_Values.Look(ref _temporarilyTamponadedMultiplierBase, "temporarilyTamponadedMultiplierBase");
+        Scribe_Values.Look(ref _coagulationMultiplier, "overriddenBleedRate");
+        Scribe_Values.Look(ref _reducedBleedRateTicksTotal, "reducedBleedRateTicksTotal");
+        if (_reducedBleedRateTicksRemaining % 300 == 0)
         {
-            Scribe_Values.Look(ref _reducedBleedRateTicks, nameof(_reducedBleedRateTicks), 30000);
+            Scribe_Values.Look(ref _reducedBleedRateTicksRemaining, "reducedBleedRateTicksRemaining", 30000);
         }
         base.ExposeData();
     }
-
-    public override Color LabelColor => (IsCoagulationMultiplierApplied, IsClosedInternalWound) switch
-    {
-        (true, _) => s_hemostatColor,
-        (_, true) => s_closedWoundColor,
-        _ => base.LabelColor
-    };
 
     public override void PostAdd(DamageInfo? dinfo)
     {
@@ -215,37 +212,60 @@ public class BetterInjury : Hediff_Injury
     {
         get
         {
-            string result = base.TipStringExtra;
-            if (!Bleeding)
+            if (!Bleeding || EffectiveBleedRateMultiplier == 1f)
             {
-                return result;
+                return base.TipStringExtra;
             }
+            StringBuilder builder = new(base.TipStringExtra);
+            builder.AppendLine();
+            bool hasCustomInfo = false;
             if (IsClosedInternalWound)
             {
-                result += $"\nClosed wound, bleeding rate decreased by {(int)((1f - MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier) * 100f)}%";
+                builder.Append("Enclosed internal wound, bleed rate decreased by ")
+                    .Append(Math.Round((1f - MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier) * 100f, 2))
+                    .Append('%')
+                    .AppendLine();
+                hasCustomInfo = true;
             }
-            if (IsCoagulationMultiplierApplied)
+            if (CoagulationFlags.IsSet(CoagulationFlag.Manual))
             {
-                result += $"\nTemponaded, bleeding rate decreased by {(int)((1f - CoagulationMultiplier) * 100f)}%";
+                builder.Append("Ischemia, bleed rate decreased by ")
+                    .Append(Math.Round((1f - CoagulationMultiplier) * 100f, 2))
+                    .Append('%')
+                    .AppendLine();
+                hasCustomInfo = true;
             }
-            return result;
+            if (IsTemporarilyCoagulated)
+            {
+                builder.Append("Hemostasis: ")
+                    .Append(_reducedBleedRateTicksRemaining / 2500)
+                    .Append("h, bleed rate decreased by ")
+                    .Append(Math.Round((1f - TemporarilyTamponadedMultiplier) * 100f, 2))
+                    .Append('%')
+                    .AppendLine();
+                hasCustomInfo = true;
+            }
+            if (hasCustomInfo)
+            {
+                builder.AppendLine().AppendLine("Effective bleed rate: ")
+                    .Append(Math.Round(EffectiveBleedRateMultiplier * 100f, 2))
+                    .Append('%');
+            }
+            return builder.ToString();
         }
     }
 }
 
-public readonly struct CoagulationContext(int value)
+file static class StringBuilderExtensions
 {
-    private readonly int _value = value;
-
-    public static implicit operator int(CoagulationContext context) => context._value;
-
-    public static implicit operator CoagulationContext(int value) => new(value);
-
-    public static CoagulationContext None => new(0);
-
-    public static CoagulationContext Bandaged => new(1);
-
-    public static CoagulationContext HemostaticAgent => new(2);
-
-    public static CoagulationContext Touniquet => new(3);
+    public static StringBuilder AppendInfo(this StringBuilder builder, string value, ref bool hasPreviousInfo)
+    {
+        if (hasPreviousInfo)
+        {
+            builder.Append(", ");
+        }
+        builder.Append(value);
+        hasPreviousInfo = true;
+        return builder;
+    }
 }

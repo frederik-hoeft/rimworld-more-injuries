@@ -4,127 +4,182 @@ namespace MoreInjuries;
 
 public class MoreInjuriesSettings : ModSettings
 {
-    internal bool EnableAdrenaline = true;
-    internal float AdrenalineChanceOnDamage = 0.75f;
-    internal float CertainAdrenalineThreshold = 15f;
+    internal const bool ENABLE_ADRENALINE_DEFAULT = true;
+    internal bool EnableAdrenaline = ENABLE_ADRENALINE_DEFAULT;
+    private const float ADRENALINE_CHANCE_ON_DAMAGE_DEFAULT = 0.75f;
+    internal float AdrenalineChanceOnDamage = ADRENALINE_CHANCE_ON_DAMAGE_DEFAULT;
+    private const float CERTAIN_ADRENALINE_THRESHOLD_DEFAULT = 15f;
+    internal float CertainAdrenalineThreshold = CERTAIN_ADRENALINE_THRESHOLD_DEFAULT;
 
-    internal bool EnableHydrostaticShock = false;
-    internal float HydrostaticShockChanceOnDamage = 0.2f;
+    internal const bool ENABLE_HYDROSTATIC_SHOCK_DEFAULT = false;
+    internal bool EnableHydrostaticShock = ENABLE_HYDROSTATIC_SHOCK_DEFAULT;
+    private const float HYDROSTATIC_SHOCK_CHANCE_ON_DAMAGE_DEFAULT = 0.2f;
+    internal float HydrostaticShockChanceOnDamage = HYDROSTATIC_SHOCK_CHANCE_ON_DAMAGE_DEFAULT;
 
-    internal bool HideUndiagnosedInternalInjuries = false;
-    internal float ClosedInternalWouldBleedingModifier = 0.75f;
-    internal bool UseIndividualFloatMenus = false;
+    internal const float CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT = 0.75f;
+    internal float ClosedInternalWouldBleedingModifier = CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT;
 
-    internal bool EnableEmpDamageToBionics = true;
-    internal float EmpDamageToBionicsChance = 0.45f;
+    internal const bool ENABLE_EMP_DAMAGE_TO_BIONICS_DEFAULT = true;
+    internal bool EnableEmpDamageToBionics = ENABLE_EMP_DAMAGE_TO_BIONICS_DEFAULT;
+    private const float EMP_DAMAGE_TO_BIONICS_CHANCE_DEFAULT = 0.45f;
+    internal float EmpDamageToBionicsChance = EMP_DAMAGE_TO_BIONICS_CHANCE_DEFAULT;
 
-    internal bool EnableHemorrhagicStroke = true;
-    internal float HemorrhagicStrokeChance = 0.25f;
-    internal float HemorrhagicStrokeThreshold = 15f;
+    internal const bool ENABLE_HEMORRHAGIC_STROKE_DEFAULT = true;
+    internal bool EnableHemorrhagicStroke = ENABLE_HEMORRHAGIC_STROKE_DEFAULT;
+    private const float HEMORRHAGIC_STROKE_CHANCE_DEFAULT = 0.25f;
+    internal float HemorrhagicStrokeChance = HEMORRHAGIC_STROKE_CHANCE_DEFAULT;
+    private const float HEMORRHAGIC_STROKE_THRESHOLD_DEFAULT = 15f;
+    internal float HemorrhagicStrokeThreshold = HEMORRHAGIC_STROKE_THRESHOLD_DEFAULT;
 
-    internal bool EnableConcussion = true;
-    internal float ConcussionChance = 0.75f;
-    internal float ConcussionThreshold = 6f;
+    internal const bool ENABLE_CONCUSSION_DEFAULT = true;
+    internal bool EnableConcussion = ENABLE_CONCUSSION_DEFAULT;
+    internal const float CONCUSSION_CHANCE_DEFAULT = 0.75f;
+    internal float ConcussionChance = CONCUSSION_CHANCE_DEFAULT;
+    internal const float CONCUSSION_THRESHOLD_DEFAULT = 6f;
+    internal float ConcussionThreshold = CONCUSSION_THRESHOLD_DEFAULT;
 
-    internal bool EnableChoking = true;
-    internal float ChokingChanceOnDamage = 0.75f;
-    internal float ChokingMinimumBleedRate = 0.2f;
-    internal bool EnableChokingSounds = true;
-    internal float SuctionDeviceMinimumSuccessRate = 0.25f;
+    internal const bool ENABLE_CHOKING_DEFAULT = true;
+    internal bool EnableChoking = ENABLE_CHOKING_DEFAULT;
+    internal const float CHOKING_CHANCE_ON_DAMAGE_DEFAULT = 0.75f;
+    internal float ChokingChanceOnDamage = CHOKING_CHANCE_ON_DAMAGE_DEFAULT;
+    internal const float CHOKING_MINIMUM_BLEED_RATE_DEFAULT = 0.2f;
+    internal float ChokingMinimumBleedRate = CHOKING_MINIMUM_BLEED_RATE_DEFAULT;
+    internal const bool ENABLE_CHOKING_SOUNDS_DEFAULT = true;
+    internal bool EnableChokingSounds = ENABLE_CHOKING_SOUNDS_DEFAULT;
+    internal const float SUCTION_DEVICE_MINIMUM_SUCCESS_RATE_DEFAULT = 0.25f;
+    internal float SuctionDeviceMinimumSuccessRate = SUCTION_DEVICE_MINIMUM_SUCCESS_RATE_DEFAULT;
 
-    internal bool EnableLungCollapse = true;
-    internal float LungCollapseChanceOnDamage = 0.4f;
-    internal float LungCollapseMaxSeverityRoot = 0.85f;
+    internal const bool ENABLE_LUNG_COLLAPSE_DEFAULT = true;
+    internal bool EnableLungCollapse = ENABLE_LUNG_COLLAPSE_DEFAULT;
+    internal const float LUNG_COLLAPSE_CHANCE_ON_DAMAGE_DEFAULT = 0.4f;
+    internal float LungCollapseChanceOnDamage = LUNG_COLLAPSE_CHANCE_ON_DAMAGE_DEFAULT;
+    internal const float LUNG_COLLAPSE_MAX_SEVERITY_ROOT_DEFAULT = 0.85f;
+    internal float LungCollapseMaxSeverityRoot = LUNG_COLLAPSE_MAX_SEVERITY_ROOT_DEFAULT;
 
-    internal bool EnableSpalling = true;
-    internal float ArmorHealthSpallingThreshold = 0.95f;
-    internal float SpallingChance = 0.75f;
+    internal const bool ENABLE_SPALLING_DEFAULT = true;
+    internal bool EnableSpalling = ENABLE_SPALLING_DEFAULT;
+    internal const float ARMOR_HEALTH_SPALLING_THRESHOLD_DEFAULT = 0.95f;
+    internal float ArmorHealthSpallingThreshold = ARMOR_HEALTH_SPALLING_THRESHOLD_DEFAULT;
+    internal const float SPALLING_CHANCE_DEFAULT = 0.75f;
+    internal float SpallingChance = SPALLING_CHANCE_DEFAULT;
 
-    internal bool EnableBasicHearingDamage = true;
-    internal bool EnableAdvancedHearingDamage = false;
+    internal const bool ENABLE_BASIC_HEARING_DAMAGE_DEFAULT = true;
+    internal bool EnableBasicHearingDamage = ENABLE_BASIC_HEARING_DAMAGE_DEFAULT;
+    internal const bool ENABLE_ADVANCED_HEARING_DAMAGE_DEFAULT = false;
+    internal bool EnableAdvancedHearingDamage = ENABLE_ADVANCED_HEARING_DAMAGE_DEFAULT;
 
-    internal bool EnableFractures = true;
-    internal float FractureDamageTreshold = 10f;
-    internal float FractureChanceOnDamage = 0.25f;
-    internal bool EnableBoneFragmentLacerations = true;
-    internal float SplinteringFractureChance = 0.5f;
-    internal float BoneFragmentLacerationChancePerBodyPart = 0.5f;
+    internal const bool ENABLE_FRACTURES_DEFAULT = true;
+    internal bool EnableFractures = ENABLE_FRACTURES_DEFAULT;
+    internal const float FRACTURE_DAMAGE_TRESHOLD_DEFAULT = 10f;
+    internal float FractureDamageTreshold = FRACTURE_DAMAGE_TRESHOLD_DEFAULT;
+    internal const float FRACTURE_CHANCE_ON_DAMAGE_DEFAULT = 0.25f;
+    internal float FractureChanceOnDamage = FRACTURE_CHANCE_ON_DAMAGE_DEFAULT;
+    internal const bool ENABLE_BONE_FRAGMENT_LACERATIONS_DEFAULT = true;
+    internal bool EnableBoneFragmentLacerations = ENABLE_BONE_FRAGMENT_LACERATIONS_DEFAULT;
+    internal const float SPLINTERING_FRACTURE_CHANCE_DEFAULT = 0.5f;
+    internal float SplinteringFractureChance = SPLINTERING_FRACTURE_CHANCE_DEFAULT;
+    internal const float BONE_FRAGMENT_LACERATION_CHANCE_PER_BODY_PART_DEFAULT = 0.5f;
+    internal float BoneFragmentLacerationChancePerBodyPart = BONE_FRAGMENT_LACERATION_CHANCE_PER_BODY_PART_DEFAULT;
 
-    internal bool EnableHypovolemicShock = true;
-    internal float OrganHypoxiaChance = 0.35f;
-    internal float OrganHypoxiaChanceReductionFactor = 0.5f;
-    internal bool EnableCardiacArrestOnHighBloodLoss = true;
-    internal float CardiacArrestChanceOnHighBloodLoss = 0.05f;
-    internal float DefibrillatorMinimumSuccessRate = 0.5f;
+    internal const bool ENABLE_HYPOVOLEMIC_SHOCK_DEFAULT = true;
+    internal bool EnableHypovolemicShock = ENABLE_HYPOVOLEMIC_SHOCK_DEFAULT;
+    internal const float ORGAN_HYPOXIA_CHANCE_DEFAULT = 0.35f;
+    internal float OrganHypoxiaChance = ORGAN_HYPOXIA_CHANCE_DEFAULT;
+    internal const float ORGAN_HYPOXIA_CHANCE_REDUCTION_FACTOR_DEFAULT = 0.5f;
+    internal float OrganHypoxiaChanceReductionFactor = ORGAN_HYPOXIA_CHANCE_REDUCTION_FACTOR_DEFAULT;
+    internal const bool ENABLE_CARDIAC_ARREST_ON_HIGH_BLOOD_LOSS_DEFAULT = true;
+    internal bool EnableCardiacArrestOnHighBloodLoss = ENABLE_CARDIAC_ARREST_ON_HIGH_BLOOD_LOSS_DEFAULT;
+    internal const float CARDIAC_ARREST_CHANCE_ON_HIGH_BLOOD_LOSS_DEFAULT = 0.05f;
+    internal float CardiacArrestChanceOnHighBloodLoss = CARDIAC_ARREST_CHANCE_ON_HIGH_BLOOD_LOSS_DEFAULT;
+    internal const float DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT = 0.5f;
+    internal float DefibrillatorMinimumSuccessRate = DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT;
 
-    internal bool EnableFireInhalation = true;
-    internal bool EnableLogging = false;
-    internal bool EnableVerboseLogging = false;
+    internal const bool ENABLE_FIRE_INHALATION_DEFAULT = true;
+    internal bool EnableFireInhalation = ENABLE_FIRE_INHALATION_DEFAULT;
 
-    internal float ParalysisDamageTreshold50Percent = 6f;
+    internal const bool ENABLE_LOGGING_DEFAULT = false;
+    internal bool EnableLogging = ENABLE_LOGGING_DEFAULT;
+    internal const bool ENABLE_VERBOSE_LOGGING_DEFAULT = false;
+    internal bool EnableVerboseLogging = ENABLE_VERBOSE_LOGGING_DEFAULT;
 
-    internal float IntestinalSpillingChanceOnDamage = 0.45f;
+    internal const float PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT = 6f;
+    internal float ParalysisDamageTreshold50Percent = PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT;
+
+    internal const float INTENSTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT = 0.45f;
+    internal float IntestinalSpillingChanceOnDamage = INTENSTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT;
+
+    internal const bool TOURNIQUETS_CAN_CAUSE_GANGRENE_DEFAULT = true;
+    internal bool TourniquetsCanCauseGangrene = TOURNIQUETS_CAN_CAUSE_GANGRENE_DEFAULT;
+    internal const float MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT = 10000f;
+    internal float MeanTimeBetweenGangreneOnTourniquet = MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT;
+    internal const float DRY_GANGRENE_CHANCE_DEFAULT = 0.8f;
+    internal float DryGangreneChance = DRY_GANGRENE_CHANCE_DEFAULT;
+    internal const float DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT = 240000f;
+    internal float DryGangreneMeanTimeToInfection = DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT;
 
     public override void ExposeData()
     {
         // logging
-        Scribe_Values.Look(ref EnableLogging, nameof(EnableLogging));
-        Scribe_Values.Look(ref EnableVerboseLogging, nameof(EnableVerboseLogging));
+        Scribe_Values.Look(ref EnableLogging, nameof(EnableLogging), ENABLE_LOGGING_DEFAULT);
+        Scribe_Values.Look(ref EnableVerboseLogging, nameof(EnableVerboseLogging), ENABLE_VERBOSE_LOGGING_DEFAULT);
         // adrenaline
-        Scribe_Values.Look(ref EnableAdrenaline, nameof(EnableAdrenaline));
-        Scribe_Values.Look(ref AdrenalineChanceOnDamage, nameof(AdrenalineChanceOnDamage));
-        Scribe_Values.Look(ref CertainAdrenalineThreshold, nameof(CertainAdrenalineThreshold));
+        Scribe_Values.Look(ref EnableAdrenaline, nameof(EnableAdrenaline), ENABLE_ADRENALINE_DEFAULT);
+        Scribe_Values.Look(ref AdrenalineChanceOnDamage, nameof(AdrenalineChanceOnDamage), ADRENALINE_CHANCE_ON_DAMAGE_DEFAULT);
+        Scribe_Values.Look(ref CertainAdrenalineThreshold, nameof(CertainAdrenalineThreshold), CERTAIN_ADRENALINE_THRESHOLD_DEFAULT);
         // fractures
-        Scribe_Values.Look(ref EnableFractures, nameof(EnableFractures));
-        Scribe_Values.Look(ref FractureDamageTreshold, nameof(FractureDamageTreshold));
-        Scribe_Values.Look(ref FractureChanceOnDamage, nameof(FractureChanceOnDamage));
-        Scribe_Values.Look(ref EnableBoneFragmentLacerations, nameof(EnableBoneFragmentLacerations));
-        Scribe_Values.Look(ref BoneFragmentLacerationChancePerBodyPart, nameof(BoneFragmentLacerationChancePerBodyPart));
+        Scribe_Values.Look(ref EnableFractures, nameof(EnableFractures), ENABLE_FRACTURES_DEFAULT);
+        Scribe_Values.Look(ref FractureDamageTreshold, nameof(FractureDamageTreshold), FRACTURE_DAMAGE_TRESHOLD_DEFAULT);
+        Scribe_Values.Look(ref FractureChanceOnDamage, nameof(FractureChanceOnDamage), FRACTURE_CHANCE_ON_DAMAGE_DEFAULT);
+        Scribe_Values.Look(ref EnableBoneFragmentLacerations, nameof(EnableBoneFragmentLacerations), ENABLE_BONE_FRAGMENT_LACERATIONS_DEFAULT);
+        Scribe_Values.Look(ref BoneFragmentLacerationChancePerBodyPart, nameof(BoneFragmentLacerationChancePerBodyPart), BONE_FRAGMENT_LACERATION_CHANCE_PER_BODY_PART_DEFAULT);
         // hemorrhagic stroke after blunt trauma
-        Scribe_Values.Look(ref EnableHemorrhagicStroke, nameof(EnableHemorrhagicStroke));
-        Scribe_Values.Look(ref HemorrhagicStrokeChance, nameof(HemorrhagicStrokeChance));
-        Scribe_Values.Look(ref HemorrhagicStrokeThreshold, nameof(HemorrhagicStrokeThreshold));
+        Scribe_Values.Look(ref EnableHemorrhagicStroke, nameof(EnableHemorrhagicStroke), ENABLE_HEMORRHAGIC_STROKE_DEFAULT);
+        Scribe_Values.Look(ref HemorrhagicStrokeChance, nameof(HemorrhagicStrokeChance), HEMORRHAGIC_STROKE_CHANCE_DEFAULT);
+        Scribe_Values.Look(ref HemorrhagicStrokeThreshold, nameof(HemorrhagicStrokeThreshold), HEMORRHAGIC_STROKE_THRESHOLD_DEFAULT);
         // concussions after blunt trauma
-        Scribe_Values.Look(ref EnableConcussion, nameof(EnableConcussion));
-        Scribe_Values.Look(ref ConcussionChance, nameof(ConcussionChance));
-        Scribe_Values.Look(ref ConcussionThreshold, nameof(ConcussionThreshold));
+        Scribe_Values.Look(ref EnableConcussion, nameof(EnableConcussion), ENABLE_CONCUSSION_DEFAULT);
+        Scribe_Values.Look(ref ConcussionChance, nameof(ConcussionChance), CONCUSSION_CHANCE_DEFAULT);
+        Scribe_Values.Look(ref ConcussionThreshold, nameof(ConcussionThreshold), CONCUSSION_THRESHOLD_DEFAULT);
         // choking on blood
-        Scribe_Values.Look(ref EnableChoking, nameof(EnableChoking));
-        Scribe_Values.Look(ref EnableChokingSounds, nameof(EnableChokingSounds));
-        Scribe_Values.Look(ref ChokingMinimumBleedRate, nameof(ChokingMinimumBleedRate));
-        Scribe_Values.Look(ref ChokingChanceOnDamage, nameof(ChokingChanceOnDamage));
-        Scribe_Values.Look(ref SuctionDeviceMinimumSuccessRate, nameof(SuctionDeviceMinimumSuccessRate));
+        Scribe_Values.Look(ref EnableChoking, nameof(EnableChoking), ENABLE_CHOKING_DEFAULT);
+        Scribe_Values.Look(ref EnableChokingSounds, nameof(EnableChokingSounds), ENABLE_CHOKING_SOUNDS_DEFAULT);
+        Scribe_Values.Look(ref ChokingMinimumBleedRate, nameof(ChokingMinimumBleedRate), CHOKING_MINIMUM_BLEED_RATE_DEFAULT);
+        Scribe_Values.Look(ref ChokingChanceOnDamage, nameof(ChokingChanceOnDamage), CHOKING_CHANCE_ON_DAMAGE_DEFAULT);
+        Scribe_Values.Look(ref SuctionDeviceMinimumSuccessRate, nameof(SuctionDeviceMinimumSuccessRate), SUCTION_DEVICE_MINIMUM_SUCCESS_RATE_DEFAULT);
         // spalling
-        Scribe_Values.Look(ref EnableSpalling, nameof(EnableSpalling));
-        Scribe_Values.Look(ref ArmorHealthSpallingThreshold, nameof(ArmorHealthSpallingThreshold));
-        Scribe_Values.Look(ref SpallingChance, nameof(SpallingChance));
+        Scribe_Values.Look(ref EnableSpalling, nameof(EnableSpalling), ENABLE_SPALLING_DEFAULT);
+        Scribe_Values.Look(ref ArmorHealthSpallingThreshold, nameof(ArmorHealthSpallingThreshold), ARMOR_HEALTH_SPALLING_THRESHOLD_DEFAULT);
+        Scribe_Values.Look(ref SpallingChance, nameof(SpallingChance), SPALLING_CHANCE_DEFAULT);
         // hydrostatic shock
-        Scribe_Values.Look(ref EnableHydrostaticShock, nameof(EnableHydrostaticShock));
-        Scribe_Values.Look(ref HydrostaticShockChanceOnDamage, nameof(HydrostaticShockChanceOnDamage));
+        Scribe_Values.Look(ref EnableHydrostaticShock, nameof(EnableHydrostaticShock), ENABLE_HYDROSTATIC_SHOCK_DEFAULT);
+        Scribe_Values.Look(ref HydrostaticShockChanceOnDamage, nameof(HydrostaticShockChanceOnDamage), HYDROSTATIC_SHOCK_CHANCE_ON_DAMAGE_DEFAULT);
         // lung collapse
-        Scribe_Values.Look(ref EnableLungCollapse, nameof(EnableLungCollapse));
-        Scribe_Values.Look(ref LungCollapseChanceOnDamage, nameof(LungCollapseChanceOnDamage));
-        Scribe_Values.Look(ref LungCollapseMaxSeverityRoot, nameof(LungCollapseMaxSeverityRoot));
+        Scribe_Values.Look(ref EnableLungCollapse, nameof(EnableLungCollapse), ENABLE_LUNG_COLLAPSE_DEFAULT);
+        Scribe_Values.Look(ref LungCollapseChanceOnDamage, nameof(LungCollapseChanceOnDamage), LUNG_COLLAPSE_CHANCE_ON_DAMAGE_DEFAULT);
+        Scribe_Values.Look(ref LungCollapseMaxSeverityRoot, nameof(LungCollapseMaxSeverityRoot), LUNG_COLLAPSE_MAX_SEVERITY_ROOT_DEFAULT);
         // EMP
-        Scribe_Values.Look(ref EnableEmpDamageToBionics, nameof(EnableEmpDamageToBionics));
-        Scribe_Values.Look(ref EmpDamageToBionicsChance, nameof(EmpDamageToBionicsChance));
+        Scribe_Values.Look(ref EnableEmpDamageToBionics, nameof(EnableEmpDamageToBionics), ENABLE_EMP_DAMAGE_TO_BIONICS_DEFAULT);
+        Scribe_Values.Look(ref EmpDamageToBionicsChance, nameof(EmpDamageToBionicsChance), EMP_DAMAGE_TO_BIONICS_CHANCE_DEFAULT);
         // hearing damage
-        Scribe_Values.Look(ref EnableBasicHearingDamage, nameof(EnableBasicHearingDamage));
-        Scribe_Values.Look(ref EnableAdvancedHearingDamage, nameof(EnableAdvancedHearingDamage));
+        Scribe_Values.Look(ref EnableBasicHearingDamage, nameof(EnableBasicHearingDamage), ENABLE_BASIC_HEARING_DAMAGE_DEFAULT);
+        Scribe_Values.Look(ref EnableAdvancedHearingDamage, nameof(EnableAdvancedHearingDamage), ENABLE_ADVANCED_HEARING_DAMAGE_DEFAULT);
         // hypovolemic shock
-        Scribe_Values.Look(ref EnableHypovolemicShock, nameof(EnableHypovolemicShock));
-        Scribe_Values.Look(ref OrganHypoxiaChance, nameof(OrganHypoxiaChance));
-        Scribe_Values.Look(ref OrganHypoxiaChanceReductionFactor, nameof(OrganHypoxiaChanceReductionFactor));
-        Scribe_Values.Look(ref EnableCardiacArrestOnHighBloodLoss, nameof(EnableCardiacArrestOnHighBloodLoss));
-        Scribe_Values.Look(ref CardiacArrestChanceOnHighBloodLoss, nameof(CardiacArrestChanceOnHighBloodLoss));
-        Scribe_Values.Look(ref DefibrillatorMinimumSuccessRate, nameof(DefibrillatorMinimumSuccessRate));
+        Scribe_Values.Look(ref EnableHypovolemicShock, nameof(EnableHypovolemicShock), ENABLE_HYPOVOLEMIC_SHOCK_DEFAULT);
+        Scribe_Values.Look(ref OrganHypoxiaChance, nameof(OrganHypoxiaChance), ORGAN_HYPOXIA_CHANCE_DEFAULT);
+        Scribe_Values.Look(ref OrganHypoxiaChanceReductionFactor, nameof(OrganHypoxiaChanceReductionFactor), ORGAN_HYPOXIA_CHANCE_REDUCTION_FACTOR_DEFAULT);
+        Scribe_Values.Look(ref EnableCardiacArrestOnHighBloodLoss, nameof(EnableCardiacArrestOnHighBloodLoss), ENABLE_CARDIAC_ARREST_ON_HIGH_BLOOD_LOSS_DEFAULT);
+        Scribe_Values.Look(ref CardiacArrestChanceOnHighBloodLoss, nameof(CardiacArrestChanceOnHighBloodLoss), CARDIAC_ARREST_CHANCE_ON_HIGH_BLOOD_LOSS_DEFAULT);
+        Scribe_Values.Look(ref DefibrillatorMinimumSuccessRate, nameof(DefibrillatorMinimumSuccessRate), DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT);
+        // tourniquets
+        Scribe_Values.Look(ref TourniquetsCanCauseGangrene, nameof(TourniquetsCanCauseGangrene), TOURNIQUETS_CAN_CAUSE_GANGRENE_DEFAULT);
+        Scribe_Values.Look(ref MeanTimeBetweenGangreneOnTourniquet, nameof(MeanTimeBetweenGangreneOnTourniquet), MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT);
+        Scribe_Values.Look(ref DryGangreneChance, nameof(DryGangreneChance), DRY_GANGRENE_CHANCE_DEFAULT);
+        Scribe_Values.Look(ref DryGangreneMeanTimeToInfection, nameof(DryGangreneMeanTimeToInfection), DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT);
 
-        Scribe_Values.Look(ref HideUndiagnosedInternalInjuries, nameof(HideUndiagnosedInternalInjuries));
-        Scribe_Values.Look(ref ClosedInternalWouldBleedingModifier, nameof(ClosedInternalWouldBleedingModifier));
-        Scribe_Values.Look(ref UseIndividualFloatMenus, nameof(UseIndividualFloatMenus));
-        Scribe_Values.Look(ref EnableFireInhalation, nameof(EnableFireInhalation));
-        Scribe_Values.Look(ref ParalysisDamageTreshold50Percent, nameof(ParalysisDamageTreshold50Percent));
-        Scribe_Values.Look(ref IntestinalSpillingChanceOnDamage, nameof(IntestinalSpillingChanceOnDamage));
+        Scribe_Values.Look(ref ClosedInternalWouldBleedingModifier, nameof(ClosedInternalWouldBleedingModifier), CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT);
+        Scribe_Values.Look(ref EnableFireInhalation, nameof(EnableFireInhalation), ENABLE_FIRE_INHALATION_DEFAULT);
+        Scribe_Values.Look(ref ParalysisDamageTreshold50Percent, nameof(ParalysisDamageTreshold50Percent), PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT);
+        Scribe_Values.Look(ref IntestinalSpillingChanceOnDamage, nameof(IntestinalSpillingChanceOnDamage), INTENSTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT);
 
         base.ExposeData();
     }

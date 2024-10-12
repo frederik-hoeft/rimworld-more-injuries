@@ -46,6 +46,8 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
 
     protected virtual int GetMedicalDeviceCountToFullyHeal(Pawn patient) => MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, IsTreatable);
 
+    protected virtual bool RequiresTreatment(Pawn patient) => patient.health.hediffSet.hediffs.Any(IsTreatable);
+
     public override void ExposeData()
     {
         base.ExposeData();
@@ -127,6 +129,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
                 // we can't apply a device if the doctor wants to tend himself but is set to no self-tend
                 || doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
             {
+                Logger.Warning($"Failed job {job.def} because of medical care restrictions");
                 return true;
             }
             return false;
@@ -141,7 +144,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
                 return JobCondition.Succeeded;
             }
             // continue tending the patient if they have the target hediff ...
-            if (patient.health.hediffSet.hediffs.Any(hediff => IsTreatable(hediff))
+            if (RequiresTreatment(patient)
                 // ... and the doctor is able to tend the patient ...
                 && (doctor.Faction == Faction.OfPlayer && HealthAIUtility.ShouldEverReceiveMedicalCareFromPlayer(Patient)
                 // or if the doctor is forced to tend the patient or belongs to a different faction (AI controlled)
@@ -175,9 +178,12 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             waitToil = Toils_General.WaitWith_NewTemp(PATIENT_INDEX, ticks, maintainPosture: true, face: PATIENT_INDEX, pathEndMode: _pathEndMode);
             waitToil.initAction = () =>
             {
-                Job patientWaitJob = JobMaker.MakeJob(JobDefOf.Wait_MaintainPosture, patient.Position);
-                patientWaitJob.expiryInterval = ticks;
-                patient.jobs.StartJob(patientWaitJob, JobCondition.InterruptForced, jobGiver: null, resumeCurJobAfterwards: true, cancelBusyStances: true);
+                if (!patient.Downed)
+                {
+                    Job patientWaitJob = JobMaker.MakeJob(JobDefOf.Wait_MaintainPosture, patient.Position);
+                    patientWaitJob.expiryInterval = ticks + 60; // just in case something goes wrong and the job doesn't finish
+                    patient.jobs.StartJob(patientWaitJob, JobCondition.InterruptForced, jobGiver: null, resumeCurJobAfterwards: true, cancelBusyStances: true);
+                }
                 patient.jobs.posture = PawnPosture.LayingOnGroundFaceUp;
             };
             waitToil.AddFinishAction(() =>
@@ -209,7 +215,12 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             {
                 return false;
             }
-            return !ReachabilityImmediate.CanReachImmediate(doctor, patient.SpawnedParentOrMe, _pathEndMode);
+            if (!ReachabilityImmediate.CanReachImmediate(doctor, patient.SpawnedParentOrMe, _pathEndMode))
+            {
+                Logger.Warning($"Failed job {job.def} because {doctor} can't reach {patient}");
+                return true;
+            }
+            return false;
         });
         yield return Toils_Jump.JumpIf(waitToil, () => !_usesDevice || DeviceUsed is not null && doctor.inventory.Contains(DeviceUsed));
         yield return Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, GetMedicalDeviceCountToFullyHeal).FailOnDestroyedOrNull(DEVICE_INDEX);
@@ -266,7 +277,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             deviceUsed,
             doctor.inventory.innerContainer,
             deviceHolderInventory?.innerContainer,
-            MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, IsTreatable),
+            GetMedicalDeviceCountToFullyHeal(patient),
             DEVICE_INDEX));
         return s_tmpCollectToils;
     }
