@@ -16,13 +16,18 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
     protected override bool RequiresDevice => true;
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device) =>
-        ApplyDevice(patient, device, _bodyPart);
+        ApplyDevice(patient, device, _bodyPartWoundAnchorTag);
 
-    internal static void ApplyDevice(Pawn patient, Thing? device, BodyPartRecord? bodyPart)
+    protected override bool IsTreatable(Hediff hediff) => true;
+
+    internal static void ApplyDevice(Pawn patient, Thing? device, BodyPartRecord? bodyPart) =>
+        ApplyDevice(patient, device, bodyPart?.woundAnchorTag);
+
+    private static void ApplyDevice(Pawn patient, Thing? device, string? bodyPartWoundAnchorTag)
     {
-        if (bodyPart is not BodyPartRecord targetPart
+        if (string.IsNullOrEmpty(bodyPartWoundAnchorTag)
             || device?.def.GetModExtension<HemostasisModExtension>() is not HemostasisModExtension extension
-            || patient.health.hediffSet.PartIsMissing(targetPart))
+            || patient.RaceProps.body.AllParts.Find(part => part.woundAnchorTag == bodyPartWoundAnchorTag) is not BodyPartRecord targetPart)
         {
             return;
         }
@@ -68,10 +73,12 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
     {
         public Job CreateJob()
         {
+            TourniquetBaseParameters parameters = ExtendedJobParameters.Create<TourniquetBaseParameters>(oneShot: true);
+            // the only thing that is persistent and unique between the limbs is the anchor tag
+            parameters.woundAnchorTag = bodyPart.woundAnchorTag;
             Job job = JobMaker.MakeJob(KnownJobDefOf.UseTourniquet, patient, device);
             job.count = 1;
-            s_transientJobParameters.Add(job, new ExtendedJobParameters(OneShot: true));
-            s_transientTargetParts.Add(job, bodyPart);
+            job.source = parameters;
             return job;
         }
 

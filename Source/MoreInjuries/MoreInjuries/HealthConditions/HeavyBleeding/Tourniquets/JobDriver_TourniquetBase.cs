@@ -1,26 +1,37 @@
 ﻿using MoreInjuries.AI;
-using System.Runtime.CompilerServices;
-using Verse.AI;
+using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
 public abstract class JobDriver_TourniquetBase : JobDriver_UseMedicalDevice
 {
-    internal static readonly ConditionalWeakTable<Job, BodyPartRecord> s_transientTargetParts = new();
-    protected BodyPartRecord? _bodyPart;
+    protected string? _bodyPartWoundAnchorTag;
 
     public override void Notify_Starting()
     {
         base.Notify_Starting();
-        if(s_transientTargetParts.TryGetValue(job, out BodyPartRecord? bodyPart))
+
+        if (Parameters is TourniquetBaseParameters { woundAnchorTag: string woundAnchorTag })
         {
-            _bodyPart = bodyPart;
-            s_transientJobParameters.Remove(job);
+            _bodyPartWoundAnchorTag = woundAnchorTag;
         }
     }
 
     protected override int BaseTendDuration => 90;
 
-    protected override bool IsTreatable(Hediff hediff) => true;
+    // we always either apply or remove exactly one tourniquet
+    protected override int GetMedicalDeviceCountToFullyHeal(Pawn patient) => 1;
+
+    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Matches XML node naming.")]
+    protected class TourniquetBaseParameters : ExtendedJobParameters
+    {
+        public string? woundAnchorTag;
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref woundAnchorTag, nameof(woundAnchorTag));
+        }
+    }
 }

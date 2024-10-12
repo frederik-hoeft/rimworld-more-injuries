@@ -49,7 +49,8 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
             job.count = 1;
             if (fromInventoryOnly)
             {
-                s_transientJobParameters.Add(job, new ExtendedJobParameters(FromInventoryOnly: true));
+                ExtendedJobParameters parameters = ExtendedJobParameters.Create<ExtendedJobParameters>(fromInventoryOnly: true);
+                job.source = parameters;
             }
             return job;
         }

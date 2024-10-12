@@ -13,18 +13,25 @@ public class JobDriver_RemoveTourniquet : JobDriver_TourniquetBase
 
     protected override bool RequiresDevice => false;
 
-    protected override bool IsTreatable(Hediff hediff) => hediff.def == KnownHediffDefOf.TourniquetApplied && hediff.Part == _bodyPart;
+    protected override bool IsTreatable(Hediff hediff) => hediff.def == KnownHediffDefOf.TourniquetApplied && hediff.Part?.woundAnchorTag == _bodyPartWoundAnchorTag;
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device) =>
-        ApplyDevice(patient, _bodyPart);
+        ApplyDevice(patient, _bodyPartWoundAnchorTag);
 
-    internal static void ApplyDevice(Pawn patient, BodyPartRecord? bodyPart)
+    internal static void ApplyDevice(Pawn patient, BodyPartRecord? bodyPart) =>
+        ApplyDevice(patient, bodyPart?.woundAnchorTag);
+
+    private static void ApplyDevice(Pawn patient, string? bodyPartWoundAnchorTag)
     {
-        Hediff? tourniquet = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.TourniquetApplied && hediff.Part == bodyPart);
+        if (string.IsNullOrEmpty(bodyPartWoundAnchorTag))
+        {
+            return;
+        }
+        Hediff? tourniquet = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.TourniquetApplied && hediff.Part?.woundAnchorTag == bodyPartWoundAnchorTag);
         if (tourniquet is not null)
         {
             patient.health.RemoveHediff(tourniquet);
-            if (bodyPart?.def == KnownBodyPartDefOf.Neck)
+            if (tourniquet.Part.def == KnownBodyPartDefOf.Neck)
             {
                 Hediff? choking = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.ChokingOnTourniquet);
                 if (choking is not null)
@@ -42,10 +49,11 @@ public class JobDriver_RemoveTourniquet : JobDriver_TourniquetBase
     {
         public Job CreateJob()
         {
+            TourniquetBaseParameters parameters = ExtendedJobParameters.Create<TourniquetBaseParameters>(oneShot: true);
+            parameters.woundAnchorTag = bodyPart.woundAnchorTag;
             Job job = JobMaker.MakeJob(KnownJobDefOf.RemoveTourniquet, patient);
             job.count = 1;
-            s_transientJobParameters.Add(job, new ExtendedJobParameters(OneShot: true));
-            s_transientTargetParts.Add(job, bodyPart);
+            job.source = parameters;
             return job;
         }
 

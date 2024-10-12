@@ -2,7 +2,7 @@
 using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -11,9 +11,6 @@ namespace MoreInjuries.AI;
 
 public abstract class JobDriver_UseMedicalDevice : JobDriver
 {
-    // NOTE: we use a ConditionalWeakTable to store non-essential while the job is scheduled for execution
-    // these parameters are not saved in-between game sessions, so make sure to use sensible defaults if they are lost
-    internal static readonly ConditionalWeakTable<Job, ExtendedJobParameters> s_transientJobParameters = new();
     private const int TICKS_BETWEEN_SELF_TEND_MOTES = 100;
     private const TargetIndex PATIENT_INDEX = TargetIndex.A;
     private const TargetIndex DEVICE_INDEX = TargetIndex.B;
@@ -26,6 +23,8 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
     protected bool _fromInventoryOnly;
     protected bool _oneShot;
     protected bool _oneShotUsed;
+
+    protected ExtendedJobParameters? Parameters => job.source as ExtendedJobParameters;
 
     protected abstract bool RequiresDevice { get; }
     
@@ -45,6 +44,8 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
 
     protected abstract bool IsTreatable(Hediff hediff);
 
+    protected virtual int GetMedicalDeviceCountToFullyHeal(Pawn patient) => MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, IsTreatable);
+
     public override void ExposeData()
     {
         base.ExposeData();
@@ -58,11 +59,12 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
     public override void Notify_Starting()
     {
         base.Notify_Starting();
-        if (s_transientJobParameters.TryGetValue(job, out ExtendedJobParameters? parameters))
+        // we abuse the automatically persisted job source field to pass additional parameters to our job driver
+        // usually that field is used by ThinkNode_Duty, but that shouldn't give us any conflicts
+        if (job.source is ExtendedJobParameters parameters)
         {
-            _fromInventoryOnly = parameters.FromInventoryOnly;
-            _oneShot = parameters.OneShot;
-            s_transientJobParameters.Remove(job);
+            _fromInventoryOnly = parameters.fromInventoryOnly;
+            _oneShot = parameters.oneShot;
         }
         _oneShotUsed = false;
         _usesDevice = DeviceUsed is not null;
@@ -99,7 +101,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             int requiredDevices = 1;
             if (!_oneShot)
             {
-                requiredDevices = MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(Patient, IsTreatable);
+                requiredDevices = GetMedicalDeviceCountToFullyHeal(Patient);
             }
             // attempt to reserve a splint
             if (availableDevices >= 1 && Doctor.Reserve(DeviceUsed, job, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, 
@@ -210,7 +212,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             return !ReachabilityImmediate.CanReachImmediate(doctor, patient.SpawnedParentOrMe, _pathEndMode);
         });
         yield return Toils_Jump.JumpIf(waitToil, () => !_usesDevice || DeviceUsed is not null && doctor.inventory.Contains(DeviceUsed));
-        yield return Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, IsTreatable).FailOnDestroyedOrNull(DEVICE_INDEX);
+        yield return Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, GetMedicalDeviceCountToFullyHeal).FailOnDestroyedOrNull(DEVICE_INDEX);
         yield return waitToil;
         yield return Toils_MedicalDevice.FinalizeApplyDevice(patient, ApplyDeviceCore);
         if (_usesDevice)
@@ -244,7 +246,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         Pawn_InventoryTracker? deviceHolderInventory = deviceUsed.ParentHolder as Pawn_InventoryTracker;
         Pawn otherPawnDeviceHolder = job.targetC.Pawn;
 
-        reserveDevices = Toils_MedicalDevice.ReserveDevice(DEVICE_INDEX, patient, IsTreatable)
+        reserveDevices = Toils_MedicalDevice.ReserveDevice(DEVICE_INDEX, patient, GetMedicalDeviceCountToFullyHeal)
             .FailOnDespawnedNullOrForbidden(DEVICE_INDEX);
         s_tmpCollectToils.Add(Toils_Jump.JumpIf(gotoToil, () => deviceUsed is not null && doctor.inventory.Contains(deviceUsed)));
         Toil jumpIfCarriedByOther = Toils_Goto.GotoThing(DEVICE_HOLDER_INDEX, PathEndMode.Touch)
@@ -254,7 +256,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         s_tmpCollectToils.Add(reserveDevices);
         s_tmpCollectToils.Add(Toils_Goto.GotoThing(DEVICE_INDEX, PathEndMode.ClosestTouch)
             .FailOnDespawnedNullOrForbidden(DEVICE_INDEX));
-        s_tmpCollectToils.Add(Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, IsTreatable)
+        s_tmpCollectToils.Add(Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, GetMedicalDeviceCountToFullyHeal)
             .FailOnDestroyedOrNull(DEVICE_INDEX));
         s_tmpCollectToils.Add(Toils_Haul.CheckForGetOpportunityDuplicate(reserveDevices, DEVICE_INDEX, TargetIndex.None, takeFromValidStorage: true));
         s_tmpCollectToils.Add(Toils_Jump.Jump(gotoToil));
@@ -288,5 +290,31 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         return toil;
     }
 
-    public record ExtendedJobParameters(bool FromInventoryOnly = false, bool OneShot = false);
+    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "I guess these will be XML serialized")]
+    protected class ExtendedJobParameters : ILoadReferenceable, IExposable
+    {
+        public string? loadId;
+        public bool fromInventoryOnly;
+        public bool oneShot;
+
+        public string GetUniqueLoadID() => loadId ??= $"JobParameters_{Guid.NewGuid()}";
+
+        public virtual void ExposeData()
+        {
+            Scribe_Values.Look(ref loadId, nameof(loadId));
+            Scribe_Values.Look(ref fromInventoryOnly, nameof(fromInventoryOnly));
+            Scribe_Values.Look(ref oneShot, nameof(oneShot));
+        }
+
+        public static T Create<T>(bool fromInventoryOnly =  false, bool oneShot = false) where T : ExtendedJobParameters, new()
+        {
+            T parameters = new()
+            {
+                loadId = $"JobParameters_{Guid.NewGuid()}",
+                fromInventoryOnly = fromInventoryOnly,
+                oneShot = oneShot
+            };
+            return parameters;
+        }
+    }
 }
