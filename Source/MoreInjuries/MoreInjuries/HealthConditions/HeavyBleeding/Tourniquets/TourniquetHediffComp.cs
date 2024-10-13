@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.Extensions;
+using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using MoreInjuries.KnownDefs;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,10 +26,10 @@ public class TourniquetHediffComp : HediffComp
         for (int i = 0; i < hediffs.Count; i++)
         {
             Hediff hediff = hediffs[i];
-            if (hediff is BetterInjury betterInjury && betterInjury.IsOnBodyPartOrChildren(parent.Part))
+            if (hediff is IStatefulInjury { State: IInjuryState injuryState } && hediff.IsOnBodyPartOrChildren(parent.Part))
             {
-                betterInjury.CoagulationFlags &= ~CoagulationFlag.Manual;
-                betterInjury.CoagulationMultiplier = 1f;
+                injuryState.CoagulationFlags &= ~CoagulationFlag.Manual;
+                injuryState.CoagulationMultiplier = 1f;
             }
         }
         base.CompPostPostRemoved();
@@ -37,20 +38,22 @@ public class TourniquetHediffComp : HediffComp
     public override void Notify_PawnPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
     {
         base.Notify_PawnPostApplyDamage(dinfo, totalDamageDealt);
+        ReapplyEffectsToWounds();
+    }
 
-        List<Hediff> hediffs = parent.pawn.health.hediffSet.hediffs;
-        for (int i = 0; i < hediffs.Count; i++)
+    public void ReapplyEffectsToWounds()
+    {
+        foreach (Hediff hediff in parent.pawn.health.hediffSet.hediffs)
         {
-            Hediff hediff = hediffs[i];
             // tourniquets can only be applied to bleeding injuries that are tendable
-            if (hediff is BetterInjury { Bleeding: true } injury
-                && injury.TendableNow()
-                && !injury.CoagulationFlags.IsSet(CoagulationFlag.Manual)
+            if (hediff is HediffWithComps { Bleeding: true } and IStatefulInjury { State: IInjuryState injuryState }
+                && hediff.TendableNow()
+                && !injuryState.CoagulationFlags.IsSet(CoagulationFlag.Manual)
                 // and the injury must be on the targeted body part or one of its children
-                && injury.IsOnBodyPartOrChildren(parent.Part))
+                && hediff.IsOnBodyPartOrChildren(parent.Part))
             {
-                injury.CoagulationFlags |= CoagulationFlag.Manual;
-                injury.CoagulationMultiplier = CoagulationMultiplier;
+                injuryState.CoagulationFlags |= CoagulationFlag.Manual;
+                injuryState.CoagulationMultiplier = CoagulationMultiplier;
             }
         }
     }
@@ -72,7 +75,6 @@ public class TourniquetHediffComp : HediffComp
         {
             _ticksToNextCheck = CHECK_INTERVAL;
             float chance = GetGangreneChance(parent.Severity) * CHECK_INTERVAL / MoreInjuriesMod.Settings.MeanTimeBetweenGangreneOnTourniquet;
-            Logger.LogDebug($"Chance for gangrene on {parent.Part.def.label} at {parent.Severity}: {chance}");
             if (Rand.Chance(chance))
             {
                 BodyPartRecord? target = GetNextGangreneTargetRandomDepthFirst(parent.pawn, parent.Part);

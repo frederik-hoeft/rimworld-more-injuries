@@ -23,4 +23,6 @@ public static class KnownJobDefOf
     public static JobDef UseDefibrillator = null!;
 
     public static JobDef UseBandage = null!;
+
+    public static JobDef UseEpinephrine = null!;
 }

@@ -4,7 +4,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Bandages;
 
-internal class BandageFloatOptionProvider(HeavyBleedingWorker parent) : ICompFloatMenuOptionsHandler
+internal class BandageFloatOptionProvider(InjuryWorker parent) : ICompFloatMenuOptionsHandler
 {
     public bool IsEnabled => true;
 

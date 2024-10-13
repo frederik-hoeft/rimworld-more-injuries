@@ -1,30 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef ParentName="MedicalDeviceBase">
+  <ThingDef ParentName="MakeableDrugPillBase">
     <defName>Epinephrine</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>epinephrine autoinjector</label>
     <description>An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose or doses of epinephrine (adrenaline) by means of autoinjector technology.</description>
+    <possessionCount>32</possessionCount>
     <graphicData>
       <texPath>Thing/Epinephrine</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
-    <resourceReadoutPriority>Middle</resourceReadoutPriority>
-    <stackLimit>50</stackLimit>
+    <socialPropernessMatters>false</socialPropernessMatters>
+    <rotatable>false</rotatable>
     <drawGUIOverlay>true</drawGUIOverlay>
     <tradeNeverStack>false</tradeNeverStack>
-    <useHitPoints>true</useHitPoints>
     <statBases>
-      <Mass>1</Mass>
-      <MarketValue>250</MarketValue>
-      <MaxHitPoints>20</MaxHitPoints>
+      <WorkToMake>600</WorkToMake>
+      <MarketValue>50</MarketValue>
+      <Mass>0.005</Mass>
+      <Flammability>0.7</Flammability>
     </statBases>
-    <thingCategories>
-      <li>Manufactured</li>
-    </thingCategories>
-    <tradeTags>
-      <li>ExoticMisc</li>
-    </tradeTags>
+    <techLevel>Industrial</techLevel>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Injectors.InjectorProps_ModExtension">
+        <severityOffset>0.75</severityOffset>
+      </li>
+    </modExtensions>
+    <ingestible>
+      <drugCategory>Medical</drugCategory>
+      <ingestCommandString>Use {0}</ingestCommandString>
+      <ingestReportString>Using {0}.</ingestReportString>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>AdrenalineRush</hediffDef>
+          <severity>0.75</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>DrugProduction</li>
+        <li>MedicineProduction</li>
+      </researchPrerequisites>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <soundWorking>Recipe_Drug</soundWorking>
+      <displayPriority>1500</displayPriority>
+    </recipeMaker>
+    <costList>
+      <Neutroamine>1</Neutroamine>
+      <Yayo>1</Yayo>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <listOrder>1000</listOrder>
+        <overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+      </li>
+    </comps>
   </ThingDef>
   
   <ThingDef ParentName="MedicalDeviceBase">

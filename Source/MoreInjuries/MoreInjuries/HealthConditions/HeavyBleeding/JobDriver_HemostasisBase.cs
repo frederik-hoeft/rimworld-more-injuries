@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.AI;
 using MoreInjuries.Debug;
+using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using System.Linq;
 using Verse;
 using Verse.AI;
@@ -12,12 +13,16 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
 
     protected override bool IsTreatable(Hediff hediff) => JobCanTreat(hediff);
 
-    public static bool JobCanTreat(Hediff hediff) => hediff is BetterInjury
-    {
-        Part.depth: BodyPartDepth.Outside,
-        Bleeding: true,
-        IsTemporarilyCoagulated: false
-    };
+    public static bool JobCanTreat(Hediff hediff) => hediff is 
+        HediffWithComps
+        {
+            Part.depth: BodyPartDepth.Outside,
+            Bleeding: true,
+        } and 
+        IStatefulInjury 
+        { 
+            State.IsTemporarilyCoagulated: false 
+        };
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
@@ -27,12 +32,11 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
             .Where(IsTreatable)
             .OrderByDescending(hediff => hediff.BleedRate)
             .FirstOrDefault();
-        if (injury is not null && device?.def.GetModExtension<HemostasisModExtension>() is HemostasisModExtension extension)
+        if (injury is IStatefulInjury { State: IInjuryState state } && device?.def.GetModExtension<HemostasisModExtension>() is HemostasisModExtension extension)
         {
-            BetterInjury betterInjury = (BetterInjury)injury;
-            betterInjury.CoagulationFlags |= CoagulationFlag.Timed;
-            betterInjury.TemporarilyTamponadedMultiplierBase = extension.CoagulationMultiplier;
-            betterInjury.ReducedBleedRateTicksTotal = extension.DisappearsAfterTicks;
+            state.CoagulationFlags |= CoagulationFlag.Timed;
+            state.TemporarilyTamponadedMultiplierBase = extension.CoagulationMultiplier;
+            state.ReducedBleedRateTicksTotal = extension.DisappearsAfterTicks;
             device?.DecreaseStack();
         }
     }
@@ -48,7 +52,7 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
             job.count = 1;
             if (fromInventoryOnly)
             {
-                ExtendedJobParameters parameters = ExtendedJobParameters.Create<ExtendedJobParameters>(fromInventoryOnly: true);
+                ExtendedJobParameters parameters = ExtendedJobParameters.Create<ExtendedJobParameters>(doctor, fromInventoryOnly: true);
                 job.source = parameters;
             }
             return job;

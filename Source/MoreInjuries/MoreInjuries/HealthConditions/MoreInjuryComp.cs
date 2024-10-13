@@ -17,6 +17,8 @@ using MoreInjuries.HealthConditions.HeadInjury.Concussions;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using System.Linq;
+using MoreInjuries.HealthConditions.Injectors;
+using Std = System;
 
 namespace MoreInjuries.HealthConditions;
 
@@ -32,7 +34,45 @@ public class MoreInjuryComp : ThingComp
     private readonly IPostPostApplyDamageHandler[] _postPostApplyDamageHandlers;
     private readonly IPostTakeDamageHandler[] _postTakeDamageHandlers;
 
+    // we need an XML node to store our job parameters, so we do that on the pawn doing the job
+    // because we can't be sure that the we are notified when the job is done, we need to store weak references
+    // to allow the GC to do its job
+    private readonly List<Std::WeakReference<IExposable>> _weakJobParameters = [];
+
     public bool CallbackActive { get; private set; } = false;
+
+    public void PersistJobParameters(IExposable jobParameter)
+    {
+        // remove dead references if we are at capacity
+        if (_weakJobParameters.Count + 1 > _weakJobParameters.Capacity)
+        {
+            _weakJobParameters.RemoveAll(wr => !wr.TryGetTarget(out _));
+        }
+        _weakJobParameters.Add(new Std::WeakReference<IExposable>(jobParameter));
+    }
+
+    public override void PostExposeData()
+    {
+        base.PostExposeData();
+        // we don't know if we are loading or saving, so we need to remove dead references
+        _weakJobParameters.RemoveAll(wr => !wr.TryGetTarget(out _));
+        // box everything to a list of strong references for serialization
+        List<IExposable> jobParameters = _weakJobParameters.Select(wr =>
+        {
+            if (wr.TryGetTarget(out IExposable target))
+            {
+                return target;
+            }
+            return null;
+        }).Where(x => x is not null).ToList()!;
+        Scribe_Collections.Look(ref jobParameters, "jobParameters", LookMode.Deep);
+        // perhaps stuff changed (in case of a load), so we need to update our weak references
+        _weakJobParameters.Clear();
+        foreach (IExposable jobParameter in jobParameters)
+        {
+            _weakJobParameters.Add(new Std::WeakReference<IExposable>(jobParameter));
+        }
+    }
 
     public MoreInjuryComp()
     {
@@ -53,7 +93,8 @@ public class MoreInjuryComp : ThingComp
             new HearingLossExplosionsWorker(this),
             new ConcussionExplosionsWorker(this),
             new HeavyBleedingWorker(this),
-            new ProvideFirstAidWorker(this)
+            new ProvideFirstAidWorker(this),
+            new InjectorWorker(this)
         ];
         // cache handlers for performance
         _compGetGizmosExtraHandlers = _pipeline.OfType<ICompGetGizmosExtraHandler>().ToArray();

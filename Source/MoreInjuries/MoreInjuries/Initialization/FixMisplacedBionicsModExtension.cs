@@ -5,5 +5,5 @@ namespace MoreInjuries.Initialization;
 
 public class FixMisplacedBionicsModExtension : DefModExtension
 {
-    public required List<BodyPartDef> BodyParts { get; set; }
+    public required List<BodyPartDef> TargetedBodyPartsByRecipe { get; set; }
 }

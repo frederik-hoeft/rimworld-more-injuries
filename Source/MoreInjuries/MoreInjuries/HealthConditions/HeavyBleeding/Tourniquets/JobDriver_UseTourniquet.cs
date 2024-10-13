@@ -17,10 +17,12 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device) =>
         ApplyDevice(patient, device, _bodyPartKey);
 
+    // we don't target a specific hediff
     protected override bool IsTreatable(Hediff hediff) => true;
 
-    // as long as the one-shot job is not completed, the patient will be treated
-    protected override bool RequiresTreatment(Pawn patient) => true;
+    // the patient requires treatment until a tourniquet is applied to the targeted body part
+    protected override bool RequiresTreatment(Pawn patient) => 
+        !patient.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.TourniquetApplied && GetUniqueBodyPartKey(hediff.Part) == _bodyPartKey);
 
     internal static void ApplyDevice(Pawn patient, Thing? device, BodyPartRecord? bodyPart) =>
         ApplyDevice(patient, device, GetUniqueBodyPartKey(bodyPart));
@@ -34,20 +36,6 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
             Logger.Warning($"Failed to apply tourniquet because of invalid parameters: {patient}, {device}, {bodyPartKey}");
             return;
         }
-
-        foreach (Hediff hediff in patient.health.hediffSet.hediffs)
-        {
-            // tourniquets can only be applied to bleeding injuries that are tendable
-            if (hediff is BetterInjury { Bleeding: true } injury
-                && injury.TendableNow()
-                && !injury.CoagulationFlags.IsSet(CoagulationFlag.Manual)
-                // and the injury must be on the targeted body part or one of its children
-                && injury.IsOnBodyPartOrChildren(targetPart))
-            {
-                injury.CoagulationFlags |= CoagulationFlag.Manual;
-                injury.CoagulationMultiplier = extension.CoagulationMultiplier;
-            }
-        }
         Hediff appliedTourniquetHediff = HediffMaker.MakeHediff(KnownHediffDefOf.TourniquetApplied, patient, targetPart);
         appliedTourniquetHediff.Severity = 0.01f;
         if (appliedTourniquetHediff.TryGetComp(out TourniquetHediffComp comp))
@@ -57,8 +45,10 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
         else
         {
             Logger.Error("Failed to get TourniquetHediffComp from applied tourniquet hediff.");
+            return;
         }
         patient.health.AddHediff(appliedTourniquetHediff);
+        comp.ReapplyEffectsToWounds();
         // apply choking hediff if the tourniquet is applied to the neck
         if (targetPart.def == KnownBodyPartDefOf.Neck)
         {
@@ -75,7 +65,7 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
     {
         public Job CreateJob()
         {
-            TourniquetBaseParameters parameters = ExtendedJobParameters.Create<TourniquetBaseParameters>(oneShot: true);
+            TourniquetBaseParameters parameters = ExtendedJobParameters.Create<TourniquetBaseParameters>(doctor, oneShot: true);
             // the only thing that is persistent and unique between the limbs is the anchor tag
             parameters.bodyPartKey = GetUniqueBodyPartKey(bodyPart);
             Job job = JobMaker.MakeJob(KnownJobDefOf.UseTourniquet, patient, device);

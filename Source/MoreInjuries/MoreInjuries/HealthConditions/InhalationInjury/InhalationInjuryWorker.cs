@@ -24,7 +24,6 @@ internal class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWorker(pare
                 foreach (Hediff lungBurn in patient.health.hediffSet.hediffs.Where(hediff => hediff.Part == lung && hediff.def == KnownHediffDefOf.Burn))
                 {
                     hasBurnedLung = true;
-                    // TODO: mod settings for severity?
                     lungBurn.Severity += Rand.Range(0.05f, 0.5f);
                 }
                 if (!hasBurnedLung)

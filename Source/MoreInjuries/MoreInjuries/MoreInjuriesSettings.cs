@@ -2,120 +2,72 @@
 
 namespace MoreInjuries;
 
+using static MoreInjuriesSettingsDefaults;
+
 public class MoreInjuriesSettings : ModSettings
 {
-    internal const bool ENABLE_ADRENALINE_DEFAULT = true;
-    internal bool EnableAdrenaline = ENABLE_ADRENALINE_DEFAULT;
-    private const float ADRENALINE_CHANCE_ON_DAMAGE_DEFAULT = 0.75f;
-    internal float AdrenalineChanceOnDamage = ADRENALINE_CHANCE_ON_DAMAGE_DEFAULT;
-    private const float CERTAIN_ADRENALINE_THRESHOLD_DEFAULT = 15f;
-    internal float CertainAdrenalineThreshold = CERTAIN_ADRENALINE_THRESHOLD_DEFAULT;
-
-    internal const bool ENABLE_HYDROSTATIC_SHOCK_DEFAULT = false;
-    internal bool EnableHydrostaticShock = ENABLE_HYDROSTATIC_SHOCK_DEFAULT;
-    private const float HYDROSTATIC_SHOCK_CHANCE_ON_DAMAGE_DEFAULT = 0.2f;
-    internal float HydrostaticShockChanceOnDamage = HYDROSTATIC_SHOCK_CHANCE_ON_DAMAGE_DEFAULT;
-
-    internal const float CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT = 0.75f;
-    internal float ClosedInternalWouldBleedingModifier = CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT;
-
-    internal const bool ENABLE_EMP_DAMAGE_TO_BIONICS_DEFAULT = true;
-    internal bool EnableEmpDamageToBionics = ENABLE_EMP_DAMAGE_TO_BIONICS_DEFAULT;
-    private const float EMP_DAMAGE_TO_BIONICS_CHANCE_DEFAULT = 0.45f;
-    internal float EmpDamageToBionicsChance = EMP_DAMAGE_TO_BIONICS_CHANCE_DEFAULT;
-
-    internal const bool ENABLE_HEMORRHAGIC_STROKE_DEFAULT = true;
-    internal bool EnableHemorrhagicStroke = ENABLE_HEMORRHAGIC_STROKE_DEFAULT;
-    private const float HEMORRHAGIC_STROKE_CHANCE_DEFAULT = 0.25f;
-    internal float HemorrhagicStrokeChance = HEMORRHAGIC_STROKE_CHANCE_DEFAULT;
-    private const float HEMORRHAGIC_STROKE_THRESHOLD_DEFAULT = 15f;
-    internal float HemorrhagicStrokeThreshold = HEMORRHAGIC_STROKE_THRESHOLD_DEFAULT;
-
-    internal const bool ENABLE_CONCUSSION_DEFAULT = true;
-    internal bool EnableConcussion = ENABLE_CONCUSSION_DEFAULT;
-    internal const float CONCUSSION_CHANCE_DEFAULT = 0.75f;
-    internal float ConcussionChance = CONCUSSION_CHANCE_DEFAULT;
-    internal const float CONCUSSION_THRESHOLD_DEFAULT = 6f;
-    internal float ConcussionThreshold = CONCUSSION_THRESHOLD_DEFAULT;
-
-    internal const bool ENABLE_CHOKING_DEFAULT = true;
-    internal bool EnableChoking = ENABLE_CHOKING_DEFAULT;
-    internal const float CHOKING_CHANCE_ON_DAMAGE_DEFAULT = 0.75f;
-    internal float ChokingChanceOnDamage = CHOKING_CHANCE_ON_DAMAGE_DEFAULT;
-    internal const float CHOKING_MINIMUM_BLEED_RATE_DEFAULT = 0.2f;
-    internal float ChokingMinimumBleedRate = CHOKING_MINIMUM_BLEED_RATE_DEFAULT;
-    internal const bool ENABLE_CHOKING_SOUNDS_DEFAULT = true;
-    internal bool EnableChokingSounds = ENABLE_CHOKING_SOUNDS_DEFAULT;
-    internal const float SUCTION_DEVICE_MINIMUM_SUCCESS_RATE_DEFAULT = 0.25f;
-    internal float SuctionDeviceMinimumSuccessRate = SUCTION_DEVICE_MINIMUM_SUCCESS_RATE_DEFAULT;
-
-    internal const bool ENABLE_LUNG_COLLAPSE_DEFAULT = true;
-    internal bool EnableLungCollapse = ENABLE_LUNG_COLLAPSE_DEFAULT;
-    internal const float LUNG_COLLAPSE_CHANCE_ON_DAMAGE_DEFAULT = 0.4f;
-    internal float LungCollapseChanceOnDamage = LUNG_COLLAPSE_CHANCE_ON_DAMAGE_DEFAULT;
-    internal const float LUNG_COLLAPSE_MAX_SEVERITY_ROOT_DEFAULT = 0.85f;
-    internal float LungCollapseMaxSeverityRoot = LUNG_COLLAPSE_MAX_SEVERITY_ROOT_DEFAULT;
-
-    internal const bool ENABLE_SPALLING_DEFAULT = true;
-    internal bool EnableSpalling = ENABLE_SPALLING_DEFAULT;
-    internal const float ARMOR_HEALTH_SPALLING_THRESHOLD_DEFAULT = 0.95f;
-    internal float ArmorHealthSpallingThreshold = ARMOR_HEALTH_SPALLING_THRESHOLD_DEFAULT;
-    internal const float SPALLING_CHANCE_DEFAULT = 0.75f;
-    internal float SpallingChance = SPALLING_CHANCE_DEFAULT;
-
-    internal const bool ENABLE_BASIC_HEARING_DAMAGE_DEFAULT = true;
-    internal bool EnableBasicHearingDamage = ENABLE_BASIC_HEARING_DAMAGE_DEFAULT;
-    internal const bool ENABLE_ADVANCED_HEARING_DAMAGE_DEFAULT = false;
-    internal bool EnableAdvancedHearingDamage = ENABLE_ADVANCED_HEARING_DAMAGE_DEFAULT;
-
-    internal const bool ENABLE_FRACTURES_DEFAULT = true;
-    internal bool EnableFractures = ENABLE_FRACTURES_DEFAULT;
-    internal const float FRACTURE_DAMAGE_TRESHOLD_DEFAULT = 10f;
-    internal float FractureDamageTreshold = FRACTURE_DAMAGE_TRESHOLD_DEFAULT;
-    internal const float FRACTURE_CHANCE_ON_DAMAGE_DEFAULT = 0.25f;
-    internal float FractureChanceOnDamage = FRACTURE_CHANCE_ON_DAMAGE_DEFAULT;
-    internal const bool ENABLE_BONE_FRAGMENT_LACERATIONS_DEFAULT = true;
-    internal bool EnableBoneFragmentLacerations = ENABLE_BONE_FRAGMENT_LACERATIONS_DEFAULT;
-    internal const float SPLINTERING_FRACTURE_CHANCE_DEFAULT = 0.5f;
-    internal float SplinteringFractureChance = SPLINTERING_FRACTURE_CHANCE_DEFAULT;
-    internal const float BONE_FRAGMENT_LACERATION_CHANCE_PER_BODY_PART_DEFAULT = 0.5f;
-    internal float BoneFragmentLacerationChancePerBodyPart = BONE_FRAGMENT_LACERATION_CHANCE_PER_BODY_PART_DEFAULT;
-
-    internal const bool ENABLE_HYPOVOLEMIC_SHOCK_DEFAULT = true;
-    internal bool EnableHypovolemicShock = ENABLE_HYPOVOLEMIC_SHOCK_DEFAULT;
-    internal const float ORGAN_HYPOXIA_CHANCE_DEFAULT = 0.35f;
-    internal float OrganHypoxiaChance = ORGAN_HYPOXIA_CHANCE_DEFAULT;
-    internal const float ORGAN_HYPOXIA_CHANCE_REDUCTION_FACTOR_DEFAULT = 0.5f;
-    internal float OrganHypoxiaChanceReductionFactor = ORGAN_HYPOXIA_CHANCE_REDUCTION_FACTOR_DEFAULT;
-    internal const bool ENABLE_CARDIAC_ARREST_ON_HIGH_BLOOD_LOSS_DEFAULT = true;
-    internal bool EnableCardiacArrestOnHighBloodLoss = ENABLE_CARDIAC_ARREST_ON_HIGH_BLOOD_LOSS_DEFAULT;
-    internal const float CARDIAC_ARREST_CHANCE_ON_HIGH_BLOOD_LOSS_DEFAULT = 0.05f;
-    internal float CardiacArrestChanceOnHighBloodLoss = CARDIAC_ARREST_CHANCE_ON_HIGH_BLOOD_LOSS_DEFAULT;
-    internal const float DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT = 0.5f;
-    internal float DefibrillatorMinimumSuccessRate = DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT;
-
-    internal const bool ENABLE_FIRE_INHALATION_DEFAULT = true;
-    internal bool EnableFireInhalation = ENABLE_FIRE_INHALATION_DEFAULT;
-
-    internal const bool ENABLE_LOGGING_DEFAULT = false;
+    // logging
     internal bool EnableLogging = ENABLE_LOGGING_DEFAULT;
-    internal const bool ENABLE_VERBOSE_LOGGING_DEFAULT = false;
     internal bool EnableVerboseLogging = ENABLE_VERBOSE_LOGGING_DEFAULT;
-
-    internal const float PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT = 6f;
-    internal float ParalysisDamageTreshold50Percent = PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT;
-
-    internal const float INTENSTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT = 0.45f;
-    internal float IntestinalSpillingChanceOnDamage = INTENSTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT;
-
-    internal const bool TOURNIQUETS_CAN_CAUSE_GANGRENE_DEFAULT = true;
+    // adrenaline and epinephrine
+    internal bool EnableAdrenaline = ENABLE_ADRENALINE_DEFAULT;
+    internal float AdrenalineChanceOnDamage = ADRENALINE_CHANCE_ON_DAMAGE_DEFAULT;
+    internal float CertainAdrenalineThreshold = CERTAIN_ADRENALINE_THRESHOLD_DEFAULT;
+    // hydrostatic shock
+    internal bool EnableHydrostaticShock = ENABLE_HYDROSTATIC_SHOCK_DEFAULT;
+    internal float HydrostaticShockChanceOnDamage = HYDROSTATIC_SHOCK_CHANCE_ON_DAMAGE_DEFAULT;
+    // EMP
+    internal bool EnableEmpDamageToBionics = ENABLE_EMP_DAMAGE_TO_BIONICS_DEFAULT;
+    internal float EmpDamageToBionicsChance = EMP_DAMAGE_TO_BIONICS_CHANCE_DEFAULT;
+    // hemorrhagic stroke
+    internal bool EnableHemorrhagicStroke = ENABLE_HEMORRHAGIC_STROKE_DEFAULT;
+    internal float HemorrhagicStrokeChance = HEMORRHAGIC_STROKE_CHANCE_DEFAULT;
+    internal float HemorrhagicStrokeThreshold = HEMORRHAGIC_STROKE_THRESHOLD_DEFAULT;
+    // concussions
+    internal bool EnableConcussion = ENABLE_CONCUSSION_DEFAULT;
+    internal float ConcussionChance = CONCUSSION_CHANCE_DEFAULT;
+    internal float ConcussionThreshold = CONCUSSION_THRESHOLD_DEFAULT;
+    // choking
+    internal bool EnableChoking = ENABLE_CHOKING_DEFAULT;
+    internal float ChokingChanceOnDamage = CHOKING_CHANCE_ON_DAMAGE_DEFAULT;
+    internal float ChokingMinimumBleedRate = CHOKING_MINIMUM_BLEED_RATE_DEFAULT;
+    internal bool EnableChokingSounds = ENABLE_CHOKING_SOUNDS_DEFAULT;
+    internal float SuctionDeviceMinimumSuccessRate = SUCTION_DEVICE_MINIMUM_SUCCESS_RATE_DEFAULT;
+    // lung collapse
+    internal bool EnableLungCollapse = ENABLE_LUNG_COLLAPSE_DEFAULT;
+    internal float LungCollapseChanceOnDamage = LUNG_COLLAPSE_CHANCE_ON_DAMAGE_DEFAULT;
+    internal float LungCollapseMaxSeverityRoot = LUNG_COLLAPSE_MAX_SEVERITY_ROOT_DEFAULT;
+    // spalling
+    internal bool EnableSpalling = ENABLE_SPALLING_DEFAULT;
+    internal float ArmorHealthSpallingThreshold = ARMOR_HEALTH_SPALLING_THRESHOLD_DEFAULT;
+    internal float SpallingChance = SPALLING_CHANCE_DEFAULT;
+    // hearing damage
+    internal bool EnableBasicHearingDamage = ENABLE_BASIC_HEARING_DAMAGE_DEFAULT;
+    internal bool EnableAdvancedHearingDamage = ENABLE_ADVANCED_HEARING_DAMAGE_DEFAULT;
+    // fractures
+    internal bool EnableFractures = ENABLE_FRACTURES_DEFAULT;
+    internal float FractureDamageTreshold = FRACTURE_DAMAGE_TRESHOLD_DEFAULT;
+    internal float FractureChanceOnDamage = FRACTURE_CHANCE_ON_DAMAGE_DEFAULT;
+    internal bool EnableBoneFragmentLacerations = ENABLE_BONE_FRAGMENT_LACERATIONS_DEFAULT;
+    internal float SplinteringFractureChance = SPLINTERING_FRACTURE_CHANCE_DEFAULT;
+    internal float BoneFragmentLacerationChancePerBodyPart = BONE_FRAGMENT_LACERATION_CHANCE_PER_BODY_PART_DEFAULT;
+    // hypovolemic shock and cardiac arrest
+    internal bool EnableHypovolemicShock = ENABLE_HYPOVOLEMIC_SHOCK_DEFAULT;
+    internal float OrganHypoxiaChance = ORGAN_HYPOXIA_CHANCE_DEFAULT;
+    internal float OrganHypoxiaChanceReductionFactor = ORGAN_HYPOXIA_CHANCE_REDUCTION_FACTOR_DEFAULT;
+    internal bool EnableCardiacArrestOnHighBloodLoss = ENABLE_CARDIAC_ARREST_ON_HIGH_BLOOD_LOSS_DEFAULT;
+    internal float CardiacArrestChanceOnHighBloodLoss = CARDIAC_ARREST_CHANCE_ON_HIGH_BLOOD_LOSS_DEFAULT;
+    internal float DefibrillatorMinimumSuccessRate = DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT;
+    // tourniquet-related injuries
     internal bool TourniquetsCanCauseGangrene = TOURNIQUETS_CAN_CAUSE_GANGRENE_DEFAULT;
-    internal const float MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT = 10000f;
     internal float MeanTimeBetweenGangreneOnTourniquet = MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT;
-    internal const float DRY_GANGRENE_CHANCE_DEFAULT = 0.8f;
     internal float DryGangreneChance = DRY_GANGRENE_CHANCE_DEFAULT;
-    internal const float DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT = 240000f;
     internal float DryGangreneMeanTimeToInfection = DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT;
+    // miscellaneous
+    internal bool EnableFireInhalation = ENABLE_FIRE_INHALATION_DEFAULT;
+    internal float ParalysisDamageTreshold50Percent = PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT;
+    internal float IntestinalSpillingChanceOnDamage = INTESTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT;
+    internal float ClosedInternalWouldBleedingModifier = CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT;
 
     public override void ExposeData()
     {
@@ -175,11 +127,11 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref MeanTimeBetweenGangreneOnTourniquet, nameof(MeanTimeBetweenGangreneOnTourniquet), MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT);
         Scribe_Values.Look(ref DryGangreneChance, nameof(DryGangreneChance), DRY_GANGRENE_CHANCE_DEFAULT);
         Scribe_Values.Look(ref DryGangreneMeanTimeToInfection, nameof(DryGangreneMeanTimeToInfection), DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT);
-
+        // miscellaneous
         Scribe_Values.Look(ref ClosedInternalWouldBleedingModifier, nameof(ClosedInternalWouldBleedingModifier), CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT);
         Scribe_Values.Look(ref EnableFireInhalation, nameof(EnableFireInhalation), ENABLE_FIRE_INHALATION_DEFAULT);
         Scribe_Values.Look(ref ParalysisDamageTreshold50Percent, nameof(ParalysisDamageTreshold50Percent), PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT);
-        Scribe_Values.Look(ref IntestinalSpillingChanceOnDamage, nameof(IntestinalSpillingChanceOnDamage), INTENSTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT);
+        Scribe_Values.Look(ref IntestinalSpillingChanceOnDamage, nameof(IntestinalSpillingChanceOnDamage), INTESTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT);
 
         base.ExposeData();
     }

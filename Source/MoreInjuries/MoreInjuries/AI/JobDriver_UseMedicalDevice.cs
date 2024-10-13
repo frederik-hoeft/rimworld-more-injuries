@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.Debug;
+using MoreInjuries.HealthConditions;
 using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
@@ -51,11 +52,11 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
     public override void ExposeData()
     {
         base.ExposeData();
-        Scribe_Values.Look(ref _usesDevice, nameof(_usesDevice));
-        Scribe_Values.Look(ref _pathEndMode, nameof(_pathEndMode));
-        Scribe_Values.Look(ref _fromInventoryOnly, nameof(_fromInventoryOnly));
-        Scribe_Values.Look(ref _oneShot, nameof(_oneShot));
-        Scribe_Values.Look(ref _oneShotUsed, nameof(_oneShotUsed));
+        Scribe_Values.Look(ref _usesDevice, "usesDevice");
+        Scribe_Values.Look(ref _pathEndMode, "pathEndMode");
+        Scribe_Values.Look(ref _fromInventoryOnly, "fromInventoryOnly");
+        Scribe_Values.Look(ref _oneShot, "oneShot");
+        Scribe_Values.Look(ref _oneShotUsed, "oneShotUsed");
     }
 
     public override void Notify_Starting()
@@ -222,7 +223,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             }
             return false;
         });
-        yield return Toils_Jump.JumpIf(waitToil, () => !_usesDevice || DeviceUsed is not null && doctor.inventory.Contains(DeviceUsed));
+        yield return Toils_Jump.JumpIf(waitToil, () => !_usesDevice || DeviceUsed is not null and not { Destroyed: true } && doctor.inventory.Contains(DeviceUsed));
         yield return Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, GetMedicalDeviceCountToFullyHeal).FailOnDestroyedOrNull(DEVICE_INDEX);
         yield return waitToil;
         yield return Toils_MedicalDevice.FinalizeApplyDevice(patient, ApplyDeviceCore);
@@ -301,7 +302,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         return toil;
     }
 
-    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "I guess these will be XML serialized")]
+    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "XML serialization naming")]
     protected class ExtendedJobParameters : ILoadReferenceable, IExposable
     {
         public string? loadId;
@@ -312,12 +313,12 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
 
         public virtual void ExposeData()
         {
-            Scribe_Values.Look(ref loadId, nameof(loadId));
-            Scribe_Values.Look(ref fromInventoryOnly, nameof(fromInventoryOnly));
-            Scribe_Values.Look(ref oneShot, nameof(oneShot));
+            Scribe_Values.Look(ref loadId, "loadId");
+            Scribe_Values.Look(ref fromInventoryOnly, "fromInventoryOnly");
+            Scribe_Values.Look(ref oneShot, "oneShot");
         }
 
-        public static T Create<T>(bool fromInventoryOnly =  false, bool oneShot = false) where T : ExtendedJobParameters, new()
+        public static T Create<T>(Pawn worker, bool fromInventoryOnly =  false, bool oneShot = false) where T : ExtendedJobParameters, new()
         {
             T parameters = new()
             {
@@ -325,6 +326,14 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
                 fromInventoryOnly = fromInventoryOnly,
                 oneShot = oneShot
             };
+            if (worker.TryGetComp(out MoreInjuryComp xmlSaveNode))
+            {
+                xmlSaveNode.PersistJobParameters(parameters);
+            }
+            else
+            {
+                Logger.Error($"Failed to get {nameof(MoreInjuryComp)} from {worker} as an XML save node for {typeof(T)}. This should never happen. Either a job was created for a non-humanoid pawn or the pawn is missing the comp.");
+            }
             return parameters;
         }
     }

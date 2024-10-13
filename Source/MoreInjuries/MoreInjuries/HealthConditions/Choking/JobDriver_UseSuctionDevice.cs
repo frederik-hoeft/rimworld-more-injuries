@@ -43,7 +43,7 @@ public class JobDriver_UseSuctionDevice : JobDriver_UseMedicalDevice_TargetsHedi
             job.count = 1;
             if (fromInventoryOnly)
             {
-                ExtendedJobParameters parameters = ExtendedJobParameters.Create<ExtendedJobParameters>(fromInventoryOnly: true);
+                ExtendedJobParameters parameters = ExtendedJobParameters.Create<ExtendedJobParameters>(doctor, fromInventoryOnly: true);
                 job.source = parameters;
             }
             return job;

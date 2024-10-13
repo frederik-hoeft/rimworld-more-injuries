@@ -67,7 +67,7 @@ internal static class Toils_MedicalDevice
         toil.initAction = () =>
         {
             Pawn actor = toil.actor;
-            Thing thing = actor.CurJob.targetB.Thing;
+            Thing? thing = actor.CurJob.targetB.Thing;
             if (actor.skills is not null)
             {
                 float baseExperience = 500f;
@@ -75,12 +75,25 @@ internal static class Toils_MedicalDevice
                 actor.skills.Learn(SkillDefOf.Medicine, baseExperience * gainFactor);
             }
             applyDeviceAction.Invoke(actor, patient, thing);
-            if (thing != null && thing.Destroyed)
+            if (actor.CurJob is null)
             {
+                if (actor != patient)
+                {
+                    Logger.Warning($"{nameof(FinalizeApplyDevice)}: Job is null after applying device. What's going on? Did our doctor die?");
+                }
+                else
+                {
+                    Logger.LogDebug($"{nameof(FinalizeApplyDevice)}: Job is null after applying device, but the doctor is the patient. So they probably overdosed or died. This is fine.");
+                }
+                return;
+            }
+            if (thing is { Destroyed: true })
+            {
+                // set null to prevent double-usage
                 actor.CurJob.SetTarget(TargetIndex.B, LocalTargetInfo.Invalid);
             }
 
-            if (!toil.actor.CurJob.endAfterTendedOnce)
+            if (!actor.CurJob.endAfterTendedOnce)
             {
                 return;
             }

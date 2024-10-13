@@ -21,21 +21,17 @@ public class ShockMakerHediffComp : HediffComp
     {
         base.CompPostTick(ref severityAdjustment);
 
-        if (parent.pawn.RaceProps?.Humanlike is true)
+        if (MoreInjuriesMod.Settings.EnableHypovolemicShock && parent.pawn.RaceProps?.Humanlike is true)
         {
-            if (_ticks < 600)
+            if (_hasShock || ++_ticks < 600)
             {
-                _ticks++;
                 return;
             }
-            if (!_hasShock)
+            _ticks = 0;
+            if (Rand.Chance(s_curve.Evaluate(parent.Severity)) && !parent.pawn.health.hediffSet.HasHediff(KnownHediffDefOf.HypovolemicShock))
             {
-                if (Rand.Chance(s_curve.Evaluate(parent.Severity)) && !parent.pawn.health.hediffSet.HasHediff(KnownHediffDefOf.HypovolemicShock))
-                {
-                    parent.pawn.health.AddHediff(HediffMaker.MakeHediff(KnownHediffDefOf.HypovolemicShock, parent.pawn));
-                    _hasShock = true;
-                }
-                _ticks = 0;
+                parent.pawn.health.AddHediff(HediffMaker.MakeHediff(KnownHediffDefOf.HypovolemicShock, parent.pawn));
+                _hasShock = true;
             }
         }
     }

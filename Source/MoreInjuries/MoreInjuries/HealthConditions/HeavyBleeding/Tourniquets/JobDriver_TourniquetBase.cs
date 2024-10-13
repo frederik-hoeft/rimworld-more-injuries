@@ -24,6 +24,12 @@ public abstract class JobDriver_TourniquetBase : JobDriver_UseMedicalDevice
         }
     }
 
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Values.Look(ref _bodyPartKey, "bodyPartKey");
+    }
+
     protected override int BaseTendDuration => 90;
 
     // we always either apply or remove exactly one tourniquet
@@ -39,7 +45,7 @@ public abstract class JobDriver_TourniquetBase : JobDriver_UseMedicalDevice
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref bodyPartKey, nameof(bodyPartKey));
+            Scribe_Values.Look(ref bodyPartKey, "bodyPartKey");
         }
     }
 }

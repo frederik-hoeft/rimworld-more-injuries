@@ -52,7 +52,7 @@ public class JobDriver_RemoveTourniquet : JobDriver_TourniquetBase
     {
         public Job CreateJob()
         {
-            TourniquetBaseParameters parameters = ExtendedJobParameters.Create<TourniquetBaseParameters>(oneShot: true);
+            TourniquetBaseParameters parameters = ExtendedJobParameters.Create<TourniquetBaseParameters>(doctor, oneShot: true);
             parameters.bodyPartKey = GetUniqueBodyPartKey(bodyPart);
             Job job = JobMaker.MakeJob(KnownJobDefOf.RemoveTourniquet, patient);
             job.count = 1;

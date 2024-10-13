@@ -12,4 +12,5 @@ public enum UITreatmentOption
     UseTourniquet,
     RemoveTourniquet,
     ProvideFirstAid,
+    UseEpinephrine
 }
