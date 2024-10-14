@@ -179,13 +179,16 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             waitToil = Toils_General.WaitWith_NewTemp(PATIENT_INDEX, ticks, maintainPosture: true, face: PATIENT_INDEX, pathEndMode: _pathEndMode);
             waitToil.initAction = () =>
             {
-                if (!patient.Downed)
+                doctor.pather.StopDead();
+                if (waitToil.actor.CurJob.GetTarget(PATIENT_INDEX).Thing is not Pawn patientLocal)
                 {
-                    Job patientWaitJob = JobMaker.MakeJob(JobDefOf.Wait_MaintainPosture, patient.Position);
-                    patientWaitJob.expiryInterval = ticks + 60; // just in case something goes wrong and the job doesn't finish
-                    patient.jobs.StartJob(patientWaitJob, JobCondition.InterruptForced, jobGiver: null, resumeCurJobAfterwards: true, cancelBusyStances: true);
+                    return;
                 }
-                patient.jobs.posture = PawnPosture.LayingOnGroundFaceUp;
+                if (!patientLocal.InBed())
+                {
+                    patientLocal.jobs.posture = PawnPosture.LayingOnGroundFaceUp;
+                }
+                PawnUtility.ForceWait(patientLocal, ticks, maintainPosture: true);
             };
             waitToil.AddFinishAction(() =>
             {

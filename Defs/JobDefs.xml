@@ -3,7 +3,7 @@
   <JobDef>
     <defName>UseSuctionDevice</defName>
     <driverClass>MoreInjuries.HealthConditions.Choking.JobDriver_UseSuctionDevice</driverClass>
-    <reportString>Clearing TargetA 's airways.</reportString>
+    <reportString>Managing airways of TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
   

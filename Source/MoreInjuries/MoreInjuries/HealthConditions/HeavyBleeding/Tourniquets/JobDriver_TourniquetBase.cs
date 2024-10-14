@@ -19,7 +19,7 @@ public abstract class JobDriver_TourniquetBase : JobDriver_UseMedicalDevice
         }
         else
         {
-            Log.Error($"[{GetType().Name}] Missing or invalid parameters");
+            Logger.Error($"{GetType().Name}: Missing or invalid parameters");
             EndJobWith(JobCondition.Incompletable);
         }
     }

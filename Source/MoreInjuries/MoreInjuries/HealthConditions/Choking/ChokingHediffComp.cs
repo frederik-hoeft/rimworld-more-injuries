@@ -35,7 +35,7 @@ public class ChokingHediffComp : HediffComp
             _ticksThisInterval = Properties.ChokingIntervalTicks;
             if (Source is null)
             {
-                Log.Error("Choking hediff has no source injury");
+                Logger.Warning("Choking hediff has no source injury! Was this hediff added manually?");
             }
             else
             {

@@ -14,6 +14,7 @@
     <rotatable>false</rotatable>
     <drawGUIOverlay>true</drawGUIOverlay>
     <tradeNeverStack>false</tradeNeverStack>
+    <orderedTakeGroup>MedicalDevice</orderedTakeGroup>
     <statBases>
       <WorkToMake>600</WorkToMake>
       <MarketValue>50</MarketValue>
@@ -28,6 +29,7 @@
     </modExtensions>
     <ingestible>
       <drugCategory>Medical</drugCategory>
+      <ingestSound>UseAutoinjector</ingestSound>
       <ingestCommandString>Use {0}</ingestCommandString>
       <ingestReportString>Using {0}.</ingestReportString>
       <outcomeDoers>

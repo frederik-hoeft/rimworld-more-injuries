@@ -20,6 +20,8 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
 
     protected override ThingDef DeviceDef => null!;
 
+    protected override SoundDef SoundDef => KnownSoundDefOf.PerformCpr;
+
     protected override int BaseTendDuration => 360;
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)

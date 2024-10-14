@@ -11,10 +11,11 @@ public class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(parent), 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Target;
-        if (selectedPawn == patient)
+        if (selectedPawn == patient || !selectedPawn.Drafted)
         {
             return;
         }
+        // only show option when drafted
         if (!builder.Keys.Contains(UITreatmentOption.PerformCpr) && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
         {
             builder.Keys.Add(UITreatmentOption.PerformCpr);

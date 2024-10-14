@@ -32,7 +32,7 @@ public class LungCollapseWorker(MoreInjuryComp parent) : InjuryWorker(parent), I
             {
                 if (i >= chances.Length)
                 {
-                    Log.Warning($"[MoreInjuries]: LungCollapseWorker.PostPostApplyDamage: pawn {patient.Name} has more than 2 lungs? What's going on? Ignoring the extra lungs...");
+                    Logger.Warning($"LungCollapseWorker.PostPostApplyDamage: pawn {patient.Name} has more than 2 lungs? What's going on? Ignoring the extra lungs...");
                     break;
                 }
                 if (!chances[i])

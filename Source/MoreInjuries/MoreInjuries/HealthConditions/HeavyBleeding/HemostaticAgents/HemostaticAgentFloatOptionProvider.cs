@@ -11,7 +11,7 @@ internal class HemostaticAgentFloatOptionProvider(InjuryWorker parent) : ICompFl
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = parent.Target;
-        if (!builder.Keys.Contains(UITreatmentOption.UseHemostaticAgent) && patient.health.hediffSet.hediffs.Any(JobDriver_HemostasisBase.JobCanTreat))
+        if (!builder.Keys.Contains(UITreatmentOption.UseHemostaticAgent) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(JobDriver_HemostasisBase.JobCanTreat))
         {
             builder.Keys.Add(UITreatmentOption.UseHemostaticAgent);
             if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_UseHemostaticAgent.JOB_LABEL) is string failure)

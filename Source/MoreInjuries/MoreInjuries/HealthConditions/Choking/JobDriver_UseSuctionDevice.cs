@@ -17,6 +17,8 @@ public class JobDriver_UseSuctionDevice : JobDriver_UseMedicalDevice_TargetsHedi
 
     protected override ThingDef DeviceDef => KnownThingDefOf.SuctionDevice;
 
+    protected override SoundDef SoundDef => KnownSoundDefOf.UseSuctionDevice;
+
     protected override bool RequiresDevice => true;
 
     protected override int BaseTendDuration => 600;

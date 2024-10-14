@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <WorkGiverDef>
+    <defName>DoctorResuscitatePatient</defName>
+    <label>stabilize or resuscitate patients with arythmia or cardiac arrest</label>
+    <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_ResuscitatePatient</giverClass>
+    <workType>Doctor</workType>
+    <emergency>true</emergency>
+    <verb>resuscitate</verb>
+    <gerund>resuscitating</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>125</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>DoctorManageAirways</defName>
+    <label>manage airways of patients with respiratory distress</label>
+    <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_ManageAirways</giverClass>
+    <workType>Doctor</workType>
+    <emergency>true</emergency>
+    <verb>manage airways of</verb>
+    <gerund>managing airways of</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>120</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>DoctorPerformCpr</defName>
+    <label>perform CPR to stabilize patients with cardiac or respiratory arrest</label>
+    <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_PerformCpr</giverClass>
+    <workType>Doctor</workType>
+    <emergency>true</emergency>
+    <verb>perform CPR on</verb>
+    <gerund>performing CPR on</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>115</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+</Defs>

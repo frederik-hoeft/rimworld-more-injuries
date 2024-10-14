@@ -94,7 +94,7 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                     builder.Options.Add(new FloatMenuOption($"{JobDriver_RemoveTourniquet.JOB_LABEL} from {bodyPart.Label.Colorize(Color.red)} of {patient.Label.Colorize(Color.yellow)}",
                     JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
                 }
-                else if (tourniquet is not null && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
+                else if (tourniquet is not null && selectedPawn.Drafted && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
                 {
                     builder.Options.Add(new FloatMenuOption($"{JobDriver_UseTourniquet.JOB_LABEL} to {bodyPart.Label.Colorize(Color.green)} of {patient.Label.Colorize(Color.yellow)}", 
                         JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));

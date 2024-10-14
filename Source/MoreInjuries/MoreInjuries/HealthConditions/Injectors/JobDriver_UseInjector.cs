@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.KnownDefs;
 using Verse;
 using Verse.AI;
 
@@ -9,6 +10,8 @@ public abstract class JobDriver_UseInjector : JobDriver_UseMedicalDevice
     protected override int BaseTendDuration => 60;
 
     protected override bool RequiresDevice => true;
+
+    protected override SoundDef SoundDef => KnownSoundDefOf.UseAutoinjector;
 
     protected override bool IsTreatable(Hediff hediff) => true;
 

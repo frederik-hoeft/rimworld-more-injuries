@@ -14,10 +14,11 @@ internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPos
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Target;
-        if (selectedPawn == patient)
+        if (selectedPawn == patient || !selectedPawn.Drafted)
         {
             return;
         }
+        // only show options if they are drafted
         if (!builder.Keys.Contains(UITreatmentOption.PerformCpr) && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
         {
             builder.Keys.Add(UITreatmentOption.PerformCpr);
@@ -64,7 +65,7 @@ internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPos
                     patient.health.AddHediff(choking);
                     return;
                 }
-                Log.Error("Failed to get ChokingHediffComp from choking hediff");
+                Logger.Error($"Failed to get ChokingHediffComp from choking hediff! Could not apply choking condition to {patient}. This is a bug.");
             }
         }
     }

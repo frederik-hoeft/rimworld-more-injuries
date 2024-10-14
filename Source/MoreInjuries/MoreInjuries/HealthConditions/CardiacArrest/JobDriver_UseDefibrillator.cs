@@ -29,6 +29,16 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
         // ... and not in the later stages of CardiacArrest
         && (hediff.def != KnownHediffDefOf.CardiacArrest || hediff.CurStageIndex == 0);
 
+    protected override int GetMedicalDeviceCountToFullyHeal(Pawn patient)
+    {
+        // at max 1 (there is only one heart)
+        if (patient.health.hediffSet.hediffs.Any(JobCanTreat))
+        {
+            return 1;
+        }
+        return 0;
+    }
+
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
         Hediff? heartAttack = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.HeartAttack);
