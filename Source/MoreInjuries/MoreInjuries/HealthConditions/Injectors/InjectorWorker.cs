@@ -19,6 +19,10 @@ public class InjectorWorker : InjuryWorker, ICompFloatMenuOptionsHandler
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
+        if (!selectedPawn.Drafted)
+        {
+            return;
+        }
         foreach (ICompFloatMenuOptionsHandler handler in _childHandlers)
         {
             if (handler.IsEnabled)

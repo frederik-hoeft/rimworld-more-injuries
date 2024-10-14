@@ -89,7 +89,7 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Target;
-        if (!builder.Keys.Contains(UITreatmentOption.UseSplint) && patient.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.Fracture))
+        if (!builder.Keys.Contains(UITreatmentOption.UseSplint) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.Fracture))
         {
             builder.Keys.Add(UITreatmentOption.UseSplint);
             if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_UseSplint.JOB_LABEL) is string failure)
