@@ -3,7 +3,7 @@
   <HediffDef ParentName="InfectionBase">
     <defName>HypovolemicShock</defName>
     <label>hypovolemic shock</label>
-    <description>A life threating state caused by insufficient blood flow to body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure. 
+    <description>A life threating state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure. 
 \nSeverity scales directly with blood loss severity until 60% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure.</description>
     <tendable>true</tendable>
     <makesSickThought>true</makesSickThought>
