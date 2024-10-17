@@ -66,26 +66,7 @@ public class MoreInjuriesMod : Mod
                 IEnumerable<Pawn> humans = Find.CurrentMap.mapPawns.AllPawns.Where(pawn => pawn.def == ThingDefOf.Human);
                 foreach (Pawn human in humans)
                 {
-                    List<Hediff> bionics = human.health.hediffSet.hediffs.FindAll(hediff => hediff.def.addedPartProps is not null && hediff.def.HasModExtension<FixMisplacedBionicsModExtension>());
-
-                    foreach (Hediff bionic in bionics)
-                    {
-                        FixMisplacedBionicsModExtension bionicProperties = bionic.def.GetModExtension<FixMisplacedBionicsModExtension>();
-
-                        List<BodyPartRecord> bodyParts = 
-                        [
-                            .. human.health.hediffSet.GetNotMissingParts().Where(part => bionicProperties.TargetedBodyPartsByRecipe.Contains(part.def))
-                        ];
-
-                        if (bodyParts.Count > 0)
-                        {
-                            bionic.Part = bodyParts.SelectRandom();
-                        }
-                        else
-                        {
-                            human.health.RemoveHediff(bionic);
-                        }
-                    }
+                    FixMisplacedBionicsModExtension.FixPawn(human);
                 }
             }
         }

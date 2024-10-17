@@ -2,7 +2,7 @@
 using MoreInjuries.HealthConditions;
 using Verse;
 
-namespace MoreInjuries;
+namespace MoreInjuries.Patches;
 
 [HarmonyPatch(typeof(Thing), nameof(Thing.TakeDamage))]
 public static class Patch_Thing_TakeDamage
