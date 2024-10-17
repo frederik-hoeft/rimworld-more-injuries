@@ -1,9 +1,7 @@
 ﻿using HarmonyLib;
 using MoreInjuries.HealthConditions;
 using MoreInjuries.Initialization;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Reflection;
 using Verse;
 
 namespace MoreInjuries.Patches;
@@ -36,22 +34,23 @@ public static class Patch_Pawn_ExposeData
                     requiredPatching = true;
                 }
             }
-            // fix any misplaced bionics
-            FixMisplacedBionicsModExtension.FixPawn(compHolder);
             if (compHolder.Dead)
             {
+                requiredPatching = true;
                 Logger.Warning($"Pawn {compHolder.Label} died due incorrect hediff placement after load failure. Fully resetting pawn ...");
                 ref PawnHealthState healthState = ref PawnHealthStateRef.Invoke(compHolder.health);
                 healthState = PawnHealthState.Mobile;
+            }
+            if (requiredPatching)
+            {
                 compHolder.health.capacities.Clear();
                 compHolder.health.summaryHealth.Notify_HealthChanged();
                 compHolder.health.surgeryBills.Clear();
                 compHolder.health.immunity = new ImmunityHandler(compHolder);
-            }
-            if (requiredPatching)
-            {
                 Logger.Warning($"Compatibility patch removed some hediff(s) from pawn {compHolder.Label} due to load failures");
             }
+            // fix any misplaced bionics
+            FixMisplacedBionicsModExtension.FixPawn(compHolder);
         }
     }
 }

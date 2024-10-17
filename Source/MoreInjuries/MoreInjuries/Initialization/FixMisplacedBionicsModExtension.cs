@@ -16,6 +16,11 @@ public class FixMisplacedBionicsModExtension : DefModExtension
         foreach (Hediff bionic in bionics)
         {
             FixMisplacedBionicsModExtension bionicProperties = bionic.def.GetModExtension<FixMisplacedBionicsModExtension>();
+            if (bionicProperties.TargetedBodyPartsByRecipe.Contains(bionic.Part.def))
+            {
+                // this is fine. the bionic is on an allowed part
+                continue;
+            }
 
             List<BodyPartRecord> bodyParts =
             [
