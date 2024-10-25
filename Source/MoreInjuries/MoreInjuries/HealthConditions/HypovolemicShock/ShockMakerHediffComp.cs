@@ -21,7 +21,7 @@ public class ShockMakerHediffComp : HediffComp
     {
         base.CompPostTick(ref severityAdjustment);
 
-        if (MoreInjuriesMod.Settings.EnableHypovolemicShock && parent.pawn.RaceProps?.Humanlike is true)
+        if (MoreInjuriesMod.Settings.EnableHypovolemicShock && parent.Severity >= 0.45f && parent.pawn.RaceProps is { Humanlike: true })
         {
             if (_hasShock || ++_ticks < 600)
             {
