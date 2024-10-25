@@ -6,7 +6,7 @@
     <description>A buildup of air inside the chest cavity creates pressure against the lung. Pressure increases as more air enters this space. The lung collapses, impairing normal breathing causing surrounding structures to shift. When severe enough to cause these shifts and hypotension, it is called a tension pneumothorax. In this life-threatening condition, the increased pressure inside the chest can compress the heart and lead to a collapse of the blood vessels that drain to the heart, causing obstructive shock. With the heart unable to fill, cardiac output drops. Hypotension and shock ensue. If left untreated treated, it can lead to cardiac arrest and death.
 \nMust be surgically repaired.</description>
     <defaultLabelColor>(255, 129, 56)</defaultLabelColor>
-    <lethalSeverity>1</lethalSeverity>
+    <maxSeverity>1</maxSeverity>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>0.5</severityPerDay>
@@ -19,6 +19,7 @@
         <minSeverity>0</minSeverity>
         <partEfficiencyOffset>-0.25</partEfficiencyOffset>
         <painOffset>0.1</painOffset>
+        <lifeThreatening>true</lifeThreatening>
       </li>
       <li>
         <label>minor obstructive shock</label>
@@ -32,6 +33,15 @@
             <offset>-0.15</offset>
           </li>
         </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>CardiacArrest</hediff>
+            <mtbDays>0.75</mtbDays>
+            <partsToAffect>
+              <li>Heart</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
       </li>
       <li>
         <label>moderate obstructive shock</label>
@@ -45,6 +55,15 @@
             <offset>-0.25</offset>
           </li>
         </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>CardiacArrest</hediff>
+            <mtbDays>0.5</mtbDays>
+            <partsToAffect>
+              <li>Heart</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
       </li>
       <li>
         <label>severe obstructive shock</label>
@@ -58,6 +77,15 @@
             <offset>-0.35</offset>
           </li>
         </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>CardiacArrest</hediff>
+            <mtbDays>0.25</mtbDays>
+            <partsToAffect>
+              <li>Heart</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
       </li>
       <li>
         <label>extreme obstructive shock</label>
@@ -71,6 +99,15 @@
             <offset>-0.45</offset>
           </li>
         </capMods>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>CardiacArrest</hediff>
+            <mtbDays>0.175</mtbDays>
+            <partsToAffect>
+              <li>Heart</li>
+            </partsToAffect>
+          </li>
+        </hediffGivers>
       </li>
     </stages>
   </HediffDef>

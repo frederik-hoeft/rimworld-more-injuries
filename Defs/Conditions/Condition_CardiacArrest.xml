@@ -16,11 +16,6 @@
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
-      <li Class="HediffCompProperties_MessageAfterTicks">
-        <ticks>10</ticks>
-        <message>{0} is going into cardiac arrest!</message>
-        <messageType>NegativeHealthEvent</messageType>
-      </li>
     </comps>
     <stages>
       <li>
