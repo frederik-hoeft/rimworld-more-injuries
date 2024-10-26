@@ -77,7 +77,7 @@ public class HearingLossComp : ThingComp
             return;
         }
         // early exit if the pawn is not equipped with a gun
-        if (shooter.equipment?.Primary?.TryGetComp<CompEquippable>()?.PrimaryVerb.verbProps is not VerbProperties { range: > 0 } gunProperties)
+        if (shooter.equipment?.Primary?.TryGetComp<CompEquippable>()?.PrimaryVerb.verbProps is not VerbProperties { range: > 0f, muzzleFlashScale: > 0f } gunProperties)
         {
             return;
         }
