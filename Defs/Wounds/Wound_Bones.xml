@@ -25,7 +25,7 @@
     <hediffClass>HediffWithComps</hediffClass>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-0.2</severityPerDay>
+        <severityPerDay>-0.125</severityPerDay>
         <showDaysToRecover>true</showDaysToRecover>
       </li>
       <li Class="HediffCompProperties_Discoverable">
@@ -48,6 +48,11 @@
         <partEfficiencyOffset>-0.3</partEfficiencyOffset>
       </li>
       <li>
+        <minSeverity>0.5</minSeverity>
+        <painOffset>0.075</painOffset>
+        <partEfficiencyOffset>-0.35</partEfficiencyOffset>
+      </li>
+      <li>
         <minSeverity>0.6</minSeverity>
         <painOffset>0.1</painOffset>
         <partEfficiencyOffset>-0.4</partEfficiencyOffset>
@@ -56,6 +61,11 @@
         <minSeverity>0.75</minSeverity>
         <painOffset>0.1</painOffset>
         <partEfficiencyOffset>-0.5</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.85</minSeverity>
+        <painOffset>0.125</painOffset>
+        <partEfficiencyOffset>-0.6</partEfficiencyOffset>
       </li>
       <li>
         <minSeverity>0.95</minSeverity>

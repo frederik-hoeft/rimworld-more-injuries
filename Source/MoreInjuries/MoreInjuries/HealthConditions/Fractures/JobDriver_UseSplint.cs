@@ -30,9 +30,9 @@ public class JobDriver_UseSplint : JobDriver_UseMedicalDevice_TargetsHediffDefs
             Hediff healingFracture = HediffMaker.MakeHediff(KnownHediffDefOf.FractureHealing, patient, part);
             // base severity on doctor's medical skill and a random factor
             float medicalSkill = doctor.GetStatValue(StatDefOf.MedicalTendQuality);
-            // use f(x) = 1.5 - x^2 + rand(-0.5, 0.5) to get a significantly lower severity for higher medical skill
-            float severityRaw = 1.5f - (medicalSkill * medicalSkill) + Rand.Range(-0.5f, 0.5f);
-            healingFracture.Severity = Mathf.Clamp(severityRaw, 0.3f, 1f);
+            // use f(x) = 1 - 0.125 x^2 + rand(-0.1, 0.2) to get a slightly significantly lower severity for higher medical skill
+            float severityRaw = 1f - (0.125f * medicalSkill * medicalSkill);
+            healingFracture.Severity = Mathf.Clamp(severityRaw, 0.5f, 1f) + Rand.Range(-0.1f, 0.2f);
             patient.health.AddHediff(healingFracture);
             patient.health.RemoveHediff(fracture);
             device?.DecreaseStack();
