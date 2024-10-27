@@ -23,6 +23,7 @@
     <description>A bone fracture that is in the process of healing. The bone is still weak and restricted in movement, but the limb is slowly regaining function as the bone knits back together.
 \nOver time, the bone will become stronger and the limb will regain full function.</description>
     <hediffClass>HediffWithComps</hediffClass>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>-0.125</severityPerDay>
