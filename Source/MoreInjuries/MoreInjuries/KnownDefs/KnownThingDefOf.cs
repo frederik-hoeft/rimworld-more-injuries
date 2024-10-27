@@ -23,4 +23,6 @@ public static class KnownThingDefOf
     public static ThingDef Epinephrine = null!;
 
     public static ThingDef Morphine = null!;
+
+    public static ThingDef WholeBloodBag = null!;
 }

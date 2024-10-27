@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>WholeBloodBag</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>blood bag</label>
+    <description>A bag of whole blood from a standard blood donation, ready for transfusion. It is used in the treatment of massive bleeding and allows quick restoration of blood volume to combat the effects of hypovolemic shock. Must be stored in a refrigerator or freezer.
+\nBlood can be drawn from a healthy colonist or prisoner and stored in a blood bag for later use.</description>
+    <graphicData>
+      <texPath>Thing/blood_bag</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>25</stackLimit>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <tradeNeverStack>false</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>10</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+    </comps>
+    <statBases>
+      <Mass>1</Mass>
+      <MarketValue>50</MarketValue>
+      <MaxHitPoints>80</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+  </ThingDef>
+</Defs>
+
