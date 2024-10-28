@@ -23,15 +23,11 @@ public class WorkGiver_UseBloodBag : WorkGiver_MoreInjuriesTreatmentBase
 
     public override bool HasJobOnThing(Pawn pawn, Thing thing, bool forced = false)
     {
-        if (IsValidPatient(pawn, thing, out Pawn patient) && TryFindBloodBag(pawn, patient) is not null)
+        if (IsValidPatient(pawn, thing, out Pawn patient) 
+            && TryFindBloodBag(pawn, patient) is not null 
+            && JobDriver_UseBloodBag.JobGetMedicalDeviceCountToFullyHeal(patient, fullyHeal: false) > 0)
         {
-            foreach (Hediff hediff in patient.health.hediffSet.hediffs)
-            {
-                if (CanTreat(hediff))
-                {
-                    return pawn.CanReserve(patient, ignoreOtherReservations: forced);
-                }
-            }
+            return pawn.CanReserve(patient, ignoreOtherReservations: forced);
         }
         return false;
     }

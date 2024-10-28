@@ -4,6 +4,7 @@ using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using MoreInjuries.HealthConditions.HeavyBleeding.Bandages;
 using MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents;
+using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using RimWorld;
@@ -109,6 +110,12 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
             if (!performingCpr && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
             {
                 job = JobDriver_PerformCpr.GetDispatcher(doctor, patient).CreateJob();
+                jobQueueBuilder.StartOrSchedule(job);
+            }
+            // is an immedite blood transfusion required?
+            if (MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, hediff => JobDriver_UseBloodBag.JobCanTreat(hediff, bloodLossThreshold: 0.65f), fromInventoryOnly: true) is Thing bloodBag)
+            {
+                job = JobDriver_UseBloodBag.GetDispatcher(doctor, patient, bloodBag, fromInventoryOnly: true, fullyHeal: false).CreateJob();
                 jobQueueBuilder.StartOrSchedule(job);
             }
             // start normal vanilla treatment (only if the patient is downed because otherwise the patient will just get up and walk away)
