@@ -23,9 +23,9 @@
       </li>
     </comps>
     <statBases>
-      <Mass>1</Mass>
+      <Mass>0.5</Mass>
       <MarketValue>50</MarketValue>
-      <MaxHitPoints>80</MaxHitPoints>
+      <MaxHitPoints>32</MaxHitPoints>
     </statBases>
     <thingCategories>
       <li>Manufactured</li>
