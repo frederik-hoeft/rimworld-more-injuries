@@ -18,10 +18,6 @@ public class Recipe_ExtractBloodBag : Recipe_Surgery
         {
             return false;
         }
-        if (ModLister.BiotechInstalled && pawn.genes.HasActiveGene(GeneDefOf.Hemogenic))
-        {
-            return false;
-        }
         return pawn.health.CanBleed && base.AvailableOnNow(thing, part);
     }
 
@@ -60,6 +56,11 @@ public class Recipe_ExtractBloodBag : Recipe_Surgery
         OnSurgerySuccess(pawn, part, billDoer, ingredients, bill);
         if (!IsViolationOnPawn(pawn, part, Faction.OfPlayer))
         {
+            if (pawn.needs.mood is not null)
+            {
+                Thought_Memory thought = (Thought_Memory)ThoughtMaker.MakeThought(KnownThoughtDefOf.DonatedBlood);
+                pawn.needs.mood.thoughts.memories.TryGainMemory(thought);
+            }
             return;
         }
 
@@ -68,12 +69,10 @@ public class Recipe_ExtractBloodBag : Recipe_Surgery
 
     protected override void OnSurgerySuccess(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
     {
-        if (GenPlace.TryPlaceThing(ThingMaker.MakeThing(KnownThingDefOf.WholeBloodBag), pawn.PositionHeld, pawn.MapHeld, ThingPlaceMode.Near))
+        if (GenPlace.TryPlaceThing(ThingMaker.MakeThing(JobDriver_UseBloodBag.JobDeviceDef), pawn.PositionHeld, pawn.MapHeld, ThingPlaceMode.Near))
         {
             return;
         }
-        // TODO: make positive thought if colonist
-
         Logger.Error($"Could not drop blood bag near {pawn.PositionHeld}");
     }
 

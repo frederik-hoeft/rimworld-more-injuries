@@ -44,4 +44,19 @@
     <priorityInType>115</priorityInType>
     <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>DoctorUseBloodBag</defName>
+    <label>perform a blood transfusion to stabilize patients with severe blood loss</label>
+    <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_UseBloodBag</giverClass>
+    <workType>Doctor</workType>
+    <emergency>true</emergency>
+    <verb>perform blood transfusion on</verb>
+    <gerund>performing blood transfusion on</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>105</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
 </Defs>

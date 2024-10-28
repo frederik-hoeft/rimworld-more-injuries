@@ -34,7 +34,7 @@
       </categories>
     </fixedIngredientFilter>
   </RecipeDef>
-  
+
   <RecipeDef ParentName="SurgeryFlesh">
     <defName>ExtractWholeBloodBag</defName>
     <label>extract blood bag</label>

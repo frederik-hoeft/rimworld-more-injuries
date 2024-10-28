@@ -15,6 +15,7 @@
     <drawGUIOverlay>true</drawGUIOverlay>
     <tradeNeverStack>false</tradeNeverStack>
     <useHitPoints>true</useHitPoints>
+    <tickerType>Rare</tickerType>
     <comps>
       <li Class="CompProperties_Rottable">
         <daysToRotStart>10</daysToRotStart>

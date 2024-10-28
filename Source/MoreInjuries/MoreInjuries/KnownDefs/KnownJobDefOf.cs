@@ -25,4 +25,8 @@ public static class KnownJobDefOf
     public static JobDef UseBandage = null!;
 
     public static JobDef UseEpinephrine = null!;
+
+    public static JobDef UseBloodBag = null!;
+
+    public static JobDef HarvestBlood = null!;
 }
