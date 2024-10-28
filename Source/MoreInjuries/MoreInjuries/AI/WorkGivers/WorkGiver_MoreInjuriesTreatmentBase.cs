@@ -19,20 +19,30 @@ public abstract class WorkGiver_MoreInjuriesTreatmentBase : WorkGiver_Scanner
 
     public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn) => pawn.Map.mapPawns.SpawnedHumanlikesWithAnyHediff;
 
+    protected virtual bool IsValidPatient(Pawn doctor, Thing thing, out Pawn patient)
+    {
+        if (thing is not Pawn)
+        {
+            patient = null!;
+            return false;
+        }
+        patient = (Pawn)thing;
+        return doctor != patient
+            && GoodLayingStatusForTend(patient, doctor)
+            && !patient.IsForbidden(doctor)
+            && (!patient.IsMutant || patient.mutant.Def.entitledToMedicalCare)
+            && !patient.InAggroMentalState;
+    }
+
     public override bool HasJobOnThing(Pawn pawn, Thing thing, bool forced = false)
     {
-        if (thing is Pawn patient
-            && pawn != patient
-            && GoodLayingStatusForTend(patient, pawn)
-            && !patient.IsForbidden(pawn)
-            && (!patient.IsMutant || patient.mutant.Def.entitledToMedicalCare)
-            && !patient.InAggroMentalState)
+        if (IsValidPatient(pawn, thing, out Pawn patient))
         {
             foreach (Hediff hediff in patient.health.hediffSet.hediffs)
             {
                 if (CanTreat(hediff))
                 {
-                    return pawn.CanReserve((LocalTargetInfo)patient, ignoreOtherReservations: forced);
+                    return pawn.CanReserve(patient, ignoreOtherReservations: forced);
                 }
             }
         }
@@ -51,5 +61,9 @@ public abstract class WorkGiver_MoreInjuriesTreatmentBase : WorkGiver_Scanner
         return CreateJob(pawn, patient);
     }
 
-    private static Job GetDummyDefaultJob(Pawn doctor) => JobMaker.MakeJob(JobDefOf.Goto, doctor);
+    protected Job GetDummyDefaultJob(Pawn doctor)
+    {
+        Logger.Warning($"{GetType().Name} used fallback to empty dummy job");
+        return JobMaker.MakeJob(JobDefOf.Goto, doctor);
+    }
 }

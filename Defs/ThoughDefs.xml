@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef>
+    <defName>HarvestedBlood_Bloodlust</defName>
+    <durationDays>3</durationDays>
+    <requiredTraits>
+      <li>Bloodlust</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>bloodlust blood harvested</label>
+        <description>Extracting their blood and seeing them grow weaker under my hands was such a thrill.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>DonatedBlood</defName>
+    <durationDays>3</durationDays>
+    <nullifyingTraits>
+      <li>Psychopath</li>
+    </nullifyingTraits>
+    <stages>
+      <li>
+        <label>donated blood</label>
+        <description>My blood donation will save lives and help those in need. I made a difference today.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

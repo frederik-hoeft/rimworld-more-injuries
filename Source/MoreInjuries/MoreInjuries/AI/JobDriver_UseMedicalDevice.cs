@@ -321,7 +321,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             Scribe_Values.Look(ref oneShot, "oneShot");
         }
 
-        public static T Create<T>(Pawn worker, bool fromInventoryOnly =  false, bool oneShot = false) where T : ExtendedJobParameters, new()
+        public static T Create<T>(Pawn worker, bool fromInventoryOnly = false, bool oneShot = false) where T : ExtendedJobParameters, new()
         {
             T parameters = new()
             {

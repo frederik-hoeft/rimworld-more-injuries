@@ -1,6 +1,7 @@
 ﻿using MoreInjuries.HealthConditions.HeavyBleeding.Bandages;
 using MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents;
 using MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
+using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding;
@@ -15,7 +16,9 @@ public class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsHandler, I
         [
             new BandageFloatOptionProvider(this),
             new HemostaticAgentFloatOptionProvider(this),
-            new TourniquetFloatOptionProvider(this)
+            new TourniquetFloatOptionProvider(this),
+            new UseBloodBagFloatOptionProvider(this),
+            new HarvestBloodFloatOptionProvider(this)
         ];
     }
 

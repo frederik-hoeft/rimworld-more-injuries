@@ -59,7 +59,21 @@
   <JobDef>
     <defName>UseBandage</defName>
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Bandages.JobDriver_UseBandage</driverClass>
-    <reportString>Banding a wound on TargetA.</reportString>
+    <reportString>Bandaging a wound on TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>UseBloodBag</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.JobDriver_UseBloodBag</driverClass>
+    <reportString>Performing a blood transfusion on TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>HarvestBlood</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.JobDriver_HarvestBlood</driverClass>
+    <reportString>Executing TargetA through blood extraction.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 </Defs>

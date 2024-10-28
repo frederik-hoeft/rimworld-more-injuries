@@ -4,24 +4,12 @@
     <xpath>/Defs/ThingDef[defName="Human"]/recipes</xpath>
     <value>
       <li>RepairCollapsedLung</li>
+      <li>ExtractWholeBloodBag</li>
       <li>RepairFracture</li>
       <li>InstallBionicSmallIntestine</li>
       <li>RemoveHemorrhagicStroke_Ultratech</li>
       <li>RemoveHemorrhagicStroke_Industrial</li>
       <li>RemoveHemorrhagicStroke_Tribal</li>
     </value>
-  </Operation>
-  <Operation Class="PatchOperationFindMod">
-    <mods>
-      <li>Biotech</li>
-    </mods>
-    <nomatch Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="Human"]/recipes</xpath>
-      <value>
-        <li>BloodTransfusion_Fallback_Ultratech</li>
-        <li>BloodTransfusion_Fallback_Industrial</li>
-        <li>BloodTransfusion_Fallback_Tribal</li>
-    </value>
-    </nomatch>
   </Operation>
 </Patch>

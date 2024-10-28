@@ -354,7 +354,6 @@ public class MoreInjuriesMod : Mod
             The mean time between dry gangrene becoming infected with bacteria and turning into wet gangrene. Wet gangrene is a life-threatening condition that requires immediate amputation.
             """);
         Settings.DryGangreneMeanTimeToInfection = Mathf.Floor(list.Slider((float)Math.Round(Settings.DryGangreneMeanTimeToInfection / 60_000f, 1), 0.1f, 15f) * 60_000f);
-        // miscellaneous
         list.GapLine();
         Text.Font = GameFont.Medium;
         list.Label("Hearing Damage");
@@ -373,10 +372,18 @@ public class MoreInjuriesMod : Mod
             Disabled by default, may reduce performance during large battles, especially with Combat Extended loaded, due to the increased number of calculations required.
             """);
         Settings.EnableAdvancedHearingDamage = Settings.EnableBasicHearingDamage && advancedHearingDamage;
+        // miscellaneous
         list.GapLine();
         Text.Font = GameFont.Medium;
         list.Label("Miscellaneous");
         Text.Font = GameFont.Small;
+        if (ModLister.BiotechInstalled)
+        {
+            list.CheckboxLabeled($"Replace blood bags with Biotech Hemogen packs (default: {ENABLE_BIOTECH_INTEGRATION_DEFAULT})", ref Settings.EnableBiotechIntegration,
+                """
+                If enabled, recipes using blood bags will use Biotech Hemogen packs instead.
+                """);
+        }
         list.Label($"Multiplier for bleeding from closed internal injuries: {Settings.ClosedInternalWouldBleedingModifier} (default: {CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT})", -1,
             "Assume a pawn is shot in the torso and the bullet penetrates the skin and stomach, causing internal and external bleeding. " +
             "Simply applying a bandage to the skin wound will not stop the internal bleeding, but may still slow it down. " +

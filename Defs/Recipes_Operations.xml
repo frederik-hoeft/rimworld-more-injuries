@@ -36,6 +36,24 @@
   </RecipeDef>
 
   <RecipeDef ParentName="SurgeryFlesh">
+    <defName>ExtractWholeBloodBag</defName>
+    <label>extract blood bag</label>
+    <description>Extract blood from a patient to retrieve a blood bag that can be used for blood transfusions. If the patient does not have enough blood for a safe donation, the procedure will be aborted.</description>
+    <workerClass>MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.Recipe_ExtractBloodBag</workerClass>
+    <jobString>Drawing blood.</jobString>
+    <workAmount>500</workAmount>
+    <hideBodyPartNames>true</hideBodyPartNames>
+    <targetsBodyPart>false</targetsBodyPart>
+    <isViolation>true</isViolation>
+    <descriptionHyperlinks>
+      <ThingDef>WholeBloodBag</ThingDef>
+    </descriptionHyperlinks>
+    <uiIconThing>WholeBloodBag</uiIconThing>
+    <anesthetize>false</anesthetize>
+    <workSkillLearnFactor>2</workSkillLearnFactor>
+  </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryFlesh">
     <defName>RepairFracture</defName>
     <label>Repair a fracture</label>
     <description>Surgically repair a bone fracture. The bone will be set in place, realigned, and reinforced with metal plates and screws to promote proper healing and prevent deformity, allowing the patient to regain full use of the affected limb.

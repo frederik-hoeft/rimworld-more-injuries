@@ -61,6 +61,7 @@ internal static class MoreInjuriesSettingsDefaults
     internal const float MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT = 10000f;
     // miscellaneous
     internal const bool ENABLE_FIRE_INHALATION_DEFAULT = true;
+    internal const bool ENABLE_BIOTECH_INTEGRATION_DEFAULT = false;
     internal const float CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT = 0.75f;
     internal const float INTESTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT = 0.45f;
     internal const float PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT = 6f;
