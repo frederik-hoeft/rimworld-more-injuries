@@ -33,6 +33,7 @@
         <li>Medicine</li>
       </categories>
     </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
   </RecipeDef>
 
   <RecipeDef ParentName="SurgeryFlesh">
@@ -94,7 +95,7 @@
         <li>Plasteel</li>
       </thingDefs>
     </fixedIngredientFilter>
-    <surgerySuccessChanceFactor>0.95</surgerySuccessChanceFactor>
+    <surgerySuccessChanceFactor>1.25</surgerySuccessChanceFactor>
   </RecipeDef>
 
   <RecipeDef ParentName="SurgeryFlesh">
@@ -138,7 +139,7 @@ Stereotactic surgery is a minimally invasive form of surgical intervention that 
         <li>MedicineUltratech</li>
       </thingDefs>
     </fixedIngredientFilter>
-    <surgerySuccessChanceFactor>0.99</surgerySuccessChanceFactor>
+    <surgerySuccessChanceFactor>1.5</surgerySuccessChanceFactor>
   </RecipeDef>
 
   <RecipeDef ParentName="SurgeryFlesh">
@@ -174,7 +175,7 @@ Decompressive craniectomy is a neurosurgical procedure in which part of the skul
         <li>MedicineUltratech</li>
       </thingDefs>
     </fixedIngredientFilter>
-    <surgerySuccessChanceFactor>0.9</surgerySuccessChanceFactor>
+    <surgerySuccessChanceFactor>1.1</surgerySuccessChanceFactor>
   </RecipeDef>
 
   <RecipeDef ParentName="SurgeryFlesh">
@@ -212,6 +213,6 @@ Trepanation is a surgical intervention in which a hole is drilled or scraped int
         <li>MedicineUltratech</li>
       </thingDefs>
     </fixedIngredientFilter>
-    <surgerySuccessChanceFactor>0.7</surgerySuccessChanceFactor>
+    <surgerySuccessChanceFactor>0.9</surgerySuccessChanceFactor>
   </RecipeDef>
 </Defs>
