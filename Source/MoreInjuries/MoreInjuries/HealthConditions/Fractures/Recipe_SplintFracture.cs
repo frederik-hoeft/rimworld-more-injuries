@@ -14,11 +14,6 @@ public class Recipe_SplintFracture : Recipe_RemoveHediff
             Logger.Warning($"{nameof(Recipe_SplintFracture)} was called with a null {nameof(billDoer)}");
             return;
         }
-        if (CheckSurgeryFail(billDoer, pawn, ingredients, part, bill))
-        {
-            return;
-        }
-
         TaleRecorder.RecordTale(TaleDefOf.DidSurgery, billDoer, pawn);
         if (PawnUtility.ShouldSendNotificationAbout(pawn) || PawnUtility.ShouldSendNotificationAbout(billDoer))
         {
