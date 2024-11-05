@@ -116,9 +116,9 @@
     <ingredients>
       <li>
         <filter>
-          <categories>
+          <thingDefs>
             <li>Splint</li>
-          </categories>
+          </thingDefs>
         </filter>
         <count>1</count>
       </li>
