@@ -99,6 +99,38 @@
   </RecipeDef>
 
   <RecipeDef ParentName="SurgeryFlesh">
+    <defName>SplintFracture</defName>
+    <label>Splint a fracture</label>
+    <description>Apply a splint to immobilize a bone fracture and promote healing over time. The splint will stabilize the bone, prevent further damage, and allow the patient to move around without risking further injury. The stabilized bone will heal naturally over time.
+\nA simple and non-invasive procedure that can be performed by anyone with basic medical knowledge.</description>
+    <workerClass>MoreInjuries.HealthConditions.Fractures.Recipe_SplintFracture</workerClass>
+    <jobString>Splinting a fracture.</jobString>
+    <workAmount>500</workAmount>
+    <removesHediff>Fracture</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has splinted {1}'s bone fracture. It will take some time to heal.</successfullyRemovedHediffMessage>
+    <anesthetize>false</anesthetize>
+    <isViolation>false</isViolation>
+    <skillRequirements>
+      <Medicine>1</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Splint</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Splint</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+  </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryFlesh">
     <defName>RemoveHemorrhagicStroke_Ultratech</defName>
     <label>Cure stroke: stereotactic surgery</label>
     <description>Perform stereotactic surgery to cure a hemorrhagic stroke.

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <WorkGiverDef>
-    <defName>DoctorResuscitatePatient</defName>
+    <defName>DoctorUseDefibrillator</defName>
     <label>stabilize or resuscitate patients with arythmia or cardiac arrest</label>
-    <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_ResuscitatePatient</giverClass>
+    <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_UseDefibrillator</giverClass>
     <workType>Doctor</workType>
     <emergency>true</emergency>
     <verb>resuscitate</verb>

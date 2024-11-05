@@ -36,18 +36,14 @@ public abstract class WorkGiver_MoreInjuriesTreatmentBase : WorkGiver_Scanner
 
     public override bool HasJobOnThing(Pawn pawn, Thing thing, bool forced = false)
     {
-        if (IsValidPatient(pawn, thing, out Pawn patient))
+        if (IsValidPatient(pawn, thing, out Pawn patient) && CanTreat(pawn, patient))
         {
-            foreach (Hediff hediff in patient.health.hediffSet.hediffs)
-            {
-                if (CanTreat(hediff))
-                {
-                    return pawn.CanReserve(patient, ignoreOtherReservations: forced);
-                }
-            }
+            return pawn.CanReserve(patient, ignoreOtherReservations: forced);
         }
         return false;
     }
+
+    protected virtual bool CanTreat(Pawn doctor, Pawn patient) => patient.health.hediffSet.hediffs.Any(CanTreat);
 
     public static bool GoodLayingStatusForTend(Pawn patient, Pawn doctor) => patient != doctor && patient.InBed();
 

@@ -4,8 +4,7 @@
     <defName>Splint</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>splint</label>
-    <description>Designed to secure and hold damaged bones together, usually with fractures. Can be
-      applied via operation or by ordering another pawn that has splints in inventory</description>
+    <description>Designed to secure and hold damaged bones together, usually with fractures. Can be applied via operation or by ordering another pawn that has splints in inventory</description>
     <graphicData>
       <texPath>Thing/Splint</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
