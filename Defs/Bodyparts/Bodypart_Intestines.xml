@@ -7,7 +7,7 @@
     <permanentInjuryChanceFactor>2.5</permanentInjuryChanceFactor>
     <skinCovered>false</skinCovered>
     <solid>false</solid>
-    <bleedRate>12</bleedRate>
+    <bleedRate>3.25</bleedRate>
     <tags>
       <li>MetabolismSource</li>
     </tags>
@@ -132,7 +132,7 @@
     <permanentInjuryChanceFactor>2</permanentInjuryChanceFactor>
     <skinCovered>false</skinCovered>
     <solid>false</solid>
-    <bleedRate>14</bleedRate>
+    <bleedRate>3.75</bleedRate>
     <tags>
       <li>MetabolismSource</li>
     </tags>
@@ -156,8 +156,8 @@
 
   <RecipeDef ParentName="SurgeryInstallBodyPartNaturalBase">
     <defName>InstallLargeIntestine</defName>
-    <label>install large instestine</label>
-    <description>Install a large instestine.</description>
+    <label>install large intestine</label>
+    <description>Install a large intestine.</description>
     <descriptionHyperlinks>
       <ThingDef>LargeIntestine</ThingDef>
     </descriptionHyperlinks>
