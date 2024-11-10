@@ -112,7 +112,7 @@
           </li>
           <li>
             <capacity>Manipulation</capacity>
-            <offset>-0.4</offset>
+            <offset>-0.15</offset>
           </li>
           <li>
             <capacity>Sight</capacity>
@@ -121,7 +121,7 @@
         </capMods>
         <mentalStateGivers>
           <li>
-            <mentalState>PanicFlee</mentalState>
+            <mentalState>Wander_OwnRoom</mentalState>
             <mtbDays>3</mtbDays>
           </li>
         </mentalStateGivers>
@@ -136,7 +136,7 @@
         <capMods>
           <li>
             <capacity>Moving</capacity>
-            <offset>-0.05</offset>
+            <offset>0.1</offset>
           </li>
           <li>
             <capacity>Consciousness</capacity>
@@ -144,7 +144,7 @@
           </li>
           <li>
             <capacity>Manipulation</capacity>
-            <offset>-0.15</offset>
+            <offset>-0.4</offset>
           </li>
           <li>
             <capacity>Sight</capacity>
@@ -184,7 +184,7 @@
         <capMods>
           <li>
             <capacity>Moving</capacity>
-            <offset>-0.25</offset>
+            <offset>-0.1</offset>
           </li>
           <li>
             <capacity>Consciousness</capacity>
