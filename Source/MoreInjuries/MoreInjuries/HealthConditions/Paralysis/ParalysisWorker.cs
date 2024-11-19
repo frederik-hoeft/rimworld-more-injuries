@@ -6,7 +6,7 @@ namespace MoreInjuries.HealthConditions.Paralysis;
 
 internal class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
-    public override bool IsEnabled => true;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableParalysis;
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {

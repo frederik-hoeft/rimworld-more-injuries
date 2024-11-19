@@ -66,6 +66,7 @@ public class MoreInjuriesSettings : ModSettings
     // miscellaneous
     internal bool EnableFireInhalation = ENABLE_FIRE_INHALATION_DEFAULT;
     internal bool EnableBiotechIntegration = ENABLE_BIOTECH_INTEGRATION_DEFAULT;
+    internal bool EnableParalysis = ENABLE_PARALYSIS_DEFAULT;
     internal float ParalysisDamageTreshold50Percent = PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT;
     internal float IntestinalSpillingChanceOnDamage = INTESTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT;
     internal float ClosedInternalWouldBleedingModifier = CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT;
@@ -132,6 +133,7 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref ClosedInternalWouldBleedingModifier, nameof(ClosedInternalWouldBleedingModifier), CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT);
         Scribe_Values.Look(ref EnableBiotechIntegration, nameof(EnableBiotechIntegration), ENABLE_BIOTECH_INTEGRATION_DEFAULT);
         Scribe_Values.Look(ref EnableFireInhalation, nameof(EnableFireInhalation), ENABLE_FIRE_INHALATION_DEFAULT);
+        Scribe_Values.Look(ref EnableParalysis, nameof(EnableParalysis), ENABLE_PARALYSIS_DEFAULT);
         Scribe_Values.Look(ref ParalysisDamageTreshold50Percent, nameof(ParalysisDamageTreshold50Percent), PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT);
         Scribe_Values.Look(ref IntestinalSpillingChanceOnDamage, nameof(IntestinalSpillingChanceOnDamage), INTESTINAL_SPILLING_CHANCE_ON_DAMAGE_DEFAULT);
 
