@@ -6,7 +6,7 @@ namespace MoreInjuries.HealthConditions.AdrenalineRush;
 
 internal class AdrenalineWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
-    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableAdrenaline;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableAdrenaline && !Target.IsShambler;
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {
