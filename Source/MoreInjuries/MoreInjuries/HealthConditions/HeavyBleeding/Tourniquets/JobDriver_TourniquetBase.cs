@@ -32,6 +32,8 @@ public abstract class JobDriver_TourniquetBase : JobDriver_UseMedicalDevice
 
     protected override int BaseTendDuration => 90;
 
+    protected override float BaseExperience => 50f;
+
     // we always either apply or remove exactly one tourniquet
     protected override int GetMedicalDeviceCountToFullyHeal(Pawn patient) => 1;
 
