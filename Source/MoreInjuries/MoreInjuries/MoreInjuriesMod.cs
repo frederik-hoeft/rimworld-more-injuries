@@ -379,9 +379,16 @@ public class MoreInjuriesMod : Mod
         Text.Font = GameFont.Small;
         if (ModLister.BiotechInstalled)
         {
-            list.CheckboxLabeled($"Replace blood bags with Biotech Hemogen packs (default: {ENABLE_BIOTECH_INTEGRATION_DEFAULT})", ref Settings.EnableBiotechIntegration,
+            list.CheckboxLabeled($"Replace blood bags with Biotech Hemogen packs (default: {BIOTECH_ENABLE_INTEGRATION_DEFAULT})", ref Settings.BiotechEnableIntegration,
                 """
                 If enabled, recipes using blood bags will use Biotech Hemogen packs instead.
+                """);
+        }
+        if (ModLister.AnomalyInstalled)
+        {
+            list.CheckboxLabeled($"Apply health conditions to shamblers (default: {ANOMALY_ENABLE_CONDITIONS_FOR_SHAMBLERS_DEFAULT})", ref Settings.AnomalyEnableConditionsForShamblers,
+                """
+                If enabled, shamblers will be affected by the health conditions introduced by this mod. If you don't want shamblers to suffer from hypovolemic shock, fractures, etc., disable this option.
                 """);
         }
         list.Label($"Multiplier for bleeding from closed internal injuries: {Settings.ClosedInternalWouldBleedingModifier} (default: {CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT})", -1,
