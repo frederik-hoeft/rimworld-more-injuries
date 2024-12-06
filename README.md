@@ -1,6 +1,6 @@
 @import "/.crossnote/style.less";
 
-# More Injuries User Documentation
+# More Injuries User Manual
 
 _This document is intended to provide a comprehensive guide to the More Injuries mod for RimWorld. It is intended to be a reference for players who are looking to understand the mod's features and mechanics, as well as how to use them effectively._
 
@@ -13,7 +13,7 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
 
 <!-- code_chunk_output -->
 
-- [More Injuries User Documentation](#more-injuries-user-documentation)
+- [More Injuries User Manual](#more-injuries-user-manual)
   - [About More Injuries](#about-more-injuries)
   - [Table of Contents](#table-of-contents)
   - [New Injuries and Medical Conditions](#new-injuries-and-medical-conditions)
