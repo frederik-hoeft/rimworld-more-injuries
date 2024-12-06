@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>SpinalCordParalysis</defName>
+    <label>paralysis</label>
+    <description>Damage of spinal cord caused irrepairable movement disability.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <comps></comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.00</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

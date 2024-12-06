@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <HediffDef ParentName="DiseaseBase">
-    <defName>HearingLoss</defName>
-    <label>hearing loss</label>
-    <description>Temporary deafness caused by prolonged exposure to gunfire.</description>
+    <defName>HearingLossTemporary</defName>
+    <label>temporary hearing loss</label>
+    <description>Temporary deafness caused by prolonged exposure to loud noises, such as gunfire, explosions, or machinery. The hair cells in the inner ear are damaged, leading to hearing loss. The damage can become permanent if the exposure is severe or prolonged.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(255, 169, 56)</defaultLabelColor>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>-1</severityPerDay>
         <showHoursToRecover>true</showHoursToRecover>
-      </li>
-      <li Class="HediffCompProperties_Discoverable">
-        <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
     </comps>
     <stages>
@@ -93,4 +90,37 @@
       </li>
     </stages>
   </HediffDef>
+  
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RestoreHearing</defName>
+    <label>Restore hearing</label>
+    <description>Experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown moderate success in restoring hearing to those who have lost it.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Performing hearing restoration surgery on {0}.</jobString>
+    <workAmount>4500</workAmount>
+    <removesHediff>HearingLoss</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully restored {1}'s hearing.</successfullyRemovedHediffMessage>
+    </successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+    <anesthetize>true</anesthetize>
+    <skillRequirements>
+      <Medicine>12</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineUltratech</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>MedicineUltratech</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>1.1</surgerySuccessChanceFactor>
+  </RecipeDef>
 </Defs>

@@ -29,7 +29,11 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
       - [Healing Bone Fracture](#healing-bone-fracture)
       - [Bone Fragment Laceration](#bone-fragment-laceration)
     - [Gangrene](#gangrene)
+      - [Dry Gangrene](#dry-gangrene)
+      - [Wet Gangrene](#wet-gangrene)
     - [Hearing Loss](#hearing-loss)
+      - [Temporary Hearing Loss](#temporary-hearing-loss)
+      - [(Permanent) Hearing Loss](#permanent-hearing-loss)
     - [Hemorrhagic Stroke](#hemorrhagic-stroke)
     - [Hypovolemic Shock :star:](#hypovolemic-shock-star)
     - [Intestinal Spilling](#intestinal-spilling)
@@ -50,6 +54,11 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Tourniquet](#tourniquet)
     - [Airway Suction Device](#airway-suction-device)
     - [Blood Bag](#blood-bag)
+    - [Hearing Protection](#hearing-protection)
+  - [Surgeries](#surgeries)
+    - [Trepanation](#trepanation)
+    - [Decompressive Craniectomy](#decompressive-craniectomy)
+    - [Stereotactic Surgery](#stereotactic-surgery)
   - [New Work Types](#new-work-types)
   - [Known Issues and Incompatibilities](#known-issues-and-incompatibilities)
 
@@ -179,9 +188,73 @@ When a bone is fractured, there is a chance that fragments of the bone will brea
 
 ### Gangrene
 
+Gangrene is a type of tissue death caused by a lack of blood supply. Symptoms may include a change in skin color to red or black, numbness, swelling, pain, skin breakdown, and coolness. Depending on the presence of infection, gangrene may be classified as dry or wet.
+
+#### Dry Gangrene
+
+> **In-Game Description**
+> _"**Gangrene (dry)** &mdash; Dry gangrene is a form of coagulative necrosis that develops in ischemic tissue, where the blood supply is inadequate to keep tissue viable. The affected part is dry, shrunken, and dark reddish-black. The line of separation usually brings about complete separation, with eventual falling off of the gangrenous tissue if it is not removed surgically, a process called autoamputation.
+> Over time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.
+> The affected body part is irreversibly damaged and should be amputated to prevent sepsis."_
+
+**Causes**: A lack of blood supply to a body part, often due to a [tourniquet](#tourniquet) that has been applied for too long or other conditions that restrict blood flow.
+
+**Effects**: The affected body part will become dry, shrunken, and dark reddish-black, and may eventually fall off if not removed surgically. Dry gangrene may progress to [wet gangrene](#wet-gangrene) if an infection develops in the dead tissues.
+
+**Treatment**: The affected body part is irreversibly damaged and should be amputated to prevent life-threatening infection.
+
+#### Wet Gangrene
+
+> **In-Game Description**
+> _"**Gangrene (wet)** &mdash; Wet, or infected, gangrene is characterized by thriving bacteria and has a poor prognosis (compared to dry gangrene) due to sepsis resulting from the free communication between infected fluid and circulatory fluid. The affected part is saturated with stagnant blood, which promotes the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and finally death.
+> The affected body part should be amputated as soon as possible to save the patient's life._"
+
+**Causes**: A lack of blood supply to a body part that caused the tissue to die and become infected with bacteria, often due to a [tourniquet](#tourniquet) that has been applied for too long or due to [dry gangrene](#dry-gangrene) that has become infected.
+
+**Effects**: The affected body part will become saturated with stagnant blood, promoting the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and eventually death.
+
+**Treatment**: The affected body part should be amputated as soon as possible to save the patient's life.
+
 ### Hearing Loss
 
+Hearing loss is a partial or total inability to hear. It may be temporary or permanent and can affect one or both ears and can be commonly caused by exposure to loud noises, trauma, or age-related degeneration.
+
+#### Temporary Hearing Loss
+
+> **In-Game Description**
+> _"**Temporary hearing loss** &mdash; Temporary deafness caused by prolonged exposure to loud noises, such as gunfire, explosions, or machinery. The hair cells in the inner ear are damaged, leading to hearing loss. The damage can become permanent if the exposure is severe or prolonged."_
+
+**Causes**: Prolonged exposure to gunfire or explosions without [hearing protection](#hearing-protection). More likely to occur indoors or in close proximity to the source of the noise.
+
+**Effects**: Temporary reduction in hearing ability, ranging from mild to complete deafness, depending on the severity of the exposure. May progress to [permanent hearing loss](#permanent-hearing-loss) if the exposure is severe or prolonged.
+
+**Treatment**: Temporary hearing loss will resolve on its own over time, but may become permanent if the exposure is severe or prolonged.
+
+#### (Permanent) Hearing Loss
+
+_Vanilla RimWorld condition, see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss)_.
+
+**Causes**: See [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss), but can also be caused by severe [temporary hearing loss](#temporary-hearing-loss).
+
+**Effects**: Permanent reduction in hearing ability, see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss).
+
+**Treatment**: Implants or bionic ears (see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss)), or surgery to repair the damaged inner ear.
+
 ### Hemorrhagic Stroke
+
+In extreme cases of head trauma, a rupture of a blood vessel in the brain may occur, causing a life-threatening condition known as a hemorrhagic stroke. Blood from the ruptured vessel leaks into the brain, causing pressure to build up and compress the surrounding tissue, starving it of oxygen and nutrients and leading to rapid loss of consciousness and death if not surgically treated.
+
+_Basically a more severe and dangerous version of a [concussion](#concussion)._
+
+> **In-Game Description**
+> _"**Hemorrhagic stroke** &mdash; A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.
+> Can be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture."_
+
+**Causes**: Severe blunt force trauma to the head, e.g., any violent impact to the head, such as hand-to-hand combat, being struck by a projectile, or explosions, as well as extreme blood pressure caused by [adrenaline overdose](#adrenaline-rush) may cause a rupture of a blood vessel in the brain.
+
+**Effects**: Headache, memory loss, confusion, vomiting, rapid loss of consciousness, coma, and death if not surgically treated.
+
+**Treatment**: Hemorrhagic stroke can be temporarily stabilized using medicine to slow progression until surgery can be performed to permanently repair the rupture. Ultimately, surgical intervention through [trepanation](#trepanation), [decompressive craniectomy](#decompressive-craniectomy), or [stereotactic surgery](#stereotactic-surgery) is required to save the patient's life.
 
 ### Hypovolemic Shock :star:
 
@@ -220,6 +293,18 @@ When a bone is fractured, there is a chance that fragments of the bone will brea
 ### Airway Suction Device
 
 ### Blood Bag
+
+### Hearing Protection
+
+## Surgeries
+
+TODO: Add detailed information about surgeries.
+
+### Trepanation
+
+### Decompressive Craniectomy
+
+### Stereotactic Surgery
 
 ## New Work Types
 
