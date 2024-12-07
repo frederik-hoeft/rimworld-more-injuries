@@ -199,30 +199,4 @@
     <canSuggestAmputation>false</canSuggestAmputation>
     <destroyableByDamage>false</destroyableByDamage>
   </BodyPartDef>
-
-  <HediffDef ParentName="InjuryBase">
-    <defName>StomachAcidBurn</defName>
-    <label>chemical peritonitis</label>
-    <description>As a result of a perforating injury to intestines or stomach, gastric acid has inflicted tissue damage on surrounding organs, causing inflammation. Carries a major risk of infection.</description>
-    <comps>
-      <li Class="HediffCompProperties_TendDuration">
-        <labelTendedWell>tended</labelTendedWell>
-        <labelTendedWellInner>tended</labelTendedWellInner>
-        <labelSolidTendedWell>tended</labelSolidTendedWell>
-      </li>
-      <li Class="HediffCompProperties_Infecter">
-        <infectionChance>2.10</infectionChance>
-      </li>
-      <li Class="HediffCompProperties_GetsPermanent">
-        <permanentLabel>burn scar</permanentLabel>
-      </li>
-    </comps>
-    <injuryProps>
-      <painPerSeverity>0.020</painPerSeverity>
-      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
-      <canMerge>true</canMerge>
-      <destroyedLabel>Burned off</destroyedLabel>
-      <destroyedOutLabel>Burned out</destroyedOutLabel>
-    </injuryProps>
-  </HediffDef>
 </Defs>

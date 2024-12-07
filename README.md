@@ -19,6 +19,7 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
   - [New Injuries and Medical Conditions](#new-injuries-and-medical-conditions)
     - [Adrenaline Rush](#adrenaline-rush)
     - [Cardiac Arrest](#cardiac-arrest)
+    - [Chemical Peritonitis](#chemical-peritonitis)
     - [Choking](#choking)
       - [Choking on Blood](#choking-on-blood)
       - [Choking on Tourniquet](#choking-on-tourniquet)
@@ -35,8 +36,8 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
       - [Temporary Hearing Loss](#temporary-hearing-loss)
       - [(Permanent) Hearing Loss](#permanent-hearing-loss)
     - [Hemorrhagic Stroke](#hemorrhagic-stroke)
+    - [Hydrostatic Shock](#hydrostatic-shock)
     - [Hypovolemic Shock :star:](#hypovolemic-shock-star)
-    - [Intestinal Spilling](#intestinal-spilling)
     - [Inhalation Injury](#inhalation-injury)
     - [Lung Collapse](#lung-collapse)
     - [Organ Hypoxia](#organ-hypoxia)
@@ -59,6 +60,7 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Trepanation](#trepanation)
     - [Decompressive Craniectomy](#decompressive-craniectomy)
     - [Stereotactic Surgery](#stereotactic-surgery)
+    - [Repair Lung Collaps Placeholder TODO](#repair-lung-collaps-placeholder-todo)
   - [New Work Types](#new-work-types)
   - [Known Issues and Incompatibilities](#known-issues-and-incompatibilities)
 
@@ -78,7 +80,7 @@ Adrenaline, also known as epinephrine, is a naturally occurring hormone that is 
 
 **Causes**: Injuries or [epinephrine injections](#epinephrine-autoinjector).
 
-**Effects**: At lower levels, an adrenaline rush can provide a temporary boost to consciousness, moving, and pain tolerance. At higher levels, it can cause a reduction in manipulation and sight. In extreme cases of overdose, it can lead to anxiety, panic, nausea, as well as, coma, [cardiac arrest](#cardiac-arrest), [hemorrhagic stroke](#hemorrhagic-stroke), and subsequent death.
+**Effects**: At lower levels, an adrenaline rush can provide a temporary boost to consciousness, moving, and pain tolerance. At higher levels, it can cause a reduction in manipulation and sight. In extreme cases of overdose, it can lead to anxiety, panic, nausea, as well as, coma, [cardiac arrest](#cardiac-arrest), [hemorrhagic stroke](#hemorrhagic-stroke), and subsequent death. As adrenaline raises the heart rate and blood pressure, it can also reduce the effects of [hypovolemic shock](#hypovolemic-shock-star) for a short period of time.
 
 **Treatment**: Adrenaline is naturally metabolized by the body over time and effects last between a few minutes to a few hours in severe cases. In cases of overdose, the pawn may require medical treatment to treat symptoms and secondary effects.
 
@@ -95,6 +97,19 @@ Cardiac arrest is a sudden loss of blood flow resulting from the failure of the 
 **Effects**: Loss of consciousness, coma, multiple organ failure, and death if not treated immediately.
 
 **Treatment**: Cardiac arrest must be treated immediately with [CPR](#cpr) to restore blood flow and hopefully restart the heart. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). In cases of `clinical death`, only [CPR](#cpr) will be effective.
+
+### Chemical Peritonitis
+
+Also known as _"intestinal spillage,"_ chemical peritonitis is a life-threatening condition that occurs when gastric acid or other digestive fluids leak into the abdominal cavity, causing inflammation and tissue damage to surrounding organs (small and large intestines, stomach, kidneys, and liver). The condition carries a major risk of infection which can be life-threatening if left untreated.
+
+> **In-Game Description**
+> _"**Chemical peritonitis** &mdash; As a result of a perforating injury to the intestines or stomach, gastric acid has inflicted tissue damage on surrounding organs, causing inflammation. Carries a major risk of infection."_
+
+**Causes**: A perforating injury to the intestines or stomach, such as a gunshot wound or stab wound, that allows gastric acid to leak into the abdominal cavity and cause tissue damage.
+
+**Effects**: Inflammation of the abdominal cavity, severe pain, and a major risk of infection. Potentially life-threatening if a resulting infection is left untreated.
+
+**Treatment**: Medical treatment of the perforating injury and inflammation using high-quality medicine to prevent infection.
 
 ### Choking
 
@@ -250,19 +265,56 @@ _Basically a more severe and dangerous version of a [concussion](#concussion)._
 > _"**Hemorrhagic stroke** &mdash; A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.
 > Can be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture."_
 
-**Causes**: Severe blunt force trauma to the head, e.g., any violent impact to the head, such as hand-to-hand combat, being struck by a projectile, or explosions, as well as extreme blood pressure caused by [adrenaline overdose](#adrenaline-rush) may cause a rupture of a blood vessel in the brain.
+**Causes**: Severe blunt force trauma to the head, e.g., any violent impact to the head, such as hand-to-hand combat, being struck by a projectile, or explosions, as well as extreme blood pressure caused by [adrenaline overdose](#adrenaline-rush) may cause a rupture of a blood vessel in the brain. If simulation of [hydrostatic shock](#hydrostatic-shock) is enabled in the mod settings, high-energy projectiles that cause massive temporary cavity formation and pressure waves in the tissue may also cause a hemorrhagic stroke.
 
 **Effects**: Headache, memory loss, confusion, vomiting, rapid loss of consciousness, coma, and death if not surgically treated.
 
 **Treatment**: Hemorrhagic stroke can be temporarily stabilized using medicine to slow progression until surgery can be performed to permanently repair the rupture. Ultimately, surgical intervention through [trepanation](#trepanation), [decompressive craniectomy](#decompressive-craniectomy), or [stereotactic surgery](#stereotactic-surgery) is required to save the patient's life.
 
+### Hydrostatic Shock
+
+> :warning: **Note**: The concept is controversial and not universally accepted in the medical community.
+
+Hydrostatic shock, also known as Hydro-shock, is the controversial concept that a penetrating projectile (such as a bullet) can produce a pressure wave that causes _"remote neural damage"_, _"subtle damage in neural tissues"_ and _"rapid effects"_ in living targets.
+
+Due to the controversial nature of the concept, it is implemented as an optional feature that can be enabled in the mod settings.
+
+If enabled, high-energy projectiles, such as bullets, may cause [hemorrhagic stroke](#hemorrhagic-stroke), even if the projectile does not directly hit the head.
+
 ### Hypovolemic Shock :star:
 
-### Intestinal Spilling
+When a pawn loses a significant amount of blood, there may not be enough blood volume to circulate to the body's organs, leading to a life-threatening condition known as hypovolemic shock. Without immediate treatment, the insufficient blood flow can starve the organs of oxygen and nutrients, causing tissue damage, multiple organ failure, and ultimately death.
+
+> **In-Game Description**
+> _"**Hypovolemic shock** &mdash; A life threating state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure. 
+> Severity scales directly with blood loss severity until 60% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure."_
+
+**Causes**: Severe blood loss from injuries, such as lacerations, gunshot wounds, or surgical procedures.
+
+**Effects**: Hypovolemic shock is a medical emergency that can cause a rapid decline in consciousness, blood pressure, and heart rate, leading to [organ hypoxia](#organ-hypoxia), multiple organ failure, [cardiac arrest](#cardiac-arrest), and death if not treated immediately. Once the progression of hypovolemic shock reaches 60% severity, it will start causing [organ hypoxia](#organ-hypoxia) and accelerate the progression of the condition, even if the bleeding is stopped.
+
+**Treatment**: Hypovolemic shock is *primarily treated* by treating the underlying cause of the blood loss (e.g., stopping the bleeding) and restoring blood volume to compensate for the loss of blood. Depending on the severity of the condition, preventing further blood loss may be sufficient to allow the body to recover on its own. In more severe cases, when the progression of hypovolemic shock has reached above 60% severity, blood volume must be restored through transfusion using [blood bags](#blood-bag), [hemogen packs](https://rimworldwiki.com/wiki/Hemogen_pack), or other means (i.e., any other mod that reduces blood loss severity). Once the blood loss is no longer `severe`, the severity of hypovolemic shock will start to decrease over time, allowing the patient to recover. Note that this recovery period may take several hours as the blood volume is restored by the IV fluids or blood transfusion. During this recovery period, the patient must be kept under close observation, especially when past 60% severity, and secondary effects, like [organ hypoxia](#organ-hypoxia) or [cardiac arrest](#cardiac-arrest), must be treated as they might still occur until the patient has been fully stabilized (blood loss severity at `moderate` or lower and hypovolemic shock severity below 60%).  
+During the initial emergency treatment of hypovolemic shock, its progression can be slowed by administering [epinephrine](#adrenaline-rush) to increase heart rate and blood pressure, which will help to increase the blood flow to the organs and reduce the risk of organ hypoxia and multiple organ failure. Additionally, hypovolemic shock itself may be treated using conventional medicine to decrease progression further for a short period of time until the patient can be fully stabilized using blood transfusion. Note, however, that **the only way to fully stabilize and save the patient's life is to restore blood volume.**
+
+> :bulb: **Tip**: As time is of the essence when treating hypovolemic shock, it is recommended to have a stockpile of [blood bags](#blood-bag) or other blood transfusion items ready in your hospital to quickly treat patients with severe blood loss. You may even want to assign some medically skilled pawns to be dedicated combat medics who keep a few blood bags in their inventory at all times to immediately stabilize and treat injured pawns on the battlefield. This can be achieved by telling the medic to "pick up" a number of blood bags (or including blood bags in [Combat Extended](https://github.com/CombatExtended-Continued/CombatExtended) loadouts) and then telling the drafted medic to `transfuse blood (from inventory, stabilize)` to the injured pawn.
 
 ### Inhalation Injury
 
+Inhalation injuries are caused by the inhalation of hot gases, steam, or smoke, which can cause burns to the respiratory tract and lungs. If enabled in the mod settings, inhalation injuries manifest themselves as burn injuries to the lungs, for example, when a pawn is exposed to a fire or explosion.
+
 ### Lung Collapse
+
+When a creature is exposed to a sudden change in pressure, such as caused by thermobaric weapons and other high-explosive devices, the lung tissue may rupture, causing air to leak into the chest cavity and compress the lung, leading to a life-threatening condition known as a lung collapse.
+
+> **In-Game Description**
+> _"**Lung collapse** &mdash; A buildup of air inside the chest cavity creates pressure against the lung. Pressure increases as more air enters this space. The lung collapses, impairing normal breathing causing surrounding structures to shift. When severe enough to cause these shifts and hypotension, it is called a tension pneumothorax. In this life-threatening condition, the increased pressure inside the chest can compress the heart and lead to a collapse of the blood vessels that drain to the heart, causing obstructive shock. With the heart unable to fill, cardiac output drops. Hypotension and shock ensue. If left untreated treated, it can lead to cardiac arrest and death.
+> Must be surgically repaired."_
+
+**Causes**: Exposure to a sudden change in pressure, such as caused by thermobaric weapons and other high-explosive devices.
+
+**Effects**: Impaired breathing, chest pain, and a life-threatening condition known as a tension pneumothorax, which can lead to obstructive shock, [cardiac arrest](#cardiac-arrest), and death if not surgically treated.
+
+**Treatment**: Resuscitation if the patient goes into [cardiac arrest](#cardiac-arrest) and immediate [surgery](#repair-lung-collaps-placeholder-todo) to repair the lung collapse and prevent further complications.
 
 ### Organ Hypoxia
 
@@ -294,6 +346,8 @@ _Basically a more severe and dangerous version of a [concussion](#concussion)._
 
 ### Blood Bag
 
+<img src="./Textures/Thing/blood_bag.png" style="height: 4cm" alt="Blood Bag" />
+
 ### Hearing Protection
 
 ## Surgeries
@@ -305,6 +359,10 @@ TODO: Add detailed information about surgeries.
 ### Decompressive Craniectomy
 
 ### Stereotactic Surgery
+
+### Repair Lung Collaps Placeholder TODO
+
+TODO: implement https://en.wikipedia.org/wiki/Video-assisted_thoracoscopic_surgery and https://en.wikipedia.org/wiki/Thoracotomy
 
 ## New Work Types
 
