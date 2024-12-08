@@ -9,7 +9,6 @@
     <workAmount>4500</workAmount>
     <removesHediff>HearingLoss</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully restored {1}'s hearing.</successfullyRemovedHediffMessage>
-    </successfullyRemovedHediffMessage>
     <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
     <anesthetize>true</anesthetize>
     <skillRequirements>

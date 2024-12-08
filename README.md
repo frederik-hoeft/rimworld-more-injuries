@@ -37,7 +37,7 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
       - [(Permanent) Hearing Loss](#permanent-hearing-loss)
     - [Hemorrhagic Stroke](#hemorrhagic-stroke)
     - [Hydrostatic Shock](#hydrostatic-shock)
-    - [Hypovolemic Shock :star:](#hypovolemic-shock-star)
+    - [Hypovolemic Shock](#hypovolemic-shock)
     - [Inhalation Injury](#inhalation-injury)
     - [Lung Collapse](#lung-collapse)
     - [Organ Hypoxia](#organ-hypoxia)
@@ -61,6 +61,7 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Decompressive Craniectomy](#decompressive-craniectomy)
     - [Stereotactic Surgery](#stereotactic-surgery)
     - [Repair Lung Collaps Placeholder TODO](#repair-lung-collaps-placeholder-todo)
+    - [Repair Fracture Placeholder TODO](#repair-fracture-placeholder-todo)
   - [New Work Types](#new-work-types)
   - [Known Issues and Incompatibilities](#known-issues-and-incompatibilities)
 
@@ -80,7 +81,7 @@ Adrenaline, also known as epinephrine, is a naturally occurring hormone that is 
 
 **Causes**: Injuries or [epinephrine injections](#epinephrine-autoinjector).
 
-**Effects**: At lower levels, an adrenaline rush can provide a temporary boost to consciousness, moving, and pain tolerance. At higher levels, it can cause a reduction in manipulation and sight. In extreme cases of overdose, it can lead to anxiety, panic, nausea, as well as, coma, [cardiac arrest](#cardiac-arrest), [hemorrhagic stroke](#hemorrhagic-stroke), and subsequent death. As adrenaline raises the heart rate and blood pressure, it can also reduce the effects of [hypovolemic shock](#hypovolemic-shock-star) for a short period of time.
+**Effects**: At lower levels, an adrenaline rush can provide a temporary boost to consciousness, moving, and pain tolerance. At higher levels, it can cause a reduction in manipulation and sight. In extreme cases of overdose, it can lead to anxiety, panic, nausea, as well as, coma, [cardiac arrest](#cardiac-arrest), [hemorrhagic stroke](#hemorrhagic-stroke), and subsequent death. As adrenaline raises the heart rate and blood pressure, it can also reduce the effects of [hypovolemic shock](#hypovolemic-shock) for a short period of time.
 
 **Treatment**: Adrenaline is naturally metabolized by the body over time and effects last between a few minutes to a few hours in severe cases. In cases of overdose, the pawn may require medical treatment to treat symptoms and secondary effects.
 
@@ -92,7 +93,7 @@ Cardiac arrest is a sudden loss of blood flow resulting from the failure of the 
 > _"**Cardiac arrest** &mdash; Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.
 > A skilled doctor must perform CPR to restore blood flow and hopefully restart the heart. In early stages of cardiac arrest, during ventricular fibrillation, a defibrillator can also be used to shock the heart back into a normal rhythm, which may be faster and more effective than CPR."_
 
-**Causes**: Extreme blood loss ([hypovolemic shock](#hypovolemic-shock-star)), [adrenaline overdose](#adrenaline-rush), and other conditions that starve the heart of oxygen.
+**Causes**: Extreme blood loss ([hypovolemic shock](#hypovolemic-shock)), [adrenaline overdose](#adrenaline-rush), and other conditions that starve the heart of oxygen.
 
 **Effects**: Loss of consciousness, coma, multiple organ failure, and death if not treated immediately.
 
@@ -100,7 +101,7 @@ Cardiac arrest is a sudden loss of blood flow resulting from the failure of the 
 
 ### Chemical Peritonitis
 
-Also known as _"intestinal spillage,"_ chemical peritonitis is a life-threatening condition that occurs when gastric acid or other digestive fluids leak into the abdominal cavity, causing inflammation and tissue damage to surrounding organs (small and large intestines, stomach, kidneys, and liver). The condition carries a major risk of infection which can be life-threatening if left untreated.
+Also known as _"intestinal spillage,"_ chemical peritonitis is a life-threatening condition that occurs when gastric acid or other digestive fluids leak into the abdominal cavity, causing inflammation and tissue damage to surrounding organs ([small and large intestines](#small-and-large-intestines), stomach, kidneys, and liver). The condition carries a major risk of infection which can be life-threatening if left untreated.
 
 > **In-Game Description**
 > _"**Chemical peritonitis** &mdash; As a result of a perforating injury to the intestines or stomach, gastric acid has inflicted tissue damage on surrounding organs, causing inflammation. Carries a major risk of infection."_
@@ -174,7 +175,7 @@ When a pawn takes damage to a bone or solid body part, there is a chance that a 
 
 **Effects**: A bone fracture will cause the affected limb to be unable to bear weight or move properly, causing full immobility of the corresponding body part and `+15%` pain. Bone fractures may also cause [bone fragment lacerations](#bone-fragment-laceration) if bone fragments break off and cut into the surrounding tissue.
 
-**Treatment**: Bone fractures must be treated using a [splint](#splint) to immobilize the bone and promote [healing over time](#healing-bone-fracture), or surgery to realign and stabilize the bone, allowing for an immediate recovery.
+**Treatment**: Bone fractures must be treated using a [splint](#splint) to immobilize the bone and promote [healing over time](#healing-bone-fracture), or [surgery](#repair-fracture-placeholder-todo) to realign and stabilize the bone, allowing for an immediate recovery.
 
 #### Healing Bone Fracture
 
@@ -281,7 +282,7 @@ Due to the controversial nature of the concept, it is implemented as an optional
 
 If enabled, high-energy projectiles, such as bullets, may cause [hemorrhagic stroke](#hemorrhagic-stroke), even if the projectile does not directly hit the head.
 
-### Hypovolemic Shock :star:
+### Hypovolemic Shock
 
 When a pawn loses a significant amount of blood, there may not be enough blood volume to circulate to the body's organs, leading to a life-threatening condition known as hypovolemic shock. Without immediate treatment, the insufficient blood flow can starve the organs of oxygen and nutrients, causing tissue damage, multiple organ failure, and ultimately death.
 
@@ -318,21 +319,103 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 
 ### Organ Hypoxia
 
+Hypoxia is a condition in which the body or a region of the body is deprived of adequate oxygen supply at the tissue level. The cause of hypoxia may vary, but it is often the result of a severe lack of blood flow to the affected area, such as in cases of [hypovolemic shock](#hypovolemic-shock).
+
+> **In-Game Description**
+> _"**Organ hypoxia** &mdash; Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow."_
+
+**Causes**: Severe lack of blood flow to an organ, such as in cases of [hypovolemic shock](#hypovolemic-shock).
+
+**Effects**: Damage to the affected organ, which may lead to multiple organ failure and death if not treated immediately.
+
+**Treatment**: Organ hypoxia must be treated by restoring blood flow to the affected organ, which may require treating the underlying cause of the blood loss, such as stopping the bleeding or restoring blood volume through transfusion. See [hypovolemic shock](#hypovolemic-shock) for more information on treatment.
+
 ### Paralysis
+
+> **In-Game Description**
+> _"**Paralysis** &mdash; Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Paralysis is often a life-changing condition and may require the use of bionic implants or prosthetics to restore function."_
+
+**Causes**: Severe back injuries, such as a gunshot wound or stab wound to the spine, that crush or sever the spinal cord.
+
+**Effects**: Damage to the spinal cord prevents the transmission of signals between the brain and the affected body parts, causing a loss of movement and sensation in the affected limbs. Depending on the severity of the injury, patients may experience a range of symptoms, from sensory loss to complete loss of movement.
+
+**Treatment**: By itself, paralysis is an irreversible condition that cannot be treated with conventional medicine. However, bionic implants or prosthetics may be used to restore partial or full function to the affected body parts.
 
 ### Spalling Injury
 
+When high-velocity projectiles are stopped by armor, the large amount of kinetic energy can cause the projectile and top layer of the armor to shatter into fragments, which can cause additional injuries to the wearer of the armor, even if the projectile itself did not penetrate. The chance and severity of spalling depends on a variety of factors, such as the angle of impact and the hardness and condition of the armor. 
+
+Modern armor is designed to prevent spalling by adding softer layers above the hard armor plates to catch and absorb bullet fragments. As armor condition deteriorates after absorbing damage, the chance of spalling naturally increases when these absorbing layers are compromised.
+
+> **In-Game Description**
+> _"**Cut (spall)** &mdash; A cut caused by spall of a bullet and armor fragments."_
+
+**Causes**: High-velocity projectiles impacting degraded armor plating.
+
+**Effects**: Additional cuts and lacerations caused by bullet fragments and armor shrapnel.
+
+**Treatment**: Spalling injuries can be treated like any other cut or laceration, by treating the wound with or without medicine, preferably in a clean environment to reduce the risk of infection.
+
+> :bulb: **Tip**: You can significantly reduce the risk of spalling injuries or even prevent them entirely by keeping your armor in good condition and replacing it when it becomes damaged. Alternatively, you can research into advanced spacer armor types that are designed to prevent spalling entirely.
+
+> :bulb: **Tip**: You can tweak the chance, severity, and armor condition thresholds for spalling injuries in the mod settings to better balance the risk and reward of using degraded armor plating in combat.
+
 ## New Body Parts
+
+More Injuries simulates a variety of new body parts and re-scales the coverage of existing body parts to provide a more detailed and realistic simulation of injuries and medical conditions.
 
 ### Small and Large Intestines
 
+The small and large intestines are part of the digestive system and play a crucial role in the absorption of nutrients and the elimination of waste. Damage to the intestines can cause life-threatening internal bleeding or cases of [chemical peritonitis](#chemical-peritonitis), which poses a major risk of infection.
+
 ### Femoral and Popliteal Arteries
+
+<figure style="display: flex; margin: 0;">
+  <figcaption style="margin-right: .75cm">
+  
+The femoral and popliteal arteries are major blood vessels that supply blood to the legs and feet. As such, injuries to the legs can cause severe blood loss and can quickly lead to [hypovolemic shock](#hypovolemic-shock), loss of consciousness, and death if not treated immediately. Cutting the femoral artery is especially dangerous due to the high volume of blood that flows through it. 
+
+Emergency treatment often requires the use of a [tourniquet](#tourniquet) to restrict blood flow to the affected limb and prevent the patient from bleeding out.
+  
+  </figcaption>
+  <img style="height: 6cm" src="https://upload.wikimedia.org/wikipedia/commons/7/74/Blausen_0607_LegArteries.png" alt="arteries of the leg (wikimedia commons)">
+</figure>
 
 ### Spinal Cord
 
+The spinal cord is a bundle of nerves that runs down the center of the back and connects the brain to the rest of the body. Damage to the spinal cord can cause irreversible and life-changing [paralysis](#paralysis), ranging from sensory loss in the legs to complete loss of movement in the entire body. Surgical intervention and bionic implants may be used to restore partial or full function to the affected body parts.
+
 ## Medical Devices and Treatments
 
+In order to effectively treat the new injuries and medical conditions introduced by More Injuries, several new medical devices and treatment options have been added to the game.
+
 ### Splint
+
+<figure style="display: flex; margin: 0;">
+  <figcaption style="margin-right: .75cm">
+
+> **In-Game Description**
+> _"**Splint** &mdash; A splint is a rigid device used for immobilizing and protecting an injured bone or joint. It is used to prevent further damage to the bone and surrounding tissue and promote healing over time. Splints are commonly used to treat bone fractures, sprains, and dislocations."_
+
+  </figcaption>
+  <div>
+    <img src="./Textures/Thing/Splint/splint_a.png" style="width: auto; height: auto; max-height: 2cm" alt="Splint" />
+    <img src="./Textures/Thing/Splint/splint_b.png" style="width: auto; height: auto; max-height: 2cm" alt="Splint" />
+  </div>
+</figure>
+
+**Used for**: Treating [bone fractures](#bone-fracture), allowing them to heal over time (see [healing bone fracture](#healing-bone-fracture)).
+
+**Usage**
+
+1. Tell a *drafted* pawn capable of doctoring to apply a splint to a pawn with a bone fracture using the `Splint fractures` option in the right-click context menu. The splint must be accessible in a stockpile or the doctor's inventory. Due to its simplicity, the procedure can be performed anywhere and even in combat situations, to quickly restore partial stability to the injured limb and allow the pawn to move again. However, this treatment method comes at the cost of treatment quality and a slightly longer time for the fracture to heal.
+2. Alternatively, use the *operations* tab of the injured pawn to schedule the application of a splint to a bone fracture in a controlled environment, such as a hospital bed, to ensure the highest treatment quality and fastest healing time.
+
+> :bulb: **Tip**: Alternatively to splinting the fracture, the bone can be [surgically repaired](#repair-fracture-placeholder-todo) to realign and stabilize the bone, allowing for an immediate recovery.
+
+**Production**: At a crafting spot or machining table.  
+**Research Requirements**: None  
+**Ingredients**: 4x `Wood` or `Steel`, 1x `any textile`
 
 ### Defibrillator
 
@@ -363,6 +446,8 @@ TODO: Add detailed information about surgeries.
 ### Repair Lung Collaps Placeholder TODO
 
 TODO: implement https://en.wikipedia.org/wiki/Video-assisted_thoracoscopic_surgery and https://en.wikipedia.org/wiki/Thoracotomy
+
+### Repair Fracture Placeholder TODO
 
 ## New Work Types
 

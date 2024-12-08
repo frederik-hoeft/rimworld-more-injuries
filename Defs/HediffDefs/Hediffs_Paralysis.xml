@@ -3,11 +3,38 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>SpinalCordParalysis</defName>
     <label>paralysis</label>
-    <description>Damage of spinal cord caused irrepairable movement disability.</description>
+    <description>Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Paralysis is often a life-changing condition and may require the use of bionic implants or prosthetics to restore function.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <comps></comps>
     <stages>
       <li>
+        <label>sensory loss</label>
+        <minSeverity>0</minSeverity>
+        <painFactor>0.875</painFactor>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.75</setMax>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.25</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>partial</label>
+        <minSeverity>0.25</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.25</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>full</label>
+        <minSeverity>0.75</minSeverity>
         <capMods>
           <li>
             <capacity>Moving</capacity>

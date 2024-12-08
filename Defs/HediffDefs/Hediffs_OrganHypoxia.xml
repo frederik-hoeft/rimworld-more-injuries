@@ -4,7 +4,7 @@
     <defName>OrganHypoxia</defName>
     <label>organ hypoxia</label>
     <labelNoun>insufficient oxygen</labelNoun>
-    <description>Damage from lack of oxygen to the organ. Most commonly caused by blood loss.</description>
+    <description>Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow.</description>
     <defaultLabelColor>(100, 15, 15)</defaultLabelColor>
     <comps>
       <li Class="HediffCompProperties_TendDuration">
