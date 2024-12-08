@@ -18,6 +18,8 @@ public static class KnownJobDefOf
 
     public static JobDef RemoveTourniquet = null!;
 
+    public static JobDef RemoveTourniquetFromDead = null!;
+
     public static JobDef UseHemostaticAgent = null!;
 
     public static JobDef UseDefibrillator = null!;

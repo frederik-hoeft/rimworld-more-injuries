@@ -28,6 +28,7 @@
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
         <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+        <forgetMemoryThoughtMtbDays>0.75</forgetMemoryThoughtMtbDays>
         <vomitMtbDays>0.5</vomitMtbDays>
         <painOffset>0.25</painOffset>
         <capMods>
@@ -43,6 +44,7 @@
         <becomeVisible>true</becomeVisible>
         <minSeverity>0.20</minSeverity>
         <partEfficiencyOffset>-0.2</partEfficiencyOffset>
+        <forgetMemoryThoughtMtbDays>0.5</forgetMemoryThoughtMtbDays>
         <vomitMtbDays>0.25</vomitMtbDays>
         <painOffset>0.25</painOffset>
         <capMods>
@@ -58,6 +60,7 @@
         <becomeVisible>true</becomeVisible>
         <minSeverity>0.5</minSeverity>
         <partEfficiencyOffset>-0.3</partEfficiencyOffset>
+        <forgetMemoryThoughtMtbDays>0.25</forgetMemoryThoughtMtbDays>
         <painOffset>0.25</painOffset>
         <capMods>
           <li>

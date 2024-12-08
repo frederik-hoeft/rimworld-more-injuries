@@ -11,6 +11,7 @@
       <li>RemoveHemorrhagicStroke_Ultratech</li>
       <li>RemoveHemorrhagicStroke_Industrial</li>
       <li>RemoveHemorrhagicStroke_Tribal</li>
+      <li>RestoreHearing</li>
     </value>
   </Operation>
 </Patch>

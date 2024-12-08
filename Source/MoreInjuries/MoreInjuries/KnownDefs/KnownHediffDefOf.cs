@@ -22,6 +22,7 @@ public static class KnownHediffDefOf
     public static HediffDef EmpShutdown = null!;
     public static HediffDef Fracture = null!;
     public static HediffDef FractureHealing = null!;
+    public static HediffDef HearingLossTemporary = null!;
     public static HediffDef HearingLoss = null!;
     public static HediffDef HemorrhagicStroke = null!;
     public static HediffDef HypovolemicShock = null!;

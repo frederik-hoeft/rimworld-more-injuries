@@ -50,6 +50,13 @@
   </JobDef>
 
   <JobDef>
+    <defName>RemoveTourniquetFromDead</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_RemoveTourniquetFromDead</driverClass>
+    <reportString>Remove a tourniquet from TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
     <defName>UseHemostaticAgent</defName>
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents.JobDriver_UseHemostaticAgent</driverClass>
     <reportString>Using a hemostatic agent on TargetA.</reportString>

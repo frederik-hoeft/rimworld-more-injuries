@@ -59,4 +59,19 @@
     <priorityInType>105</priorityInType>
     <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>DoctorRemoveTourniquetFromDead</defName>
+    <label>recover a tourniquet from a dead patient to reuse it in the future</label>
+    <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_RemoveTourniquetFromDead</giverClass>
+    <workType>Doctor</workType>
+    <emergency>false</emergency>
+    <verb>recover tourniquet from</verb>
+    <gerund>recovering tourniquet from</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>5</priorityInType>
+    <prioritizeSustains>false</prioritizeSustains>
+  </WorkGiverDef>
 </Defs>

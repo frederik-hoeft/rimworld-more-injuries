@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <HediffDef ParentName="DiseaseBase">
-    <defName>HearingLoss</defName>
-    <label>hearing loss</label>
-    <description>Temporary deafness caused by prolonged exposure to gunfire.</description>
+    <defName>HearingLossTemporary</defName>
+    <label>temporary hearing loss</label>
+    <description>Temporary deafness caused by prolonged exposure to loud noises, such as gunfire, explosions, or machinery. The hair cells in the inner ear are damaged, leading to hearing loss. The damage can become permanent if the exposure is severe or prolonged.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(255, 169, 56)</defaultLabelColor>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>-1</severityPerDay>
         <showHoursToRecover>true</showHoursToRecover>
-      </li>
-      <li Class="HediffCompProperties_Discoverable">
-        <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
     </comps>
     <stages>

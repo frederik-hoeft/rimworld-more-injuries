@@ -119,12 +119,13 @@ public class HearingLossComp : ThingComp
         float hearingDamageMultiplier = GetHearingDamageMultiplier(shooter, otherPawn);
         if (Rand.Chance(hearingDamageMultiplier / 10f))
         {
-            if (!otherPawn.health.hediffSet.TryGetHediff(KnownHediffDefOf.HearingLoss, out Hediff? hearingLoss))
+            if (!otherPawn.health.hediffSet.TryGetHediff(KnownHediffDefOf.HearingLossTemporary, out Hediff? hearingLoss))
             {
-                hearingLoss = HediffMaker.MakeHediff(KnownHediffDefOf.HearingLoss, otherPawn);
+                hearingLoss = HediffMaker.MakeHediff(KnownHediffDefOf.HearingLossTemporary, otherPawn);
                 otherPawn.health.AddHediff(hearingLoss);
             }
             hearingLoss.Severity += hearingDamageMultiplier / 100f;
+            HearingLossHelper.TryMakePermanentIfApplicable(otherPawn, hearingLoss);
         }
     }
 

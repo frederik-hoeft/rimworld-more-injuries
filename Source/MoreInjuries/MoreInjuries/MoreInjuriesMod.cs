@@ -379,9 +379,16 @@ public class MoreInjuriesMod : Mod
         Text.Font = GameFont.Small;
         if (ModLister.BiotechInstalled)
         {
-            list.CheckboxLabeled($"Replace blood bags with Biotech Hemogen packs (default: {ENABLE_BIOTECH_INTEGRATION_DEFAULT})", ref Settings.EnableBiotechIntegration,
+            list.CheckboxLabeled($"Replace blood bags with Biotech Hemogen packs (default: {BIOTECH_ENABLE_INTEGRATION_DEFAULT})", ref Settings.BiotechEnableIntegration,
                 """
                 If enabled, recipes using blood bags will use Biotech Hemogen packs instead.
+                """);
+        }
+        if (ModLister.AnomalyInstalled)
+        {
+            list.CheckboxLabeled($"Apply health conditions to shamblers (default: {ANOMALY_ENABLE_CONDITIONS_FOR_SHAMBLERS_DEFAULT})", ref Settings.AnomalyEnableConditionsForShamblers,
+                """
+                If enabled, shamblers will be affected by the health conditions introduced by this mod. If you don't want shamblers to suffer from hypovolemic shock, fractures, etc., disable this option.
                 """);
         }
         list.Label($"Multiplier for bleeding from closed internal injuries: {Settings.ClosedInternalWouldBleedingModifier} (default: {CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT})", -1,
@@ -390,6 +397,11 @@ public class MoreInjuriesMod : Mod
             "This modifier determines how much the internal bleeding is reduced by applying a bandage to the skin wound. " +
             "A value of 1 means that the internal bleeding is not affected by the bandage, while a value of 0 means that the internal bleeding is completely stopped.");
         Settings.ClosedInternalWouldBleedingModifier = (float)Math.Round(list.Slider(Settings.ClosedInternalWouldBleedingModifier, 0f, 1f), 2);
+        list.CheckboxLabeled($"Enable paralysis mechanics (default: {ENABLE_PARALYSIS_DEFAULT})", ref Settings.EnableParalysis,
+            """
+            If enabled, pawns that receive severe spinal cord injuries may suffer from paralysis, losing the ability to move and control their limbs.
+            A life-changing and irreversible condition.
+            """);
         list.Label($"Paralysis damage threshold (50% point): {Settings.ParalysisDamageTreshold50Percent} (default: {PARALYSIS_DAMAGE_TRESHOLD_50_PERCENT_DEFAULT})", -1,
             """
             The amount of spinal cord damage required to cause paralysis in 50% of all cases. The actual chance of paralysis scales linearly with the damage dealt.

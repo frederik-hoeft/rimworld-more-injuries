@@ -122,13 +122,18 @@ public class MoreInjuryComp : ThingComp
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
+        Pawn pawn = (Pawn)parent;
+        if (!MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers && pawn.IsShambler)
+        {
+            return [];
+        }
         UIBuilder<Gizmo> builder = s_gizmosBuilder;
         builder.Clear();
         foreach (ICompGetGizmosExtraHandler handler in _compGetGizmosExtraHandlers)
         {
             if (handler.IsEnabled)
             {
-                handler.AddGizmosExtra(builder, (Pawn)parent);
+                handler.AddGizmosExtra(builder, pawn);
             }
         }
         return builder.Options;
@@ -136,6 +141,11 @@ public class MoreInjuryComp : ThingComp
 
     public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn)
     {
+        Pawn pawn = (Pawn)parent;
+        if (!MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers && (pawn.IsShambler || selectedPawn.IsShambler))
+        {
+            return [];
+        }
         UIBuilder<FloatMenuOption> builder = s_floatMenuOptionsBuilder;
         builder.Clear();
         foreach (ICompFloatMenuOptionsHandler handler in _compFloatMenuOptionsHandlers)
@@ -150,6 +160,10 @@ public class MoreInjuryComp : ThingComp
 
     public override void PostPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
     {
+        if (!MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers && parent is Pawn { IsShambler: true })
+        {
+            return;
+        }
         if (parent.Map is not null)
         {
             foreach (IPostPostApplyDamageHandler handler in _postPostApplyDamageHandlers)
@@ -177,11 +191,14 @@ public class MoreInjuryComp : ThingComp
         DebugAssert.IsTrue(CallbackActive, "CallbackActive is false in PostDamageFull");
         DebugAssert.NotNull(damage, "damage is null in PostDamageFull");
 
-        foreach (IPostTakeDamageHandler handler in _postTakeDamageHandlers)
+        if (MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers || parent is Pawn { IsShambler: false })
         {
-            if (handler.IsEnabled)
+            foreach (IPostTakeDamageHandler handler in _postTakeDamageHandlers)
             {
-                handler.PostTakeDamage(damage, in _damageInfo);
+                if (handler.IsEnabled)
+                {
+                    handler.PostTakeDamage(damage, in _damageInfo);
+                }
             }
         }
         CallbackActive = false;

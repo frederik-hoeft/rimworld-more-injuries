@@ -3,7 +3,7 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>EmpShutdown</defName>
     <label>servos disabled</label>
-    <description>Bionic bodypart was disabled by an EMP blast. It will take around one day to reboot itself.</description>
+    <description>A bionic bodypart was disabled by an EMP blast. It will take around one day to reboot itself.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(2,134,235)</defaultLabelColor>
     <comps>

@@ -15,7 +15,7 @@ public class JobDriver_UseBloodBag : JobDriver_UseMedicalDevice
 
     private bool _fullyHeal;
 
-    public static ThingDef JobDeviceDef => ModLister.BiotechInstalled && MoreInjuriesMod.Settings.EnableBiotechIntegration
+    public static ThingDef JobDeviceDef => ModLister.BiotechInstalled && MoreInjuriesMod.Settings.BiotechEnableIntegration
         ? ThingDefOf.HemogenPack
         : KnownThingDefOf.WholeBloodBag;
 

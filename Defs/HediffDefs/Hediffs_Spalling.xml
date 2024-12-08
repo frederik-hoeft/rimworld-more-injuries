@@ -21,7 +21,7 @@
     <injuryProps>
       <painPerSeverity>0.0050</painPerSeverity>
       <averagePainPerSeverityPermanent>0.00225</averagePainPerSeverityPermanent>
-      <bleedRate>0.18</bleedRate>
+      <bleedRate>0.1</bleedRate>
       <canMerge>false</canMerge>
       <destroyedLabel>Cut off</destroyedLabel>
       <destroyedOutLabel>Cut out</destroyedOutLabel>

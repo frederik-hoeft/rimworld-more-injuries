@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>TourniquetApplied</defName>
+    <label>tourniquet</label>
+    <description>A tourniquet has been applied to a limb, stopping the bleeding but starving the limb of blood. If the tourniquet is not removed in time, ischemia (starvation of oxygen) and necrosis (cell death) will occur, which can lead to loss of the limb through gangrene or death from sepsis.
+\nThe tourniquet should be removed as soon as the patient is in a safe location and can receive proper medical care.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(254, 221, 0)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>1</severityPerDay>
+      </li>
+      <li>
+        <compClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.TourniquetHediffComp</compClass>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <minSeverity>0</minSeverity>
+        <label>restricted blood flow</label>
+        <partEfficiencyOffset>-0.4</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>initial ischemia</label>
+        <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>advanced ischemia</label>
+        <lifeThreatening>true</lifeThreatening>
+        <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>initial necrosis</label>
+        <lifeThreatening>true</lifeThreatening>
+        <partEfficiencyOffset>-0.9</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.9</minSeverity>
+        <label>advanced necrosis</label>
+        <lifeThreatening>true</lifeThreatening>
+        <partEfficiencyOffset>-1</partEfficiencyOffset>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="DiseaseBase">
+    <defName>GangreneDry</defName>
+    <label>gangrene (dry)</label>
+    <description>Dry gangrene is a form of coagulative necrosis that develops in ischemic tissue, where the blood supply is inadequate to keep tissue viable. The affected part is dry, shrunken, and dark reddish-black. The line of separation usually brings about complete separation, with eventual falling off of the gangrenous tissue if it is not removed surgically, a process called autoamputation.
+Over time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.
+\nThe affected body part is irreversibly damaged and should be amputated to prevent sepsis.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <maxSeverity>1</maxSeverity>
+    <makesSickThought>true</makesSickThought>
+    <defaultLabelColor>(189, 66, 46)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>1</severityPerDay>
+      </li>
+      <li>
+        <compClass>MoreInjuries.HealthConditions.Gangrene.GangreneDryHediffComp</compClass>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <minSeverity>0</minSeverity>
+        <partEfficiencyOffset>-1</partEfficiencyOffset>
+        <painOffset>0.25</painOffset>
+      </li>
+    </stages>
+    <injuryProps>
+      <destroyedLabel>Fell off</destroyedLabel>
+      <alwaysUseDestroyedLabel>true</alwaysUseDestroyedLabel>
+    </injuryProps>
+  </HediffDef>
+
+  <HediffDef ParentName="DiseaseBase">
+    <defName>GangreneWet</defName>
+    <label>gangrene (septic)</label>
+    <description>Wet, or infected, gangrene is characterized by thriving bacteria and has a poor prognosis (compared to dry gangrene) due to sepsis resulting from the free communication between infected fluid and circulatory fluid. The affected part is saturated with stagnant blood, which promotes the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and finally death.
+\nThe affected body part should be amputated as soon as possible to save the patient's life.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <makesSickThought>true</makesSickThought>
+    <lethalSeverity>1</lethalSeverity>
+    <defaultLabelColor>(189, 66, 46)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>0.75</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <minSeverity>0</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <partEfficiencyOffset>-1</partEfficiencyOffset>
+        <painOffset>0.5</painOffset>
+      </li>
+    </stages> 
+  </HediffDef>
+</Defs>
