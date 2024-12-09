@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <PrisonerInteractionModeDef>
+    <defName>BloodBagFarm</defName>
+    <label>blood bag farm</label>
+    <listOrder>27</listOrder>
+    <description>An operation to extract blood bags will be automatically queued on this prisoner whenever it can be done safely. The operation will be carried out by a doctor.</description>
+    <hideOnHemogenicPawns>true</hideOnHemogenicPawns>
+    <mustBeAwake>false</mustBeAwake>
+    <isNonExclusiveInteraction>true</isNonExclusiveInteraction>
+  </PrisonerInteractionModeDef>
+</Defs>
