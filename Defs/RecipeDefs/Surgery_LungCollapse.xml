@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- TODO: add different surgery options to repair collapsed lung (pneumothorax), with different success rates, required medical skill, death rates, and potential long-term effects -->
+  <!-- https://en.wikipedia.org/wiki/Video-assisted_thoracoscopic_surgery -->
+  <!-- https://en.wikipedia.org/wiki/Thoracotomy -->
+  <!-- TODO: require different types of surgical tools and equipment for different surgeries, but provide cheaper and less effective alternatives for low-tech colonies -->
+  <!-- TODO: some tools and equipment may be very expensive and require advanced research to unlock, but can be reused multiple times -->
+  <!-- NOTE: DALL-E really seems to struggle a lot with generating a believable texture for the video-assisted thoracoscopic surgery. Currently on hold until we find a decent texture for the surgery equipment. -->
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RepairCollapsedLung</defName>
+    <label>repair collapsed lung</label>
+    <description>Repair a collapsed lung.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Repairing a collapsed lung.</jobString>
+    <workAmount>4500</workAmount>
+    <removesHediff>LungCollapse</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s collapsed lung.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.025</deathOnFailedSurgeryChance>
+    <skillRequirements>
+      <Medicine>8</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+  </RecipeDef>
+</Defs>

@@ -80,6 +80,7 @@
     <subSounds>
       <li>
         <grains>
+          <!-- yep, this one is stolen from Escape from Tarkov. Don't tell anyone. -->
           <li Class="AudioGrain_Clip">
             <clipPath>autoinjector_use</clipPath>
           </li>

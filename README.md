@@ -51,6 +51,7 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Splint](#splint)
     - [Defibrillator](#defibrillator)
     - [CPR](#cpr)
+    - [First Aid](#first-aid)
     - [Epinephrine Autoinjector](#epinephrine-autoinjector)
     - [Tourniquet](#tourniquet)
     - [Airway Suction Device](#airway-suction-device)
@@ -370,16 +371,14 @@ The small and large intestines are part of the digestive system and play a cruci
 
 ### Femoral and Popliteal Arteries
 
-<figure style="display: flex; margin: 0;">
-  <figcaption style="margin-right: .75cm">
+<p>
+<img align="right" style="height: 6cm" src="https://upload.wikimedia.org/wikipedia/commons/7/74/Blausen_0607_LegArteries.png" alt="arteries of the leg (wikimedia commons)">
   
 The femoral and popliteal arteries are major blood vessels that supply blood to the legs and feet. As such, injuries to the legs can cause severe blood loss and can quickly lead to [hypovolemic shock](#hypovolemic-shock), loss of consciousness, and death if not treated immediately. Cutting the femoral artery is especially dangerous due to the high volume of blood that flows through it. 
 
 Emergency treatment often requires the use of a [tourniquet](#tourniquet) to restrict blood flow to the affected limb and prevent the patient from bleeding out.
   
-  </figcaption>
-  <img style="height: 6cm" src="https://upload.wikimedia.org/wikipedia/commons/7/74/Blausen_0607_LegArteries.png" alt="arteries of the leg (wikimedia commons)">
-</figure>
+</p>
 
 ### Spinal Cord
 
@@ -391,18 +390,14 @@ In order to effectively treat the new injuries and medical conditions introduced
 
 ### Splint
 
-<figure style="display: flex; margin: 0;">
-  <figcaption style="margin-right: .75cm">
-
+<p>
+  <img align="right" src="./Textures/Thing/Splint/splint_b.png" height="64" alt="Splint" />
+  <img align="right" src="./Textures/Thing/Splint/splint_a.png" height="64" alt="Splint" />
+  
 > **In-Game Description**
 > _"**Splint** &mdash; A splint is a rigid device used for immobilizing and protecting an injured bone or joint. It is used to prevent further damage to the bone and surrounding tissue and promote healing over time. Splints are commonly used to treat bone fractures, sprains, and dislocations."_
-
-  </figcaption>
-  <div>
-    <img src="./Textures/Thing/Splint/splint_a.png" style="width: auto; height: auto; max-height: 2cm" alt="Splint" />
-    <img src="./Textures/Thing/Splint/splint_b.png" style="width: auto; height: auto; max-height: 2cm" alt="Splint" />
-  </div>
-</figure>
+  
+</p>
 
 **Used for**: Treating [bone fractures](#bone-fracture), allowing them to heal over time (see [healing bone fracture](#healing-bone-fracture)).
 
@@ -414,12 +409,41 @@ In order to effectively treat the new injuries and medical conditions introduced
 > :bulb: **Tip**: Alternatively to splinting the fracture, the bone can be [surgically repaired](#repair-fracture-placeholder-todo) to realign and stabilize the bone, allowing for an immediate recovery.
 
 **Production**: At a crafting spot or machining table.  
+**Production Skill Requirement**: None  
 **Research Requirements**: None  
-**Ingredients**: 4x `Wood` or `Steel`, 1x `any textile`
+**Ingredients**: 4x `Wood` or `Steel`, 1x `any textile`  
+**Success Chance**: 100%
 
 ### Defibrillator
 
+Defibrillation is a treatment for life-threatening conditions that affect the rhythm of the heart, such as [heart attacks](https://rimworldwiki.com/wiki/Ailments#Heart_attack) and the `ventricular fibrillation` stage of [cardiac arrest](#cardiac-arrest). It involves delivering a high-energy electric shock to the heart with a reusable device called a defibrillator to restore normal heart rhythm. It is a more specialized and faster treatment than [CPR](#cpr) in these cases, however, it requires a defibrillator to be available and accessible to the treating doctor.
+
+<p>
+  <img align="right" src="./Textures/Thing/defibrillator_a.png" height="96" alt="Defibrillator" />
+
+> **In-Game Description**
+> _"**Defibrillator** &mdash; A defibrillator is a reusable device that gives a high energy electric shock to the heart through the chest wall to restore normal heart rhythm in cases of ventricular fibrillation (irregular heartbeat) which may be caused by heart attacks or in early stages of cardiac arrest.
+> Note that the defibrillator can only be used on patients suffering from heart attack or ventricular fibrillation. In case of full cardiac arrest (clinical death), only CPR can save the patient."_
+
+</p>
+
+**Used for**: Treating [heart attacks](https://rimworldwiki.com/wiki/Ailments#Heart_attack) and [cardiac arrest](#cardiac-arrest) during the `ventricular fibrillation` stage.
+
+**Usage**
+
+1. Tell a *drafted* pawn capable of doctoring to use the defibrillator on a pawn suffering from a [heart attack](https://rimworldwiki.com/wiki/Ailments#Heart_attack) or [`ventricular fibrillation`](#cardiac-arrest) using the `Defibrillate` option in the right-click context menu. The defibrillator must be accessible in a stockpile or the doctor's inventory. Self-treatment is not possible. In case of the `clinical death` stage of [cardiac arrest](#cardiac-arrest), only [CPR](#cpr) can save the patient.
+2. Defibrillation is part of the [First Aid](#first-aid) order for *drafted* pawns.
+3. Alternatively, resuscitating patients using a defibrillator is now part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with a heart attack or ventricular fibrillation, any non-drafted doctor will automatically attempt to resuscitate the patient using a defibrillator or [CPR](#cpr), in accordance with the configured work priorities.
+
+**Production**: At a machining table.  
+**Production Skill Requirement**: `Crafting` at level 6
+**Research Requirements**: `Medicine Production`
+**Ingredients**: 25x `Steel`, 20x `Chemfuel`, 4x `Component`, 25x `Plasteel`, 10x `Gold`, 100x `Silver`
+**Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.
+
 ### CPR
+
+### First Aid
 
 ### Epinephrine Autoinjector
 

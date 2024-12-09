@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RepairFracture</defName>
+    <label>Repair a fracture</label>
+    <description>Surgically repair a bone fracture. The bone will be set in place, realigned, and reinforced with metal plates and screws to promote proper healing and prevent deformity, allowing the patient to regain full use of the affected limb.
+\nAlthough being more invasive than other methods, surgery allows for a more precise and stable repair of the fracture, ensuring a faster and more complete recovery.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Repairing a fracture.</jobString>
+    <workAmount>4500</workAmount>
+    <removesHediff>Fracture</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s bone fracture.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+    <anesthetize>true</anesthetize>
+    <skillRequirements>
+      <Medicine>5</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>2</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+      <thingDefs>
+        <li>Plasteel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>1.25</surgerySuccessChanceFactor>
+  </RecipeDef>
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>SplintFracture</defName>
+    <label>Splint a fracture</label>
+    <description>Apply a splint to immobilize a bone fracture and promote healing over time. The splint will stabilize the bone, prevent further damage, and allow the patient to move around without risking further injury. The stabilized bone will heal naturally over time.
+\nA simple and non-invasive procedure that can be performed by anyone with basic medical knowledge.</description>
+    <workerClass>MoreInjuries.HealthConditions.Fractures.Recipe_SplintFracture</workerClass>
+    <jobString>Splinting a fracture.</jobString>
+    <workAmount>500</workAmount>
+    <removesHediff>Fracture</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has splinted {1}'s bone fracture. It will take some time to heal.</successfullyRemovedHediffMessage>
+    <anesthetize>false</anesthetize>
+    <isViolation>false</isViolation>
+    <skillRequirements>
+      <Medicine>1</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Splint</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Splint</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <workSkillLearnFactor>2</workSkillLearnFactor>
+  </RecipeDef>
+</Defs>
