@@ -3,7 +3,7 @@
   <HediffDef ParentName="InfectionBase">
     <defName>ChokingOnBlood</defName>
     <label>choking on blood</label>
-    <description>Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. Potentially fatal unless treated. Can be cleared by performing CPR or using a specialized airway suction device.</description>
+    <description>Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. The bleeding must be stopped and the airways cleared to prevent death. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. Otherwise, the airways must be cleared using a specialized airway suction device or by compressing the chest using CPR to expel the blood and restore breathing.</description>
     <makesSickThought>false</makesSickThought>
     <lethalSeverity>1</lethalSeverity>
     <defaultLabelColor>(255, 102, 102)</defaultLabelColor>

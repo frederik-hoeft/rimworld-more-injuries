@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.KnownDefs;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -18,19 +19,25 @@ public class ChokingHediffComp : HediffComp
         _ticksThisInterval = Properties.ChokingIntervalTicks;
         if (MoreInjuriesMod.Settings.EnableChokingSounds)
         {
-            KnownSoundDefOf.ChokingSound.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
+            KnownSoundDefOf.Choking.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
         }
 
         base.CompPostMake();
     }
 
+    private bool Coughing => Source is { Bleeding: false } && parent.pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.45f;
+
+    public override string CompLabelInBracketsExtra => Coughing
+        ? "coughing"
+        : string.Empty;
+
     public override void CompPostTick(ref float severityAdjustment)
     {
-        if (_ticksThisInterval > 0)
+        if (_ticksThisInterval > 1)
         {
             _ticksThisInterval--;
         }
-        if (_ticksThisInterval == 0)
+        else
         {
             _ticksThisInterval = Properties.ChokingIntervalTicks;
             if (Source is null)
@@ -55,13 +62,26 @@ public class ChokingHediffComp : HediffComp
                     decrease = 0.05f;
                 }
                 float change = Rand.Range(-decrease, increase);
+                bool coughing = Coughing;
+                if (coughing)
+                {
+                    // the patient is conscious and coughing, so the severity decreases faster
+                    change -= Rand.Range(0.05f, 0.1f);
+                }
                 float newSeverity = Mathf.Clamp01(parent.Severity + change);
                 if (newSeverity > 0f)
                 {
                     parent.Severity = newSeverity;
                     if (MoreInjuriesMod.Settings.EnableChokingSounds)
                     {
-                        KnownSoundDefOf.ChokingSound.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
+                        SoundDef soundDef = (coughing, parent.pawn.gender) switch
+                        {
+                            (true, Gender.Female) => KnownSoundDefOf.ChokingCoughFemale,
+                            (true, _) => KnownSoundDefOf.ChokingCoughMale,
+                            _ => KnownSoundDefOf.Choking,
+                        };
+                        // TODO: may play multiple sounds overlapping
+                        soundDef.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
                     }
                 }
                 else

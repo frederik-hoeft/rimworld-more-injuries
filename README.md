@@ -120,13 +120,13 @@ Choking is a medical emergency that occurs when a foreign object becomes lodged 
 #### Choking on Blood
 
 > **In-Game Description**
-> _"**Choking on blood** &mdash; Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. Potentially fatal unless treated. Can be cleared by performing CPR or using a specialized airway suction device."_
+> _"**Choking on blood** &mdash; Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. The bleeding must be stopped and the airways cleared to prevent death. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. Otherwise, the airways must be cleared using a specialized airway suction device or by compressing the chest using CPR to expel the blood and restore breathing."_
 
 **Causes**: Severe injuries to the mouth, throat, or chest that cause bleeding into the airways.
 
 **Effects**: Coughing, suffocation, and death if not treated immediately.
 
-**Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. The airways must be cleared using a specialized [airway suction device](#airway-suction-device) or by compressing the chest using [CPR](#cpr) to expel the blood and restore breathing.
+**Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. If the patient is unconscious, the airways must be cleared using a specialized [airway suction device](#airway-suction-device) or by compressing the chest using [CPR](#cpr) to expel the blood and restore breathing.
 
 #### Choking on Tourniquet
 
@@ -436,12 +436,29 @@ Defibrillation is a treatment for life-threatening conditions that affect the rh
 3. Alternatively, resuscitating patients using a defibrillator is now part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with a heart attack or ventricular fibrillation, any non-drafted doctor will automatically attempt to resuscitate the patient using a defibrillator or [CPR](#cpr), in accordance with the configured work priorities.
 
 **Production**: At a machining table.  
-**Production Skill Requirement**: `Crafting` at level 6
-**Research Requirements**: `Medicine Production`
-**Ingredients**: 25x `Steel`, 20x `Chemfuel`, 4x `Component`, 25x `Plasteel`, 10x `Gold`, 100x `Silver`
+**Production Skill Requirement**: `Crafting` at level 6  
+**Research Requirements**: `Medicine Production`  
+**Ingredients**: 25x `Steel`, 20x `Chemfuel`, 4x `Component`, 25x `Plasteel`, 10x `Gold`, 100x `Silver`  
 **Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.
 
 ### CPR
+
+Cardiopulmonary resuscitation (CPR) is an emergency procedure that combines chest compressions with artificial ventilation to manually preserve brain function until further measures can be taken to restore spontaneous blood circulation and breathing in a person who is in [cardiac arrest](#cardiac-arrest), suffering from a [heart attack](https://rimworldwiki.com/wiki/Ailments#Heart_attack), or is [choking on blood](#choking-on-blood).
+
+> **In-Game Description**
+> _"**CPR** &mdash; Perform CPR to stabilize patients with cardiac or respiratory arrest."_
+
+**Used for**: Stabilizing patients suffering from [cardiac arrest](#cardiac-arrest) (during `ventricular fibrillation` and `clinical death` stages), [heart attacks](https://rimworldwiki.com/wiki/Ailments#Heart_attack), and [choking on blood](#choking-on-blood).
+
+**Usage**
+
+1. Tell a *drafted* pawn capable of doctoring to perform CPR on a pawn suffering from [cardiac arrest](#cardiac-arrest) (during `ventricular fibrillation` and `clinical death` stages), [heart attack](https://rimworldwiki.com/wiki/Ailments#Heart_attack), or [choking on blood](#choking-on-blood) using the `Perform CPR` option in the right-click context menu. Self-treatment is not possible.
+2. CPR is part of the [First Aid](#first-aid) order for *drafted* pawns.
+3. Alternatively, resuscitating patients using CPR is now part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with a condition that requires CPR, any non-drafted doctor will automatically attempt to resuscitate the patient using CPR or a [defibrillator](#defibrillator), in accordance with the configured work priorities.
+
+**Severity Reduction**: $f_{\text{sigmoid}}($`<medicine skill> / 15`$)$ where $f_{\text{sigmoid}}$ is a diffused sigmoid function defined as $f_{\text{sigmoid}}(x) = \frac{1}{1 + e^{-10\cdot(x - 0.5)}} + c$ where $c$ is a random factor between $-0.1$ and $0.1$.
+
+> :warning: **Note**: Depending on the randomized factor $c$, poor medical skill of the doctor may do more harm than good when performing CPR. It is recommended to have a decently skilled doctor perform CPR to ensure the best possible outcome.
 
 ### First Aid
 
