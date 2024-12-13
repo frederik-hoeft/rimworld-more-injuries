@@ -15,6 +15,13 @@
   </JobDef>
 
   <JobDef>
+    <defName>ProvideFirstAid</defName>
+    <driverClass>MoreInjuries.AI.JobDriver_ProvideFirstAid</driverClass>
+    <reportString>Evaluating treatment options for TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
     <defName>UseDefibrillator</defName>
     <driverClass>MoreInjuries.HealthConditions.CardiacArrest.JobDriver_UseDefibrillator</driverClass>
     <reportString>Using a defibrillator on TargetA.</reportString>

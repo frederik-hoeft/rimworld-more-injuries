@@ -4,7 +4,7 @@
     <defName>Bandage</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>bandage</label>
-    <description>Pieces of fabric prepared to slow the flow of blood from wounds. Slow to apply.</description>
+    <description>Pieces of fabric prepared to slow the flow of blood from wounds. This type of elastic bandage is designed as a temporary measure to apply pressure to a wound to reduce the bleed rate and promote clotting. It is not a substitute for proper medical treatment, but can be used to stabilize a patient until they can be treated by a doctor. Moderately fast to apply, but may not be as effective as a hemostatic agent in stopping severe bleeding.</description>
     <graphicData>
       <texPath>Thing/Bandage</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -21,13 +21,14 @@
       <WorkToMake>100</WorkToMake>
     </statBases>
     <drawGUIOverlay>true</drawGUIOverlay>
-    <costStuffCount>5</costStuffCount>
+    <costStuffCount>2</costStuffCount>
     <stuffCategories>
       <li>Fabric</li>
     </stuffCategories>
     <recipeMaker>
       <recipeUsers>
         <li>CraftingSpot</li>
+        <li>MachiningTable</li>
       </recipeUsers>
     </recipeMaker>
     <modExtensions>
@@ -55,7 +56,7 @@
             <li>Fabric</li>
           </stuffCategoriesToAllow>
         </filter>
-        <count>25</count>
+        <count>10</count>
       </li>
     </ingredients>
     <products>
@@ -68,6 +69,7 @@
     </fixedIngredientFilter>
     <recipeUsers>
       <li>CraftingSpot</li>
+      <li>MachiningTable</li>
     </recipeUsers>
   </RecipeDef>
 </Defs>

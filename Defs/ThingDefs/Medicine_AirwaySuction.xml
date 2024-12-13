@@ -4,7 +4,7 @@
     <defName>SuctionDevice</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>Airway suction device</label>
-    <description>A reusable medical device designed to remove blood from airways.</description>
+    <description>An airway suction device is a medical device used to clear the airway of blood, vomit, or other obstructions that may prevent a patient from breathing properly. It is commonly used in emergency situations, such as when a patient is choking from blood or other fluids, to prevent asphyxiation and death. The hand-operated device uses a vacuum to remove fluids from the airway, allowing the patient to breathe freely and restoring normal respiration.</description>
     <graphicData>
       <texPath>Thing/ASD</texPath>
       <graphicClass>Graphic_Single</graphicClass>

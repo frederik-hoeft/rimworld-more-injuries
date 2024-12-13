@@ -47,16 +47,18 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Small and Large Intestines](#small-and-large-intestines)
     - [Femoral and Popliteal Arteries](#femoral-and-popliteal-arteries)
     - [Spinal Cord](#spinal-cord)
-  - [Medical Devices and Treatments](#medical-devices-and-treatments)
-    - [Splint](#splint)
-    - [Defibrillator](#defibrillator)
-    - [CPR](#cpr)
-    - [First Aid](#first-aid)
-    - [Epinephrine Autoinjector](#epinephrine-autoinjector)
-    - [Tourniquet](#tourniquet)
+  - [Medical Devices and Procedures](#medical-devices-and-procedures)
     - [Airway Suction Device](#airway-suction-device)
+    - [Bandage](#bandage)
     - [Blood Bag](#blood-bag)
+    - [CPR](#cpr)
+    - [Defibrillator](#defibrillator)
+    - [Epinephrine Autoinjector](#epinephrine-autoinjector)
+    - [First Aid](#first-aid)
     - [Hearing Protection](#hearing-protection)
+    - [Hemostatic Agent](#hemostatic-agent)
+    - [Splint](#splint)
+    - [Tourniquet](#tourniquet)
   - [Surgeries](#surgeries)
     - [Trepanation](#trepanation)
     - [Decompressive Craniectomy](#decompressive-craniectomy)
@@ -100,6 +102,8 @@ Cardiac arrest is a sudden loss of blood flow resulting from the failure of the 
 
 **Treatment**: Cardiac arrest must be treated immediately with [CPR](#cpr) to restore blood flow and hopefully restart the heart. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). In cases of `clinical death`, only [CPR](#cpr) will be effective.
 
+> :information_source: **Biotech DLC**: Sanguaphages are immune to cardiac arrest and will automatically recover from it once entering deathrest.
+
 ### Chemical Peritonitis
 
 Also known as _"intestinal spillage,"_ chemical peritonitis is a life-threatening condition that occurs when gastric acid or other digestive fluids leak into the abdominal cavity, causing inflammation and tissue damage to surrounding organs ([small and large intestines](#small-and-large-intestines), stomach, kidneys, and liver). The condition carries a major risk of infection which can be life-threatening if left untreated.
@@ -124,9 +128,11 @@ Choking is a medical emergency that occurs when a foreign object becomes lodged 
 
 **Causes**: Severe injuries to the mouth, throat, or chest that cause bleeding into the airways.
 
-**Effects**: Coughing, suffocation, and death if not treated immediately.
+**Effects**: Coughing, suffocation, loss of consciousness, and death if not treated immediately.
 
 **Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. If the patient is unconscious, the airways must be cleared using a specialized [airway suction device](#airway-suction-device) or by compressing the chest using [CPR](#cpr) to expel the blood and restore breathing.
+
+> :information_source: **Biotech DLC**: Deathresting sanguaphages will alway be able to cough up the blood on their own and clear the airway - once the bleeding has been stopped.
 
 #### Choking on Tourniquet
 
@@ -300,6 +306,8 @@ During the initial emergency treatment of hypovolemic shock, its progression can
 
 > :bulb: **Tip**: As time is of the essence when treating hypovolemic shock, it is recommended to have a stockpile of [blood bags](#blood-bag) or other blood transfusion items ready in your hospital to quickly treat patients with severe blood loss. You may even want to assign some medically skilled pawns to be dedicated combat medics who keep a few blood bags in their inventory at all times to immediately stabilize and treat injured pawns on the battlefield. This can be achieved by telling the medic to "pick up" a number of blood bags (or including blood bags in [Combat Extended](https://github.com/CombatExtended-Continued/CombatExtended) loadouts) and then telling the drafted medic to `transfuse blood (from inventory, stabilize)` to the injured pawn.
 
+> :information_source: **Biotech DLC**: Deathresting sanguaphages will automatically recover from hypovolemic shock over time, as they can regenerate blood on their own.
+
 ### Inhalation Injury
 
 Inhalation injuries are caused by the inhalation of hot gases, steam, or smoke, which can cause burns to the respiratory tract and lungs. If enabled in the mod settings, inhalation injuries manifest themselves as burn injuries to the lungs, for example, when a pawn is exposed to a fire or explosion.
@@ -384,35 +392,104 @@ Emergency treatment often requires the use of a [tourniquet](#tourniquet) to res
 
 The spinal cord is a bundle of nerves that runs down the center of the back and connects the brain to the rest of the body. Damage to the spinal cord can cause irreversible and life-changing [paralysis](#paralysis), ranging from sensory loss in the legs to complete loss of movement in the entire body. Surgical intervention and bionic implants may be used to restore partial or full function to the affected body parts.
 
-## Medical Devices and Treatments
+## Medical Devices and Procedures
 
 In order to effectively treat the new injuries and medical conditions introduced by More Injuries, several new medical devices and treatment options have been added to the game.
 
-### Splint
+### Airway Suction Device
 
 <p>
-  <img align="right" src="./Textures/Thing/Splint/splint_b.png" height="64" alt="Splint" />
-  <img align="right" src="./Textures/Thing/Splint/splint_a.png" height="64" alt="Splint" />
+  <img align="right" src="./Textures/Thing/ASD.png" height="96" alt="Airway Suction Device" />
   
 > **In-Game Description**
-> _"**Splint** &mdash; A splint is a rigid device used for immobilizing and protecting an injured bone or joint. It is used to prevent further damage to the bone and surrounding tissue and promote healing over time. Splints are commonly used to treat bone fractures, sprains, and dislocations."_
-  
+> _"**Airway suction device** &mdash; An airway suction device is a medical device used to clear the airway of blood, vomit, or other obstructions that may prevent a patient from breathing properly. It is commonly used in emergency situations, such as when a patient is choking from blood or other fluids, to prevent asphyxiation and death. The hand-operated device uses a vacuum to remove fluids from the airway, allowing the patient to breathe freely and restoring normal respiration."_
+
 </p>
 
-**Used for**: Treating [bone fractures](#bone-fracture), allowing them to heal over time (see [healing bone fracture](#healing-bone-fracture)).
+**Used for**: Clearing the airway of patients who are [choking on blood](#choking-on-blood) or other fluids to prevent asphyxiation. The airway suction device is a hand-operated device that uses a vacuum to remove fluids from the airway, allowing the patient to breathe freely and restoring normal respiration. It can be reused multiple times and is more effective than [CPR](#cpr) in clearing the airway of obstructions.
 
-**Usage**
+**Usage**:
 
-1. Tell a *drafted* pawn capable of doctoring to apply a splint to a pawn with a bone fracture using the `Splint fractures` option in the right-click context menu. The splint must be accessible in a stockpile or the doctor's inventory. Due to its simplicity, the procedure can be performed anywhere and even in combat situations, to quickly restore partial stability to the injured limb and allow the pawn to move again. However, this treatment method comes at the cost of treatment quality and a slightly longer time for the fracture to heal.
-2. Alternatively, use the *operations* tab of the injured pawn to schedule the application of a splint to a bone fracture in a controlled environment, such as a hospital bed, to ensure the highest treatment quality and fastest healing time.
+1. Tell a *drafted* pawn capable of doctoring to use the airway suction device on a patient using the `Clear airways` option in the right-click context menu of the patient. The airway suction device must be accessible in a stockpile or the doctor's inventory. Self-treatment is not possible. The device will not be consumed during the treatment and can be reused multiple times.
+2. Clearing the airway with an airway suction device is part of the [First Aid](#first-aid) order for *drafted* pawns.
 
-> :bulb: **Tip**: Alternatively to splinting the fracture, the bone can be [surgically repaired](#repair-fracture-placeholder-todo) to realign and stabilize the bone, allowing for an immediate recovery.
+**Production**: At a machining table.  
+**Production Skill Requirement**: `Crafting` at level 4  
+**Research Requirements**: `Medicine Production`  
+**Ingredients**: 25x `Steel`, 20x `Chemfuel`, 1x `Component`, 5x `Plasteel`  
+**Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.
+
+### Bandage
+
+<p>
+  <img align="right" src="./Textures/Thing/Bandage/bandage_b.png" height="64" alt="Bandage" />
+  <img align="right" src="./Textures/Thing/Bandage/bandage_a.png" height="64" alt="Bandage" />
+
+> **In-Game Description**
+> _"**Bandage** &mdash; Pieces of fabric prepared to slow the flow of blood from wounds. This type of elastic bandage is designed as a temporary measure to apply pressure to a wound to reduce the bleed rate and promote clotting. It is not a substitute for proper medical treatment, but can be used to stabilize a patient until they can be treated by a doctor. Moderately fast to apply, but may not be as effective as a hemostatic agent in stopping severe bleeding."_
+
+</p>
+
+**Used for**: Temporarily reducing the bleed rate of wounds to allow the patient to be stabilized by a doctor. Bandages are a simple and effective way to slow the progression of blood loss and prevent the patient from going into [hypovolemic shock](#hypovolemic-shock) until more advanced medical treatment can be provided. This type of elastic bandage allows to reduce the bleed rate of the wound by up to 50% and lasts approximately 12 hours until fully soaked with blood. Effectiveness scales linearly with time during this period. Bandages are a good choice for treating minor to moderate bleeding wounds, but may not be as effective as [hemostatic agents](#hemostatic-agent) in stopping severe bleeding.
+
+**Usage**:
+
+1. Tell a *drafted* pawn capable of doctoring to apply a bandage to a wound using one of the `Stabilize with bandages` options in the right-click context menu of the patient. The bandage must be accessible in a stockpile or the doctor's inventory. Self-treatment is possible.
+2. Applying a bandage is part of the [First Aid](#first-aid) order for *drafted* pawns.
 
 **Production**: At a crafting spot or machining table.  
 **Production Skill Requirement**: None  
 **Research Requirements**: None  
-**Ingredients**: 4x `Wood` or `Steel`, 1x `any textile`  
+**Ingredients**: 2x `any fabric`  
 **Success Chance**: 100%
+
+### Blood Bag
+
+<p>
+  <img align="right" src="./Textures/Thing/blood_bag.png" height="96" alt="Blood Bag" />
+
+> **In-Game Description**
+> _"**Blood bag** &mdash; A bag of whole blood from a standard blood donation, ready for transfusion. It is used in the treatment of massive bleeding and allows quick restoration of blood volume to combat the effects of hypovolemic shock. Must be stored in a refrigerator or freezer.
+> Blood can be drawn from a healthy colonist or prisoner and stored in a blood bag for later use."_
+
+</p>
+
+**Used for**: Restoring blood volume in patients suffering from severe blood loss and [hypovolemic shock](#hypovolemic-shock). Blood transfusion is the only way to fully stabilize and save the patient's life in severe cases of [hypovolemic shock](#hypovolemic-shock). It is recommended to keep a ready supply of blood bags in your hospital supply room for emergency situations. You may even want to keep a few blood bags in the inventory of your combat medics to perform immediate blood transfusions on the battlefield.
+
+**Usage**:
+
+1. Tell a *drafted* pawn capable of doctoring to transfuse blood from a blood bag to a patient using one of the `Transfuse blood` options in the right-click context menu of the patient. The blood bag must be accessible in a stockpile or the doctor's inventory. Self-treatment is not possible. Depending on the selected options (`stabilize` or `fully heal`), the patient's blood loss will be reduced by a certain amount, or the patient will be fully healed. Each blood bag is capable of restoring 35% blood volume.
+2. Transfusing blood (`stabilize`) from a blood bag is part of the [First Aid](#first-aid) order for *drafted* pawns.
+3. Alternatively, restoring blood volume to a stable condition is now part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with severe blood loss, any non-drafted doctor will automatically attempt to restore blood volume using a blood bag, in accordance with the configured work priorities.
+
+**Production**: 
+
+1. Colonists, visitors, or prisoners can donate blood by scheduling the `Extract blood bag` procedure on the *operations* tab of the selected pawn. Colonists will donate blood willingly and know that they are helping to save lives of their fellow colonists. Prisoners and guests, on the other hand, may require a little more "convincing" to donate blood - at the cost of faction relations.
+2. Downed enemies can be executed through the `Harvest blood (finish off)` option in the right-click context menu to extract blood bags from them (requires a medically skilled, *drafted* pawn capable of doctoring). This is a quick and effective way to obtain blood bags from enemies on the battlefield, but is considered a war crime and will have severe consequences for your faction relations.
+3. Blood bags can be automatically and safely extracted from prisoners using the `blood bag farm` prisoner interaction option. It works analogous to the `hemogen farm` option from the Biotech DLC and allows to automatically schedule the extraction of blood bags from prisoners at regular intervals when it is safe to do so and does not pose a risk to the prisoner's health. It is still considered an unethical and offensive practice and will have consequences for your faction relations.
+
+**Research Requirements**: None  
+**Ingredients**: N/A  
+**Success Chance**: 100%
+
+### CPR
+
+Cardiopulmonary resuscitation (CPR) is an emergency procedure that combines chest compressions with artificial ventilation to manually preserve brain function until further measures can be taken to restore spontaneous blood circulation and breathing in a person who is in [cardiac arrest](#cardiac-arrest), suffering from a [heart attack](https://rimworldwiki.com/wiki/Ailments#Heart_attack), or is [choking on blood](#choking-on-blood).
+
+> **In-Game Description**
+> _"**CPR** &mdash; Perform CPR to stabilize patients with cardiac or respiratory arrest."_
+
+**Used for**: Stabilizing patients suffering from [cardiac arrest](#cardiac-arrest) (during `ventricular fibrillation` and `clinical death` stages), [heart attacks](https://rimworldwiki.com/wiki/Ailments#Heart_attack), and [choking on blood](#choking-on-blood).
+
+**Usage**
+
+1. Tell a *drafted* pawn capable of doctoring to perform CPR on a pawn suffering from [cardiac arrest](#cardiac-arrest) (during `ventricular fibrillation` and `clinical death` stages), [heart attack](https://rimworldwiki.com/wiki/Ailments#Heart_attack), or [choking on blood](#choking-on-blood) using the `Perform CPR` option in the right-click context menu. Self-treatment is not possible.
+2. CPR is part of the [First Aid](#first-aid) order for *drafted* pawns.
+3. Alternatively, resuscitating patients using CPR is now part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with a condition that requires CPR, any non-drafted doctor will automatically attempt to resuscitate the patient using CPR or a [defibrillator](#defibrillator), in accordance with the configured work priorities.
+
+**Severity Reduction**: $f_{\text{sigmoid}}($ `medicine skill> / 15` $)$ where $f_{\text{sigmoid}}$ is a diffused sigmoid function defined as $f_{\text{sigmoid}}(x) = \frac{1}{1 + e^{-10\cdot(x - 0.5)}} + z$ where $z$ is a random factor between $-0.1$ and $0.1$. See [Wolfram Alpha](https://www.wolframalpha.com/input?i=f%28x%29+%3D+1+%2F+%281+%2B+e%5E%28-10*%28x%2F15+-+0.5%29%29%29+%2B+z%2C+x+in+%5B0%2C+20%5D%2C+z+in%5B-0.1%2C0.1%5D) for a visualization of the function.
+
+> :warning: **Note**: Depending on the randomized factor $z$, poor medical skill of the doctor may do more harm than good when performing CPR. It is recommended to have a decently skilled doctor perform CPR to ensure the best possible outcome.
 
 ### Defibrillator
 
@@ -441,38 +518,153 @@ Defibrillation is a treatment for life-threatening conditions that affect the rh
 **Ingredients**: 25x `Steel`, 20x `Chemfuel`, 4x `Component`, 25x `Plasteel`, 10x `Gold`, 100x `Silver`  
 **Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.
 
-### CPR
+### Epinephrine Autoinjector
 
-Cardiopulmonary resuscitation (CPR) is an emergency procedure that combines chest compressions with artificial ventilation to manually preserve brain function until further measures can be taken to restore spontaneous blood circulation and breathing in a person who is in [cardiac arrest](#cardiac-arrest), suffering from a [heart attack](https://rimworldwiki.com/wiki/Ailments#Heart_attack), or is [choking on blood](#choking-on-blood).
-
+<p>
+  <img align="right" src="./Textures/Thing/Epinephrine/injector_yellow_b.png" height="64" alt="Splint" />
+  <img align="right" src="./Textures/Thing/Epinephrine/injector_yellow_a.png" height="64" alt="Splint" />
+  
 > **In-Game Description**
-> _"**CPR** &mdash; Perform CPR to stabilize patients with cardiac or respiratory arrest."_
+> _"**Epinephrine autoinjector** &mdash; An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose or doses of epinephrine (adrenaline) by means of autoinjector technology."_
+  
+</p>
 
-**Used for**: Stabilizing patients suffering from [cardiac arrest](#cardiac-arrest) (during `ventricular fibrillation` and `clinical death` stages), [heart attacks](https://rimworldwiki.com/wiki/Ailments#Heart_attack), and [choking on blood](#choking-on-blood).
+**Used for**: Administering a large dose of [epinephrine (adrenaline)](#adrenaline-rush) to increase heart rate and blood pressure of the patient, which can help to slow the progression of [hypovolemic shock](#hypovolemic-shock) for a short period of time until the patient can be fully stabilized using blood transfusion. Alternatively, the pain relief from the adrenaline rush can help to wake up a patient who has lost consciousness due to severe pain or other conditions. There have also been reports of epinephrine being used as a combat stimulant to increase the combat effectiveness of soldiers in the field, however, there is a risk of [adrenaline overdose](#adrenaline-rush) if used excessively.
 
-**Usage**
+**Usage**:
 
-1. Tell a *drafted* pawn capable of doctoring to perform CPR on a pawn suffering from [cardiac arrest](#cardiac-arrest) (during `ventricular fibrillation` and `clinical death` stages), [heart attack](https://rimworldwiki.com/wiki/Ailments#Heart_attack), or [choking on blood](#choking-on-blood) using the `Perform CPR` option in the right-click context menu. Self-treatment is not possible.
-2. CPR is part of the [First Aid](#first-aid) order for *drafted* pawns.
-3. Alternatively, resuscitating patients using CPR is now part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with a condition that requires CPR, any non-drafted doctor will automatically attempt to resuscitate the patient using CPR or a [defibrillator](#defibrillator), in accordance with the configured work priorities.
+1. Tell a *drafted* pawn capable of doctoring to use the epinephrine autoinjector on a patient using the `Inject epinephrine` option in the right-click context menu. The epinephrine autoinjector must be accessible in a stockpile or the doctor's inventory. Self-treatment is possible.
+2. Alternatively, as epinephrine is considered a drug, it can be administered as part of the normal medical treatment using the *operations* tab of the patient or by telling the pawn to injest the drug directly by right-clicking on the drug and selecting `Use epinephrine autoinjector`.
 
-**Severity Reduction**: $f_{\text{sigmoid}}($ `medicine skill> / 15` $)$ where $f_{\text{sigmoid}}$ is a diffused sigmoid function defined as $f_{\text{sigmoid}}(x) = \frac{1}{1 + e^{-10\cdot(x - 0.5)}} + z$ where $z$ is a random factor between $-0.1$ and $0.1$. See [Wolfram Alpha](https://www.wolframalpha.com/input?i=f%28x%29+%3D+1+%2F+%281+%2B+e%5E%28-10*%28x%2F15+-+0.5%29%29%29+%2B+z%2C+x+in+%5B0%2C+20%5D%2C+z+in%5B-0.1%2C0.1%5D) for a visualization of the function.
-
-> :warning: **Note**: Depending on the randomized factor $z$, poor medical skill of the doctor may do more harm than good when performing CPR. It is recommended to have a decently skilled doctor perform CPR to ensure the best possible outcome.
+**Production**: At a drug lab.  
+**Production Skill Requirement**: `Crafting` at level 6, `Intellectual` at level 4  
+**Research Requirements**: `Drug Production` and `Medicine Production`  
+**Ingredients**: 1x `Neutroamine`, 1x `Yayo`  
+**Success Chance**: 100%
 
 ### First Aid
 
-### Epinephrine Autoinjector
+First aid is the initial assistance or treatment given to a person who is injured or suddenly ill before full medical treatment can be provided. With More Injuries, `Provide first aid` is a new command that can be given to *drafted* pawns capable of doctoring to attempt to automatically stabilize patients with life-threatening conditions. It is an aggregated work type that includes the use of [CPR](#cpr), [defibrillation](#defibrillator), [airway suction](#airway-suction-device), [blood transfusion](#blood-bag), stopping bleeding using [bandages](#bandage) or [hemostatic agents](#hemostatic-agent), and other emergency treatments.
+
+> **In-Game Description**
+> _"**Provide first aid** &mdash; Evaluating treatment options for &lt;patient name&gt;."_
+
+**Used for**: Automatically stabilizing and treating patients with life-threatening conditions.
+
+**Usage**
+
+Tell a *drafted* pawn capable of doctoring to provide first aid to a patient using the `Provide first aid` option in the right-click context menu. The pawn will automatically go through a defined sequence of emergency treatments to stabilize the patient and prevent further deterioration of their condition. Self-treatment is not possible.
+
+1. The pawn will first attempt to reduce the severity of any externally, bleeding injury by applying [bandages](#bandage) or [hemostatic agents](#hemostatic-agent) to the wounds.
+2. The pawn will then attempt to treat cardiac arrest through [defibrillation](#defibrillator) or [CPR](#cpr), if necessary.
+3. An [airway suction device](#airway-suction-device) will be used to clear the airway of any obstructions.
+4. If neither a [defibrillator](#defibrillator) nor an [airway suction device](#airway-suction-device) is available, but treatment is required, the pawn will start performing [CPR](#cpr) to stabilize the patient.
+5. An immediate [blood transfusion](#blood-bag) will be performed to restore blood volume in cases of severe blood loss and [hypovolemic shock](#hypovolemic-shock).
+6. Finally, normal medical treatment will be started to fully stabilize the patient and treat any remaining injuries.
+
+After each step, the doctor will re-evaluate the patient's condition and decide on the next course of action. The treatment sequence will continue until the patient is fully stabilized or until the doctor is unable to access the necessary medical devices or treatments.
+
+> :warning: **Note**: Be aware that due to the complexity of the treatment sequence, the doctor may not necessarily choose the most optimal treatment at each step. As the severity of the conditions are not taken into account, the doctor may not always prioritize the most life-threatening conditions first. It is recommended to keep a close eye on the treatment progress and intervene manually if necessary.
+
+### Hearing Protection
+
+> :construction: *Note: This feature is still under development.*
+> Currently, hearing protection is evaluated by the number of clothing layers covering the ears. The more layers of clothing covering the ears, the higher the protection against hearing damage from loud noises. In the future, this feature may be expanded to include ear protection items, such as earplugs or earmuffs, that can be worn by pawns to further reduce the risk of hearing damage.
+
+### Hemostatic Agent
+
+<p>
+  <img align="right" src="./Textures/Thing/Hemostat/hemostat_b.png" height="64" alt="Hemostatic Agent" />
+  <img align="right" src="./Textures/Thing/Hemostat/hemostat_a.png" height="64" alt="Hemostatic Agent" />
+
+> **In-Game Description**
+> _"**Hemostatic agent** &mdash; A special chemical compound designed to promote blood clotting and reduce the flow of blood from wounds. Hemostatic agents are used to control bleeding in emergency situations, such as when a patient is suffering from severe trauma or has been injured in combat. The compound is fast-acting and can be used to stabilize a patient until they can be treated by a doctor. However, it is not a substitute for proper medical treatment.
+> Quick to apply and effective at stopping severe bleeding, hemostatic agents are an essential part of any first aid kit."_
+
+</p>
+
+**Used for**: Temporarily reducing the bleed rate of wounds to allow the patient to be stabilized by a doctor. Hemostatic agents are a fast-acting and effective way to stop severe bleeding and prevent the patient from going into [hypovolemic shock](#hypovolemic-shock) until more advanced medical treatment can be provided. This chemical compound is designed to promote blood clotting and reduce the flow of blood from wounds, allowing to reduce the bleed rate of the wound by up to 80% and lasts approximately 8 hours until its active ingredients are depleted. Effectiveness scales linearly with time during this period. Hemostatic agents are an excellent choice for treating severe bleeding wounds, but may be overkill for minor to moderate bleeding.
+
+**Usage**:
+
+1. Tell a *drafted* pawn capable of doctoring to apply a hemostatic agent to a wound using one of the `Stabilize with hemostatic agent` options in the right-click context menu of the patient. The hemostatic agent must be accessible in a stockpile or the doctor's inventory. Self-treatment is possible.
+2. Applying a hemostatic agent is part of the [First Aid](#first-aid) order for *drafted* pawns.
+
+**Production**: At a machining table.  
+**Production Skill Requirement**: `Crafting` at level 4  
+**Research Requirements**: `Medicine Production`  
+**Ingredients**: 5x `any textile`, 3x `Chemfuel`  
+**Success Chance**: 100%
+
+> :bulb: **Tip**: Hemostatic agents are a powerful tool to stop severe bleeding in an emergency, so make sure you have a few hemostatic agents ready in your hospital or carried by your combat medics to quickly treat severe injuries on the battlefield.
+
+### Splint
+
+<p>
+  <img align="right" src="./Textures/Thing/Splint/splint_b.png" height="64" alt="Splint" />
+  <img align="right" src="./Textures/Thing/Splint/splint_a.png" height="64" alt="Splint" />
+  
+> **In-Game Description**
+> _"**Splint** &mdash; A splint is a rigid device used for immobilizing and protecting an injured bone or joint. It is used to prevent further damage to the bone and surrounding tissue and promote healing over time. Splints are commonly used to treat bone fractures, sprains, and dislocations."_
+  
+</p>
+
+**Used for**: Treating [bone fractures](#bone-fracture), allowing them to heal over time (see [healing bone fracture](#healing-bone-fracture)).
+
+**Usage**
+
+1. Tell a *drafted* pawn capable of doctoring to apply a splint to a pawn with a bone fracture using the `Splint fractures` option in the right-click context menu. The splint must be accessible in a stockpile or the doctor's inventory. Due to its simplicity, the procedure can be performed anywhere and even in combat situations, to quickly restore partial stability to the injured limb and allow the pawn to move again. However, this treatment method comes at the cost of treatment quality and a slightly longer time for the fracture to heal.
+2. Alternatively, use the *operations* tab of the injured pawn to schedule the application of a splint to a bone fracture in a controlled environment, such as a hospital bed, to ensure the highest treatment quality and fastest healing time.
+
+> :bulb: **Tip**: Alternatively to splinting the fracture, the bone can be [surgically repaired](#repair-fracture-placeholder-todo) to realign and stabilize the bone, allowing for an immediate recovery.
+
+**Production**: At a crafting spot or machining table.  
+**Production Skill Requirement**: None  
+**Research Requirements**: None  
+**Ingredients**: 4x `Wood` or `Steel`, 1x `any textile`  
+**Success Chance**: 100%
 
 ### Tourniquet
 
-### Airway Suction Device
+<p>
+  <img align="right" src="./Textures/Thing/Tourniquet/tourniquet_b.png" height="64" alt="Tourniquet" />
+  <img align="right" src="./Textures/Thing/Tourniquet/tourniquet_a.png" height="64" alt="Tourniquet" />
 
-### Blood Bag
+> **In-Game Description**
+> _"**Tourniquet** &mdash; A tourniquet is a constricting or compressing device used to control venous and arterial circulation to an extremity for a period of time. It is used to stop hemorrhaging (bleeding) and is most commonly used in emergency situations, such as battlefield injuries or accidents, to prevent hypovolemic shock and death.
+> As a tourniquet restricts blood flow to the limb, it should be removed as soon as possible to prevent ischemia (starvation of oxygen) and necrosis (cell death) in the limb, which can lead to gangrene or death from sepsis."_
 
-<img src="./Textures/Thing/blood_bag.png" style="height: 4cm" alt="Blood Bag" />
+</p>
 
-### Hearing Protection
+**Used for**: Stopping severe bleeding in the corresponding limb to prevent extreme blood loss, [hypovolemic shock](#hypovolemic-shock), and death. When applied to a limb, a tourniquet will restrict blood flow to the tissue below the tourniquet, which can severely reduce the bleed rate of injuries in that limb up to 95% until the tourniquet is removed. While a tourniquet can save a life in an emergency, prolonged use can cause severe damage to the limb in the form of ischemia (starvation of oxygen) and necrosis (cell death), which can lead to a life-threatening condition known as [gangrene](#gangrene). Therefore, a tourniquet should be removed as soon as possible after the bleeding has been stopped to prevent further complications.
+
+**Usage**:
+
+<ol>
+<li> 
+
+Tell a conscious pawn capable of doctoring to apply a tourniquet to a limb using the `Apply tourniquet to <limb> of <patient name>` option in the right-click context menu of the patient to apply a tourniquet to the corresponding limb. The tourniquet must be accessible in a stockpile or the doctor's inventory. Self-treatment is possible. Conversely, choose the `Remove tourniquet from <limb> of <patient name>` option to remove a previously applied tourniquet and restore blood flow to the limb.
+
+</li>
+<li>
+<img align="right" src="./Textures/UI/tourniquet_gizmo.png" height="64" alt="Tourniquet" /> 
+
+Alternatively, use the *tourniquet gizmo* (depicted on the right) to apply or remove a tourniquet from the currently selected pawn. The gizmo can be found in the bottom of the screen when a pawn is selected and is capable of applying or removing a tourniquet from themselves.
+
+</li>
+</ol>
+
+**Production**: At a crafting spot or machining table.  
+**Production Skill Requirement**: None  
+**Research Requirements**: None  
+**Ingredients**: 1x `Wood` or `Steel`, 4x `any textile` or `leather`  
+**Success Chance**: 100%
+
+> :bulb: **Tip**: Tourniquets are a powerful tool to stop severe bleeding in an emergency, so make sure you have a few tourniquets ready in your hospital or carried by your combat medics to quickly treat severe injuries on the battlefield.
+
+> :bulb: **Tip**: Should the patient decease during treatment, the tourniquet can be recovered from the corpse to be reused on another patient. This is automatically done as a new low-prority work type for all non-drafted doctors.
+
+> :bulb: **Tip**: While generally easy to handle, severly incompetent doctors (medicine and intellectual skill below 3) may have a hard time applying a tourniquet correctly, potentially even having the not-so-bright idea to apply it to the neck. It goes without saying that such misuses of a tourniquet are not recommended and may lead to the patient [choking to death](#choking-on-tourniquet).
 
 ## Surgeries
 
@@ -491,5 +683,7 @@ TODO: implement https://en.wikipedia.org/wiki/Video-assisted_thoracoscopic_surge
 ### Repair Fracture Placeholder TODO
 
 ## New Work Types
+
+TODO: A quick overview of the new automatic work types (work givers and priorities) that have been added to the game.
 
 ## Known Issues and Incompatibilities

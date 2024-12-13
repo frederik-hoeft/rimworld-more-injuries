@@ -25,7 +25,8 @@ public class HediffComp_Choking : HediffComp
         base.CompPostMake();
     }
 
-    private bool Coughing => Source is { Bleeding: false } && parent.pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.45f;
+    private bool Coughing => Source is { Bleeding: false } && (parent.pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.45f
+        || ModLister.BiotechInstalled && parent.pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest));
 
     public override string CompLabelInBracketsExtra => Coughing
         ? "coughing"

@@ -47,6 +47,10 @@
       <recipeUsers>
         <li>DrugLab</li>
       </recipeUsers>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+        <Intellectual>4</Intellectual>
+      </skillRequirements>
       <soundWorking>Recipe_Drug</soundWorking>
       <displayPriority>1500</displayPriority>
     </recipeMaker>
