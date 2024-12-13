@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Biotech</li>
+    </mods>
+    <match Class="PatchOperationConditional">
+      <xpath>Defs/HediffDef[defName="Deathrest"]/comps</xpath>
+      <match Class="PatchOperationAdd">
+        <xpath>Defs/HediffDef[defName="Deathrest"]/comps</xpath>
+        <value>
+          <li Class="MoreInjuries.Integrations.Biotech.HediffCompProperties_DeathrestIntegration"></li>
+        </value>
+      </match>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>Defs/HediffDef[defName="Deathrest"]</xpath>
+        <value>
+          <comps>
+            <li Class="MoreInjuries.Integrations.Biotech.HediffCompProperties_DeathrestIntegration"></li>
+          </comps>
+        </value>
+      </nomatch>
+    </match>
+  </Operation>
+</Patch>

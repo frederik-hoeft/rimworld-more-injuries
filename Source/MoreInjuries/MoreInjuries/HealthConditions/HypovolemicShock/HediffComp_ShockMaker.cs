@@ -1,9 +1,10 @@
 ﻿using MoreInjuries.KnownDefs;
+using RimWorld;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
-public class ShockMakerHediffComp : HediffComp
+public class HediffComp_ShockMaker : HediffComp
 {
     private static readonly SimpleCurve s_curve = new(
     [
@@ -28,7 +29,9 @@ public class ShockMakerHediffComp : HediffComp
                 return;
             }
             _ticks = 0;
-            if (Rand.Chance(s_curve.Evaluate(parent.Severity)) && !parent.pawn.health.hediffSet.HasHediff(KnownHediffDefOf.HypovolemicShock))
+            if (Rand.Chance(s_curve.Evaluate(parent.Severity)) && !parent.pawn.health.hediffSet.HasHediff(KnownHediffDefOf.HypovolemicShock)
+                // Biotech integration: don't apply shock if the pawn is deathresting, otherwise leads to infinite hypovolemic shock
+                && (!ModLister.BiotechInstalled || !parent.pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest)))
             {
                 parent.pawn.health.AddHediff(HediffMaker.MakeHediff(KnownHediffDefOf.HypovolemicShock, parent.pawn));
                 _hasShock = true;

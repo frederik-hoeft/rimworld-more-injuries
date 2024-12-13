@@ -6,13 +6,13 @@ using Verse.Sound;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
-public class ChokingHediffComp : HediffComp
+public class HediffComp_Choking : HediffComp
 {
     private int _ticksThisInterval;
 
     public Hediff_Injury? Source { get; set; }
 
-    public ChokingHediffCompProperties Properties => (ChokingHediffCompProperties)props;
+    public HediffCompProperties_Choking Properties => (HediffCompProperties_Choking)props;
 
     public override void CompPostMake()
     {

@@ -11,7 +11,7 @@ namespace MoreInjuries.HealthConditions.HypovolemicShock;
 using static BloodLossConstants;
 using HediffInfo = (Hediff? BloodLoss, Hediff? AdrenalineRush);
 
-public class ShockHediffComp : HediffComp
+public class HediffComp_Shock : HediffComp
 {
     private const int CYCLE_LENGTH = 150;
 
@@ -19,9 +19,15 @@ public class ShockHediffComp : HediffComp
     private int _ticks = 0;
     private int _cycles = 0;
 
-    private ShockHediffCompProperties Properties => (ShockHediffCompProperties)props;
+    private HediffCompProperties_Shock Properties => (HediffCompProperties_Shock)props;
 
     public bool PastFixedPoint => parent.Severity > 0.6f;
+
+    public bool FixedNow 
+    { 
+        get => _fixedNow; 
+        set => _fixedNow = value; 
+    }
 
     private Hediff? GetBloodLoss() => parent.pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BloodLoss);
 
@@ -54,7 +60,7 @@ public class ShockHediffComp : HediffComp
         float requiredQuality = Properties.BleedSeverityCurve.Evaluate(parent.Severity);
         if (GetBloodLoss()?.Severity is null or < 0.15f || quality >= requiredQuality)
         {
-            _fixedNow = true;
+            FixedNow = true;
             Logger.LogVerbose($"Fixed hypovolemic shock for {parent.pawn.Name}");
         }
     }
@@ -81,7 +87,7 @@ public class ShockHediffComp : HediffComp
         // at max 1.5x the normal recovery rate or 1/1.5 = 0.67x the normal increase rate
         float adrenalineBloodPressureOffset = Mathf.Clamp01((adrenaline?.Severity ?? 0f) / 2f) + 1f;
         bool severityCalculationFinished = false;
-        if (bloodLoss?.Severity is null or < BLOOD_LOSS_THRESHOLD || _fixedNow)
+        if (bloodLoss?.Severity is null or < BLOOD_LOSS_THRESHOLD || FixedNow)
         {
             // the patient is stable, start recovery
             parent.Severity -= 0.00375f * adrenalineBloodPressureOffset;
@@ -134,7 +140,9 @@ public class ShockHediffComp : HediffComp
         }
         // cardiac arrest chance is higher for higher blood loss
         float cardiacArrestChance = MoreInjuriesMod.Settings.CardiacArrestChanceOnHighBloodLoss * bloodLoss.Severity / 0.8f;
-        if (MoreInjuriesMod.Settings.EnableCardiacArrestOnHighBloodLoss && Rand.Chance(cardiacArrestChance))
+        if (MoreInjuriesMod.Settings.EnableCardiacArrestOnHighBloodLoss && Rand.Chance(cardiacArrestChance)
+            // Biotech integration: don't apply cardiac arrest if the pawn is deathresting, otherwise leads to infinite cardiac arrest
+            && (!ModLister.BiotechInstalled || !parent.pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest)))
         {
             if (pawn.health.hediffSet.GetBodyPartRecord(BodyPartDefOf.Heart) is BodyPartRecord heart
                 && !pawn.health.hediffSet.PartIsMissing(heart)

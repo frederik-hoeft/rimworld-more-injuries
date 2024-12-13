@@ -59,7 +59,7 @@ internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPos
                 && Rand.Chance(MoreInjuriesMod.Settings.ChokingChanceOnDamage))
             {
                 Hediff choking = HediffMaker.MakeHediff(KnownHediffDefOf.ChokingOnBlood, patient);
-                if (choking.TryGetComp(out ChokingHediffComp? comp))
+                if (choking.TryGetComp(out HediffComp_Choking? comp))
                 {
                     comp!.Source = injury;
                     patient.health.AddHediff(choking);

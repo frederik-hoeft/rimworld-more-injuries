@@ -20,7 +20,7 @@
         <message>{0} is choking on blood!</message>
         <messageType>NegativeHealthEvent</messageType>
       </li>
-      <li Class="MoreInjuries.HealthConditions.Choking.ChokingHediffCompProperties">
+      <li Class="MoreInjuries.HealthConditions.Choking.HediffCompProperties_Choking">
         <_chokingIntervalTicks>750</_chokingIntervalTicks>
       </li>
     </comps>
