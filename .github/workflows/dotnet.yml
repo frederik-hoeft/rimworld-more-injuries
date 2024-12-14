@@ -23,4 +23,4 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore Source\MoreInjuries\MoreInjuries.sln
     - name: Build project for release
-      run: msbuild Source\MoreInjuries\MoreInjuries.sln -t:rebuild -verbosity:diag -property:Configuration=Release
+      run: msbuild Source\MoreInjuries\MoreInjuries.sln -t:rebuild -property:Configuration=Release
