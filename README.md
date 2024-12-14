@@ -100,7 +100,8 @@ Cardiac arrest is a sudden loss of blood flow resulting from the failure of the 
 
 **Treatment**: Cardiac arrest must be treated immediately with [CPR](#cpr) to restore blood flow and hopefully restart the heart. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). In cases of `clinical death`, only [CPR](#cpr) will be effective.
 
-> :information_source: **Biotech DLC**: Sanguaphages are immune to cardiac arrest and will automatically recover from it once entering deathrest.
+> [!NOTE]
+> **Biotech DLC**: Sanguaphages are immune to cardiac arrest and will automatically recover from it once entering deathrest.
 
 ### Chemical Peritonitis
 
@@ -130,7 +131,8 @@ Choking is a medical emergency that occurs when a foreign object becomes lodged 
 
 **Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. If the patient is unconscious, the airways must be cleared using a specialized [airway suction device](#airway-suction-device) or by compressing the chest using [CPR](#cpr) to expel the blood and restore breathing.
 
-> :information_source: **Biotech DLC**: Deathresting sanguaphages will alway be able to cough up the blood on their own and clear the airway - once the bleeding has been stopped.
+> [!NOTE]
+> **Biotech DLC**: Deathresting sanguaphages will alway be able to cough up the blood on their own and clear the airway - once the bleeding has been stopped.
 
 #### Choking on Tourniquet
 
@@ -279,7 +281,8 @@ _Basically a more severe and dangerous version of a [concussion](#concussion)._
 
 ### Hydrostatic Shock
 
-> :warning: **Note**: The concept is controversial and not universally accepted in the medical community.
+> [!WARNING]
+> The concept is controversial and not universally accepted in the medical community.
 
 Hydrostatic shock, also known as Hydro-shock, is the controversial concept that a penetrating projectile (such as a bullet) can produce a pressure wave that causes _"remote neural damage"_, _"subtle damage in neural tissues"_ and _"rapid effects"_ in living targets.
 
@@ -302,9 +305,11 @@ When a pawn loses a significant amount of blood, there may not be enough blood v
 **Treatment**: Hypovolemic shock is *primarily treated* by treating the underlying cause of the blood loss (e.g., stopping the bleeding) and restoring blood volume to compensate for the loss of blood. Depending on the severity of the condition, preventing further blood loss may be sufficient to allow the body to recover on its own. In more severe cases, when the progression of hypovolemic shock has reached above 60% severity, blood volume must be restored through transfusion using [blood bags](#blood-bag), [hemogen packs](https://rimworldwiki.com/wiki/Hemogen_pack), or other means (i.e., any other mod that reduces blood loss severity). Once the blood loss is no longer `severe`, the severity of hypovolemic shock will start to decrease over time, allowing the patient to recover. Note that this recovery period may take several hours as the blood volume is restored by the IV fluids or blood transfusion. During this recovery period, the patient must be kept under close observation, especially when past 60% severity, and secondary effects, like [organ hypoxia](#organ-hypoxia) or [cardiac arrest](#cardiac-arrest), must be treated as they might still occur until the patient has been fully stabilized (blood loss severity at `moderate` or lower and hypovolemic shock severity below 60%).  
 During the initial emergency treatment of hypovolemic shock, its progression can be slowed by administering [epinephrine](#adrenaline-rush) to increase heart rate and blood pressure, which will help to increase the blood flow to the organs and reduce the risk of organ hypoxia and multiple organ failure. Additionally, hypovolemic shock itself may be treated using conventional medicine to decrease progression further for a short period of time until the patient can be fully stabilized using blood transfusion. Note, however, that **the only way to fully stabilize and save the patient's life is to restore blood volume.**
 
-> :bulb: **Tip**: As time is of the essence when treating hypovolemic shock, it is recommended to have a stockpile of [blood bags](#blood-bag) or other blood transfusion items ready in your hospital to quickly treat patients with severe blood loss. You may even want to assign some medically skilled pawns to be dedicated combat medics who keep a few blood bags in their inventory at all times to immediately stabilize and treat injured pawns on the battlefield. This can be achieved by telling the medic to "pick up" a number of blood bags (or including blood bags in [Combat Extended](https://github.com/CombatExtended-Continued/CombatExtended) loadouts) and then telling the drafted medic to `transfuse blood (from inventory, stabilize)` to the injured pawn.
+> [!TIP]
+> As time is of the essence when treating hypovolemic shock, it is recommended to have a stockpile of [blood bags](#blood-bag) or other blood transfusion items ready in your hospital to quickly treat patients with severe blood loss. You may even want to assign some medically skilled pawns to be dedicated combat medics who keep a few blood bags in their inventory at all times to immediately stabilize and treat injured pawns on the battlefield. This can be achieved by telling the medic to "pick up" a number of blood bags (or including blood bags in [Combat Extended](https://github.com/CombatExtended-Continued/CombatExtended) loadouts) and then telling the drafted medic to `transfuse blood (from inventory, stabilize)` to the injured pawn.
 
-> :information_source: **Biotech DLC**: Deathresting sanguaphages will automatically recover from hypovolemic shock over time, as they can regenerate blood on their own.
+> [!NOTE]
+> **Biotech DLC**: Deathresting sanguaphages will automatically recover from hypovolemic shock over time, as they can regenerate blood on their own.
 
 ### Inhalation Injury
 
@@ -363,9 +368,11 @@ Modern armor is designed to prevent spalling by adding softer layers above the h
 
 **Treatment**: Spalling injuries can be treated like any other cut or laceration, by treating the wound with or without medicine, preferably in a clean environment to reduce the risk of infection.
 
-> :bulb: **Tip**: You can significantly reduce the risk of spalling injuries or even prevent them entirely by keeping your armor in good condition and replacing it when it becomes damaged. Alternatively, you can research into advanced spacer armor types that are designed to prevent spalling entirely.
+> [!TIP]
+> You can significantly reduce the risk of spalling injuries or even prevent them entirely by keeping your armor in good condition and replacing it when it becomes damaged. Alternatively, you can research into advanced spacer armor types that are designed to prevent spalling entirely.
 
-> :bulb: **Tip**: You can tweak the chance, severity, and armor condition thresholds for spalling injuries in the mod settings to better balance the risk and reward of using degraded armor plating in combat.
+> [!TIP]
+> You can tweak the chance, severity, and armor condition thresholds for spalling injuries in the mod settings to better balance the risk and reward of using degraded armor plating in combat.
 
 ## New Body Parts
 
@@ -487,7 +494,8 @@ Cardiopulmonary resuscitation (CPR) is an emergency procedure that combines ches
 
 **Severity Reduction**: $f_{\text{sigmoid}}($ `medicine skill> / 15` $)$ where $f_{\text{sigmoid}}$ is a diffused sigmoid function defined as $f_{\text{sigmoid}}(x) = \frac{1}{1 + e^{-10\cdot(x - 0.5)}} + z$ where $z$ is a random factor between $-0.1$ and $0.1$. See [Wolfram Alpha](https://www.wolframalpha.com/input?i=f%28x%29+%3D+1+%2F+%281+%2B+e%5E%28-10*%28x%2F15+-+0.5%29%29%29+%2B+z%2C+x+in+%5B0%2C+20%5D%2C+z+in%5B-0.1%2C0.1%5D) for a visualization of the function.
 
-> :warning: **Note**: Depending on the randomized factor $z$, poor medical skill of the doctor may do more harm than good when performing CPR. It is recommended to have a decently skilled doctor perform CPR to ensure the best possible outcome.
+> [!IMPORTANT]
+> Depending on the randomized factor $z$, poor medical skill of the doctor may do more harm than good when performing CPR. It is recommended to have a decently skilled doctor perform CPR to ensure the best possible outcome.
 
 ### Defibrillator
 
@@ -562,7 +570,8 @@ Tell a *drafted* pawn capable of doctoring to provide first aid to a patient usi
 
 After each step, the doctor will re-evaluate the patient's condition and decide on the next course of action. The treatment sequence will continue until the patient is fully stabilized or until the doctor is unable to access the necessary medical devices or treatments.
 
-> :warning: **Note**: Be aware that due to the complexity of the treatment sequence, the doctor may not necessarily choose the most optimal treatment at each step. As the severity of the conditions are not taken into account, the doctor may not always prioritize the most life-threatening conditions first. It is recommended to keep a close eye on the treatment progress and intervene manually if necessary.
+> [!CAUTION]
+> Beware that due to the complexity of the treatment sequence, the doctor may not necessarily choose the most optimal treatment at each step. As the severity of the conditions are not taken into account, the doctor may not always prioritize the most life-threatening conditions first. It is recommended to keep a close eye on the treatment progress and intervene manually if necessary.
 
 ### Hearing Protection
 
@@ -594,7 +603,8 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 **Ingredients**: 5x `any textile`, 3x `Chemfuel`  
 **Success Chance**: 100%
 
-> :bulb: **Tip**: Hemostatic agents are a powerful tool to stop severe bleeding in an emergency, so make sure you have a few hemostatic agents ready in your hospital or carried by your combat medics to quickly treat severe injuries on the battlefield.
+> [!TIP]
+> Hemostatic agents are a powerful tool to stop severe bleeding in an emergency, so make sure you have a few hemostatic agents ready in your hospital or carried by your combat medics to quickly treat severe injuries on the battlefield.
 
 ### Splint
 
@@ -614,7 +624,8 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 1. Tell a *drafted* pawn capable of doctoring to apply a splint to a pawn with a bone fracture using the `Splint fractures` option in the right-click context menu. The splint must be accessible in a stockpile or the doctor's inventory. Due to its simplicity, the procedure can be performed anywhere and even in combat situations, to quickly restore partial stability to the injured limb and allow the pawn to move again. However, this treatment method comes at the cost of treatment quality and a slightly longer time for the fracture to heal.
 2. Alternatively, use the *operations* tab of the injured pawn to schedule the application of a splint to a bone fracture in a controlled environment, such as a hospital bed, to ensure the highest treatment quality and fastest healing time.
 
-> :bulb: **Tip**: Alternatively to splinting the fracture, the bone can be [surgically repaired](#repair-fracture-placeholder-todo) to realign and stabilize the bone, allowing for an immediate recovery.
+> [!TIP]
+> Alternatively to splinting the fracture, the bone can be [surgically repaired](#repair-fracture-placeholder-todo) to realign and stabilize the bone, allowing for an immediate recovery.
 
 **Production**: At a crafting spot or machining table.  
 **Production Skill Requirement**: None  
@@ -658,11 +669,14 @@ Alternatively, use the *tourniquet gizmo* (depicted on the right) to apply or re
 **Ingredients**: 1x `Wood` or `Steel`, 4x `any textile` or `leather`  
 **Success Chance**: 100%
 
-> :bulb: **Tip**: Tourniquets are a powerful tool to stop severe bleeding in an emergency, so make sure you have a few tourniquets ready in your hospital or carried by your combat medics to quickly treat severe injuries on the battlefield.
+> [!TIP]
+> Tourniquets are a powerful tool to stop severe bleeding in an emergency, so make sure you have a few tourniquets ready in your hospital or carried by your combat medics to quickly treat severe injuries on the battlefield.
 
-> :bulb: **Tip**: Should the patient decease during treatment, the tourniquet can be recovered from the corpse to be reused on another patient. This is automatically done as a new low-prority work type for all non-drafted doctors.
+> [!TIP]
+> Should the patient decease during treatment, the tourniquet can be recovered from the corpse to be reused on another patient. This is automatically done as a new low-prority work type for all non-drafted doctors.
 
-> :bulb: **Tip**: While generally easy to handle, severly incompetent doctors (medicine and intellectual skill below 3) may have a hard time applying a tourniquet correctly, potentially even having the not-so-bright idea to apply it to the neck. It goes without saying that such misuses of a tourniquet are not recommended and may lead to the patient [choking to death](#choking-on-tourniquet).
+> [!WARNING]
+> While generally easy to handle, severly incompetent doctors (medicine and intellectual skill below 3) may have a hard time applying a tourniquet correctly, potentially even having the not-so-bright idea to apply it to the neck. It goes without saying that such misuses of a tourniquet are not recommended and may lead to the patient [choking to death](#choking-on-tourniquet).
 
 ## Surgeries
 
