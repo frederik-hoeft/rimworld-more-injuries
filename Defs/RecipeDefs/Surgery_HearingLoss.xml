@@ -2,8 +2,8 @@
 <Defs>
   <RecipeDef ParentName="SurgeryFlesh">
     <defName>RestoreHearing</defName>
-    <label>Restore hearing</label>
-    <description>Experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown moderate success in restoring hearing to those who have lost it.</description>
+    <label>Restore hearing: cellular regenerative surgery</label>
+    <description>Cellular Regenerative Otologic Surgery (CROS) is an experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown moderate success in restoring hearing, even in very severe cases.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
     <jobString>Performing hearing restoration surgery on {0}.</jobString>
     <workAmount>4500</workAmount>
@@ -21,7 +21,7 @@
             <li>MedicineUltratech</li>
           </thingDefs>
         </filter>
-        <count>3</count>
+        <count>2</count>
       </li>
     </ingredients>
     <fixedIngredientFilter>

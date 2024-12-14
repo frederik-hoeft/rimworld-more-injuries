@@ -62,7 +62,7 @@
 
   <WorkGiverDef>
     <defName>DoctorRemoveTourniquetFromDead</defName>
-    <label>recover a tourniquet from a dead patient to reuse it in the future</label>
+    <label>recover a tourniquet from a deceased patient to reuse it in the future</label>
     <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_RemoveTourniquetFromDead</giverClass>
     <workType>Doctor</workType>
     <emergency>false</emergency>

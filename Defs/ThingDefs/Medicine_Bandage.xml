@@ -28,7 +28,7 @@
     <recipeMaker>
       <recipeUsers>
         <li>CraftingSpot</li>
-        <li>MachiningTable</li>
+        <li>TableMachining</li>
       </recipeUsers>
     </recipeMaker>
     <modExtensions>
@@ -69,7 +69,7 @@
     </fixedIngredientFilter>
     <recipeUsers>
       <li>CraftingSpot</li>
-      <li>MachiningTable</li>
+      <li>TableMachining</li>
     </recipeUsers>
   </RecipeDef>
 </Defs>

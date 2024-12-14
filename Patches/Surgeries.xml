@@ -3,7 +3,8 @@
   <Operation Class="PatchOperationAdd">
     <xpath>/Defs/ThingDef[defName="Human"]/recipes</xpath>
     <value>
-      <li>RepairCollapsedLung</li>
+      <li>RepairCollapsedLung_Industrial</li>
+      <li>RepairCollapsedLung_Ultratech</li>
       <li>ExtractWholeBloodBag</li>
       <li>RepairFracture</li>
       <li>SplintFracture</li>

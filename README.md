@@ -58,12 +58,19 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Splint](#splint)
     - [Tourniquet](#tourniquet)
   - [Surgeries](#surgeries)
-    - [Trepanation](#trepanation)
+    - [Cellular Regenerative Otologic Surgery](#cellular-regenerative-otologic-surgery)
     - [Decompressive Craniectomy](#decompressive-craniectomy)
+    - [Osteosynthetic Surgery](#osteosynthetic-surgery)
     - [Stereotactic Surgery](#stereotactic-surgery)
-    - [Repair Lung Collaps Placeholder TODO](#repair-lung-collaps-placeholder-todo)
-    - [Repair Fracture Placeholder TODO](#repair-fracture-placeholder-todo)
+    - [Thoracotomy](#thoracotomy)
+    - [Trepanation](#trepanation)
+    - [Video-Assisted Thoracoscopic Surgery](#video-assisted-thoracoscopic-surgery)
   - [New Work Types](#new-work-types)
+    - [Defibrillation](#defibrillation)
+    - [Airway Management](#airway-management)
+    - [Performing CPR](#performing-cpr)
+    - [Blood Transfusions](#blood-transfusions)
+    - [Tourniquet Recovery](#tourniquet-recovery)
   - [Known Issues and Incompatibilities](#known-issues-and-incompatibilities)
 
 <!-- /code_chunk_output -->
@@ -182,7 +189,7 @@ When a pawn takes damage to a bone or solid body part, there is a chance that a 
 
 **Effects**: A bone fracture will cause the affected limb to be unable to bear weight or move properly, causing full immobility of the corresponding body part and `+15%` pain. Bone fractures may also cause [bone fragment lacerations](#bone-fragment-laceration) if bone fragments break off and cut into the surrounding tissue.
 
-**Treatment**: Bone fractures must be treated using a [splint](#splint) to immobilize the bone and promote [healing over time](#healing-bone-fracture), or [surgery](#repair-fracture-placeholder-todo) to realign and stabilize the bone, allowing for an immediate recovery.
+**Treatment**: Bone fractures must be treated using a [splint](#splint) to immobilize the bone and promote [healing over time](#healing-bone-fracture), or [osteosynthetic surgery](#osteosynthetic-surgery) to realign and stabilize the bone with metal implants, allowing for a quick recovery.
 
 #### Healing Bone Fracture
 
@@ -261,7 +268,7 @@ _Vanilla RimWorld condition, see [Hearing loss (RimWorld Wiki)](https://rimworld
 
 **Effects**: Permanent reduction in hearing ability, see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss).
 
-**Treatment**: Implants or bionic ears (see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss)), or surgery to repair the damaged inner ear.
+**Treatment**: Implants or bionic ears (see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss)), or [cellular regenerative otologic surgery](#cellular-regenerative-otologic-surgery) to repair the damaged hair cells in the inner ear.
 
 ### Hemorrhagic Stroke
 
@@ -327,7 +334,7 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 
 **Effects**: Impaired breathing, chest pain, and a life-threatening condition known as a tension pneumothorax, which can lead to obstructive shock, [cardiac arrest](#cardiac-arrest), and death if not surgically treated.
 
-**Treatment**: Resuscitation if the patient goes into [cardiac arrest](#cardiac-arrest) and immediate [surgery](#repair-lung-collaps-placeholder-todo) to repair the lung collapse and prevent further complications.
+**Treatment**: Resuscitation if the patient goes into [cardiac arrest](#cardiac-arrest) and immediate [thoracotomic surgery](#thoracotomy) or [video-assisted thoracoscopic surgery](#video-assisted-thoracoscopic-surgery) to repair the lung collapse and prevent further complications.
 
 ### Organ Hypoxia
 
@@ -575,7 +582,7 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 
 ### Hearing Protection
 
-> :construction: *Note: This feature is still under development.*
+> :construction: *This feature is still under development.*  
 > Currently, hearing protection is evaluated by the number of clothing layers covering the ears. The more layers of clothing covering the ears, the higher the protection against hearing damage from loud noises. In the future, this feature may be expanded to include ear protection items, such as earplugs or earmuffs, that can be worn by pawns to further reduce the risk of hearing damage.
 
 ### Hemostatic Agent
@@ -625,7 +632,7 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 2. Alternatively, use the *operations* tab of the injured pawn to schedule the application of a splint to a bone fracture in a controlled environment, such as a hospital bed, to ensure the highest treatment quality and fastest healing time.
 
 > [!TIP]
-> Alternatively to splinting the fracture, the bone can be [surgically repaired](#repair-fracture-placeholder-todo) to realign and stabilize the bone, allowing for an immediate recovery.
+> Alternatively to splinting the fracture, the bone can be [surgically repaired](#osteosynthetic-surgery) to realign and stabilize the bone, allowing for a quicker recovery.
 
 **Production**: At a crafting spot or machining table.  
 **Production Skill Requirement**: None  
@@ -673,29 +680,220 @@ Alternatively, use the *tourniquet gizmo* (depicted on the right) to apply or re
 > Tourniquets are a powerful tool to stop severe bleeding in an emergency, so make sure you have a few tourniquets ready in your hospital or carried by your combat medics to quickly treat severe injuries on the battlefield.
 
 > [!TIP]
-> Should the patient decease during treatment, the tourniquet can be recovered from the corpse to be reused on another patient. This is automatically done as a new low-prority work type for all non-drafted doctors.
+> Should the patient decease during treatment, the tourniquet can be [recovered](#tourniquet-recovery) from the corpse to be reused on another patient. This is automatically done as a new low-prority work type for all non-drafted doctors.
 
 > [!WARNING]
 > While generally easy to handle, severly incompetent doctors (medicine and intellectual skill below 3) may have a hard time applying a tourniquet correctly, potentially even having the not-so-bright idea to apply it to the neck. It goes without saying that such misuses of a tourniquet are not recommended and may lead to the patient [choking to death](#choking-on-tourniquet).
 
 ## Surgeries
 
-TODO: Add detailed information about surgeries.
+Some injuries and medical conditions require surgical intervention to repair the damage and restore the patient to full health. More Injuries introduces a variety of new surgeries that can be performed by skilled doctors to treat complex injuries and medical conditions.  
+Just like base game surgeries, these new surgeries will be available in the *operations* tab of the selected pawn.
 
-### Trepanation
+### Cellular Regenerative Otologic Surgery
+
+$\rightarrow$ *see [permanent hearing loss](#permanent-hearing-loss)*
+
+> **In-Game Description**
+> _"**Repair hearing loss: cellular regenerative surgery** &mdash; Cellular Regenerative Otologic Surgery (CROS) is an experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown moderate success in restoring hearing, even in very severe cases."_
+
+**Used for**: Treating [permanent hearing loss](#permanent-hearing-loss) with advanced medical techniques and glitterworld medicine.
+
+**Skill Requirements**: `Medicine` at level 12  
+**Research Requirements**: None  
+**Ingredients**: 2x `Glitterworld Medicine`  
+**Surgery Success Chance Factor[^1]**: 110%  
+**Death on Failed Surgery Chance[^2]**: 0%  
+**Work Amount**: 4500
+
+> [!TIP]
+> Cellular Regenerative Otologic Surgery is a highly advanced and experimental procedure that can restore hearing to patients with permanent hearing loss. Alternative treatment options include bionics and cochlear implants (see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss)).
 
 ### Decompressive Craniectomy
 
+$\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
+
+> **In-Game Description**
+> _"**Cure stroke: decompressive craniectomy** &mdash; Perform a decompressive craniectomy to cure a hemorrhagic stroke.
+> Decompressive craniectomy is a neurosurgical procedure in which part of the skull is removed to allow a swelling or herniating brain room to expand without being squeezed. It is performed on victims of traumatic brain injury, stroke, and other conditions associated with raised intracranial pressure. Use of this surgery is controversial and associated with a higher risk of complications, but it can be life-saving in cases of severe brain swelling.
+> A challenging surgery that requires familiarity with neurosurgical techniques and a steady hand. Yields a moderate success rate."_
+
+**Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with good medical knowledge and industrial equipment at a moderate success rate.
+
+**Skill Requirements**: `Medicine` at level 5  
+**Research Requirements**: None  
+**Ingredients**: 3x `Medicine` or better  
+**Surgery Success Chance Factor[^1]**: 110%  
+**Death on Failed Surgery Chance[^2]**: 2.5%  
+**Work Amount**: 3000  
+
+### Osteosynthetic Surgery
+
+$\rightarrow$ *see [bone fracture](#bone-fracture)*
+
+> **In-Game Description**
+> _"**Repair fracture: osteosynthetic surgery** &mdash; Surgically repair a bone fracture. The bone will be set in place, realigned, and reinforced with metal plates and screws to prevent micromovements and promote proper healing, allowing the patient to regain full use of the affected limb much faster than with other methods.
+> Although being more invasive than other methods, surgery allows for a more precise and stable repair of the fracture, ensuring a faster and more complete recovery."_
+
+**Used for**: Treating [bone fractures](#bone-fracture) with more expensive and invasive surgical techniques to speed up the healing process significantly.
+
+**Skill Requirements**: `Medicine` at level 5  
+**Research Requirements**: None  
+**Ingredients**: 2x any `Medicine`, 5x `Plasteel`  
+**Surgery Success Chance Factor[^1]**: 125%  
+**Death on Failed Surgery Chance[^2]**: 0.5%  
+**Work Amount**: 2500
+
 ### Stereotactic Surgery
 
-### Repair Lung Collaps Placeholder TODO
+$\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 
-TODO: implement https://en.wikipedia.org/wiki/Video-assisted_thoracoscopic_surgery and https://en.wikipedia.org/wiki/Thoracotomy
+> **In-Game Description**
+> _"**Cure stroke: stereotactic surgery** &mdash; Perform stereotactic surgery to cure a hemorrhagic stroke.
+> Stereotactic surgery is a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of the ruptured blood vessel while minimizing damage to surrounding tissues.
+> A very complex and delicate procedure that requires a high level of skill and precision but yields a very high success rate."_
 
-### Repair Fracture Placeholder TODO
+**Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with excellent medical knowledge and advanced medical equipment at a high success rate.
+
+**Skill Requirements**: `Medicine` at level 8  
+**Research Requirements**: None  
+**Ingredients**: 4x `Medicine` or better, 1x `Glitterworld Medicine`  
+**Surgery Success Chance Factor[^1]**: 150%  
+**Death on Failed Surgery Chance[^2]**: 1%  
+**Work Amount**: 4500
+
+### Thoracotomy
+
+$\rightarrow$ *see [lung collapse](#lung-collapse)*
+
+> **In-Game Description**
+> _"**Repair collapsed lung: thoracotomy** &mdash; Perform a thoracotomy to repair a collapsed lung.
+> Thoracotomy is a surgical procedure that involves making an incision in the chest wall to gain access to the lungs and the surrounding structures. The source of the air leak causing the lung collapse is identified and repaired, and pleural space is drained to allow the lung to re-expand and to relieve the pressure on the heart and other organs. Finally, the chest wall is closed and the incision is sutured.
+> A complex and invasive surgery that requires a skilled surgeon and yields a moderate success rate."_
+
+**Used for**: Treating [lung collapse](#lung-collapse) with invasive surgical techniques to repair the damage and restore the lung to full function. Moderate success rate and moderate risk of complications.
+
+**Skill Requirements**: `Medicine` at level 6  
+**Research Requirements**: None  
+**Ingredients**: 3x `Medicine`  
+**Surgery Success Chance Factor[^1]**: 100%  
+**Death on Failed Surgery Chance[^2]**: 2.5%  
+**Work Amount**: 3000
+
+
+### Trepanation
+
+$\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
+
+> **In-Game Description**
+> _"**Cure stroke: trepanation** &mdash; Perform a trepanation to cure a hemorrhagic stroke.
+> Trepanation is a surgical intervention in which a hole is drilled or scraped into the human skull to treat health problems related to intracranial diseases or release pressured blood buildup from an injury. It is one of the oldest surgical procedures known to humanity, with evidence of its practice dating back to the Neolithic era. While it is a simple and straightforward procedure, it carries a high risk of infection and complications.
+> A basic surgery that can be performed by anyone with rudimentary medical knowledge. Yields a low success rate."_
+
+**Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with readily available equipment and basic medical knowledge at a mediocre success rate.
+
+**Skill Requirements**: `Medicine` at level 2  
+**Research Requirements**: None  
+**Ingredients**: 2x `Herbal Medicine` or better  
+**Surgery Success Chance Factor[^1]**: 90%  
+**Death on Failed Surgery Chance[^2]**: 7.5%  
+**Work Amount**: 1500  
+
+> [!CAUTION]
+> While cheap and easy to perform, trepanation carries a very high risk of failure and death due to the rudimentary tools involved. Unless absolutely necessary, it is strongly recommended to use more advanced surgical techniques, such as [decompressive craniectomy](#decompressive-craniectomy) or [stereotactic surgery](#stereotactic-surgery), to treat [hemorrhagic stroke](#hemorrhagic-stroke) in a more controlled and effective manner.
+
+### Video-Assisted Thoracoscopic Surgery
+
+$\rightarrow$ *see [lung collapse](#lung-collapse)*
+
+> **In-Game Description**
+> _"**Repair collapsed lung: video-assisted thoracoscopic surgery** &mdash; Perform a video-assisted thoracoscopic surgery to repair a collapsed lung.
+> Video-assisted thoracoscopic surgery (VATS) is a minimally invasive surgical procedure that involves making small incisions in the chest wall and using a camera and specialized instruments to repair the collapsed lung. Since the surgery is performed through small incisions, it is associated with less pain, shorter recovery time, and reduced risk of complications compared to traditional open surgery.
+> While VATS is less invasive and offers a higher success rate than thoracotomy, it requires highly specialized equipment, additional training, and takes longer to perform, given the complexity of the procedure."_
+
+**Used for**: Treating [lung collapse](#lung-collapse) with minimally invasive surgical techniques to repair the damage and restore the lung to full function. High success rate and low risk of complications.
+
+**Skill Requirements**: `Medicine` at level 8  
+**Research Requirements**: None  
+**Ingredients**: 3x `Glitterworld Medicine`  
+**Surgery Success Chance Factor[^1]**: 135%  
+**Death on Failed Surgery Chance[^2]**: 1%  
+**Work Amount**: 5000
 
 ## New Work Types
 
-TODO: A quick overview of the new automatic work types (work givers and priorities) that have been added to the game.
+More Injuries introduces several new automated work types for doctors to handle emergency situations and stabilize patients without the need for manual intervention. These new work types are designed to reduce the micromanagement required to treat patients with life-threatening conditions and allow the player to focus on managing the more severe injuries and medical conditions.
+
+### Defibrillation
+
+> **In-Game Label**
+> _"Stabilize or resuscitate patients with arythmia or cardiac arrest"_
+
+Assigned doctors will automatically attempt to defibrillate patients in hospital beds who are suffering from a [heart attack](https://rimworldwiki.com/wiki/Ailments#Heart_attack) or [cardiac arrest](#cardiac-arrest) during the `ventricular fibrillation` stage. The doctor will search for an accessible [defibrillator](#defibrillator) and start the defibrillation procedure to restore normal heart rhythm and save the patient's life.
+
+**Parent Work Type[^3]**: `Doctor`  
+**Priority In Type[^4]**: 125
+
+### Airway Management
+
+> **In-Game Label**
+> _"Manage airways of patients with respiratory distress"_
+
+Assigned doctors will automatically attempt to clear the airways of patients in hospital beds who are [choking on blood](#choking-on-blood). The doctor will search for an accessible [airway suction device](#airway-suction-device) and start the airway suction procedure to remove the obstruction and allow the patient to breathe normally again.
+
+**Parent Work Type[^3]**: `Doctor`  
+**Priority In Type[^4]**: 120
+
+### Performing CPR
+
+> **In-Game Label**
+> _"Perform CPR to stabilize patients with cardiac or respiratory arrest"_
+
+Assigned doctors will automatically start performing [CPR](#cpr) on patients in hospital beds who are suffering from [cardiac arrest](#cardiac-arrest), [heart attacks](https://rimworldwiki.com/wiki/Ailments#Heart_attack), or who are [choking on blood](#choking-on-blood). The doctor will attempt to stabilize the patient and restore normal heart rhythm and breathing to prevent further deterioration of the patient's condition.
+
+**Parent Work Type[^3]**: `Doctor`  
+**Priority In Type[^4]**: 115
+
+### Blood Transfusions
+
+> **In-Game Label**
+> _"Perform a blood transfusion to stabilize patients with severe blood loss"_
+
+Assigned doctors will automatically perform [blood transfusions](#blood-bag) on patients in hospital beds who are suffering from `severe` blood loss. The doctor will search for an accessible [blood bag](#blood-bag) and start the blood transfusion procedure to restore blood volume and prevent [hypovolemic shock](#hypovolemic-shock).
+
+**Parent Work Type[^3]**: `Doctor`  
+**Priority In Type[^4]**: 105
+
+### Tourniquet Recovery
+
+> **In-Game Label**
+> _"Recover a tourniquet from a deceased patient to reuse it in the future"_
+
+Unless having other tasks to perform, assigned doctors will recover [tourniquets](#tourniquet) from deceased patients for reuse in future treatments. This work type is a very low-priority task and will only be performed if no other tasks are available. The doctor will search for corpses with [tourniquets](#tourniquet) applied and remove the tourniquet from the deceased patient.
+
+**Parent Work Type[^3]**: `Doctor`  
+**Priority In Type[^4]**: 5
 
 ## Known Issues and Incompatibilities
+
+This section lists known issues and incompatibilities with other mods that have been identified during testing and development of More Injuries. If you encounter any issues or incompatibilities with other mods, please report them on the [GitHub issue tracker](https://github.com/frederik-hoeft/rimworld-more-injuries/issues) with a minimal, reproducible example. - meaning the minimum set of mods in a new save game that still reproduces the issue. To allow for a quick resolution of the issue, please provide as much information as possible, including the exact steps to reproduce the issue, the expected behavior, and the actual behavior observed.
+
+*Currently, no incompatibilities have been verifiably pinpointed to any specific mods, although there have been reports of issues with massive mod lists that may or may not be related to More Injuries.*
+
+> [!IMPORTANT]
+> When reporting an issue, please make sure to include the following information:
+> - The minimal set of mods required to reproduce the issue. This list can be obtained by starting a new game with only the required mods enabled and adding the mods back one by one until the issue reappears. This process may be sped up by using any helpful information from the game logs.
+> - The exact steps necessary to reproduce the issue *in a new save game*. This information is crucial to help the developers understand the issue and find a solution.
+> - The expected behavior and the actual behavior observed. This information helps the developers to understand the issue and verify that the issue has been resolved.
+> - Any stack traces, error messages, or other relevant information from the game logs that may help to identify the cause of the issue. If possible, please load the [Visual Exceptions](https://steamcommunity.com/sharedfiles/filedetails/?id=2538411704) mod which will help indentify integration issues with other mods.
+
+> [!CAUTION]
+> Before reporting exceptions or errors from the debug console, please make sure that at least one line of the stack trace mentions `MoreInjuries` or that you are able to prove that the issue is caused by More Injuries. Otherwise, the issue may not be related to More Injuries and is unlikely to be resolved by the developers for lack of avenues to investigate the issue.
+
+[^1]: see [Surgery Success Chance Factor](https://rimworldwiki.com/wiki/Surgery_Success_Chance_Factor) on the RimWorld Wiki for more information on how the success chance of surgeries is calculated in the base game.
+
+[^2]: see [Doctoring#Failure](https://rimworldwiki.com/wiki/Doctoring#Failure) on the RimWorld Wiki for more information on how the chance of death on failed surgeries is calculated in the base game.
+
+[^3]: see [Work Types](https://rimworldwiki.com/wiki/Work#Work_types) on the RimWorld Wiki.
+
+[^4]: Priority in Type indicates the priority of the work type within the parent work type. The higher the number, the higher the priority of the work type.

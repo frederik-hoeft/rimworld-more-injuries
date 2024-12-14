@@ -2,15 +2,15 @@
 <Defs>
   <RecipeDef ParentName="SurgeryFlesh">
     <defName>RepairFracture</defName>
-    <label>Repair a fracture</label>
-    <description>Surgically repair a bone fracture. The bone will be set in place, realigned, and reinforced with metal plates and screws to promote proper healing and prevent deformity, allowing the patient to regain full use of the affected limb.
+    <label>Repair fracture: osteosynthetic surgery</label>
+    <description>Surgically repair a bone fracture. The bone will be set in place, realigned, and reinforced with metal plates and screws to prevent micromovements and promote proper healing, allowing the patient to regain full use of the affected limb much faster than with other methods.
 \nAlthough being more invasive than other methods, surgery allows for a more precise and stable repair of the fracture, ensuring a faster and more complete recovery.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
     <jobString>Repairing a fracture.</jobString>
-    <workAmount>4500</workAmount>
+    <workAmount>2500</workAmount>
     <removesHediff>Fracture</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s bone fracture.</successfullyRemovedHediffMessage>
-    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+    <deathOnFailedSurgeryChance>0.005</deathOnFailedSurgeryChance>
     <anesthetize>true</anesthetize>
     <skillRequirements>
       <Medicine>5</Medicine>
