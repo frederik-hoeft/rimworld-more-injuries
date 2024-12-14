@@ -81,7 +81,6 @@ public class HediffComp_Choking : HediffComp
                             (true, _) => KnownSoundDefOf.ChokingCoughMale,
                             _ => KnownSoundDefOf.Choking,
                         };
-                        // TODO: may play multiple sounds overlapping
                         soundDef.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
                     }
                 }

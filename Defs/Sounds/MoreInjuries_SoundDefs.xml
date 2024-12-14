@@ -26,7 +26,7 @@
   <SoundDef>
     <defName>ChokingCoughMale</defName>
     <context>MapOnly</context>
-    <maxSimultaneous>2</maxSimultaneous>
+    <maxSimultaneous>1</maxSimultaneous>
     <subSounds>
       <li>
         <grains>
@@ -48,7 +48,7 @@
   <SoundDef>
     <defName>ChokingCoughFemale</defName>
     <context>MapOnly</context>
-    <maxSimultaneous>2</maxSimultaneous>
+    <maxSimultaneous>1</maxSimultaneous>
     <subSounds>
       <li>
         <grains>
