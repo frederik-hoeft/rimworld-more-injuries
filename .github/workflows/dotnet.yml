@@ -18,5 +18,9 @@ jobs:
     - uses: actions/checkout@v4
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+    - name: Restore NuGet packages
+      run: nuget restore Source\MoreInjuries\MoreInjuries.sln
     - name: Build project for release
       run: msbuild Source\MoreInjuries\MoreInjuries.sln -t:rebuild -verbosity:diag -property:Configuration=Release
