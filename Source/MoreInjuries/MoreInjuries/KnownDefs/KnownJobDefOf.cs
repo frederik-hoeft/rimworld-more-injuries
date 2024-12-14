@@ -12,11 +12,15 @@ public static class KnownJobDefOf
 
     public static JobDef PerformCpr = null!;
 
+    public static JobDef ProvideFirstAid = null!;
+
     public static JobDef UseSplint = null!;
 
     public static JobDef UseTourniquet = null!;
 
     public static JobDef RemoveTourniquet = null!;
+
+    public static JobDef RemoveTourniquetFromDead = null!;
 
     public static JobDef UseHemostaticAgent = null!;
 

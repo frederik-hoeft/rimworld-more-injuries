@@ -6,7 +6,7 @@ namespace MoreInjuries.HealthConditions.Paralysis;
 
 internal class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
-    public override bool IsEnabled => true;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableParalysis;
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {
@@ -25,6 +25,9 @@ internal class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(parent), IP
             if (Rand.Chance(chance))
             {
                 Hediff paralysis = HediffMaker.MakeHediff(KnownHediffDefOf.SpinalCordParalysis, patient, spinalCord);
+                float relativeDamage = actualDamage / patient.health.hediffSet.GetPartHealth(spinalCord);
+                // severity of the paralysis is scaled based on the relative damage applied to the spinal cord
+                paralysis.Severity = Rand.Range(0f, 2f * relativeDamage);
                 patient.health.AddHediff(paralysis, spinalCord);
             }
         }

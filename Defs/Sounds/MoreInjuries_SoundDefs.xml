@@ -2,7 +2,7 @@
 <Defs>
   <!-- choking on blood -->
   <SoundDef>
-    <defName>ChokingSound</defName>
+    <defName>Choking</defName>
     <context>MapOnly</context>
     <maxSimultaneous>2</maxSimultaneous>
     <subSounds>
@@ -23,9 +23,53 @@
       </li>
     </subSounds>
   </SoundDef>
+  <SoundDef>
+    <defName>ChokingCoughMale</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>ChokingCoughMale</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>10</min>
+          <max>20</max>
+        </volumeRange>
+        <pitchRange>
+          <min>0.9</min>
+          <max>1.1</max>
+        </pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>ChokingCoughFemale</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>ChokingCoughFemale</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>10</min>
+          <max>20</max>
+        </volumeRange>
+        <pitchRange>
+          <min>0.9</min>
+          <max>1.1</max>
+        </pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
 
   <SoundDef>
-    <defName>BoneSnapSound</defName>
+    <defName>BoneSnap</defName>
     <context>MapOnly</context>
     <eventNames />
     <subSounds>
@@ -80,6 +124,7 @@
     <subSounds>
       <li>
         <grains>
+          <!-- yep, this one is stolen from Escape from Tarkov. Don't tell anyone. -->
           <li Class="AudioGrain_Clip">
             <clipPath>autoinjector_use</clipPath>
           </li>

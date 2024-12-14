@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>ExtractWholeBloodBag</defName>
+    <label>extract blood bag</label>
+    <description>Extract blood from a patient to retrieve a blood bag that can be used for blood transfusions. If the patient does not have enough blood for a safe donation, the procedure will be aborted.</description>
+    <workerClass>MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.Recipe_ExtractBloodBag</workerClass>
+    <jobString>Drawing blood.</jobString>
+    <workAmount>500</workAmount>
+    <hideBodyPartNames>true</hideBodyPartNames>
+    <targetsBodyPart>false</targetsBodyPart>
+    <isViolation>true</isViolation>
+    <descriptionHyperlinks>
+      <ThingDef>WholeBloodBag</ThingDef>
+    </descriptionHyperlinks>
+    <uiIconThing>WholeBloodBag</uiIconThing>
+    <anesthetize>false</anesthetize>
+    <workSkillLearnFactor>2</workSkillLearnFactor>
+  </RecipeDef>
+</Defs>

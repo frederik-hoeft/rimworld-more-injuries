@@ -10,11 +10,10 @@ using Verse.AI;
 
 namespace MoreInjuries.AI;
 
-public abstract class JobDriver_UseMedicalDevice : JobDriver
+public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
 {
     private const int TICKS_BETWEEN_SELF_TEND_MOTES = 100;
-    private const TargetIndex PATIENT_INDEX = TargetIndex.A;
-    private const TargetIndex DEVICE_INDEX = TargetIndex.B;
+    private const TargetIndex PATIENT_INDEX = TARGET_INDEX;
     private const TargetIndex DEVICE_HOLDER_INDEX = TargetIndex.C;
 
     private static readonly List<Toil> s_tmpCollectToils = [];
@@ -35,11 +34,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
 
     protected Thing? DeviceUsed => job.targetB.Thing;
 
-    protected Pawn Doctor => pawn;
-
-    protected virtual SoundDef SoundDef => SoundDefOf.Interact_Tend;
-
-    protected virtual int BaseTendDuration => 600;
+    protected override Pawn GetTarget(ref readonly LocalTargetInfo targetInfo) => targetInfo.Pawn;
 
     protected abstract void ApplyDevice(Pawn doctor, Pawn patient, Thing? device);
 
@@ -167,8 +162,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
             }
         }
         yield return gotoPatientToil;
-        float manipulationCapacity = Mathf.Max(doctor.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation), 0.05f);
-        int ticks = (int)(1f / (doctor.GetStatValue(StatDefOf.MedicalTendSpeed) * manipulationCapacity) * BaseTendDuration);
+        int ticks = CalculateTendDuration();
         Toil waitToil;
         if (doctor == patient)
         {
@@ -229,7 +223,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         yield return Toils_Jump.JumpIf(waitToil, () => !_usesDevice || DeviceUsed is not null and not { Destroyed: true } && doctor.inventory.Contains(DeviceUsed));
         yield return Toils_MedicalDevice.PickupDevice(DEVICE_INDEX, patient, GetMedicalDeviceCountToFullyHeal).FailOnDestroyedOrNull(DEVICE_INDEX);
         yield return waitToil;
-        yield return Toils_MedicalDevice.FinalizeApplyDevice(patient, ApplyDeviceCore);
+        yield return FinalizeTreatmentToil();
         if (_usesDevice)
         {
             DebugAssert.NotNull(reserveDevices, $"{nameof(reserveDevices)} cannot be null when using a device");
@@ -238,9 +232,9 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver
         yield return Toils_Jump.Jump(gotoPatientToil);
     }
 
-    private void ApplyDeviceCore(Pawn doctor, Pawn patient, Thing? device)
+    protected override void FinalizeTreatment(Pawn doctor, Pawn target, Thing? thing)
     {
-        ApplyDevice(doctor, patient, device);
+        ApplyDevice(doctor, target, thing);
         _oneShotUsed = true;
     }
 

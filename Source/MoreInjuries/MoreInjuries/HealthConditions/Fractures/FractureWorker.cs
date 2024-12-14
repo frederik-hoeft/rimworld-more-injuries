@@ -143,7 +143,7 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
                 }
                 Hediff fracture = HediffMaker.MakeHediff(KnownHediffDefOf.Fracture, patient, bone);
                 patient.health.AddHediff(fracture);
-                KnownSoundDefOf.BoneSnapSound.PlayOneShot(new TargetInfo(patient.PositionHeld, map));
+                KnownSoundDefOf.BoneSnap.PlayOneShot(new TargetInfo(patient.PositionHeld, map));
                 if (MoreInjuriesMod.Settings.EnableBoneFragmentLacerations && Rand.Chance(MoreInjuriesMod.Settings.SplinteringFractureChance))
                 {
                     IEnumerable<BodyPartRecord> lacerationTargets = s_lacerationRegistry[bone.def].GetTargets(patient, bone);

@@ -15,6 +15,13 @@
   </JobDef>
 
   <JobDef>
+    <defName>ProvideFirstAid</defName>
+    <driverClass>MoreInjuries.AI.JobDriver_ProvideFirstAid</driverClass>
+    <reportString>Evaluating treatment options for TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
     <defName>UseDefibrillator</defName>
     <driverClass>MoreInjuries.HealthConditions.CardiacArrest.JobDriver_UseDefibrillator</driverClass>
     <reportString>Using a defibrillator on TargetA.</reportString>
@@ -45,6 +52,13 @@
   <JobDef>
     <defName>RemoveTourniquet</defName>
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_RemoveTourniquet</driverClass>
+    <reportString>Remove a tourniquet from TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>RemoveTourniquetFromDead</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_RemoveTourniquetFromDead</driverClass>
     <reportString>Remove a tourniquet from TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>

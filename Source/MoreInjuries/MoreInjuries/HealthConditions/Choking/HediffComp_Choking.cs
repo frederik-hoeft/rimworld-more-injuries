@@ -1,0 +1,96 @@
+﻿using MoreInjuries.KnownDefs;
+using RimWorld;
+using UnityEngine;
+using Verse;
+using Verse.Sound;
+
+namespace MoreInjuries.HealthConditions.Choking;
+
+public class HediffComp_Choking : HediffComp
+{
+    private int _ticksThisInterval;
+
+    public Hediff_Injury? Source { get; set; }
+
+    public HediffCompProperties_Choking Properties => (HediffCompProperties_Choking)props;
+
+    public override void CompPostMake()
+    {
+        _ticksThisInterval = Properties.ChokingIntervalTicks;
+        if (MoreInjuriesMod.Settings.EnableChokingSounds)
+        {
+            KnownSoundDefOf.Choking.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
+        }
+
+        base.CompPostMake();
+    }
+
+    private bool Coughing => Source is { Bleeding: false } && (parent.pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.45f
+        || ModLister.BiotechInstalled && parent.pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest));
+
+    public override string CompLabelInBracketsExtra => Coughing
+        ? "coughing"
+        : string.Empty;
+
+    public override void CompPostTick(ref float severityAdjustment)
+    {
+        if (_ticksThisInterval > 1)
+        {
+            _ticksThisInterval--;
+        }
+        else
+        {
+            _ticksThisInterval = Properties.ChokingIntervalTicks;
+            if (Source is null)
+            {
+                Logger.Warning("Choking hediff has no source injury! Was this hediff added manually?");
+            }
+            else
+            {
+                // a random walk with a bias towards increasing severity, increase depends on the bleed rate of the source injury and whether the patient is tended
+                float increase = 0.1f;
+                float decrease = 0f;
+                if (Source.BleedRate > 0.01f)
+                {
+                    increase += Mathf.Clamp(Source.BleedRate / 5f, 0.05f, 0.25f);
+                }
+                else if (Source.IsTended())
+                {
+                    decrease = 0.075f;
+                }
+                else if (Source.BleedRate <= 0.01f)
+                {
+                    decrease = 0.05f;
+                }
+                float change = Rand.Range(-decrease, increase);
+                bool coughing = Coughing;
+                if (coughing)
+                {
+                    // the patient is conscious and coughing, so the severity decreases faster
+                    change -= Rand.Range(0.05f, 0.1f);
+                }
+                float newSeverity = Mathf.Clamp01(parent.Severity + change);
+                if (newSeverity > 0f)
+                {
+                    parent.Severity = newSeverity;
+                    if (MoreInjuriesMod.Settings.EnableChokingSounds)
+                    {
+                        SoundDef soundDef = (coughing, parent.pawn.gender) switch
+                        {
+                            (true, Gender.Female) => KnownSoundDefOf.ChokingCoughFemale,
+                            (true, _) => KnownSoundDefOf.ChokingCoughMale,
+                            _ => KnownSoundDefOf.Choking,
+                        };
+                        soundDef.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
+                    }
+                }
+                else
+                {
+                    parent.pawn.health.RemoveHediff(parent);
+                }
+            }
+        }
+
+        base.CompPostTick(ref severityAdjustment);
+    }
+}

@@ -4,7 +4,7 @@
     <defName>Splint</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>splint</label>
-    <description>Designed to secure and hold damaged bones together, usually with fractures. Can be applied via operation or by ordering another pawn that has splints in inventory</description>
+    <description>A splint is a rigid device used for immobilizing and protecting an injured bone or joint. It is used to prevent further damage to the bone and surrounding tissue and promote healing over time. Splints are commonly used to treat bone fractures, sprains, and dislocations.</description>
     <graphicData>
       <texPath>Thing/Splint</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>

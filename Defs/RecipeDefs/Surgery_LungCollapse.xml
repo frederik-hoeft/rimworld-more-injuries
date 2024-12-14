@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- TODO: require different types of surgical tools and equipment for different surgeries, but provide cheaper and less effective alternatives for low-tech colonies. Some of these tools and equipment may be very expensive and require advanced research to unlock, but can be reused multiple times -->
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RepairCollapsedLung_Industrial</defName>
+    <label>repair collapsed lung: thoracotomy</label>
+    <description>Perform a thoracotomy to repair a collapsed lung.
+Thoracotomy is a surgical procedure that involves making an incision in the chest wall to gain access to the lungs and the surrounding structures. The source of the air leak causing the lung collapse is identified and repaired, and pleural space is drained to allow the lung to re-expand and to relieve the pressure on the heart and other organs. Finally, the chest wall is closed and the incision is sutured.
+\nA complex and invasive surgery that requires a skilled surgeon and yields a moderate success rate.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Performing a thoracotomy</jobString>
+    <workAmount>3000</workAmount>
+    <removesHediff>LungCollapse</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s collapsed lung.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.025</deathOnFailedSurgeryChance>
+    <anesthetize>true</anesthetize>
+    <skillRequirements>
+      <Medicine>6</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineIndustrial</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>MedicineIndustrial</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>
+  </RecipeDef>
+  
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>RepairCollapsedLung_Ultratech</defName>
+    <label>repair collapsed lung: video-assisted thoracoscopic surgery</label>
+    <description>Perform a video-assisted thoracoscopic surgery to repair a collapsed lung.
+Video-assisted thoracoscopic surgery (VATS) is a minimally invasive surgical procedure that involves making small incisions in the chest wall and using a camera and specialized instruments to repair the collapsed lung. Since the surgery is performed through small incisions, it is associated with less pain, shorter recovery time, and reduced risk of complications compared to traditional open surgery.
+\nWhile VATS is less invasive and offers a higher success rate than thoracotomy, it requires highly specialized equipment, additional training, and takes longer to perform, given the complexity of the procedure.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Performing a video-assisted thoracoscopic surgery</jobString>
+    <workAmount>5000</workAmount>
+    <removesHediff>LungCollapse</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s collapsed lung.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.01</deathOnFailedSurgeryChance>
+    <anesthetize>true</anesthetize>
+    <skillRequirements>
+      <Medicine>8</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineUltratech</li>
+          </thingDefs>
+        </filter>
+        <count>3</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>MedicineUltratech</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>1.35</surgerySuccessChanceFactor>
+  </RecipeDef>
+</Defs>

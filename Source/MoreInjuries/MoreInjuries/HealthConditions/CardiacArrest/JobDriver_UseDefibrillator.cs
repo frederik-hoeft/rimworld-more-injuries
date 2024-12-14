@@ -9,7 +9,7 @@ namespace MoreInjuries.HealthConditions.CardiacArrest;
 
 public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
 {
-    public const string JOB_LABEL = "Use defibrillator";
+    public const string JOB_LABEL = "Defibrillate";
 
     public static HediffDef[] TargetHediffDefs { get; } = [KnownHediffDefOf.CardiacArrest, KnownHediffDefOf.HeartAttack];
 

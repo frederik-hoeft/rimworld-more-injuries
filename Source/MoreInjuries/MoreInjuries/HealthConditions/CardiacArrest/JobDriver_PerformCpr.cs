@@ -59,7 +59,6 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
                 // scale severity reduction based on a sigmoid function with a random offset, reduced by a random factor
                 float severityReductionRaw = DiffusedSigmoid(doctorSkillFactor) * Rand.Range(0.5f, 0.75f);
                 // we only clamp after the fact to allow a theoretical increase in severity for very poorly performed CPR attempts when the negative random offset is high
-
                 float newSeverity = Mathf.Clamp01(severity - severityReductionRaw);
                 if (newSeverity > 0)
                 {

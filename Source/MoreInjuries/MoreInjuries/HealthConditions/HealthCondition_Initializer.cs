@@ -33,7 +33,7 @@ public static class HealthCondition_Initializer
         HediffDefOf.BloodLoss.comps ??= [];
         HediffDefOf.BloodLoss.comps.Add(new HediffCompProperties
         {
-            compClass = typeof(ShockMakerHediffComp)
+            compClass = typeof(HediffComp_ShockMaker)
         });
         HediffDefOf.BloodLoss.hediffClass = typeof(HediffWithComps);
 

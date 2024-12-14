@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="InfectionBase">
+    <defName>HemorrhagicStroke</defName>
+    <label>hemorrhagic stroke</label>
+    <description>A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.
+\nCan be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture.</description>
+    <tendable>true</tendable>
+    <makesSickThought>true</makesSickThought>
+    <lethalSeverity>1</lethalSeverity>
+    <defaultLabelColor>(255, 158, 158)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>4</baseTendDurationHours>
+        <severityPerDayTended>-2.5</severityPerDayTended>
+      </li>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>2.5</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_Discoverable">
+        <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>confusion</label>
+        <minSeverity>0</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <becomeVisible>true</becomeVisible>
+        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+        <forgetMemoryThoughtMtbDays>0.75</forgetMemoryThoughtMtbDays>
+        <vomitMtbDays>0.5</vomitMtbDays>
+        <painOffset>0.25</painOffset>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.75</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>obtundation</label>
+        <lifeThreatening>true</lifeThreatening>
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>0.20</minSeverity>
+        <partEfficiencyOffset>-0.2</partEfficiencyOffset>
+        <forgetMemoryThoughtMtbDays>0.5</forgetMemoryThoughtMtbDays>
+        <vomitMtbDays>0.25</vomitMtbDays>
+        <painOffset>0.25</painOffset>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.4</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>intermittent consciousness</label>
+        <lifeThreatening>true</lifeThreatening>
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>0.5</minSeverity>
+        <partEfficiencyOffset>-0.3</partEfficiencyOffset>
+        <forgetMemoryThoughtMtbDays>0.25</forgetMemoryThoughtMtbDays>
+        <painOffset>0.25</painOffset>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.2</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>stupor</label>
+        <lifeThreatening>true</lifeThreatening>
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>0.7</minSeverity>
+        <partEfficiencyOffset>-0.4</partEfficiencyOffset>
+        <painOffset>0.25</painOffset>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>coma</label>
+        <lifeThreatening>true</lifeThreatening>
+        <becomeVisible>true</becomeVisible>
+        <minSeverity>0.9</minSeverity>
+        <partEfficiencyOffset>-0.5</partEfficiencyOffset>
+        <painOffset>0.25</painOffset>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

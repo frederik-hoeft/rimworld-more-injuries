@@ -18,7 +18,8 @@ public class Recipe_ExtractBloodBag : Recipe_Surgery
         {
             return false;
         }
-        return pawn.health.CanBleed && base.AvailableOnNow(thing, part);
+        
+        return pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.45f && pawn.health.CanBleed && base.AvailableOnNow(thing, part);
     }
 
     public override AcceptanceReport AvailableReport(Thing thing, BodyPartRecord? part = null)
@@ -76,9 +77,13 @@ public class Recipe_ExtractBloodBag : Recipe_Surgery
         Logger.Error($"Could not drop blood bag near {pawn.PositionHeld}");
     }
 
-    private bool PawnHasEnoughBloodForExtraction(Pawn pawn)
+    private static bool PawnHasEnoughBloodForExtraction(Pawn pawn)
     {
         Hediff firstHediffOfDef = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BloodLoss);
-        return firstHediffOfDef == null || firstHediffOfDef.Severity < MIN_BLOODLOSS_FOR_FAILURE;
+        return firstHediffOfDef == null || firstHediffOfDef.Severity + BLOOD_LOSS_SEVERITY < MIN_BLOODLOSS_FOR_FAILURE;
     }
+
+    public static bool CanSafelyBeQueued(Pawn pawn) => KnownRecipeDefOf.ExtractWholeBloodBag.Worker is Recipe_Surgery worker
+        && worker.AvailableOnNow(pawn)
+        && worker.CompletableEver(pawn);
 }

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>Fracture</defName>
+    <label>bone fracture</label>
+    <description>A partial or complete break of a bone caused by trauma, overuse, or disease. The bone may be cracked, splintered, or completely broken into two or more pieces. Until properly treated, the affected limb will be unable to bear weight or move properly, causing severe pain and loss of function.
+\nMust either be splinted to immobilize the bone and promote healing over time, or surgically repaired to realign and stabilize the bone, allowing for quick recovery.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <comps></comps>
+    <stages>
+      <li>
+        <partEfficiencyOffset>-1.0</partEfficiencyOffset>
+        <painOffset>0.15</painOffset>
+      </li>
+    </stages>
+    <defaultLabelColor>(153, 92, 92)</defaultLabelColor>
+  </HediffDef>
+
+  <HediffDef ParentName="DiseaseBase">
+    <defName>FractureHealing</defName>
+    <label>healing bone fracture</label>
+    <description>A bone fracture that is in the process of healing. The bone is still weak and restricted in movement, but the limb is slowly regaining function as the bone knits back together.
+\nOver time, the bone will become stronger and the limb will regain full function.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.125</severityPerDay>
+        <showDaysToRecover>true</showDaysToRecover>
+      </li>
+      <li Class="HediffCompProperties_Discoverable">
+        <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>Nearly healed</label>
+        <minSeverity>0</minSeverity>
+        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.25</minSeverity>
+        <partEfficiencyOffset>-0.2</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <painOffset>0.05</painOffset>
+        <partEfficiencyOffset>-0.3</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.5</minSeverity>
+        <painOffset>0.075</painOffset>
+        <partEfficiencyOffset>-0.35</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <painOffset>0.1</painOffset>
+        <partEfficiencyOffset>-0.4</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.75</minSeverity>
+        <painOffset>0.1</painOffset>
+        <partEfficiencyOffset>-0.5</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.85</minSeverity>
+        <painOffset>0.125</painOffset>
+        <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+      </li>
+      <li>
+        <minSeverity>0.95</minSeverity>
+        <painOffset>0.15</painOffset>
+        <partEfficiencyOffset>-0.7</partEfficiencyOffset>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="InjuryBase">
+    <defName>BoneFragmentLaceration</defName>
+    <label>cut (bone fragments)</label>
+    <labelNoun>a bone fragment cut</labelNoun>
+    <description>A cut caused by fragments of a bone.</description>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.25</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>cut scar</permanentLabel>
+      </li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0250</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.09</bleedRate>
+      <canMerge>false</canMerge>
+      <destroyedLabel>Cut off</destroyedLabel>
+      <destroyedOutLabel>Cut out</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+</Defs>
