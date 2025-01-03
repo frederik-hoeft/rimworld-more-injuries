@@ -19,6 +19,7 @@ public abstract class ScopedWeakTimedCache<TThing> where TThing : Thing
         if (cache is not null || _mapThingCache.TryGetValue(map, out cache))
         {
             Logger.LogDebug($"Loaded {cache.Count} weak references to things of type {typeof(TThing).Name} on map {map.uniqueID} from cache");
+            List<int>? deadReferences = null;
             foreach ((int hashCode, Std::WeakReference<TThing> weakRef) in cache)
             {
                 if (weakRef.TryGetTarget(out TThing? target))
@@ -28,6 +29,14 @@ public abstract class ScopedWeakTimedCache<TThing> where TThing : Thing
                 else
                 {
                     Logger.LogDebug($"Removing dead reference for {typeof(TThing).Name} on map {map.uniqueID}");
+                    deadReferences ??= [];
+                    deadReferences.Add(hashCode);
+                }
+            }
+            if (deadReferences is not null)
+            {
+                foreach (int hashCode in deadReferences)
+                {
                     cache.Remove(hashCode);
                 }
             }
