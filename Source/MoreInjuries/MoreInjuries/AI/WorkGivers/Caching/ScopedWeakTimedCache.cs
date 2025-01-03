@@ -15,7 +15,7 @@ public abstract class ScopedWeakTimedCache<TThing> where TThing : Thing
 
     public IEnumerable<TThing> GetCachedThings(Map map)
     {
-        TryRefreshCache(map, out Dictionary<int, Std.WeakReference<TThing>>? cache);
+        TryRefreshCache(map, out Dictionary<int, Std::WeakReference<TThing>>? cache);
         if (cache is not null || _mapThingCache.TryGetValue(map, out cache))
         {
             Logger.LogDebug($"Loaded {cache.Count} weak references to things of type {typeof(TThing).Name} on map {map.uniqueID} from cache");
