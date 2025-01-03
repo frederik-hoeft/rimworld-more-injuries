@@ -18,7 +18,6 @@ using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using System.Linq;
 using MoreInjuries.HealthConditions.Injectors;
-using Std = System;
 
 namespace MoreInjuries.HealthConditions;
 
