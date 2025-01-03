@@ -3,11 +3,11 @@
 		<TargetFramework>net472</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
-		<Version>1.5.1.0</Version>
+		<Version>1.5.1.1</Version>
 		<Platforms>AnyCPU</Platforms>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4104" />
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4297" />
 		<PackageReference Include="Lib.Harmony" Version="2.3.3" />
 	</ItemGroup>
 </Project>
