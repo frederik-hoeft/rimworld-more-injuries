@@ -10,14 +10,14 @@ internal static class HearingLossHelper
 {
     public static float ChanceToBecomePermanent(float severity)
     {
-        // f(x)=((0.5)/(1+e^(-10 (x-1.25))))
+        // f(x)=((chance_factor)/(1+e^(-4.5 (x-2.25))))
         // with increasing severity, the chance of permanent hearing loss increases
-        return (float)(0.5f / (1f + Mathf.Exp(-10f * (severity - 1.25f))));
+        return (float)(MoreInjuriesMod.Settings.HearingDamagePermanentChanceFactor / (1f + Mathf.Exp(-4.5f * (severity - 2.25f))));
     }
 
     public static bool TryMakePermanentIfApplicable(Pawn patient, Hediff temporaryHearingLoss)
     {
-        if (Rand.Chance(ChanceToBecomePermanent(temporaryHearingLoss.Severity)) && !patient.health.hediffSet.HasHediff(KnownHediffDefOf.HearingLoss))
+        if (MoreInjuriesMod.Settings.HearingDamageMayBecomePermanent && Rand.Chance(ChanceToBecomePermanent(temporaryHearingLoss.Severity)) && !patient.health.hediffSet.HasHediff(KnownHediffDefOf.HearingLoss))
         {
             IEnumerable<BodyPartRecord> ears = patient.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def == KnownBodyPartDefOf.Ear);
             foreach (BodyPartRecord ear in ears)
