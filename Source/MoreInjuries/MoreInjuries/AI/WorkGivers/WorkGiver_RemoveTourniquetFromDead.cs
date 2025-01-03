@@ -3,24 +3,27 @@ using Verse.AI;
 using Verse;
 using System.Collections.Generic;
 using MoreInjuries.KnownDefs;
+using MoreInjuries.AI.WorkGivers.Caching;
 
 namespace MoreInjuries.AI.WorkGivers;
 
 public class WorkGiver_RemoveTourniquetFromDead : WorkGiver_Scanner
 {
+    private static readonly CorpseCache s_corpseCache = new();
+
     public override PathEndMode PathEndMode => PathEndMode.InteractionCell;
 
     public override Danger MaxPathDanger(Pawn pawn) => Danger.Deadly;
 
-    public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForGroup(ThingRequestGroup.Corpse);
+    public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn) => s_corpseCache.GetCachedThings(pawn.Map);
 
-    public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn) => pawn.Map.spawnedThings;
+    public override bool ShouldSkip(Pawn pawn, bool forced = false) => !s_corpseCache.HasCachedThings(pawn.Map);
 
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
-        if (t is not Corpse corpse
+        if (t is not Corpse { InnerPawn: Pawn { RaceProps.Humanlike: true } deadPawn } corpse
             || corpse.IsForbidden(pawn) 
-            || !corpse.InnerPawn.health.hediffSet.HasHediff(KnownHediffDefOf.TourniquetApplied))
+            || !deadPawn.health.hediffSet.HasHediff(KnownHediffDefOf.TourniquetApplied))
         {
             return false;
         }
@@ -33,5 +36,23 @@ public class WorkGiver_RemoveTourniquetFromDead : WorkGiver_Scanner
         Job job = JobMaker.MakeJob(KnownJobDefOf.RemoveTourniquetFromDead, corpse);
         job.count = 1;
         return job;
+    }
+
+    private class CorpseCache : ScopedWeakTimedCache<Corpse>
+    {
+        protected override int MinCacheRefreshIntervalTicks => 1800;
+
+        protected override IEnumerable<Corpse> GetMapThings(Map map)
+        {
+            List<Thing> corpses = map.listerThings.ThingsInGroup(ThingRequestGroup.Corpse);
+            foreach (Thing thing in corpses)
+            {
+                if (thing is Corpse { InnerPawn: Pawn { RaceProps.Humanlike: true } deadPawn } corpse 
+                    && deadPawn.health.hediffSet.HasHediff(KnownHediffDefOf.TourniquetApplied))
+                {
+                    yield return corpse;
+                }
+            }
+        }
     }
 }
