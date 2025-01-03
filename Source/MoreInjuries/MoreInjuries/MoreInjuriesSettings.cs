@@ -44,6 +44,10 @@ public class MoreInjuriesSettings : ModSettings
     // hearing damage
     internal bool EnableBasicHearingDamage = ENABLE_BASIC_HEARING_DAMAGE_DEFAULT;
     internal bool EnableAdvancedHearingDamage = ENABLE_ADVANCED_HEARING_DAMAGE_DEFAULT;
+    internal float HearingDamageTemporarySeverityFactor = HEARING_DAMAGE_TEMPORARY_SEVERITY_FACTOR_DEFAULT;
+    internal float HearingDamageTemporarySeverityFactorExplosions = HEARING_DAMAGE_TEMPORARY_SEVERITY_FACTOR_EXPLOSIONS_DEFAULT;
+    internal bool HearingDamageMayBecomePermanent = HEARING_DAMAGE_MAY_BECOME_PERMANENT_DEFAULT;
+    internal float HearingDamagePermanentChanceFactor = HEARING_DAMAGE_PERMANENT_CHANCE_FACTOR_DEFAULT;
     // fractures
     internal bool EnableFractures = ENABLE_FRACTURES_DEFAULT;
     internal float FractureDamageTreshold = FRACTURE_DAMAGE_TRESHOLD_DEFAULT;
@@ -118,6 +122,10 @@ public class MoreInjuriesSettings : ModSettings
         // hearing damage
         Scribe_Values.Look(ref EnableBasicHearingDamage, nameof(EnableBasicHearingDamage), ENABLE_BASIC_HEARING_DAMAGE_DEFAULT);
         Scribe_Values.Look(ref EnableAdvancedHearingDamage, nameof(EnableAdvancedHearingDamage), ENABLE_ADVANCED_HEARING_DAMAGE_DEFAULT);
+        Scribe_Values.Look(ref HearingDamageTemporarySeverityFactor, nameof(HearingDamageTemporarySeverityFactor), HEARING_DAMAGE_TEMPORARY_SEVERITY_FACTOR_DEFAULT);
+        Scribe_Values.Look(ref HearingDamageTemporarySeverityFactorExplosions, nameof(HearingDamageTemporarySeverityFactorExplosions), HEARING_DAMAGE_TEMPORARY_SEVERITY_FACTOR_EXPLOSIONS_DEFAULT);
+        Scribe_Values.Look(ref HearingDamageMayBecomePermanent, nameof(HearingDamageMayBecomePermanent), HEARING_DAMAGE_MAY_BECOME_PERMANENT_DEFAULT);
+        Scribe_Values.Look(ref HearingDamagePermanentChanceFactor, nameof(HearingDamagePermanentChanceFactor), HEARING_DAMAGE_PERMANENT_CHANCE_FACTOR_DEFAULT);
         // hypovolemic shock
         Scribe_Values.Look(ref EnableHypovolemicShock, nameof(EnableHypovolemicShock), ENABLE_HYPOVOLEMIC_SHOCK_DEFAULT);
         Scribe_Values.Look(ref OrganHypoxiaChance, nameof(OrganHypoxiaChance), ORGAN_HYPOXIA_CHANCE_DEFAULT);

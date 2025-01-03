@@ -124,7 +124,8 @@ public class HearingLossComp : ThingComp
                 hearingLoss = HediffMaker.MakeHediff(KnownHediffDefOf.HearingLossTemporary, otherPawn);
                 otherPawn.health.AddHediff(hearingLoss);
             }
-            hearingLoss.Severity += hearingDamageMultiplier / 100f;
+            // scale by the hearing damage multiplier and the mod settings factor
+            hearingLoss.Severity += hearingDamageMultiplier / 100f * MoreInjuriesMod.Settings.HearingDamageTemporarySeverityFactor;
             HearingLossHelper.TryMakePermanentIfApplicable(otherPawn, hearingLoss);
         }
     }

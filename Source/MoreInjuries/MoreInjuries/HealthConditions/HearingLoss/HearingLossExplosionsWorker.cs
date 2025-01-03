@@ -14,6 +14,7 @@ public class HearingLossExplosionsWorker(MoreInjuryComp parent) : InjuryWorker(p
         if (dinfo.Def is not null && KnownDamageGroupNames.Explosions.Value.Contains(dinfo.Def.defName))
         {
             const float E_INVERSE = 1f / (float)Math.E;
+            // f(x)=((((1)/(e)) x)/(((1)/(e)) x+1))
             float chance = E_INVERSE * dinfo.Amount / ((E_INVERSE * dinfo.Amount) + 1);
             if (Rand.Chance(chance))
             {
@@ -22,9 +23,9 @@ public class HearingLossExplosionsWorker(MoreInjuryComp parent) : InjuryWorker(p
                     hearingLoss = HediffMaker.MakeHediff(KnownHediffDefOf.HearingLossTemporary, patient);
                     patient.health.AddHediff(hearingLoss);
                 }
-                // up to about +0.6 severity for very high damage, skewed towards higher values
+                // maximum additional severity asymptotically approaches the factor set in the mod settings for damage approaching infinity, scewed towards the higher end
                 float baseSeverity = Rand.Range(0f, chance);
-                hearingLoss.Severity = Mathf.Clamp01(hearingLoss.Severity + Mathf.Pow(baseSeverity, E_INVERSE));
+                hearingLoss.Severity += Mathf.Pow(baseSeverity, E_INVERSE) * MoreInjuriesMod.Settings.HearingDamageTemporarySeverityFactorExplosions;
 
                 HearingLossHelper.TryMakePermanentIfApplicable(patient, hearingLoss);
             }

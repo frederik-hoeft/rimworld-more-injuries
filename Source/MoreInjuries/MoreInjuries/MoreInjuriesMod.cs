@@ -5,7 +5,7 @@ using Verse;
 using UnityEngine;
 using MoreInjuries.Initialization;
 using System.Collections.Generic;
-using MoreInjuries.Extensions;
+using System.Configuration;
 
 namespace MoreInjuries;
 
@@ -372,6 +372,25 @@ public class MoreInjuriesMod : Mod
             Disabled by default, may reduce performance during large battles, especially with Combat Extended loaded, due to the increased number of calculations required.
             """);
         Settings.EnableAdvancedHearingDamage = Settings.EnableBasicHearingDamage && advancedHearingDamage;
+        list.Label($"Scaling factor for hearing damage cause by gunshots: {Settings.HearingDamageTemporarySeverityFactor} (default: {HEARING_DAMAGE_TEMPORARY_SEVERITY_FACTOR_DEFAULT})", -1,
+            """
+            The severity of hearing damage caused by gunshots is determined by the loudness of the gunshot and the distance to the shooter. This factor scales the severity of the temporary hearing damage caused by gunshots.
+            """);
+        Settings.HearingDamageTemporarySeverityFactor = (float)Math.Round(list.Slider(Settings.HearingDamageTemporarySeverityFactor, 0.01f, 1f), 2);
+        list.Label($"Scaling factor for hearing damage cause by explosions: {Settings.HearingDamageTemporarySeverityFactorExplosions} (default: {HEARING_DAMAGE_TEMPORARY_SEVERITY_FACTOR_EXPLOSIONS_DEFAULT})", -1,
+            """
+            The severity of hearing damage caused by explosions is determined by the amount of explosive force that the pawn is exposed to. This factor scales the severity of the temporary hearing damage caused by explosions.
+            """);
+        Settings.HearingDamageTemporarySeverityFactorExplosions = (float)Math.Round(list.Slider(Settings.HearingDamageTemporarySeverityFactorExplosions, 0.01f, 2f), 2);
+        list.CheckboxLabeled($"Severe hearing damage can become permanent (default: {HEARING_DAMAGE_MAY_BECOME_PERMANENT_DEFAULT})", ref Settings.HearingDamageMayBecomePermanent,
+            """
+            If enabled, severe hearing damage may become permanent after being exposed to loud noises for an extended period of time. The actual chance of hearing damage becoming permanent scales with the severity of the temporary hearing damage and the factor below.
+            """);
+        list.Label($"Maximum chance of temporary hearing damage to become permanent: {Settings.HearingDamagePermanentChanceFactor} (default: {HEARING_DAMAGE_PERMANENT_CHANCE_FACTOR_DEFAULT})", -1,
+            """
+            The maximum likelihood that temporary hearing damage becomes permanent after being exposed to loud noises. The actual chance is based on the severity of the temporary hearing damage.
+            """);
+        Settings.HearingDamagePermanentChanceFactor = (float)Math.Round(list.Slider(Settings.HearingDamagePermanentChanceFactor, 0.01f, 1f), 2);
         // miscellaneous
         list.GapLine();
         Text.Font = GameFont.Medium;
