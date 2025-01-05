@@ -29,7 +29,7 @@ public class HediffComp_Choking : HediffComp
         || ModLister.BiotechInstalled && parent.pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest));
 
     public override string CompLabelInBracketsExtra => Coughing
-        ? "coughing"
+        ? "MI_Coughing".Translate()
         : string.Empty;
 
     public override void CompPostTick(ref float severityAdjustment)

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <MI_UseSuctionDevice>Clear airways</MI_UseSuctionDevice>
+  <MI_UseSuctionDeviceFailed_Unavailable>{0}: no suction device available</MI_UseSuctionDeviceFailed_Unavailable>
+  <MI_Coughing>coughing</MI_Coughing>
+</LanguageData>

@@ -1,7 +1,6 @@
 ﻿using Verse.AI;
 using Verse;
 using MoreInjuries.Things;
-using MoreInjuries.KnownDefs;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using RimWorld;

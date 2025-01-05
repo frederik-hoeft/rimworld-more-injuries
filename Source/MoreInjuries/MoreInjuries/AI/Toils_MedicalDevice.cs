@@ -1,5 +1,4 @@
 ﻿using MoreInjuries.Things;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;

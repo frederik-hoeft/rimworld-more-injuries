@@ -5,7 +5,6 @@ using Verse;
 using UnityEngine;
 using MoreInjuries.Initialization;
 using System.Collections.Generic;
-using System.Configuration;
 
 namespace MoreInjuries;
 

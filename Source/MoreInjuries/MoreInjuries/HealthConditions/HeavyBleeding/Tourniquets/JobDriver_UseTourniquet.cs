@@ -1,5 +1,4 @@
 ﻿using MoreInjuries.AI;
-using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
 using Verse;
 using Verse.AI;
