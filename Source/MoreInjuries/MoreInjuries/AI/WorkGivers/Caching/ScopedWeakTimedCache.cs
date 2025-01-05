@@ -18,7 +18,6 @@ public abstract class ScopedWeakTimedCache<TThing> where TThing : Thing
         TryRefreshCache(map, out Dictionary<int, Std::WeakReference<TThing>>? cache);
         if (cache is not null || _mapThingCache.TryGetValue(map, out cache))
         {
-            Logger.LogDebug($"Loaded {cache.Count} weak references to things of type {typeof(TThing).Name} on map {map.uniqueID} from cache");
             List<int>? deadReferences = null;
             foreach ((int hashCode, Std::WeakReference<TThing> weakRef) in cache)
             {
@@ -28,7 +27,6 @@ public abstract class ScopedWeakTimedCache<TThing> where TThing : Thing
                 }
                 else
                 {
-                    Logger.LogDebug($"Removing dead reference for {typeof(TThing).Name} on map {map.uniqueID}");
                     deadReferences ??= [];
                     deadReferences.Add(hashCode);
                 }
@@ -45,7 +43,6 @@ public abstract class ScopedWeakTimedCache<TThing> where TThing : Thing
 
     public bool HasCachedThings(Map map)
     {
-        Logger.LogDebug($"Checking cache for {typeof(TThing).Name} on map {map.uniqueID}");
         TryRefreshCache(map, out Dictionary<int, Std::WeakReference<TThing>>? cache);
         if (cache is null && !_mapThingCache.TryGetValue(map, out cache))
         {
@@ -64,10 +61,8 @@ public abstract class ScopedWeakTimedCache<TThing> where TThing : Thing
             return;
         }
         _lastRefreshTicks = ticks;
-        Logger.LogDebug($"Refreshing cache for {typeof(TThing).Name} on map {map.uniqueID}");
         if (!_mapThingCache.TryGetValue(map, out cache))
         {
-            Logger.LogDebug($"Creating new cache for {typeof(TThing).Name} on map {map.uniqueID}");
             cache = [];
             _mapThingCache.Add(map, cache);
             return;
@@ -78,6 +73,5 @@ public abstract class ScopedWeakTimedCache<TThing> where TThing : Thing
             int hashCode = thing.GetHashCode();
             cache[hashCode] = new Std::WeakReference<TThing>(thing);
         }
-        Logger.LogDebug($"Cached {cache.Count} instances of {typeof(TThing).Name} on map {map.uniqueID}");
     }
 }

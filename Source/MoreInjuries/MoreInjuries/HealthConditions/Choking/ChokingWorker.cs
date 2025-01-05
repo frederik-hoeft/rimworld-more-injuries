@@ -22,13 +22,13 @@ internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPos
         if (!builder.Keys.Contains(UITreatmentOption.PerformCpr) && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
         {
             builder.Keys.Add(UITreatmentOption.PerformCpr);
-            if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_PerformCpr.JOB_LABEL) is string failure)
+            if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobDriver_PerformCpr.JOB_LABEL_KEY) is string failure)
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));
             }
             else
             {
-                builder.Options.Add(new FloatMenuOption(JobDriver_PerformCpr.JOB_LABEL, JobDriver_PerformCpr.GetDispatcher(selectedPawn, patient).StartJob));
+                builder.Options.Add(new FloatMenuOption(JobDriver_PerformCpr.JOB_LABEL_KEY, JobDriver_PerformCpr.GetDispatcher(selectedPawn, patient).StartJob));
             }
         }
         if (!builder.Keys.Contains(UITreatmentOption.UseSuctionDevice) && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1))

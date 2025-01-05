@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <MI_UseDefibrillator>Defibrillate</MI_UseDefibrillator>
+  <MI_UseDefibrillatorFailed_Unavailable>{0}: no defibrillator available</MI_UseDefibrillatorFailed_Unavailable>
+  <MI_PerformCpr>Perform CPR</MI_PerformCpr>
+</LanguageData>

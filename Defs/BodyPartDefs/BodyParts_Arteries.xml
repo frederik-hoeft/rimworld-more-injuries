@@ -12,4 +12,17 @@
     <canSuggestAmputation>false</canSuggestAmputation>
     <destroyableByDamage>false</destroyableByDamage>
   </BodyPartDef>
+  
+  <BodyPartDef>
+    <defName>PoplitealArtery</defName>
+    <label>popliteal artery</label>
+    <hitPoints>15</hitPoints>
+    <permanentInjuryChanceFactor>0</permanentInjuryChanceFactor>
+    <skinCovered>false</skinCovered>
+    <solid>false</solid>
+    <bleedRate>3</bleedRate>
+    <tags></tags>
+    <canSuggestAmputation>false</canSuggestAmputation>
+    <destroyableByDamage>false</destroyableByDamage>
+  </BodyPartDef>
 </Defs>

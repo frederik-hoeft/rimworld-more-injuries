@@ -9,31 +9,31 @@ public static class MedicalDeviceHelper
 {
     internal const int MAX_MEDICAL_DEVICE_RESERVATIONS = 10;
 
-    public static string? GetReasonForDisabledProcedure(Pawn doctor, Pawn patient, string jobTitle)
+    public static string? GetReasonForDisabledProcedure(Pawn doctor, Pawn patient, string jobTitleTranslationKey)
     {
         if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
         {
-            return $"{jobTitle}: medical care for {patient} disabled";
+            return "MI_ProcedureFailed_CareDisabled".Translate(jobTitleTranslationKey.Translate(), patient);
         }
         if (!doctor.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
         {
-            return $"{jobTitle}: {doctor} is incapable of manipulation";
+            return "MI_ProcedureFailed_IncapableOfManipulation".Translate(jobTitleTranslationKey.Translate(), doctor);
         }
         if (!doctor.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
         {
-            return $"{jobTitle}: {doctor} is blind";
+            return "MI_ProcedureFailed_IncapableOfSight".Translate(jobTitleTranslationKey.Translate(), doctor);
         }
         if (doctor.WorkTagIsDisabled(WorkTags.Caring))
         {
-            return $"{jobTitle}: {doctor} is incapable of caring";
+            return "MI_ProcedureFailed_IncapableOfCaring".Translate(jobTitleTranslationKey.Translate(), doctor);
         }
         if (doctor.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
         {
-            return $"{jobTitle}: {doctor} is incapable of medicine";
+            return "MI_ProcedureFailed_IncapableOfMedicine".Translate(jobTitleTranslationKey.Translate(), doctor);
         }
         if (doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
         {
-            return $"{jobTitle}: self-tend disabled";
+            return "MI_ProcedureFailed_SelfTendDisabled".Translate(jobTitleTranslationKey.Translate());
         }
         return null;
     }
