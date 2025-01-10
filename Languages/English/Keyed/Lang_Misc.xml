@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
-  <!-- EN: {TIME_HOURS}h -->
-  <MI_Format_TimeHours>{TIME_HOURS}h</MI_Format_TimeHours>
-  <!-- EN: {TIME_DAYS}d -->
-  <MI_Format_TimeDays>{TIME_DAYS}d</MI_Format_TimeDays>
-  <!-- EN: {TIME_SECONDS}s -->
-  <MI_Format_TimeSeconds>{TIME_SECONDS}s</MI_Format_TimeSeconds>
+  <!-- EN: {HOURS}h -->
+  <MI_Format_TimeHours>{HOURS}h</MI_Format_TimeHours>
+  <!-- EN: {DAYS}d -->
+  <MI_Format_TimeDays>{DAYS}d</MI_Format_TimeDays>
+  <!-- EN: {SECONDS}s -->
+  <MI_Format_TimeSeconds>{SECONDS}s</MI_Format_TimeSeconds>
   <!-- EN: {0} (from inventory) -->
   <MI_Procedure_FromInventory>{0} (from inventory)</MI_Procedure_FromInventory>
   <!-- EN: {0} (stabilize) -->

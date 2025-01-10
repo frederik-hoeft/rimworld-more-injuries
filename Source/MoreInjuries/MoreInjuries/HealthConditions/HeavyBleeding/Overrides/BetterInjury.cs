@@ -143,7 +143,7 @@ public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
         if (IsClosedInternalWound)
         {
             double bleedRatePercentage = Math.Round((1f - MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier) * 100f, 2);
-            builder.AppendLine("MI_InjuryEnclosed_Tooltip".Translate(bleedRatePercentage.Named(Named.Params.VALUE_PERCENT)));
+            builder.AppendLine("MI_InjuryEnclosed_Tooltip".Translate(bleedRatePercentage.Named(Named.Params.PERCENT)));
             hasCustomInfo = true;
         }
     }

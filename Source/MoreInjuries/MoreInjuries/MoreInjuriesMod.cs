@@ -229,18 +229,19 @@ public class MoreInjuriesMod : Mod
         list.CheckboxLabeled("MI_Settings_Features_Tourniquets_EnableLabel".Translate(TOURNIQUETS_CAN_CAUSE_GANGRENE_DEFAULT.NamedDefault()), ref Settings.TourniquetsCanCauseGangrene,
             "MI_Settings_Features_Tourniquets_EnableTooltip".Translate());
         list.Label("MI_Settings_Features_Tourniquets_GangreneMeanTimeLabel".Translate(
-            Named.Keys.Format_TimeHours.Translate(Math.Round(Settings.MeanTimeBetweenGangreneOnTourniquet / 2500f, 1).Named(Named.Params.TIME_HOURS)),
-            Named.Keys.Format_TimeHours.Translate(Math.Round(MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT / 2500f, 1).Named(Named.Params.TIME_HOURS))), -1,
+            Named.Keys.Format_TimeHours.Translate(Math.Round(Settings.MeanTimeBetweenGangreneOnTourniquet / 2500f, 1).Named(Named.Params.HOURS)).NamedValue(),
+            Named.Keys.Format_TimeHours.Translate(Math.Round(MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT / 2500f, 1).Named(Named.Params.HOURS)).NamedDefault()), -1,
             "MI_Settings_Features_Tourniquets_GangreneMeanTimeTooltip".Translate());
         Settings.MeanTimeBetweenGangreneOnTourniquet = Mathf.Floor(list.Slider((float)Math.Round(Settings.MeanTimeBetweenGangreneOnTourniquet / 2500f, 1), 0.1f, 24f) * 2500f);
         list.Label("MI_Settings_Features_Tourniquets_GangreneDryChanceLabel".Translate(Settings.DryGangreneChance.NamedValue(), DRY_GANGRENE_CHANCE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_Tourniquets_GangreneDryChanceTooltip".Translate());
         Settings.DryGangreneChance = (float)Math.Round(list.Slider(Settings.DryGangreneChance, 0f, 1f), 2);
         list.Label("MI_Settings_Features_Tourniquets_WetGangreneMeanTimeLabel".Translate(
-            Named.Keys.Format_TimeDays.Translate(Math.Round(Settings.DryGangreneMeanTimeToInfection / 60_000f, 1).Named(Named.Params.TIME_DAYS)),
-            Named.Keys.Format_TimeDays.Translate(Math.Round(DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT / 60_000f, 1).Named(Named.Params.TIME_DAYS))), -1,
+            Named.Keys.Format_TimeDays.Translate(Math.Round(Settings.DryGangreneMeanTimeToInfection / 60_000f, 1).Named(Named.Params.DAYS)).NamedValue(),
+            Named.Keys.Format_TimeDays.Translate(Math.Round(DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT / 60_000f, 1).Named(Named.Params.DAYS)).NamedDefault()), -1,
             "MI_Settings_Features_Tourniquets_WetGangreneMeanTimeTooltip".Translate());
         Settings.DryGangreneMeanTimeToInfection = Mathf.Floor(list.Slider((float)Math.Round(Settings.DryGangreneMeanTimeToInfection / 60_000f, 1), 0.1f, 15f) * 60_000f);
+        // hearing damage
         list.GapLine();
         Text.Font = GameFont.Medium;
         list.Label("MI_Settings_Features_HearingDamage".Translate());
@@ -265,7 +266,7 @@ public class MoreInjuriesMod : Mod
         // miscellaneous
         list.GapLine();
         Text.Font = GameFont.Medium;
-        list.Label("MI_Settings_Features_Miscellaneous".Translate());
+        list.Label("MI_Settings_Features_Misc".Translate());
         Text.Font = GameFont.Small;
         if (ModLister.BiotechInstalled)
         {
@@ -328,12 +329,12 @@ file static class NamedExtensions
     /// <summary>
     /// Returns <paramref name="obj"/> as a named argument called <c>VALUE</c>.
     /// </summary>
-    public static NamedArgument NamedValue(this object obj) =>
-        obj.Named(Named.Params.VALUE);
+    public static NamedArgument NamedValue<T>(this T obj) =>
+        obj.ToStringSafe().Named(Named.Params.VALUE);
 
     /// <summary>
     /// Returns <paramref name="obj"/> as a named argument called <c>VALUE_DEFAULT</c>.
     /// </summary>
-    public static NamedArgument NamedDefault(this object obj) =>
-        obj.Named(Named.Params.VALUE_DEFAULT);
+    public static NamedArgument NamedDefault<T>(this T obj) =>
+        obj.ToStringSafe().Named(Named.Params.DEFAULT);
 }

@@ -3,10 +3,10 @@
   <!-- ============ General Settings ============ -->
   <!-- EN: General Settings -->
   <MI_Settings_General>General Settings</MI_Settings_General>
-  <!-- EN: Enable logging (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_General_LoggingLabel>Enable logging (default: {VALUE_DEFAULT})</MI_Settings_General_LoggingLabel>
-  <!-- EN: Enable verbose logging (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_General_LoggingVerboseLabel>Enable verbose logging (default: {VALUE_DEFAULT})</MI_Settings_General_LoggingVerboseLabel>
+  <!-- EN: Enable logging (default: {DEFAULT}) -->
+  <MI_Settings_General_LoggingLabel>Enable logging (default: {DEFAULT})</MI_Settings_General_LoggingLabel>
+  <!-- EN: Enable verbose logging (default: {DEFAULT}) -->
+  <MI_Settings_General_LoggingVerboseLabel>Enable verbose logging (default: {DEFAULT})</MI_Settings_General_LoggingVerboseLabel>
   <!-- EN: Fix misplaced bionics -->
   <MI_Settings_General_DebugAction_FixBionicsLabel>Fix misplaced bionics</MI_Settings_General_DebugAction_FixBionicsLabel>
   <!-- ============ Features ============ -->
@@ -15,251 +15,251 @@
   <!-- ============ Feature: Fractures ============ -->
   <!-- EN: Fractures -->
   <MI_Settings_Features_Fractures>Fractures</MI_Settings_Features_Fractures>
-  <!-- EN: Enable bone fractures (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Fractures_EnableLabel>Enable bone fractures (default: {VALUE_DEFAULT})</MI_Settings_Features_Fractures_EnableLabel>
+  <!-- EN: Enable bone fractures (default: {DEFAULT}) -->
+  <MI_Settings_Features_Fractures_EnableLabel>Enable bone fractures (default: {DEFAULT})</MI_Settings_Features_Fractures_EnableLabel>
   <!-- EN: If enabled, pawns that take certain types of damage may, as a result, receive bone fractures from the impact. This is especially likely for blunt damage. -->
   <MI_Settings_Features_Fractures_EnableTooltip>If enabled, pawns that take certain types of damage may, as a result, receive bone fractures from the impact. This is especially likely for blunt damage.</MI_Settings_Features_Fractures_EnableTooltip>
-  <!-- EN: Minimum damage threshold for fractures: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Fractures_DamageThresholdLabel>Minimum damage threshold for fractures: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Fractures_DamageThresholdLabel>
+  <!-- EN: Minimum damage threshold for fractures: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Fractures_DamageThresholdLabel>Minimum damage threshold for fractures: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Fractures_DamageThresholdLabel>
   <!-- EN: The minimum amount of damage required to cause a bone fracture.\n\nBeing punched by a squirrel is unlikely to cause a fracture, but being hit by a club or a bullet is a different story. -->
   <MI_Settings_Features_Fractures_DamageThresholdTooltip>The minimum amount of damage required to cause a bone fracture.\n\nBeing punched by a squirrel is unlikely to cause a fracture, but being hit by a club or a bullet is a different story.</MI_Settings_Features_Fractures_DamageThresholdTooltip>
-  <!-- EN: Chance of bone fractures on damage: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Fractures_FractureChanceLabel>Chance of bone fractures on damage: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Fractures_FractureChanceLabel>
+  <!-- EN: Chance of bone fractures on damage: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Fractures_FractureChanceLabel>Chance of bone fractures on damage: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Fractures_FractureChanceLabel>
   <!-- EN: The likelihood of a bone fracture actually being applied to an affected body part after all conditions for a fracture have been met.\n\nSimulates the complex geometry of the human body and its susceptibility to fractures through random chance. -->
   <MI_Settings_Features_Fractures_FractureChanceTooltip>The likelihood of a bone fracture actually being applied to an affected body part after all conditions for a fracture have been met.\n\nSimulates the complex geometry of the human body and its susceptibility to fractures through random chance.</MI_Settings_Features_Fractures_FractureChanceTooltip>
-  <!-- EN: Enable bone fragment lacerations (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Fractures_EnableLacerationsLabel>Enable bone fragment lacerations (default: {VALUE_DEFAULT})</MI_Settings_Features_Fractures_EnableLacerationsLabel>
+  <!-- EN: Enable bone fragment lacerations (default: {DEFAULT}) -->
+  <MI_Settings_Features_Fractures_EnableLacerationsLabel>Enable bone fragment lacerations (default: {DEFAULT})</MI_Settings_Features_Fractures_EnableLacerationsLabel>
   <!-- EN: If enabled, pawns that receive bone fractures may also receive lacerations from the bone fragments that result from the fracture. -->
   <MI_Settings_Features_Fractures_EnableLacerationsTooltip>If enabled, pawns that receive bone fractures may also receive lacerations from the bone fragments that result from the fracture.</MI_Settings_Features_Fractures_EnableLacerationsTooltip>
-  <!-- EN: Chance of bone fragment lacerations: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Fractures_LacerationChanceLabel>Chance of bone fragment lacerations: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Fractures_LacerationChanceLabel>
+  <!-- EN: Chance of bone fragment lacerations: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Fractures_LacerationChanceLabel>Chance of bone fragment lacerations: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Fractures_LacerationChanceLabel>
   <!-- EN: The likelihood that a fracture may cause the bone to splinter, which can cause additional lacerations to nearby body parts. -->
   <MI_Settings_Features_Fractures_LacerationChanceTooltip>The likelihood that a fracture may cause the bone to splinter, which can cause additional lacerations to nearby body parts.</MI_Settings_Features_Fractures_LacerationChanceTooltip>
-  <!-- EN: Chance of laceration causing injury: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Fractures_LacerationInjuryChanceLabel>Chance of laceration causing injury: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Fractures_LacerationInjuryChanceLabel>
+  <!-- EN: Chance of laceration causing injury: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Fractures_LacerationInjuryChanceLabel>Chance of laceration causing injury: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Fractures_LacerationInjuryChanceLabel>
   <!-- EN: The likelihood that a nearby body part may receive bone fragment lacerations after a splintering fracture has occurred. -->
   <MI_Settings_Features_Fractures_LacerationInjuryChanceTooltip>The likelihood that a nearby body part may receive bone fragment lacerations after a splintering fracture has occurred.</MI_Settings_Features_Fractures_LacerationInjuryChanceTooltip>
   <!-- ============ Feature: Respiratory Conditions ============ -->
   <!-- EN: Respiratory Conditions -->
   <MI_Settings_Features_Respiratory>Respiratory Conditions</MI_Settings_Features_Respiratory>
-  <!-- EN: Enable choking on blood mechanics (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Respiratory_EnableChokingLabel>Enable choking on blood mechanics (default: {VALUE_DEFAULT})</MI_Settings_Features_Respiratory_EnableChokingLabel>
+  <!-- EN: Enable choking on blood mechanics (default: {DEFAULT}) -->
+  <MI_Settings_Features_Respiratory_EnableChokingLabel>Enable choking on blood mechanics (default: {DEFAULT})</MI_Settings_Features_Respiratory_EnableChokingLabel>
   <!-- EN: If enabled, pawns that receive severe lacerations to the respiratory system may choke on their own blood, leading to asphyxiation and death if not treated in time.\n\nA gruesome reminder of the fragility of life. -->
   <MI_Settings_Features_Respiratory_EnableChokingTooltip>If enabled, pawns that receive severe lacerations to the respiratory system may choke on their own blood, leading to asphyxiation and death if not treated in time.\n\nA gruesome reminder of the fragility of life.</MI_Settings_Features_Respiratory_EnableChokingTooltip>
-  <!-- EN: Enable choking sound effects (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Respiratory_EnableChokingSoundLabel>Enable choking sound effects (default: {VALUE_DEFAULT})</MI_Settings_Features_Respiratory_EnableChokingSoundLabel>
+  <!-- EN: Enable choking sound effects (default: {DEFAULT}) -->
+  <MI_Settings_Features_Respiratory_EnableChokingSoundLabel>Enable choking sound effects (default: {DEFAULT})</MI_Settings_Features_Respiratory_EnableChokingSoundLabel>
   <!-- EN: Whether to play a sound effect when a pawn starts choking on their own blood.\n\nPotentially disturbing, but adds a sense of urgency to the situation. -->
   <MI_Settings_Features_Respiratory_EnableChokingSoundTooltip>Whether to play a sound effect when a pawn starts choking on their own blood.\n\nPotentially disturbing, but adds a sense of urgency to the situation.</MI_Settings_Features_Respiratory_EnableChokingSoundTooltip>
-  <!-- EN: Minimum bleed rate for choking: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Respiratory_ChokingMinBleedRateLabel>Minimum bleed rate for choking: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Respiratory_ChokingMinBleedRateLabel>
+  <!-- EN: Minimum bleed rate for choking: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Respiratory_ChokingMinBleedRateLabel>Minimum bleed rate for choking: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Respiratory_ChokingMinBleedRateLabel>
   <!-- EN: The minimum bleed rate of respiratory injuries required to cause a pawn to choke on their own blood. -->
   <MI_Settings_Features_Respiratory_ChokingMinBleedRateTooltip>The minimum bleed rate of respiratory injuries required to cause a pawn to choke on their own blood.</MI_Settings_Features_Respiratory_ChokingMinBleedRateTooltip>
-  <!-- EN: Chance of choking on blood after severe damage: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Respiratory_ChokingChanceLabel>Chance of choking on blood after severe damage: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Respiratory_ChokingChanceLabel>
+  <!-- EN: Chance of choking on blood after severe damage: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Respiratory_ChokingChanceLabel>Chance of choking on blood after severe damage: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Respiratory_ChokingChanceLabel>
   <!-- EN: The likelihood of a pawn choking on their own blood after receiving severe bleeding injuries to the respiratory system. -->
   <MI_Settings_Features_Respiratory_ChokingChanceTooltip>The likelihood of a pawn choking on their own blood after receiving severe bleeding injuries to the respiratory system.</MI_Settings_Features_Respiratory_ChokingChanceTooltip>
-  <!-- EN: Minimum suction device success rate for unskilled users: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateLabel>Minimum suction device success rate for unskilled users: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateLabel>
+  <!-- EN: Minimum suction device success rate for unskilled users: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateLabel>Minimum suction device success rate for unskilled users: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateLabel>
   <!-- EN: The minimum likelihood of a suction device successfully removing blood from the airways of a choking pawn when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8). -->
   <MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateTooltip>The minimum likelihood of a suction device successfully removing blood from the airways of a choking pawn when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8).</MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateTooltip>
-  <!-- EN: Enable inhalation injuries (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Respiratory_EnableInhalationLabel>Enable inhalation injuries (default: {VALUE_DEFAULT})</MI_Settings_Features_Respiratory_EnableInhalationLabel>
+  <!-- EN: Enable inhalation injuries (default: {DEFAULT}) -->
+  <MI_Settings_Features_Respiratory_EnableInhalationLabel>Enable inhalation injuries (default: {DEFAULT})</MI_Settings_Features_Respiratory_EnableInhalationLabel>
   <!-- EN: If enabled, pawns that are exposed to fire or other sources of smoke and hot gases may suffer from inhalation injuries, causing severe damage to the respiratory system.\n\nSmoking is bad for your health, but inhaling smoke from a burning building or residue from thermobaric munitions is even worse. -->
   <MI_Settings_Features_Respiratory_EnableInhalationTooltip>If enabled, pawns that are exposed to fire or other sources of smoke and hot gases may suffer from inhalation injuries, causing severe damage to the respiratory system.\n\nSmoking is bad for your health, but inhaling smoke from a burning building or residue from thermobaric munitions is even worse.</MI_Settings_Features_Respiratory_EnableInhalationTooltip>
-  <!-- EN: Enable lung collapses (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Respiratory_EnableLungCollapseLabel>Enable lung collapses (default: {VALUE_DEFAULT})</MI_Settings_Features_Respiratory_EnableLungCollapseLabel>
+  <!-- EN: Enable lung collapses (default: {DEFAULT}) -->
+  <MI_Settings_Features_Respiratory_EnableLungCollapseLabel>Enable lung collapses (default: {DEFAULT})</MI_Settings_Features_Respiratory_EnableLungCollapseLabel>
   <!-- EN: If enabled, thermobaric weapons and other high-explosive devices can cause the lungs to rupture and collapse due to the sudden pressure changes.\n\nFatal if not treated in time, must be surgically repaired. -->
   <MI_Settings_Features_Respiratory_EnableLungCollapseTooltip>If enabled, thermobaric weapons and other high-explosive devices can cause the lungs to rupture and collapse due to the sudden pressure changes.\n\nFatal if not treated in time, must be surgically repaired.</MI_Settings_Features_Respiratory_EnableLungCollapseTooltip>
-  <!-- EN: Chance of lung collapse on thermobaric damage: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Respiratory_LungCollapseChanceLabel>Chance of lung collapse on thermobaric damage: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Respiratory_LungCollapseChanceLabel>
+  <!-- EN: Chance of lung collapse on thermobaric damage: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Respiratory_LungCollapseChanceLabel>Chance of lung collapse on thermobaric damage: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Respiratory_LungCollapseChanceLabel>
   <!-- EN: The likelihood of a pawn suffering from lung collapse after being hit by a thermobaric weapon or other high-explosive device. -->
   <MI_Settings_Features_Respiratory_LungCollapseChanceTooltip>The likelihood of a pawn suffering from lung collapse after being hit by a thermobaric weapon or other high-explosive device.</MI_Settings_Features_Respiratory_LungCollapseChanceTooltip>
-  <!-- EN: Maximum initial lung collapse severity factor: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootLabel>Maximum initial lung collapse severity factor: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootLabel>
+  <!-- EN: Maximum initial lung collapse severity factor: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootLabel>Maximum initial lung collapse severity factor: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootLabel>
   <!-- EN: The maximum initial severity of lung collapse is determined by a random factor between 0 and this value, squared. Stacks with subsequent exposure to thermobaric damage. The resulting severity of lung collapse therefore follows a quadratic distribution, with a higher likelihood of low severities and a small chance of very high severities. For example, at 0.5, the severity of lung collapse will follow a quadratic distribution between 0 and 0.25. -->
   <MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootTooltip>The maximum initial severity of lung collapse is determined by a random factor between 0 and this value, squared. Stacks with subsequent exposure to thermobaric damage. The resulting severity of lung collapse therefore follows a quadratic distribution, with a higher likelihood of low severities and a small chance of very high severities. For example, at 0.5, the severity of lung collapse will follow a quadratic distribution between 0 and 0.25.</MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootTooltip>
   <!-- ============ Feature: Spalling ============ -->
   <!-- EN: Spalling -->
   <MI_Settings_Features_Spalling>Spalling</MI_Settings_Features_Spalling>
-  <!-- EN: Enable spalling mechanics (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Spalling_EnableLabel>Enable spalling mechanics (default: {VALUE_DEFAULT})</MI_Settings_Features_Spalling_EnableLabel>
+  <!-- EN: Enable spalling mechanics (default: {DEFAULT}) -->
+  <MI_Settings_Features_Spalling_EnableLabel>Enable spalling mechanics (default: {DEFAULT})</MI_Settings_Features_Spalling_EnableLabel>
   <!-- EN: When high-velocity projectiles are stopped by armor, the large amount of kinetic energy can cause the projectile and top layer of the armor to shatter and send fragments flying in all directions. The amount of spalling depends on the angle of impact and the hardness and condition of the armor. Spalling can cause additional injuries to the wearer of the armor, even if the projectile itself did not penetrate the armor. -->
   <MI_Settings_Features_Spalling_EnableTooltip>When high-velocity projectiles are stopped by armor, the large amount of kinetic energy can cause the projectile and top layer of the armor to shatter and send fragments flying in all directions. The amount of spalling depends on the angle of impact and the hardness and condition of the armor. Spalling can cause additional injuries to the wearer of the armor, even if the projectile itself did not penetrate the armor.</MI_Settings_Features_Spalling_EnableTooltip>
-  <!-- EN: Base chance of armor creating spall based on condition: {VALUE} (default: {VALUE_DEFAULT})\n\nModern armor is designed to prevent spalling by adding softer layers above the hard armor plates to catch and absorb bullet fragments. As armor condition deteriorates after absorbing damage, the chance of spalling naturally increases when these absorbing layers are compromised. For example, at 0.8, the chance of spalling remains 0 until the armor is at 80% hp, etc. At 0, spalling is disabled. -->
-  <MI_Settings_Features_Spalling_DamageThresholdLabel>Base chance of armor creating spall based on condition: {VALUE} (default: {VALUE_DEFAULT})\n\nModern armor is designed to prevent spalling by adding softer layers above the hard armor plates to catch and absorb bullet fragments. As armor condition deteriorates after absorbing damage, the chance of spalling naturally increases when these absorbing layers are compromised. For example, at 0.8, the chance of spalling remains 0 until the armor is at 80% hp, etc. At 0, spalling is disabled.</MI_Settings_Features_Spalling_DamageThresholdLabel>
-  <!-- EN: Chance of spalling injuries: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Spalling_ChanceLabel>Chance of spalling injuries: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Spalling_ChanceLabel>
+  <!-- EN: Base chance of armor creating spall based on condition: {VALUE} (default: {DEFAULT})\n\nModern armor is designed to prevent spalling by adding softer layers above the hard armor plates to catch and absorb bullet fragments. As armor condition deteriorates after absorbing damage, the chance of spalling naturally increases when these absorbing layers are compromised. For example, at 0.8, the chance of spalling remains 0 until the armor is at 80% hp, etc. At 0, spalling is disabled. -->
+  <MI_Settings_Features_Spalling_DamageThresholdLabel>Base chance of armor creating spall based on condition: {VALUE} (default: {DEFAULT})\n\nModern armor is designed to prevent spalling by adding softer layers above the hard armor plates to catch and absorb bullet fragments. As armor condition deteriorates after absorbing damage, the chance of spalling naturally increases when these absorbing layers are compromised. For example, at 0.8, the chance of spalling remains 0 until the armor is at 80% hp, etc. At 0, spalling is disabled.</MI_Settings_Features_Spalling_DamageThresholdLabel>
+  <!-- EN: Chance of spalling injuries: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Spalling_ChanceLabel>Chance of spalling injuries: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Spalling_ChanceLabel>
   <!-- EN: The likelihood of exposed body parts receiving spalling injuries after spalling has occurred. Evaluated per body part. The final chance of spalling injuries depends on this value, the angle of impact, and the hardness and condition of the armor. -->
   <MI_Settings_Features_Spalling_ChanceTooltip>The likelihood of exposed body parts receiving spalling injuries after spalling has occurred. Evaluated per body part. The final chance of spalling injuries depends on this value, the angle of impact, and the hardness and condition of the armor.</MI_Settings_Features_Spalling_ChanceTooltip>
   <!-- ============ Feature: Hypovolemic Shock ============ -->
   <!-- EN: Blood Loss (Hypovolemic Shock) -->
   <MI_Settings_Features_HypovolemicShock>Blood Loss (Hypovolemic Shock)</MI_Settings_Features_HypovolemicShock>
-  <!-- EN: Enable hypovolemic shock mechanics (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HypovolemicShock_EnableLabel>Enable hypovolemic shock mechanics (default: {VALUE_DEFAULT})</MI_Settings_Features_HypovolemicShock_EnableLabel>
+  <!-- EN: Enable hypovolemic shock mechanics (default: {DEFAULT}) -->
+  <MI_Settings_Features_HypovolemicShock_EnableLabel>Enable hypovolemic shock mechanics (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_EnableLabel>
   <!-- EN: If enabled, pawns that lose a significant amount of blood may suffer from hypovolemic shock, which can be fatal if not treated in time. The body needs a certain amount of blood to function properly, and losing too much can lead to organ failure and death.\n\nMust be treated with a blood transfusion to stabilize the patient. -->
   <MI_Settings_Features_HypovolemicShock_EnableTooltip>If enabled, pawns that lose a significant amount of blood may suffer from hypovolemic shock, which can be fatal if not treated in time. The body needs a certain amount of blood to function properly, and losing too much can lead to organ failure and death.\n\nMust be treated with a blood transfusion to stabilize the patient.</MI_Settings_Features_HypovolemicShock_EnableTooltip>
-  <!-- EN: Chance of hypovolemic shock to cause organ hypoxia (every 300 ticks/5s): {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HypovolemicShock_HypoxiaChanceLabel>Chance of hypovolemic shock to cause organ hypoxia (every 300 ticks/5s): {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_HypovolemicShock_HypoxiaChanceLabel>
+  <!-- EN: Chance of hypovolemic shock to cause organ hypoxia (every 300 ticks/5s): {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HypovolemicShock_HypoxiaChanceLabel>Chance of hypovolemic shock to cause organ hypoxia (every 300 ticks/5s): {VALUE} (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_HypoxiaChanceLabel>
   <!-- EN: Loosing a lot of blood will lead to organs not receiving enough oxygen to function properly. This can ultimately lead to organ failure and death.\n\nTreat the patient with a blood transfusion in time to prevent this from happening. -->
   <MI_Settings_Features_HypovolemicShock_HypoxiaChanceTooltip>Loosing a lot of blood will lead to organs not receiving enough oxygen to function properly. This can ultimately lead to organ failure and death.\n\nTreat the patient with a blood transfusion in time to prevent this from happening.</MI_Settings_Features_HypovolemicShock_HypoxiaChanceTooltip>
-  <!-- EN: Reduction factor for organ hypoxia chance when patient is tended: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HypovolemicShock_HypoxiaReductionFactorLabel>Reduction factor for organ hypoxia chance when patient is tended: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_HypovolemicShock_HypoxiaReductionFactorLabel>
+  <!-- EN: Reduction factor for organ hypoxia chance when patient is tended: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HypovolemicShock_HypoxiaReductionFactorLabel>Reduction factor for organ hypoxia chance when patient is tended: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_HypoxiaReductionFactorLabel>
   <!-- EN: Tending the hypovolemic shock condition will reduce the chance of organ hypoxia by this factor and will slow down the progression of the shock. Note that this will not prevent the shock from progressing, but only slow it down. To fully stabilize the patient, a blood transfusion is required. -->
   <MI_Settings_Features_HypovolemicShock_HypoxiaReductionFactorTooltip>Tending the hypovolemic shock condition will reduce the chance of organ hypoxia by this factor and will slow down the progression of the shock. Note that this will not prevent the shock from progressing, but only slow it down. To fully stabilize the patient, a blood transfusion is required.</MI_Settings_Features_HypovolemicShock_HypoxiaReductionFactorTooltip>
-  <!-- EN: Enable hypovolemic shock to cause cardiac arrest (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HypovolemicShock_EnableCardiacArrestLabel>Enable hypovolemic shock to cause cardiac arrest (default: {VALUE_DEFAULT})</MI_Settings_Features_HypovolemicShock_EnableCardiacArrestLabel>
+  <!-- EN: Enable hypovolemic shock to cause cardiac arrest (default: {DEFAULT}) -->
+  <MI_Settings_Features_HypovolemicShock_EnableCardiacArrestLabel>Enable hypovolemic shock to cause cardiac arrest (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_EnableCardiacArrestLabel>
   <!-- EN: If enabled, pawns that lose a very large amount of blood may suffer from cardiac arrest, which can be fatal if not treated in time. The heart needs a certain amount of blood to function properly, and losing too much can lead to heart failure and death.\n\nA skilled doctor can attempt to resuscitate the patient with CPR. -->
   <MI_Settings_Features_HypovolemicShock_EnableCardiacArrestTooltip>If enabled, pawns that lose a very large amount of blood may suffer from cardiac arrest, which can be fatal if not treated in time. The heart needs a certain amount of blood to function properly, and losing too much can lead to heart failure and death.\n\nA skilled doctor can attempt to resuscitate the patient with CPR.</MI_Settings_Features_HypovolemicShock_EnableCardiacArrestTooltip>
-  <!-- EN: Chance of cardiac arrest on high blood loss: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HypovolemicShock_CardiacArrestChanceLabel>Chance of cardiac arrest on high blood loss: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_HypovolemicShock_CardiacArrestChanceLabel>
+  <!-- EN: Chance of cardiac arrest on high blood loss: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HypovolemicShock_CardiacArrestChanceLabel>Chance of cardiac arrest on high blood loss: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_CardiacArrestChanceLabel>
   <!-- EN: The likelihood of a pawn suffering from cardiac arrest after losing a very large amount of blood. Evaluated every 300 ticks/5s. -->
   <MI_Settings_Features_HypovolemicShock_CardiacArrestChanceTooltip>The likelihood of a pawn suffering from cardiac arrest after losing a very large amount of blood. Evaluated every 300 ticks/5s.</MI_Settings_Features_HypovolemicShock_CardiacArrestChanceTooltip>
-  <!-- EN: Minimum defibrillator success rate for unskilled user: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>Minimum defibrillator success rate for unskilled user: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>
+  <!-- EN: Minimum defibrillator success rate for unskilled user: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>Minimum defibrillator success rate for unskilled user: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>
   <!-- EN: The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8). -->
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8).</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>
   <!-- ============ Feature: Concussion ============ -->
   <!-- EN: Concussion (Head Injury) -->
   <MI_Settings_Features_Concussion>Concussion (Head Injury)</MI_Settings_Features_Concussion>
-  <!-- EN: Enable concussion mechanics (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Concussion_EnableLabel>Enable concussion mechanics (default: {VALUE_DEFAULT})</MI_Settings_Features_Concussion_EnableLabel>
+  <!-- EN: Enable concussion mechanics (default: {DEFAULT}) -->
+  <MI_Settings_Features_Concussion_EnableLabel>Enable concussion mechanics (default: {DEFAULT})</MI_Settings_Features_Concussion_EnableLabel>
   <!-- EN: If enabled, pawns that receive head injuries may suffer from concussions, causing temporary loss of consciousness and disorientation. -->
   <MI_Settings_Features_Concussion_EnableTooltip>If enabled, pawns that receive head injuries may suffer from concussions, causing temporary loss of consciousness and disorientation.</MI_Settings_Features_Concussion_EnableTooltip>
-  <!-- EN: Raw head trauma threshold for guaranteed concussion: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Concussion_DamageThresholdLabel>Raw head trauma threshold for guaranteed concussion: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Concussion_DamageThresholdLabel>
+  <!-- EN: Raw head trauma threshold for guaranteed concussion: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Concussion_DamageThresholdLabel>Raw head trauma threshold for guaranteed concussion: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Concussion_DamageThresholdLabel>
   <!-- EN: The equivalent amount of damage dealt to the skull required to cause a concussion in 100% of all cases. The actual chance is evaluated based on the location on the head and the severity of the damage (e.g. being punched on the nose vs. being clubbed on the brain). The final chance is then scaled by the concussion chance. -->
   <MI_Settings_Features_Concussion_DamageThresholdTooltip>The equivalent amount of damage dealt to the skull required to cause a concussion in 100% of all cases. The actual chance is evaluated based on the location on the head and the severity of the damage (e.g. being punched on the nose vs. being clubbed on the brain). The final chance is then scaled by the concussion chance.</MI_Settings_Features_Concussion_DamageThresholdTooltip>
-  <!-- EN: Chance of concussion after severe head injuries: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Concussion_ConcussionChanceLabel>Chance of concussion after severe head injuries: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Concussion_ConcussionChanceLabel>
+  <!-- EN: Chance of concussion after severe head injuries: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Concussion_ConcussionChanceLabel>Chance of concussion after severe head injuries: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Concussion_ConcussionChanceLabel>
   <!-- EN: Scaling factor for the calculated chance of a concussion after severe head injuries. Evaluated per damage event. If set to 1, the calculated chance is used as-is (every head injury surpassing the configured threshold leads to concussion). Lower values allow to reduce the overall chance of concussions, even if the damage threshold is met. -->
   <MI_Settings_Features_Concussion_ConcussionChanceTooltip>Scaling factor for the calculated chance of a concussion after severe head injuries. Evaluated per damage event. If set to 1, the calculated chance is used as-is (every head injury surpassing the configured threshold leads to concussion). Lower values allow to reduce the overall chance of concussions, even if the damage threshold is met.</MI_Settings_Features_Concussion_ConcussionChanceTooltip>
   <!-- ============ Feature: Hemorrhagic Stroke ============ -->
   <!-- EN: Hemorrhagic Stroke (Head Injury) -->
   <MI_Settings_Features_HemorrhagicStroke>Hemorrhagic Stroke (Head Injury)</MI_Settings_Features_HemorrhagicStroke>
-  <!-- EN: Enable hemorrhagic stroke mechanics (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HemorrhagicStroke_EnableLabel>Enable hemorrhagic stroke mechanics (default: {VALUE_DEFAULT})</MI_Settings_Features_HemorrhagicStroke_EnableLabel>
+  <!-- EN: Enable hemorrhagic stroke mechanics (default: {DEFAULT}) -->
+  <MI_Settings_Features_HemorrhagicStroke_EnableLabel>Enable hemorrhagic stroke mechanics (default: {DEFAULT})</MI_Settings_Features_HemorrhagicStroke_EnableLabel>
   <!-- EN: If enabled, pawns that receive severe head injuries may suffer from a hemorrhagic stroke, which can be fatal if not treated in time. -->
   <MI_Settings_Features_HemorrhagicStroke_EnableTooltip>If enabled, pawns that receive severe head injuries may suffer from a hemorrhagic stroke, which can be fatal if not treated in time.</MI_Settings_Features_HemorrhagicStroke_EnableTooltip>
-  <!-- EN: Raw head trauma threshold for guaranteed hemorrhagic stroke: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HemorrhagicStroke_DamageThresholdLabel>Raw head trauma threshold for guaranteed hemorrhagic stroke: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_HemorrhagicStroke_DamageThresholdLabel>
+  <!-- EN: Raw head trauma threshold for guaranteed hemorrhagic stroke: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HemorrhagicStroke_DamageThresholdLabel>Raw head trauma threshold for guaranteed hemorrhagic stroke: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HemorrhagicStroke_DamageThresholdLabel>
   <!-- EN: The equivalent amount of damage dealt to the skull required to cause a hemorrhagic stroke in 100% of all cases. The actual chance is evaluated based on the location on the head and the severity of the damage (e.g. being punched on the nose vs. being stabbed in the brain). The final chance is then scaled by the hemorrhagic stroke chance. -->
   <MI_Settings_Features_HemorrhagicStroke_DamageThresholdTooltip>The equivalent amount of damage dealt to the skull required to cause a hemorrhagic stroke in 100% of all cases. The actual chance is evaluated based on the location on the head and the severity of the damage (e.g. being punched on the nose vs. being stabbed in the brain). The final chance is then scaled by the hemorrhagic stroke chance.</MI_Settings_Features_HemorrhagicStroke_DamageThresholdTooltip>
-  <!-- EN: Chance of hemorrhagic stroke after severe head injuries: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HemorrhagicStroke_StrokeChanceLabel>Chance of hemorrhagic stroke after severe head injuries: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_HemorrhagicStroke_StrokeChanceLabel>
+  <!-- EN: Chance of hemorrhagic stroke after severe head injuries: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HemorrhagicStroke_StrokeChanceLabel>Chance of hemorrhagic stroke after severe head injuries: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HemorrhagicStroke_StrokeChanceLabel>
   <!-- EN: Scaling factor for the calculated chance of a hemorrhagic stroke after severe head injuries. Evaluated per damage event. If set to 1, the calculated chance is used as-is (every head injury surpassing the configured threshold leads to a hemorrhagic stroke). Lower values allow to reduce the overall chance of hemorrhagic strokes, even if the damage threshold is met. -->
   <MI_Settings_Features_HemorrhagicStroke_StrokeChanceTooltip>Scaling factor for the calculated chance of a hemorrhagic stroke after severe head injuries. Evaluated per damage event. If set to 1, the calculated chance is used as-is (every head injury surpassing the configured threshold leads to a hemorrhagic stroke). Lower values allow to reduce the overall chance of hemorrhagic strokes, even if the damage threshold is met.</MI_Settings_Features_HemorrhagicStroke_StrokeChanceTooltip>
   <!-- ============ Feature: EMP Damage to Bionics ============ -->
   <!-- EN: EMP Damage to Bionics -->
   <MI_Settings_Features_EmpDamage>EMP Damage to Bionics</MI_Settings_Features_EmpDamage>
-  <!-- EN: Enable EMP damage to bionics (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_EmpDamage_EnableLabel>Enable EMP damage to bionics (default: {VALUE_DEFAULT})</MI_Settings_Features_EmpDamage_EnableLabel>
+  <!-- EN: Enable EMP damage to bionics (default: {DEFAULT}) -->
+  <MI_Settings_Features_EmpDamage_EnableLabel>Enable EMP damage to bionics (default: {DEFAULT})</MI_Settings_Features_EmpDamage_EnableLabel>
   <!-- EN: If enabled, electromagnetic pulse (EMP) damage can cause bionic implants to malfunction and shut down temporarily.\n\nSophisticated technology can be a double-edged sword. -->
   <MI_Settings_Features_EmpDamage_EnableTooltip>If enabled, electromagnetic pulse (EMP) damage can cause bionic implants to malfunction and shut down temporarily.\n\nSophisticated technology can be a double-edged sword.</MI_Settings_Features_EmpDamage_EnableTooltip>
-  <!-- EN: Chance of EMP damage to bionics: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_EmpDamage_ChanceLabel>Chance of EMP damage to bionics: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_EmpDamage_ChanceLabel>
+  <!-- EN: Chance of EMP damage to bionics: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_EmpDamage_ChanceLabel>Chance of EMP damage to bionics: {VALUE} (default: {DEFAULT})</MI_Settings_Features_EmpDamage_ChanceLabel>
   <!-- EN: The likelihood of EMP damage causing bionic implants to shut down temporarily. Evaluated per bionic implant after EMP damage has been applied. -->
   <MI_Settings_Features_EmpDamage_ChanceTooltip>The likelihood of EMP damage causing bionic implants to shut down temporarily. Evaluated per bionic implant after EMP damage has been applied.</MI_Settings_Features_EmpDamage_ChanceTooltip>
   <!-- ============ Feature: Adrenaline ============ -->
   <!-- EN: Adrenaline -->
   <MI_Settings_Features_Adrenaline>Adrenaline</MI_Settings_Features_Adrenaline>
-  <!-- EN: Enable adrenaline mechanics (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Adrenaline_EnableLabel>Enable adrenaline mechanics (default: {VALUE_DEFAULT})</MI_Settings_Features_Adrenaline_EnableLabel>
+  <!-- EN: Enable adrenaline mechanics (default: {DEFAULT}) -->
+  <MI_Settings_Features_Adrenaline_EnableLabel>Enable adrenaline mechanics (default: {DEFAULT})</MI_Settings_Features_Adrenaline_EnableLabel>
   <!-- EN: If enabled, pawns that take damage may receive a rush of adrenaline that temporarily boosts moving capabilitites and numbs the perception of pain. -->
   <MI_Settings_Features_Adrenaline_EnableTooltip>If enabled, pawns that take damage may receive a rush of adrenaline that temporarily boosts moving capabilitites and numbs the perception of pain.</MI_Settings_Features_Adrenaline_EnableTooltip>
-  <!-- EN: Damage threshold for certain adrenaline rush: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Adrenaline_DamageThresholdLabel>Damage threshold for certain adrenaline rush: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Adrenaline_DamageThresholdLabel>
+  <!-- EN: Damage threshold for certain adrenaline rush: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Adrenaline_DamageThresholdLabel>Damage threshold for certain adrenaline rush: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Adrenaline_DamageThresholdLabel>
   <!-- EN: The amount of damage required to always cause an adrenaline rush, which provides a significant boost to moving capabilities and numbs the perception of pain for a short time. If the damage taken exceeds this threshold, an adrenaline rush is guaranteed to occur. Otherwise, the chance is determined by the adrenaline chance on damage. -->
   <MI_Settings_Features_Adrenaline_DamageThresholdTooltip>The amount of damage required to always cause an adrenaline rush, which provides a significant boost to moving capabilities and numbs the perception of pain for a short time. If the damage taken exceeds this threshold, an adrenaline rush is guaranteed to occur. Otherwise, the chance is determined by the adrenaline chance on damage.</MI_Settings_Features_Adrenaline_DamageThresholdTooltip>
-  <!-- EN: Chance of adrenaline rush on damage: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Adrenaline_ChanceLabel>Chance of adrenaline rush on damage: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Adrenaline_ChanceLabel>
+  <!-- EN: Chance of adrenaline rush on damage: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Adrenaline_ChanceLabel>Chance of adrenaline rush on damage: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Adrenaline_ChanceLabel>
   <!-- EN: The likelihood of a pawn receiving an adrenaline rush after taking damage. Evaluated per damage event. The intensity of the adrenaline rush depends on the amount of damage taken. -->
   <MI_Settings_Features_Adrenaline_ChanceTooltip>The likelihood of a pawn receiving an adrenaline rush after taking damage. Evaluated per damage event. The intensity of the adrenaline rush depends on the amount of damage taken.</MI_Settings_Features_Adrenaline_ChanceTooltip>
   <!-- ============ Feature: Hydrostatic Shock ============ -->
   <!-- EN: Hydrostatic Shock (Controversial) -->
   <MI_Settings_Features_HydrostaticShock>Hydrostatic Shock (Controversial)</MI_Settings_Features_HydrostaticShock>
-  <!-- EN: Enable hydrostatic shock mechanics (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HydrostaticShock_EnableLabel>Enable hydrostatic shock mechanics (default: {VALUE_DEFAULT})</MI_Settings_Features_HydrostaticShock_EnableLabel>
+  <!-- EN: Enable hydrostatic shock mechanics (default: {DEFAULT}) -->
+  <MI_Settings_Features_HydrostaticShock_EnableLabel>Enable hydrostatic shock mechanics (default: {DEFAULT})</MI_Settings_Features_HydrostaticShock_EnableLabel>
   <!-- EN: Hydrostatic shock, also known as Hydro-shock, is the controversial concept that a penetrating projectile (such as a bullet) can produce a pressure wave that causes "remote neural damage", "subtle damage in neural tissues" and "rapid effects" in living targets. If enabled, pawns that are hit by very-high-energy projectiles may suffer from hydrostatic shock, a type of intracerebral hemorrhage (rupture of blood vessels in the brain), which can be fatal if not treated in time. The existence of hydrostatic shock is a topic of debate among medical professionals and firearms experts. Use at your own discretion. -->
   <MI_Settings_Features_HydrostaticShock_EnableTooltip>Hydrostatic shock, also known as Hydro-shock, is the controversial concept that a penetrating projectile (such as a bullet) can produce a pressure wave that causes "remote neural damage", "subtle damage in neural tissues" and "rapid effects" in living targets. If enabled, pawns that are hit by very-high-energy projectiles may suffer from hydrostatic shock, a type of intracerebral hemorrhage (rupture of blood vessels in the brain), which can be fatal if not treated in time. The existence of hydrostatic shock is a topic of debate among medical professionals and firearms experts. Use at your own discretion.</MI_Settings_Features_HydrostaticShock_EnableTooltip>
-  <!-- EN: Chance of hydrostatic shock on damage: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HydrostaticShock_ChanceLabel>Chance of hydrostatic shock on damage: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_HydrostaticShock_ChanceLabel>
+  <!-- EN: Chance of hydrostatic shock on damage: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HydrostaticShock_ChanceLabel>Chance of hydrostatic shock on damage: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HydrostaticShock_ChanceLabel>
   <!-- EN: The likelihood of a pawn suffering from hydrostatic shock after being hit by a very-high-energy projectile. Evaluated per damage event. -->
   <MI_Settings_Features_HydrostaticShock_ChanceTooltip>The likelihood of a pawn suffering from hydrostatic shock after being hit by a very-high-energy projectile. Evaluated per damage event.</MI_Settings_Features_HydrostaticShock_ChanceTooltip>
   <!-- ============ Feature: Tourniquets And Gangrene ============ -->
   <!-- EN: Tourniquets and Gangrene -->
   <MI_Settings_Features_Tourniquets>Tourniquets and Gangrene</MI_Settings_Features_Tourniquets>
-  <!-- EN: Enable tourniquets causing gangrene (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Tourniquets_EnableLabel>Enable tourniquets causing gangrene (default: {VALUE_DEFAULT})</MI_Settings_Features_Tourniquets_EnableLabel>
+  <!-- EN: Enable tourniquets causing gangrene (default: {DEFAULT}) -->
+  <MI_Settings_Features_Tourniquets_EnableLabel>Enable tourniquets causing gangrene (default: {DEFAULT})</MI_Settings_Features_Tourniquets_EnableLabel>
   <!-- EN: If enabled, pawns that have a tourniquet applied for an extended period of time may suffer from gangrene, a potentially fatal condition caused by the death of body tissue due to a lack of blood flow.\n\nIf only applied for a few hours, a tourniquet can save a life. If applied for a few days, it can cost a limb. -->
   <MI_Settings_Features_Tourniquets_EnableTooltip>If enabled, pawns that have a tourniquet applied for an extended period of time may suffer from gangrene, a potentially fatal condition caused by the death of body tissue due to a lack of blood flow.\n\nIf only applied for a few hours, a tourniquet can save a life. If applied for a few days, it can cost a limb.</MI_Settings_Features_Tourniquets_EnableTooltip>
-  <!-- EN: Mean time until gangrene from tourniquet: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Tourniquets_GangreneMeanTimeLabel>Mean time until gangrene from tourniquet: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Tourniquets_GangreneMeanTimeLabel>
+  <!-- EN: Mean time until gangrene from tourniquet: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Tourniquets_GangreneMeanTimeLabel>Mean time until gangrene from tourniquet: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Tourniquets_GangreneMeanTimeLabel>
   <!-- EN: The mean time between child body parts (e.g. fingers or toes) suffering from gangrene when the severity of adverse conditions due to the applied tourniquet is at its maximum. -->
   <MI_Settings_Features_Tourniquets_GangreneMeanTimeTooltip>The mean time between child body parts (e.g. fingers or toes) suffering from gangrene when the severity of adverse conditions due to the applied tourniquet is at its maximum.</MI_Settings_Features_Tourniquets_GangreneMeanTimeTooltip>
-  <!-- EN: Chance of dry gangrene from tourniquet: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Tourniquets_GangreneDryChanceLabel>Chance of dry gangrene from tourniquet: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Tourniquets_GangreneDryChanceLabel>
+  <!-- EN: Chance of dry gangrene from tourniquet: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Tourniquets_GangreneDryChanceLabel>Chance of dry gangrene from tourniquet: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Tourniquets_GangreneDryChanceLabel>
   <!-- EN: If a tourniquet is applied for an extended period of time, the affected body part will starve of oxygen and nutrients, leading to the death of the tissue (gangrene). Gangrene can be either dry or wet. Dry gangrene refers to the death of tissue (loss of the body part) without bacterial infection, while wet gangrene implies an accompanying bacterial infection potentially causing sepsis and death.\n\nAs such, both types of gangrene imply the loss of the affected body part, but wet gangrene can lead to death if not amputated in time. Dry gangrene may develop into wet gangrene over time if bacteria enter the dead tissue.\n\nIf set to 1, the gangrene will always be initially dry. If set to 0.8, there is an 80% chance of the gangrene being initially dry and a 20% chance of it being initially wet. -->
   <MI_Settings_Features_Tourniquets_GangreneDryChanceTooltip>If a tourniquet is applied for an extended period of time, the affected body part will starve of oxygen and nutrients, leading to the death of the tissue (gangrene). Gangrene can be either dry or wet. Dry gangrene refers to the death of tissue (loss of the body part) without bacterial infection, while wet gangrene implies an accompanying bacterial infection potentially causing sepsis and death.\n\nAs such, both types of gangrene imply the loss of the affected body part, but wet gangrene can lead to death if not amputated in time. Dry gangrene may develop into wet gangrene over time if bacteria enter the dead tissue.\n\nIf set to 1, the gangrene will always be initially dry. If set to 0.8, there is an 80% chance of the gangrene being initially dry and a 20% chance of it being initially wet.</MI_Settings_Features_Tourniquets_GangreneDryChanceTooltip>
-  <!-- EN: Mean time to infection from dry gangrene: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Tourniquets_WetGangreneMeanTimeLabel>Mean time to infection from dry gangrene: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Tourniquets_WetGangreneMeanTimeLabel>
+  <!-- EN: Mean time to infection from dry gangrene: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Tourniquets_WetGangreneMeanTimeLabel>Mean time to infection from dry gangrene: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Tourniquets_WetGangreneMeanTimeLabel>
   <!-- EN: The mean time between dry gangrene becoming infected with bacteria and turning into wet gangrene. Wet gangrene is a life-threatening condition that requires immediate amputation. -->
   <MI_Settings_Features_Tourniquets_WetGangreneMeanTimeTooltip>The mean time between dry gangrene becoming infected with bacteria and turning into wet gangrene. Wet gangrene is a life-threatening condition that requires immediate amputation.</MI_Settings_Features_Tourniquets_WetGangreneMeanTimeTooltip>
   <!-- ============ Feature: Hearing Damage ============ -->
   <!-- EN: Hearing Damage -->
   <MI_Settings_Features_HearingDamage>Hearing Damage</MI_Settings_Features_HearingDamage>
-  <!-- EN: Enable hearing damage mechanics (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HearingDamage_EnableLabel>Enable hearing damage mechanics (default: {VALUE_DEFAULT})</MI_Settings_Features_HearingDamage_EnableLabel>
+  <!-- EN: Enable hearing damage mechanics (default: {DEFAULT}) -->
+  <MI_Settings_Features_HearingDamage_EnableLabel>Enable hearing damage mechanics (default: {DEFAULT})</MI_Settings_Features_HearingDamage_EnableLabel>
   <!-- EN: If enabled, pawns shooting or being exposed to explosions may suffer from hearing loss, especially if indoors or not wearing ear protection. Helmets and other apparel that covers the ears can reduce the risk of hearing damage. Being exposed to an explosion will likely cause hearing damage no matter what.\n\nApparently, gunshots are loud. Who knew? -->
   <MI_Settings_Features_HearingDamage_EnableTooltip>If enabled, pawns shooting or being exposed to explosions may suffer from hearing loss, especially if indoors or not wearing ear protection. Helmets and other apparel that covers the ears can reduce the risk of hearing damage. Being exposed to an explosion will likely cause hearing damage no matter what.\n\nApparently, gunshots are loud. Who knew?</MI_Settings_Features_HearingDamage_EnableTooltip>
-  <!-- EN: Enable advanced hearing damage simulation (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HearingDamage_EnableAdvancedLabel>Enable advanced hearing damage simulation (default: {VALUE_DEFAULT})</MI_Settings_Features_HearingDamage_EnableAdvancedLabel>
+  <!-- EN: Enable advanced hearing damage simulation (default: {DEFAULT}) -->
+  <MI_Settings_Features_HearingDamage_EnableAdvancedLabel>Enable advanced hearing damage simulation (default: {DEFAULT})</MI_Settings_Features_HearingDamage_EnableAdvancedLabel>
   <!-- EN: Requires basic hearing damage to be enabled. If enabled, bystanding pawns near a shooter may also suffer from hearing damage, especially if the shooter is using a loud weapon or firing in an enclosed space.\n\nDisabled by default, may reduce performance during large battles, especially with Combat Extended loaded, due to the increased number of calculations required. -->
   <MI_Settings_Features_HearingDamage_EnableAdvancedTooltip>Requires basic hearing damage to be enabled. If enabled, bystanding pawns near a shooter may also suffer from hearing damage, especially if the shooter is using a loud weapon or firing in an enclosed space.\n\nDisabled by default, may reduce performance during large battles, especially with Combat Extended loaded, due to the increased number of calculations required.</MI_Settings_Features_HearingDamage_EnableAdvancedTooltip>
-  <!-- EN: Scaling factor for hearing damage caused by gunshots: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HearingDamage_GunshotFactorLabel>Scaling factor for hearing damage caused by gunshots: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_HearingDamage_GunshotFactorLabel>
+  <!-- EN: Scaling factor for hearing damage caused by gunshots: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HearingDamage_GunshotFactorLabel>Scaling factor for hearing damage caused by gunshots: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HearingDamage_GunshotFactorLabel>
   <!-- EN: The severity of hearing damage caused by gunshots is determined by the loudness of the gunshot and the distance to the shooter. This factor scales the severity of the temporary hearing damage caused by gunshots. -->
   <MI_Settings_Features_HearingDamage_GunshotFactorTooltip>The severity of hearing damage caused by gunshots is determined by the loudness of the gunshot and the distance to the shooter. This factor scales the severity of the temporary hearing damage caused by gunshots.</MI_Settings_Features_HearingDamage_GunshotFactorTooltip>
-  <!-- EN: Scaling factor for hearing damage caused by explosions: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HearingDamage_ExplosionFactorLabel>Scaling factor for hearing damage caused by explosions: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_HearingDamage_ExplosionFactorLabel>
+  <!-- EN: Scaling factor for hearing damage caused by explosions: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HearingDamage_ExplosionFactorLabel>Scaling factor for hearing damage caused by explosions: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HearingDamage_ExplosionFactorLabel>
   <!-- EN: The severity of hearing damage caused by explosions is determined by the amount of explosive force that the pawn is exposed to. This factor scales the severity of the temporary hearing damage caused by explosions. -->
   <MI_Settings_Features_HearingDamage_ExplosionFactorTooltip>The severity of hearing damage caused by explosions is determined by the amount of explosive force that the pawn is exposed to. This factor scales the severity of the temporary hearing damage caused by explosions.</MI_Settings_Features_HearingDamage_ExplosionFactorTooltip>
-  <!-- EN: Severe hearing damage can become permanent (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HearingDamage_PermanentEnableLabel>Severe hearing damage can become permanent (default: {VALUE_DEFAULT})</MI_Settings_Features_HearingDamage_PermanentEnableLabel>
+  <!-- EN: Severe hearing damage can become permanent (default: {DEFAULT}) -->
+  <MI_Settings_Features_HearingDamage_PermanentEnableLabel>Severe hearing damage can become permanent (default: {DEFAULT})</MI_Settings_Features_HearingDamage_PermanentEnableLabel>
   <!-- EN: If enabled, severe hearing damage may become permanent after being exposed to loud noises for an extended period of time. The actual chance of hearing damage becoming permanent scales with the severity of the temporary hearing damage and the factor below. -->
   <MI_Settings_Features_HearingDamage_PermanentEnableTooltip>If enabled, severe hearing damage may become permanent after being exposed to loud noises for an extended period of time. The actual chance of hearing damage becoming permanent scales with the severity of the temporary hearing damage and the factor below.</MI_Settings_Features_HearingDamage_PermanentEnableTooltip>
-  <!-- EN: Maximum chance of temporary hearing damage to become permanent: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_HearingDamage_PermanentMaxChanceLabel>Maximum chance of temporary hearing damage to become permanent: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_HearingDamage_PermanentMaxChanceLabel>
+  <!-- EN: Maximum chance of temporary hearing damage to become permanent: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HearingDamage_PermanentMaxChanceLabel>Maximum chance of temporary hearing damage to become permanent: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HearingDamage_PermanentMaxChanceLabel>
   <!-- EN: The maximum likelihood that temporary hearing damage becomes permanent after being exposed to loud noises. The actual chance is based on the severity of the temporary hearing damage and asymptotically approaches this value as the severity increases. -->
   <MI_Settings_Features_HearingDamage_PermanentMaxChanceTooltip>The maximum likelihood that temporary hearing damage becomes permanent after being exposed to loud noises. The actual chance is based on the severity of the temporary hearing damage and asymptotically approaches this value as the severity increases.</MI_Settings_Features_HearingDamage_PermanentMaxChanceTooltip>
   <!-- ============ Feature: Miscellaneous ============ -->
   <!-- EN: Miscellaneous -->
   <MI_Settings_Features_Misc>Miscellaneous</MI_Settings_Features_Misc>
-  <!-- EN: Replace blood bags with Biotech Hemogen packs (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Misc_IntegrationBiotechLabel>Replace blood bags with Biotech Hemogen packs (default: {VALUE_DEFAULT})</MI_Settings_Features_Misc_IntegrationBiotechLabel>
+  <!-- EN: Replace blood bags with Biotech Hemogen packs (default: {DEFAULT}) -->
+  <MI_Settings_Features_Misc_IntegrationBiotechLabel>Replace blood bags with Biotech Hemogen packs (default: {DEFAULT})</MI_Settings_Features_Misc_IntegrationBiotechLabel>
   <!-- EN: If enabled, recipes using blood bags will use Biotech Hemogen packs instead. -->
   <MI_Settings_Features_Misc_IntegrationBiotechTooltip>If enabled, recipes using blood bags will use Biotech Hemogen packs instead.</MI_Settings_Features_Misc_IntegrationBiotechTooltip>
-  <!-- EN: Apply health conditions to shamblers (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Misc_IntegrationAnomalyLabel>Apply health conditions to shamblers (default: {VALUE_DEFAULT})</MI_Settings_Features_Misc_IntegrationAnomalyLabel>
+  <!-- EN: Apply health conditions to shamblers (default: {DEFAULT}) -->
+  <MI_Settings_Features_Misc_IntegrationAnomalyLabel>Apply health conditions to shamblers (default: {DEFAULT})</MI_Settings_Features_Misc_IntegrationAnomalyLabel>
   <!-- EN: If enabled, shamblers will be affected by the health conditions introduced by this mod. If you don't want shamblers to suffer from hypovolemic shock, fractures, etc., disable this option. -->
   <MI_Settings_Features_Misc_IntegrationAnomalyTooltip>If enabled, shamblers will be affected by the health conditions introduced by this mod. If you don't want shamblers to suffer from hypovolemic shock, fractures, etc., disable this option.</MI_Settings_Features_Misc_IntegrationAnomalyTooltip>
-  <!-- EN: Multiplier for bleeding from closed internal injuries: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Misc_BleedingReductionFactorEnclosedLabel>Multiplier for bleeding from closed internal injuries: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Misc_BleedingReductionFactorEnclosedLabel>
+  <!-- EN: Multiplier for bleeding from closed internal injuries: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Misc_BleedingReductionFactorEnclosedLabel>Multiplier for bleeding from closed internal injuries: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Misc_BleedingReductionFactorEnclosedLabel>
   <!-- EN: Assume a pawn is shot in the torso and the bullet penetrates the skin and stomach, causing internal and external bleeding. Simply applying a bandage to the skin wound will not stop the internal bleeding, but may still slow it down. This modifier determines how much the internal bleeding is reduced by applying a bandage to the skin wound. A value of 1 means that the internal bleeding is not affected by the bandage, while a value of 0 means that the internal bleeding is completely stopped. -->
   <MI_Settings_Features_Misc_BleedingReductionFactorEnclosedTooltip>Assume a pawn is shot in the torso and the bullet penetrates the skin and stomach, causing internal and external bleeding. Simply applying a bandage to the skin wound will not stop the internal bleeding, but may still slow it down. This modifier determines how much the internal bleeding is reduced by applying a bandage to the skin wound. A value of 1 means that the internal bleeding is not affected by the bandage, while a value of 0 means that the internal bleeding is completely stopped.</MI_Settings_Features_Misc_BleedingReductionFactorEnclosedTooltip>
-  <!-- EN: Enable paralysis mechanics (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Misc_ParalysisEnableLabel>Enable paralysis mechanics (default: {VALUE_DEFAULT})</MI_Settings_Features_Misc_ParalysisEnableLabel>
+  <!-- EN: Enable paralysis mechanics (default: {DEFAULT}) -->
+  <MI_Settings_Features_Misc_ParalysisEnableLabel>Enable paralysis mechanics (default: {DEFAULT})</MI_Settings_Features_Misc_ParalysisEnableLabel>
   <!-- EN: If enabled, pawns that receive severe spinal cord injuries may suffer from paralysis, losing the ability to move and control their limbs either partially or completely.\n\nA life-changing and irreversible condition. -->
   <MI_Settings_Features_Misc_ParalysisEnableTooltip>If enabled, pawns that receive severe spinal cord injuries may suffer from paralysis, losing the ability to move and control their limbs either partially or completely.\n\nA life-changing and irreversible condition.</MI_Settings_Features_Misc_ParalysisEnableTooltip>
-  <!-- EN: Paralysis damage threshold (50% point): {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Misc_ParalysisDamageThresholdLabel>Paralysis damage threshold (50% point): {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Misc_ParalysisDamageThresholdLabel>
+  <!-- EN: Paralysis damage threshold (50% point): {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Misc_ParalysisDamageThresholdLabel>Paralysis damage threshold (50% point): {VALUE} (default: {DEFAULT})</MI_Settings_Features_Misc_ParalysisDamageThresholdLabel>
   <!-- EN: The amount of spinal cord damage required to cause paralysis in 50% of all cases. The actual chance of paralysis scales linearly with the damage dealt. -->
   <MI_Settings_Features_Misc_ParalysisDamageThresholdTooltip>The amount of spinal cord damage required to cause paralysis in 50% of all cases. The actual chance of paralysis scales linearly with the damage dealt.</MI_Settings_Features_Misc_ParalysisDamageThresholdTooltip>
-  <!-- EN: Chance of intestinal spilling on damage: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Misc_IntestinalSpillChanceLabel>Chance of intestinal spilling on damage: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Misc_IntestinalSpillChanceLabel>
+  <!-- EN: Chance of intestinal spilling on damage: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Misc_IntestinalSpillChanceLabel>Chance of intestinal spilling on damage: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Misc_IntestinalSpillChanceLabel>
   <!-- EN: The likelihood of a pawn suffering from intestinal spilling after receiving severe damage to the abdomen. Can lead to severe infections and stomach acid burns. -->
   <MI_Settings_Features_Misc_IntestinalSpillChanceTooltip>The likelihood of a pawn suffering from intestinal spilling after receiving severe damage to the abdomen. Can lead to severe infections and stomach acid burns.</MI_Settings_Features_Misc_IntestinalSpillChanceTooltip>
-  <!-- EN: Minimum required medical skill for blood harvesting: {VALUE} (default: {VALUE_DEFAULT}) -->
-  <MI_Settings_Features_Misc_BloodHarvestMinSkillLabel>Minimum required medical skill for blood harvesting: {VALUE} (default: {VALUE_DEFAULT})</MI_Settings_Features_Misc_BloodHarvestMinSkillLabel>
+  <!-- EN: Minimum required medical skill for blood harvesting: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Misc_BloodHarvestMinSkillLabel>Minimum required medical skill for blood harvesting: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Misc_BloodHarvestMinSkillLabel>
   <!-- EN: The minimum medical skill required to harvest blood from a downed pawn for a blood transfusion. -->
   <MI_Settings_Features_Misc_BloodHarvestMinSkillTooltip>The minimum medical skill required to harvest blood from a downed pawn for a blood transfusion.</MI_Settings_Features_Misc_BloodHarvestMinSkillTooltip>
 </LanguageData>

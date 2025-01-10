@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <!-- EN: small intestine -->
-  <SmallIntestines.label>small intestine</SmallIntestines.label>
+  <SmallIntestine.label>small intestine</SmallIntestine.label>
   <!-- EN: large intestine -->
-  <LargeIntestines.label>large intestine</LargeIntestines.label>
+  <LargeIntestine.label>large intestine</LargeIntestine.label>
 </LanguageData>

@@ -80,8 +80,8 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
                 builder.AppendEnumerationItem(
                     "MI_InjuryBleeding_TemporarilyReduced_Label".Translate(
                         Named.Keys.Format_TimeHours
-                            .Translate(durationHours.Named(Named.Params.TIME_HOURS))
-                            .Named(Named.Params.TIME_STRING)), ref hasPreviousElements);
+                            .Translate(durationHours.Named(Named.Params.HOURS))
+                            .Named(Named.Params.TIME)), ref hasPreviousElements);
             }
             owner.AddCustomLabelAnnotations(builder, ref hasPreviousElements);
             builder.Append(')');
@@ -103,7 +103,7 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
             if (CoagulationFlags.IsSet(CoagulationFlag.Manual))
             {
                 double bleedRateDecrease = Math.Round((1f - CoagulationMultiplier) * 100f, 2);
-                builder.AppendLine("MI_InjuryBleeding_ManuallyReduced_Tooltip".Translate(bleedRateDecrease.Named(Named.Params.VALUE_PERCENT)));
+                builder.AppendLine("MI_InjuryBleeding_ManuallyReduced_Tooltip".Translate(bleedRateDecrease.Named(Named.Params.PERCENT)));
                 hasCustomInfo = true;
             }
             if (IsTemporarilyCoagulated)
@@ -112,9 +112,9 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
                 double bleedRateDecrease = Math.Round((1f - TemporarilyTamponadedMultiplier) * 100f, 2);
                 builder.AppendLine("MI_InjuryBleeding_TemporarilyReduced_Tooltip".Translate(
                     Named.Keys.Format_TimeHours
-                        .Translate(durationHours.Named(Named.Params.TIME_HOURS))
-                        .Named(Named.Params.TIME_STRING),
-                    bleedRateDecrease.Named(Named.Params.VALUE_PERCENT)));
+                        .Translate(durationHours.Named(Named.Params.HOURS))
+                        .Named(Named.Params.TIME),
+                    bleedRateDecrease.Named(Named.Params.PERCENT)));
                 hasCustomInfo = true;
             }
             owner.AddCustomLabelAnnotations(builder, ref hasCustomInfo);
@@ -123,7 +123,7 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
                 double effectiveBleedRate = Math.Round(EffectiveBleedRateMultiplier * 100f, 2);
                 builder.AppendLine()
                     .AppendLine("MI_InjuryBleeding_EffectiveBleedRate_Tooltip"
-                        .Translate(effectiveBleedRate.Named(Named.Params.VALUE_PERCENT)));
+                        .Translate(effectiveBleedRate.Named(Named.Params.PERCENT)));
             }
             return builder.ToString();
         }

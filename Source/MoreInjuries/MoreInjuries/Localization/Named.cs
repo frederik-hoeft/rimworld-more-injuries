@@ -8,19 +8,19 @@ public static class Named
     public static class Params
     {
         public const string PATIENT = nameof(PATIENT);
-        public const string PATIENT_NAME = nameof(PATIENT_NAME);
+        public const string PATIENTNAME = nameof(PATIENTNAME);
         public const string DOCTOR = nameof(DOCTOR);
-        public const string DOCTOR_NAME = nameof(DOCTOR_NAME);
-        public const string BODY_PART = nameof(BODY_PART);
+        public const string DOCTORNAME = nameof(DOCTORNAME);
+        public const string BODYPART = nameof(BODYPART);
         // time
-        public const string TIME_STRING = nameof(TIME_STRING);
-        public const string TIME_DAYS = nameof(TIME_DAYS);
-        public const string TIME_HOURS = nameof(TIME_HOURS);
-        public const string TIME_SECONDS = nameof(TIME_SECONDS);
+        public const string TIME = nameof(TIME);
+        public const string DAYS = nameof(DAYS);
+        public const string HOURS = nameof(HOURS);
+        public const string SECONDS = nameof(SECONDS);
         // misc
         public const string VALUE = nameof(VALUE);
-        public const string VALUE_PERCENT = nameof(VALUE_PERCENT);
-        public const string VALUE_DEFAULT = nameof(VALUE_DEFAULT);
+        public const string PERCENT = nameof(PERCENT);
+        public const string DEFAULT = nameof(DEFAULT);
     }
 
     /// <summary>
