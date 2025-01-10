@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<LanguageData>
-  <MI_ProcedureFailed_CareDisabled>{0}: medical care for {1} disabled</MI_ProcedureFailed_CareDisabled>
-  <MI_ProcedureFailed_SelfTendDisabled>{0}: self-tend disabled</MI_ProcedureFailed_SelfTendDisabled>
-  <MI_ProcedureFailed_IncapableOfManipulation>{0}: {1} is incapable of manipulation</MI_ProcedureFailed_IncapableOfManipulation>
-  <MI_ProcedureFailed_IncapableOfSight>{0}: {1} is blind</MI_ProcedureFailed_IncapableOfSight>
-  <MI_ProcedureFailed_IncapableOfCaring>{0}: {1} is incapable of caring</MI_ProcedureFailed_IncapableOfCaring>
-  <MI_ProcedureFailed_IncapableOfMedicine>{0}: {1} is incapable of medicine</MI_ProcedureFailed_IncapableOfMedicine>
-</LanguageData>

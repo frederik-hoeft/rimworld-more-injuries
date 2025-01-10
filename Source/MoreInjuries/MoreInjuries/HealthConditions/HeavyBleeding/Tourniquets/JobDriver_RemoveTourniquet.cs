@@ -7,7 +7,7 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
 public class JobDriver_RemoveTourniquet : JobDriver_TourniquetBase
 {
-    public const string JOB_LABEL = "Remove tourniquet";
+    public const string JOB_LABEL_KEY = "MI_RemoveTourniquet";
 
     protected override ThingDef DeviceDef => null!;
 

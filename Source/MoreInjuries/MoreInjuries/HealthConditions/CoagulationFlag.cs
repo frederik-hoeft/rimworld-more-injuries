@@ -4,10 +4,19 @@ public readonly struct CoagulationFlag(int value)
 {
     private readonly int _value = value;
 
+    /// <summary>
+    /// The bleed rate is not controlled.
+    /// </summary>
     public static CoagulationFlag None => new(0);
 
+    /// <summary>
+    /// Indicates that the bleed rate is temporarily reduced (e.g., through a hemostatic agent).
+    /// </summary>
     public static CoagulationFlag Timed => new(1);
 
+    /// <summary>
+    /// Indicates that the bleed rate is manually controlled (e.g., through a tourniquet).
+    /// </summary>
     public static CoagulationFlag Manual => new(2);
 
     public bool IsEmpty => _value == 0;

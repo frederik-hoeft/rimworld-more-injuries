@@ -29,7 +29,7 @@ public abstract class InjectorFloatOptionsProvider(InjuryWorker parent) : ICompF
             {
                 return;
             }
-            if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, JobLabel) is string failure)
+            if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobLabel) is { FailureReason: string failure })
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));
                 return;

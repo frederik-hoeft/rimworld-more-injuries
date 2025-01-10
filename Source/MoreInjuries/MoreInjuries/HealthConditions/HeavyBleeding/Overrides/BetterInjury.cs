@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
+using MoreInjuries.Localization;
 using RimWorld;
 using System.Collections.Generic;
 using System.Text;
@@ -133,7 +134,7 @@ public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
     {
         if (IsClosedInternalWound)
         {
-            builder.AppendEnumerationItem("enclosed", ref hasPreviousInfo);
+            builder.AppendEnumerationItem("MI_InjuryEnclosed_Label".Translate(), ref hasPreviousInfo);
         }
     }
 
@@ -141,10 +142,8 @@ public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
     {
         if (IsClosedInternalWound)
         {
-            builder.Append("Enclosed internal wound, bleed rate decreased by ")
-                .Append(Math.Round((1f - MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier) * 100f, 2))
-                .Append('%')
-                .AppendLine();
+            double bleedRatePercentage = Math.Round((1f - MoreInjuriesMod.Settings.ClosedInternalWouldBleedingModifier) * 100f, 2);
+            builder.AppendLine("MI_InjuryEnclosed_Tooltip".Translate(bleedRatePercentage.Named(Named.Params.VALUE_PERCENT)));
             hasCustomInfo = true;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.Extensions;
+using MoreInjuries.Localization;
 using System.Text;
 using UnityEngine;
 using Verse;
@@ -71,14 +72,16 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
                 .Append(" (");
             if (CoagulationFlags.IsSet(CoagulationFlag.Manual))
             {
-                builder.AppendEnumerationItem("ischemia", ref hasPreviousElements);
+                builder.AppendEnumerationItem("MI_InjuryBleeding_ManuallyReduced_Label".Translate(), ref hasPreviousElements);
             }
             if (IsTemporarilyCoagulated)
             {
                 int durationHours = _reducedBleedRateTicksRemaining / 2500;
-                builder.AppendEnumerationItem("hemostasis: ", ref hasPreviousElements)
-                    .Append(durationHours)
-                    .Append('h');
+                builder.AppendEnumerationItem(
+                    "MI_InjuryBleeding_TemporarilyReduced_Label".Translate(
+                        Named.Keys.Format_TimeHours
+                            .Translate(durationHours.Named(Named.Params.TIME_HOURS))
+                            .Named(Named.Params.TIME_STRING)), ref hasPreviousElements);
             }
             owner.AddCustomLabelAnnotations(builder, ref hasPreviousElements);
             builder.Append(')');
@@ -99,28 +102,28 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
             bool hasCustomInfo = false;
             if (CoagulationFlags.IsSet(CoagulationFlag.Manual))
             {
-                builder.Append("Ischemia, bleed rate decreased by ")
-                    .Append(Math.Round((1f - CoagulationMultiplier) * 100f, 2))
-                    .Append('%')
-                    .AppendLine();
+                double bleedRateDecrease = Math.Round((1f - CoagulationMultiplier) * 100f, 2);
+                builder.AppendLine("MI_InjuryBleeding_ManuallyReduced_Tooltip".Translate(bleedRateDecrease.Named(Named.Params.VALUE_PERCENT)));
                 hasCustomInfo = true;
             }
             if (IsTemporarilyCoagulated)
             {
-                builder.Append("Hemostasis: ")
-                    .Append(_reducedBleedRateTicksRemaining / 2500)
-                    .Append("h, bleed rate decreased by ")
-                    .Append(Math.Round((1f - TemporarilyTamponadedMultiplier) * 100f, 2))
-                    .Append('%')
-                    .AppendLine();
+                int durationHours = _reducedBleedRateTicksRemaining / 2500;
+                double bleedRateDecrease = Math.Round((1f - TemporarilyTamponadedMultiplier) * 100f, 2);
+                builder.AppendLine("MI_InjuryBleeding_TemporarilyReduced_Tooltip".Translate(
+                    Named.Keys.Format_TimeHours
+                        .Translate(durationHours.Named(Named.Params.TIME_HOURS))
+                        .Named(Named.Params.TIME_STRING),
+                    bleedRateDecrease.Named(Named.Params.VALUE_PERCENT)));
                 hasCustomInfo = true;
             }
             owner.AddCustomLabelAnnotations(builder, ref hasCustomInfo);
             if (hasCustomInfo)
             {
-                builder.AppendLine().AppendLine("Effective bleed rate: ")
-                    .Append(Math.Round(EffectiveBleedRateMultiplier * 100f, 2))
-                    .Append('%');
+                double effectiveBleedRate = Math.Round(EffectiveBleedRateMultiplier * 100f, 2);
+                builder.AppendLine()
+                    .AppendLine("MI_InjuryBleeding_EffectiveBleedRate_Tooltip"
+                        .Translate(effectiveBleedRate.Named(Named.Params.VALUE_PERCENT)));
             }
             return builder.ToString();
         }

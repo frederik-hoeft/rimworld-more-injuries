@@ -7,10 +7,7 @@ public class BetterMissingPart : Hediff_MissingPart, IStatefulInjury, IInjurySta
 {
     private readonly BetterInjuryState<BetterMissingPart> _state;
 
-    public BetterMissingPart()
-    {
-        _state = new BetterInjuryState<BetterMissingPart>(this);
-    }
+    public BetterMissingPart() => _state = new BetterInjuryState<BetterMissingPart>(this);
 
     public IInjuryState State => _state;
 

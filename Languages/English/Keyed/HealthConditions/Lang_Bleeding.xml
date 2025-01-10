@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <MI_UseBandages>Stabilize with bandages</MI_UseBandages>
+  <MI_UseBandagesFailed_Unavailable>{0}: no bandages available</MI_UseBandagesFailed_Unavailable>
+  <MI_UseHemostaticAgent>Stabilize with hemostatic agents</MI_UseHemostaticAgent>
+  <MI_UseHemostaticAgentFailed_Unavailable>{0}: no hemostatic agents available</MI_UseHemostaticAgentFailed_Unavailable>
+  <MI_UseTourniquet>Apply tourniquet</MI_UseTourniquet>
+  <MI_UseTourniquetFailed_Unavailable>No tourniquet available</MI_UseTourniquetFailed_Unavailable>
+  <MI_RemoveTourniquet>Remove tourniquet</MI_RemoveTourniquet>
+  <MI_TourniquetGizmo_UseLabel>Apply tourniquet to {BODY_PART}</MI_TourniquetGizmo_UseLabel>
+  <MI_TourniquetGizmo_RemoveLabel>Remove tourniquet from {BODY_PART}</MI_TourniquetGizmo_RemoveLabel>
+  <MI_TourniquetGizmo_Description>Apply a tourniquet to themselves</MI_TourniquetGizmo_Description>
+  <MI_TourniquetGizmo_Downed_Description>While downed, the pawn still can attempt applying a tourniquet to themselves</MI_TourniquetGizmo_Downed_Description>
+  <MI_TourniquetFloatMenu_UseLabel>Apply tourniquet to {BODY_PART} of {PATIENT_NAME}</MI_TourniquetFloatMenu_UseLabel>
+  <MI_TourniquetFloatMenu_RemoveLabel>Remove tourniquet from {BODY_PART} of {PATIENT_NAME}</MI_TourniquetFloatMenu_RemoveLabel>
+  <MI_HarvestBlood>Harvest blood (finish off {PATIENT_labelShort})</MI_HarvestBlood>
+  <MI_HarvestBloodFailed_MissingMedicalSkill>{0}: missing required medical skill ({1})</MI_HarvestBloodFailed_MissingMedicalSkill>
+  <MI_UseBloodBag>Transfuse blood</MI_UseBloodBag>
+  <MI_UseBloodBagFailed_Unavailable>{0}: no blood bags available</MI_UseBloodBagFailed_Unavailable>
+  <MI_DonateBloodFailed_MissingBloodVolume_Message>{PATIENT_labelShort} doesn't have enough blood to safely donate blood.</MI_DonateBloodFailed_MissingBloodVolume_Message>
+  <MI_InjuryEnclosed_Label>enclosed</MI_InjuryEnclosed_Label>
+  <MI_InjuryEnclosed_Tooltip>Enclosed internal wound, bleed rate decreased by {VALUE_PERCENT}%</MI_InjuryEnclosed_Tooltip>
+  <MI_InjuryBleeding_ManuallyReduced_Label>ischemia</MI_InjuryBleeding_ManuallyReduced_Label>
+  <MI_InjuryBleeding_ManuallyReduced_Tooltip>Ischemia, bleed rate decreased by {VALUE_PERCENT}%</MI_InjuryBleeding_ManuallyReduced_Tooltip>
+  <MI_InjuryBleeding_TemporarilyReduced_Label>hemostasis: {TIME_STRING}</MI_InjuryBleeding_TemporarilyReduced_Label>
+  <MI_InjuryBleeding_TemporarilyReduced_Tooltip>Hemostasis: {TIME_STRING}, bleed rate decreased by {VALUE_PERCENT}%</MI_InjuryBleeding_TemporarilyReduced_Tooltip>
+  <MI_InjuryBleeding_EffectiveBleedRate_Tooltip>Effective bleed rate: {VALUE_PERCENT}%</MI_InjuryBleeding_EffectiveBleedRate_Tooltip>
+</LanguageData>

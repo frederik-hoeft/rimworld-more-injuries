@@ -18,7 +18,7 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
         if (patient != selectedPawn && selectedPawn.Drafted && !builder.Keys.Contains(UITreatmentOption.ProvideFirstAid))
         {
             builder.Keys.Add(UITreatmentOption.ProvideFirstAid);
-            if (MedicalDeviceHelper.GetReasonForDisabledProcedure(selectedPawn, patient, string.Empty) is not null)
+            if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, string.Empty) is not null)
             {
                 return;
             }

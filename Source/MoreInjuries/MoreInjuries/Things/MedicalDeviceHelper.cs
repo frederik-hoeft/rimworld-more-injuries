@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using MoreInjuries.Localization;
+using RimWorld;
 using System.Collections.Generic;
 using Verse;
 using Verse.AI;
@@ -9,31 +10,31 @@ public static class MedicalDeviceHelper
 {
     internal const int MAX_MEDICAL_DEVICE_RESERVATIONS = 10;
 
-    public static string? GetReasonForDisabledProcedure(Pawn doctor, Pawn patient, string jobTitleTranslationKey)
+    public static DisabledProcedureCause? GetCauseForDisabledProcedure(Pawn doctor, Pawn patient, string jobTitleTranslationKey)
     {
         if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
         {
-            return "MI_ProcedureFailed_CareDisabled".Translate(jobTitleTranslationKey.Translate(), patient);
-        }
-        if (!doctor.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
-        {
-            return "MI_ProcedureFailed_IncapableOfManipulation".Translate(jobTitleTranslationKey.Translate(), doctor);
-        }
-        if (!doctor.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
-        {
-            return "MI_ProcedureFailed_IncapableOfSight".Translate(jobTitleTranslationKey.Translate(), doctor);
-        }
-        if (doctor.WorkTagIsDisabled(WorkTags.Caring))
-        {
-            return "MI_ProcedureFailed_IncapableOfCaring".Translate(jobTitleTranslationKey.Translate(), doctor);
-        }
-        if (doctor.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
-        {
-            return "MI_ProcedureFailed_IncapableOfMedicine".Translate(jobTitleTranslationKey.Translate(), doctor);
+            return DisabledProcedureCause.Soft(Named.Keys.ProcedureFailed_CareDisabled.Translate(jobTitleTranslationKey.Translate(), patient.Named(Named.Params.PATIENT)));
         }
         if (doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
         {
-            return "MI_ProcedureFailed_SelfTendDisabled".Translate(jobTitleTranslationKey.Translate());
+            return DisabledProcedureCause.Soft(Named.Keys.ProcedureFailed_SelfTendDisabled.Translate(jobTitleTranslationKey.Translate()));
+        }
+        if (!doctor.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+        {
+            return DisabledProcedureCause.Hard(Named.Keys.ProcedureFailed_IncapableOfManipulation.Translate(jobTitleTranslationKey.Translate(), doctor.Named(Named.Params.DOCTOR)));
+        }
+        if (!doctor.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
+        {
+            return DisabledProcedureCause.Hard(Named.Keys.ProcedureFailed_IncapableOfSight.Translate(jobTitleTranslationKey.Translate(), doctor.Named(Named.Params.DOCTOR)));
+        }
+        if (doctor.WorkTagIsDisabled(WorkTags.Caring))
+        {
+            return DisabledProcedureCause.Hard(Named.Keys.ProcedureFailed_IncapableOfCaring.Translate(jobTitleTranslationKey.Translate(), doctor.Named(Named.Params.DOCTOR)));
+        }
+        if (doctor.WorkTypeIsDisabled(WorkTypeDefOf.Doctor))
+        {
+            return DisabledProcedureCause.Hard(Named.Keys.ProcedureFailed_IncapableOfMedicine.Translate(jobTitleTranslationKey.Translate(), doctor.Named(Named.Params.DOCTOR)));
         }
         return null;
     }
@@ -114,5 +115,12 @@ public static class MedicalDeviceHelper
             }
         }
         return null;
+    }
+
+    public readonly record struct DisabledProcedureCause(string FailureReason, bool IsSoftFailure)
+    {
+        public static DisabledProcedureCause Soft(string failureReason) => new(failureReason, IsSoftFailure: true);
+
+        public static DisabledProcedureCause Hard(string failureReason) => new(failureReason, IsSoftFailure: false);
     }
 }

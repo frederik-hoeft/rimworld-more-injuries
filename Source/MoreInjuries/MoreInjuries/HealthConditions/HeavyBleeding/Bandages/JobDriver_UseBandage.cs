@@ -6,7 +6,7 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Bandages;
 
 public class JobDriver_UseBandage : JobDriver_HemostasisBase
 {
-    public const string JOB_LABEL = "Stabilize with bandages";
+    public const string JOB_LABEL_KEY = "MI_UseBandages";
 
     protected override ThingDef DeviceDef => KnownThingDefOf.Bandage;
 

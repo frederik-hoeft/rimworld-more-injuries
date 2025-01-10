@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <MI_Format_TimeHours>{TIME_HOURS}h</MI_Format_TimeHours>
+  <MI_Procedure_FromInventory>{0} (from inventory)</MI_Procedure_FromInventory>
+  <MI_Procedure_Stabilize>{0} (stabilize)</MI_Procedure_Stabilize>
+  <MI_Procedure_FullyHeal>{0} (fully heal)</MI_Procedure_FullyHeal>
+  <MI_Procedure_FromInventory_Stabilize>{0} (from inventory, stabilize)</MI_Procedure_FromInventory_Stabilize>
+  <MI_Procedure_FromInventory_FullyHeal>{0} (from inventory, fully heal)</MI_Procedure_FromInventory_FullyHeal>
+  <!-- =========== generic failure messages =========== -->
+  <MI_ProcedureFailed_CareDisabled>{0}: medical care for {PATIENT_labelShort} disabled</MI_ProcedureFailed_CareDisabled>
+  <MI_ProcedureFailed_SelfTendDisabled>{0}: self-tend disabled</MI_ProcedureFailed_SelfTendDisabled>
+  <MI_ProcedureFailed_IncapableOfManipulation>{0}: {DOCTOR_labelShort} is incapable of manipulation</MI_ProcedureFailed_IncapableOfManipulation>
+  <MI_ProcedureFailed_IncapableOfSight>{0}: {DOCTOR_labelShort} is blind</MI_ProcedureFailed_IncapableOfSight>
+  <MI_ProcedureFailed_IncapableOfCaring>{0}: {DOCTOR_labelShort} is incapable of caring</MI_ProcedureFailed_IncapableOfCaring>
+  <MI_ProcedureFailed_IncapableOfMedicine>{0}: {DOCTOR_labelShort} is incapable of medicine</MI_ProcedureFailed_IncapableOfMedicine>
+</LanguageData>

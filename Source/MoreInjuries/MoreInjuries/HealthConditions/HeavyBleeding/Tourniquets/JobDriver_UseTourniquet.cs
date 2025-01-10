@@ -7,7 +7,7 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
 public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
 {
-    public const string JOB_LABEL = "Apply tourniquet";
+    public const string JOB_LABEL_KEY = "MI_UseTourniquet";
 
     protected override ThingDef DeviceDef => KnownThingDefOf.Tourniquet;
 

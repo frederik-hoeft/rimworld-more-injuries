@@ -430,6 +430,11 @@ public class MoreInjuriesMod : Mod
             The likelihood of a pawn suffering from intestinal spilling after receiving severe damage to the abdomen. Can lead to severe infections and stomach acid burns.
             """);
         Settings.IntestinalSpillingChanceOnDamage = (float)Math.Round(list.Slider(Settings.IntestinalSpillingChanceOnDamage, 0f, 1f), 2);
+        list.Label($"Minimum required medical skill for blood harvesting: {Settings.BloodTransfusionHarvestMinimumSkill} (default: {BLOOD_TRANSFUSION_HARVEST_MINIMUM_SKILL_DEFAULT})", -1,
+            """
+            The minimum medical skill required to harvest blood from a downed pawn for a blood transfusion.
+            """);
+        Settings.BloodTransfusionHarvestMinimumSkill = (int)Math.Round(list.Slider(Settings.BloodTransfusionHarvestMinimumSkill, 0, 20));
 
         // FIXME: this isn't great, but it works
         // we basically do an initial draw with a rather small height, and see if it's enough

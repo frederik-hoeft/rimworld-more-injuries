@@ -10,8 +10,6 @@ namespace MoreInjuries.HealthConditions.HeadInjury;
 
 public class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
-    private const object? __ = null;
-
     private readonly HeadInjuryGiver[] _headInjuryGivers =
     [
         new ConcussionGiver(),
