@@ -18,7 +18,9 @@ public static class Named
         public const string TIME_HOURS = nameof(TIME_HOURS);
         public const string TIME_SECONDS = nameof(TIME_SECONDS);
         // misc
+        public const string VALUE = nameof(VALUE);
         public const string VALUE_PERCENT = nameof(VALUE_PERCENT);
+        public const string VALUE_DEFAULT = nameof(VALUE_DEFAULT);
     }
 
     /// <summary>
@@ -34,6 +36,9 @@ public static class Named
 
         /// <summary>{TIME_HOURS}h</summary>
         public static string Format_TimeHours => "MI_Format_TimeHours";
+
+        /// <summary>{TIME_DAYS}d</summary>
+        public static string Format_TimeDays => "MI_Format_TimeDays";
 
         /// <summary>{0} (from inventory)</summary>
         public static string Procedure_FromInventory => "MI_Procedure_FromInventory";

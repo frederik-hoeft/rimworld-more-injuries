@@ -45,7 +45,7 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
             }
             if (canTreat)
             {
-                builder.Options.Add(new FloatMenuOption("Provide first aid", JobDriver_ProvideFirstAid.GetDispatcher(selectedPawn, patient).StartJob));
+                builder.Options.Add(new FloatMenuOption("MI_ProvideFirstAid".Translate(), JobDriver_ProvideFirstAid.GetDispatcher(selectedPawn, patient).StartJob));
             }
         }
     }

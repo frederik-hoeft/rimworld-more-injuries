@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.Localization;
 using MoreInjuries.Things;
 using Verse;
 
@@ -12,7 +13,7 @@ public abstract class InjectorFloatOptionsProvider(InjuryWorker parent) : ICompF
 
     protected virtual bool RequiresTreatment(Pawn patient) => true;
 
-    protected abstract string JobLabel { get; }
+    protected abstract string JobLabelKey { get; }
 
     protected abstract ThingDef InjectorDef { get; }
 
@@ -29,20 +30,14 @@ public abstract class InjectorFloatOptionsProvider(InjuryWorker parent) : ICompF
             {
                 return;
             }
-            if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobLabel) is { FailureReason: string failure })
+            if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobLabelKey) is { FailureReason: string failure })
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));
                 return;
             }
-            string label;
-            if (selectedPawn.inventory.Contains(injector))
-            {
-                label = $"{JobLabel} (from inventory)";
-            }
-            else
-            {
-                label = JobLabel;
-            }
+            TaggedString label = selectedPawn.inventory.Contains(injector)
+                ? Named.Keys.Procedure_FromInventory.Translate(JobLabelKey.Translate())
+                : JobLabelKey.Translate();
 
             builder.Options.Add(new FloatMenuOption(label, GetDispatcher(selectedPawn, patient, injector).StartJob));
         }

@@ -1,28 +1,53 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
+  <!-- EN: Stabilize with bandages -->
   <MI_UseBandages>Stabilize with bandages</MI_UseBandages>
+  <!-- EN: {0}: no bandages available -->
   <MI_UseBandagesFailed_Unavailable>{0}: no bandages available</MI_UseBandagesFailed_Unavailable>
+  <!-- EN: Stabilize with hemostatic agents -->
   <MI_UseHemostaticAgent>Stabilize with hemostatic agents</MI_UseHemostaticAgent>
+  <!-- EN: {0}: no hemostatic agents available -->
   <MI_UseHemostaticAgentFailed_Unavailable>{0}: no hemostatic agents available</MI_UseHemostaticAgentFailed_Unavailable>
+  <!-- EN: Apply tourniquet -->
   <MI_UseTourniquet>Apply tourniquet</MI_UseTourniquet>
+  <!-- EN: No tourniquet available -->
   <MI_UseTourniquetFailed_Unavailable>No tourniquet available</MI_UseTourniquetFailed_Unavailable>
+  <!-- EN: Remove tourniquet -->
   <MI_RemoveTourniquet>Remove tourniquet</MI_RemoveTourniquet>
+  <!-- EN: Apply tourniquet to {BODY_PART} -->
   <MI_TourniquetGizmo_UseLabel>Apply tourniquet to {BODY_PART}</MI_TourniquetGizmo_UseLabel>
+  <!-- EN: Remove tourniquet from {BODY_PART} -->
   <MI_TourniquetGizmo_RemoveLabel>Remove tourniquet from {BODY_PART}</MI_TourniquetGizmo_RemoveLabel>
+  <!-- EN: Apply a tourniquet to themselves -->
   <MI_TourniquetGizmo_Description>Apply a tourniquet to themselves</MI_TourniquetGizmo_Description>
+  <!-- EN: While downed, the pawn still can attempt applying a tourniquet to themselves -->
   <MI_TourniquetGizmo_Downed_Description>While downed, the pawn still can attempt applying a tourniquet to themselves</MI_TourniquetGizmo_Downed_Description>
+  <!-- EN: Apply tourniquet to {BODY_PART} of {PATIENT_NAME} -->
   <MI_TourniquetFloatMenu_UseLabel>Apply tourniquet to {BODY_PART} of {PATIENT_NAME}</MI_TourniquetFloatMenu_UseLabel>
+  <!-- EN: Remove tourniquet from {BODY_PART} of {PATIENT_NAME} -->
   <MI_TourniquetFloatMenu_RemoveLabel>Remove tourniquet from {BODY_PART} of {PATIENT_NAME}</MI_TourniquetFloatMenu_RemoveLabel>
+  <!-- EN: Harvest blood (finish off {PATIENT_labelShort}) -->
   <MI_HarvestBlood>Harvest blood (finish off {PATIENT_labelShort})</MI_HarvestBlood>
+  <!-- EN: {0}: missing required medical skill ({1}) -->
   <MI_HarvestBloodFailed_MissingMedicalSkill>{0}: missing required medical skill ({1})</MI_HarvestBloodFailed_MissingMedicalSkill>
+  <!-- EN: Transfuse blood -->
   <MI_UseBloodBag>Transfuse blood</MI_UseBloodBag>
+  <!-- EN: {0}: no blood bags available -->
   <MI_UseBloodBagFailed_Unavailable>{0}: no blood bags available</MI_UseBloodBagFailed_Unavailable>
+  <!-- EN: {PATIENT_labelShort} doesn't have enough blood to safely donate blood. -->
   <MI_DonateBloodFailed_MissingBloodVolume_Message>{PATIENT_labelShort} doesn't have enough blood to safely donate blood.</MI_DonateBloodFailed_MissingBloodVolume_Message>
+  <!-- EN: enclosed -->
   <MI_InjuryEnclosed_Label>enclosed</MI_InjuryEnclosed_Label>
+  <!-- EN: Enclosed internal wound, bleed rate decreased by {VALUE_PERCENT}% -->
   <MI_InjuryEnclosed_Tooltip>Enclosed internal wound, bleed rate decreased by {VALUE_PERCENT}%</MI_InjuryEnclosed_Tooltip>
+  <!-- EN: ischemia -->
   <MI_InjuryBleeding_ManuallyReduced_Label>ischemia</MI_InjuryBleeding_ManuallyReduced_Label>
+  <!-- EN: Ischemia, bleed rate decreased by {VALUE_PERCENT}% -->
   <MI_InjuryBleeding_ManuallyReduced_Tooltip>Ischemia, bleed rate decreased by {VALUE_PERCENT}%</MI_InjuryBleeding_ManuallyReduced_Tooltip>
+  <!-- EN: hemostasis: {TIME_STRING} -->
   <MI_InjuryBleeding_TemporarilyReduced_Label>hemostasis: {TIME_STRING}</MI_InjuryBleeding_TemporarilyReduced_Label>
+  <!-- EN: Hemostasis: {TIME_STRING}, bleed rate decreased by {VALUE_PERCENT}% -->
   <MI_InjuryBleeding_TemporarilyReduced_Tooltip>Hemostasis: {TIME_STRING}, bleed rate decreased by {VALUE_PERCENT}%</MI_InjuryBleeding_TemporarilyReduced_Tooltip>
+  <!-- EN: Effective bleed rate: {VALUE_PERCENT}% -->
   <MI_InjuryBleeding_EffectiveBleedRate_Tooltip>Effective bleed rate: {VALUE_PERCENT}%</MI_InjuryBleeding_EffectiveBleedRate_Tooltip>
 </LanguageData>

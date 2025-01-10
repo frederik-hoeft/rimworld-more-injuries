@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
+  <!-- EN: Splint fractures -->
   <MI_UseSplint>Splint fractures</MI_UseSplint>
+  <!-- EN: {0}: no splint available -->
   <MI_UseSplintFailed_Unavailable>{0}: no splint available</MI_UseSplintFailed_Unavailable>
 </LanguageData>
