@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: hemorrhagic stroke -->
+  <HemorrhagicStroke.label>hemorrhagic stroke</HemorrhagicStroke.label>
+  <!-- EN: A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.\n\nCan be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture. -->
+  <HemorrhagicStroke.description>A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.\n\nCan be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture.</HemorrhagicStroke.description>
+  <!-- EN: confusion -->
+  <HemorrhagicStroke.stages.confusion.label>confusion</HemorrhagicStroke.stages.confusion.label>
+  <!-- EN: obtundation -->
+  <HemorrhagicStroke.stages.obtundation.label>obtundation</HemorrhagicStroke.stages.obtundation.label>
+  <!-- EN: intermittent consciousness -->
+  <HemorrhagicStroke.stages.intermittent_consciousness.label>intermittent consciousness</HemorrhagicStroke.stages.intermittent_consciousness.label>
+  <!-- EN: stupor -->
+  <HemorrhagicStroke.stages.stupor.label>stupor</HemorrhagicStroke.stages.stupor.label>
+  <!-- EN: coma -->
+  <HemorrhagicStroke.stages.coma.label>coma</HemorrhagicStroke.stages.coma.label>
+</LanguageData>

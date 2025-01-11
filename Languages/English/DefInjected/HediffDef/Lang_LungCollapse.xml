@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: lung collapse -->
+  <LungCollapse.label>lung collapse</LungCollapse.label>
+  <!-- EN: A buildup of air inside the chest cavity creates pressure against the lung. Pressure increases as more air enters this space. The lung collapses, impairing normal breathing causing surrounding structures to shift. When severe enough to cause these shifts and hypotension, it is called a tension pneumothorax. In this life-threatening condition, the increased pressure inside the chest can compress the heart and lead to a collapse of the blood vessels that drain to the heart, causing obstructive shock. With the heart unable to fill, cardiac output drops. Hypotension and shock ensue. If left untreated treated, it can lead to cardiac arrest and death.\n\nMust be surgically repaired. -->
+  <LungCollapse.description>A buildup of air inside the chest cavity creates pressure against the lung. Pressure increases as more air enters this space. The lung collapses, impairing normal breathing causing surrounding structures to shift. When severe enough to cause these shifts and hypotension, it is called a tension pneumothorax. In this life-threatening condition, the increased pressure inside the chest can compress the heart and lead to a collapse of the blood vessels that drain to the heart, causing obstructive shock. With the heart unable to fill, cardiac output drops. Hypotension and shock ensue. If left untreated treated, it can lead to cardiac arrest and death.\n\nMust be surgically repaired.</LungCollapse.description>
+  <!-- EN: initial -->
+  <LungCollapse.stages.initial.label>initial</LungCollapse.stages.initial.label>
+  <!-- EN: minor obstructive shock -->
+  <LungCollapse.stages.minor_obstructive_shock.label>minor obstructive shock</LungCollapse.stages.minor_obstructive_shock.label>
+  <!-- EN: moderate obstructive shock -->
+  <LungCollapse.stages.moderate_obstructive_shock.label>moderate obstructive shock</LungCollapse.stages.moderate_obstructive_shock.label>
+  <!-- EN: severe obstructive shock -->
+  <LungCollapse.stages.severe_obstructive_shock.label>severe obstructive shock</LungCollapse.stages.severe_obstructive_shock.label>
+  <!-- EN: extreme obstructive shock -->
+  <LungCollapse.stages.extreme_obstructive_shock.label>extreme obstructive shock</LungCollapse.stages.extreme_obstructive_shock.label>
+</LanguageData>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>Splint</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>splint</label>
+    <description>A splint is a rigid device used for immobilizing and protecting an injured bone or joint. It is used to prevent further damage to the bone and surrounding tissue and promote healing over time. Splints are commonly used to treat bone fractures, sprains, and dislocations.</description>
+    <graphicData>
+      <texPath>Thing/Splint</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>75</stackLimit>
+    <tradeNeverStack>false</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <Mass>0.01</Mass>
+      <MarketValue>5</MarketValue>
+      <MaxHitPoints>100</MaxHitPoints>
+    </statBases>
+    <drawGUIOverlay>true</drawGUIOverlay>
+  </ThingDef>
+</Defs>

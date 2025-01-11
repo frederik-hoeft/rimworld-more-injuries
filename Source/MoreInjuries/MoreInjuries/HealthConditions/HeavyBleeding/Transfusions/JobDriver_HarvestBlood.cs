@@ -10,7 +10,7 @@ using static BloodLossConstants;
 
 public class JobDriver_HarvestBlood : JobDriver_UseMedicalDevice
 {
-    public const string JOB_LABEL = "Harvest blood (finish off {0})";
+    public const string JOB_LABEL_KEY = "MI_HarvestBlood";
 
     protected override int BaseTendDuration => 720;
 

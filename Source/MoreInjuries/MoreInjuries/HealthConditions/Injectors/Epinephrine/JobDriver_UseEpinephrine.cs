@@ -6,7 +6,7 @@ namespace MoreInjuries.HealthConditions.Injectors.Epinephrine;
 
 public class JobDriver_UseEpinephrine : JobDriver_UseInjector_GivesHediff
 {
-    public const string JOB_LABEL = "Inject epinephrine";
+    public const string JOB_LABEL_KEY = "MI_UseEpinephrine";
 
     protected override HediffDef HediffDef => KnownHediffDefOf.AdrenalineRush;
 

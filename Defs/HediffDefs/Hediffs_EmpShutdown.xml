@@ -19,11 +19,11 @@
     </comps>
     <stages>
       <li>
-        <label>Nearly rebooted</label>
+        <label>nearly rebooted</label>
         <partEfficiencyOffset>-0.6</partEfficiencyOffset>
       </li>
       <li>
-        <label>Disabled</label>
+        <label>disabled</label>
         <minSeverity>0.3</minSeverity>
         <partEfficiencyOffset>-0.99</partEfficiencyOffset>
       </li>

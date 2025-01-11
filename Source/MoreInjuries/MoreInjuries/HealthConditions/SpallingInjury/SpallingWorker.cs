@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.KnownDefs;
+using MoreInjuries.Utils;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,9 +94,4 @@ internal class SpallingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
             }
         }
     }
-}
-
-file static class MathEx
-{
-    public static float Modulo(float a, float b) => a - (b * Mathf.Floor(a / b));
 }

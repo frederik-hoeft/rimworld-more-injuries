@@ -4,7 +4,7 @@
     <defName>SpallFragmentCut</defName>
     <label>cut (spall)</label>
     <labelNoun>a spall fragment cut</labelNoun>
-    <description>A cut caused by spall of a bullet and armor fragments.</description>
+    <description>A cut caused by spall of a bullet or armor fragment.</description>
     <comps>
       <li Class="HediffCompProperties_TendDuration">
         <labelTendedWell>bandaged</labelTendedWell>

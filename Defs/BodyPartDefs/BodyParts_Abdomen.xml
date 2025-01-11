@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <BodyPartDef>
+    <defName>Abdomen</defName>
+    <label>abdomen</label>
+    <hitPoints>25</hitPoints>
+    <permanentInjuryChanceFactor>1</permanentInjuryChanceFactor>
+    <skinCovered>false</skinCovered>
+    <solid>false</solid>
+    <bleedRate>1.0</bleedRate>
+    <tags></tags>
+    <canSuggestAmputation>false</canSuggestAmputation>
+    <destroyableByDamage>false</destroyableByDamage>
+  </BodyPartDef>
+</Defs>

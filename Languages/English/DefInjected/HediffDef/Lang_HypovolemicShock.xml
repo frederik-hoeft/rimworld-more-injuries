@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: hypovolemic shock -->
+  <HypovolemicShock.label>hypovolemic shock</HypovolemicShock.label>
+  <!-- EN: A life-threatening state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure.\n\nSeverity scales directly with blood loss severity until 60% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure. -->
+  <HypovolemicShock.description>A life-threatening state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure.\n\nSeverity scales directly with blood loss severity until 60% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure.</HypovolemicShock.description>
+  <!-- EN: {0} is developing hypovolemic shock! -->
+  <HypovolemicShock.comps.HediffComp_MessageAfterTicks.message>{0} is developing hypovolemic shock!</HypovolemicShock.comps.HediffComp_MessageAfterTicks.message>
+</LanguageData>

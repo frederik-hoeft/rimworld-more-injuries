@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: cut (spall) -->
+  <SpallFragmentCut.label>cut (spall)</SpallFragmentCut.label>
+  <!-- EN: a spall fragment cut -->
+  <SpallFragmentCut.labelNoun>a spall fragment cut</SpallFragmentCut.labelNoun>
+  <!-- EN: A cut caused by spall of a bullet or armor fragment. -->
+  <SpallFragmentCut.description>A cut caused by spall of a bullet or armor fragment.</SpallFragmentCut.description>
+  <!-- EN: bandaged -->
+  <SpallFragmentCut.comps.HediffComp_TendDuration.labelTendedWell>bandaged</SpallFragmentCut.comps.HediffComp_TendDuration.labelTendedWell>
+  <!-- EN: sutured -->
+  <SpallFragmentCut.comps.HediffComp_TendDuration.labelTendedWellInner>sutured</SpallFragmentCut.comps.HediffComp_TendDuration.labelTendedWellInner>
+  <!-- EN: bandaged -->
+  <SpallFragmentCut.comps.HediffComp_TendDuration.labelSolidTendedWell>bandaged</SpallFragmentCut.comps.HediffComp_TendDuration.labelSolidTendedWell>
+  <!-- EN: cut scar -->
+  <SpallFragmentCut.comps.HediffComp_GetsPermanent.permanentLabel>cut scar</SpallFragmentCut.comps.HediffComp_GetsPermanent.permanentLabel>
+  <!-- EN: Cut off -->
+  <SpallFragmentCut.injuryProps.destroyedLabel>Cut off</SpallFragmentCut.injuryProps.destroyedLabel>
+  <!-- EN: Cut out -->
+  <SpallFragmentCut.injuryProps.destroyedOutLabel>Cut out</SpallFragmentCut.injuryProps.destroyedOutLabel>
+</LanguageData>

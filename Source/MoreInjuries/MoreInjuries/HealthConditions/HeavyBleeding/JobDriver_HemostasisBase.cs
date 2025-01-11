@@ -18,7 +18,8 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
         {
             Part.depth: BodyPartDepth.Outside,
             Bleeding: true,
-        } and 
+        } 
+        and 
         IStatefulInjury 
         { 
             State.IsTemporarilyCoagulated: false 

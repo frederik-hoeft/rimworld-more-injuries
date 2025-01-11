@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: cardiac arrest -->
+  <CardiacArrest.label>cardiac arrest</CardiacArrest.label>
+  <!-- EN: Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.\n\nA skilled doctor must perform CPR to restore blood flow and hopefully restart the heart. In early stages of cardiac arrest, during ventricular fibrillation, a defibrillator can also be used to shock the heart back into a normal rhythm, which may be faster and more effective than CPR. -->
+  <CardiacArrest.description>Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.\n\nA skilled doctor must perform CPR to restore blood flow and hopefully restart the heart. In early stages of cardiac arrest, during ventricular fibrillation, a defibrillator can also be used to shock the heart back into a normal rhythm, which may be faster and more effective than CPR.</CardiacArrest.description>
+  <!-- EN: ventricular fibrillation -->
+  <CardiacArrest.stages.ventricular_fibrillation.label>ventricular fibrillation</CardiacArrest.stages.ventricular_fibrillation.label>
+  <!-- EN: clinical death -->
+  <CardiacArrest.stages.clinical_death.label>clinical death</CardiacArrest.stages.clinical_death.label>
+</LanguageData>

@@ -6,7 +6,7 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents;
 
 public class JobDriver_UseHemostaticAgent : JobDriver_HemostasisBase
 {
-    public const string JOB_LABEL = "Stabilize with hemostatic agent";
+    public const string JOB_LABEL_KEY = "MI_UseHemostaticAgent";
 
     protected override ThingDef DeviceDef => KnownThingDefOf.HemostaticAgent;
 
