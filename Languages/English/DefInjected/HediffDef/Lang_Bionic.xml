@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: bionic small intestine -->
+  <BionicSmallIntestine.label>bionic small intestine</BionicSmallIntestine.label>
+  <!-- EN: a bionic small intestine -->
+  <BionicSmallIntestine.labelNoun>a bionic small intestine</BionicSmallIntestine.labelNoun>
+  <!-- EN: An installed bionic small intestine. -->
+  <BionicSmallIntestine.description>An installed bionic small intestine.</BionicSmallIntestine.description>
+</LanguageData>

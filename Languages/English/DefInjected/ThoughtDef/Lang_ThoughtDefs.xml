@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: bloodlust blood harvested -->
+  <HarvestedBlood_Bloodlust.stages.bloodlust_blood_harvested.label>bloodlust blood harvested</HarvestedBlood_Bloodlust.stages.bloodlust_blood_harvested.label>
+  <!-- EN: Extracting their blood and seeing them grow weaker under my hands was such a thrill. -->
+  <HarvestedBlood_Bloodlust.stages.bloodlust_blood_harvested.description>Extracting their blood and seeing them grow weaker under my hands was such a thrill.</HarvestedBlood_Bloodlust.stages.bloodlust_blood_harvested.description>
+  
+  <!-- EN: donated blood -->
+  <DonatedBlood.stages.donated_blood.label>donated blood</DonatedBlood.stages.donated_blood.label>
+  <!-- EN: My blood donation will save lives and help those in need. I made a difference today. -->
+  <DonatedBlood.stages.donated_blood.description>My blood donation will save lives and help those in need. I made a difference today.</DonatedBlood.stages.donated_blood.description>
+</LanguageData>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Managing airways of TargetA -->
+  <UseSuctionDevice.reportString>Managing airways of TargetA.</UseSuctionDevice.reportString>
+
+  <!-- EN: Performing CPR on TargetA -->
+  <PerformCpr.reportString>Performing CPR on TargetA.</PerformCpr.reportString>
+
+  <!-- EN: Evaluating treatment options for TargetA -->
+  <ProvideFirstAid.reportString>Evaluating treatment options for TargetA.</ProvideFirstAid.reportString>
+
+  <!-- EN: Using a defibrillator on TargetA -->
+  <UseDefibrillator.reportString>Using a defibrillator on TargetA.</UseDefibrillator.reportString>
+
+  <!-- EN: Injecting epinephrine on TargetA -->
+  <UseEpinephrine.reportString>Injecting epinephrine on TargetA.</UseEpinephrine.reportString>
+
+  <!-- EN: Splinting a fracture on TargetA -->
+  <UseSplint.reportString>Splinting a fracture on TargetA.</UseSplint.reportString>
+
+  <!-- EN: Applying a tourniquet on TargetA -->
+  <UseTourniquet.reportString>Applying a tourniquet on TargetA.</UseTourniquet.reportString>
+
+  <!-- EN: Remove a tourniquet from TargetA -->
+  <RemoveTourniquet.reportString>Remove a tourniquet from TargetA.</RemoveTourniquet.reportString>
+
+  <!-- EN: Remove a tourniquet from TargetA -->
+  <RemoveTourniquetFromDead.reportString>Remove a tourniquet from TargetA.</RemoveTourniquetFromDead.reportString>
+
+  <!-- EN: Using a hemostatic agent on TargetA -->
+  <UseHemostaticAgent.reportString>Using a hemostatic agent on TargetA.</UseHemostaticAgent.reportString>
+
+  <!-- EN: Bandaging a wound on TargetA -->
+  <UseBandage.reportString>Bandaging a wound on TargetA.</UseBandage.reportString>
+
+  <!-- EN: Performing a blood transfusion on TargetA -->
+  <UseBloodBag.reportString>Performing a blood transfusion on TargetA.</UseBloodBag.reportString>
+
+  <!-- EN: Executing TargetA through blood extraction -->
+  <HarvestBlood.reportString>Executing TargetA through blood extraction.</HarvestBlood.reportString>
+</LanguageData>

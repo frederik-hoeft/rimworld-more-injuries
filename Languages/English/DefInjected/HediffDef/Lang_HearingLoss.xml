@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: temporary hearing loss -->
+  <HearingLossTemporary.label>temporary hearing loss</HearingLossTemporary.label>
+  <!-- EN: Temporary deafness caused by prolonged exposure to loud noises, such as gunfire, explosions, or machinery. The hair cells in the inner ear are damaged, leading to hearing loss. The damage can become permanent if the exposure is severe or prolonged. -->
+  <HearingLossTemporary.description>Temporary deafness caused by prolonged exposure to loud noises, such as gunfire, explosions, or machinery. The hair cells in the inner ear are damaged, leading to hearing loss. The damage can become permanent if the exposure is severe or prolonged.</HearingLossTemporary.description>
+  <!-- EN: initial -->
+  <HearingLossTemporary.stages.initial.label>initial</HearingLossTemporary.stages.initial.label>
+  <!-- EN: moderate -->
+  <HearingLossTemporary.stages.moderate.label>moderate</HearingLossTemporary.stages.moderate.label>
+  <!-- EN: severe -->
+  <HearingLossTemporary.stages.severe.label>severe</HearingLossTemporary.stages.severe.label>
+  <!-- EN: very severe -->
+  <HearingLossTemporary.stages.very_severe.label>very severe</HearingLossTemporary.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <HearingLossTemporary.stages.extreme.label>extreme</HearingLossTemporary.stages.extreme.label>
+</LanguageData>

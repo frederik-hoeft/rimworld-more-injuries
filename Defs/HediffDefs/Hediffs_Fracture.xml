@@ -33,7 +33,7 @@
     </comps>
     <stages>
       <li>
-        <label>Nearly healed</label>
+        <label>nearly healed</label>
         <minSeverity>0</minSeverity>
         <partEfficiencyOffset>-0.1</partEfficiencyOffset>
       </li>

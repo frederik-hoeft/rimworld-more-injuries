@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <SoundDef>
+    <defName>PerformCpr</defName>  
+    <sustain>True</sustain>
+    <context>MapOnly</context>
+    <maxVoices>2</maxVoices>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <muteWhenPaused>True</muteWhenPaused>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <!-- don't ask. if you have a better sound effect, please let me know -->
+            <clipFolderPath>Impact/PunchHitPawn</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange>8~12</volumeRange>
+        <pitchRange>1~1.14837</pitchRange>
+        <sustainIntervalRange>0.8~0.8</sustainIntervalRange>
+        <distRange>10~30</distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+</Defs>

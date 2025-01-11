@@ -49,7 +49,7 @@
 
   <HediffDef ParentName="DiseaseBase">
     <defName>GangreneDry</defName>
-    <label>gangrene (dry)</label>
+    <label>gangrene</label>
     <description>Dry gangrene is a form of coagulative necrosis that develops in ischemic tissue, where the blood supply is inadequate to keep tissue viable. The affected part is dry, shrunken, and dark reddish-black. The line of separation usually brings about complete separation, with eventual falling off of the gangrenous tissue if it is not removed surgically, a process called autoamputation.
 Over time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.
 \nThe affected body part is irreversibly damaged and should be amputated to prevent sepsis.</description>
@@ -67,6 +67,7 @@ Over time, dry gangrene may develop into wet gangrene if an infection develops i
     </comps>
     <stages>
       <li>
+        <label>dry</label>
         <minSeverity>0</minSeverity>
         <partEfficiencyOffset>-1</partEfficiencyOffset>
         <painOffset>0.25</painOffset>
@@ -80,7 +81,7 @@ Over time, dry gangrene may develop into wet gangrene if an infection develops i
 
   <HediffDef ParentName="DiseaseBase">
     <defName>GangreneWet</defName>
-    <label>gangrene (septic)</label>
+    <label>gangrene</label>
     <description>Wet, or infected, gangrene is characterized by thriving bacteria and has a poor prognosis (compared to dry gangrene) due to sepsis resulting from the free communication between infected fluid and circulatory fluid. The affected part is saturated with stagnant blood, which promotes the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and finally death.
 \nThe affected body part should be amputated as soon as possible to save the patient's life.</description>
     <hediffClass>HediffWithComps</hediffClass>
@@ -94,6 +95,7 @@ Over time, dry gangrene may develop into wet gangrene if an infection develops i
     </comps>
     <stages>
       <li>
+        <label>septic</label>
         <minSeverity>0</minSeverity>
         <lifeThreatening>true</lifeThreatening>
         <partEfficiencyOffset>-1</partEfficiencyOffset>

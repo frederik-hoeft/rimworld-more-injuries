@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: stabilize or resuscitate patients with arythmia or cardiac arrest -->
+  <DoctorUseDefibrillator.label>stabilize or resuscitate patients with arythmia or cardiac arrest</DoctorUseDefibrillator.label>
+  <!-- EN: resuscitate -->
+  <DoctorUseDefibrillator.verb>resuscitate</DoctorUseDefibrillator.verb>
+  <!-- EN: resuscitating -->
+  <DoctorUseDefibrillator.gerund>resuscitating</DoctorUseDefibrillator.gerund>
+
+  <!-- EN: manage airways of patients with respiratory distress -->
+  <DoctorManageAirways.label>manage airways of patients with respiratory distress</DoctorManageAirways.label>
+  <!-- EN: manage airways of -->
+  <DoctorManageAirways.verb>manage airways of</DoctorManageAirways.verb>
+  <!-- EN: managing airways of -->
+  <DoctorManageAirways.gerund>managing airways of</DoctorManageAirways.gerund>
+
+  <!-- EN: perform CPR to stabilize patients with cardiac or respiratory arrest -->
+  <DoctorPerformCpr.label>perform CPR to stabilize patients with cardiac or respiratory arrest</DoctorPerformCpr.label>
+  <!-- EN: perform CPR on -->
+  <DoctorPerformCpr.verb>perform CPR on</DoctorPerformCpr.verb>
+  <!-- EN: performing CPR on -->
+  <DoctorPerformCpr.gerund>performing CPR on</DoctorPerformCpr.gerund>
+
+  <!-- EN: perform a blood transfusion to stabilize patients with severe blood loss -->
+  <DoctorUseBloodBag.label>perform a blood transfusion to stabilize patients with severe blood loss</DoctorUseBloodBag.label>
+  <!-- EN: perform blood transfusion on -->
+  <DoctorUseBloodBag.verb>perform blood transfusion on</DoctorUseBloodBag.verb>
+  <!-- EN: performing blood transfusion on -->
+  <DoctorUseBloodBag.gerund>performing blood transfusion on</DoctorUseBloodBag.gerund>
+
+  <!-- EN: recover a tourniquet from a deceased patient to reuse it in the future -->
+  <DoctorRemoveTourniquetFromDead.label>recover a tourniquet from a deceased patient to reuse it in the future</DoctorRemoveTourniquetFromDead.label>
+  <!-- EN: recover tourniquet from -->
+  <DoctorRemoveTourniquetFromDead.verb>recover tourniquet from</DoctorRemoveTourniquetFromDead.verb>
+  <!-- EN: recovering tourniquet from -->
+  <DoctorRemoveTourniquetFromDead.gerund>recovering tourniquet from</DoctorRemoveTourniquetFromDead.gerund>
+</LanguageData>

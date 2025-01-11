@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <SoundDef>
+    <defName>Choking</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>2</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>ChokingOnBlood</clipPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>10</min>
+          <max>20</max>
+        </volumeRange>
+        <pitchRange>
+          <min>0.9</min>
+          <max>1.1</max>
+        </pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>ChokingCoughMale</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>ChokingCoughMale</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>10</min>
+          <max>20</max>
+        </volumeRange>
+        <pitchRange>
+          <min>0.9</min>
+          <max>1.1</max>
+        </pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  <SoundDef>
+    <defName>ChokingCoughFemale</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>ChokingCoughFemale</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>10</min>
+          <max>20</max>
+        </volumeRange>
+        <pitchRange>
+          <min>0.9</min>
+          <max>1.1</max>
+        </pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+</Defs>
