@@ -81,6 +81,11 @@ public class HearingLossComp : ThingComp
         {
             return;
         }
+        // exit early if the map is null
+        if (shooter.Map is null)
+        {
+            return;
+        }
         // apply hearing damage to the shooter
         ApplyHearingDamage(shooter, shooter);
         // apply hearing damage to nearby pawns if enabled (excluding the shooter)
