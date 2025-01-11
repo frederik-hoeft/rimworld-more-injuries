@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: blood bag farm -->
+  <BloodBagFarm.label>blood bag farm</BloodBagFarm.label>
+  <!-- EN: An operation to extract blood bags will be automatically queued on this prisoner whenever it can be done safely. The operation will be carried out by a doctor. -->
+  <BloodBagFarm.description>An operation to extract blood bags will be automatically queued on this prisoner whenever it can be done safely. The operation will be carried out by a doctor.</BloodBagFarm.description>
+</LanguageData>

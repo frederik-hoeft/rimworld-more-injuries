@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RecipeDef>
+    <defName>Make_HemostatFive</defName>
+    <label>make hemostatic agent x5</label>
+    <description>Make 5 hemostatic agents.</description>
+    <jobString>Making 5 hemostatic agents.</jobString>
+    <workAmount>900</workAmount>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <useIngredientsForColor>false</useIngredientsForColor>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </filter>
+        <count>15</count>
+      </li>
+      <li>
+        <filter>
+          <stuffCategoriesToAllow>
+            <li>Fabric</li>
+          </stuffCategoriesToAllow>
+        </filter>
+        <count>25</count>
+      </li>
+    </ingredients>
+    <products>
+      <HemostaticAgent>5</HemostaticAgent>
+    </products>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>Chemfuel</li>
+      </thingDefs>
+      <categories>
+        <li>Textiles</li>
+      </categories>
+    </fixedIngredientFilter>
+    <recipeUsers>
+      <li>TableMachining</li>
+    </recipeUsers>
+    <skillRequirements>
+      <Crafting>4</Crafting>
+    </skillRequirements>
+    <researchPrerequisite>MedicineProduction</researchPrerequisite>
+  </RecipeDef>
+</Defs>

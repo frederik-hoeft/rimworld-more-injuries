@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.KnownDefs;
+using MoreInjuries.Localization;
 using RimWorld;
 using System.Collections.Generic;
 using Verse;
@@ -41,14 +42,14 @@ public class Recipe_ExtractBloodBag : Recipe_Surgery
             return;
         }
 
-        Messages.Message($"{medPawn.Name} doesn't have enough blood to safely donate blood.", medPawn, MessageTypeDefOf.NeutralEvent, false);
+        Messages.Message("MI_DonateBloodFailed_MissingBloodVolume_Message".Translate(medPawn.Named(Named.Params.PATIENT)), medPawn, MessageTypeDefOf.NeutralEvent, false);
     }
 
     public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
     {
         if (!PawnHasEnoughBloodForExtraction(pawn))
         {
-            Messages.Message($"{pawn.Name} did not have enough blood to safely donate blood.", pawn, MessageTypeDefOf.NeutralEvent);
+            Messages.Message("MI_DonateBloodFailed_MissingBloodVolume_Message".Translate(pawn.Named(Named.Params.PATIENT)), pawn, MessageTypeDefOf.NeutralEvent);
             return;
         }
         Hediff hediff = HediffMaker.MakeHediff(HediffDefOf.BloodLoss, pawn);

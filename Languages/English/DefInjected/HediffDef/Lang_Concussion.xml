@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: concussion -->
+  <Concussion.label>concussion</Concussion.label>
+  <!-- EN: a concussion -->
+  <Concussion.labelNoun>a concussion</Concussion.labelNoun>
+  <!-- EN: A concussion, also known as a mild traumatic brain injury (mTBI), is a head injury that temporarily affects brain functioning. Symptoms may include loss of consciousness; memory loss; headaches; difficulty with thinking, concentration, or balance; nausea; blurred vision; dizziness; sleep disturbances, and mood changes.\n\nShould resolve on its own within a few days, but can be worsened by repeated head injuries. -->
+  <Concussion.description>A concussion, also known as a mild traumatic brain injury (mTBI), is a head injury that temporarily affects brain functioning. Symptoms may include loss of consciousness; memory loss; headaches; difficulty with thinking, concentration, or balance; nausea; blurred vision; dizziness; sleep disturbances, and mood changes.\n\nShould resolve on its own within a few days, but can be worsened by repeated head injuries.</Concussion.description>
+  <!-- EN: headache -->
+  <Concussion.stages.headache.label>headache</Concussion.stages.headache.label>
+  <!-- EN: severe headache -->
+  <Concussion.stages.severe_headache.label>severe headache</Concussion.stages.severe_headache.label>
+  <!-- EN: confused -->
+  <Concussion.stages.confused.label>confused</Concussion.stages.confused.label>
+  <!-- EN: blind and confused -->
+  <Concussion.stages.blind_and_confused.label>blind and confused</Concussion.stages.blind_and_confused.label>
+  <!-- EN: intermittent consciousness -->
+  <Concussion.stages.intermittent_consciousness.label>intermittent consciousness</Concussion.stages.intermittent_consciousness.label>
+  <!-- EN: uncounscious -->
+  <Concussion.stages.uncounscious.label>uncounscious</Concussion.stages.uncounscious.label>
+</LanguageData>

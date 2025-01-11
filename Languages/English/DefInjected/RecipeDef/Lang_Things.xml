@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: make bandages x5 -->
+  <Make_BandageFive.label>make bandages x5</Make_BandageFive.label>
+  <!-- EN: Make 5 bandages. -->
+  <Make_BandageFive.description>Make 5 bandages.</Make_BandageFive.description>
+  <!-- EN: Making 5 bandages. -->
+  <Make_BandageFive.jobString>Making 5 bandages.</Make_BandageFive.jobString>
+
+  <!-- EN: make defibrillator -->
+  <Make_Defibrillator.label>make defibrillator</Make_Defibrillator.label>
+  <!-- EN: Make a defibrillator. -->
+  <Make_Defibrillator.description>Make a defibrillator.</Make_Defibrillator.description>
+  <!-- EN: Making a defibrillator. -->
+  <Make_Defibrillator.jobString>Making a defibrillator.</Make_Defibrillator.jobString>
+
+  <!-- EN: make hemostatic agent x5 -->
+  <Make_HemostatFive.label>make hemostatic agent x5</Make_HemostatFive.label>
+  <!-- EN: Make 5 hemostatic agents. -->
+  <Make_HemostatFive.description>Make 5 hemostatic agents.</Make_HemostatFive.description>
+  <!-- EN: Making 5 hemostatic agents. -->
+  <Make_HemostatFive.jobString>Making 5 hemostatic agents.</Make_HemostatFive.jobString>
+
+  <!-- EN: make splints x10 -->
+  <Make_SplintBulk.label>make splints x10</Make_SplintBulk.label>
+  <!-- EN: Make 10 splints -->
+  <Make_SplintBulk.description>Make 10 splints</Make_SplintBulk.description>
+  <!-- EN: Making 10 splints. -->
+  <Make_SplintBulk.jobString>Making 10 splints.</Make_SplintBulk.jobString>
+
+  <!-- EN: make tourniquets x10 -->
+  <Make_TourniquetBulk.label>make tourniquets x10</Make_TourniquetBulk.label>
+  <!-- EN: Make 10 tourniquets. -->
+  <Make_TourniquetBulk.description>Make 10 tourniquets.</Make_TourniquetBulk.description>
+  <!-- EN: Making 10 tourniquets. -->
+  <Make_TourniquetBulk.jobString>Making 10 tourniquets.</Make_TourniquetBulk.jobString>
+</LanguageData>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: adrenaline rush -->
+  <AdrenalineRush.label>adrenaline rush</AdrenalineRush.label>
+  <!-- EN: an adrenaline rush -->
+  <AdrenalineRush.labelNoun>an adrenaline rush</AdrenalineRush.labelNoun>
+  <!-- EN: A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.\n\nHowever, if the rush is too intense, it can cause anxiety, panic, and overdose symptoms such as dizziness, double vision, and nausea. In extreme overdose cases, the body can go into shock, causing heart attack, stroke, or death. -->
+  <AdrenalineRush.description>A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.\n\nHowever, if the rush is too intense, it can cause anxiety, panic, and overdose symptoms such as dizziness, double vision, and nausea.</AdrenalineRush.description>
+  <!-- EN: initial -->
+  <AdrenalineRush.stages.initial.label>initial</AdrenalineRush.stages.initial.label>
+  <!-- EN: minor -->
+  <AdrenalineRush.stages.minor.label>minor</AdrenalineRush.stages.minor.label>
+  <!-- EN: moderate -->
+  <AdrenalineRush.stages.moderate.label>moderate</AdrenalineRush.stages.moderate.label>
+  <!-- EN: severe -->
+  <AdrenalineRush.stages.severe.label>severe</AdrenalineRush.stages.severe.label>
+  <!-- EN: very severe -->
+  <AdrenalineRush.stages.very_severe.label>very severe</AdrenalineRush.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <AdrenalineRush.stages.extreme.label>extreme</AdrenalineRush.stages.extreme.label>
+  <!-- EN: overdosing (minor) -->
+  <AdrenalineRush.stages.overdosing_minor.label>overdosing (minor)</AdrenalineRush.stages.overdosing_minor.label>
+  <!-- EN: overdosing (severe) -->
+  <AdrenalineRush.stages.overdosing_severe.label>overdosing (severe)</AdrenalineRush.stages.overdosing_severe.label>
+  <!-- EN: overdosing (extreme) -->
+  <AdrenalineRush.stages.overdosing_extreme.label>overdosing (extreme)</AdrenalineRush.stages.overdosing_extreme.label>
+</LanguageData>

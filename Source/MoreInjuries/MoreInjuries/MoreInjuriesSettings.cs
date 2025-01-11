@@ -13,6 +13,8 @@ public class MoreInjuriesSettings : ModSettings
     internal bool EnableAdrenaline = ENABLE_ADRENALINE_DEFAULT;
     internal float AdrenalineChanceOnDamage = ADRENALINE_CHANCE_ON_DAMAGE_DEFAULT;
     internal float CertainAdrenalineThreshold = CERTAIN_ADRENALINE_THRESHOLD_DEFAULT;
+    // blood transfusions
+    internal int BloodTransfusionHarvestMinimumSkill = BLOOD_TRANSFUSION_HARVEST_MINIMUM_SKILL_DEFAULT;
     // hydrostatic shock
     internal bool EnableHydrostaticShock = ENABLE_HYDROSTATIC_SHOCK_DEFAULT;
     internal float HydrostaticShockChanceOnDamage = HYDROSTATIC_SHOCK_CHANCE_ON_DAMAGE_DEFAULT;
@@ -85,6 +87,8 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref EnableAdrenaline, nameof(EnableAdrenaline), ENABLE_ADRENALINE_DEFAULT);
         Scribe_Values.Look(ref AdrenalineChanceOnDamage, nameof(AdrenalineChanceOnDamage), ADRENALINE_CHANCE_ON_DAMAGE_DEFAULT);
         Scribe_Values.Look(ref CertainAdrenalineThreshold, nameof(CertainAdrenalineThreshold), CERTAIN_ADRENALINE_THRESHOLD_DEFAULT);
+        // blood transfusions
+        Scribe_Values.Look(ref BloodTransfusionHarvestMinimumSkill, nameof(BloodTransfusionHarvestMinimumSkill), BLOOD_TRANSFUSION_HARVEST_MINIMUM_SKILL_DEFAULT);
         // fractures
         Scribe_Values.Look(ref EnableFractures, nameof(EnableFractures), ENABLE_FRACTURES_DEFAULT);
         Scribe_Values.Look(ref FractureDamageTreshold, nameof(FractureDamageTreshold), FRACTURE_DAMAGE_TRESHOLD_DEFAULT);

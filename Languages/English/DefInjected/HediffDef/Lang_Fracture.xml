@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: bone fracture -->
+  <Fracture.label>bone fracture</Fracture.label>
+  <!-- EN: A partial or complete break of a bone caused by trauma, overuse, or disease. The bone may be cracked, splintered, or completely broken into two or more pieces. Until properly treated, the affected limb will be unable to bear weight or move properly, causing severe pain and loss of function. Must either be splinted to immobilize the bone and promote healing over time, or surgically repaired to realign and stabilize the bone, allowing for quick recovery. -->
+  <Fracture.description>A partial or complete break of a bone caused by trauma, overuse, or disease. The bone may be cracked, splintered, or completely broken into two or more pieces. Until properly treated, the affected limb will be unable to bear weight or move properly, causing severe pain and loss of function.\nMust either be splinted to immobilize the bone and promote healing over time, or surgically repaired to realign and stabilize the bone, allowing for quick recovery.</Fracture.description>
+  <!-- EN: healing bone fracture -->
+  <FractureHealing.label>healing bone fracture</FractureHealing.label>
+  <!-- EN: A bone fracture that is in the process of healing. The bone is still weak and restricted in movement, but the limb is slowly regaining function as the bone knits back together. Over time, the bone will become stronger and the limb will regain full function. -->
+  <FractureHealing.description>A bone fracture that is in the process of healing. The bone is still weak and restricted in movement, but the limb is slowly regaining function as the bone knits back together.\nOver time, the bone will become stronger and the limb will regain full function.</FractureHealing.description>
+  <!-- EN: nearly healed -->
+  <FractureHealing.stages.nearly_healed.label>nearly healed</FractureHealing.stages.nearly_healed.label>
+  <!-- EN: cut (bone fragments) -->
+  <BoneFragmentLaceration.label>cut (bone fragments)</BoneFragmentLaceration.label>
+  <!-- EN: a bone fragment cut -->
+  <BoneFragmentLaceration.labelNoun>a bone fragment cut</BoneFragmentLaceration.labelNoun>
+  <!-- EN: A cut caused by fragments of a bone. -->
+  <BoneFragmentLaceration.description>A cut caused by fragments of a bone.</BoneFragmentLaceration.description>
+  <!-- EN: bandaged -->
+  <BoneFragmentLaceration.comps.HediffComp_TendDuration.labelTendedWell>bandaged</BoneFragmentLaceration.comps.HediffComp_TendDuration.labelTendedWell>
+  <!-- EN: sutured -->
+  <BoneFragmentLaceration.comps.HediffComp_TendDuration.labelTendedWellInner>sutured</BoneFragmentLaceration.comps.HediffComp_TendDuration.labelTendedWellInner>
+  <!-- EN: set -->
+  <BoneFragmentLaceration.comps.HediffComp_TendDuration.labelSolidTendedWell>set</BoneFragmentLaceration.comps.HediffComp_TendDuration.labelSolidTendedWell>
+  <!-- EN: cut scar -->
+  <BoneFragmentLaceration.comps.HediffComp_GetsPermanent.permanentLabel>cut scar</BoneFragmentLaceration.comps.HediffComp_GetsPermanent.permanentLabel>
+  <!-- EN: Cut off -->
+  <BoneFragmentLaceration.injuryProps.destroyedLabel>Cut off</BoneFragmentLaceration.injuryProps.destroyedLabel>
+  <!-- EN: Cut out -->
+  <BoneFragmentLaceration.injuryProps.destroyedOutLabel>Cut out</BoneFragmentLaceration.injuryProps.destroyedOutLabel>
+</LanguageData>

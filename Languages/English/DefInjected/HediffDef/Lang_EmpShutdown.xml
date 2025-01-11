@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: servos disabled -->
+  <EmpShutdown.label>servos disabled</EmpShutdown.label>
+  <!-- EN: A bionic bodypart was disabled by an EMP blast. It will take around one day to reboot itself. -->
+  <EmpShutdown.description>A bionic bodypart was disabled by an EMP blast. It will take around one day to reboot itself.</EmpShutdown.description>
+  <!-- EN: nearly rebooted -->
+  <EmpShutdown.stages.nearly_rebooted.label>nearly rebooted</EmpShutdown.stages.nearly_rebooted.label>
+  <!-- EN: disabled -->
+  <EmpShutdown.stages.disabled.label>disabled</EmpShutdown.stages.disabled.label>
+</LanguageData>
