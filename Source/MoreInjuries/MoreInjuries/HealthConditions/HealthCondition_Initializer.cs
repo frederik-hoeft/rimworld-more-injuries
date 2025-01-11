@@ -19,7 +19,12 @@ public static class HealthCondition_Initializer
         BodyPartDefOf.Head.hitPoints = 20;
 
         // inject hearing loss hooks into all gun defs
-        IEnumerable<ThingDef> guns = DefDatabase<ThingDef>.AllDefsListForReading.Where(def => def.Verbs?.Any(verb => verb.range > 0) is true);
+        IEnumerable<ThingDef> guns = DefDatabase<ThingDef>.AllDefsListForReading
+            .Where(def => def is 
+            { 
+                weaponClasses.Count: > 0, 
+                Verbs.Count: > 0 
+            } && def.Verbs.Any(verb => verb.range > 0));
         foreach (ThingDef def in guns)
         {
             def.comps ??= [];
