@@ -65,6 +65,7 @@ internal static class MoreInjuriesSettingsDefaults
     internal const float DRY_GANGRENE_CHANCE_DEFAULT = 0.8f;
     internal const float DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT = 240000f;
     internal const float MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT = 10000f;
+    internal const bool ENABLE_TOURNIQUET_GIZMO_DEFAULT = true;
     // miscellaneous
     internal const bool ENABLE_FIRE_INHALATION_DEFAULT = true;
     internal const bool BIOTECH_ENABLE_INTEGRATION_DEFAULT = false;
