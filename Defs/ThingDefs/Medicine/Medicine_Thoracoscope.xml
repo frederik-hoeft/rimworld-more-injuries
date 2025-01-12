@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>Thoracoscope</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>thoracoscope</label>
+    <description>A thoracoscope is a specialized medical instrument equipped with a camera and light source, designed for minimally invasive examination and procedures within the chest cavity. It is inserted through a small incision in the chest wall, allowing surgeons to visualize and operate on the lungs, pleura, or other thoracic structures. Thoracoscopes are commonly used in video-assisted thoracoscopic surgery (VATS), such as repairing collapsed lungs or removing diseased tissue.</description>
+    <graphicData>
+      <texPath>Thing/Thoracoscope</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>10</stackLimit>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <tradeNeverStack>true</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <Mass>1</Mass>
+      <MarketValue>1000</MarketValue>
+      <MaxHitPoints>80</MaxHitPoints>
+    </statBases>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.ReusabilityProps_ModExtension">
+        <destroyChance>0.2</destroyChance>
+      </li>
+    </modExtensions>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
+  </ThingDef>
+</Defs>
+

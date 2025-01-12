@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <RecipeDef ParentName="SurgeryFlesh">
-    <defName>RestoreHearing</defName>
-    <label>Restore hearing: cellular regenerative surgery</label>
-    <description>Cellular regenerative otologic surgery (CROS) is an experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown moderate success in restoring hearing, even in very severe cases.</description>
+    <defName>TreatParalysis</defName>
+    <label>Restore mobility: cellular regenerative surgery</label>
+    <description>Cellular regenerative neurosurgery (CRNS) is an experimental glitterworld surgery that uses mechanites to repair damaged nerve cells in the spinal cord, restoring mobility to a person with permanent paralysis. The procedure is expensive and not widely available, but has shown moderate success in restoring mobility, even in very severe cases.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
-    <jobString>Performing cellular regenerative otologic surgery on {0}.</jobString>
+    <jobString>Performing cellular regenerative neurosurgery on {0}.</jobString>
     <workAmount>4500</workAmount>
-    <removesHediff>HearingLoss</removesHediff>
-    <successfullyRemovedHediffMessage>{0} has successfully restored {1}'s hearing.</successfullyRemovedHediffMessage>
+    <removesHediff>SpinalCordParalysis</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully restored {1}'s mobility.</successfullyRemovedHediffMessage>
     <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
     <anesthetize>true</anesthetize>
     <researchPrerequisites>

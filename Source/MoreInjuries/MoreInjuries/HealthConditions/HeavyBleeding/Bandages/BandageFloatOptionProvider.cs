@@ -15,6 +15,10 @@ internal class BandageFloatOptionProvider(InjuryWorker parent) : ICompFloatMenuO
         if (!builder.Keys.Contains(UITreatmentOption.UseBandage) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(JobDriver_HemostasisBase.JobCanTreat))
         {
             builder.Keys.Add(UITreatmentOption.UseBandage);
+            if (!KnownResearchProjectDefOf.BasicAnatomy.IsFinished)
+            {
+                return;
+            }
             if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseBandage.JOB_LABEL_KEY) is { FailureReason: string failure })
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));

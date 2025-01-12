@@ -41,8 +41,7 @@
     </ingestible>
     <recipeMaker>
       <researchPrerequisites>
-        <li>DrugProduction</li>
-        <li>MedicineProduction</li>
+        <li>EpinephrineSynthesis</li>
       </researchPrerequisites>
       <recipeUsers>
         <li>DrugLab</li>

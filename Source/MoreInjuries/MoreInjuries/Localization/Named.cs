@@ -7,6 +7,7 @@ public static class Named
     /// </summary>
     public static class Params
     {
+        public const string THING = nameof(THING);
         public const string PATIENT = nameof(PATIENT);
         public const string PATIENTNAME = nameof(PATIENTNAME);
         public const string DOCTOR = nameof(DOCTOR);

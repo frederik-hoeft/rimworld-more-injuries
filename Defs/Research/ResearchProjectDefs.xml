@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- ============= NEOLITHIC ============= -->
+  <!-- unlocks: trepanation, splint, bandage-->
+  <ResearchProjectDef>
+    <defName>BasicAnatomy</defName>
+    <label>basic anatomy</label>
+    <description>Delving into the fundamentals of human anatomy, this research uncovers ancient knowledge from the earliest recorded forms of medicine. By studying these time-honored practices, your scientists will equip your doctors with the skills to perform basic medical procedures, including wound treatment and disease management. This marks a vital first step toward restoring advanced medical practices in your colony.</description>
+    <baseCost>500</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <tags>
+      <li>ClassicStart</li>
+    </tags>
+    <researchViewX>0</researchViewX>
+    <researchViewY>0</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
+  <!-- ============= MEDIEVAL ============= -->
+  <!-- depends on: basic anatomy -->
+  <!-- unlocks: blood transfusion, tourniquet -->
+  <ResearchProjectDef>
+    <defName>BasicFirstAid</defName>
+    <label>basic first aid</label>
+    <description>Building upon the knowledge of basic anatomy, this research delves into the fundamental principles of first aid. By studying approaches to reduce blood loss and stabilize patients in critical condition, your colony will be better equipped to handle medical emergencies.</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Medieval</techLevel>
+    <prerequisites>
+      <li>BasicAnatomy</li>
+      <li>Machining</li>
+    </prerequisites>
+    <researchViewX>1</researchViewX>
+    <researchViewY>0</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
+  <!-- depends on: basic first aid, medicine production -->
+  <!-- unlocks: hemostatic agent -->
+  <ResearchProjectDef>
+    <defName>AdvancedFirstAid</defName>
+    <label>advanced first aid</label>
+    <description>Expanding on the principles of basic first aid and drug synthesis, your researchers will investigate the development of hemostatic agents. These advanced coagulants can be used to limit severe bleeding even more effectively than traditional bandages, reducing the risk of exsanguination in patients with severe injuries.</description>
+    <baseCost>1500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>BasicFirstAid</li>
+      <li>DrugProduction</li>
+    </prerequisites>
+    <researchViewX>2</researchViewX>
+    <researchViewY>1</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
+  <!-- ============= INDUSTRIAL ============= -->
+  <!-- depends on: basic first aid -->
+  <!-- unlocks: CPR, defibrillator, (saline IVs,) airway suction device, decompressive craniectomy, osteosynthetic surgery, thoracotomy -->
+  <!-- DONE:    Y,   Y,              X,           Y,                     Y,                         Y,                      Y -->
+  <ResearchProjectDef>
+    <defName>EmergencyMedicine</defName>
+    <label>emergency medicine</label>
+    <description>With the foundation of basic first aid in place, this research delves into the advanced field of emergency medicine. By studying the latest techniques in life-saving medical interventions, your doctors will be equipped to handle a wide range of critical medical emergencies, from cardiac arrest to traumatic injuries.</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>BasicFirstAid</li>
+      <li>MicroelectronicsBasics</li>
+    </prerequisites>
+    <researchViewX>2</researchViewX>
+    <researchViewY>0</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
+  <!-- depends on: emergency medicine -->
+  <!-- unlocks: thoracoscope, video-assisted thoracoscopic surgery -->
+  <ResearchProjectDef>
+    <defName>AdvancedThoracicSurgery</defName>
+    <label>advanced thoracic surgery</label>
+    <description>Investigate the usage of video technology in thoracic surgery, allowing for minimally invasive procedures to be performed on the lungs and other thoracic structures. By equipping your doctors with thoracoscopes and training them in video-assisted thoracoscopic surgery (VATS), your colony will be able to perform complex lung surgeries with greater precision and reduced risk of complications.</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <baseCost>2500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>EmergencyMedicine</li>
+      <li>VitalsMonitor</li>
+    </prerequisites>
+    <researchViewX>3</researchViewX>
+    <researchViewY>1</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
+  <!-- depends on: emergency medicine, medicine production -->
+  <!-- unlocks: epinephrine autoinjector -->
+  <ResearchProjectDef>
+    <defName>EpinephrineSynthesis</defName>
+    <label>epinephrine synthesis</label>
+    <description>Research into the synthesis of epinephrine, a hormone and neurotransmitter that plays a vital role in the body's fight-or-flight response. By developing an autoinjector that can deliver a precise dose of epinephrine in emergency situations, you will be able to craft epinephrine autoinjectors that can be used to boost blood pressure and increase heart rate to temporarily reduce the adverse effects of hypovolemic shock and anemia.\n\nWe suspect an additional potential use for this drug as a combat stimulant, but further research is required to confirm its efficacy.</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>EmergencyMedicine</li>
+      <li>DrugProduction</li>
+    </prerequisites>
+    <researchViewX>3</researchViewX>
+    <researchViewY>2</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
+  <!-- ============= SPACER ============= -->
+  <!-- depends on: emergency medicine -->
+  <!-- unlocks: cellular regenerative surgery -->
+  <ResearchProjectDef>
+    <defName>CellularRegeneration</defName>
+    <label>cellular regeneration</label>
+    <description>Unlock the secrets of cellular regeneration, a cutting-edge medical technology that allows for the repair and regrowth of damaged tissues at the cellular level. By using mechanites to stimulate the body's natural healing processes, your doctors will be able to cure injuries that were previously considered untreatable, such as hearing and nerve damage. The same technology is used on glitterworlds to treat paralysis and degenerative diseases, but its application is still experimental and its long-term effects are not yet fully understood.</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <baseCost>4000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>EmergencyMedicine</li>
+      <li>AdvancedFabrication</li>
+      <li>Bionics</li>
+    </prerequisites>
+    <researchViewX>4</researchViewX>
+    <researchViewY>0</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
+</Defs>

@@ -31,7 +31,7 @@
       <recipeUsers>
         <li>TableMachining</li>
       </recipeUsers>
-      <researchPrerequisite>MedicineProduction</researchPrerequisite>
+      <researchPrerequisite>EmergencyMedicine</researchPrerequisite>
       <skillRequirements>
         <Crafting>4</Crafting>
       </skillRequirements>

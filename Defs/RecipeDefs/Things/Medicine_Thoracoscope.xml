@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <RecipeDef>
-    <defName>Make_Defibrillator</defName>
-    <label>make defibrillator</label>
-    <description>Make a defibrillator.</description>
-    <jobString>Making a defibrillator.</jobString>
-    <workAmount>900</workAmount>
+    <defName>Make_Thoracoscope</defName>
+    <label>make thoracoscope</label>
+    <description>Make a thoracoscope.</description>
+    <jobString>Making a thoracoscope.</jobString>
+    <workAmount>1000</workAmount>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
     <allowMixingIngredients>true</allowMixingIngredients>
     <researchPrerequisites>
-      <li>EmergencyMedicine</li>
+      <li>AdvancedThoracicSurgery</li>
     </researchPrerequisites>
     <ingredients>
       <li>
@@ -19,7 +19,7 @@
             <li>Steel</li>
           </thingDefs>
         </filter>
-        <count>25</count>
+        <count>20</count>
       </li>
       <li>
         <filter>
@@ -43,7 +43,7 @@
             <li>Plasteel</li>
           </thingDefs>
         </filter>
-        <count>25</count>
+        <count>50</count>
       </li>
       <li>
         <filter>
@@ -51,7 +51,7 @@
             <li>Gold</li>
           </thingDefs>
         </filter>
-        <count>1</count>
+        <count>2</count>
       </li>
       <li>
         <filter>
@@ -59,11 +59,11 @@
             <li>Silver</li>
           </thingDefs>
         </filter>
-        <count>10</count>
+        <count>25</count>
       </li>
     </ingredients>
     <products>
-      <Defibrillator>1</Defibrillator>
+      <Thoracoscope>1</Thoracoscope>
     </products>
     <fixedIngredientFilter>
       <thingDefs>
@@ -79,7 +79,7 @@
       <li>TableMachining</li>
     </recipeUsers>
     <skillRequirements>
-      <Crafting>6</Crafting>
+      <Crafting>8</Crafting>
     </skillRequirements>
     <workSkill>Intellectual</workSkill>
     <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>

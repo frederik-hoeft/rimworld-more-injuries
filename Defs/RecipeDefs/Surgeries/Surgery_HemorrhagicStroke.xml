@@ -47,9 +47,7 @@ Stereotactic surgery is a minimally invasive form of surgical intervention that 
   <RecipeDef ParentName="SurgeryFlesh">
     <defName>RemoveHemorrhagicStroke_Industrial</defName>
     <label>Cure stroke: decompressive craniectomy</label>
-    <description>Perform a decompressive craniectomy to cure a hemorrhagic stroke.
-Decompressive craniectomy is a neurosurgical procedure in which part of the skull is removed to allow a swelling or herniating brain room to expand without being squeezed. It is performed on victims of traumatic brain injury, stroke, Chiari malformation, and other conditions associated with raised intracranial pressure. Use of this surgery is controversial and associated with a higher risk of complications, but it can be life-saving in cases of severe brain swelling.
-\nA challenging surgery that requires familiarity with neurosurgical techniques and a steady hand. Yields a moderate success rate.</description>
+    <description>Perform a decompressive craniectomy to cure a hemorrhagic stroke.\nDecompressive craniectomy is a neurosurgical procedure in which part of the skull is removed to allow a swelling or herniating brain room to expand without being squeezed. It is performed on victims of traumatic brain injury, stroke, Chiari malformation, and other conditions associated with raised intracranial pressure. Use of this surgery is controversial and associated with a higher risk of complications, but it can be life-saving in cases of severe brain swelling.\n\nA challenging surgery that requires familiarity with neurosurgical techniques and a steady hand. Yields a moderate success rate.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
     <jobString>Performing a decompressive craniectomy</jobString>
     <workAmount>3000</workAmount>
@@ -60,6 +58,9 @@ Decompressive craniectomy is a neurosurgical procedure in which part of the skul
     <skillRequirements>
       <Medicine>5</Medicine>
     </skillRequirements>
+    <researchPrerequisites>
+      <li>EmergencyMedicine</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>
@@ -83,9 +84,7 @@ Decompressive craniectomy is a neurosurgical procedure in which part of the skul
   <RecipeDef ParentName="SurgeryFlesh">
     <defName>RemoveHemorrhagicStroke_Tribal</defName>
     <label>Cure stroke: trepanation</label>
-    <description>Perform a trepanation to cure a hemorrhagic stroke.
-Trepanation is a surgical intervention in which a hole is drilled or scraped into the human skull to treat health problems related to intracranial diseases or release pressured blood buildup from an injury. It is one of the oldest surgical procedures known to humanity, with evidence of its practice dating back to the Neolithic era. While it is a simple and straightforward procedure, it carries a high risk of infection and complications.
-\nA basic surgery that can be performed by anyone with rudimentary medical knowledge. Yields a low success rate.</description>
+    <description>Perform a trepanation to cure a hemorrhagic stroke.\nTrepanation is a surgical intervention in which a hole is drilled or scraped into the human skull to treat health problems related to intracranial diseases or release pressured blood buildup from an injury. It is one of the oldest surgical procedures known to humanity, with evidence of its practice dating back to the Neolithic era. While it is a simple and straightforward procedure, it carries a high risk of infection and complications.\n\nA basic surgery that can be performed by anyone with rudimentary medical knowledge. Yields a low success rate.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
     <jobString>Pefroming a trepanation</jobString>
     <workAmount>1500</workAmount>
@@ -96,6 +95,9 @@ Trepanation is a surgical intervention in which a hole is drilled or scraped int
     <skillRequirements>
       <Medicine>2</Medicine>
     </skillRequirements>
+    <researchPrerequisites>
+      <li>BasicAnatomy</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>
