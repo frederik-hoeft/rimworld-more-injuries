@@ -5,7 +5,7 @@
   <!-- EN: an adrenaline rush -->
   <AdrenalineRush.labelNoun>an adrenaline rush</AdrenalineRush.labelNoun>
   <!-- EN: A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.\n\nHowever, if the rush is too intense, it can cause anxiety, panic, and overdose symptoms such as dizziness, double vision, and nausea. In extreme overdose cases, the body can go into shock, causing heart attack, stroke, or death. -->
-  <AdrenalineRush.description>A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.\n\nHowever, if the rush is too intense, it can cause anxiety, panic, and overdose symptoms such as dizziness, double vision, and nausea.</AdrenalineRush.description>
+  <AdrenalineRush.description>A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.\n\nHowever, if the rush is too intense, it can cause anxiety, panic, and overdose symptoms such as dizziness, double vision, and nausea. In extreme overdose cases, the body can go into shock, causing heart attack, stroke, or death.</AdrenalineRush.description>
   <!-- EN: initial -->
   <AdrenalineRush.stages.initial.label>initial</AdrenalineRush.stages.initial.label>
   <!-- EN: minor -->

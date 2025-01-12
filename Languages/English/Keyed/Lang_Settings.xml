@@ -60,7 +60,7 @@
   <MI_Settings_Features_Respiratory_ChokingChanceTooltip>The likelihood of a pawn choking on their own blood after receiving severe bleeding injuries to the respiratory system.</MI_Settings_Features_Respiratory_ChokingChanceTooltip>
   <!-- EN: Minimum suction device success rate for unskilled users: {VALUE} (default: {DEFAULT}) -->
   <MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateLabel>Minimum suction device success rate for unskilled users: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateLabel>
-  <!-- EN: The minimum likelihood of a suction device successfully removing blood from the airways of a choking pawn when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8). -->
+  <!-- EN: The minimum likelihood of a suction device successfully removing blood from the airways of a choking pawn when used by an unskilled user (Medicine skill < 8).\n\nThe actual success rate scales with the user's medicine skill: max(<this setting>, <medicine skill> / 8). -->
   <MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateTooltip>The minimum likelihood of a suction device successfully removing blood from the airways of a choking pawn when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8).</MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateTooltip>
   <!-- EN: Enable inhalation injuries (default: {DEFAULT}) -->
   <MI_Settings_Features_Respiratory_EnableInhalationLabel>Enable inhalation injuries (default: {DEFAULT})</MI_Settings_Features_Respiratory_EnableInhalationLabel>
@@ -116,7 +116,7 @@
   <MI_Settings_Features_HypovolemicShock_CardiacArrestChanceTooltip>The likelihood of a pawn suffering from cardiac arrest after losing a very large amount of blood. Evaluated every 300 ticks/5s.</MI_Settings_Features_HypovolemicShock_CardiacArrestChanceTooltip>
   <!-- EN: Minimum defibrillator success rate for unskilled user: {VALUE} (default: {DEFAULT}) -->
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>Minimum defibrillator success rate for unskilled user: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>
-  <!-- EN: The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8). -->
+  <!-- EN: The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill < 8).\n\nThe actual success rate scales with the user's medicine skill: max(<this setting>, <medicine skill> / 8). -->
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8).</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>
   <!-- ============ Feature: Concussion ============ -->
   <!-- EN: Concussion (Head Injury) -->
