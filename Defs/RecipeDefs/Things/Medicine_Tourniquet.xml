@@ -48,8 +48,9 @@
       </thingDefs>
     </fixedIngredientFilter>
     <recipeUsers>
-      <li>TableMachining</li>
       <li>CraftingSpot</li>
+      <li>ElectricTailoringBench</li>
+      <li>HandTailoringBench</li>
     </recipeUsers>
   </RecipeDef>
 </Defs>
