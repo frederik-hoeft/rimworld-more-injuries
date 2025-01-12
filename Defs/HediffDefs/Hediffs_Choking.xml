@@ -142,7 +142,7 @@
       </li>
       <li>
         <minSeverity>0.25</minSeverity>
-        <label>uncounscious</label>
+        <label>unconscious</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>

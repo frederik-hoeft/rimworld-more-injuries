@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RecipeDef>
+    <defName>Make_BandageFive</defName>
+    <label>make bandages x5</label>
+    <description>Make 5 bandages.</description>
+    <jobString>Making 5 bandages.</jobString>
+    <workAmount>900</workAmount>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <ingredients>
+      <li>
+        <filter>
+          <stuffCategoriesToAllow>
+            <li>Fabric</li>
+          </stuffCategoriesToAllow>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <products>
+      <Bandage>5</Bandage>
+    </products>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Textiles</li>
+      </categories>
+    </fixedIngredientFilter>
+    <recipeUsers>
+      <li>CraftingSpot</li>
+      <li>TableMachining</li>
+    </recipeUsers>
+  </RecipeDef>
+</Defs>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>Bandage</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>bandage</label>
+    <description>Pieces of fabric prepared to slow the flow of blood from wounds. This type of elastic bandage is designed as a temporary measure to apply pressure to a wound to reduce the bleed rate and promote clotting. It is not a substitute for proper medical treatment, but can be used to stabilize a patient until they can be treated by a doctor. Moderately fast to apply, but may not be as effective as a hemostatic agent in stopping severe bleeding.</description>
+    <graphicData>
+      <texPath>Thing/Bandage</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>100</stackLimit>
+    <tradeNeverStack>false</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <Mass>0.01</Mass>
+      <MarketValue>5</MarketValue>
+      <MaxHitPoints>5</MaxHitPoints>
+      <WorkToMake>100</WorkToMake>
+    </statBases>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <costStuffCount>2</costStuffCount>
+    <stuffCategories>
+      <li>Fabric</li>
+    </stuffCategories>
+    <recipeMaker>
+      <recipeUsers>
+        <li>CraftingSpot</li>
+        <li>TableMachining</li>
+      </recipeUsers>
+    </recipeMaker>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HemostasisModExtension">
+        <coagulationMultiplier>0.5</coagulationMultiplier>
+        <disappearsAfterTicks>30000</disappearsAfterTicks>
+      </li>
+    </modExtensions>
+  </ThingDef>
+</Defs>

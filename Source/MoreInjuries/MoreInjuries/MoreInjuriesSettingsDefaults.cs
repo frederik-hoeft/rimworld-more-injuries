@@ -9,9 +9,15 @@ internal static class MoreInjuriesSettingsDefaults
     internal const bool ENABLE_ADRENALINE_DEFAULT = true;
     internal const float ADRENALINE_CHANCE_ON_DAMAGE_DEFAULT = 0.75f;
     internal const float CERTAIN_ADRENALINE_THRESHOLD_DEFAULT = 15f;
+    // blood transfusions
+    internal const int BLOOD_TRANSFUSION_HARVEST_MINIMUM_SKILL_DEFAULT = 5;
     // hearing damage
     internal const bool ENABLE_BASIC_HEARING_DAMAGE_DEFAULT = true;
     internal const bool ENABLE_ADVANCED_HEARING_DAMAGE_DEFAULT = false;
+    internal const float HEARING_DAMAGE_TEMPORARY_SEVERITY_FACTOR_DEFAULT = 0.25f;
+    internal const float HEARING_DAMAGE_TEMPORARY_SEVERITY_FACTOR_EXPLOSIONS_DEFAULT = 0.75f;
+    internal const bool HEARING_DAMAGE_MAY_BECOME_PERMANENT_DEFAULT = true;
+    internal const float HEARING_DAMAGE_PERMANENT_CHANCE_FACTOR_DEFAULT = 0.25f;
     // fractures
     internal const bool ENABLE_FRACTURES_DEFAULT = true;
     internal const float FRACTURE_CHANCE_ON_DAMAGE_DEFAULT = 0.25f;

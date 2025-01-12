@@ -81,6 +81,11 @@ public class HearingLossComp : ThingComp
         {
             return;
         }
+        // exit early if the map is null
+        if (shooter.Map is null)
+        {
+            return;
+        }
         // apply hearing damage to the shooter
         ApplyHearingDamage(shooter, shooter);
         // apply hearing damage to nearby pawns if enabled (excluding the shooter)
@@ -124,7 +129,8 @@ public class HearingLossComp : ThingComp
                 hearingLoss = HediffMaker.MakeHediff(KnownHediffDefOf.HearingLossTemporary, otherPawn);
                 otherPawn.health.AddHediff(hearingLoss);
             }
-            hearingLoss.Severity += hearingDamageMultiplier / 100f;
+            // scale by the hearing damage multiplier and the mod settings factor
+            hearingLoss.Severity += hearingDamageMultiplier / 100f * MoreInjuriesMod.Settings.HearingDamageTemporarySeverityFactor;
             HearingLossHelper.TryMakePermanentIfApplicable(otherPawn, hearingLoss);
         }
     }

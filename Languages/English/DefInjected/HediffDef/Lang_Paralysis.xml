@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: paralysis -->
+  <SpinalCordParalysis.label>paralysis</SpinalCordParalysis.label>
+  <!-- EN: Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Paralysis is often a life-changing condition and may require the use of bionic implants or prosthetics to restore function. -->
+  <SpinalCordParalysis.description>Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Paralysis is often a life-changing condition and may require the use of bionic implants or prosthetics to restore function.</SpinalCordParalysis.description>
+  <!-- EN: sensory loss -->
+  <SpinalCordParalysis.stages.sensory_loss.label>sensory loss</SpinalCordParalysis.stages.sensory_loss.label>
+  <!-- EN: partial -->
+  <SpinalCordParalysis.stages.partial.label>partial</SpinalCordParalysis.stages.partial.label>
+  <!-- EN: full -->
+  <SpinalCordParalysis.stages.full.label>full</SpinalCordParalysis.stages.full.label>
+</LanguageData>

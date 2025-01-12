@@ -1,6 +1,5 @@
 ﻿using MoreInjuries.Extensions;
 using System.Collections.Generic;
-using System.Linq;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Fractures.Lacerations;

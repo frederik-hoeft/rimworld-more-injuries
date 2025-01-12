@@ -25,7 +25,7 @@ public static class Patch_ITab_Pawn_Visitor_NonExclusiveInteractionToggled
 
             if (pawn.guest.IsInteractionEnabled(otherMode))
             {
-                Messages.Message($"{mode.label} and {otherMode.label} are mutually exclusive.", pawn, MessageTypeDefOf.RejectInput);
+                Messages.Message("MI_Message_OptionMutuallyExclusive".Translate(mode.label, otherMode.label), pawn, MessageTypeDefOf.RejectInput);
                 pawn.guest.ToggleNonExclusiveInteraction(otherMode, false);
                 pawn.BillStack?.Bills?.RemoveAll(b => b.recipe == otherRecipe);
             }

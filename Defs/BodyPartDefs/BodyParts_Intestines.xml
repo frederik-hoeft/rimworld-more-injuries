@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <BodyPartDef>
+    <defName>SmallIntestine</defName>
+    <label>small intestine</label>
+    <hitPoints>24</hitPoints>
+    <permanentInjuryChanceFactor>2.5</permanentInjuryChanceFactor>
+    <skinCovered>false</skinCovered>
+    <solid>false</solid>
+    <bleedRate>3.25</bleedRate>
+    <tags>
+      <li>MetabolismSource</li>
+    </tags>
+    <canSuggestAmputation>true</canSuggestAmputation>
+    <destroyableByDamage>true</destroyableByDamage>
+    <spawnThingOnRemoved>SmallIntestine</spawnThingOnRemoved>
+  </BodyPartDef>
+
+  <BodyPartDef>
+    <defName>LargeIntestine</defName>
+    <label>large intestine</label>
+    <hitPoints>20</hitPoints>
+    <permanentInjuryChanceFactor>2</permanentInjuryChanceFactor>
+    <skinCovered>false</skinCovered>
+    <solid>false</solid>
+    <bleedRate>3.75</bleedRate>
+    <tags>
+      <li>MetabolismSource</li>
+    </tags>
+    <canSuggestAmputation>true</canSuggestAmputation>
+    <destroyableByDamage>true</destroyableByDamage>
+    <spawnThingOnRemoved>LargeIntestine</spawnThingOnRemoved>
+  </BodyPartDef>
+</Defs>

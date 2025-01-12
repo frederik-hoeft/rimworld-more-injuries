@@ -10,7 +10,7 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 
 public class JobDriver_UseBloodBag : JobDriver_UseMedicalDevice
 {
-    public const string JOB_LABEL = "Transfuse blood";
+    public const string JOB_LABEL_KEY = "MI_UseBloodBag";
     private const float BLOOD_LOSS_HEALED_PER_PACK = 0.35f;
 
     private bool _fullyHeal;

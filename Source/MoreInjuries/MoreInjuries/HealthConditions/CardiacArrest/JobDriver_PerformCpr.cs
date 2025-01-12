@@ -10,7 +10,7 @@ namespace MoreInjuries.HealthConditions.CardiacArrest;
 // shared with ChokingOnBlood
 public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
 {
-    public const string JOB_LABEL = "Perform CPR";
+    public const string JOB_LABEL_KEY = "MI_PerformCpr";
 
     public static HediffDef[] TargetHediffDefs { get; } = [KnownHediffDefOf.ChokingOnBlood, KnownHediffDefOf.CardiacArrest];
 

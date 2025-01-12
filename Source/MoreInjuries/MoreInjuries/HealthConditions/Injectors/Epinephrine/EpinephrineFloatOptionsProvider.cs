@@ -10,7 +10,7 @@ public class EpinephrineFloatOptionsProvider(InjuryWorker parent) : InjectorFloa
 
     protected override UITreatmentOption UITreatmentOption => UITreatmentOption.UseEpinephrine;
 
-    protected override string JobLabel => JobDriver_UseEpinephrine.JOB_LABEL;
+    protected override string JobLabelKey => JobDriver_UseEpinephrine.JOB_LABEL_KEY;
 
     protected override ThingDef InjectorDef => KnownThingDefOf.Epinephrine;
 

@@ -9,7 +9,7 @@ namespace MoreInjuries.HealthConditions.Choking;
 
 public class JobDriver_UseSuctionDevice : JobDriver_UseMedicalDevice_TargetsHediffDefs
 {
-    public const string JOB_LABEL = "Clear airways";
+    public const string JOB_LABEL_KEY = "MI_UseSuctionDevice";
 
     public static HediffDef[] TargetHediffDefs { get; } = [KnownHediffDefOf.ChokingOnBlood];
 

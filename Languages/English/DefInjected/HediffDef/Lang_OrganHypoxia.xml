@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: organ hypoxia -->
+  <OrganHypoxia.label>organ hypoxia</OrganHypoxia.label>
+  <!-- EN: insufficient oxygen -->
+  <OrganHypoxia.labelNoun>insufficient oxygen</OrganHypoxia.labelNoun>
+  <!-- EN: Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow. -->
+  <OrganHypoxia.description>Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow.</OrganHypoxia.description>
+  <!-- EN: tended -->
+  <OrganHypoxia.comps.HediffComp_TendDuration.labelTendedWell>tended</OrganHypoxia.comps.HediffComp_TendDuration.labelTendedWell>
+  <!-- EN: tended -->
+  <OrganHypoxia.comps.HediffComp_TendDuration.labelTendedWellInner>tended</OrganHypoxia.comps.HediffComp_TendDuration.labelTendedWellInner>
+  <!-- EN: tended -->
+  <OrganHypoxia.comps.HediffComp_TendDuration.labelSolidTendedWell>tended</OrganHypoxia.comps.HediffComp_TendDuration.labelSolidTendedWell>
+  <!-- EN: Permanent hypoxia damage -->
+  <OrganHypoxia.comps.HediffComp_GetsPermanent.permanentLabel>Permanent hypoxia damage</OrganHypoxia.comps.HediffComp_GetsPermanent.permanentLabel>
+  <!-- EN: Dead -->
+  <OrganHypoxia.injuryProps.destroyedLabel>Dead</OrganHypoxia.injuryProps.destroyedLabel>
+  <!-- EN: Dead -->
+  <OrganHypoxia.injuryProps.destroyedOutLabel>Dead</OrganHypoxia.injuryProps.destroyedOutLabel>
+</LanguageData>

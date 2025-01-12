@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- small intestine -->
+  <RecipeDef ParentName="SurgeryInstallBodyPartNaturalBase">
+    <defName>InstallSmallIntestine</defName>
+    <label>install small intestine</label>
+    <description>Install a small intestine.</description>
+    <descriptionHyperlinks>
+      <ThingDef>SmallIntestine</ThingDef>
+    </descriptionHyperlinks>
+    <jobString>Installing small intestine.</jobString>
+    <deathOnFailedSurgeryChance>0.25</deathOnFailedSurgeryChance>
+    <skillRequirements>
+      <Medicine>6</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>SmallIntestine</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>SmallIntestine</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <appliedOnFixedBodyParts>
+      <li>SmallIntestine</li>
+    </appliedOnFixedBodyParts>
+  </RecipeDef>
+
+  <!-- bionic small intestine -->
+  <RecipeDef ParentName="SurgeryInstallBodyPartArtificialBase">
+    <defName>InstallBionicSmallIntestine</defName>
+    <label>install bionic small intestine</label>
+    <description>Install a bionic small intestine.</description>
+    <descriptionHyperlinks>
+      <ThingDef>BionicSmallIntestine</ThingDef>
+    </descriptionHyperlinks>
+    <jobString>Installing bionic intestine.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>BionicSmallIntestine</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>BionicSmallIntestine</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <appliedOnFixedBodyParts>
+      <li>SmallIntestine</li>
+    </appliedOnFixedBodyParts>
+    <addsHediff>BionicSmallIntestine</addsHediff>
+  </RecipeDef>
+
+  <!-- large intestine -->
+  <RecipeDef ParentName="SurgeryInstallBodyPartNaturalBase">
+    <defName>InstallLargeIntestine</defName>
+    <label>install large intestine</label>
+    <description>Install a large intestine.</description>
+    <descriptionHyperlinks>
+      <ThingDef>LargeIntestine</ThingDef>
+    </descriptionHyperlinks>
+    <jobString>Installing large intestine.</jobString>
+    <deathOnFailedSurgeryChance>0.30</deathOnFailedSurgeryChance>
+    <skillRequirements>
+      <Medicine>6</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>LargeIntestine</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>LargeIntestine</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <appliedOnFixedBodyParts>
+      <li>LargeIntestine</li>
+    </appliedOnFixedBodyParts>
+  </RecipeDef>
+</Defs>

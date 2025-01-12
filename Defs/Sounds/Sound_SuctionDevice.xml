@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <SoundDef>
+    <defName>UseSuctionDevice</defName>
+    <sustain>True</sustain>
+    <context>MapOnly</context>
+    <maxVoices>2</maxVoices>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <muteWhenPaused>True</muteWhenPaused>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>suction_device</clipPath>
+          </li>
+        </grains>
+        <volumeRange>15~20</volumeRange>
+        <pitchRange>0.9541177~1.137647</pitchRange>
+        <distRange>10~50</distRange>
+        <sustainLoop>False</sustainLoop>
+        <sustainIntervalRange>0.8~1.6</sustainIntervalRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+</Defs>

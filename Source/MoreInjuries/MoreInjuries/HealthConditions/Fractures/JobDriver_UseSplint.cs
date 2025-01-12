@@ -10,7 +10,7 @@ namespace MoreInjuries.HealthConditions.Fractures;
 // tend all fractures on a patient or until there are no more splints
 public class JobDriver_UseSplint : JobDriver_UseMedicalDevice_TargetsHediffDefs
 {
-    public const string JOB_LABEL = "Splint fractures";
+    public const string JOB_LABEL_KEY = "MI_UseSplint";
 
     public static HediffDef[] TargetHediffDefs { get; } = [KnownHediffDefOf.Fracture];
 
