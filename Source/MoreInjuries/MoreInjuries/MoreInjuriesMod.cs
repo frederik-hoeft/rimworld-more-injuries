@@ -241,6 +241,8 @@ public class MoreInjuriesMod : Mod
             Named.Keys.Format_TimeDays.Translate(Math.Round(DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT / 60_000f, 1).Named(Named.Params.DAYS)).NamedDefault()), -1,
             "MI_Settings_Features_Tourniquets_WetGangreneMeanTimeTooltip".Translate());
         Settings.DryGangreneMeanTimeToInfection = Mathf.Floor(list.Slider((float)Math.Round(Settings.DryGangreneMeanTimeToInfection / 60_000f, 1), 0.1f, 15f) * 60_000f);
+        list.CheckboxLabeled("MI_Settings_Features_Tourniquets_ShowGizmoLabel".Translate(ENABLE_TOURNIQUET_GIZMO_DEFAULT.NamedDefault()), ref Settings.EnableTourniquetGizmo,
+            "MI_Settings_Features_Tourniquets_ShowGizmoTooltip".Translate());
         // hearing damage
         list.GapLine();
         Text.Font = GameFont.Medium;

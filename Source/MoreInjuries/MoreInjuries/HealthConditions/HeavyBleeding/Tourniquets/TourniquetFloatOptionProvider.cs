@@ -15,6 +15,10 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
 
     public void AddGizmosExtra(UIBuilder<Gizmo> builder, Pawn selectedPawn)
     {
+        if (!MoreInjuriesMod.Settings.EnableTourniquetGizmo)
+        {
+            return;
+        }
         Pawn patient = parent.Target;
         if (patient.Downed && patient.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation) < 0.2f)
         {
