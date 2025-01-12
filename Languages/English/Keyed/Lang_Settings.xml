@@ -204,6 +204,10 @@
   <MI_Settings_Features_Tourniquets_WetGangreneMeanTimeLabel>Mean time to infection from dry gangrene: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Tourniquets_WetGangreneMeanTimeLabel>
   <!-- EN: The mean time between dry gangrene becoming infected with bacteria and turning into wet gangrene. Wet gangrene is a life-threatening condition that requires immediate amputation. -->
   <MI_Settings_Features_Tourniquets_WetGangreneMeanTimeTooltip>The mean time between dry gangrene becoming infected with bacteria and turning into wet gangrene. Wet gangrene is a life-threatening condition that requires immediate amputation.</MI_Settings_Features_Tourniquets_WetGangreneMeanTimeTooltip>
+  <!-- EN: Show tourniquet gizmo on pawns (default: {DEFAULT}) -->
+  <MI_Settings_Features_Tourniquets_ShowGizmoLabel>Show tourniquet gizmo on pawns (default: {DEFAULT})</MI_Settings_Features_Tourniquets_ShowGizmoLabel>
+  <!-- EN: If enabled, a gizmo will be shown on selected pawns that allows you to quickly apply or remove tourniquets as a self-treatment measure. -->
+  <MI_Settings_Features_Tourniquets_ShowGizmoTooltip>If enabled, a gizmo will be shown on selected pawns that allows you to quickly apply or remove tourniquets as a self-treatment measure.</MI_Settings_Features_Tourniquets_ShowGizmoTooltip>
   <!-- ============ Feature: Hearing Damage ============ -->
   <!-- EN: Hearing Damage -->
   <MI_Settings_Features_HearingDamage>Hearing Damage</MI_Settings_Features_HearingDamage>
