@@ -798,7 +798,6 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 **Death on Failed Surgery Chance[^2]**: 2.5%  
 **Work Amount**: 3000
 
-
 ### Trepanation
 
 $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
@@ -840,12 +839,24 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 
 ## New Research Projects
 
-TODO: add overview image here
+More Injuries introduces several new research projects that can be undertaken to unlock new life-saving treatments and surgical procedures. These research projects expand the medical capabilities of your colony and allow you to treat previously untreatable injuries and medical conditions. As your technology advances, you will be able to provide better care to your colonists and save more lives in the harsh environment of the RimWorld.
+
+![An overview of the new research projects added by More Injuries.](assets/research.png)
+
+> [!NOTE]
+> All new research projects can be found in the *More Injuries* research tab.
+
 TODO: update dependencies to list required research projects
 
 ### Basic Anatomy
 
-TODO
+> **In-Game Description**
+> _"**Basic Anatomy** &mdash; Delving into the fundamentals of human anatomy, this research uncovers ancient knowledge from the earliest recorded forms of medicine. By studying these time-honored practices, your scientists will equip your doctors with the skills to perform basic medical procedures, including wound treatment and disease management. This marks a vital first step toward restoring advanced medical practices in your colony."_
+
+**Tech Level**: Neolithic  
+**Unlocks**: [Bandages](#bandage), [Splints](#splint), [Trepanation](#trepanation)  
+**Research Requirements**: None  
+**Research Amount**: 500
 
 ### Basic First Aid
 
