@@ -18,7 +18,7 @@
       <Mass>0.01</Mass>
       <MarketValue>5</MarketValue>
       <MaxHitPoints>5</MaxHitPoints>
-      <WorkToMake>100</WorkToMake>
+      <WorkToMake>150</WorkToMake>
     </statBases>
     <drawGUIOverlay>true</drawGUIOverlay>
     <costStuffCount>2</costStuffCount>
@@ -26,9 +26,11 @@
       <li>Fabric</li>
     </stuffCategories>
     <recipeMaker>
+      <researchPrerequisite>BasicAnatomy</researchPrerequisite>
       <recipeUsers>
         <li>CraftingSpot</li>
-        <li>TableMachining</li>
+        <li>ElectricTailoringBench</li>
+        <li>HandTailoringBench</li>
       </recipeUsers>
     </recipeMaker>
     <modExtensions>

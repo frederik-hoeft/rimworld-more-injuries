@@ -9,6 +9,9 @@
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_Machining</soundWorking>
     <allowMixingIngredients>true</allowMixingIngredients>
+    <researchPrerequisites>
+      <li>EmergencyMedicine</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>
@@ -80,6 +83,5 @@
     </skillRequirements>
     <workSkill>Intellectual</workSkill>
     <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
-    <researchPrerequisite>MedicineProduction</researchPrerequisite>
   </RecipeDef>
 </Defs>
