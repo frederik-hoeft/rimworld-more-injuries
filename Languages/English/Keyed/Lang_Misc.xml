@@ -20,8 +20,8 @@
   <MI_Message_OptionMutuallyExclusive>{0} and {1} are mutually exclusive</MI_Message_OptionMutuallyExclusive>
   <!-- EN: {0} requires the '{1}' research project to be completed first -->
   <MI_Message_ResearchRequired>{0} requires the '{1}' research project to be completed first</MI_Message_ResearchRequired>
-  <!-- EN: After the surgery, {DOCTOR_labelShort} noticed that the {THING_label} has broken down and needs to be replaced. -->
-  <MI_Message_SurgeryIngredientDestroyed>After the surgery, {DOCTOR_labelShort} noticed that the {THING_label} has broken down and needs to be replaced.</MI_Message_SurgeryIngredientDestroyed>
+  <!-- EN: After the procedure, {DOCTOR_labelShort} noticed that the {THING_label} has broken down and needs to be replaced. -->
+  <MI_Message_ProcedureIngredientDestroyed>After the procedure, {DOCTOR_labelShort} noticed that the {THING_label} has broken down and needs to be replaced.</MI_Message_ProcedureIngredientDestroyed>
   <!-- =========== generic failure messages =========== -->
   <!-- EN: {0}: medical care for {PATIENT_labelShort} disabled -->
   <MI_ProcedureFailed_CareDisabled>{0}: medical care for {PATIENT_labelShort} disabled</MI_ProcedureFailed_CareDisabled>

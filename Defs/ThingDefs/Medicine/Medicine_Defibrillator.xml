@@ -19,6 +19,11 @@
       <MarketValue>750</MarketValue>
       <MaxHitPoints>80</MaxHitPoints>
     </statBases>
+    <modExtensions>
+      <li Class="MoreInjuries.Things.ReusabilityProps_ModExtension">
+        <destroyChance>0.10</destroyChance>
+      </li>
+    </modExtensions>
     <thingCategories>
       <li>Manufactured</li>
     </thingCategories>

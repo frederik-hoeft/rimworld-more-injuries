@@ -4,7 +4,7 @@
     <defName>Thoracoscope</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>thoracoscope</label>
-    <description>A thoracoscope is a specialized medical instrument equipped with a camera and light source, designed for minimally invasive examination and procedures within the chest cavity. It is inserted through a small incision in the chest wall, allowing surgeons to visualize and operate on the lungs, pleura, or other thoracic structures. Thoracoscopes are commonly used in video-assisted thoracoscopic surgery (VATS), such as repairing collapsed lungs or removing diseased tissue.</description>
+    <description>A thoracoscope is a specialized medical instrument equipped with a camera and light source, designed for minimally invasive examination and procedures within the chest cavity. It is inserted through a small incision in the chest wall, allowing surgeons to visualize and operate on the lungs, pleura, or other thoracic structures.\nThoracoscopes are commonly used in video-assisted thoracoscopic surgery (VATS), such as repairing collapsed lungs or removing diseased tissue.</description>
     <graphicData>
       <texPath>Thing/Thoracoscope</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -20,7 +20,7 @@
       <MaxHitPoints>80</MaxHitPoints>
     </statBases>
     <modExtensions>
-      <li Class="MoreInjuries.HealthConditions.ReusabilityProps_ModExtension">
+      <li Class="MoreInjuries.Things.ReusabilityProps_ModExtension">
         <destroyChance>0.2</destroyChance>
       </li>
     </modExtensions>

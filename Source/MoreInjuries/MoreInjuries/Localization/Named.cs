@@ -73,5 +73,8 @@ public static class Named
 
         /// <summary>{0}: self-tend is disabled</summary>
         public static string ProcedureFailed_SelfTendDisabled => "MI_ProcedureFailed_SelfTendDisabled";
+
+        /// <summary>After the procedure, {DOCTOR_labelShort} noticed that the {THING_label} has broken down and needs to be replaced.</summary>
+        public static string Message_ProcedureIngredientDestroyed => "MI_Message_ProcedureIngredientDestroyed";
     }
 }

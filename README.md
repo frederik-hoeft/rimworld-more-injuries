@@ -70,8 +70,8 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
   - [New Research Projects](#new-research-projects)
     - [Basic Anatomy](#basic-anatomy)
     - [Basic First Aid](#basic-first-aid)
-    - [Advanced First Aid](#advanced-first-aid)
     - [Emergency Medicine](#emergency-medicine)
+    - [Advanced First Aid](#advanced-first-aid)
     - [Advanced Thoracic Surgery](#advanced-thoracic-surgery)
     - [Epinephrine Synthesis](#epinephrine-synthesis)
     - [Cellular Regeneration](#cellular-regeneration)
@@ -437,7 +437,7 @@ In order to effectively treat the new injuries and medical conditions introduced
 
 **Production**: At a machining table.  
 **Production Skill Requirement**: `Crafting` at level 4  
-**Research Requirements**: `Medicine Production`  
+**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
 **Ingredients**: 25x `Steel`, 20x `Chemfuel`, 1x `Component`, 5x `Plasteel`  
 **Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.
 
@@ -459,9 +459,9 @@ In order to effectively treat the new injuries and medical conditions introduced
 1. Tell a *drafted* pawn capable of doctoring to apply a bandage to a wound using one of the `Stabilize with bandages` options in the right-click context menu of the patient. The bandage must be accessible in a stockpile or the doctor's inventory. Self-treatment is possible.
 2. Applying a bandage is part of the [First Aid](#first-aid) order for *drafted* pawns.
 
-**Production**: At a crafting spot or machining table.  
+**Production**: At a crafting spot or tailor bench.  
 **Production Skill Requirement**: None  
-**Research Requirements**: None  
+**Research Requirements**: [Basic Anatomy](#basic-anatomy)  
 **Ingredients**: 2x `any fabric`  
 **Success Chance**: 100%
 
@@ -490,7 +490,7 @@ In order to effectively treat the new injuries and medical conditions introduced
 2. Downed enemies can be executed through the `Harvest blood (finish off)` option in the right-click context menu to extract blood bags from them (requires a medically skilled, *drafted* pawn capable of doctoring). This is a quick and effective way to obtain blood bags from enemies on the battlefield, but is considered a war crime and will have severe consequences for your faction relations.
 3. Blood bags can be automatically and safely extracted from prisoners using the `blood bag farm` prisoner interaction option. It works analogous to the `hemogen farm` option from the Biotech DLC and allows to automatically schedule the extraction of blood bags from prisoners at regular intervals when it is safe to do so and does not pose a risk to the prisoner's health. It is still considered an unethical and offensive practice and will have consequences for your faction relations.
 
-**Research Requirements**: None  
+**Research Requirements**: [Basic First Aid](#basic-first-aid)  
 **Ingredients**: N/A  
 **Success Chance**: 100%
 
@@ -509,6 +509,7 @@ Cardiopulmonary resuscitation (CPR) is an emergency procedure that combines ches
 2. CPR is part of the [First Aid](#first-aid) order for *drafted* pawns.
 3. Alternatively, resuscitating patients using CPR is now part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with a condition that requires CPR, any non-drafted doctor will automatically attempt to resuscitate the patient using CPR or a [defibrillator](#defibrillator), in accordance with the configured work priorities.
 
+**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
 **Severity Reduction**: $f_{\text{sigmoid}}($ `medicine skill> / 15` $)$ where $f_{\text{sigmoid}}$ is a diffused sigmoid function defined as $f_{\text{sigmoid}}(x) = \frac{1}{1 + e^{-10\cdot(x - 0.5)}} + z$ where $z$ is a random factor between $-0.1$ and $0.1$. See [Wolfram Alpha](https://www.wolframalpha.com/input?i=f%28x%29+%3D+1+%2F+%281+%2B+e%5E%28-10*%28x%2F15+-+0.5%29%29%29+%2B+z%2C+x+in+%5B0%2C+20%5D%2C+z+in%5B-0.1%2C0.1%5D) for a visualization of the function.
 
 > [!IMPORTANT]
@@ -537,9 +538,10 @@ Defibrillation is a treatment for life-threatening conditions that affect the rh
 
 **Production**: At a machining table.  
 **Production Skill Requirement**: `Crafting` at level 6  
-**Research Requirements**: `Medicine Production`  
+**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
 **Ingredients**: 25x `Steel`, 20x `Chemfuel`, 4x `Component`, 25x `Plasteel`, 10x `Gold`, 100x `Silver`  
-**Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.
+**Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.  
+**Chance to Break[^1]**: 10%
 
 ### Epinephrine Autoinjector
 
@@ -614,9 +616,9 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 1. Tell a *drafted* pawn capable of doctoring to apply a hemostatic agent to a wound using one of the `Stabilize with hemostatic agent` options in the right-click context menu of the patient. The hemostatic agent must be accessible in a stockpile or the doctor's inventory. Self-treatment is possible.
 2. Applying a hemostatic agent is part of the [First Aid](#first-aid) order for *drafted* pawns.
 
-**Production**: At a machining table.  
+**Production**: At a drug lab.  
 **Production Skill Requirement**: `Crafting` at level 4  
-**Research Requirements**: `Medicine Production`  
+**Research Requirements**: [Advanced First Aid](#advanced-first-aid)  
 **Ingredients**: 5x `any textile`, 3x `Chemfuel`  
 **Success Chance**: 100%
 
@@ -646,13 +648,31 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 
 **Production**: At a crafting spot or machining table.  
 **Production Skill Requirement**: None  
-**Research Requirements**: None  
+**Research Requirements**: [Basic Anatomy](#basic-anatomy)  
 **Ingredients**: 4x `Wood` or `Steel`, 1x `any textile`  
 **Success Chance**: 100%
 
 ### Thoracoscope
 
-TODO: ...
+<p>
+  <img align="right" src="./Textures/Thing/Thoracoscope/thoracoscope_b.png" height="64" alt="Tourniquet" />
+  <img align="right" src="./Textures/Thing/Thoracoscope/thoracoscope_a.png" height="64" alt="Tourniquet" />
+
+> **In-Game Description**
+> _"**Thoracoscope** &mdash; A thoracoscope is a specialized medical instrument equipped with a camera and light source, designed for minimally invasive examination and procedures within the chest cavity. It is inserted through a small incision in the chest wall, allowing surgeons to visualize and operate on the lungs, pleura, or other thoracic structures.
+> Thoracoscopes are commonly used in video-assisted thoracoscopic surgery (VATS), such as repairing collapsed lungs or removing diseased tissue."_
+
+</p>
+
+**Used for**: Performing [video-assisted thoracoscopic surgery](#video-assisted-thoracoscopic-surgery) to treat [lung collapse](#lung-collapse) with minimally invasive surgical techniques and a high success rate to repair the damage and restore the lung to full function.
+
+**Usage**: As a required ingredient for the [video-assisted thoracoscopic surgery](#video-assisted-thoracoscopic-surgery) procedure, which can be found in the *operations* tab of the selected pawn.
+
+**Production**: At a machining table.  
+**Production Skill Requirement**: `Crafting` at level 8  
+**Research Requirements**: [Advanced Thoracic Surgery](#advanced-thoracic-surgery)  
+**Ingredients**: 20x `Steel`, 20x `Chemfuel`, 4x `Component`, 50x `Plasteel`, 20x `Gold`, 250x `Silver`  
+**Chance to Break[^1]**: 20%
 
 ### Tourniquet
 
@@ -684,9 +704,9 @@ Alternatively, use the *tourniquet gizmo* (depicted on the right) to apply or re
 </li>
 </ol>
 
-**Production**: At a crafting spot or machining table.  
+**Production**: At a crafting spot or tailor bench.  
 **Production Skill Requirement**: None  
-**Research Requirements**: None  
+**Research Requirements**: [Basic First Aid](#basic-first-aid)  
 **Ingredients**: 1x `Wood` or `Steel`, 4x `any textile` or `leather`  
 **Success Chance**: 100%
 
@@ -720,8 +740,8 @@ $\rightarrow$ *see [permanent hearing loss](#permanent-hearing-loss)*
 **Skill Requirements**: `Medicine` at level 12  
 **Research Requirements**: None  
 **Ingredients**: 2x `Glitterworld Medicine`  
-**Surgery Success Chance Factor[^1]**: 110%  
-**Death on Failed Surgery Chance[^2]**: 0%  
+**Surgery Success Chance Factor[^2]**: 110%  
+**Death on Failed Surgery Chance[^3]**: 0%  
 **Work Amount**: 4500
 
 > [!TIP]
@@ -739,10 +759,10 @@ $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 **Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with good medical knowledge and industrial equipment at a moderate success rate.
 
 **Skill Requirements**: `Medicine` at level 5  
-**Research Requirements**: None  
+**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
 **Ingredients**: 3x `Medicine` or better  
-**Surgery Success Chance Factor[^1]**: 110%  
-**Death on Failed Surgery Chance[^2]**: 2.5%  
+**Surgery Success Chance Factor[^2]**: 110%  
+**Death on Failed Surgery Chance[^3]**: 2.5%  
 **Work Amount**: 3000  
 
 ### Osteosynthetic Surgery
@@ -756,10 +776,10 @@ $\rightarrow$ *see [bone fracture](#bone-fracture)*
 **Used for**: Treating [bone fractures](#bone-fracture) with more expensive and invasive surgical techniques to speed up the healing process significantly.
 
 **Skill Requirements**: `Medicine` at level 5  
-**Research Requirements**: None  
+**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
 **Ingredients**: 2x any `Medicine`, 5x `Plasteel`  
-**Surgery Success Chance Factor[^1]**: 125%  
-**Death on Failed Surgery Chance[^2]**: 0.5%  
+**Surgery Success Chance Factor[^2]**: 125%  
+**Death on Failed Surgery Chance[^3]**: 0.5%  
 **Work Amount**: 2500
 
 ### Stereotactic Surgery
@@ -776,8 +796,8 @@ $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 **Skill Requirements**: `Medicine` at level 8  
 **Research Requirements**: None  
 **Ingredients**: 4x `Medicine` or better, 1x `Glitterworld Medicine`  
-**Surgery Success Chance Factor[^1]**: 150%  
-**Death on Failed Surgery Chance[^2]**: 1%  
+**Surgery Success Chance Factor[^2]**: 150%  
+**Death on Failed Surgery Chance[^3]**: 1%  
 **Work Amount**: 4500
 
 ### Thoracotomy
@@ -792,10 +812,10 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 **Used for**: Treating [lung collapse](#lung-collapse) with invasive surgical techniques to repair the damage and restore the lung to full function. Moderate success rate and moderate risk of complications.
 
 **Skill Requirements**: `Medicine` at level 6  
-**Research Requirements**: None  
+**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
 **Ingredients**: 3x `Medicine`  
-**Surgery Success Chance Factor[^1]**: 100%  
-**Death on Failed Surgery Chance[^2]**: 2.5%  
+**Surgery Success Chance Factor[^2]**: 100%  
+**Death on Failed Surgery Chance[^3]**: 2.5%  
 **Work Amount**: 3000
 
 ### Trepanation
@@ -810,10 +830,10 @@ $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 **Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with readily available equipment and basic medical knowledge at a mediocre success rate.
 
 **Skill Requirements**: `Medicine` at level 2  
-**Research Requirements**: None  
+**Research Requirements**: [Basic Anatomy](#basic-anatomy)  
 **Ingredients**: 2x `Herbal Medicine` or better  
-**Surgery Success Chance Factor[^1]**: 90%  
-**Death on Failed Surgery Chance[^2]**: 7.5%  
+**Surgery Success Chance Factor[^2]**: 90%  
+**Death on Failed Surgery Chance[^3]**: 7.5%  
 **Work Amount**: 1500  
 
 > [!CAUTION]
@@ -831,10 +851,10 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 **Used for**: Treating [lung collapse](#lung-collapse) with minimally invasive surgical techniques to repair the damage and restore the lung to full function. High success rate and low risk of complications.
 
 **Skill Requirements**: `Medicine` at level 8  
-**Research Requirements**: None  
-**Ingredients**: 3x `Glitterworld Medicine`  
-**Surgery Success Chance Factor[^1]**: 135%  
-**Death on Failed Surgery Chance[^2]**: 1%  
+**Research Requirements**: [Advanced Thoracic Surgery](#advanced-thoracic-surgery)  
+**Ingredients**: 3x `Medicine` or better, 1x[^1] [Thoracoscope](#thoracoscope)  
+**Surgery Success Chance Factor[^2]**: 135%  
+**Death on Failed Surgery Chance[^3]**: 1%  
 **Work Amount**: 5000
 
 ## New Research Projects
@@ -854,25 +874,59 @@ TODO: update dependencies to list required research projects
 > _"**Basic Anatomy** &mdash; Delving into the fundamentals of human anatomy, this research uncovers ancient knowledge from the earliest recorded forms of medicine. By studying these time-honored practices, your scientists will equip your doctors with the skills to perform basic medical procedures, including wound treatment and disease management. This marks a vital first step toward restoring advanced medical practices in your colony."_
 
 **Tech Level**: Neolithic  
-**Unlocks**: [Bandages](#bandage), [Splints](#splint), [Trepanation](#trepanation)  
+**Unlocks**: [bandages](#bandage), [splints](#splint), [trepanation](#trepanation)  
+**Required Research Bench & Addon**: Simple  
 **Research Requirements**: None  
-**Research Amount**: 500
+**Unlocks Research Projects**: [Basic First Aid](#basic-first-aid)  
+**Research Cost**: 500
 
 ### Basic First Aid
 
-TODO
+> **In-Game Description**
+> _"**Basic First Aid** &mdash; Building upon the knowledge of basic anatomy, this research delves into the fundamental principles of first aid. By studying approaches to reduce blood loss and stabilize patients in critical condition, your colony will be better equipped to handle medical emergencies."_
 
-### Advanced First Aid
-
-TODO
+**Tech Level**: Medieval  
+**Unlocks**: [blood transfusions](#blood-bag), [tourniquets](#tourniquet)  
+**Required Research Bench & Addon**: Simple  
+**Research Requirements**: [Basic Anatomy](#basic-anatomy), Machining  
+**Unlocks Research Projects**: [Emergency Medicine](#emergency-medicine), [Advanced First Aid](#advanced-first-aid)  
+**Research Cost**: 1000
 
 ### Emergency Medicine
 
-TODO
+> **In-Game Description**
+> _"**Emergency Medicine** &mdash; With the foundation of basic first aid in place, this research delves into the advanced field of emergency medicine. By studying the latest techniques in life-saving medical interventions, your doctors will be equipped to handle a wide range of critical medical emergencies, from cardiac arrest to traumatic injuries."_
+
+**Tech Level**: Industrial  
+**Unlocks**: [CPR](#cpr), [defibrillators](#defibrillator), [airway suction devices](#airway-suction-device), [decompressive craniectomy](#decompressive-craniectomy), [osteosynthetic surgery](#osteosynthetic-surgery), [thoracotomy](#thoracotomy)  
+**Required Research Bench & Addon**: Hi-tech  
+**Research Requirements**: [Basic First Aid](#basic-first-aid), Microelectronics  
+**Unlocks Research Projects**: [Cellular Regeneration](#cellular-regeneration), [Advanced Thoracic Surgery](#advanced-thoracic-surgery), [Epinephrine Synthesis](#epinephrine-synthesis)  
+**Research Cost**: 2000
+
+### Advanced First Aid
+
+> **In-Game Description**
+> _"**Advanced First Aid** &mdash; Expanding on the principles of basic first aid and drug synthesis, your researchers will investigate the development of hemostatic agents. These advanced coagulants can be used to limit severe bleeding even more effectively than traditional bandages, reducing the risk of exsanguination in patients with severe injuries."_
+
+**Tech Level**: Industrial  
+**Unlocks**: [hemostatic agents](#hemostatic-agent)  
+**Required Research Bench & Addon**: Simple  
+**Research Requirements**: [Basic First Aid](#basic-first-aid), Drug Production  
+**Unlocks Research Projects**: None  
+**Research Cost**: 1500
 
 ### Advanced Thoracic Surgery
 
-TODO
+> **In-Game Description**
+> _"**Advanced Thoracic Surgery** &mdash; Investigate the usage of video technology in thoracic surgery, allowing for minimally invasive procedures to be performed on the lungs and other thoracic structures. By equipping your doctors with thoracoscopes and training them in video-assisted thoracoscopic surgery (VATS), your colony will be able to perform complex lung surgeries with greater precision and reduced risk of complications."_
+
+**Tech Level**: Industrial  
+**Unlocks**: [thoracoscopes](#thoracoscope), [video-assisted thoracoscopic surgery](#video-assisted-thoracoscopic-surgery)  
+**Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
+**Research Requirements**: [Emergency Medicine](#emergency-medicine), Vitals monitor  
+**Unlocks Research Projects**: None  
+**Research Cost**: 2500
 
 ### Epinephrine Synthesis
 
@@ -891,8 +945,8 @@ More Injuries introduces several new automated work types for doctors to handle 
 
 Assigned doctors will automatically attempt to defibrillate patients in hospital beds who are suffering from a [heart attack](https://rimworldwiki.com/wiki/Ailments#Heart_attack) or [cardiac arrest](#cardiac-arrest) during the `ventricular fibrillation` stage. The doctor will search for an accessible [defibrillator](#defibrillator) and start the defibrillation procedure to restore normal heart rhythm and save the patient's life.
 
-**Parent Work Type[^3]**: `Doctor`  
-**Priority In Type[^4]**: 125
+**Parent Work Type[^4]**: `Doctor`  
+**Priority In Type[^5]**: 125
 
 ### Airway Management
 
@@ -901,8 +955,8 @@ Assigned doctors will automatically attempt to defibrillate patients in hospital
 
 Assigned doctors will automatically attempt to clear the airways of patients in hospital beds who are [choking on blood](#choking-on-blood). The doctor will search for an accessible [airway suction device](#airway-suction-device) and start the airway suction procedure to remove the obstruction and allow the patient to breathe normally again.
 
-**Parent Work Type[^3]**: `Doctor`  
-**Priority In Type[^4]**: 120
+**Parent Work Type[^4]**: `Doctor`  
+**Priority In Type[^5]**: 120
 
 ### Performing CPR
 
@@ -911,8 +965,8 @@ Assigned doctors will automatically attempt to clear the airways of patients in 
 
 Assigned doctors will automatically start performing [CPR](#cpr) on patients in hospital beds who are suffering from [cardiac arrest](#cardiac-arrest), [heart attacks](https://rimworldwiki.com/wiki/Ailments#Heart_attack), or who are [choking on blood](#choking-on-blood). The doctor will attempt to stabilize the patient and restore normal heart rhythm and breathing to prevent further deterioration of the patient's condition.
 
-**Parent Work Type[^3]**: `Doctor`  
-**Priority In Type[^4]**: 115
+**Parent Work Type[^4]**: `Doctor`  
+**Priority In Type[^5]**: 115
 
 ### Blood Transfusions
 
@@ -921,8 +975,8 @@ Assigned doctors will automatically start performing [CPR](#cpr) on patients in 
 
 Assigned doctors will automatically perform [blood transfusions](#blood-bag) on patients in hospital beds who are suffering from `severe` blood loss. The doctor will search for an accessible [blood bag](#blood-bag) and start the blood transfusion procedure to restore blood volume and prevent [hypovolemic shock](#hypovolemic-shock).
 
-**Parent Work Type[^3]**: `Doctor`  
-**Priority In Type[^4]**: 105
+**Parent Work Type[^4]**: `Doctor`  
+**Priority In Type[^5]**: 105
 
 ### Tourniquet Recovery
 
@@ -931,8 +985,8 @@ Assigned doctors will automatically perform [blood transfusions](#blood-bag) on 
 
 Unless having other tasks to perform, assigned doctors will recover [tourniquets](#tourniquet) from deceased patients for reuse in future treatments. This work type is a very low-priority task and will only be performed if no other tasks are available. The doctor will search for corpses with [tourniquets](#tourniquet) applied and remove the tourniquet from the deceased patient.
 
-**Parent Work Type[^3]**: `Doctor`  
-**Priority In Type[^4]**: 5
+**Parent Work Type[^4]**: `Doctor`  
+**Priority In Type[^5]**: 5
 
 ## Known Issues and Incompatibilities
 
@@ -950,10 +1004,12 @@ This section lists known issues and incompatibilities with other mods that have 
 > [!CAUTION]
 > Before reporting exceptions or errors from the debug console, please make sure that at least one line of the stack trace mentions `MoreInjuries` or that you are able to prove that the issue is caused by More Injuries. Otherwise, the issue may not be related to More Injuries and is unlikely to be resolved by the developers for lack of avenues to investigate the issue.
 
-[^1]: see [Surgery Success Chance Factor](https://rimworldwiki.com/wiki/Surgery_Success_Chance_Factor) on the RimWorld Wiki for more information on how the success chance of surgeries is calculated in the base game.
+[^1]: Some items have the potential to be reusable and they will not necessarily be consumed during a surgery or procedure. However, there is a chance that the item will break after each use, either due to wear and tear or due to the nature of the procedure. The chance to break is indicated by the **Chance to Break** value in the item's description.
 
-[^2]: see [Doctoring#Failure](https://rimworldwiki.com/wiki/Doctoring#Failure) on the RimWorld Wiki for more information on how the chance of death on failed surgeries is calculated in the base game.
+[^2]: see [Surgery Success Chance Factor](https://rimworldwiki.com/wiki/Surgery_Success_Chance_Factor) on the RimWorld Wiki for more information on how the success chance of surgeries is calculated in the base game.
 
-[^3]: see [Work Types](https://rimworldwiki.com/wiki/Work#Work_types) on the RimWorld Wiki.
+[^3]: see [Doctoring#Failure](https://rimworldwiki.com/wiki/Doctoring#Failure) on the RimWorld Wiki for more information on how the chance of death on failed surgeries is calculated in the base game.
 
-[^4]: Priority in Type indicates the priority of the work type within the parent work type. The higher the number, the higher the priority of the work type.
+[^4]: see [Work Types](https://rimworldwiki.com/wiki/Work#Work_types) on the RimWorld Wiki.
+
+[^5]: Priority in Type indicates the priority of the work type within the parent work type. The higher the number, the higher the priority of the work type.

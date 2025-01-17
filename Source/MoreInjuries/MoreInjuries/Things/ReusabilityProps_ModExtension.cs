@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Verse;
 
-namespace MoreInjuries.HealthConditions;
+namespace MoreInjuries.Things;
 
 // members initialized via XML defs
 [SuppressMessage("Style", "IDE0032:Use auto property", Justification = "Cannot use auto property for XML defs")]
