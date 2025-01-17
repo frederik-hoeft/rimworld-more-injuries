@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "rc-*" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "rc-*" ]
 
 jobs:
   build:
@@ -24,3 +24,5 @@ jobs:
       run: nuget restore Source\MoreInjuries\MoreInjuries.sln
     - name: Build project for release
       run: msbuild Source\MoreInjuries\MoreInjuries.sln -t:rebuild -property:Configuration=Release
+    - name: Run unit tests
+      run: dotnet test Source\MoreInjuries\MoreInjuries.sln

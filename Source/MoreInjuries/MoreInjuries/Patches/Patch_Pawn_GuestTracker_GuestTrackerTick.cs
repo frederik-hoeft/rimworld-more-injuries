@@ -18,6 +18,7 @@ public static class Patch_Pawn_GuestTracker_GuestTrackerTick
     {
         if (GuestTrackerPawnRef.Invoke(__instance) is Pawn pawn 
             && pawn.IsHashIntervalTick(15000)
+            && KnownResearchProjectDefOf.BasicFirstAid.IsFinished
             && Recipe_ExtractBloodBag.CanSafelyBeQueued(pawn)
             && __instance.GuestStatus is GuestStatus.Prisoner
             && __instance.IsInteractionEnabled(KnownPrisonerInteractionModeDefOf.BloodBagFarm))

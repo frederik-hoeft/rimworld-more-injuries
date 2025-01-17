@@ -2,8 +2,7 @@
 <LanguageData>
   <!-- EN: tourniquet -->
   <TourniquetApplied.label>tourniquet</TourniquetApplied.label>
-  <!-- EN: A tourniquet has been applied to a limb, stopping the bleeding but starving the limb of blood. If the tourniquet is not removed in time, ischemia (starvation of oxygen) and necrosis (cell death) will occur, which can lead to loss of the limb through gangrene or death from sepsis.
-  The tourniquet should be removed as soon as the patient is in a safe location and can receive proper medical care. -->
+  <!-- EN: A tourniquet has been applied to a limb, stopping the bleeding but starving the limb of blood. If the tourniquet is not removed in time, ischemia (starvation of oxygen) and necrosis (cell death) will occur, which can lead to loss of the limb through gangrene or death from sepsis.\n\nThe tourniquet should be removed as soon as the patient is in a safe location and can receive proper medical care. -->
   <TourniquetApplied.description>A tourniquet has been applied to a limb, stopping the bleeding but starving the limb of blood. If the tourniquet is not removed in time, ischemia (starvation of oxygen) and necrosis (cell death) will occur, which can lead to loss of the limb through gangrene or death from sepsis.\n\nThe tourniquet should be removed as soon as the patient is in a safe location and can receive proper medical care.</TourniquetApplied.description>
   <!-- EN: restricted blood flow -->
   <TourniquetApplied.stages.restricted_blood_flow.label>restricted blood flow</TourniquetApplied.stages.restricted_blood_flow.label>
@@ -17,9 +16,7 @@
   <TourniquetApplied.stages.advanced_necrosis.label>advanced necrosis</TourniquetApplied.stages.advanced_necrosis.label>
   <!-- EN: gangrene -->
   <GangreneDry.label>gangrene</GangreneDry.label>
-  <!-- EN: Dry gangrene is a form of coagulative necrosis that develops in ischemic tissue, where the blood supply is inadequate to keep tissue viable. The affected part is dry, shrunken, and dark reddish-black. The line of separation usually brings about complete separation, with eventual falling off of the gangrenous tissue if it is not removed surgically, a process called autoamputation.
-  Over time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.
-  The affected body part is irreversibly damaged and should be amputated to prevent sepsis. -->
+  <!-- EN: Dry gangrene is a form of coagulative necrosis that develops in ischemic tissue, where the blood supply is inadequate to keep tissue viable. The affected part is dry, shrunken, and dark reddish-black. The line of separation usually brings about complete separation, with eventual falling off of the gangrenous tissue if it is not removed surgically, a process called autoamputation.\nOver time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.\n\nThe affected body part is irreversibly damaged and should be amputated to prevent sepsis. -->
   <GangreneDry.description>Dry gangrene is a form of coagulative necrosis that develops in ischemic tissue, where the blood supply is inadequate to keep tissue viable. The affected part is dry, shrunken, and dark reddish-black. The line of separation usually brings about complete separation, with eventual falling off of the gangrenous tissue if it is not removed surgically, a process called autoamputation.\nOver time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.\n\nThe affected body part is irreversibly damaged and should be amputated to prevent sepsis.</GangreneDry.description>
   <!-- EN: dry -->
   <GangreneDry.stages.dry.label>dry</GangreneDry.stages.dry.label>
@@ -27,10 +24,8 @@
   <GangreneDry.injuryProps.destroyedLabel>Fell off</GangreneDry.injuryProps.destroyedLabel>
   <!-- EN: gangrene -->
   <GangreneWet.label>gangrene</GangreneWet.label>
-  <!-- EN: Wet, or infected, gangrene is characterized by thriving bacteria and has a poor prognosis (compared to dry gangrene) due to sepsis resulting from the free communication between infected fluid and circulatory fluid. The affected part is saturated with stagnant blood, which promotes the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and finally death.
-  The affected body part should be amputated as soon as possible to save the patient's life. -->
-  <GangreneWet.description>Wet, or infected, gangrene is characterized by thriving bacteria and has a poor prognosis (compared to dry gangrene) due to sepsis resulting from the free communication between infected fluid and circulatory fluid. The affected part is saturated with stagnant blood, which promotes the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and finally death.
-  The affected body part should be amputated as soon as possible to save the patient's life.</GangreneWet.description>
+  <!-- EN: Wet, or infected, gangrene is characterized by thriving bacteria and has a poor prognosis (compared to dry gangrene) due to sepsis resulting from the free communication between infected fluid and circulatory fluid. The affected part is saturated with stagnant blood, which promotes the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and finally death.\n\nThe affected body part should be amputated as soon as possible to save the patient's life. -->
+  <GangreneWet.description>Wet, or infected, gangrene is characterized by thriving bacteria and has a poor prognosis (compared to dry gangrene) due to sepsis resulting from the free communication between infected fluid and circulatory fluid. The affected part is saturated with stagnant blood, which promotes the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and finally death.\n\nThe affected body part should be amputated as soon as possible to save the patient's life.</GangreneWet.description>
   <!-- EN: septic -->
   <GangreneWet.stages.septic.label>septic</GangreneWet.stages.septic.label>
 </LanguageData>

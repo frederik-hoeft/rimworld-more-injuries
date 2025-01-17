@@ -13,6 +13,7 @@
       <li>RemoveHemorrhagicStroke_Industrial</li>
       <li>RemoveHemorrhagicStroke_Tribal</li>
       <li>RestoreHearing</li>
+      <li>TreatParalysis</li>
     </value>
   </Operation>
 </Patch>

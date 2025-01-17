@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreInjuries.Tests", "MoreInjuries.Tests\MoreInjuries.Tests.csproj", "{9D00524F-0934-45AC-B54E-C01F91D059CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{8622DCBB-DFFD-48C9-B932-27565A9CE926}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8622DCBB-DFFD-48C9-B932-27565A9CE926}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8622DCBB-DFFD-48C9-B932-27565A9CE926}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D00524F-0934-45AC-B54E-C01F91D059CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D00524F-0934-45AC-B54E-C01F91D059CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D00524F-0934-45AC-B54E-C01F91D059CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D00524F-0934-45AC-B54E-C01F91D059CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

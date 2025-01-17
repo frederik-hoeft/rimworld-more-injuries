@@ -4,8 +4,7 @@
     <defName>Defibrillator</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>defibrillator</label>
-    <description>A defibrillator is a reusable device that gives a high energy electric shock to the heart through the chest wall to restore normal heart rhythm in cases of ventricular fibrillation (irregular heartbeat) which may be caused by heart attacks or in early stages of cardiac arrest.
-\nNote that the defibrillator can only be used on patients suffering from heart attack or ventricular fibrillation. In case of full cardiac arrest (clinical death), only CPR can save the patient.</description>
+    <description>A defibrillator is a reusable device that gives a high energy electric shock to the heart through the chest wall to restore normal heart rhythm in cases of ventricular fibrillation (irregular heartbeat) which may be caused by heart attacks or in early stages of cardiac arrest.\n\nNote that the defibrillator can only be used on patients suffering from heart attack or ventricular fibrillation. In case of full cardiac arrest (clinical death), only CPR can save the patient.</description>
     <graphicData>
       <texPath>Thing/Defibrilator</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -17,9 +16,14 @@
     <useHitPoints>true</useHitPoints>
     <statBases>
       <Mass>1</Mass>
-      <MarketValue>1000</MarketValue>
+      <MarketValue>750</MarketValue>
       <MaxHitPoints>80</MaxHitPoints>
     </statBases>
+    <modExtensions>
+      <li Class="MoreInjuries.Things.ReusabilityProps_ModExtension">
+        <destroyChance>0.10</destroyChance>
+      </li>
+    </modExtensions>
     <thingCategories>
       <li>Manufactured</li>
     </thingCategories>
