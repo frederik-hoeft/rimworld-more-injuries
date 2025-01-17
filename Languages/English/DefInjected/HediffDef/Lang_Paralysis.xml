@@ -2,8 +2,8 @@
 <LanguageData>
   <!-- EN: paralysis -->
   <SpinalCordParalysis.label>paralysis</SpinalCordParalysis.label>
-  <!-- EN: Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Paralysis is often a life-changing condition and may require the use of bionic implants or prosthetics to restore function. -->
-  <SpinalCordParalysis.description>Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Paralysis is often a life-changing condition and may require the use of bionic implants or prosthetics to restore function.</SpinalCordParalysis.description>
+  <!-- EN: Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Although there have been reports of successful experimental treatments on distant glitterworlds using cellular regenerative neurosurgery to repair damaged nerve tissue and restore function to paralyzed limbs, for most people paralysis is a life-changing condition that requires the use of bionic implants or prosthetics to restore function. -->
+  <SpinalCordParalysis.description>Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Although there have been reports of successful experimental treatments on distant glitterworlds using cellular regenerative neurosurgery to repair damaged nerve tissue and restore function to paralyzed limbs, for most people paralysis is a life-changing condition that requires the use of bionic implants or prosthetics to restore function.</SpinalCordParalysis.description>
   <!-- EN: sensory loss -->
   <SpinalCordParalysis.stages.sensory_loss.label>sensory loss</SpinalCordParalysis.stages.sensory_loss.label>
   <!-- EN: partial -->

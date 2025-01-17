@@ -3,6 +3,7 @@ using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
+using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using Verse;
 
@@ -18,6 +19,10 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
         if (patient != selectedPawn && selectedPawn.Drafted && !builder.Keys.Contains(UITreatmentOption.ProvideFirstAid))
         {
             builder.Keys.Add(UITreatmentOption.ProvideFirstAid);
+            if (!KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
+            {
+                return;
+            }
             if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, string.Empty) is not null)
             {
                 return;
@@ -33,9 +38,10 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
                 foreach (Hediff hediff in patient.health.hediffSet.hediffs)
                 {
                     if (JobDriver_HemostasisBase.JobCanTreat(hediff) 
-                        || JobDriver_UseDefibrillator.JobCanTreat(hediff) 
-                        || Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1 
-                        || Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1
+                        || KnownResearchProjectDefOf.EmergencyMedicine.IsFinished 
+                            && (JobDriver_UseDefibrillator.JobCanTreat(hediff)
+                            || Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1
+                            || Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1)
                         || patient.Downed && hediff.TendableNow())
                     {
                         canTreat = true;

@@ -92,6 +92,10 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
         if (!builder.Keys.Contains(UITreatmentOption.UseSplint) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.Fracture))
         {
             builder.Keys.Add(UITreatmentOption.UseSplint);
+            if (!KnownResearchProjectDefOf.BasicAnatomy.IsFinished)
+            {
+                return;
+            }
             if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseSplint.JOB_LABEL_KEY) is { FailureReason: string failure })
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));
