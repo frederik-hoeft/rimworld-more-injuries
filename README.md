@@ -72,9 +72,10 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Basic First Aid](#basic-first-aid)
     - [Emergency Medicine](#emergency-medicine)
     - [Advanced First Aid](#advanced-first-aid)
+    - [Neurosurgery](#neurosurgery)
     - [Advanced Thoracic Surgery](#advanced-thoracic-surgery)
     - [Epinephrine Synthesis](#epinephrine-synthesis)
-    - [Cellular Regeneration](#cellular-regeneration)
+    - [Cellular Regenerative Medicine](#cellular-regenerative-medicine)
   - [New Work Types](#new-work-types)
     - [Defibrillation](#defibrillation)
     - [Airway Management](#airway-management)
@@ -362,13 +363,13 @@ Hypoxia is a condition in which the body or a region of the body is deprived of 
 ### Paralysis
 
 > **In-Game Description**
-> _"**Paralysis** &mdash; Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Paralysis is often a life-changing condition and may require the use of bionic implants or prosthetics to restore function."_
+> _"**Paralysis** &mdash; Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Although there have been reports of successful experimental treatments on distant glitterworlds using cellular regenerative neurosurgery to repair damaged nerve tissue and restore function to paralyzed limbs, for most people paralysis is a life-changing condition that requires the use of bionic implants or prosthetics to restore function."_
 
 **Causes**: Severe back injuries, such as a gunshot wound or stab wound to the spine, that crush or sever the spinal cord.
 
 **Effects**: Damage to the spinal cord prevents the transmission of signals between the brain and the affected body parts, causing a loss of movement and sensation in the affected limbs. Depending on the severity of the injury, patients may experience a range of symptoms, from sensory loss to complete loss of movement.
 
-**Treatment**: By itself, paralysis is an irreversible condition that cannot be treated with conventional medicine. However, bionic implants or prosthetics may be used to restore partial or full function to the affected body parts.
+**Treatment**: By itself, paralysis is an irreversible condition that cannot be treated with conventional medicine. However, bionic implants or prosthetics may be used to restore partial or full function to the affected body parts. There have also been reports of successful experimental treatments on distant glitterworlds using [cellular regenerative neurosurgery](#cellular-regenerative-neurosurgery) to repair damaged nerve tissue and restore function to paralyzed limbs.
 
 ### Spalling Injury
 
@@ -437,7 +438,7 @@ In order to effectively treat the new injuries and medical conditions introduced
 
 **Production**: At a machining table.  
 **Production Skill Requirement**: `Crafting` at level 4  
-**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
+**Research Requirements**: [Emergency medicine](#emergency-medicine)  
 **Ingredients**: 25x `Steel`, 20x `Chemfuel`, 1x `Component`, 5x `Plasteel`  
 **Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.
 
@@ -461,7 +462,7 @@ In order to effectively treat the new injuries and medical conditions introduced
 
 **Production**: At a crafting spot or tailor bench.  
 **Production Skill Requirement**: None  
-**Research Requirements**: [Basic Anatomy](#basic-anatomy)  
+**Research Requirements**: [Basic anatomy](#basic-anatomy)  
 **Ingredients**: 2x `any fabric`  
 **Success Chance**: 100%
 
@@ -490,7 +491,7 @@ In order to effectively treat the new injuries and medical conditions introduced
 2. Downed enemies can be executed through the `Harvest blood (finish off)` option in the right-click context menu to extract blood bags from them (requires a medically skilled, *drafted* pawn capable of doctoring). This is a quick and effective way to obtain blood bags from enemies on the battlefield, but is considered a war crime and will have severe consequences for your faction relations.
 3. Blood bags can be automatically and safely extracted from prisoners using the `blood bag farm` prisoner interaction option. It works analogous to the `hemogen farm` option from the Biotech DLC and allows to automatically schedule the extraction of blood bags from prisoners at regular intervals when it is safe to do so and does not pose a risk to the prisoner's health. It is still considered an unethical and offensive practice and will have consequences for your faction relations.
 
-**Research Requirements**: [Basic First Aid](#basic-first-aid)  
+**Research Requirements**: [Basic first aid](#basic-first-aid)  
 **Ingredients**: N/A  
 **Success Chance**: 100%
 
@@ -509,7 +510,7 @@ Cardiopulmonary resuscitation (CPR) is an emergency procedure that combines ches
 2. CPR is part of the [First Aid](#first-aid) order for *drafted* pawns.
 3. Alternatively, resuscitating patients using CPR is now part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with a condition that requires CPR, any non-drafted doctor will automatically attempt to resuscitate the patient using CPR or a [defibrillator](#defibrillator), in accordance with the configured work priorities.
 
-**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
+**Research Requirements**: [Emergency medicine](#emergency-medicine)  
 **Severity Reduction**: $f_{\text{sigmoid}}($ `medicine skill> / 15` $)$ where $f_{\text{sigmoid}}$ is a diffused sigmoid function defined as $f_{\text{sigmoid}}(x) = \frac{1}{1 + e^{-10\cdot(x - 0.5)}} + z$ where $z$ is a random factor between $-0.1$ and $0.1$. See [Wolfram Alpha](https://www.wolframalpha.com/input?i=f%28x%29+%3D+1+%2F+%281+%2B+e%5E%28-10*%28x%2F15+-+0.5%29%29%29+%2B+z%2C+x+in+%5B0%2C+20%5D%2C+z+in%5B-0.1%2C0.1%5D) for a visualization of the function.
 
 > [!IMPORTANT]
@@ -538,7 +539,7 @@ Defibrillation is a treatment for life-threatening conditions that affect the rh
 
 **Production**: At a machining table.  
 **Production Skill Requirement**: `Crafting` at level 6  
-**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
+**Research Requirements**: [Emergency medicine](#emergency-medicine)  
 **Ingredients**: 25x `Steel`, 20x `Chemfuel`, 4x `Component`, 25x `Plasteel`, 10x `Gold`, 100x `Silver`  
 **Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.  
 **Chance to Break[^1]**: 10%
@@ -563,7 +564,7 @@ Defibrillation is a treatment for life-threatening conditions that affect the rh
 
 **Production**: At a drug lab.  
 **Production Skill Requirement**: `Crafting` at level 6, `Intellectual` at level 4  
-**Research Requirements**: `Drug Production` and `Medicine Production`  
+**Research Requirements**: [Epinephrine synthesis](#epinephrine-synthesis)  
 **Ingredients**: 1x `Neutroamine`, 1x `Yayo`  
 **Success Chance**: 100%
 
@@ -618,7 +619,7 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 
 **Production**: At a drug lab.  
 **Production Skill Requirement**: `Crafting` at level 4  
-**Research Requirements**: [Advanced First Aid](#advanced-first-aid)  
+**Research Requirements**: [Advanced first aid](#advanced-first-aid)  
 **Ingredients**: 5x `any textile`, 3x `Chemfuel`  
 **Success Chance**: 100%
 
@@ -648,7 +649,7 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 
 **Production**: At a crafting spot or machining table.  
 **Production Skill Requirement**: None  
-**Research Requirements**: [Basic Anatomy](#basic-anatomy)  
+**Research Requirements**: [Basic anatomy](#basic-anatomy)  
 **Ingredients**: 4x `Wood` or `Steel`, 1x `any textile`  
 **Success Chance**: 100%
 
@@ -670,7 +671,7 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 
 **Production**: At a machining table.  
 **Production Skill Requirement**: `Crafting` at level 8  
-**Research Requirements**: [Advanced Thoracic Surgery](#advanced-thoracic-surgery)  
+**Research Requirements**: [Advanced thoracic surgery](#advanced-thoracic-surgery)  
 **Ingredients**: 20x `Steel`, 20x `Chemfuel`, 4x `Component`, 50x `Plasteel`, 20x `Gold`, 250x `Silver`  
 **Chance to Break[^1]**: 20%
 
@@ -706,7 +707,7 @@ Alternatively, use the *tourniquet gizmo* (depicted on the right) to apply or re
 
 **Production**: At a crafting spot or tailor bench.  
 **Production Skill Requirement**: None  
-**Research Requirements**: [Basic First Aid](#basic-first-aid)  
+**Research Requirements**: [Basic first aid](#basic-first-aid)  
 **Ingredients**: 1x `Wood` or `Steel`, 4x `any textile` or `leather`  
 **Success Chance**: 100%
 
@@ -726,19 +727,31 @@ Just like base game surgeries, these new surgeries will be available in the *ope
 
 ### Cellular Regenerative Neurosurgery
 
-TODO ...
+$\rightarrow$ *see [paralysis](#paralysis)*
+
+> **In-Game Description**
+> _"**Restore mobility: cellular regenerative surgery** &mdash; Cellular regenerative neurosurgery (CRNS) is an experimental glitterworld surgery that uses mechanites to repair damaged nerve cells in the spinal cord, restoring mobility to a person with permanent paralysis. The procedure is expensive and not widely available, but has shown promising results in restoring mobility, even in very severe cases."_
+
+**Used for**: Treating [paralysis](#paralysis) with advanced medical techniques and glitterworld medicine.
+
+**Skill Requirements**: `Medicine` at level 12  
+**Research Requirements**: [Cellular regenerative medicine](#cellular-regenerative-medicine)  
+**Ingredients**: 2x `Glitterworld Medicine`  
+**Surgery Success Chance Factor[^2]**: 110%  
+**Death on Failed Surgery Chance[^3]**: 0%  
+**Work Amount**: 4500
 
 ### Cellular Regenerative Otologic Surgery
 
 $\rightarrow$ *see [permanent hearing loss](#permanent-hearing-loss)*
 
 > **In-Game Description**
-> _"**Repair hearing loss: cellular regenerative surgery** &mdash; Cellular Regenerative Otologic Surgery (CROS) is an experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown moderate success in restoring hearing, even in very severe cases."_
+> _"**Repair hearing loss: cellular regenerative surgery** &mdash; Cellular Regenerative Otologic Surgery (CROS) is an experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown promising results in restoring hearing, even in very severe cases."_
 
 **Used for**: Treating [permanent hearing loss](#permanent-hearing-loss) with advanced medical techniques and glitterworld medicine.
 
 **Skill Requirements**: `Medicine` at level 12  
-**Research Requirements**: None  
+**Research Requirements**: [Cellular regenerative medicine](#cellular-regenerative-medicine)  
 **Ingredients**: 2x `Glitterworld Medicine`  
 **Surgery Success Chance Factor[^2]**: 110%  
 **Death on Failed Surgery Chance[^3]**: 0%  
@@ -759,7 +772,7 @@ $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 **Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with good medical knowledge and industrial equipment at a moderate success rate.
 
 **Skill Requirements**: `Medicine` at level 5  
-**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
+**Research Requirements**: [Emergency medicine](#emergency-medicine)  
 **Ingredients**: 3x `Medicine` or better  
 **Surgery Success Chance Factor[^2]**: 110%  
 **Death on Failed Surgery Chance[^3]**: 2.5%  
@@ -776,7 +789,7 @@ $\rightarrow$ *see [bone fracture](#bone-fracture)*
 **Used for**: Treating [bone fractures](#bone-fracture) with more expensive and invasive surgical techniques to speed up the healing process significantly.
 
 **Skill Requirements**: `Medicine` at level 5  
-**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
+**Research Requirements**: [Emergency medicine](#emergency-medicine)  
 **Ingredients**: 2x any `Medicine`, 5x `Plasteel`  
 **Surgery Success Chance Factor[^2]**: 125%  
 **Death on Failed Surgery Chance[^3]**: 0.5%  
@@ -794,7 +807,7 @@ $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 **Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with excellent medical knowledge and advanced medical equipment at a high success rate.
 
 **Skill Requirements**: `Medicine` at level 8  
-**Research Requirements**: None  
+**Research Requirements**: [Neurosurgery](#neurosurgery)  
 **Ingredients**: 4x `Medicine` or better, 1x `Glitterworld Medicine`  
 **Surgery Success Chance Factor[^2]**: 150%  
 **Death on Failed Surgery Chance[^3]**: 1%  
@@ -812,7 +825,7 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 **Used for**: Treating [lung collapse](#lung-collapse) with invasive surgical techniques to repair the damage and restore the lung to full function. Moderate success rate and moderate risk of complications.
 
 **Skill Requirements**: `Medicine` at level 6  
-**Research Requirements**: [Emergency Medicine](#emergency-medicine)  
+**Research Requirements**: [Emergency medicine](#emergency-medicine)  
 **Ingredients**: 3x `Medicine`  
 **Surgery Success Chance Factor[^2]**: 100%  
 **Death on Failed Surgery Chance[^3]**: 2.5%  
@@ -830,7 +843,7 @@ $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 **Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with readily available equipment and basic medical knowledge at a mediocre success rate.
 
 **Skill Requirements**: `Medicine` at level 2  
-**Research Requirements**: [Basic Anatomy](#basic-anatomy)  
+**Research Requirements**: [Basic anatomy](#basic-anatomy)  
 **Ingredients**: 2x `Herbal Medicine` or better  
 **Surgery Success Chance Factor[^2]**: 90%  
 **Death on Failed Surgery Chance[^3]**: 7.5%  
@@ -851,11 +864,11 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 **Used for**: Treating [lung collapse](#lung-collapse) with minimally invasive surgical techniques to repair the damage and restore the lung to full function. High success rate and low risk of complications.
 
 **Skill Requirements**: `Medicine` at level 8  
-**Research Requirements**: [Advanced Thoracic Surgery](#advanced-thoracic-surgery)  
+**Research Requirements**: [Advanced thoracic surgery](#advanced-thoracic-surgery)  
 **Ingredients**: 3x `Medicine` or better, 1x[^1] [Thoracoscope](#thoracoscope)  
 **Surgery Success Chance Factor[^2]**: 135%  
 **Death on Failed Surgery Chance[^3]**: 1%  
-**Work Amount**: 5000
+**Work Amount**: 4000
 
 ## New Research Projects
 
@@ -863,76 +876,105 @@ More Injuries introduces several new research projects that can be undertaken to
 
 ![An overview of the new research projects added by More Injuries.](assets/research.png)
 
-> [!NOTE]
-> All new research projects can be found in the *More Injuries* research tab.
-
-TODO: update dependencies to list required research projects
+> [!TIP]
+> All new research projects can be found in the new *More Injuries* research tab.
 
 ### Basic Anatomy
 
 > **In-Game Description**
-> _"**Basic Anatomy** &mdash; Delving into the fundamentals of human anatomy, this research uncovers ancient knowledge from the earliest recorded forms of medicine. By studying these time-honored practices, your scientists will equip your doctors with the skills to perform basic medical procedures, including wound treatment and disease management. This marks a vital first step toward restoring advanced medical practices in your colony."_
+> _"**Basic anatomy** &mdash; Delving into the fundamentals of human anatomy, this research uncovers ancient knowledge from the earliest recorded forms of medicine. By studying these time-honored practices, your scientists will equip your doctors with the skills to perform basic medical procedures, including wound treatment and disease management. This marks a vital first step toward restoring advanced medical practices in your colony."_
 
 **Tech Level**: Neolithic  
-**Unlocks**: [bandages](#bandage), [splints](#splint), [trepanation](#trepanation)  
+**Unlocks**: [Bandages](#bandage), [splints](#splint), [trepanation](#trepanation)  
 **Required Research Bench & Addon**: Simple  
 **Research Requirements**: None  
-**Unlocks Research Projects**: [Basic First Aid](#basic-first-aid)  
+**Unlocks Research Projects**: [Basic first aid](#basic-first-aid)  
 **Research Cost**: 500
 
 ### Basic First Aid
 
 > **In-Game Description**
-> _"**Basic First Aid** &mdash; Building upon the knowledge of basic anatomy, this research delves into the fundamental principles of first aid. By studying approaches to reduce blood loss and stabilize patients in critical condition, your colony will be better equipped to handle medical emergencies."_
+> _"**Basic first aid** &mdash; Building upon the knowledge of basic anatomy, this research delves into the fundamental principles of first aid. By studying approaches to reduce blood loss and stabilize patients in critical condition, your colony will be better equipped to handle medical emergencies."_
 
 **Tech Level**: Medieval  
-**Unlocks**: [blood transfusions](#blood-bag), [tourniquets](#tourniquet)  
+**Unlocks**: [Blood transfusions](#blood-bag), [tourniquets](#tourniquet)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Basic Anatomy](#basic-anatomy), Machining  
-**Unlocks Research Projects**: [Emergency Medicine](#emergency-medicine), [Advanced First Aid](#advanced-first-aid)  
+**Research Requirements**: [Basic anatomy](#basic-anatomy), machining  
+**Unlocks Research Projects**: [Emergency medicine](#emergency-medicine), [advanced first aid](#advanced-first-aid)  
 **Research Cost**: 1000
 
 ### Emergency Medicine
 
 > **In-Game Description**
-> _"**Emergency Medicine** &mdash; With the foundation of basic first aid in place, this research delves into the advanced field of emergency medicine. By studying the latest techniques in life-saving medical interventions, your doctors will be equipped to handle a wide range of critical medical emergencies, from cardiac arrest to traumatic injuries."_
+> _"**Emergency medicine** &mdash; With the foundation of basic first aid in place, this research delves into the advanced field of emergency medicine. By studying the latest techniques in life-saving medical interventions, your doctors will be equipped to handle a wide range of critical medical emergencies, from cardiac arrest to traumatic injuries."_
 
 **Tech Level**: Industrial  
 **Unlocks**: [CPR](#cpr), [defibrillators](#defibrillator), [airway suction devices](#airway-suction-device), [decompressive craniectomy](#decompressive-craniectomy), [osteosynthetic surgery](#osteosynthetic-surgery), [thoracotomy](#thoracotomy)  
 **Required Research Bench & Addon**: Hi-tech  
-**Research Requirements**: [Basic First Aid](#basic-first-aid), Microelectronics  
-**Unlocks Research Projects**: [Cellular Regeneration](#cellular-regeneration), [Advanced Thoracic Surgery](#advanced-thoracic-surgery), [Epinephrine Synthesis](#epinephrine-synthesis)  
+**Research Requirements**: [Basic first aid](#basic-first-aid), Microelectronics  
+**Unlocks Research Projects**: [Cellular regeneration](#cellular-regeneration), [advanced thoracic surgery](#advanced-thoracic-surgery), [epinephrine synthesis](#epinephrine-synthesis)  
 **Research Cost**: 2000
 
 ### Advanced First Aid
 
 > **In-Game Description**
-> _"**Advanced First Aid** &mdash; Expanding on the principles of basic first aid and drug synthesis, your researchers will investigate the development of hemostatic agents. These advanced coagulants can be used to limit severe bleeding even more effectively than traditional bandages, reducing the risk of exsanguination in patients with severe injuries."_
+> _"**Advanced first aid** &mdash; Expanding on the principles of basic first aid and drug synthesis, your researchers will investigate the development of hemostatic agents. These advanced coagulants can be used to limit severe bleeding even more effectively than traditional bandages, reducing the risk of exsanguination in patients with severe injuries."_
 
 **Tech Level**: Industrial  
-**Unlocks**: [hemostatic agents](#hemostatic-agent)  
+**Unlocks**: [Hemostatic agents](#hemostatic-agent)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Basic First Aid](#basic-first-aid), Drug Production  
+**Research Requirements**: [Basic first aid](#basic-first-aid), drug production  
 **Unlocks Research Projects**: None  
 **Research Cost**: 1500
+
+### Neurosurgery
+
+> **In-Game Description**
+> _"**Neurosurgery** &mdash; By specializing in the field of neurosurgery, your doctors will be able to perform complex procedures on the brain. This research unlocks the use of stereotactic surgery, a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of hemorrhages and tumors while minimizing neurological damage."_
+
+**Tech Level**: Industrial  
+**Unlocks**: [Stereotactic surgery](#stereotactic-surgery)  
+**Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
+**Research Requirements**: [Emergency medicine](#emergency-medicine), fabrication  
+**Unlocks Research Projects**: None  
+**Research Cost**: 3000
 
 ### Advanced Thoracic Surgery
 
 > **In-Game Description**
-> _"**Advanced Thoracic Surgery** &mdash; Investigate the usage of video technology in thoracic surgery, allowing for minimally invasive procedures to be performed on the lungs and other thoracic structures. By equipping your doctors with thoracoscopes and training them in video-assisted thoracoscopic surgery (VATS), your colony will be able to perform complex lung surgeries with greater precision and reduced risk of complications."_
+> _"**Advanced thoracic surgery** &mdash; Investigate the usage of video technology in thoracic surgery, allowing for minimally invasive procedures to be performed on the lungs and other thoracic structures. By equipping your doctors with thoracoscopes and training them in video-assisted thoracoscopic surgery (VATS), your colony will be able to perform complex lung surgeries with greater precision and reduced risk of complications."_
 
 **Tech Level**: Industrial  
-**Unlocks**: [thoracoscopes](#thoracoscope), [video-assisted thoracoscopic surgery](#video-assisted-thoracoscopic-surgery)  
+**Unlocks**: [Thoracoscopes](#thoracoscope), [video-assisted thoracoscopic surgery](#video-assisted-thoracoscopic-surgery)  
 **Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
-**Research Requirements**: [Emergency Medicine](#emergency-medicine), Vitals monitor  
+**Research Requirements**: [Emergency medicine](#emergency-medicine), Vitals monitor  
 **Unlocks Research Projects**: None  
 **Research Cost**: 2500
 
 ### Epinephrine Synthesis
 
-TODO
+> **In-Game Description**
+> _"**Epinephrine synthesis** &mdash; Research into the synthesis of epinephrine, a hormone and neurotransmitter that plays a vital role in the body's fight-or-flight response. By developing an autoinjector that can deliver a precise dose of epinephrine in emergency situations, you will be able to craft epinephrine autoinjectors that can be used to boost blood pressure and increase heart rate to temporarily reduce the adverse effects of hypovolemic shock and anemia.
+> We suspect an additional potential use for this drug as a combat stimulant, but further research is required to confirm its efficacy."_
 
-### Cellular Regeneration 
+**Tech Level**: Industrial  
+**Unlocks**: [Epinephrine autoinjectors](#epinephrine-autoinjector)  
+**Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
+**Research Requirements**: [Emergency medicine](#emergency-medicine), drug production  
+**Unlocks Research Projects**: None  
+**Research Cost**: 2000
+
+### Cellular Regenerative Medicine
+
+> **In-Game Description**
+> _"**Cellular regenerative medicine** &mdash; Unlock the secrets of cellular regeneration, a cutting-edge medical technology that allows for the repair and regrowth of damaged tissues at the cellular level. By using mechanites to stimulate the body's natural healing processes, your doctors will be able to cure injuries that were previously considered untreatable, such as hearing and nerve damage. The same technology is used on glitterworlds to treat paralysis and degenerative diseases, but its application is still experimental and its long-term effects are not yet fully understood."_
+
+**Tech Level**: Spacer  
+**Unlocks**: [Cellular regenerative neurosurgery](#cellular-regenerative-neurosurgery), [cellular regenerative otologic surgery](#cellular-regenerative-otologic-surgery)  
+**Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
+**Research Requirements**: [Neurosurgery](#neurosurgery), advanced fabrication, bionics  
+**Unlocks Research Projects**: None  
+**Research Cost**: 4000
 
 ## New Work Types
 

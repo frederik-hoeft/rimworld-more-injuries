@@ -3,9 +3,7 @@
   <RecipeDef ParentName="SurgeryFlesh">
     <defName>RemoveHemorrhagicStroke_Ultratech</defName>
     <label>Cure stroke: stereotactic surgery</label>
-    <description>Perform stereotactic surgery to cure a hemorrhagic stroke.
-Stereotactic surgery is a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of the ruptured blood vessel while minimizing damage to surrounding tissues.
-\nA very complex and delicate procedure that requires a high level of skill and precision but yields a very high success rate.</description>
+    <description>Perform stereotactic surgery to cure a hemorrhagic stroke.\nStereotactic surgery is a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of the ruptured blood vessel while minimizing damage to surrounding tissues.\n\nA very complex and delicate procedure that requires a high level of skill and precision but yields a very high success rate.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
     <jobString>Performing stereotactic surgery</jobString>
     <workAmount>4500</workAmount>
@@ -16,6 +14,9 @@ Stereotactic surgery is a minimally invasive form of surgical intervention that 
     <skillRequirements>
       <Medicine>8</Medicine>
     </skillRequirements>
+    <researchPrerequisites>
+      <li>Neurosurgery</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>

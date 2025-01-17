@@ -71,6 +71,27 @@
   </ResearchProjectDef>
 
   <!-- depends on: emergency medicine -->
+  <!-- unlocks: stereotactic surgery -->
+  <ResearchProjectDef>
+    <defName>Neurosurgery</defName>
+    <label>neurosurgery</label>
+    <description>By specializing in the field of neurosurgery, your doctors will be able to perform complex procedures on the brain. This research unlocks the use of stereotactic surgery, a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of hemorrhages and tumors while minimizing neurological damage.</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <baseCost>3000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>EmergencyMedicine</li>
+      <li>Fabrication</li>
+    </prerequisites>
+    <researchViewX>3</researchViewX>
+    <researchViewY>0</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
+  <!-- depends on: emergency medicine -->
   <!-- unlocks: thoracoscope, video-assisted thoracoscopic surgery -->
   <ResearchProjectDef>
     <defName>AdvancedThoracicSurgery</defName>
@@ -117,7 +138,7 @@
   <!-- unlocks: cellular regenerative surgery -->
   <ResearchProjectDef>
     <defName>CellularRegeneration</defName>
-    <label>cellular regeneration</label>
+    <label>cellular regenerative medicine</label>
     <description>Unlock the secrets of cellular regeneration, a cutting-edge medical technology that allows for the repair and regrowth of damaged tissues at the cellular level. By using mechanites to stimulate the body's natural healing processes, your doctors will be able to cure injuries that were previously considered untreatable, such as hearing and nerve damage. The same technology is used on glitterworlds to treat paralysis and degenerative diseases, but its application is still experimental and its long-term effects are not yet fully understood.</description>
     <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
     <requiredResearchFacilities>
@@ -126,7 +147,7 @@
     <baseCost>4000</baseCost>
     <techLevel>Spacer</techLevel>
     <prerequisites>
-      <li>EmergencyMedicine</li>
+      <li>Neurosurgery</li>
       <li>AdvancedFabrication</li>
       <li>Bionics</li>
     </prerequisites>
