@@ -9,7 +9,7 @@ namespace MoreInjuries.HealthConditions;
 public class ReusabilityProps_ModExtension : DefModExtension
 {
     // don't rename this field. XML defs depend on this name
-    private readonly float destroyChance;
+    private readonly float destroyChance = default;
 
     public float DestroyChance => destroyChance;
 }

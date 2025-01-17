@@ -54,7 +54,6 @@
   <!-- ============= INDUSTRIAL ============= -->
   <!-- depends on: basic first aid -->
   <!-- unlocks: CPR, defibrillator, (saline IVs,) airway suction device, decompressive craniectomy, osteosynthetic surgery, thoracotomy -->
-  <!-- DONE:    Y,   Y,              X,           Y,                     Y,                         Y,                      Y -->
   <ResearchProjectDef>
     <defName>EmergencyMedicine</defName>
     <label>emergency medicine</label>
@@ -135,5 +134,4 @@
     <researchViewY>0</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
-
 </Defs>
