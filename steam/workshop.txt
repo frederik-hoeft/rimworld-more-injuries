@@ -1,0 +1,55 @@
+The 1.5 version of the More Injuries mod (original at https://steamcommunity.com/sharedfiles/filedetails/?id=2892012512), reworked from the ground up with tons of fixes, new injury types, new medical treatment options, new medical work types to allow doctors to treat some conditions automatically, and a new mod settings menu to allow you to basically tweak every single option to your liking. Most conditions can be disabled if you don't like them.
+
+[h3] Features [/h3]
+
+The following is a list of selected features and health conditions. For a full list of features, details, and treatment options, please refer to the corresponding entry in the [url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md] More Injuries User Manual on GitHub [/url] which is also distributed in form of the README.md file in the install directory of this mod (steamapps/workshop/content/294100/3348840185).
+
+[url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#new-injuries-and-medical-conditions] New Injuries and Medical Conditions [/url]
+[list]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#adrenaline-rush] Adrenaline Rush [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#cardiac-arrest] Cardiac Arrest [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#chemical-peritonitis] Chemical Peritonitis [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#choking] Choking [/url]
+    [list]
+    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#choking-on-blood] Choking on Blood [/url]
+    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#choking-on-tourniquet] Choking on Tourniquet [/url]
+    [/list]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#concussion] Concussion [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#emp-shutdown] EMP Shutdown [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#fractures] Fractures [/url]
+    [list]
+    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#bone-fracture] Bone Fracture [/url]
+    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#healing-bone-fracture] Healing Bone Fracture [/url]
+    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#bone-fragment-laceration] Bone Fragment Laceration [/url]
+    [/list]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#gangrene] Gangrene [/url]
+    [list]
+    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#dry-gangrene] Dry Gangrene [/url]
+    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#wet-gangrene] Wet Gangrene [/url]
+    [/list]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hearing-loss] Hearing Loss [/url]
+    [list]
+    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#temporary-hearing-loss] Temporary Hearing Loss [/url]
+    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#permanent-hearing-loss] (Permanent) Hearing Loss [/url]
+    [/list]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hemorrhagic-stroke] Hemorrhagic Stroke [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hydrostatic-shock] Hydrostatic Shock [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hypovolemic-shock] Hypovolemic Shock [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#inhalation-injury] Inhalation Injury [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#lung-collapse] Lung Collapse [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#organ-hypoxia] Organ Hypoxia [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#paralysis] Paralysis [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#spalling-injury] Spalling Injury [/url]
+[/list]
+
+[h3] Do you have ideas for new features? [/h3]
+
+Add your feature request [url=https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/ideas] here [/url]
+
+[h3] Did you find a bug? [/h3]
+
+Report the issue [url=https://github.com/frederik-hoeft/rimworld-more-injuries/issues] here [/url]
+
+[h3] Do you have any questions about using this mod? [/h3]
+
+Ask the community for help [url=https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/q-a] here [/url] 
