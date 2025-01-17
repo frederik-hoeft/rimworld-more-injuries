@@ -20,7 +20,7 @@
 
   <!-- EN: Restore hearing: cellular regenerative surgery -->
   <RestoreHearing.label>Restore hearing: cellular regenerative surgery</RestoreHearing.label>
-  <!-- EN: Cellular regenerative otologic surgery (CROS) is an experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown moderate success in restoring hearing, even in very severe cases. -->
+  <!-- EN: Cellular regenerative otologic surgery (CROS) is an experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown promising results in restoring hearing, even in very severe cases. -->
   <RestoreHearing.description>Cellular regenerative otologic surgery (CROS) is an experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown promising results in restoring hearing, even in very severe cases.</RestoreHearing.description>
   <!-- EN: Performing hearing restoration surgery on {0}. -->
   <RestoreHearing.jobString>Performing hearing restoration surgery on {0}.</RestoreHearing.jobString>
@@ -95,7 +95,7 @@
 
   <!-- EN: Restore mobility: cellular regenerative surgery -->
   <TreatParalysis.label>Restore mobility: cellular regenerative surgery</TreatParalysis.label>
-  <!-- EN: Cellular regenerative neurosurgery (CRNS) is an experimental glitterworld surgery that uses mechanites to repair damaged nerve cells in the spinal cord, restoring mobility to a person with permanent paralysis. The procedure is expensive and not widely available, but has shown moderate success in restoring mobility, even in very severe cases. -->
+  <!-- EN: Cellular regenerative neurosurgery (CRNS) is an experimental glitterworld surgery that uses mechanites to repair damaged nerve cells in the spinal cord, restoring mobility to a person with permanent paralysis. The procedure is expensive and not widely available, but has shown promising results in restoring mobility, even in very severe cases. -->
   <TreatParalysis.description>Cellular regenerative neurosurgery (CRNS) is an experimental glitterworld surgery that uses mechanites to repair damaged nerve cells in the spinal cord, restoring mobility to a person with permanent paralysis. The procedure is expensive and not widely available, but has shown promising results in restoring mobility, even in very severe cases.</TreatParalysis.description>
   <!-- EN: Performing cellular regenerative neurosurgery on {0}. -->
   <TreatParalysis.jobString>Performing cellular regenerative neurosurgery on {0}.</TreatParalysis.jobString>
