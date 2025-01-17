@@ -93,6 +93,15 @@
   <!-- EN: {0} has successfully repaired {1}'s collapsed lung. -->
   <RepairCollapsedLung_Ultratech.successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s collapsed lung.</RepairCollapsedLung_Ultratech.successfullyRemovedHediffMessage>
 
+  <!-- EN: Restore mobility: cellular regenerative surgery -->
+  <TreatParalysis.label>Restore mobility: cellular regenerative surgery</TreatParalysis.label>
+  <!-- EN: Cellular regenerative neurosurgery (CRNS) is an experimental glitterworld surgery that uses mechanites to repair damaged nerve cells in the spinal cord, restoring mobility to a person with permanent paralysis. The procedure is expensive and not widely available, but has shown moderate success in restoring mobility, even in very severe cases. -->
+  <TreatParalysis.description>Cellular regenerative neurosurgery (CRNS) is an experimental glitterworld surgery that uses mechanites to repair damaged nerve cells in the spinal cord, restoring mobility to a person with permanent paralysis. The procedure is expensive and not widely available, but has shown moderate success in restoring mobility, even in very severe cases.</TreatParalysis.description>
+  <!-- EN: Performing cellular regenerative neurosurgery on {0}. -->
+  <TreatParalysis.jobString>Performing cellular regenerative neurosurgery on {0}.</TreatParalysis.jobString>
+  <!-- EN: {0} has successfully restored {1}'s mobility. -->
+  <TreatParalysis.successfullyRemovedHediffMessage>{0} has successfully restored {1}'s mobility.</TreatParalysis.successfullyRemovedHediffMessage>
+
   <!-- EN: extract blood bag -->
   <ExtractWholeBloodBag.label>extract blood bag</ExtractWholeBloodBag.label>
   <!-- EN: Extract blood from a patient to retrieve a blood bag that can be used for blood transfusions. If the patient does not have enough blood for a safe donation, the procedure will be aborted. -->

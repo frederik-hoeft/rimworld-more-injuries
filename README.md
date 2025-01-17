@@ -56,8 +56,10 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Hearing Protection](#hearing-protection)
     - [Hemostatic Agent](#hemostatic-agent)
     - [Splint](#splint)
+    - [Thoracoscope](#thoracoscope)
     - [Tourniquet](#tourniquet)
   - [Surgeries](#surgeries)
+    - [Cellular Regenerative Neurosurgery](#cellular-regenerative-neurosurgery)
     - [Cellular Regenerative Otologic Surgery](#cellular-regenerative-otologic-surgery)
     - [Decompressive Craniectomy](#decompressive-craniectomy)
     - [Osteosynthetic Surgery](#osteosynthetic-surgery)
@@ -65,6 +67,14 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Thoracotomy](#thoracotomy)
     - [Trepanation](#trepanation)
     - [Video-Assisted Thoracoscopic Surgery](#video-assisted-thoracoscopic-surgery)
+  - [New Research Projects](#new-research-projects)
+    - [Basic Anatomy](#basic-anatomy)
+    - [Basic First Aid](#basic-first-aid)
+    - [Advanced First Aid](#advanced-first-aid)
+    - [Emergency Medicine](#emergency-medicine)
+    - [Advanced Thoracic Surgery](#advanced-thoracic-surgery)
+    - [Epinephrine Synthesis](#epinephrine-synthesis)
+    - [Cellular Regeneration](#cellular-regeneration)
   - [New Work Types](#new-work-types)
     - [Defibrillation](#defibrillation)
     - [Airway Management](#airway-management)
@@ -640,6 +650,10 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 **Ingredients**: 4x `Wood` or `Steel`, 1x `any textile`  
 **Success Chance**: 100%
 
+### Thoracoscope
+
+TODO: ...
+
 ### Tourniquet
 
 <p>
@@ -689,6 +703,10 @@ Alternatively, use the *tourniquet gizmo* (depicted on the right) to apply or re
 
 Some injuries and medical conditions require surgical intervention to repair the damage and restore the patient to full health. More Injuries introduces a variety of new surgeries that can be performed by skilled doctors to treat complex injuries and medical conditions.  
 Just like base game surgeries, these new surgeries will be available in the *operations* tab of the selected pawn.
+
+### Cellular Regenerative Neurosurgery
+
+TODO ...
 
 ### Cellular Regenerative Otologic Surgery
 
@@ -819,6 +837,37 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 **Surgery Success Chance Factor[^1]**: 135%  
 **Death on Failed Surgery Chance[^2]**: 1%  
 **Work Amount**: 5000
+
+## New Research Projects
+
+TODO: add overview image here
+TODO: update dependencies to list required research projects
+
+### Basic Anatomy
+
+TODO
+
+### Basic First Aid
+
+TODO
+
+### Advanced First Aid
+
+TODO
+
+### Emergency Medicine
+
+TODO
+
+### Advanced Thoracic Surgery
+
+TODO
+
+### Epinephrine Synthesis
+
+TODO
+
+### Cellular Regeneration 
 
 ## New Work Types
 
