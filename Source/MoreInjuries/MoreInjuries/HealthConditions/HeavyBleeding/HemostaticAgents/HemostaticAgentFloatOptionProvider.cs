@@ -15,6 +15,10 @@ internal class HemostaticAgentFloatOptionProvider(InjuryWorker parent) : ICompFl
         if (!builder.Keys.Contains(UITreatmentOption.UseHemostaticAgent) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(JobDriver_HemostasisBase.JobCanTreat))
         {
             builder.Keys.Add(UITreatmentOption.UseHemostaticAgent);
+            if (!KnownResearchProjectDefOf.AdvancedFirstAid.IsFinished)
+            {
+                return;
+            }
             if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseHemostaticAgent.JOB_LABEL_KEY) is { FailureReason: string failure })
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));

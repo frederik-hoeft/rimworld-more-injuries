@@ -10,6 +10,9 @@
     <hideBodyPartNames>true</hideBodyPartNames>
     <targetsBodyPart>false</targetsBodyPart>
     <isViolation>true</isViolation>
+    <researchPrerequisites>
+      <li>BasicFirstAid</li>
+    </researchPrerequisites>
     <descriptionHyperlinks>
       <ThingDef>WholeBloodBag</ThingDef>
     </descriptionHyperlinks>

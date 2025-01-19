@@ -1,4 +1,5 @@
-﻿using MoreInjuries.Localization;
+﻿using MoreInjuries.KnownDefs;
+using MoreInjuries.Localization;
 using MoreInjuries.Things;
 using Verse;
 
@@ -14,6 +15,10 @@ internal class UseBloodBagFloatOptionProvider(InjuryWorker parent) : ICompFloatM
         if (!builder.Keys.Contains(UITreatmentOption.UseBloodBag) && selectedPawn.Drafted && JobDriver_UseBloodBag.JobGetMedicalDeviceCountToFullyHeal(patient, fullyHeal: true) > 0)
         {
             builder.Keys.Add(UITreatmentOption.UseBloodBag);
+            if (!KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
+            {
+                return;
+            }
             if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseBloodBag.JOB_LABEL_KEY) is { FailureReason: string failure })
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));

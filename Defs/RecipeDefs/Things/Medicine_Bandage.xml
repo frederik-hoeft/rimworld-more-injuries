@@ -5,11 +5,14 @@
     <label>make bandages x5</label>
     <description>Make 5 bandages.</description>
     <jobString>Making 5 bandages.</jobString>
-    <workAmount>900</workAmount>
+    <workAmount>750</workAmount>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
     <soundWorking>Recipe_CookMeal</soundWorking>
     <allowMixingIngredients>true</allowMixingIngredients>
+    <researchPrerequisites>
+      <li>BasicAnatomy</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>
@@ -30,7 +33,8 @@
     </fixedIngredientFilter>
     <recipeUsers>
       <li>CraftingSpot</li>
-      <li>TableMachining</li>
+      <li>ElectricTailoringBench</li>
+      <li>HandTailoringBench</li>
     </recipeUsers>
   </RecipeDef>
 </Defs>

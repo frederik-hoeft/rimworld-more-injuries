@@ -4,6 +4,7 @@ using MoreInjuries.Things;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using RimWorld;
+using MoreInjuries.KnownDefs;
 
 namespace MoreInjuries.AI.WorkGivers;
 
@@ -19,6 +20,8 @@ public class WorkGiver_UseBloodBag : WorkGiver_MoreInjuriesTreatmentBase
 
     protected override bool IsValidPatient(Pawn doctor, Thing thing, out Pawn patient) => base.IsValidPatient(doctor, thing, out patient) 
         && patient.playerSettings?.medCare is not MedicalCareCategory.NoCare and not MedicalCareCategory.NoMeds;
+
+    public override bool ShouldSkip(Pawn pawn, bool forced = false) => !KnownResearchProjectDefOf.BasicFirstAid.IsFinished;
 
     public override bool HasJobOnThing(Pawn pawn, Thing thing, bool forced = false)
     {

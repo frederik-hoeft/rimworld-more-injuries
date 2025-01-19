@@ -11,6 +11,9 @@
     <soundWorking>Recipe_CookMeal</soundWorking>
     <allowMixingIngredients>true</allowMixingIngredients>
     <useIngredientsForColor>false</useIngredientsForColor>
+    <researchPrerequisites>
+      <li>BasicAnatomy</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>

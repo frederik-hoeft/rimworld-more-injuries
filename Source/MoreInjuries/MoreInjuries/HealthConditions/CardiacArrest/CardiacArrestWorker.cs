@@ -19,6 +19,10 @@ public class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(parent), 
         if (!builder.Keys.Contains(UITreatmentOption.PerformCpr) && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
         {
             builder.Keys.Add(UITreatmentOption.PerformCpr);
+            if (!KnownResearchProjectDefOf.EmergencyMedicine.IsFinished)
+            {
+                return;
+            }
             if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_PerformCpr.JOB_LABEL_KEY) is { FailureReason: string failure })
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));
@@ -31,6 +35,10 @@ public class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(parent), 
         if (!builder.Keys.Contains(UITreatmentOption.UseDefibrillator) && patient.health.hediffSet.hediffs.Any(JobDriver_UseDefibrillator.JobCanTreat))
         {
             builder.Keys.Add(UITreatmentOption.UseDefibrillator);
+            if (!KnownResearchProjectDefOf.EmergencyMedicine.IsFinished)
+            {
+                return;
+            }
             if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseDefibrillator.JOB_LABEL_KEY) is { FailureReason: string failure })
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));

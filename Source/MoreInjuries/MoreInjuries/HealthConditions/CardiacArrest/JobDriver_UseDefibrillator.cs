@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.AI;
 using MoreInjuries.KnownDefs;
+using MoreInjuries.Things;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -57,6 +58,10 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
             {
                 patient.health.RemoveHediff(cardiacArrest);
             }
+        }
+        if (device is not null)
+        {
+            ReusabilityUtility.TryDestroyReusableIngredient(device, doctor);
         }
     }
 

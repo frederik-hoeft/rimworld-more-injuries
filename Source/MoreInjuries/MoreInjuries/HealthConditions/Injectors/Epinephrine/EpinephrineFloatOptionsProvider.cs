@@ -6,7 +6,7 @@ namespace MoreInjuries.HealthConditions.Injectors.Epinephrine;
 
 public class EpinephrineFloatOptionsProvider(InjuryWorker parent) : InjectorFloatOptionsProvider(parent)
 {
-    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableAdrenaline;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableAdrenaline && KnownResearchProjectDefOf.EpinephrineSynthesis.IsFinished;
 
     protected override UITreatmentOption UITreatmentOption => UITreatmentOption.UseEpinephrine;
 

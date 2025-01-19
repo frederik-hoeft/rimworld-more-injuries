@@ -17,16 +17,34 @@ public static class Patch_ITab_Pawn_Visitor_NonExclusiveInteractionToggled
         {
             return;
         }
-        if (enabled && (mode == KnownPrisonerInteractionModeDefOf.BloodBagFarm || mode == PrisonerInteractionModeDefOf.HemogenFarm))
+        if (enabled)
         {
-            (PrisonerInteractionModeDef otherMode, RecipeDef otherRecipe) = mode == KnownPrisonerInteractionModeDefOf.BloodBagFarm
-                ? (PrisonerInteractionModeDefOf.HemogenFarm, RecipeDefOf.ExtractHemogenPack)
-                : (KnownPrisonerInteractionModeDefOf.BloodBagFarm, KnownRecipeDefOf.ExtractWholeBloodBag);
-
+            PrisonerInteractionModeDef otherMode;
+            RecipeDef otherRecipe;
+            if (mode == KnownPrisonerInteractionModeDefOf.BloodBagFarm)
+            {
+                if (!KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
+                {
+                    Messages.Message("MI_Message_ResearchRequired".Translate(mode.label, KnownResearchProjectDefOf.BasicFirstAid.label), pawn, MessageTypeDefOf.RejectInput);
+                    pawn.guest.ToggleNonExclusiveInteraction(mode, enabled: false);
+                    return;
+                }
+                otherMode = PrisonerInteractionModeDefOf.HemogenFarm;
+                otherRecipe = RecipeDefOf.ExtractHemogenPack;
+            }
+            else if (mode == PrisonerInteractionModeDefOf.HemogenFarm)
+            {
+                otherMode = KnownPrisonerInteractionModeDefOf.BloodBagFarm;
+                otherRecipe = KnownRecipeDefOf.ExtractWholeBloodBag;
+            }
+            else
+            {
+                return;
+            }
             if (pawn.guest.IsInteractionEnabled(otherMode))
             {
                 Messages.Message("MI_Message_OptionMutuallyExclusive".Translate(mode.label, otherMode.label), pawn, MessageTypeDefOf.RejectInput);
-                pawn.guest.ToggleNonExclusiveInteraction(otherMode, false);
+                pawn.guest.ToggleNonExclusiveInteraction(otherMode, enabled: false);
                 pawn.BillStack?.Bills?.RemoveAll(b => b.recipe == otherRecipe);
             }
         }

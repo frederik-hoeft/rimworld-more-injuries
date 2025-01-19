@@ -22,6 +22,10 @@ internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPos
         if (!builder.Keys.Contains(UITreatmentOption.PerformCpr) && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
         {
             builder.Keys.Add(UITreatmentOption.PerformCpr);
+            if (!KnownResearchProjectDefOf.EmergencyMedicine.IsFinished)
+            {
+                return;
+            }
             if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_PerformCpr.JOB_LABEL_KEY) is { FailureReason: string failure })
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));
@@ -34,6 +38,10 @@ internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPos
         if (!builder.Keys.Contains(UITreatmentOption.UseSuctionDevice) && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1))
         {
             builder.Keys.Add(UITreatmentOption.UseSuctionDevice);
+            if (!KnownResearchProjectDefOf.EmergencyMedicine.IsFinished)
+            {
+                return;
+            }
             if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseSuctionDevice.JOB_LABEL_KEY) is { FailureReason: string failure })
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));

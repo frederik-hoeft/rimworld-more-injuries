@@ -34,4 +34,11 @@
   <Make_TourniquetBulk.description>Make 10 tourniquets.</Make_TourniquetBulk.description>
   <!-- EN: Making 10 tourniquets. -->
   <Make_TourniquetBulk.jobString>Making 10 tourniquets.</Make_TourniquetBulk.jobString>
+
+  <!-- EN: make thoracoscope -->
+  <Make_Thoracoscope.label>make thoracoscope</Make_Thoracoscope.label>
+  <!-- EN: Make a thoracoscope. -->
+  <Make_Thoracoscope.description>Make a thoracoscope.</Make_Thoracoscope.description>
+  <!-- EN: Making a thoracoscope. -->
+  <Make_Thoracoscope.jobString>Making a thoracoscope.</Make_Thoracoscope.jobString>
 </LanguageData>

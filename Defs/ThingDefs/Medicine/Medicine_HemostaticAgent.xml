@@ -4,8 +4,7 @@
     <defName>HemostaticAgent</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>hemostatic agent</label>
-    <description>A special chemical compound designed to promote blood clotting and reduce the flow of blood from wounds. Hemostatic agents are used to control bleeding in emergency situations, such as when a patient is suffering from severe trauma or has been injured in combat. The compound is fast-acting and can be used to stabilize a patient until they can be treated by a doctor. However, it is not a substitute for proper medical treatment.
-\nQuick to apply and effective at stopping severe bleeding, hemostatic agents are an essential part of any first aid kit.</description>
+    <description>A special chemical compound designed to promote blood clotting and reduce the flow of blood from wounds. Hemostatic agents are used to control bleeding in emergency situations, such as when a patient is suffering from severe trauma or has been injured in combat. The compound is fast-acting and can be used to stabilize a patient until they can be treated by a doctor. However, it is not a substitute for proper medical treatment.\n\nQuick to apply and effective at stopping severe bleeding, hemostatic agents are an essential part of any first aid kit.</description>
     <graphicData>
       <texPath>Thing/Hemostat</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
