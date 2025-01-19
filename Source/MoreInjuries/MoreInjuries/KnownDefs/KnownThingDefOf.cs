@@ -1,28 +1,21 @@
-﻿using RimWorld;
+﻿using MoreInjuries.BuildIntrinsics;
+using RimWorld;
 using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.KnownDefs;
 
 [DefOf]
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Cannot encapsulate DefOf fields in properties, required for reflection. Name must match XML def name.")]
+[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_DEF_OF_REQUIRES_FIELD)]
 public static class KnownThingDefOf
 {
     public static ThingDef Bandage = null!;
-
     public static ThingDef HemostaticAgent = null!;
-
     public static ThingDef Splint = null!;
-
     public static ThingDef SuctionDevice = null!;
-
     public static ThingDef Tourniquet = null!;
-
     public static ThingDef Defibrillator = null!;
-
     public static ThingDef Epinephrine = null!;
-
     public static ThingDef Morphine = null!;
-
     public static ThingDef WholeBloodBag = null!;
 }
