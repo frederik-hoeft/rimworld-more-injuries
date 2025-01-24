@@ -10,8 +10,8 @@
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
-    <stackLimit>1</stackLimit>
-    <drawGUIOverlay>false</drawGUIOverlay>
+    <stackLimit>10</stackLimit>
+    <drawGUIOverlay>true</drawGUIOverlay>
     <tradeNeverStack>true</tradeNeverStack>
     <useHitPoints>true</useHitPoints>
     <statBases>
