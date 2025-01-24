@@ -1,0 +1,34 @@
+=================================== CREDITS ===================================
+
+Development and maintenance of this project is a community effort. Over the
+years, and across multiple versions of RimWorld, many skilled and passionate
+community members have dedicated their time and effort to make this mod what
+it is today. Project ownership has changed hands multiple times, and the mod
+has been maintained by different people at different times. 
+In the following, we would like to give credit to all the amazing people who
+have contributed to this project in one way or another.
+
+Grouped by game version, ordered alphabetically:
+
+1.5:
+- chief-turkler:    contributor,    graphic design
+- Keshash:          maintainer,     artistic lead
+- Th3_Fr3d:         maintainer,     project lead
+
+1.4:
+- Keshash:          maintainer,     project lead
+
+Pre-1.4:
+- Blyatman:         maintainer,     ???
+- Graved:           maintainer,     ???
+
+Original author:
+- Caulaflower
+
+NOTE: due to changes in project ownership, the exact roles and contributions
+of some people may be lost to history. We apologize for any inaccuracies in
+the above list. If you have information that could help us improve this list or
+if you feel like you should be on this list, but are not, please reach out to
+us on GitHub <https://github.com/frederik-hoeft/rimworld-more-injuries/issues>.
+We will be happy to correct any mistakes and omissions and give credit where
+credit is due.
