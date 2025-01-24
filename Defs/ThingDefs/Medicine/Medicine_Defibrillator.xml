@@ -6,8 +6,8 @@
     <label>defibrillator</label>
     <description>A defibrillator is a reusable device that gives a high energy electric shock to the heart through the chest wall to restore normal heart rhythm in cases of ventricular fibrillation (irregular heartbeat) which may be caused by heart attacks or in early stages of cardiac arrest.\n\nNote that the defibrillator can only be used on patients suffering from heart attack or ventricular fibrillation. In case of full cardiac arrest (clinical death), only CPR can save the patient.</description>
     <graphicData>
-      <texPath>Thing/defibrillator_a</texPath>
-      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Thing/Defibrilator</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <resourceReadoutPriority>Middle</resourceReadoutPriority>
     <stackLimit>1</stackLimit>

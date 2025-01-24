@@ -1,0 +1,22 @@
+# Contributing to the More Injuries Mod
+
+Welcome to the More Injuries mod! We are excited that you are interested in contributing to the mod and helping make it better for everyone. The More Injuries mod is a collaborative project, and we welcome contributions from developers, translators, and players alike. This document outlines the process for contributing to the mod and provides guidance on how you can get started.
+
+Simply reporting issues [here](https://github.com/frederik-hoeft/rimworld-more-injuries/issues) or suggesting improvements or new features [in the discussions](https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/ideas) is a great way to get started.
+
+If you are a developer or a translator and want to directly contribute to the mod, you can follow the steps below to set up your development environment and submit a pull request.
+
+1. Before you start, make sure that the feature or bug you want to work on has been discussed and agreed upon by the maintainers either in an issue or in the discussions. This helps you avoid working on something that is already being worked on or that is not in line with the goals of the mod. Alternatively, you can grab any issue labeled with [good first issue](https://github.com/frederik-hoeft/rimworld-more-injuries/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) or [help wanted](https://github.com/frederik-hoeft/rimworld-more-injuries/labels/help%20wanted) and get started right away, just make sure to leave a comment on the issue so others know you are working on it. A maintainer will then label that issue with [work in progress](https://github.com/frederik-hoeft/rimworld-more-injuries/labels/work%20in%20progess) to assign it to you.
+2. [Fork](https://github.com/frederik-hoeft/rimworld-more-injuries/fork) the repository on GitHub.
+3. Clone your fork to your local machine and follow the instructions in the [INSTALL.md](/INSTALL.md) file to set up your development environment and ensure that you can build the mod.
+4. Create a new branch for your changes based on either the `rc-vX.Y.Z` (release candidate, if it exists, where `X.Y.Z` is the version number of the next release) or the `main` branch. Name the branch according to the issue you are working on and mention the issue number in the branch name (e.g., `feature/123-new-injury`, `feature/456-spanish-translation`, or `bugfix/789-injury-not-appearing`).
+5. Develop your changes in the new branch and make sure to test your changes thoroughly to ensure that they work as expected and do not introduce any new issues.
+    - ***if you are a translator*** adding support for a new language, make sure to follow the instructions in the [docs/TRANSLATING.md](/docs/TRANSLATING.md) file to set up the translation files, ensure that no strings are missing, and test the translation in the game.
+    - ***if you are a developer*** adding a new feature or fixing a bug, make sure to make yourself familiar with the [style guide](/docs/coding-style.md) and follow the coding conventions used in the mod.
+6. Once you are done with your changes, commit them to your branch and push the branch to your fork on GitHub.
+7. Create a pull request from your branch to the `rc-vX.Y.Z` or `main` branch of the original repository. Make sure to link the pull request to the issue you are working on. This can be done by mentioning the issue number in the pull request description or by using the GitHub keywords (e.g., `closes #123`).
+8. Wait for the maintainers to review your pull request. They may ask for changes or discuss some aspects of your changes with you. Make sure to respond to any comments in a timely manner and make the requested changes if necessary.
+9. Once your pull request has been approved, it will be merged into the `rc-vX.Y.Z` or `main` branch, and your changes will be included in the next release of the mod. 
+10. Congratulations, you have successfully contributed to the More Injuries mod! Thank you for your help in making the mod better for everyone :tada:
+
+If you have any questions or need help with the contribution process, feel free to ask in the discussions or in the comments of the issue you are working on. The maintainers and other contributors will be happy to help you get started and guide you through the process :slightly_smiling_face:
