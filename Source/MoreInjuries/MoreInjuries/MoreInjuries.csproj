@@ -7,7 +7,7 @@
 		<Platforms>AnyCPU</Platforms>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4297" />
-		<PackageReference Include="Lib.Harmony" Version="2.3.3" />
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4402" />
+		<PackageReference Include="Lib.Harmony" Version="2.3.5" />
 	</ItemGroup>
 </Project>

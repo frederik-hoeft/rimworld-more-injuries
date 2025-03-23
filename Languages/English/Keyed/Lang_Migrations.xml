@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <!-- EN: MoreInjuries update -->
+  <MI_Migration_Update_v1_Title>MoreInjuries v1.5.2 Migration</MI_Migration_Update_v1_Title>
+  <MI_Migration_Update_v1_Text>MoreInjuries has been updated to v1.5.2 "Shiny Research". The primary focus of this update is the addition of research projects that are now required to unlock certain medical treatments. Since this save was created before this update, you may now choose to either enable the new research projects (requiring you to research them before you can use most treatments) or unlock all research projects immediately (the old behavior). Should you choose to enable the new research projects, you will find them in the "More Injuries" tab of the research screen.\n\nHoping you will enjoy the new content!</MI_Migration_Update_v1_Text>
+  <MI_Migration_Update_v1_NewBehavior>Enable new research project requirements</MI_Migration_Update_v1_NewBehavior>
+  <MI_Migration_Update_v1_OldBehavior>Unlock all research projects immediately</MI_Migration_Update_v1_OldBehavior>
+</LanguageData>

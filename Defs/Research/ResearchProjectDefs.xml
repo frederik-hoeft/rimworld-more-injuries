@@ -57,7 +57,7 @@
   <ResearchProjectDef>
     <defName>EmergencyMedicine</defName>
     <label>emergency medicine</label>
-    <description>With the foundation of basic first aid in place, this research delves into the advanced field of emergency medicine. By studying the latest techniques in life-saving medical interventions, your doctors will be equipped to handle a wide range of critical medical emergencies, from cardiac arrest to traumatic injuries.</description>
+    <description>With the foundation of basic first aid in place, this research delves into the advanced field of emergency medicine. By studying the latest techniques in life-saving medical interventions, your doctors will be equipped to handle a wide range of critical medical emergencies, from cardiac arrest to traumatic injuries. Your medical team will train in modern resuscitation techniques, including cardiopulmonary resuscitation (CPR) and the use of defibrillators to restore normal heart rhythms.</description>
     <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
     <baseCost>2000</baseCost>
     <techLevel>Industrial</techLevel>
