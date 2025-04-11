@@ -1,8 +1,12 @@
-﻿namespace MoreInjuries.Versioning.Migrations;
+﻿using Verse;
 
-public interface IVersionMigration
+namespace MoreInjuries.Versioning.Migrations;
+
+public interface IVersionMigration : IExposable, ILoadReferenceable
 {
     int Version { get; }
 
     void Migrate();
+
+    void Execute(string signal);
 }

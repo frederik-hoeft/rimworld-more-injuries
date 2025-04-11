@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.AI;
 using MoreInjuries.Debug;
+using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using System.Linq;
 using Verse;

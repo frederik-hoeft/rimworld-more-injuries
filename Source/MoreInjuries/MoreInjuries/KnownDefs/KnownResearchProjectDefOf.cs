@@ -13,6 +13,8 @@ public static class KnownResearchProjectDefOf
     public static ResearchProjectDef AdvancedThoracicSurgery = null!;
     public static ResearchProjectDef BasicAnatomy = null!;
     public static ResearchProjectDef BasicFirstAid = null!;
+    public static ResearchProjectDef CellularRegeneration = null!;
     public static ResearchProjectDef EmergencyMedicine = null!;
     public static ResearchProjectDef EpinephrineSynthesis = null!;
+    public static ResearchProjectDef Neurosurgery = null!;
 }

@@ -13,6 +13,7 @@ public static class Named
         public const string DOCTOR = nameof(DOCTOR);
         public const string DOCTORNAME = nameof(DOCTORNAME);
         public const string BODYPART = nameof(BODYPART);
+        public const string PAWN = nameof(PAWN);
         // time
         public const string TIME = nameof(TIME);
         public const string DAYS = nameof(DAYS);

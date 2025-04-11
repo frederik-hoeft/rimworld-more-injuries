@@ -5,7 +5,10 @@ using Verse;
 
 namespace MoreInjuries.Versioning;
 
+#pragma warning disable CS9113 // Parameter is unread.
+// required for the constructor to be called by the game
 public class GameComponent_MoreInjuries(Game game) : GameComponent
+#pragma warning restore CS9113 // Parameter is unread.
 {
     private static readonly List<IVersionMigration> s_migrations = [];
     internal int version;

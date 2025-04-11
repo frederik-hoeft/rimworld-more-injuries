@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Verse;
 
-namespace MoreInjuries;
+namespace MoreInjuries.Extensions;
 
 public static class ThingExtensions
 {
