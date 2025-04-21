@@ -67,7 +67,9 @@ public class HediffComp_Choking : HediffComp
                 bool coughing = Coughing;
                 if (coughing)
                 {
-                    // the patient is conscious and coughing, so the severity decreases faster
+                    // The patient is conscious and coughing, so the severity decreases faster.
+                    // The range (0.05f to 0.15f) was chosen to balance the impact of coughing on severity reduction.
+                    // If this range needs adjustment, consider its effect on game balance and frequency of coughing.
                     change -= Rand.Range(0.05f, 0.15f);
                 }
                 float newSeverity = Mathf.Clamp01(parent.Severity + change);
