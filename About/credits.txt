@@ -16,7 +16,7 @@ Grouped by game version, ordered alphabetically:
 - Th3_Fr3d:         Code, XML, feature design, and complete revamp of the mod
 
 1.4:
-- Keshash:      item retexture and maintanence
+- Keshash:      item retexture and maintenance
 
 Pre-1.4:
 - Blyatman (Epicguru):  original idea and code implementation
