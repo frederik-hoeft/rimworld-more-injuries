@@ -15,7 +15,6 @@ This directory contains all the source files for the art assets used in the game
     - thorascope: `AdobeIllustrator/MoreInjuriesSource.ai`
     - tourniquet: `AdobeIllustrator/MoreInjuriesSource.ai`
     - saline bags:  `AdobeIllustrator/MoreInjuriesSource.ai`
-    
     - thumbnail art and workshop header images:  `AdobeIllustrator/MoreInjuriesThumbnail.ai`
 
 
