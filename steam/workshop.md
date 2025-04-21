@@ -40,19 +40,19 @@ The following is a list of selected features and health conditions. For a full l
 
 ### Do you have ideas for new features?
 
-Add your feature request [here](https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/ideas).
+Add your feature request [here](https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/ideas)
 
 ### Did you find a bug?
 
-Report the issue [here](https://github.com/frederik-hoeft/rimworld-more-injuries/issues).
+Report the issue [here](https://github.com/frederik-hoeft/rimworld-more-injuries/issues)
 
 ### Do you have any questions about using this mod?
 
-Ask the community for help [here](https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/q-a).
+Ask the community for help [here](https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/q-a)
 
 ### Want to contribute to the mod?
 
-We are always looking for new contributions to the mod who want to help make it better for everyone. If you are interested in helping out with the development, translation, or testing of the mod, please refer to the [contributing guidelines](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/CONTRIBUTING.md) or shoot us a message in the [GitHub Discussions](https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/contributing).
+We are always looking for new contributions to the mod who want to help make it better for everyone. If you are interested in helping out with the development, translation, or testing of the mod, please refer to the [contributing guidelines](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/CONTRIBUTING.md) or shoot us a message in the [GitHub Discussions](https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/contributing)
 
 ![Credits](https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Credits.png)
 
