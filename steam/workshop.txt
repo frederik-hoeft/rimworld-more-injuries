@@ -1,8 +1,8 @@
-[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/tree/main/steam/assets/headers/Header_Overview.png[/img] 
+[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Overview.png[/img] 
 
 The 1.5 version of the More Injuries mod (original at https://steamcommunity.com/sharedfiles/filedetails/?id=2892012512), reworked from the ground up with tons of fixes, new injury types, new medical treatment options, new medical work types to allow doctors to treat some conditions automatically, and a new mod settings menu to allow you to basically tweak every single option to your liking. Most conditions can be disabled if you don't like them.
 
-[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/tree/main/steam/assets/headers/Header_Features.png[/img] 
+[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Features.png[/img] 
 
 The following is a list of selected features and health conditions. For a full list of features, details, and treatment options, please refer to the corresponding entry in the [url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md] More Injuries User Manual on GitHub [/url] which is also distributed in form of the README.md file in the install directory of this mod (steamapps/workshop/content/294100/3348840185).
 
@@ -44,7 +44,7 @@ The following is a list of selected features and health conditions. For a full l
 [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#spalling-injury] Spalling Injury [/url]
 [/list]
 
-[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/tree/main/steam/assets/headers/Header_FAQ.png[/img] 
+[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_FAQ.png[/img] 
 
 [h3] Do you have ideas for new features? [/h3]
 
@@ -62,6 +62,6 @@ Ask the community for help [url=https://github.com/frederik-hoeft/rimworld-more-
 
 We are always looking for new contributions to the mod who want to help make it better for everyone. If you are interested in helping out with the development, translation, or testing of the mod, please refer to the [url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/CONTRIBUTING.md]contributing guidelines[/url] or shoot us a message in the [url=https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/contributing]GitHub Discussions[/url].
 
-[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/tree/main/steam/assets/headers/Header_Credits.png[/img] 
+[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Credits.png[/img] 
 
 Development and maintenance of the More Injuries mod is a community effort. We are grateful for all the help we receive from the community and would like to thank everyone who has contributed to the mod in any way. For a full list of contributors, please refer to the credits.txt file on[url=https://github.com/frederik-hoeft/rimworld-more-injuries/tree/main/About/credits.txt]GitHub[/url] or in the mod directory (/About/credits.txt).
