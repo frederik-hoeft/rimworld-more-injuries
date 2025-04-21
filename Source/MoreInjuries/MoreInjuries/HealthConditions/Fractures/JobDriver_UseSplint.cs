@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
 using RimWorld;
 using UnityEngine;

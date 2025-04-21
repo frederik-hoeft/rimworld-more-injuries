@@ -11,6 +11,9 @@
     <soundWorking>Recipe_CookMeal</soundWorking>
     <allowMixingIngredients>true</allowMixingIngredients>
     <useIngredientsForColor>false</useIngredientsForColor>
+    <researchPrerequisites>
+      <li>AdvancedFirstAid</li>
+    </researchPrerequisites>
     <ingredients>
       <li>
         <filter>
@@ -41,11 +44,10 @@
       </categories>
     </fixedIngredientFilter>
     <recipeUsers>
-      <li>TableMachining</li>
+      <li>DrugLab</li>
     </recipeUsers>
     <skillRequirements>
       <Crafting>4</Crafting>
     </skillRequirements>
-    <researchPrerequisite>MedicineProduction</researchPrerequisite>
   </RecipeDef>
 </Defs>

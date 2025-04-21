@@ -61,6 +61,21 @@
   </WorkGiverDef>
 
   <WorkGiverDef>
+    <defName>DoctorUseSplint</defName>
+    <label>apply a splint to an injured patient to stabilize a fracture and promote healing</label>
+    <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_UseSplint</giverClass>
+    <workType>Doctor</workType>
+    <emergency>false</emergency>
+    <verb>apply splint to</verb>
+    <gerund>applying splint to</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>15</priorityInType>
+    <prioritizeSustains>false</prioritizeSustains>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
     <defName>DoctorRemoveTourniquetFromDead</defName>
     <label>recover a tourniquet from a deceased patient to reuse it in the future</label>
     <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_RemoveTourniquetFromDead</giverClass>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: basic anatomy -->
+  <BasicAnatomy.label>basic anatomy</BasicAnatomy.label>
+  <!-- EN: Delving into the fundamentals of human anatomy, this research uncovers ancient knowledge from the earliest recorded forms of medicine. By studying these time-honored practices, your scientists will equip your doctors with the skills to perform basic medical procedures, including wound treatment and disease management. This marks a vital first step toward restoring advanced medical practices in your colony. -->
+  <BasicAnatomy.description>Delving into the fundamentals of human anatomy, this research uncovers ancient knowledge from the earliest recorded forms of medicine. By studying these time-honored practices, your scientists will equip your doctors with the skills to perform basic medical procedures, including wound treatment and disease management. This marks a vital first step toward restoring advanced medical practices in your colony.</BasicAnatomy.description>
+
+  <!-- EN: basic first aid -->
+  <BasicFirstAid.label>basic first aid</BasicFirstAid.label>
+  <!-- EN: Building upon the knowledge of basic anatomy, this research delves into the fundamental principles of first aid. By studying approaches to reduce blood loss and stabilize patients in critical condition, your colony will be better equipped to handle medical emergencies. -->
+  <BasicFirstAid.description>Building upon the knowledge of basic anatomy, this research delves into the fundamental principles of first aid. By studying approaches to reduce blood loss and stabilize patients in critical condition, your colony will be better equipped to handle medical emergencies.</BasicFirstAid.description>
+
+  <!-- EN: advanced first aid -->
+  <AdvancedFirstAid.label>advanced first aid</AdvancedFirstAid.label>
+  <!-- EN: Expanding on the principles of basic first aid and drug synthesis, your researchers will investigate the development of hemostatic agents. These advanced coagulants can be used to limit severe bleeding even more effectively than traditional bandages, reducing the risk of exsanguination in patients with severe injuries. -->
+  <AdvancedFirstAid.description>Expanding on the principles of basic first aid and drug synthesis, your researchers will investigate the development of hemostatic agents. These advanced coagulants can be used to limit severe bleeding even more effectively than traditional bandages, reducing the risk of exsanguination in patients with severe injuries.</AdvancedFirstAid.description>
+
+  <!-- EN: emergency medicine -->
+  <EmergencyMedicine.label>emergency medicine</EmergencyMedicine.label>
+  <!-- EN: With the foundation of basic first aid in place, this research delves into the advanced field of emergency medicine. By studying the latest techniques in life-saving medical interventions, your doctors will be equipped to handle a wide range of critical medical emergencies, from cardiac arrest to traumatic injuries. Your medical team will train in modern resuscitation techniques, including cardiopulmonary resuscitation (CPR) and the use of defibrillators to restore normal heart rhythms. -->
+  <EmergencyMedicine.description>With the foundation of basic first aid in place, this research delves into the advanced field of emergency medicine. By studying the latest techniques in life-saving medical interventions, your doctors will be equipped to handle a wide range of critical medical emergencies, from cardiac arrest to traumatic injuries. Your medical team will train in modern resuscitation techniques, including cardiopulmonary resuscitation (CPR) and the use of defibrillators to restore normal heart rhythms.</EmergencyMedicine.description>
+
+  <!-- EN: neurosurgery -->
+  <Neurosurgery.label>neurosurgery</Neurosurgery.label>
+  <!-- EN: By specializing in the field of neurosurgery, your doctors will be able to perform complex procedures on the brain. This research unlocks the use of stereotactic surgery, a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of hemorrhages and tumors while minimizing neurological damage. -->
+  <Neurosurgery.description>By specializing in the field of neurosurgery, your doctors will be able to perform complex procedures on the brain. This research unlocks the use of stereotactic surgery, a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of hemorrhages and tumors while minimizing neurological damage.</Neurosurgery.description>
+
+  <!-- EN: advanced thoracic surgery -->
+  <AdvancedThoracicSurgery.label>advanced thoracic surgery</AdvancedThoracicSurgery.label>
+  <!-- EN: Investigate the usage of video technology in thoracic surgery, allowing for minimally invasive procedures to be performed on the lungs and other thoracic structures. By equipping your doctors with thoracoscopes and training them in video-assisted thoracoscopic surgery (VATS), your colony will be able to perform complex lung surgeries with greater precision and reduced risk of complications. -->
+  <AdvancedThoracicSurgery.description>Investigate the usage of video technology in thoracic surgery, allowing for minimally invasive procedures to be performed on the lungs and other thoracic structures. By equipping your doctors with thoracoscopes and training them in video-assisted thoracoscopic surgery (VATS), your colony will be able to perform complex lung surgeries with greater precision and reduced risk of complications.</AdvancedThoracicSurgery.description>
+
+  <!-- EN: epinephrine synthesis -->
+  <EpinephrineSynthesis.label>epinephrine synthesis</EpinephrineSynthesis.label>
+  <!-- EN: Research into the synthesis of epinephrine, a hormone and neurotransmitter that plays a vital role in the body's fight-or-flight response. By developing an autoinjector that can deliver a precise dose of epinephrine in emergency situations, you will be able to craft epinephrine autoinjectors that can be used to boost blood pressure and increase heart rate to temporarily reduce the adverse effects of hypovolemic shock and anemia.\n\nWe suspect an additional potential use for this drug as a combat stimulant, but further research is required to confirm its efficacy. -->
+  <EpinephrineSynthesis.description>Research into the synthesis of epinephrine, a hormone and neurotransmitter that plays a vital role in the body's fight-or-flight response. By developing an autoinjector that can deliver a precise dose of epinephrine in emergency situations, you will be able to craft epinephrine autoinjectors that can be used to boost blood pressure and increase heart rate to temporarily reduce the adverse effects of hypovolemic shock and anemia.\n\nWe suspect an additional potential use for this drug as a combat stimulant, but further research is required to confirm its efficacy.</EpinephrineSynthesis.description>
+
+  <!-- EN: cellular regenerative medicine -->
+  <CellularRegeneration.label>cellular regenerative medicine</CellularRegeneration.label>
+  <!-- EN: Unlock the secrets of cellular regeneration, a cutting-edge medical technology that allows for the repair and regrowth of damaged tissues at the cellular level. By using mechanites to stimulate the body's natural healing processes, your doctors will be able to cure injuries that were previously considered untreatable, such as hearing and nerve damage. The same technology is used on glitterworlds to treat paralysis and degenerative diseases, but its application is still experimental and its long-term effects are not yet fully understood. -->
+  <CellularRegeneration.description>Unlock the secrets of cellular regeneration, a cutting-edge medical technology that allows for the repair and regrowth of damaged tissues at the cellular level. By using mechanites to stimulate the body's natural healing processes, your doctors will be able to cure injuries that were previously considered untreatable, such as hearing and nerve damage. The same technology is used on glitterworlds to treat paralysis and degenerative diseases, but its application is still experimental and its long-term effects are not yet fully understood.</CellularRegeneration.description>
+</LanguageData>

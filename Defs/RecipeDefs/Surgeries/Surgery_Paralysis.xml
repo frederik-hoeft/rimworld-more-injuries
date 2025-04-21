@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>TreatParalysis</defName>
+    <label>Restore mobility: cellular regenerative surgery</label>
+    <description>Cellular regenerative neurosurgery (CRNS) is an experimental glitterworld surgery that uses mechanites to repair damaged nerve cells in the spinal cord, restoring mobility to a person with permanent paralysis. The procedure is expensive and not widely available, but has shown promising results in restoring mobility, even in very severe cases.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Performing cellular regenerative neurosurgery on {0}.</jobString>
+    <workAmount>4500</workAmount>
+    <removesHediff>SpinalCordParalysis</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully restored {1}'s mobility.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+    <anesthetize>true</anesthetize>
+    <researchPrerequisites>
+      <li>CellularRegeneration</li>
+    </researchPrerequisites>
+    <skillRequirements>
+      <Medicine>12</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineUltratech</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>MedicineUltratech</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <surgerySuccessChanceFactor>1.1</surgerySuccessChanceFactor>
+  </RecipeDef>
+</Defs>

@@ -113,10 +113,10 @@ public class MoreInjuryComp : ThingComp
             new InjectorWorker(this)
         ];
         // cache handlers for performance
-        _compGetGizmosExtraHandlers = _pipeline.OfType<ICompGetGizmosExtraHandler>().ToArray();
-        _compFloatMenuOptionsHandlers = _pipeline.OfType<ICompFloatMenuOptionsHandler>().ToArray();
-        _postPostApplyDamageHandlers = _pipeline.OfType<IPostPostApplyDamageHandler>().ToArray();
-        _postTakeDamageHandlers = _pipeline.OfType<IPostTakeDamageHandler>().ToArray();
+        _compGetGizmosExtraHandlers = [.. _pipeline.OfType<ICompGetGizmosExtraHandler>()];
+        _compFloatMenuOptionsHandlers = [.. _pipeline.OfType<ICompFloatMenuOptionsHandler>()];
+        _postPostApplyDamageHandlers = [.. _pipeline.OfType<IPostPostApplyDamageHandler>()];
+        _postTakeDamageHandlers = [.. _pipeline.OfType<IPostTakeDamageHandler>()];
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
