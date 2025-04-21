@@ -25,6 +25,7 @@ internal static class MoreInjuriesSettingsDefaults
     internal const bool ENABLE_BONE_FRAGMENT_LACERATIONS_DEFAULT = true;
     internal const float SPLINTERING_FRACTURE_CHANCE_DEFAULT = 0.5f;
     internal const float BONE_FRAGMENT_LACERATION_CHANCE_PER_BODY_PART_DEFAULT = 0.5f;
+    internal const bool ENABLE_APPLY_SPLINT_JOB_DEFAULT = true;
     // hypovolemic shock and cardiac arrest
     internal const bool ENABLE_HYPOVOLEMIC_SHOCK_DEFAULT = true;
     internal const float ORGAN_HYPOXIA_CHANCE_DEFAULT = 0.35f;

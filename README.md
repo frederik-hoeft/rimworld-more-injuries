@@ -84,6 +84,7 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Airway Management](#airway-management)
     - [Performing CPR](#performing-cpr)
     - [Blood Transfusions](#blood-transfusions)
+    - [Splinting Fractures](#splinting-fractures)
     - [Tourniquet Recovery](#tourniquet-recovery)
   - [Known Issues and Incompatibilities](#known-issues-and-incompatibilities)
 
@@ -1022,6 +1023,16 @@ Assigned doctors will automatically perform [blood transfusions](#blood-bag) on 
 
 **Parent Work Type[^4]**: `Doctor`  
 **Priority In Type[^5]**: 105
+
+### Splinting Fractures
+
+> **In-Game Label**
+> _"Apply a splint to an injured patient to stabilize a fracture and promote healing"_
+
+If enabled in the mod settings, assigned doctors will automatically apply a [splint](#splint) to patients in hospital beds who are suffering from a [bone fracture](#bone-fracture). The doctor will search for an accessible splint and start the splinting procedure to stabilize the fracture and promote healing over time. This work type is skipped if the patient is already scheduled to receive a different treatment for the fracture, such as [surgical repair](#osteosynthetic-surgery). This work type is lower priority than most other doctoring tasks.
+
+**Parent Work Type[^4]**: `Doctor`
+**Priority In Type[^5]**: 15
 
 ### Tourniquet Recovery
 

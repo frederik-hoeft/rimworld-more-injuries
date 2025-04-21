@@ -39,6 +39,10 @@
   <MI_Settings_Features_Fractures_LacerationInjuryChanceLabel>Chance of laceration causing injury: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Fractures_LacerationInjuryChanceLabel>
   <!-- EN: The likelihood that a nearby body part may receive bone fragment lacerations after a splintering fracture has occurred. -->
   <MI_Settings_Features_Fractures_LacerationInjuryChanceTooltip>The likelihood that a nearby body part may receive bone fragment lacerations after a splintering fracture has occurred.</MI_Settings_Features_Fractures_LacerationInjuryChanceTooltip>
+  <!-- EN: Enable splinting work giver for doctors (default: {DEFAULT}) -->
+  <MI_Settings_Features_Fractures_ApplySplintJobLabel>Enable splinting work giver for doctors (default: {DEFAULT})</MI_Settings_Features_Fractures_ApplySplintJobLabel>
+  <!-- EN: If enabled, doctors will automatically apply splints to patients with fractures. The patient must be in a bed and a splint must be accessible.\n\nIf disabled, doctors will only apply splints to patients when ordered to do so. -->
+  <MI_Settings_Features_Fractures_ApplySplintJobTooltip>If enabled, doctors will automatically apply splints to patients with fractures. The patient must be in a bed and a splint must be accessible.\n\nIf disabled, doctors will only apply splints to patients when ordered to do so.</MI_Settings_Features_Fractures_ApplySplintJobTooltip>
   <!-- ============ Feature: Respiratory Conditions ============ -->
   <!-- EN: Respiratory Conditions -->
   <MI_Settings_Features_Respiratory>Respiratory Conditions</MI_Settings_Features_Respiratory>
