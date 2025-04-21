@@ -11,19 +11,21 @@ have contributed to this project in one way or another.
 Grouped by game version, ordered alphabetically:
 
 1.5:
-- chief-turkler:    contributor,    graphic design
-- Keshash:          maintainer,     artistic lead
-- Th3_Fr3d:         maintainer,     project lead
+- chief-turkler:    medical equipment textures
+- Keshash:          artistic lead, textures, and new mod thumbnail
+- Th3_Fr3d:         Code, XML, feature design, and complete revamp of the mod
 
 1.4:
-- Keshash:          maintainer,     project lead
+- Keshash:      item retexture and maintanence
 
 Pre-1.4:
-- Blyatman:         maintainer,     ???
-- Graved:           maintainer,     ???
-
-Original author:
-- Caulaflower
+- Blyatman (Epicguru):  original idea and code implementation
+- Caulaflower:          original idea and code implementation
+- Graved:               first iteration of mod thumbnail
+- Magenta Ivy:          medical equipment textures
+- Ogami:                medical equipment textures
+- Rick G:               medical equipment textures
+- ShakestheSpeare:      medical equipment textures
 
 NOTE: due to changes in project ownership, the exact roles and contributions
 of some people may be lost to history. We apologize for any inaccuracies in

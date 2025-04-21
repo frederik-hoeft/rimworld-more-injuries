@@ -68,7 +68,7 @@ public class HediffComp_Choking : HediffComp
                 if (coughing)
                 {
                     // the patient is conscious and coughing, so the severity decreases faster
-                    change -= Rand.Range(0.05f, 0.1f);
+                    change -= Rand.Range(0.05f, 0.15f);
                 }
                 float newSeverity = Mathf.Clamp01(parent.Severity + change);
                 if (newSeverity > 0f)

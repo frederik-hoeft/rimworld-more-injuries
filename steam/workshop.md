@@ -61,4 +61,4 @@ We are always looking for new contributions to the mod who want to help make it 
 - Caulaflower, Blyatman (Epicguru) - original idea and code implementation
 - Keshash - item retexture and brief maintanence
 - Graved – first iteration of mod thumbnail
-- Turkler, ShakestheSpeare, Magenta Ivy, Ogam, Rick G – medical equipment graphics
+- Turkler, ShakestheSpeare, Magenta Ivy, Ogam, Rick G – medical equipment textures
