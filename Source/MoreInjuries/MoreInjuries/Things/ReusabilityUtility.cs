@@ -1,4 +1,5 @@
-﻿using MoreInjuries.Localization;
+﻿using MoreInjuries.Extensions;
+using MoreInjuries.Localization;
 using RimWorld;
 using Verse;
 

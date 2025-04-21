@@ -57,6 +57,7 @@ public class MoreInjuriesSettings : ModSettings
     internal bool EnableBoneFragmentLacerations = ENABLE_BONE_FRAGMENT_LACERATIONS_DEFAULT;
     internal float SplinteringFractureChance = SPLINTERING_FRACTURE_CHANCE_DEFAULT;
     internal float BoneFragmentLacerationChancePerBodyPart = BONE_FRAGMENT_LACERATION_CHANCE_PER_BODY_PART_DEFAULT;
+    internal bool EnableApplySplintJob = ENABLE_APPLY_SPLINT_JOB_DEFAULT;
     // hypovolemic shock and cardiac arrest
     internal bool EnableHypovolemicShock = ENABLE_HYPOVOLEMIC_SHOCK_DEFAULT;
     internal float OrganHypoxiaChance = ORGAN_HYPOXIA_CHANCE_DEFAULT;
@@ -95,7 +96,9 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref FractureDamageTreshold, nameof(FractureDamageTreshold), FRACTURE_DAMAGE_TRESHOLD_DEFAULT);
         Scribe_Values.Look(ref FractureChanceOnDamage, nameof(FractureChanceOnDamage), FRACTURE_CHANCE_ON_DAMAGE_DEFAULT);
         Scribe_Values.Look(ref EnableBoneFragmentLacerations, nameof(EnableBoneFragmentLacerations), ENABLE_BONE_FRAGMENT_LACERATIONS_DEFAULT);
+        Scribe_Values.Look(ref SplinteringFractureChance, nameof(SplinteringFractureChance), SPLINTERING_FRACTURE_CHANCE_DEFAULT);
         Scribe_Values.Look(ref BoneFragmentLacerationChancePerBodyPart, nameof(BoneFragmentLacerationChancePerBodyPart), BONE_FRAGMENT_LACERATION_CHANCE_PER_BODY_PART_DEFAULT);
+        Scribe_Values.Look(ref EnableApplySplintJob, nameof(EnableApplySplintJob), ENABLE_APPLY_SPLINT_JOB_DEFAULT);
         // hemorrhagic stroke after blunt trauma
         Scribe_Values.Look(ref EnableHemorrhagicStroke, nameof(EnableHemorrhagicStroke), ENABLE_HEMORRHAGIC_STROKE_DEFAULT);
         Scribe_Values.Look(ref HemorrhagicStrokeChance, nameof(HemorrhagicStrokeChance), HEMORRHAGIC_STROKE_CHANCE_DEFAULT);

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using MoreInjuries.Extensions;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 

@@ -101,6 +101,8 @@ public class MoreInjuriesMod : Mod
         list.Label("MI_Settings_Features_Fractures_LacerationInjuryChanceLabel".Translate(Settings.BoneFragmentLacerationChancePerBodyPart.NamedValue(), BONE_FRAGMENT_LACERATION_CHANCE_PER_BODY_PART_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_Fractures_LacerationInjuryChanceTooltip".Translate());
         Settings.BoneFragmentLacerationChancePerBodyPart = (float)Math.Round(list.Slider(Settings.BoneFragmentLacerationChancePerBodyPart, 0f, 1f), 2);
+        list.CheckboxLabeled("MI_Settings_Features_Fractures_ApplySplintJobLabel".Translate(ENABLE_APPLY_SPLINT_JOB_DEFAULT.NamedDefault()), ref Settings.EnableApplySplintJob,
+            "MI_Settings_Features_Fractures_ApplySplintJobTooltip".Translate());
         // respiratory conditions
         list.GapLine();
         Text.Font = GameFont.Medium;

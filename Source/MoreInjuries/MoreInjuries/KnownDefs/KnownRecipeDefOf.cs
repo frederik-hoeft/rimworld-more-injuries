@@ -10,4 +10,6 @@ namespace MoreInjuries.KnownDefs;
 public static class KnownRecipeDefOf
 {
     public static RecipeDef ExtractWholeBloodBag = null!;
+    public static RecipeDef RepairFracture = null!;
+    public static RecipeDef SplintFracture = null!;
 }

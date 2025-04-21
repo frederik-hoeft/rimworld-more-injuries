@@ -2,8 +2,8 @@
 
 _This document is intended to provide a comprehensive guide to the More Injuries mod for RimWorld. It is intended to be a reference for players who are looking to understand the mod's features and mechanics, as well as how to use them effectively._
 
-_For instructions on how to install the mod, please refer to the [installation guide](/INSTALL.md)._  
-_If you would like to contribute to this project or improve the documentation, please refer to the [contribution guidelines](/CONTRIBUTING.md) to get started._
+_For instructions on how to install the mod, please refer to the [installation guide](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/INSTALL.md)._  
+_If you would like to contribute to this project or improve the documentation, please refer to the [contribution guidelines](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/CONTRIBUTING.md) to get started._
 
 ## About More Injuries
 
@@ -84,6 +84,7 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Airway Management](#airway-management)
     - [Performing CPR](#performing-cpr)
     - [Blood Transfusions](#blood-transfusions)
+    - [Splinting Fractures](#splinting-fractures)
     - [Tourniquet Recovery](#tourniquet-recovery)
   - [Known Issues and Incompatibilities](#known-issues-and-incompatibilities)
 
@@ -1025,6 +1026,16 @@ Assigned doctors will automatically perform [blood transfusions](#blood-bag) on 
 
 **Parent Work Type[^4]**: `Doctor`  
 **Priority In Type[^5]**: 105
+
+### Splinting Fractures
+
+> **In-Game Label**
+> _"Apply a splint to an injured patient to stabilize a fracture and promote healing"_
+
+If enabled in the mod settings, assigned doctors will automatically apply a [splint](#splint) to patients in hospital beds who are suffering from a [bone fracture](#bone-fracture). The doctor will search for an accessible splint and start the splinting procedure to stabilize the fracture and promote healing over time. This work type is skipped if the patient is already scheduled to receive a different treatment for the fracture, such as [surgical repair](#osteosynthetic-surgery). This work type is lower priority than most other doctoring tasks.
+
+**Parent Work Type[^4]**: `Doctor`
+**Priority In Type[^5]**: 15
 
 ### Tourniquet Recovery
 
