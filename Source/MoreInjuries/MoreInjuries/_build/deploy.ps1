@@ -29,39 +29,6 @@ if (Test-Path -LiteralPath $upload_dir) {
     Remove-Item -LiteralPath $upload_dir -Recurse
 }
 
-# create new folder structure
-New-Item -ItemType Directory $upload_dir
-# include source files
-New-Item -ItemType Directory "${upload_dir}/Source"
-# copy everything in the oldversions directory to the new upload directory root
-Copy-Item -Path "${mod_root}/oldversions/*" -Recurse -Destination $upload_dir -Container
-# create folder for current version
-New-Item -ItemType Directory "${upload_dir}/${game_version}/Assemblies"
-# copy assemblies (deps should be handled via mod dependencies from the workshop)
-Copy-Item -LiteralPath "${mod_root}/artifacts/${project_name}.dll" -Destination "${upload_dir}/${game_version}/Assemblies"
-# if there is a Patches directory in the mod root, copy that as well (to the latest version)
-if (Test-Path -LiteralPath "${mod_root}/Patches") {
-	Copy-Item -LiteralPath "${mod_root}/Patches" -Recurse -Destination "${upload_dir}/${game_version}" -Container
-}
-# if there is a Defs directory in the mod root, copy that as well (to the latest version)
-if (Test-Path -LiteralPath "${mod_root}/Defs") {
-	Copy-Item -LiteralPath "${mod_root}/Defs" -Recurse -Destination "${upload_dir}/${game_version}" -Container
-}
-# if there is a Sounds directory in the mod root, copy that as well (to the latest version)
-if (Test-Path -LiteralPath "${mod_root}/Sounds") {
-	Copy-Item -LiteralPath "${mod_root}/Sounds" -Recurse -Destination "${upload_dir}/${game_version}" -Container
-}
-# if there is a Textures directory in the mod root, copy that as well (to the latest version)
-if (Test-Path -LiteralPath "${mod_root}/Textures") {
-	Copy-Item -LiteralPath "${mod_root}/Textures" -Recurse -Destination "${upload_dir}/${game_version}" -Container
-}
-# copy Languages directory
-if (Test-Path -LiteralPath "${mod_root}/Languages") {
-    Copy-Item -LiteralPath "${mod_root}/Languages" -Recurse -Destination "${upload_dir}/${game_version}" -Container
-}
-# copy About
-Copy-Item -LiteralPath "${mod_root}/About" -Recurse -Destination $upload_dir -Container
-
 function Copy-Folder {
     [CmdletBinding()]
     param(
@@ -89,8 +56,41 @@ function Copy-Folder {
     }
 }
 
+# create new folder structure
+New-Item -ItemType Directory $upload_dir
+# include source files
+New-Item -ItemType Directory "${upload_dir}/Source"
+# copy everything in the oldversions directory to the new upload directory root (exclude git files)
+Copy-Folder -FromPath "${mod_root}/oldversions/*" -ToPath $upload_dir -Exclude ".gitkeep",".gitignore"
+# create folder for current version
+New-Item -ItemType Directory "${upload_dir}/${game_version}/Assemblies"
+# copy assemblies (deps should be handled via mod dependencies from the workshop)
+Copy-Item -LiteralPath "${mod_root}/artifacts/${project_name}.dll" -Destination "${upload_dir}/${game_version}/Assemblies"
+# if there is a Patches directory in the mod root, copy that as well (to the latest version)
+if (Test-Path -LiteralPath "${mod_root}/Patches") {
+	Copy-Item -LiteralPath "${mod_root}/Patches" -Recurse -Destination "${upload_dir}/${game_version}" -Container
+}
+# if there is a Defs directory in the mod root, copy that as well (to the latest version)
+if (Test-Path -LiteralPath "${mod_root}/Defs") {
+	Copy-Item -LiteralPath "${mod_root}/Defs" -Recurse -Destination "${upload_dir}/${game_version}" -Container
+}
+# if there is a Sounds directory in the mod root, copy that as well (to the latest version)
+if (Test-Path -LiteralPath "${mod_root}/Sounds") {
+	Copy-Item -LiteralPath "${mod_root}/Sounds" -Recurse -Destination "${upload_dir}/${game_version}" -Container
+}
+# if there is a Textures directory in the mod root, copy that as well (to the latest version)
+if (Test-Path -LiteralPath "${mod_root}/Textures") {
+	Copy-Item -LiteralPath "${mod_root}/Textures" -Recurse -Destination "${upload_dir}/${game_version}" -Container
+}
+# copy Languages directory
+if (Test-Path -LiteralPath "${mod_root}/Languages") {
+    Copy-Item -LiteralPath "${mod_root}/Languages" -Recurse -Destination "${upload_dir}/${game_version}" -Container
+}
+# copy About
+Copy-Item -LiteralPath "${mod_root}/About" -Recurse -Destination $upload_dir -Container
+
 # copy Source (exclude sensitive/unnecessary items)
-Copy-Folder -FromPath "${mod_root}/Source" -ToPath "${upload_dir}/Source" -Exclude ".vs","bin","obj","*.user"
+Copy-Folder -FromPath "${mod_root}/Source" -ToPath "${upload_dir}/Source" -Exclude ".vs","bin","obj","*.user","TestResults"
 
 # copy README because why not
 Copy-Item -LiteralPath "${mod_root}/README.md" -Destination $upload_dir
