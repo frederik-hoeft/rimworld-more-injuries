@@ -473,7 +473,8 @@ In order to effectively treat the new injuries and medical conditions introduced
 ### Blood Bag
 
 <p>
-  <img align="right" src="./Textures/Thing/blood_bag.png" height="96" alt="Blood Bag" />
+  <img align="right" src="./Textures/Thing/BloodBag/blood_bag_b.png" height="64" alt="Blood Bag" />
+  <img align="right" src="./Textures/Thing/BloodBag/blood_bag_a.png" height="64" alt="Blood Bag" />
 
 > **In-Game Description**
 > _"**Blood bag** &mdash; A bag of whole blood from a standard blood donation, ready for transfusion. It is used in the treatment of massive bleeding and allows quick restoration of blood volume to combat the effects of hypovolemic shock. Must be stored in a refrigerator or freezer.
@@ -524,8 +525,10 @@ Cardiopulmonary resuscitation (CPR) is an emergency procedure that combines ches
 
 Defibrillation is a treatment for life-threatening conditions that affect the rhythm of the heart, such as [heart attacks](https://rimworldwiki.com/wiki/Ailments#Heart_attack) and the `ventricular fibrillation` stage of [cardiac arrest](#cardiac-arrest). It involves delivering a high-energy electric shock to the heart with a reusable device called a defibrillator to restore normal heart rhythm. It is a more specialized and faster treatment than [CPR](#cpr) in these cases, however, it requires a defibrillator to be available and accessible to the treating doctor.
 
+
 <p>
-  <img align="right" src="./Textures/Thing/defibrillator_a.png" height="96" alt="Defibrillator" />
+  <img align="right" src="./Textures/Thing/Defibrillator/defibrillator_b.png" height="64" alt="Defibrillator" />
+  <img align="right" src="./Textures/Thing/Defibrillator/defibrillator_a.png" height="64" alt="Defibrillator" />
 
 > **In-Game Description**
 > _"**Defibrillator** &mdash; A defibrillator is a reusable device that gives a high energy electric shock to the heart through the chest wall to restore normal heart rhythm in cases of ventricular fibrillation (irregular heartbeat) which may be caused by heart attacks or in early stages of cardiac arrest.
@@ -551,8 +554,8 @@ Defibrillation is a treatment for life-threatening conditions that affect the rh
 ### Epinephrine Autoinjector
 
 <p>
-  <img align="right" src="./Textures/Thing/Epinephrine/injector_yellow_b.png" height="64" alt="Splint" />
-  <img align="right" src="./Textures/Thing/Epinephrine/injector_yellow_a.png" height="64" alt="Splint" />
+  <img align="right" src="./Textures/Thing/Epinephrine/injector_yellow_b.png" height="64" alt="Epinephrine" />
+  <img align="right" src="./Textures/Thing/Epinephrine/injector_yellow_a.png" height="64" alt="Epinephrine" />
   
 > **In-Game Description**
 > _"**Epinephrine autoinjector** &mdash; An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose or doses of epinephrine (adrenaline) by means of autoinjector technology."_
