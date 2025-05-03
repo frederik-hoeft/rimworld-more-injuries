@@ -35,4 +35,6 @@
   <MI_ProcedureFailed_IncapableOfCaring>{0}: {DOCTOR_labelShort} is incapable of caring</MI_ProcedureFailed_IncapableOfCaring>
   <!-- EN: {0}: {DOCTOR_labelShort} is incapable of medicine -->
   <MI_ProcedureFailed_IncapableOfMedicine>{0}: {DOCTOR_labelShort} is incapable of medicine</MI_ProcedureFailed_IncapableOfMedicine>
+  <!-- EN: {0}: no path -->
+  <MI_ProcedureFailed_NoPath>{0}: no path</MI_ProcedureFailed_NoPath>
 </LanguageData>

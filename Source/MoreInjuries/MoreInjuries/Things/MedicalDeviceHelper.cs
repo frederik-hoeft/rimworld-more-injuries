@@ -20,6 +20,10 @@ public static class MedicalDeviceHelper
         {
             return DisabledProcedureCause.Soft(Named.Keys.ProcedureFailed_SelfTendDisabled.Translate(jobTitleTranslationKey.Translate()));
         }
+        if (!doctor.CanReach(patient, PathEndMode.ClosestTouch, Danger.Deadly))
+        {
+            return DisabledProcedureCause.Hard(Named.Keys.ProcedureFailed_NoPath.Translate(jobTitleTranslationKey.Translate()));
+        }
         if (!doctor.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
         {
             return DisabledProcedureCause.Hard(Named.Keys.ProcedureFailed_IncapableOfManipulation.Translate(jobTitleTranslationKey.Translate(), doctor.Named(Named.Params.DOCTOR)));
