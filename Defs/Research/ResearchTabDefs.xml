@@ -3,5 +3,7 @@
   <ResearchTabDef>
     <defName>MIResearchTab</defName>
     <label>More Injuries</label>
+    <generalTitle>More Injuries research projects</generalTitle>
+    <generalDescription>Unlock advanced medical procedures and equipment to fight new types of injuries and improve your pawns' chances of survival. It's a brutal world out there, so make sure your doctors are well-prepared!</generalDescription>
   </ResearchTabDef>
 </Defs>
