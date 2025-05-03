@@ -1,7 +1,6 @@
 ﻿using MoreInjuries.AI;
 using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -27,7 +26,7 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
-        Hediff? choking = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.ChokingOnBlood);
+        Hediff? choking = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.ChokingOnBlood);
         if (choking is not null)
         {
             float severity = choking.Severity;
@@ -50,7 +49,7 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
         // if not enabled, don't bother checking for cardiac arrest
         if (MoreInjuriesMod.Settings.EnableCardiacArrestOnHighBloodLoss)
         {
-            Hediff? cardiacArrest = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.CardiacArrest);
+            Hediff? cardiacArrest = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.CardiacArrest);
             if (cardiacArrest is not null)
             {
                 float severity = cardiacArrest.Severity;

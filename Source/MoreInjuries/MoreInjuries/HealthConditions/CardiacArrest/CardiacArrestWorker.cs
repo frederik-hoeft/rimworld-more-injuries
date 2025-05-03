@@ -16,7 +16,7 @@ public class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(parent), 
             return;
         }
         // only show option when drafted
-        if (!builder.Keys.Contains(UITreatmentOption.PerformCpr) && patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
+        if (!builder.Keys.Contains(UITreatmentOption.PerformCpr) && patient.health.hediffSet.hediffs.Any(static hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
         {
             builder.Keys.Add(UITreatmentOption.PerformCpr);
             if (!KnownResearchProjectDefOf.EmergencyMedicine.IsFinished)

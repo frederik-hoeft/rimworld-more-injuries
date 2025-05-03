@@ -2,9 +2,9 @@
 using System.Runtime.CompilerServices;
 using Verse;
 
-namespace MoreInjuries.AI.WorkGivers.Caching;
+namespace MoreInjuries.Caching;
 
-public abstract class ScopedWeakTimedCache<TThing> where TThing : Thing
+public abstract class WeakTimedMapThingCache<TThing> where TThing : Thing
 {
     private readonly ConditionalWeakTable<Map, Dictionary<int, Std::WeakReference<TThing>>> _mapThingCache = new();
     private int _lastRefreshTicks;

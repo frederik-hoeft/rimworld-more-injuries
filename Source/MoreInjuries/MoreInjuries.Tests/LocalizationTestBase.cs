@@ -16,7 +16,7 @@ public abstract class LocalizationTestBase
         {
             throw new InvalidOperationException("Failed to locate the mod root directory.");
         }
-        Assert.IsTrue(modRoot.GetDirectories(".git", SearchOption.TopDirectoryOnly).Length == 1, "Suspected mod root directory is not a git repository.");
+        Assert.AreEqual(1, modRoot.GetDirectories(".git", SearchOption.TopDirectoryOnly).Length, "Suspected mod root directory is not a git repository.");
         return modRoot;
     }
 
@@ -33,7 +33,7 @@ public abstract class LocalizationTestBase
             LocalizationInfoRepository languageRepository = LoadLocalizationInfoRepository(languageDirectory, errorContext);
             languageRepositories.Add(languageRepository);
         }
-        LocalizationInfoRepository? english = languageRepositories.Find(repository => repository.Language == "English");
+        LocalizationInfoRepository? english = languageRepositories.Find(static repository => repository.Language == "English");
         Assert.IsNotNull(english, "Missing default 'English' localization data.");
         foreach (LocalizationInfoRepository repository in languageRepositories)
         {

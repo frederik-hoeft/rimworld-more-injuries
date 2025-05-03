@@ -3,7 +3,7 @@ using Verse.AI;
 using Verse;
 using System.Collections.Generic;
 using MoreInjuries.KnownDefs;
-using MoreInjuries.AI.WorkGivers.Caching;
+using MoreInjuries.Caching;
 
 namespace MoreInjuries.AI.WorkGivers;
 
@@ -38,7 +38,7 @@ public class WorkGiver_RemoveTourniquetFromDead : WorkGiver_Scanner
         return job;
     }
 
-    private class CorpseCache : ScopedWeakTimedCache<Corpse>
+    private class CorpseCache : WeakTimedMapThingCache<Corpse>
     {
         protected override int MinCacheRefreshIntervalTicks => 1800;
 

@@ -24,7 +24,7 @@ public class LungCollapseWorker(MoreInjuryComp parent) : InjuryWorker(parent), I
                 // early exit if both chances fail
                 return;
             }
-            IEnumerable<BodyPartRecord> lungs = patient.health.hediffSet.GetNotMissingParts().Where(bodyPart => bodyPart.def == BodyPartDefOf.Lung);
+            IEnumerable<BodyPartRecord> lungs = patient.health.hediffSet.GetNotMissingParts().Where(static bodyPart => bodyPart.def == BodyPartDefOf.Lung);
             float clampedUpperBound = Mathf.Clamp(MoreInjuriesMod.Settings.LungCollapseMaxSeverityRoot, 0.1f, 1.0f);
             ReadOnlySpan<bool> chances = [chanceLung1, chanceLung2];
             int i = 0;
@@ -47,7 +47,7 @@ public class LungCollapseWorker(MoreInjuryComp parent) : InjuryWorker(parent), I
                 }
                 float factor = Rand.Range(0.1f, clampedUpperBound);
                 // we scale the severity by the square of the factor to make it more likely to be low, but allow for high values with a small chance
-                lungCollapse!.Severity = factor * factor;
+                lungCollapse.Severity = factor * factor;
                 ++i;
             }
         }

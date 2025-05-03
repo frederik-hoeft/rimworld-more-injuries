@@ -1,5 +1,4 @@
 ﻿using MoreInjuries.Tests.Localization;
-using System.Text;
 using System.Xml.Linq;
 
 namespace MoreInjuries.Tests;

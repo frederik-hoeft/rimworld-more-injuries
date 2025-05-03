@@ -17,7 +17,7 @@ public class WorkGiver_UseSplint : WorkGiver_MoreInjuriesTreatmentBase
 
     protected override bool CanTreat(Pawn doctor, Pawn patient) => 
         MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.Splint, JobDriver_UseSplint.TargetHediffDefs) is not null 
-        && patient.BillStack?.Bills?.Find(b => b.recipe == KnownRecipeDefOf.SplintFracture || b.recipe == KnownRecipeDefOf.RepairFracture) is null
+        && patient.BillStack?.Bills?.Find(static b => b.recipe == KnownRecipeDefOf.SplintFracture || b.recipe == KnownRecipeDefOf.RepairFracture) is null
         && base.CanTreat(doctor, patient);
 
     public override bool ShouldSkip(Pawn pawn, bool forced = false) =>

@@ -30,7 +30,7 @@ public abstract class HeadInjuryGiver : IInjuryHandler
                 patient.health.AddHediff(trauma, brain);
             }
             float severity = CalculateSeverity(equivalentLikeliness);
-            trauma!.Severity += severity;
+            trauma.Severity += severity;
         }
     }
 }

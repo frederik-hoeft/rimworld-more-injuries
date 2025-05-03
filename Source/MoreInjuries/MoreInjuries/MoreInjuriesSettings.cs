@@ -71,6 +71,7 @@ public class MoreInjuriesSettings : ModSettings
     internal float DryGangreneChance = DRY_GANGRENE_CHANCE_DEFAULT;
     internal float DryGangreneMeanTimeToInfection = DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT;
     internal bool EnableTourniquetGizmo = ENABLE_TOURNIQUET_GIZMO_DEFAULT;
+    internal float MinBleedRateForAutoTourniquet = MIN_BLEED_RATE_FOR_AUTO_TOURNIQUET_DEFAULT;
     // miscellaneous
     internal bool EnableFireInhalation = ENABLE_FIRE_INHALATION_DEFAULT;
     internal bool BiotechEnableIntegration = BIOTECH_ENABLE_INTEGRATION_DEFAULT;
@@ -147,6 +148,7 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref DryGangreneChance, nameof(DryGangreneChance), DRY_GANGRENE_CHANCE_DEFAULT);
         Scribe_Values.Look(ref DryGangreneMeanTimeToInfection, nameof(DryGangreneMeanTimeToInfection), DRY_GANGRENE_MEAN_TIME_TO_INFECTION_DEFAULT);
         Scribe_Values.Look(ref EnableTourniquetGizmo, nameof(EnableTourniquetGizmo), ENABLE_TOURNIQUET_GIZMO_DEFAULT);
+        Scribe_Values.Look(ref MinBleedRateForAutoTourniquet, nameof(MinBleedRateForAutoTourniquet), MIN_BLEED_RATE_FOR_AUTO_TOURNIQUET_DEFAULT);
         // miscellaneous
         Scribe_Values.Look(ref ClosedInternalWouldBleedingModifier, nameof(ClosedInternalWouldBleedingModifier), CLOSED_INTERNAL_WOULD_BLEEDING_MODIFIER_DEFAULT);
         Scribe_Values.Look(ref BiotechEnableIntegration, nameof(BiotechEnableIntegration), BIOTECH_ENABLE_INTEGRATION_DEFAULT);

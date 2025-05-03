@@ -26,7 +26,7 @@ public class JobDriver_UseSuctionDevice : JobDriver_UseMedicalDevice_TargetsHedi
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
-        Hediff? choking = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.ChokingOnBlood);
+        Hediff? choking = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.ChokingOnBlood);
         float doctorSkill = doctor.GetMedicalSkillLevelOrDefault();
         bool success = Rand.Chance(Mathf.Max(MoreInjuriesMod.Settings.SuctionDeviceMinimumSuccessRate, doctorSkill / 8f));
         if (choking is not null && success)

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.Extensions;
 
 public static class HediffSetExtensions
 {
-    public static bool TryGetFirstHediffMatchingPart(this HediffSet hediffSet, BodyPartRecord part, HediffDef hediffDef, out Hediff? hediff)
+    public static bool TryGetFirstHediffMatchingPart(this HediffSet hediffSet, BodyPartRecord part, HediffDef hediffDef, [NotNullWhen(returnValue: true)] out Hediff? hediff)
     {
         for (int index = 0; index < hediffSet.hediffs.Count; ++index)
         {

@@ -52,7 +52,7 @@ public static class Patch_ITab_Pawn_Visitor_NonExclusiveInteractionToggled
         {
             return;
         }
-        Bill? bill = pawn.BillStack?.Bills?.Find(b => b.recipe == KnownRecipeDefOf.ExtractWholeBloodBag);
+        Bill? bill = pawn.BillStack?.Bills?.Find(static b => b.recipe == KnownRecipeDefOf.ExtractWholeBloodBag);
         if (enabled)
         {
             if (bill is not null || !Recipe_ExtractBloodBag.CanSafelyBeQueued(pawn))

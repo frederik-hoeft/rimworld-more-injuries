@@ -23,7 +23,7 @@ public class JobDriver_RemoveTourniquetFromDead : JobDriver_MedicalBase<Corpse>
         Doctor.Reserve(Corpse, job, errorOnFailed: errorOnFailed);
 
     private static bool HasTourniquet(Corpse corpse) =>
-        corpse.InnerPawn.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.TourniquetApplied);
+        corpse.InnerPawn.health.hediffSet.hediffs.Any(static hediff => hediff.def == KnownHediffDefOf.TourniquetApplied);
 
     protected override void FinalizeTreatment(Pawn doctor, Corpse target, Thing? thing)
     {
@@ -55,7 +55,7 @@ public class JobDriver_RemoveTourniquetFromDead : JobDriver_MedicalBase<Corpse>
         int ticks = CalculateTendDuration();
         Toil waitToil = Toils_General.Wait(ticks, face: CORPSE_INDEX);
         waitToil.WithProgressBarToilDelay(CORPSE_INDEX).PlaySustainerOrSound(SoundDef);
-        waitToil.activeSkill = () => SkillDefOf.Medicine;
+        waitToil.activeSkill = static () => SkillDefOf.Medicine;
         waitToil.handlingFacing = true;
         waitToil.FailOn(() =>
         {

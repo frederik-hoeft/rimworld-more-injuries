@@ -81,7 +81,7 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
             ])),
             (KnownBodyPartDefOf.Toe, new SelfLacerationHandler())                               // toe
         ];
-        s_lacerationRegistry = lacerationRegistry.ToDictionary(pair => pair.def, pair => pair.handler);
+        s_lacerationRegistry = lacerationRegistry.ToDictionary(static pair => pair.def, static pair => pair.handler);
     }
 
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableFractures;
@@ -89,7 +89,7 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Target;
-        if (!builder.Keys.Contains(UITreatmentOption.UseSplint) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.Fracture))
+        if (!builder.Keys.Contains(UITreatmentOption.UseSplint) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(static hediff => hediff.def == KnownHediffDefOf.Fracture))
         {
             builder.Keys.Add(UITreatmentOption.UseSplint);
             if (!KnownResearchProjectDefOf.BasicAnatomy.IsFinished)
