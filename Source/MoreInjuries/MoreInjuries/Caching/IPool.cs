@@ -28,6 +28,6 @@ public interface IPool<T>
     /// Returns the item to the pool. If the pool is full, the item will be ignored.
     /// </summary>
     /// <param name="item">The item to return to the pool.</param>
-    /// <returns><see langword="true"/> if the item was returned to the pool, <see langword="false"/> if the pool is full.</returns>"
+    /// <returns><see langword="true"/> if the item was returned to the pool, <see langword="false"/> if the pool is full.</returns>
     bool Return(T item);
 }
