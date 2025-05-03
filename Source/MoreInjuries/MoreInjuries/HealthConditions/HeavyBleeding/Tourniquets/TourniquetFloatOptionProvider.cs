@@ -1,4 +1,5 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Extensions;
+using MoreInjuries.KnownDefs;
 using MoreInjuries.Localization;
 using MoreInjuries.Things;
 using RimWorld;
@@ -11,6 +12,8 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
 internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMenuOptionsHandler, ICompGetGizmosExtraHandler
 {
+    private readonly Dictionary<BodyPartRecord, float> _bleedRateByLimbCache = [];
+
     public bool IsEnabled => true;
 
     public void AddGizmosExtra(UIBuilder<Gizmo> builder, Pawn selectedPawn)
@@ -51,18 +54,20 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                 List<FloatMenuOption> options = new(capacity: 5);
                 if (failure is null)
                 {
-                    bool pawnKnowsWhatTheyreDoing = PawnKnowsWhatTheyreDoing(selectedPawn);
-                    foreach (BodyPartRecord bodyPart in GetLimbs(patient))
+                    bool pawnKnowsWhatTheyreDoing = JobDriver_TourniquetBase.PawnKnowsWhatTheyreDoing(selectedPawn);
+
+                    using BleedRateByLimbEnumerable bleedRateCache = BleedRateByLimbEnumerable.EvaluateLimbs(patient);
+                    foreach ((BodyPartRecord bodyPart, float aggregatedBleedRate) in bleedRateCache)
                     {
                         if (patient.health.hediffSet.hediffs.Any(hediff => hediff.Part == bodyPart && hediff.def == KnownHediffDefOf.TourniquetApplied))
                         {
-                            options.Add(new FloatMenuOption("MI_TourniquetGizmo_RemoveLabel".Translate(bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)), patient.Downed
+                            options.Add(new FloatMenuOption("MI_TourniquetGizmo_RemoveLabel".Translate(bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white), patient.Downed
                                 ? () => JobDriver_RemoveTourniquet.ApplyDevice(patient, bodyPart)
                                 : JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
                         }
                         else if (tourniquet is not null && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
                         {
-                            options.Add(new FloatMenuOption("MI_TourniquetGizmo_UseLabel".Translate(bodyPart.Label.Colorize(Color.green).Named(Named.Params.BODYPART)), patient.Downed
+                            options.Add(new FloatMenuOption("MI_TourniquetGizmo_UseLabel".Translate(Colorize(bodyPart, aggregatedBleedRate).Named(Named.Params.BODYPART)).Colorize(Color.white), patient.Downed
                                 ? () => JobDriver_UseTourniquet.ApplyDevice(patient, tourniquet, bodyPart)
                                 : JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));
                         }
@@ -97,8 +102,10 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                 return;
             }
 
-            bool pawnKnowsWhatTheyreDoing = PawnKnowsWhatTheyreDoing(selectedPawn);
-            foreach (BodyPartRecord bodyPart in GetLimbs(patient))
+            bool pawnKnowsWhatTheyreDoing = JobDriver_TourniquetBase.PawnKnowsWhatTheyreDoing(selectedPawn);
+
+            using BleedRateByLimbEnumerable bleedRateCache = BleedRateByLimbEnumerable.EvaluateLimbs(patient);
+            foreach ((BodyPartRecord bodyPart, float aggregatedBleedRate) in bleedRateCache)
             {
                 if (patient.health.hediffSet.hediffs.Any(hediff => hediff.Part == bodyPart && hediff.def == KnownHediffDefOf.TourniquetApplied))
                 {
@@ -106,7 +113,7 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                     builder.Options.Add(new FloatMenuOption(
                         "MI_TourniquetFloatMenu_RemoveLabel".Translate(
                             bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART),
-                            patient.Label.Colorize(Color.yellow).Named(Named.Params.PATIENTNAME)),
+                            patient.Label.Colorize(Color.yellow).Named(Named.Params.PATIENTNAME)).Colorize(Color.white),
                     JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
                 }
                 else if (tourniquet is not null && selectedPawn.Drafted && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
@@ -116,55 +123,20 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                     {
                         builder.Options.Add(new FloatMenuOption(
                             "MI_TourniquetFloatMenu_UseLabel".Translate(
-                                bodyPart.Label.Colorize(Color.green).Named(Named.Params.BODYPART),
-                                patient.Label.Colorize(Color.yellow).Named(Named.Params.PATIENTNAME)),
+                                Colorize(bodyPart, aggregatedBleedRate).Named(Named.Params.BODYPART),
+                                patient.Label.Colorize(Color.yellow).Named(Named.Params.PATIENTNAME)).Colorize(Color.white),
                             JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));
                     }
                 }
             }
+            _bleedRateByLimbCache.Clear();
         }
     }
 
-    private static IEnumerable<BodyPartRecord> GetLimbs(Pawn patient) => patient.health.hediffSet.GetNotMissingParts()
-        .Where(bodyPart => (bodyPart.def == BodyPartDefOf.Shoulder
-            || bodyPart.def == BodyPartDefOf.Leg
-            // a nice little easter egg for the less-gifted doctors out there :)
-            || bodyPart.def == KnownBodyPartDefOf.Neck)
-            && !bodyPart.def.IsSolid(bodyPart, patient.health.hediffSet.hediffs));
-
-    private static bool PawnKnowsWhatTheyreDoing(Pawn pawn)
+    private static string Colorize(BodyPartRecord bodyPart, float aggregatedBleedRate) => aggregatedBleedRate switch
     {
-        int requiredSkillLevel = 3;
-        if (pawn.story.traits.HasTrait(KnownTraitDefOf.SlowLearner))
-        {
-            requiredSkillLevel += 2;
-        }
-        Span<SkillRecordTracker> skillRecords =
-        [
-            new SkillRecordTracker(SkillDefOf.Medicine),
-            new SkillRecordTracker(SkillDefOf.Intellectual)
-        ];
-        foreach (SkillRecord skill in pawn.skills.skills)
-        {
-            for (int i = 0; i < skillRecords.Length; i++)
-            {
-                if (skill.def == skillRecords[i].SkillDef && skill.Level < requiredSkillLevel)
-                {
-                    skillRecords[i].InsufficientSkill = true;
-                    // there are only two entries we care about, so we can easily check the other one using some index math
-                    if (skillRecords[Math.Abs(i - 1)].InsufficientSkill)
-                    {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-}
-
-file struct SkillRecordTracker(SkillDef skillDef)
-{
-    public readonly SkillDef SkillDef = skillDef;
-    public bool InsufficientSkill;
+        _ when aggregatedBleedRate > MoreInjuriesMod.Settings.MinBleedRateForAutoTourniquet => bodyPart.Label.Colorize(Color.red),
+        > 0f => bodyPart.Label.Colorize(Color.yellow),
+        _ => bodyPart.Label.Colorize(Color.green)
+    };
 }

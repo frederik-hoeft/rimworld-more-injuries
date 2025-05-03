@@ -16,7 +16,7 @@ internal class EmpBionicsWorker(MoreInjuryComp parent) : InjuryWorker(parent), I
         if (dinfo.Def == DamageDefOf.EMP || dinfo.Def == DamageDefOf.ElectricalBurn)
         {
             // make a snapshot of the bionic hediffs to avoid modifying the collection while iterating
-            Hediff[] bionicHediffSnapshot = [.. patient.health.hediffSet.hediffs.Where(hediff => hediff is { Part: not null, def.addedPartProps.betterThanNatural: true })];
+            Hediff[] bionicHediffSnapshot = [.. patient.health.hediffSet.hediffs.Where(static hediff => hediff is { Part: not null, def.addedPartProps.betterThanNatural: true })];
             float chance = MoreInjuriesMod.Settings.EmpDamageToBionicsChance;
             foreach (Hediff part in bionicHediffSnapshot)
             {

@@ -23,7 +23,7 @@ public class Recipe_SplintFracture : Recipe_RemoveHediff
         }
         if (pawn.health.hediffSet.TryGetFirstHediffMatchingPart(part, recipe.removesHediff, out Hediff? hediff))
         {
-            JobDriver_UseSplint.SplintFracture(billDoer, pawn, hediff!, part, severityOffset: -0.05f);
+            JobDriver_UseSplint.SplintFracture(billDoer, pawn, hediff, part, severityOffset: -0.05f);
         }
     }
 }

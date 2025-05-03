@@ -76,7 +76,7 @@ public class MoreInjuryComp : ThingComp
         // remove dead references if we are at capacity
         if (_weakJobParameters.Count + 1 > _weakJobParameters.Capacity)
         {
-            _weakJobParameters.RemoveAll(wr => !wr.TryGetTarget(out _));
+            _weakJobParameters.RemoveAll(static wr => !wr.TryGetTarget(out _));
         }
         _weakJobParameters.Add(new Std::WeakReference<IExposable>(jobParameter));
     }
@@ -88,7 +88,7 @@ public class MoreInjuryComp : ThingComp
         if (Scribe.mode is LoadSaveMode.Saving)
         {
             // remove dead references
-            _weakJobParameters.RemoveAll(wr => !wr.TryGetTarget(out _));
+            _weakJobParameters.RemoveAll(static wr => !wr.TryGetTarget(out _));
             // box everything to a list of strong references for serialization
             jobParameters = _weakJobParameters.Select(wr =>
             {
@@ -97,7 +97,7 @@ public class MoreInjuryComp : ThingComp
                     return target;
                 }
                 return null;
-            }).Where(x => x is not null).ToList()!;
+            }).Where(static x => x is not null).ToList()!;
         }
         Scribe_Collections.Look(ref jobParameters, "jobParameters", LookMode.Deep);
         if (Scribe.mode is LoadSaveMode.LoadingVars)

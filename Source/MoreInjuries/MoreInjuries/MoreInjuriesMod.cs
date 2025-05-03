@@ -18,7 +18,7 @@ public class MoreInjuriesMod : Mod
     public static MoreInjuriesSettings Settings { get; private set; } = null!;
 
     internal static bool CombatExtendedLoaded => 
-        s_combatExtendedLoaded ??= LoadedModManager.RunningModsListForReading.Any(mod => mod.PackageIdPlayerFacing?.Equals("CETeam.CombatExtended") is true);
+        s_combatExtendedLoaded ??= LoadedModManager.RunningModsListForReading.Any(static mod => mod.PackageIdPlayerFacing?.Equals("CETeam.CombatExtended") is true);
 
     public MoreInjuriesMod(ModContentPack content) : base(content)
     {
@@ -63,7 +63,7 @@ public class MoreInjuriesMod : Mod
             }
             if (list.ButtonText("MI_Settings_General_DebugAction_FixBionicsLabel".Translate()))
             {
-                IEnumerable<Pawn> humans = Find.CurrentMap.mapPawns.AllPawns.Where(pawn => pawn.def == ThingDefOf.Human);
+                IEnumerable<Pawn> humans = Find.CurrentMap.mapPawns.AllPawns.Where(static pawn => pawn.def == ThingDefOf.Human);
                 foreach (Pawn human in humans)
                 {
                     FixMisplacedBionicsModExtension.FixPawn(human);
@@ -245,6 +245,9 @@ public class MoreInjuriesMod : Mod
         Settings.DryGangreneMeanTimeToInfection = Mathf.Floor(list.Slider((float)Math.Round(Settings.DryGangreneMeanTimeToInfection / 60_000f, 1), 0.1f, 15f) * 60_000f);
         list.CheckboxLabeled("MI_Settings_Features_Tourniquets_ShowGizmoLabel".Translate(ENABLE_TOURNIQUET_GIZMO_DEFAULT.NamedDefault()), ref Settings.EnableTourniquetGizmo,
             "MI_Settings_Features_Tourniquets_ShowGizmoTooltip".Translate());
+        list.Label("MI_Settings_Features_Tourniquets_MinBleedRateForAutoTourniquetLabel".Translate(Settings.MinBleedRateForAutoTourniquet.NamedValue(), MIN_BLEED_RATE_FOR_AUTO_TOURNIQUET_DEFAULT.NamedDefault()), -1,
+            "MI_Settings_Features_Tourniquets_MinBleedRateForAutoTourniquetTooltip".Translate());
+        Settings.MinBleedRateForAutoTourniquet = (float)Math.Round(Mathf.Clamp(list.Slider(Settings.MinBleedRateForAutoTourniquet, 0.05f, 5f), 0.05f, 5f), 2);
         // hearing damage
         list.GapLine();
         Text.Font = GameFont.Medium;

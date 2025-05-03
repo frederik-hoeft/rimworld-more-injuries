@@ -47,7 +47,7 @@ public class GameComponent_MoreInjuries(Game game) : GameComponent
     {
         if (Scribe.mode is LoadSaveMode.Saving)
         {
-            version = s_migrations.Max(m => m.Version);
+            version = s_migrations.Max(static m => m.Version);
             Logger.Log($"[GameComponent_MoreInjuries] MigrationManager: Saving game with version {version}");
         }
         Scribe_Values.Look(ref version, "version", defaultValue: 0);

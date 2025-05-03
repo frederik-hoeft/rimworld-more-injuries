@@ -33,7 +33,7 @@ public class JobDriver_RemoveTourniquet : JobDriver_TourniquetBase
             patient.health.RemoveHediff(tourniquet);
             if (tourniquet.Part.def == KnownBodyPartDefOf.Neck)
             {
-                Hediff? choking = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.ChokingOnTourniquet);
+                Hediff? choking = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.ChokingOnTourniquet);
                 if (choking is not null)
                 {
                     patient.health.RemoveHediff(choking);

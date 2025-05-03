@@ -43,7 +43,7 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
-        Hediff? heartAttack = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.HeartAttack);
+        Hediff? heartAttack = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.HeartAttack);
         float doctorSkill = doctor.GetMedicalSkillLevelOrDefault();
         // global dice roll to ensure consistency between HeartAttack and CardiacArrest treatment outcomes
         bool success = Rand.Chance(Mathf.Max(MoreInjuriesMod.Settings.DefibrillatorMinimumSuccessRate, doctorSkill / 8f));
@@ -54,7 +54,7 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
         // only continue if the feature is enabled
         if (success && MoreInjuriesMod.Settings.EnableCardiacArrestOnHighBloodLoss)
         {
-            Hediff? cardiacArrest = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.CardiacArrest && hediff.CurStageIndex == 0);
+            Hediff? cardiacArrest = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.CardiacArrest && hediff.CurStageIndex == 0);
             if (cardiacArrest is not null)
             {
                 patient.health.RemoveHediff(cardiacArrest);

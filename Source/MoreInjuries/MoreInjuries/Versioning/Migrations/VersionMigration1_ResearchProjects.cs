@@ -25,7 +25,7 @@ internal sealed class VersionMigration1_ResearchProjects : IVersionMigration
     public void Migrate()
     {
         Logger.LogDebug("VersionMigration1_ResearchProjects: Migrate");
-        Pawn? randomColonist = Find.CurrentMap?.mapPawns?.FreeColonists?.MaxBy(pawn => pawn.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? -1);
+        Pawn? randomColonist = Find.CurrentMap?.mapPawns?.FreeColonists?.MaxBy(static pawn => pawn.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? -1);
         TaggedString title = "MI_Migration_Update_v1_Title".Translate();
         TaggedString text;
         if (randomColonist is not null)

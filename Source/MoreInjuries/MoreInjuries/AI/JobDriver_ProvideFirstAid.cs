@@ -1,13 +1,17 @@
-﻿using MoreInjuries.HealthConditions.CardiacArrest;
+﻿using MoreInjuries.Extensions;
+using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Choking;
+using MoreInjuries.HealthConditions.HeavyBleeding;
 using MoreInjuries.HealthConditions.HeavyBleeding.Bandages;
 using MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents;
+using MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
-using MoreInjuries.HealthConditions.HeavyBleeding;
 using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -52,9 +56,27 @@ public class JobDriver_ProvideFirstAid : JobDriver
     {
         Pawn doctor = Doctor;
         Pawn patient = Patient;
+        float bleedRateTotal = patient.health.hediffSet.BleedRateTotal;
 
         Job job;
-        // TODO: add support for automatic tourniquet application
+        // check if we can/need to apply a tourniquet
+        if (bleedRateTotal > Mathf.Epsilon)
+        {
+            using BleedRateByLimbEnumerable bleedRateCache = BleedRateByLimbEnumerable.EvaluateLimbs(patient);
+            bool pawnKnowsWhatTheyreDoing = JobDriver_TourniquetBase.PawnKnowsWhatTheyreDoing(doctor);
+            foreach ((BodyPartRecord bodyPart, float bleedRate) in bleedRateCache.OrderByDescending(static kvp => kvp.Value))
+            {
+                // only apply a tourniquet if the bleed rate is high enough and we have a tourniquet in our inventory
+                if (bleedRate > MoreInjuriesMod.Settings.MinBleedRateForAutoTourniquet 
+                    && MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.Tourniquet, fromInventoryOnly: true) is Thing tourniquet
+                    // for medically and intellectually challenged doctors, there's a small chance of certain accidents...
+                    && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing && RandomX.Shared.NextDouble() < 0.2d))
+                {
+                    job = JobDriver_UseTourniquet.GetDispatcher(doctor, patient, tourniquet, bodyPart).CreateJob();
+                    return StartJobAndScheduleScan(doctor, patient, job);
+                }
+            }
+        }
         // first stop the bleeding (inventory first)
         if (patient.health.hediffSet.hediffs.Any(JobDriver_HemostasisBase.JobCanTreat))
         {
@@ -94,7 +116,7 @@ public class JobDriver_ProvideFirstAid : JobDriver
             }
         }
         // is the patient choking?
-        if (patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1))
+        if (patient.health.hediffSet.hediffs.Any(static hediff => Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1))
         {
             if (MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.SuctionDevice, JobDriver_UseSuctionDevice.TargetHediffDefs, fromInventoryOnly: true) is Thing suctionDevice)
             {
@@ -108,23 +130,29 @@ public class JobDriver_ProvideFirstAid : JobDriver
             }
         }
         // do we need to perform CPR?
-        if (patient.health.hediffSet.hediffs.Any(hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
+        if (patient.health.hediffSet.hediffs.Any(static hediff => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1))
         {
             job = JobDriver_PerformCpr.GetDispatcher(doctor, patient).CreateJob();
             return StartJobAndScheduleScan(doctor, patient, job);
         }
         // is an immedite blood transfusion required?
-        if (MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, hediff => JobDriver_UseBloodBag.JobCanTreat(hediff, bloodLossThreshold: 0.65f), fromInventoryOnly: true) is Thing bloodBag)
+        if (MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, static hediff => JobDriver_UseBloodBag.JobCanTreat(hediff, bloodLossThreshold: 0.65f), fromInventoryOnly: true) is Thing bloodBag)
         {
             job = JobDriver_UseBloodBag.GetDispatcher(doctor, patient, bloodBag, fromInventoryOnly: true, fullyHeal: false).CreateJob();
             return StartJobAndScheduleScan(doctor, patient, job);
         }
         // start normal vanilla treatment (only if the patient is downed because otherwise the patient will just get up and walk away)
-        if (patient.Downed && patient.health.hediffSet.hediffs.Any(hediff => hediff.TendableNow()))
+        if (patient.Downed && patient.health.hediffSet.hediffs.Any(static hediff => hediff.TendableNow()))
         {
             Thing medicine = HealthAIUtility.FindBestMedicine(doctor, patient, onlyUseInventory: true);
             job = JobMaker.MakeJob(JobDefOf.TendPatient, patient);
             job.count = 1;
+            return StartJobAndScheduleScan(doctor, patient, job);
+        }
+        // since we finished vanilla treatment, we can now remove the tourniquets again
+        if (bleedRateTotal < Mathf.Epsilon && patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.TourniquetApplied) is Hediff tourniquetApplied)
+        {
+            job = JobDriver_RemoveTourniquet.GetDispatcher(doctor, patient, tourniquetApplied.Part).CreateJob();
             return StartJobAndScheduleScan(doctor, patient, job);
         }
         return false;

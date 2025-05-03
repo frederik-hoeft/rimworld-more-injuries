@@ -11,7 +11,7 @@ public class FixMisplacedBionicsModExtension : DefModExtension
 
     public static void FixPawn(Pawn pawn)
     {
-        List<Hediff> bionics = pawn.health.hediffSet.hediffs.FindAll(hediff => hediff.def.addedPartProps is not null && hediff.def.HasModExtension<FixMisplacedBionicsModExtension>());
+        List<Hediff> bionics = pawn.health.hediffSet.hediffs.FindAll(static hediff => hediff.def.addedPartProps is not null && hediff.def.HasModExtension<FixMisplacedBionicsModExtension>());
 
         foreach (Hediff bionic in bionics)
         {
