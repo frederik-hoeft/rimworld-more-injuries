@@ -27,7 +27,7 @@ public sealed class ObjectPool<T>(int maxCapacity, Func<IPool<T>, T> factory) : 
     private readonly AlphaBetaLockSlim _abls = new();
 
     /// <summary>
-    /// Points to the the next free index in the array.
+    /// Points to the next free index in the array.
     /// </summary>
     private int _index = 0;
     private bool _disposedValue;
