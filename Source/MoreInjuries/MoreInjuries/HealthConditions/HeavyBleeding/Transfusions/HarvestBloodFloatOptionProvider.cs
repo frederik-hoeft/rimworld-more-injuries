@@ -1,6 +1,7 @@
 ﻿using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
 using MoreInjuries.Localization;
+using MoreInjuries.Things;
 using RimWorld;
 using Verse;
 
@@ -19,6 +20,10 @@ internal class HarvestBloodFloatOptionProvider(InjuryWorker parent) : ICompFloat
         if (!doctor.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
         {
             return Named.Keys.ProcedureFailed_IncapableOfSight.Translate(jobTitleKey.Translate(patient.Named(Named.Params.PATIENT), doctor.Named(Named.Params.DOCTOR)));
+        }
+        if (!doctor.CanReachPatient(patient))
+        {
+            return Named.Keys.ProcedureFailed_NoPath.Translate(jobTitleKey.Translate(patient.Named(Named.Params.PATIENT), doctor.Named(Named.Params.DOCTOR)));
         }
         return null;
     }
