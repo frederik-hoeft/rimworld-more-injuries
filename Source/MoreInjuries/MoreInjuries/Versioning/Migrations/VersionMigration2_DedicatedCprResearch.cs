@@ -6,7 +6,7 @@ namespace MoreInjuries.Versioning.Migrations;
 
 internal sealed class VersionMigration2_DedicatedCprResearch : IVersionMigration
 {
-    private const string OK_SIGNAL = "MI_Migration_Signal_v2_Ok";
+    private const string OK_SIGNAL = "MI_Migration_Signal_v2_Continue";
 
     private string? _loadID;
 
@@ -14,7 +14,7 @@ internal sealed class VersionMigration2_DedicatedCprResearch : IVersionMigration
 
     public void ExposeData()
     {
-        Scribe_Values.Look(ref _loadID, "loadID", null);
+        Scribe_Values.Look(ref _loadID, "loadID", defaultValue: null);
     }
 
     public string GetUniqueLoadID() => _loadID ??= $"MoreInjuries.VersionMigration2_DedicatedCprResearch_{Guid.NewGuid()}";

@@ -39,7 +39,7 @@
   <ResearchProjectDef>
     <defName>Cpr</defName>
     <label>cardiopulmonary resuscitation (CPR)</label>
-    <description>A foundational resuscitation technique, CPR is the first line of defense against cardiac or respiratory arrest. By experimenting with different chest compression and rescue breathing techniques, your medical professionals will discover cardiopulmonary resuscitation (CPR) to restore circulation and oxygenation in patients whose hearts have stopped. This research provides your colony with the knowledge needed to perform CPR in emergencies, significantly improving survival rates in the first few minutes of the golden hour to save the patient's life.\n\nUpon completion of this research, a new right-click action will be available for drafted doctors to perform CPR on patients in need of resuscitation.</description>
+    <description>A foundational resuscitation technique, CPR is the first line of defense against cardiac or respiratory arrest. By experimenting with different chest compression and rescue breathing procedures, your medical professionals will learn cardiopulmonary resuscitation (CPR) to restore circulation and oxygenation in patients whose hearts have stopped. This research provides your colony with the knowledge needed to perform CPR in emergencies, significantly improving survival rates in the first few minutes of the golden hour to save the patient's life.\n\nUpon completion of this research, a new right-click action will be available for drafted doctors to perform CPR on patients in need of resuscitation.</description>
     <baseCost>1000</baseCost>
     <techLevel>Industrial</techLevel>
     <prerequisites>
