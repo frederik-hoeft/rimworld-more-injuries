@@ -156,7 +156,7 @@ Choking is a medical emergency that occurs when a foreign object becomes lodged 
 **Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. If the patient is unconscious, the airways must be cleared using a specialized [airway suction device](#airway-suction-device) or by compressing the chest using [CPR](#cpr) to expel the blood and restore breathing. To unlock [CPR](#cpr), you must first complete the [cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr) research project.
 
 > [!NOTE]
-> **Biotech DLC**: Deathresting sanguaphages will alway be able to cough up the blood on their own and clear the airway - once the bleeding has been stopped.
+> **Biotech DLC**: Deathresting sanguaphages will always be able to cough up the blood on their own and clear the airway - once the bleeding has been stopped.
 
 #### Choking on Tourniquet
 
