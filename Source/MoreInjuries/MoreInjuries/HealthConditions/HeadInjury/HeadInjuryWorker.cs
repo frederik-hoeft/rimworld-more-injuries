@@ -18,7 +18,7 @@ public class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
 
     public static HashSet<string> DamageDefNameWhitelist { get; }
 
-    public override bool IsEnabled => _headInjuryGivers.Any(giver => giver.IsEnabled);
+    public override bool IsEnabled => _headInjuryGivers.Any(static giver => giver.IsEnabled);
 
     static HeadInjuryWorker()
     {
@@ -66,7 +66,7 @@ public class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
         Pawn patient = Target;
         // assuming an even distribution of the damage across all affected body parts, we can calculate the weighted damage to the head
         float weightedHeadTrauma = 0;
-        float aggregatedBodyTrauma = bodyParts.Sum(bodyPart => bodyPart.coverage);
+        float aggregatedBodyTrauma = bodyParts.Sum(static bodyPart => bodyPart.coverage);
         foreach (BodyPartRecord bodyPart in bodyParts)
         {
             // check if the body part of the head (body part group FullHead)

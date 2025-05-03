@@ -25,7 +25,7 @@ public class JobDriver_UseSplint : JobDriver_UseMedicalDevice_TargetsHediffDefs
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
-        Hediff? fracture = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.Fracture);
+        Hediff? fracture = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.Fracture);
         if (fracture is { Part: BodyPartRecord part })
         {
             SplintFracture(doctor, patient, fracture, part);

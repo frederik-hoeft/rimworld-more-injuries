@@ -212,6 +212,10 @@
   <MI_Settings_Features_Tourniquets_ShowGizmoLabel>Show tourniquet gizmo on pawns (default: {DEFAULT})</MI_Settings_Features_Tourniquets_ShowGizmoLabel>
   <!-- EN: If enabled, a gizmo will be shown on selected pawns that allows you to quickly apply or remove tourniquets as a self-treatment measure. -->
   <MI_Settings_Features_Tourniquets_ShowGizmoTooltip>If enabled, a gizmo will be shown on selected pawns that allows you to quickly apply or remove tourniquets as a self-treatment measure.</MI_Settings_Features_Tourniquets_ShowGizmoTooltip>
+  <!-- EN: Minimum bleed rate for auto tourniquet: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Tourniquets_MinBleedRateForAutoTourniquetLabel>Minimum bleed rate for auto tourniquet: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Tourniquets_MinBleedRateForAutoTourniquetLabel>
+  <!-- EN: The minimum bleed rate for a doctor to automatically apply a tourniquet to an injured limb as part of the "provide first aid" job. If the bleed rate is below this value, the doctor will skip tourniquet application and will tend the injury instead.\n\nThis setting also affects the coloring of the libms in the "Apply Tourniquet" float menu text. -->
+  <MI_Settings_Features_Tourniquets_MinBleedRateForAutoTourniquetTooltip>The minimum bleed rate for a doctor to automatically apply a tourniquet to an injured limb as part of the "provide first aid" job. If the bleed rate is below this value, the doctor will skip tourniquet application and will tend the injury instead.\n\nThis setting also affects the coloring of the libms in the "Apply Tourniquet" float menu text.</MI_Settings_Features_Tourniquets_MinBleedRateForAutoTourniquetTooltip>
   <!-- ============ Feature: Hearing Damage ============ -->
   <!-- EN: Hearing Damage -->
   <MI_Settings_Features_HearingDamage>Hearing Damage</MI_Settings_Features_HearingDamage>

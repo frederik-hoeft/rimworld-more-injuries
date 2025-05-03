@@ -130,7 +130,7 @@ public class HediffComp_Shock : HediffComp
         if (!preventHypoxia && Rand.Chance(MoreInjuriesMod.Settings.OrganHypoxiaChance))
         {
             BodyPartRecord hypoxiaTarget = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Middle, BodyPartDepth.Inside)
-                .Where(bodyPart => bodyPart.def != BodyPartDefOf.Heart
+                .Where(static bodyPart => bodyPart.def != BodyPartDefOf.Heart
                     && bodyPart.def.bleedRate > 0f)
                 .ToList()
                 .SelectRandom();

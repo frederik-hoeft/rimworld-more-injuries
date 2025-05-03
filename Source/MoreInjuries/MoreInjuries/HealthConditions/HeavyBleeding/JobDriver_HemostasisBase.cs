@@ -32,7 +32,7 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
 
         Hediff? injury = patient.health.hediffSet.hediffs
             .Where(IsTreatable)
-            .OrderByDescending(hediff => hediff.BleedRate)
+            .OrderByDescending(static hediff => hediff.BleedRate)
             .FirstOrDefault();
         if (injury is IStatefulInjury { State: IInjuryState state } && device?.def.GetModExtension<HemostasisModExtension>() is HemostasisModExtension extension)
         {

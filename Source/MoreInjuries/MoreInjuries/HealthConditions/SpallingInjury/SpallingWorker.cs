@@ -83,7 +83,7 @@ internal class SpallingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
             bulletMultiplier *= MoreInjuriesMod.Settings.SpallingChance;
 
             // apply spall to all body parts that can be cut, according to the hit chance factor
-            foreach (BodyPartRecord bodyPart in patient.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside).Where(bodyPart => bodyPart.def.GetHitChanceFactorFor(DamageDefOf.Cut) > 0))
+            foreach (BodyPartRecord bodyPart in patient.health.hediffSet.GetNotMissingParts(depth: BodyPartDepth.Outside).Where(static bodyPart => bodyPart.def.GetHitChanceFactorFor(DamageDefOf.Cut) > 0))
             {
                 if (Rand.Chance(bulletMultiplier))
                 {

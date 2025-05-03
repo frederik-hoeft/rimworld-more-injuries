@@ -17,6 +17,7 @@ The following is a list of selected features and health conditions. For a full l
   - [Choking on Tourniquet](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#choking-on-tourniquet)
 - [Concussion](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#concussion)
 - [EMP Shutdown](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#emp-shutdown)
+- [Enclosed Injuries](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#enclosed-injuries)
 - [Fractures](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#fractures)
   - [Bone Fracture](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#bone-fracture)
   - [Healing Bone Fracture](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#healing-bone-fracture)

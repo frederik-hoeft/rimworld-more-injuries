@@ -15,10 +15,14 @@ public class WorkGiver_UseSplint : WorkGiver_MoreInjuriesTreatmentBase
         base.IsValidPatient(doctor, thing, out patient) 
         && patient.playerSettings?.medCare is not MedicalCareCategory.NoCare and not MedicalCareCategory.NoMeds;
 
+    protected override bool CanTreat(Pawn doctor, Pawn patient) => 
+        MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.Splint, JobDriver_UseSplint.TargetHediffDefs) is not null 
+        && patient.BillStack?.Bills?.Find(static b => b.recipe == KnownRecipeDefOf.SplintFracture || b.recipe == KnownRecipeDefOf.RepairFracture) is null
+        && base.CanTreat(doctor, patient);
+
     public override bool ShouldSkip(Pawn pawn, bool forced = false) =>
         !KnownResearchProjectDefOf.BasicAnatomy.IsFinished
-        || !MoreInjuriesMod.Settings.EnableApplySplintJob
-        || pawn.BillStack?.Bills?.Find(b => b.recipe == KnownRecipeDefOf.SplintFracture || b.recipe == KnownRecipeDefOf.RepairFracture) is not null;
+        || !MoreInjuriesMod.Settings.EnableApplySplintJob;
 
     protected override Job CreateJob(Pawn doctor, Pawn patient) => MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.Splint, JobDriver_UseSplint.TargetHediffDefs) is Thing splint
         ? JobDriver_UseSplint.GetDispatcher(doctor, patient, splint).CreateJob()

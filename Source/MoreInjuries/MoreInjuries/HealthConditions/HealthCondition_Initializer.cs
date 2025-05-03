@@ -20,11 +20,11 @@ public static class HealthCondition_Initializer
 
         // inject hearing loss hooks into all gun defs
         IEnumerable<ThingDef> guns = DefDatabase<ThingDef>.AllDefsListForReading
-            .Where(def => def is 
+            .Where(static def => def is 
             { 
                 weaponClasses.Count: > 0, 
                 Verbs.Count: > 0 
-            } && def.Verbs.Any(verb => verb.range > 0));
+            } && def.Verbs.Any(static verb => verb.range > 0));
         foreach (ThingDef def in guns)
         {
             def.comps ??= [];
@@ -43,11 +43,11 @@ public static class HealthCondition_Initializer
         HediffDefOf.BloodLoss.hediffClass = typeof(HediffWithComps);
 
         // hook into all injury and missing part hediffs
-        foreach (HediffDef hediffdef in DefDatabase<HediffDef>.AllDefsListForReading.Where(hediffDef => hediffDef.hediffClass == typeof(Hediff_Injury)))
+        foreach (HediffDef hediffdef in DefDatabase<HediffDef>.AllDefsListForReading.Where(static hediffDef => hediffDef.hediffClass == typeof(Hediff_Injury)))
         {
             hediffdef.hediffClass = typeof(BetterInjury);
         }
-        foreach (HediffDef hediffdef in DefDatabase<HediffDef>.AllDefsListForReading.Where(hediffDef => hediffDef.hediffClass == typeof(Hediff_MissingPart)))
+        foreach (HediffDef hediffdef in DefDatabase<HediffDef>.AllDefsListForReading.Where(static hediffDef => hediffDef.hediffClass == typeof(Hediff_MissingPart)))
         {
             hediffdef.hediffClass = typeof(BetterMissingPart);
         }

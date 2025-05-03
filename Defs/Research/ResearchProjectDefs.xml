@@ -34,6 +34,22 @@
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
 
+  <!-- depends on: basic first aid -->
+  <!-- unlocks: CPR -->
+  <ResearchProjectDef>
+    <defName>Cpr</defName>
+    <label>cardiopulmonary resuscitation (CPR)</label>
+    <description>A foundational resuscitation technique, CPR is the first line of defense against cardiac or respiratory arrest. By experimenting with different chest compression and rescue breathing procedures, your medical professionals will learn cardiopulmonary resuscitation (CPR) to restore circulation and oxygenation in patients whose hearts have stopped. This research provides your colony with the knowledge needed to perform CPR in emergencies, significantly improving survival rates in the first few minutes of the golden hour to save the patient's life.\n\nUpon completion of this research, a new right-click action will be available for drafted doctors to perform CPR on patients in need of resuscitation.</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>BasicFirstAid</li>
+    </prerequisites>
+    <researchViewX>2</researchViewX>
+    <researchViewY>0</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
   <!-- depends on: basic first aid, medicine production -->
   <!-- unlocks: hemostatic agent -->
   <ResearchProjectDef>
@@ -53,19 +69,18 @@
 
   <!-- ============= INDUSTRIAL ============= -->
   <!-- depends on: basic first aid -->
-  <!-- unlocks: CPR, defibrillator, (saline IVs,) airway suction device, decompressive craniectomy, osteosynthetic surgery, thoracotomy -->
+  <!-- unlocks: defibrillator, (in the future: saline IVs,) airway suction device, decompressive craniectomy, osteosynthetic surgery, thoracotomy -->
   <ResearchProjectDef>
     <defName>EmergencyMedicine</defName>
     <label>emergency medicine</label>
-    <description>With the foundation of basic first aid in place, this research delves into the advanced field of emergency medicine. By studying the latest techniques in life-saving medical interventions, your doctors will be equipped to handle a wide range of critical medical emergencies, from cardiac arrest to traumatic injuries. Your medical team will train in modern resuscitation techniques, including cardiopulmonary resuscitation (CPR) and the use of defibrillators to restore normal heart rhythms.</description>
-    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <description>Bringing together advances in first aid, pharmacology, and electrical technology, this research opens the door to modern emergency medicine. Your doctors will learn to rapidly assess and stabilize patients facing life-threatening conditions—trauma, airway obstruction, cardiac arrest, and more. Through intensive training and access to specialized equipment like defibrillators and suction devices, your colony's medical responders will be prepared to perform critical interventions that can make the difference between life and death in the first golden hour. These capabilities also lay the foundation for complex surgical procedures in the future.</description>
     <baseCost>2000</baseCost>
     <techLevel>Industrial</techLevel>
     <prerequisites>
-      <li>BasicFirstAid</li>
-      <li>MicroelectronicsBasics</li>
+      <li>Cpr</li>
+      <li>Electricity</li>
     </prerequisites>
-    <researchViewX>2</researchViewX>
+    <researchViewX>3</researchViewX>
     <researchViewY>0</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
@@ -86,7 +101,7 @@
       <li>EmergencyMedicine</li>
       <li>Fabrication</li>
     </prerequisites>
-    <researchViewX>3</researchViewX>
+    <researchViewX>4</researchViewX>
     <researchViewY>0</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
@@ -107,7 +122,7 @@
       <li>EmergencyMedicine</li>
       <li>VitalsMonitor</li>
     </prerequisites>
-    <researchViewX>3</researchViewX>
+    <researchViewX>4</researchViewX>
     <researchViewY>1</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
@@ -119,16 +134,13 @@
     <label>epinephrine synthesis</label>
     <description>Research into the synthesis of epinephrine, a hormone and neurotransmitter that plays a vital role in the body's fight-or-flight response. By developing an autoinjector that can deliver a precise dose of epinephrine in emergency situations, you will be able to craft epinephrine autoinjectors that can be used to boost blood pressure and increase heart rate to temporarily reduce the adverse effects of hypovolemic shock and anemia.\n\nWe suspect an additional potential use for this drug as a combat stimulant, but further research is required to confirm its efficacy.</description>
     <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-    <requiredResearchFacilities>
-      <li>MultiAnalyzer</li>
-    </requiredResearchFacilities>
     <baseCost>2000</baseCost>
     <techLevel>Industrial</techLevel>
     <prerequisites>
       <li>EmergencyMedicine</li>
       <li>DrugProduction</li>
     </prerequisites>
-    <researchViewX>3</researchViewX>
+    <researchViewX>4</researchViewX>
     <researchViewY>2</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
@@ -148,10 +160,9 @@
     <techLevel>Spacer</techLevel>
     <prerequisites>
       <li>Neurosurgery</li>
-      <li>AdvancedFabrication</li>
       <li>Bionics</li>
     </prerequisites>
-    <researchViewX>4</researchViewX>
+    <researchViewX>5</researchViewX>
     <researchViewY>0</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>

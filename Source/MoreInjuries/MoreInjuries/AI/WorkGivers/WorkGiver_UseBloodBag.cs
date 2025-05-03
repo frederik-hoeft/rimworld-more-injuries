@@ -16,7 +16,7 @@ public class WorkGiver_UseBloodBag : WorkGiver_MoreInjuriesTreatmentBase
         JobDriver_UseBloodBag.JobCanTreat(hediff, BLOOD_LOSS_THRESHOLD);
 
     private Thing? TryFindBloodBag(Pawn doctor, Pawn patient) => 
-        MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, hediff => JobDriver_UseBloodBag.JobCanTreat(hediff, BLOOD_LOSS_THRESHOLD));
+        MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, static hediff => JobDriver_UseBloodBag.JobCanTreat(hediff, BLOOD_LOSS_THRESHOLD));
 
     protected override bool IsValidPatient(Pawn doctor, Thing thing, out Pawn patient) => base.IsValidPatient(doctor, thing, out patient) 
         && patient.playerSettings?.medCare is not MedicalCareCategory.NoCare and not MedicalCareCategory.NoMeds;

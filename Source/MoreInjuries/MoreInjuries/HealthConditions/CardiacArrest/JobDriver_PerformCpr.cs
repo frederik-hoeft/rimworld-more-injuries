@@ -1,6 +1,6 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -26,11 +26,11 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
 
     protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
-        Hediff? choking = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.ChokingOnBlood);
+        Hediff? choking = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.ChokingOnBlood);
         if (choking is not null)
         {
             float severity = choking.Severity;
-            float doctorSkill = doctor.skills.GetSkill(SkillDefOf.Medicine).Level;
+            float doctorSkill = doctor.GetMedicalSkillLevelOrDefault();
             // determine the factor based on the doctor's medicine skill where at level 15 the factor is 1
             float doctorSkillFactor = doctorSkill / 15f;
             // scale severity reduction based on a sigmoid function with a random offset
@@ -49,11 +49,11 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
         // if not enabled, don't bother checking for cardiac arrest
         if (MoreInjuriesMod.Settings.EnableCardiacArrestOnHighBloodLoss)
         {
-            Hediff? cardiacArrest = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.CardiacArrest);
+            Hediff? cardiacArrest = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.CardiacArrest);
             if (cardiacArrest is not null)
             {
                 float severity = cardiacArrest.Severity;
-                float doctorSkill = doctor.skills.GetSkill(SkillDefOf.Medicine).Level;
+                float doctorSkill = doctor.GetMedicalSkillLevelOrDefault();
                 // determine the factor based on the doctor's medicine skill where at level 15 the factor is 1
                 float doctorSkillFactor = doctorSkill / 15f;
                 // scale severity reduction based on a sigmoid function with a random offset, reduced by a random factor

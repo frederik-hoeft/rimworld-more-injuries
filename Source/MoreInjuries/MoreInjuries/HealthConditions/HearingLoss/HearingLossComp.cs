@@ -30,7 +30,7 @@ public class HearingLossComp : ThingComp
                     {
                         Logger.LogDebug($"attempting to generate ear group cache from pawn {target.Name}");
                         // not yet cached, check if the apparel covers the ears
-                        BodyPartRecord? ear = target.health.hediffSet.GetNotMissingParts().FirstOrDefault(bodyPart => bodyPart.def == KnownBodyPartDefOf.Ear);
+                        BodyPartRecord? ear = target.health.hediffSet.GetNotMissingParts().FirstOrDefault(static bodyPart => bodyPart.def == KnownBodyPartDefOf.Ear);
                         if (ear is null)
                         {
                             // pawn has no ears, no need to check further

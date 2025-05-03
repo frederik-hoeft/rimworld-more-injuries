@@ -22,7 +22,7 @@ internal class HydrostaticShockWorker(MoreInjuryComp parent) : InjuryWorker(pare
                 trauma = HediffMaker.MakeHediff(KnownHediffDefOf.HemorrhagicStroke, patient);
                 patient.health.AddHediff(trauma, brain);
             }
-            trauma!.Severity += 0.1f;
+            trauma.Severity += 0.1f;
         }
     }
 }

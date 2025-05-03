@@ -38,58 +38,6 @@ public class MoreInjuryComp : ThingComp
     // to allow the GC to do its job
     private readonly List<Std::WeakReference<IExposable>> _weakJobParameters = [];
 
-    public bool CallbackActive { get; private set; } = false;
-
-    internal bool FailedLoading { get; set; } = false;
-
-    public void PersistJobParameters(IExposable jobParameter)
-    {
-        // remove dead references if we are at capacity
-        if (_weakJobParameters.Count + 1 > _weakJobParameters.Capacity)
-        {
-            _weakJobParameters.RemoveAll(wr => !wr.TryGetTarget(out _));
-        }
-        _weakJobParameters.Add(new Std::WeakReference<IExposable>(jobParameter));
-    }
-
-    public override void PostExposeData()
-    {
-        base.PostExposeData();
-        List<IExposable>? jobParameters = null;
-        if (Scribe.mode is LoadSaveMode.Saving)
-        {
-            // remove dead references
-            _weakJobParameters.RemoveAll(wr => !wr.TryGetTarget(out _));
-            // box everything to a list of strong references for serialization
-            jobParameters = _weakJobParameters.Select(wr =>
-            {
-                if (wr.TryGetTarget(out IExposable target))
-                {
-                    return target;
-                }
-                return null;
-            }).Where(x => x is not null).ToList()!;
-        }
-        Scribe_Collections.Look(ref jobParameters, "jobParameters", LookMode.Deep);
-        if (Scribe.mode is LoadSaveMode.LoadingVars)
-        {
-            // update our weak references
-            _weakJobParameters.Clear();
-            if (jobParameters is not null)
-            {
-                foreach (IExposable jobParameter in jobParameters)
-                {
-                    _weakJobParameters.Add(new Std::WeakReference<IExposable>(jobParameter));
-                }
-            }
-            else
-            {
-                Logger.Log($"Failed to load jobParameters cache from Pawn {parent?.ToStringSafe()}! Either MoreInjuries was newly added or the save file is corrupt :O");
-                FailedLoading = true;
-            }
-        }
-    }
-
     public MoreInjuryComp()
     {
         _pipeline =
@@ -117,6 +65,58 @@ public class MoreInjuryComp : ThingComp
         _compFloatMenuOptionsHandlers = [.. _pipeline.OfType<ICompFloatMenuOptionsHandler>()];
         _postPostApplyDamageHandlers = [.. _pipeline.OfType<IPostPostApplyDamageHandler>()];
         _postTakeDamageHandlers = [.. _pipeline.OfType<IPostTakeDamageHandler>()];
+    }
+
+    public bool CallbackActive { get; private set; } = false;
+
+    internal bool FailedLoading { get; set; } = false;
+
+    public void PersistJobParameters(IExposable jobParameter)
+    {
+        // remove dead references if we are at capacity
+        if (_weakJobParameters.Count + 1 > _weakJobParameters.Capacity)
+        {
+            _weakJobParameters.RemoveAll(static wr => !wr.TryGetTarget(out _));
+        }
+        _weakJobParameters.Add(new Std::WeakReference<IExposable>(jobParameter));
+    }
+
+    public override void PostExposeData()
+    {
+        base.PostExposeData();
+        List<IExposable>? jobParameters = null;
+        if (Scribe.mode is LoadSaveMode.Saving)
+        {
+            // remove dead references
+            _weakJobParameters.RemoveAll(static wr => !wr.TryGetTarget(out _));
+            // box everything to a list of strong references for serialization
+            jobParameters = _weakJobParameters.Select(wr =>
+            {
+                if (wr.TryGetTarget(out IExposable target))
+                {
+                    return target;
+                }
+                return null;
+            }).Where(static x => x is not null).ToList()!;
+        }
+        Scribe_Collections.Look(ref jobParameters, "jobParameters", LookMode.Deep);
+        if (Scribe.mode is LoadSaveMode.LoadingVars)
+        {
+            // update our weak references
+            _weakJobParameters.Clear();
+            if (jobParameters is not null)
+            {
+                foreach (IExposable jobParameter in jobParameters)
+                {
+                    _weakJobParameters.Add(new Std::WeakReference<IExposable>(jobParameter));
+                }
+            }
+            else
+            {
+                Logger.Log($"Failed to load jobParameters cache from Pawn {parent?.ToStringSafe()}! Either MoreInjuries was newly added or the save file is corrupt :O");
+                FailedLoading = true;
+            }
+        }
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()

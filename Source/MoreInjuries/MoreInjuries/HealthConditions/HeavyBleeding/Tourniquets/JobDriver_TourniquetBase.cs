@@ -1,5 +1,9 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.KnownDefs;
+using RimWorld;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -39,6 +43,36 @@ public abstract class JobDriver_TourniquetBase : JobDriver_UseMedicalDevice
 
     protected static string? GetUniqueBodyPartKey(BodyPartRecord? bodyPart) => bodyPart?.woundAnchorTag ?? bodyPart?.def.defName;
 
+    public static bool PawnKnowsWhatTheyreDoing(Pawn pawn)
+    {
+        int requiredSkillLevel = 3;
+        if (pawn.story.traits.HasTrait(KnownTraitDefOf.SlowLearner))
+        {
+            requiredSkillLevel += 2;
+        }
+        Span<SkillRecordTracker> skillRecords =
+        [
+            new SkillRecordTracker(SkillDefOf.Medicine),
+            new SkillRecordTracker(SkillDefOf.Intellectual)
+        ];
+        foreach (SkillRecord skill in pawn.skills.skills)
+        {
+            for (int i = 0; i < skillRecords.Length; i++)
+            {
+                if (skill.def == skillRecords[i].SkillDef && skill.Level < requiredSkillLevel)
+                {
+                    skillRecords[i].InsufficientSkill = true;
+                    // there are only two entries we care about, so we can easily check the other one using some index math
+                    if (skillRecords[Math.Abs(i - 1)].InsufficientSkill)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Matches XML node naming.")]
     protected class TourniquetBaseParameters : ExtendedJobParameters
     {
@@ -50,4 +84,10 @@ public abstract class JobDriver_TourniquetBase : JobDriver_UseMedicalDevice
             Scribe_Values.Look(ref bodyPartKey, "bodyPartKey");
         }
     }
+}
+
+file struct SkillRecordTracker(SkillDef skillDef)
+{
+    public readonly SkillDef SkillDef = skillDef;
+    public bool InsufficientSkill;
 }

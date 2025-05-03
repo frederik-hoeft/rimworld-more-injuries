@@ -24,7 +24,9 @@ public abstract class JobDriver_MedicalBase<TTarget> : JobDriver where TTarget :
     {
         Pawn doctor = Doctor;
         float manipulationCapacity = Mathf.Max(doctor.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation), 0.05f);
-        return (int)(1f / (doctor.GetStatValue(StatDefOf.MedicalTendSpeed) * manipulationCapacity) * BaseTendDuration);
+        float medicalTendSpeed = doctor.GetStatValue(StatDefOf.MedicalTendSpeed);
+        Logger.LogDebug($"Doctor {doctor.Name} has manipulation capacity of {manipulationCapacity} and medical tend speed of {medicalTendSpeed}");
+        return (int)(1f / (medicalTendSpeed * manipulationCapacity) * BaseTendDuration);
     }
 
     protected abstract void FinalizeTreatment(Pawn doctor, TTarget target, Thing? thing);
@@ -51,7 +53,7 @@ public abstract class JobDriver_MedicalBase<TTarget> : JobDriver where TTarget :
                 }
                 else
                 {
-                    Logger.LogDebug($"{nameof(FinalizeTreatment)}: Job is null after finalizing treatment, but the doctor is the target. So perhaps they overdosed or died. This is probably fine.");
+                    Logger.LogVerbose($"{nameof(FinalizeTreatment)}: Job is null after finalizing treatment, but the doctor is the target. So perhaps they overdosed or died. This is probably fine.");
                 }
                 return;
             }
