@@ -7,7 +7,7 @@ namespace MoreInjuries.AI.WorkGivers;
 
 public class WorkGiver_PerformCpr : WorkGiver_MoreInjuriesTreatmentBase
 {
-    public override bool ShouldSkip(Pawn pawn, bool forced = false) => !KnownResearchProjectDefOf.EmergencyMedicine.IsFinished;
+    public override bool ShouldSkip(Pawn pawn, bool forced = false) => !KnownResearchProjectDefOf.Cpr.IsFinished;
 
     protected override bool CanTreat(Hediff hediff) => Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1;
 
