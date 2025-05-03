@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
 using RimWorld;
 using UnityEngine;
@@ -30,7 +31,7 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
         if (choking is not null)
         {
             float severity = choking.Severity;
-            float doctorSkill = doctor.skills.GetSkill(SkillDefOf.Medicine).Level;
+            float doctorSkill = doctor.GetMedicalSkillLevelOrDefault();
             // determine the factor based on the doctor's medicine skill where at level 15 the factor is 1
             float doctorSkillFactor = doctorSkill / 15f;
             // scale severity reduction based on a sigmoid function with a random offset
@@ -53,7 +54,7 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
             if (cardiacArrest is not null)
             {
                 float severity = cardiacArrest.Severity;
-                float doctorSkill = doctor.skills.GetSkill(SkillDefOf.Medicine).Level;
+                float doctorSkill = doctor.GetMedicalSkillLevelOrDefault();
                 // determine the factor based on the doctor's medicine skill where at level 15 the factor is 1
                 float doctorSkillFactor = doctorSkill / 15f;
                 // scale severity reduction based on a sigmoid function with a random offset, reduced by a random factor

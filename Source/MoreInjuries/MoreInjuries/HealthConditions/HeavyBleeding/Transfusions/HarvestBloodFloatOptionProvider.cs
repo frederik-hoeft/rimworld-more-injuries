@@ -1,4 +1,5 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Extensions;
+using MoreInjuries.KnownDefs;
 using MoreInjuries.Localization;
 using RimWorld;
 using Verse;
@@ -32,7 +33,7 @@ internal class HarvestBloodFloatOptionProvider(InjuryWorker parent) : ICompFloat
             {
                 return;
             }
-            int doctorSkill = selectedPawn.skills.GetSkill(SkillDefOf.Medicine).Level;
+            int doctorSkill = selectedPawn.GetMedicalSkillLevelOrDefault();
             int requiredSkill = MoreInjuriesMod.Settings.BloodTransfusionHarvestMinimumSkill;
             string jobLabel = string.Format(JobDriver_HarvestBlood.JOB_LABEL_KEY, patient.LabelShort);
             if (doctorSkill < requiredSkill)
