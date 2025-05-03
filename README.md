@@ -26,6 +26,7 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
       - [Choking on Tourniquet](#choking-on-tourniquet)
     - [Concussion](#concussion)
     - [EMP Shutdown](#emp-shutdown)
+    - [Enclosed Injuries](#enclosed-injuries)
     - [Fractures](#fractures)
       - [Bone Fracture](#bone-fracture)
       - [Healing Bone Fracture](#healing-bone-fracture)
@@ -73,8 +74,9 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
   - [New Research Projects](#new-research-projects)
     - [Basic Anatomy](#basic-anatomy)
     - [Basic First Aid](#basic-first-aid)
-    - [Emergency Medicine](#emergency-medicine)
     - [Advanced First Aid](#advanced-first-aid)
+    - [Cardiopulmonary Resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr)
+    - [Emergency Medicine](#emergency-medicine)
     - [Neurosurgery](#neurosurgery)
     - [Advanced Thoracic Surgery](#advanced-thoracic-surgery)
     - [Epinephrine Synthesis](#epinephrine-synthesis)
@@ -120,7 +122,7 @@ Cardiac arrest is a sudden loss of blood flow resulting from the failure of the 
 
 **Effects**: Loss of consciousness, coma, multiple organ failure, and death if not treated immediately.
 
-**Treatment**: Cardiac arrest must be treated immediately with [CPR](#cpr) to restore blood flow and hopefully restart the heart. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). In cases of `clinical death`, only [CPR](#cpr) will be effective.
+**Treatment**: Cardiac arrest must be treated immediately with [CPR](#cpr) (which needs to be researched first) to restore blood flow and hopefully restart the heart. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). In cases of `clinical death`, only [CPR](#cpr) will be effective.
 
 > [!NOTE]
 > **Biotech DLC**: Sanguaphages are immune to cardiac arrest and will automatically recover from it once entering deathrest.
@@ -151,10 +153,10 @@ Choking is a medical emergency that occurs when a foreign object becomes lodged 
 
 **Effects**: Coughing, suffocation, loss of consciousness, and death if not treated immediately.
 
-**Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. If the patient is unconscious, the airways must be cleared using a specialized [airway suction device](#airway-suction-device) or by compressing the chest using [CPR](#cpr) to expel the blood and restore breathing.
+**Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. If the patient is unconscious, the airways must be cleared using a specialized [airway suction device](#airway-suction-device) or by compressing the chest using [CPR](#cpr) to expel the blood and restore breathing. To unlock [CPR](#cpr), you must first complete the [cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr) research project.
 
 > [!NOTE]
-> **Biotech DLC**: Deathresting sanguaphages will alway be able to cough up the blood on their own and clear the airway - once the bleeding has been stopped.
+> **Biotech DLC**: Deathresting sanguaphages will always be able to cough up the blood on their own and clear the airway - once the bleeding has been stopped.
 
 #### Choking on Tourniquet
 
@@ -189,6 +191,19 @@ Choking is a medical emergency that occurs when a foreign object becomes lodged 
 **Effects**: The affected bionic body part will be disabled and unusable for a period of time.
 
 **Treatment**: The bionic body part will reboot itself after around one day and return to normal function.
+
+### Enclosed Injuries
+
+> **In-Game Description**
+> _"**&lt;injury type&gt; (enclosed)**"_
+
+Bleed rates of injuries are now dynamically calculated and depend on the depth of the injury. For example, a gunshot wound to the abdomen may be bandaged on the exterior, but the internal organs may still be bleeding until properly treated. Such enclosed injuries bleed at a slower rate than open injuries, but they can still be life-threatening if not treated properly. 
+
+**Causes**: Penetrating injuries with damage to internal organs, where only the exterior (skin layer) is bandaged.
+
+**Effects**: Internal bleeding continues at a reduced rate compared to open injuries, but can still be life-threatening if not treated properly.
+
+**Treatment**: Enclosed injuries may be treated with vanilla RimWorld treatment methods, such as medicine or treatment without medicine.
 
 ### Fractures
 
@@ -279,7 +294,7 @@ Hearing loss is a partial or total inability to hear. It may be temporary or per
 
 _Vanilla RimWorld condition, see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss)_.
 
-**Causes**: See [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss), but can also be caused by severe [temporary hearing loss](#temporary-hearing-loss).
+**Causes**: See [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss), but can also be caused by severe cases of [temporary hearing loss](#temporary-hearing-loss).
 
 **Effects**: Permanent reduction in hearing ability, see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss).
 
@@ -515,10 +530,13 @@ Cardiopulmonary resuscitation (CPR) is an emergency procedure that combines ches
 2. CPR is part of the [First Aid](#first-aid) order for *drafted* pawns.
 3. Alternatively, resuscitating patients using CPR is now part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with a condition that requires CPR, any non-drafted doctor will automatically attempt to resuscitate the patient using CPR or a [defibrillator](#defibrillator), in accordance with the configured work priorities.
 
-**Research Requirements**: [Emergency medicine](#emergency-medicine)  
+**Research Requirements**: [Cardiopulmonary Resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr)  
 **Severity Reduction**: $f_{\text{sigmoid}}($ `medicine skill> / 15` $)$ where $f_{\text{sigmoid}}$ is a diffused sigmoid function defined as $f_{\text{sigmoid}}(x) = \frac{1}{1 + e^{-10\cdot(x - 0.5)}} + z$ where $z$ is a random factor between $-0.1$ and $0.1$. See [Wolfram Alpha](https://www.wolframalpha.com/input?i=f%28x%29+%3D+1+%2F+%281+%2B+e%5E%28-10*%28x%2F15+-+0.5%29%29%29+%2B+z%2C+x+in+%5B0%2C+20%5D%2C+z+in%5B-0.1%2C0.1%5D) for a visualization of the function.
 
 > [!IMPORTANT]
+> Note that CPR needs to be unlocked through research before it can be used. Make sure to prioritize researching [Cardiopulmonary Resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr) as soon as possible to avoid losing valuable pawns to treatable conditions like [cardiac arrest](#cardiac-arrest), [heart attacks](https://rimworldwiki.com/wiki/Ailments#Heart_attack), or [respiratory arrest](#choking-on-blood).
+
+> [!CAUTION]
 > Depending on the randomized factor $z$, poor medical skill of the doctor may do more harm than good when performing CPR. It is recommended to have a decently skilled doctor perform CPR to ensure the best possible outcome.
 
 ### Defibrillator
@@ -577,7 +595,7 @@ Defibrillation is a treatment for life-threatening conditions that affect the rh
 
 ### First Aid
 
-First aid is the initial assistance or treatment given to a person who is injured or suddenly ill before full medical treatment can be provided. With More Injuries, `Provide first aid` is a new command that can be given to *drafted* pawns capable of doctoring to attempt to automatically stabilize patients with life-threatening conditions. It is an aggregated work type that includes the use of [CPR](#cpr), [defibrillation](#defibrillator), [airway suction](#airway-suction-device), [blood transfusion](#blood-bag), stopping bleeding using [bandages](#bandage) or [hemostatic agents](#hemostatic-agent), and other emergency treatments.
+First aid is the initial assistance or treatment given to a person who is injured or suddenly ill before full medical treatment can be provided. With More Injuries, `Provide first aid` is a new command that can be given to *drafted* pawns capable of doctoring to attempt to automatically stabilize patients with life-threatening conditions. It is an aggregated work type that includes application of [tourniquets](#tourniquet), the use of [CPR](#cpr), [defibrillation](#defibrillator), [airway suction](#airway-suction-device), [blood transfusion](#blood-bag), stopping bleeding using [bandages](#bandage) or [hemostatic agents](#hemostatic-agent), and other emergency treatments.
 
 > **In-Game Description**
 > _"**Provide first aid** &mdash; Evaluating treatment options for &lt;patient name&gt;."_
@@ -588,12 +606,14 @@ First aid is the initial assistance or treatment given to a person who is injure
 
 Tell a *drafted* pawn capable of doctoring to provide first aid to a patient using the `Provide first aid` option in the right-click context menu. The pawn will automatically go through a defined sequence of emergency treatments to stabilize the patient and prevent further deterioration of their condition. Self-treatment is not possible.
 
-1. The pawn will first attempt to reduce the severity of any externally, bleeding injury by applying [bandages](#bandage) or [hemostatic agents](#hemostatic-agent) to the wounds.
-2. The pawn will then attempt to treat cardiac arrest through [defibrillation](#defibrillator) or [CPR](#cpr), if necessary.
-3. An [airway suction device](#airway-suction-device) will be used to clear the airway of any obstructions.
-4. If neither a [defibrillator](#defibrillator) nor an [airway suction device](#airway-suction-device) is available, but treatment is required, the pawn will start performing [CPR](#cpr) to stabilize the patient.
-5. An immediate [blood transfusion](#blood-bag) will be performed to restore blood volume in cases of severe blood loss and [hypovolemic shock](#hypovolemic-shock).
-6. Finally, normal medical treatment will be started to fully stabilize the patient and treat any remaining injuries.
+1. If the patient is suffering from severe bleeding on the limbs, the doctor will first apply a [tourniquet](#tourniquet) to the affected limb(s) to stop the bleeding. The tourniquets are applied in the order of severity and must be in the doctor's inventory. Otherwise, this step will be skipped.
+2. The pawn will first attempt to reduce the severity of any externally, bleeding injury by applying [bandages](#bandage) or [hemostatic agents](#hemostatic-agent) to the wounds.
+3. The pawn will then attempt to treat cardiac arrest through [defibrillation](#defibrillator) or [CPR](#cpr), if necessary.
+4. An [airway suction device](#airway-suction-device) will be used to clear the airway of any obstructions.
+5. If neither a [defibrillator](#defibrillator) nor an [airway suction device](#airway-suction-device) is available, but treatment is required, the pawn will start performing [CPR](#cpr) to stabilize the patient.
+6. An immediate [blood transfusion](#blood-bag) will be performed to restore blood volume in cases of severe blood loss and [hypovolemic shock](#hypovolemic-shock).
+7. Normal medical treatment (vanilla RimWorld) will be started to fully stabilize the patient and treat any remaining injuries.
+8. If all bleeding has stopped and the patient is stable, the doctor will remove any previously applied [tourniquets](#tourniquet) from the patient to restore blood flow to the affected limb and prevent [gangrene](#gangrene) from developing.
 
 After each step, the doctor will re-evaluate the patient's condition and decide on the next course of action. The treatment sequence will continue until the patient is fully stabilized or until the doctor is unable to access the necessary medical devices or treatments.
 
@@ -649,7 +669,8 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 **Usage**
 
 1. Tell a *drafted* pawn capable of doctoring to apply a splint to a pawn with a bone fracture using the `Splint fractures` option in the right-click context menu. The splint must be accessible in a stockpile or the doctor's inventory. Due to its simplicity, the procedure can be performed anywhere and even in combat situations, to quickly restore partial stability to the injured limb and allow the pawn to move again. However, this treatment method comes at the cost of treatment quality and a slightly longer time for the fracture to heal.
-2. Alternatively, use the *operations* tab of the injured pawn to schedule the application of a splint to a bone fracture in a controlled environment, such as a hospital bed, to ensure the highest treatment quality and fastest healing time.
+2. Use the *operations* tab of the injured pawn to schedule the application of a splint to a bone fracture in a controlled environment, such as a hospital bed, to ensure the highest treatment quality and fastest healing time.
+3. Alternatively, splinting fractures is now part of a new general, low-priority work type for all doctors. So, if you have a patient in a hospital bed with a bone fracture, any non-drafted doctor will automatically attempt to splint the fracture, in accordance with the configured work priorities. Note, that this option must first be enabled in the mod settings. Doctors will not attempt to splint fractures if [osteosynthetic surgery](#osteosynthetic-surgery) is scheduled for the same limb.
 
 > [!TIP]
 > Alternatively to splinting the fracture, the bone can be [surgically repaired](#osteosynthetic-surgery) to realign and stabilize the bone, allowing for a quicker recovery.
@@ -707,7 +728,12 @@ Tell a conscious pawn capable of doctoring to apply a tourniquet to a limb using
 <li>
 <img align="right" src="./Textures/UI/tourniquet_gizmo.png" height="64" alt="Tourniquet" /> 
 
-Alternatively, use the *tourniquet gizmo* (depicted on the right) to apply or remove a tourniquet from the currently selected pawn. The gizmo can be found in the bottom of the screen when a pawn is selected and is capable of applying or removing a tourniquet from themselves.
+Alternatively, use the *tourniquet gizmo* (depicted on the right) to apply or remove a tourniquet from the currently selected pawn. The gizmo can be found in the bottom of the screen when a pawn is selected and is capable of applying or removing a tourniquet from themselves. You can choose to hide the gizmo in the mod settings if your UI is already cluttered with other gizmos and you don't want to see it all the time. In that case, you will have to rely on the right-click context menu to apply or remove a tourniquet.
+
+</li>
+<li>
+
+Applying a tourniquet is part of the [First Aid](#first-aid) order for *drafted* pawns, if the aggregated bleeding severity of the limb is above the threshold configured in the mod settings.
 
 </li>
 </ol>
@@ -898,6 +924,9 @@ More Injuries introduces several new research projects that can be undertaken to
 **Unlocks Research Projects**: [Basic first aid](#basic-first-aid)  
 **Research Cost**: 500
 
+> [!TIP]
+> The *Basic anatomy* research project is automatically unlocked when starting with the classic *Crashlanded* scenario. Other scenarios require you to research it manually.
+
 ### Basic First Aid
 
 > **In-Game Description**
@@ -907,20 +936,8 @@ More Injuries introduces several new research projects that can be undertaken to
 **Unlocks**: [Blood transfusions](#blood-bag), [tourniquets](#tourniquet)  
 **Required Research Bench & Addon**: Simple  
 **Research Requirements**: [Basic anatomy](#basic-anatomy), machining  
-**Unlocks Research Projects**: [Emergency medicine](#emergency-medicine), [advanced first aid](#advanced-first-aid)  
+**Unlocks Research Projects**: [Cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr), [advanced first aid](#advanced-first-aid)  
 **Research Cost**: 1000
-
-### Emergency Medicine
-
-> **In-Game Description**
-> _"**Emergency medicine** &mdash; With the foundation of basic first aid in place, this research delves into the advanced field of emergency medicine. By studying the latest techniques in life-saving medical interventions, your doctors will be equipped to handle a wide range of critical medical emergencies, from cardiac arrest to traumatic injuries."_
-
-**Tech Level**: Industrial  
-**Unlocks**: [CPR](#cpr), [defibrillators](#defibrillator), [airway suction devices](#airway-suction-device), [decompressive craniectomy](#decompressive-craniectomy), [osteosynthetic surgery](#osteosynthetic-surgery), [thoracotomy](#thoracotomy)  
-**Required Research Bench & Addon**: Hi-tech  
-**Research Requirements**: [Basic first aid](#basic-first-aid), Microelectronics  
-**Unlocks Research Projects**: [Cellular regeneration](#cellular-regeneration), [advanced thoracic surgery](#advanced-thoracic-surgery), [epinephrine synthesis](#epinephrine-synthesis)  
-**Research Cost**: 2000
 
 ### Advanced First Aid
 
@@ -933,6 +950,31 @@ More Injuries introduces several new research projects that can be undertaken to
 **Research Requirements**: [Basic first aid](#basic-first-aid), drug production  
 **Unlocks Research Projects**: None  
 **Research Cost**: 1500
+
+### Cardiopulmonary Resuscitation (CPR)
+
+> **In-Game Description**
+> _"**Cardiopulmonary resuscitation (CPR)** &mdash; A foundational resuscitation technique, CPR is the first line of defense against cardiac or respiratory arrest. By experimenting with different chest compression and rescue breathing procedures, your medical professionals will learn cardiopulmonary resuscitation (CPR) to restore circulation and oxygenation in patients whose hearts have stopped. This research provides your colony with the knowledge needed to perform CPR in emergencies, significantly improving survival rates in the first few minutes of the golden hour to save the patient's life.
+> Upon completion of this research, a new right-click action will be available for drafted doctors to perform CPR on patients in need of resuscitation."_
+
+**Tech Level**: Industrial  
+**Unlocks**: [CPR](#cpr)  
+**Required Research Bench & Addon**: Simple  
+**Research Requirements**: [Basic first aid](#basic-first-aid)  
+**Unlocks Research Projects**: [Emergency medicine](#emergency-medicine)  
+**Research Cost**: 1000
+
+### Emergency Medicine
+
+> **In-Game Description**
+> _"**Emergency medicine** &mdash; Bringing together advances in first aid, pharmacology, and electrical technology, this research opens the door to modern emergency medicine. Your doctors will learn to rapidly assess and stabilize patients facing life-threatening conditions—trauma, airway obstruction, cardiac arrest, and more. Through intensive training and access to specialized equipment like defibrillators and suction devices, your colony's medical responders will be prepared to perform critical interventions that can make the difference between life and death in the first golden hour. These capabilities also lay the foundation for complex surgical procedures in the future."_
+
+**Tech Level**: Industrial  
+**Unlocks**: [defibrillators](#defibrillator), [airway suction devices](#airway-suction-device), [decompressive craniectomy](#decompressive-craniectomy), [osteosynthetic surgery](#osteosynthetic-surgery), [thoracotomy](#thoracotomy)  
+**Required Research Bench & Addon**: Simple  
+**Research Requirements**: [Cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr), electricity
+**Unlocks Research Projects**: [Cellular regeneration](#cellular-regeneration), [advanced thoracic surgery](#advanced-thoracic-surgery), [epinephrine synthesis](#epinephrine-synthesis)  
+**Research Cost**: 2000
 
 ### Neurosurgery
 
@@ -966,7 +1008,7 @@ More Injuries introduces several new research projects that can be undertaken to
 
 **Tech Level**: Industrial  
 **Unlocks**: [Epinephrine autoinjectors](#epinephrine-autoinjector)  
-**Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
+**Required Research Bench & Addon**: Hi-tech  
 **Research Requirements**: [Emergency medicine](#emergency-medicine), drug production  
 **Unlocks Research Projects**: None  
 **Research Cost**: 2000
@@ -979,7 +1021,7 @@ More Injuries introduces several new research projects that can be undertaken to
 **Tech Level**: Spacer  
 **Unlocks**: [Cellular regenerative neurosurgery](#cellular-regenerative-neurosurgery), [cellular regenerative otologic surgery](#cellular-regenerative-otologic-surgery)  
 **Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
-**Research Requirements**: [Neurosurgery](#neurosurgery), advanced fabrication, bionics  
+**Research Requirements**: [Neurosurgery](#neurosurgery), bionics  
 **Unlocks Research Projects**: None  
 **Research Cost**: 4000
 

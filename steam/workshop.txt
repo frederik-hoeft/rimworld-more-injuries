@@ -18,6 +18,7 @@ The following is a list of selected features and health conditions. For a full l
     [/list]
 [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#concussion] Concussion [/url]
 [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#emp-shutdown] EMP Shutdown [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#enclosed-injuries] Enclosed Injuries [/url]
 [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#fractures] Fractures [/url]
     [list]
     [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#bone-fracture] Bone Fracture [/url]
