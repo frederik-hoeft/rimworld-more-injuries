@@ -10,6 +10,15 @@ public static class MedicalDeviceHelper
 {
     internal const int MAX_MEDICAL_DEVICE_RESERVATIONS = 10;
 
+    public static bool CanReachPatient(this Pawn doctor, Pawn patient, PathEndMode pathEndMode = PathEndMode.ClosestTouch, Danger maxDanger = Danger.Deadly)
+    {
+        if (doctor == patient)
+        {
+            return true;
+        }
+        return doctor.CanReach(patient, pathEndMode, maxDanger);
+    }
+
     public static DisabledProcedureCause? GetCauseForDisabledProcedure(Pawn doctor, Pawn patient, string jobTitleTranslationKey)
     {
         if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
@@ -20,7 +29,7 @@ public static class MedicalDeviceHelper
         {
             return DisabledProcedureCause.Soft(Named.Keys.ProcedureFailed_SelfTendDisabled.Translate(jobTitleTranslationKey.Translate()));
         }
-        if (!doctor.CanReach(patient, PathEndMode.ClosestTouch, Danger.Deadly))
+        if (!doctor.CanReachPatient(patient))
         {
             return DisabledProcedureCause.Hard(Named.Keys.ProcedureFailed_NoPath.Translate(jobTitleTranslationKey.Translate()));
         }

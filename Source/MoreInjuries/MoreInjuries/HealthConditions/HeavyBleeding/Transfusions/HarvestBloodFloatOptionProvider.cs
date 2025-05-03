@@ -1,9 +1,9 @@
 ﻿using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
 using MoreInjuries.Localization;
+using MoreInjuries.Things;
 using RimWorld;
 using Verse;
-using Verse.AI;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 
@@ -21,7 +21,7 @@ internal class HarvestBloodFloatOptionProvider(InjuryWorker parent) : ICompFloat
         {
             return Named.Keys.ProcedureFailed_IncapableOfSight.Translate(jobTitleKey.Translate(patient.Named(Named.Params.PATIENT), doctor.Named(Named.Params.DOCTOR)));
         }
-        if (!doctor.CanReach(patient, PathEndMode.ClosestTouch, Danger.Deadly))
+        if (!doctor.CanReachPatient(patient))
         {
             return Named.Keys.ProcedureFailed_NoPath.Translate(jobTitleKey.Translate(patient.Named(Named.Params.PATIENT), doctor.Named(Named.Params.DOCTOR)));
         }
