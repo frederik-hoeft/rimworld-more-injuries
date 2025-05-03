@@ -38,6 +38,35 @@ public class MoreInjuryComp : ThingComp
     // to allow the GC to do its job
     private readonly List<Std::WeakReference<IExposable>> _weakJobParameters = [];
 
+    public MoreInjuryComp()
+    {
+        _pipeline =
+        [
+            new ParalysisWorker(this),
+            new IntestinalSpillWorker(this),
+            new CardiacArrestWorker(this),
+            new HeadInjuryWorker(this),
+            new AdrenalineWorker(this),
+            new HydrostaticShockWorker(this),
+            new FractureWorker(this),
+            new LungCollapseWorker(this),
+            new InhalationInjuryWorker(this),
+            new SpallingWorker(this),
+            new ChokingWorker(this),
+            new EmpBionicsWorker(this),
+            new HearingLossExplosionsWorker(this),
+            new ConcussionExplosionsWorker(this),
+            new HeavyBleedingWorker(this),
+            new ProvideFirstAidWorker(this),
+            new InjectorWorker(this)
+        ];
+        // cache handlers for performance
+        _compGetGizmosExtraHandlers = [.. _pipeline.OfType<ICompGetGizmosExtraHandler>()];
+        _compFloatMenuOptionsHandlers = [.. _pipeline.OfType<ICompFloatMenuOptionsHandler>()];
+        _postPostApplyDamageHandlers = [.. _pipeline.OfType<IPostPostApplyDamageHandler>()];
+        _postTakeDamageHandlers = [.. _pipeline.OfType<IPostTakeDamageHandler>()];
+    }
+
     public bool CallbackActive { get; private set; } = false;
 
     internal bool FailedLoading { get; set; } = false;
@@ -88,35 +117,6 @@ public class MoreInjuryComp : ThingComp
                 FailedLoading = true;
             }
         }
-    }
-
-    public MoreInjuryComp()
-    {
-        _pipeline =
-        [
-            new ParalysisWorker(this),
-            new IntestinalSpillWorker(this),
-            new CardiacArrestWorker(this),
-            new HeadInjuryWorker(this),
-            new AdrenalineWorker(this),
-            new HydrostaticShockWorker(this),
-            new FractureWorker(this),
-            new LungCollapseWorker(this),
-            new InhalationInjuryWorker(this),
-            new SpallingWorker(this),
-            new ChokingWorker(this),
-            new EmpBionicsWorker(this),
-            new HearingLossExplosionsWorker(this),
-            new ConcussionExplosionsWorker(this),
-            new HeavyBleedingWorker(this),
-            new ProvideFirstAidWorker(this),
-            new InjectorWorker(this)
-        ];
-        // cache handlers for performance
-        _compGetGizmosExtraHandlers = [.. _pipeline.OfType<ICompGetGizmosExtraHandler>()];
-        _compFloatMenuOptionsHandlers = [.. _pipeline.OfType<ICompFloatMenuOptionsHandler>()];
-        _postPostApplyDamageHandlers = [.. _pipeline.OfType<IPostPostApplyDamageHandler>()];
-        _postTakeDamageHandlers = [.. _pipeline.OfType<IPostTakeDamageHandler>()];
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
