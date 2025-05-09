@@ -30,7 +30,7 @@
       <li>Machining</li>
     </prerequisites>
     <researchViewX>1</researchViewX>
-    <researchViewY>0</researchViewY>
+    <researchViewY>1</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
 
@@ -39,13 +39,16 @@
   <ResearchProjectDef>
     <defName>Cpr</defName>
     <label>cardiopulmonary resuscitation (CPR)</label>
-    <description>A foundational resuscitation technique, CPR is the first line of defense against cardiac or respiratory arrest. By experimenting with different chest compression and rescue breathing procedures, your medical professionals will learn cardiopulmonary resuscitation (CPR) to restore circulation and oxygenation in patients whose hearts have stopped. This research provides your colony with the knowledge needed to perform CPR in emergencies, significantly improving survival rates in the first few minutes of the golden hour to save the patient's life.\n\nUpon completion of this research, a new right-click action will be available for drafted doctors to perform CPR on patients in need of resuscitation.</description>
-    <baseCost>1000</baseCost>
+    <description>A foundational resuscitation technique discovered in the early 1960s, cardiopulmonary resuscitation (CPR) is the first line of defense against cardiac or respiratory arrest. By experimenting with different chest compression and rescue breathing procedures, your medical professionals will learn CPR to restore circulation and oxygenation in patients whose hearts have stopped. This research provides your colony with the knowledge needed to perform CPR in emergencies, significantly improving survival rates in the first few minutes of the golden hour to save the patient's life.\n\nUpon completion of this research, a new right-click action will be available for drafted doctors to perform CPR on patients in need of resuscitation.</description>
+    <baseCost>500</baseCost>
     <techLevel>Industrial</techLevel>
+    <tags>
+      <li>ClassicStart</li>
+    </tags>
     <prerequisites>
-      <li>BasicFirstAid</li>
+      <li>BasicAnatomy</li>
     </prerequisites>
-    <researchViewX>2</researchViewX>
+    <researchViewX>1</researchViewX>
     <researchViewY>0</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
@@ -78,9 +81,10 @@
     <techLevel>Industrial</techLevel>
     <prerequisites>
       <li>Cpr</li>
+      <li>BasicFirstAid</li>
       <li>Electricity</li>
     </prerequisites>
-    <researchViewX>3</researchViewX>
+    <researchViewX>2</researchViewX>
     <researchViewY>0</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
@@ -101,7 +105,7 @@
       <li>EmergencyMedicine</li>
       <li>Fabrication</li>
     </prerequisites>
-    <researchViewX>4</researchViewX>
+    <researchViewX>3</researchViewX>
     <researchViewY>0</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
@@ -122,7 +126,7 @@
       <li>EmergencyMedicine</li>
       <li>VitalsMonitor</li>
     </prerequisites>
-    <researchViewX>4</researchViewX>
+    <researchViewX>3</researchViewX>
     <researchViewY>1</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
@@ -140,7 +144,7 @@
       <li>EmergencyMedicine</li>
       <li>DrugProduction</li>
     </prerequisites>
-    <researchViewX>4</researchViewX>
+    <researchViewX>3</researchViewX>
     <researchViewY>2</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
@@ -162,7 +166,7 @@
       <li>Neurosurgery</li>
       <li>Bionics</li>
     </prerequisites>
-    <researchViewX>5</researchViewX>
+    <researchViewX>4</researchViewX>
     <researchViewY>0</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>

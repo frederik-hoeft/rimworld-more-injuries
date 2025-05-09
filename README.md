@@ -73,9 +73,9 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Video-Assisted Thoracoscopic Surgery](#video-assisted-thoracoscopic-surgery)
   - [New Research Projects](#new-research-projects)
     - [Basic Anatomy](#basic-anatomy)
+    - [Cardiopulmonary Resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr)
     - [Basic First Aid](#basic-first-aid)
     - [Advanced First Aid](#advanced-first-aid)
-    - [Cardiopulmonary Resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr)
     - [Emergency Medicine](#emergency-medicine)
     - [Neurosurgery](#neurosurgery)
     - [Advanced Thoracic Surgery](#advanced-thoracic-surgery)
@@ -907,7 +907,7 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 
 More Injuries introduces several new research projects that can be undertaken to unlock new life-saving treatments and surgical procedures. These research projects expand the medical capabilities of your colony and allow you to treat previously untreatable injuries and medical conditions. As your technology advances, you will be able to provide better care to your colonists and save more lives in the harsh environment of the RimWorld.
 
-![An overview of the new research projects added by More Injuries.](assets/research.png)
+![An overview of the new research projects added by More Injuries.](docs/assets/research.png)
 
 > [!TIP]
 > All new research projects can be found in the new *More Injuries* research tab.
@@ -926,6 +926,22 @@ More Injuries introduces several new research projects that can be undertaken to
 
 > [!TIP]
 > The *Basic anatomy* research project is automatically unlocked when starting with the classic *Crashlanded* scenario. Other scenarios require you to research it manually.
+
+### Cardiopulmonary Resuscitation (CPR)
+
+> **In-Game Description**
+> _"**Cardiopulmonary resuscitation (CPR)** &mdash; A foundational resuscitation technique discovered in the early 1960s, cardiopulmonary resuscitation (CPR) is the first line of defense against cardiac or respiratory arrest. By experimenting with different chest compression and rescue breathing procedures, your medical professionals will learn CPR to restore circulation and oxygenation in patients whose hearts have stopped. This research provides your colony with the knowledge needed to perform CPR in emergencies, significantly improving survival rates in the first few minutes of the golden hour to save the patient's life.
+>Upon completion of this research, a new right-click action will be available for drafted doctors to perform CPR on patients in need of resuscitation."_
+
+**Tech Level**: Industrial  
+**Unlocks**: [CPR](#cpr)  
+**Required Research Bench & Addon**: Simple  
+**Research Requirements**: [Basic anatomy](#basic-anatomy)  
+**Unlocks Research Projects**: [Emergency medicine](#emergency-medicine)  
+**Research Cost**: 500
+
+> [!TIP]
+> The *Cardiopulmonary resuscitation (CPR)* research project is automatically unlocked when starting with the classic *Crashlanded* scenario. Other scenarios require you to research it manually.
 
 ### Basic First Aid
 
@@ -951,19 +967,6 @@ More Injuries introduces several new research projects that can be undertaken to
 **Unlocks Research Projects**: None  
 **Research Cost**: 1500
 
-### Cardiopulmonary Resuscitation (CPR)
-
-> **In-Game Description**
-> _"**Cardiopulmonary resuscitation (CPR)** &mdash; A foundational resuscitation technique, CPR is the first line of defense against cardiac or respiratory arrest. By experimenting with different chest compression and rescue breathing procedures, your medical professionals will learn cardiopulmonary resuscitation (CPR) to restore circulation and oxygenation in patients whose hearts have stopped. This research provides your colony with the knowledge needed to perform CPR in emergencies, significantly improving survival rates in the first few minutes of the golden hour to save the patient's life.
-> Upon completion of this research, a new right-click action will be available for drafted doctors to perform CPR on patients in need of resuscitation."_
-
-**Tech Level**: Industrial  
-**Unlocks**: [CPR](#cpr)  
-**Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Basic first aid](#basic-first-aid)  
-**Unlocks Research Projects**: [Emergency medicine](#emergency-medicine)  
-**Research Cost**: 1000
-
 ### Emergency Medicine
 
 > **In-Game Description**
@@ -972,7 +975,7 @@ More Injuries introduces several new research projects that can be undertaken to
 **Tech Level**: Industrial  
 **Unlocks**: [defibrillators](#defibrillator), [airway suction devices](#airway-suction-device), [decompressive craniectomy](#decompressive-craniectomy), [osteosynthetic surgery](#osteosynthetic-surgery), [thoracotomy](#thoracotomy)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr), electricity
+**Research Requirements**: [Cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr), [basic first aid](#basic-first-aid), electricity  
 **Unlocks Research Projects**: [Cellular regeneration](#cellular-regeneration), [advanced thoracic surgery](#advanced-thoracic-surgery), [epinephrine synthesis](#epinephrine-synthesis)  
 **Research Cost**: 2000
 
