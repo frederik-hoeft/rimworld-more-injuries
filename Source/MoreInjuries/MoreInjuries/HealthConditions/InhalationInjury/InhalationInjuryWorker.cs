@@ -21,10 +21,14 @@ internal class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWorker(pare
             {
                 bool hasBurnedLung = false;
                 // get burn injuries on that lung
-                foreach (Hediff lungBurn in patient.health.hediffSet.hediffs.Where(hediff => hediff.Part == lung && hediff.def == KnownHediffDefOf.Burn))
+                for (int i = 0; i < patient.health.hediffSet.hediffs.Count; ++i)
                 {
-                    hasBurnedLung = true;
-                    lungBurn.Severity += Rand.Range(0.05f, 0.5f);
+                    Hediff lungBurn = patient.health.hediffSet.hediffs[i];
+                    if (lungBurn.def == KnownHediffDefOf.Burn && lungBurn.Part == lung)
+                    {
+                        hasBurnedLung = true;
+                        lungBurn.Severity += Rand.Range(0.05f, 0.5f);
+                    }
                 }
                 if (!hasBurnedLung)
                 {
