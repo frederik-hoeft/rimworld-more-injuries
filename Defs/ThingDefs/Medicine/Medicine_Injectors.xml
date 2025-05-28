@@ -82,7 +82,7 @@
   </ThingDef>
 
   <ThingDef ParentName="AutoInjectorBase">
-    <defName>KetamineInjector</defName>
+    <defName>Ketamine</defName>
     <label>ketamine autoinjector</label>
     <description>A pre-loaded autoinjector containing a dissociative anesthetic for rapid sedation and pain relief. Effective in emergency field care for patients in severe pain or to induce anesthesia in patients resisting treatment.</description>
     <graphicData>
@@ -93,7 +93,7 @@
         <outcomeDoers>
           <li Class="MoreInjuries.HealthConditions.Injectors.InjectionOutcomeDoer_HediffOffset">
             <hediffDef>Anesthetic</hediffDef>
-            <severityOffset>1.0</severityOffset>
+            <severityOffset>1.2</severityOffset>
           </li>
           <li Class="MoreInjuries.HealthConditions.Injectors.InjectionOutcomeDoer_HediffOffset">
             <hediffDef>KetamineBuildup</hediffDef>
@@ -106,7 +106,7 @@
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
           <hediffDef>Anesthetic</hediffDef>
-          <severity>1.0</severity>
+          <severity>1.2</severity>
         </li>
         <li Class="IngestionOutcomeDoer_GiveHediff">
           <hediffDef>KetamineBuildup</hediffDef>
@@ -130,7 +130,7 @@
     </recipeMaker>
     <costList>
       <Yayo>1</Yayo>
-      <Psychite>1</Psychite>
+      <SmokeleafLeaves>4</SmokeleafLeaves>
       <Chemfuel>1</Chemfuel>
     </costList>
     <comps>

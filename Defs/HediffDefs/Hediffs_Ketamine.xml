@@ -5,7 +5,8 @@
     <label>ketamine buildup</label>
     <description>Ketamine is a fast-acting dissociative anesthetic used for pain relief, sedation, and anesthesia. It works by disrupting communication between the thalamus and cerebral cortex, producing a trance-like, pain-free state without significantly suppressing cardiovascular function at recommended doses.\n\nOnce administered, ketamine is distributed systemically and slowly metabolized by the liver. Blood concentrations diminish over time, but repeated or excessive doses can lead to dangerous accumulation resulting in toxicity and overdose.\n\nSymptoms of ketamine toxicity range from amnesia, confusion, and hallucinations to brain damage, respiratory depression, and death in severe cases of overdose.</description>
     <hediffClass>HediffWithComps</hediffClass>
-    <initialSeverity>0</initialSeverity>
+    <defaultLabelColor>(56, 185, 255)</defaultLabelColor>
+    <initialSeverity>0.01</initialSeverity>
     <isBad>true</isBad>
     <scenarioCanAdd>true</scenarioCanAdd>
     <comps>

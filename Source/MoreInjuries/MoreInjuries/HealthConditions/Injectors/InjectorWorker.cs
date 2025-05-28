@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.HealthConditions.Injectors.Epinephrine;
+using MoreInjuries.HealthConditions.Injectors.Ketamine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Injectors;
@@ -11,7 +12,8 @@ public class InjectorWorker : InjuryWorker, ICompFloatMenuOptionsHandler
     {
         _childHandlers =
         [
-            new EpinephrineFloatOptionsProvider(this)
+            new EpinephrineFloatOptionsProvider(this),
+            new KetamineFloatOptionsProvider(this),
         ];
     }
 

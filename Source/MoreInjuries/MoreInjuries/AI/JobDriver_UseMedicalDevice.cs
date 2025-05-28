@@ -120,7 +120,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
         this.FailOnDespawnedNullOrForbidden(PATIENT_INDEX);
         this.FailOn(() =>
         {
-            // we can't apply a devices if the patient is set to no medical care
+            // we can't apply a device if the patient is set to no medical care
             if (doctor.Faction == Faction.OfPlayer && patient.playerSettings?.medCare is MedicalCareCategory.NoCare
                 // we can't apply a device if the doctor wants to tend himself but is set to no self-tend
                 || doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
@@ -178,7 +178,9 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
                 {
                     return;
                 }
-                if (!patientLocal.InBed())
+                // if you want, you can try to run up to an enemy and try to treat them while they're up. 
+                // It's not recommended, but feel free to try. So in that case, we don't want to change the posture.
+                if (!patientLocal.InBed() && (!patientLocal.HostileTo(doctor) || patientLocal.Downed))
                 {
                     patientLocal.jobs.posture = PawnPosture.LayingOnGroundFaceUp;
                 }
