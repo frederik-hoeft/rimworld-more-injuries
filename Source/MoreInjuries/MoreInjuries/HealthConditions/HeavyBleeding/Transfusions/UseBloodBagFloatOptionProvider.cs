@@ -41,10 +41,10 @@ internal class UseBloodBagFloatOptionProvider(InjuryWorker parent) : ICompFloatM
             {
                 if (JobDriver_UseBloodBag.JobGetMedicalDeviceCountToFullyHeal(patient, fullyHeal: false) > 0)
                 {
-                    builder.Options.Add(new FloatMenuOption(Named.Keys.Procedure_FromInventory_Stabilize.Translate(JobDriver_UseBloodBag.JOB_LABEL_KEY.Translate()), 
+                    builder.Options.Add(new FloatMenuOption(Named.Keys.Procedure_Stabilize.Translate(JobDriver_UseBloodBag.JOB_LABEL_KEY.Translate()), 
                         JobDriver_UseBloodBag.GetDispatcher(selectedPawn, patient, thing, fromInventoryOnly: false, fullyHeal: false).StartJob));
                 }
-                builder.Options.Add(new FloatMenuOption(Named.Keys.Procedure_FromInventory_FullyHeal.Translate(JobDriver_UseBloodBag.JOB_LABEL_KEY.Translate()), 
+                builder.Options.Add(new FloatMenuOption(Named.Keys.Procedure_FullyHeal.Translate(JobDriver_UseBloodBag.JOB_LABEL_KEY.Translate()), 
                     JobDriver_UseBloodBag.GetDispatcher(selectedPawn, patient, thing, fromInventoryOnly: false, fullyHeal: true).StartJob));
             }
         }
