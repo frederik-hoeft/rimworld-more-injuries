@@ -31,7 +31,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="BaseAutoInjector">
+  <ThingDef ParentName="AutoInjectorBase">
     <defName>Epinephrine</defName>
     <label>epinephrine autoinjector</label>
     <description>An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose of epinephrine.</description>
@@ -81,7 +81,7 @@
     </comps>
   </ThingDef>
 
-  <ThingDef ParentName="BaseAutoInjector">
+  <ThingDef ParentName="AutoInjectorBase">
     <defName>KetamineInjector</defName>
     <label>ketamine autoinjector</label>
     <description>A pre-loaded autoinjector containing a dissociative anesthetic for rapid sedation and pain relief. Effective in emergency field care for patients in severe pain or to induce anesthesia in patients resisting treatment.</description>

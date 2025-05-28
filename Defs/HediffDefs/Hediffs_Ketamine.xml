@@ -14,31 +14,27 @@
         <severityPerDay>-0.35</severityPerDay>
         <showHoursToRecover>true</showHoursToRecover>
       </li>
-      <!-- TODO: Future comp to simulate toxic sequelae -->
+      <!-- TODO: Future comp to simulate secondary effects of ketamine buildup --> 
     </comps>
     <stages>
       <li>
         <label>trace exposure</label>
         <minSeverity>0</minSeverity>
-        <maxSeverity>0.1</maxSeverity>
         <painFactor>0.95</painFactor>
       </li>
       <li>
         <label>therapeutic dose</label>
         <minSeverity>0.1</minSeverity>
-        <maxSeverity>0.2</maxSeverity>
         <forgetMemoryThoughtMtbDays>4</forgetMemoryThoughtMtbDays>
       </li>
       <li>
         <label>maximum safe dose</label>
         <minSeverity>0.2</minSeverity>
-        <maxSeverity>0.4</maxSeverity>
         <forgetMemoryThoughtMtbDays>2</forgetMemoryThoughtMtbDays>
       </li>
       <li>
         <label>subclinical overdose</label>
         <minSeverity>0.4</minSeverity>
-        <maxSeverity>0.6</maxSeverity>
         <forgetMemoryThoughtMtbDays>1</forgetMemoryThoughtMtbDays>
         <capMods>
           <li>
@@ -54,7 +50,6 @@
       <li>
         <label>severe overdose</label>
         <minSeverity>0.6</minSeverity>
-        <maxSeverity>0.8</maxSeverity>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
