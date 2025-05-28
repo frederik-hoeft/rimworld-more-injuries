@@ -4,22 +4,13 @@ using MoreInjuries.KnownDefs;
 
 namespace MoreInjuries.Versioning.Migrations;
 
-internal sealed class VersionMigration2_DedicatedCprResearch : IVersionMigration
+internal sealed class VersionMigration2_DedicatedCprResearch : VersionMigrationBase
 {
     private const string OK_SIGNAL = "MI_Migration_Signal_v2_Continue";
 
-    private string? _loadID;
+    public override int Version => 2;
 
-    public int Version => 2;
-
-    public void ExposeData()
-    {
-        Scribe_Values.Look(ref _loadID, "loadID", defaultValue: null);
-    }
-
-    public string GetUniqueLoadID() => _loadID ??= $"MoreInjuries.VersionMigration2_DedicatedCprResearch_{Guid.NewGuid()}";
-
-    public void Migrate()
+    public override void Migrate()
     {
         Logger.LogDebug("VersionMigration2_DedicatedCprResearch: Migrate");
         TaggedString title = "MI_Migration_Update_v2_Title".Translate();
@@ -35,7 +26,7 @@ internal sealed class VersionMigration2_DedicatedCprResearch : IVersionMigration
         Find.LetterStack.ReceiveLetter(letter);
     }
 
-    public void Execute(string signal)
+    public override void Execute(string signal)
     {
         Logger.LogDebug($"VersionMigration2_DedicatedCprResearch: Execute: {signal}");
         if (signal is OK_SIGNAL)

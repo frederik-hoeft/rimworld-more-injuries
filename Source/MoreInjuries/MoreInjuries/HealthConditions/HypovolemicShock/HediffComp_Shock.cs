@@ -11,6 +11,7 @@ namespace MoreInjuries.HealthConditions.HypovolemicShock;
 using static BloodLossConstants;
 using HediffInfo = (Hediff? BloodLoss, Hediff? AdrenalineRush);
 
+// TODO: extract hypoxia logic to separate component, and re-use that for cardiac arrest and respiratory failure (TODO)
 public class HediffComp_Shock : HediffComp
 {
     private const int CYCLE_LENGTH = 150;
@@ -129,14 +130,18 @@ public class HediffComp_Shock : HediffComp
         _cycles = 0;
         if (!preventHypoxia && Rand.Chance(MoreInjuriesMod.Settings.OrganHypoxiaChance))
         {
-            BodyPartRecord hypoxiaTarget = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Middle, BodyPartDepth.Inside)
+            BodyPartRecord? hypoxiaTarget = pawn.health.hediffSet.GetNotMissingParts(BodyPartHeight.Middle, BodyPartDepth.Inside)
                 .Where(static bodyPart => bodyPart.def != BodyPartDefOf.Heart
                     && bodyPart.def.bleedRate > 0f)
                 .ToList()
                 .SelectRandom();
-            Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.OrganHypoxia, pawn, hypoxiaTarget);
-            hediff.Severity = Rand.Range(2f, 5f);
-            pawn.health.AddHediff(hediff, hypoxiaTarget);
+            // it might be that the list is empty, in which case there is no body part to apply hypoxia to
+            if (hypoxiaTarget is not null)
+            {
+                Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.OrganHypoxia, pawn, hypoxiaTarget);
+                hediff.Severity = Rand.Range(2f, 5f);
+                pawn.health.AddHediff(hediff, hypoxiaTarget);
+            }
         }
         // cardiac arrest chance is higher for higher blood loss
         float cardiacArrestChance = MoreInjuriesMod.Settings.CardiacArrestChanceOnHighBloodLoss * bloodLoss.Severity / 0.8f;

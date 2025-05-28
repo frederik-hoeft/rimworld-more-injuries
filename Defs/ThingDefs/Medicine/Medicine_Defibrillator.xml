@@ -15,7 +15,7 @@
     <tradeNeverStack>true</tradeNeverStack>
     <useHitPoints>true</useHitPoints>
     <statBases>
-      <Mass>1</Mass>
+      <Mass>0.5</Mass>
       <MarketValue>750</MarketValue>
       <MaxHitPoints>80</MaxHitPoints>
     </statBases>

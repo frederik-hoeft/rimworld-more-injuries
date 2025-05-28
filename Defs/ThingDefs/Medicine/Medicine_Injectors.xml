@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef ParentName="MakeableDrugPillBase">
-    <defName>Epinephrine</defName>
+  <ThingDef Name="AutoInjectorBase" ParentName="MakeableDrugPillBase" Abstract="True">
     <thingClass>ThingWithComps</thingClass>
-    <label>epinephrine autoinjector</label>
-    <description>An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose or doses of epinephrine (adrenaline) by means of autoinjector technology.</description>
     <possessionCount>32</possessionCount>
     <graphicData>
-      <texPath>Thing/Epinephrine</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
     <socialPropernessMatters>false</socialPropernessMatters>
@@ -22,16 +18,37 @@
       <Flammability>0.7</Flammability>
     </statBases>
     <techLevel>Industrial</techLevel>
-    <modExtensions>
-      <li Class="MoreInjuries.HealthConditions.Injectors.InjectorProps_ModExtension">
-        <severityOffset>0.75</severityOffset>
-      </li>
-    </modExtensions>
     <ingestible>
       <drugCategory>Medical</drugCategory>
       <ingestSound>UseAutoinjector</ingestSound>
       <ingestCommandString>Use {0}</ingestCommandString>
       <ingestReportString>Using {0}.</ingestReportString>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <listOrder>1000</listOrder>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseAutoInjector">
+    <defName>Epinephrine</defName>
+    <label>epinephrine autoinjector</label>
+    <description>An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose of epinephrine.</description>
+    <graphicData>
+      <texPath>Thing/Epinephrine</texPath>
+    </graphicData>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Injectors.InjectorProps_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.HealthConditions.Injectors.InjectionOutcomeDoer_HediffOffset">
+            <hediffDef>AdrenalineRush</hediffDef>
+            <severityOffset>0.75</severityOffset>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <ingestible>
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
           <hediffDef>AdrenalineRush</hediffDef>
@@ -59,8 +76,66 @@
     </costList>
     <comps>
       <li Class="CompProperties_Drug">
-        <listOrder>1000</listOrder>
         <overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseAutoInjector">
+    <defName>KetamineInjector</defName>
+    <label>ketamine autoinjector</label>
+    <description>A pre-loaded autoinjector containing a dissociative anesthetic for rapid sedation and pain relief. Effective in emergency field care for patients in severe pain or to induce anesthesia in patients resisting treatment.</description>
+    <graphicData>
+      <texPath>Thing/Ketamine</texPath>
+    </graphicData>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Injectors.InjectorProps_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.HealthConditions.Injectors.InjectionOutcomeDoer_HediffOffset">
+            <hediffDef>Anesthetic</hediffDef>
+            <severityOffset>1.0</severityOffset>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Injectors.InjectionOutcomeDoer_HediffOffset">
+            <hediffDef>KetamineBuildup</hediffDef>
+            <severityOffset>0.35</severityOffset>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>Anesthetic</hediffDef>
+          <severity>1.0</severity>
+        </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>KetamineBuildup</hediffDef>
+          <severity>0.35</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>KetamineSynthesis</li>
+      </researchPrerequisites>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+        <Intellectual>5</Intellectual>
+      </skillRequirements>
+      <soundWorking>Recipe_Drug</soundWorking>
+      <displayPriority>1500</displayPriority>
+    </recipeMaker>
+    <costList>
+      <Yayo>1</Yayo>
+      <Psychite>1</Psychite>
+      <Chemfuel>1</Chemfuel>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <overdoseSeverityOffset>0.05~0.09</overdoseSeverityOffset>
       </li>
     </comps>
   </ThingDef>

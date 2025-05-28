@@ -138,7 +138,7 @@
     <label>epinephrine synthesis</label>
     <description>Research into the synthesis of epinephrine, a hormone and neurotransmitter that plays a vital role in the body's fight-or-flight response. By developing an autoinjector that can deliver a precise dose of epinephrine in emergency situations, you will be able to craft epinephrine autoinjectors that can be used to boost blood pressure and increase heart rate to temporarily reduce the adverse effects of hypovolemic shock and anemia.\n\nWe suspect an additional potential use for this drug as a combat stimulant, but further research is required to confirm its efficacy.</description>
     <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
-    <baseCost>2000</baseCost>
+    <baseCost>1500</baseCost>
     <techLevel>Industrial</techLevel>
     <prerequisites>
       <li>EmergencyMedicine</li>
@@ -146,6 +146,24 @@
     </prerequisites>
     <researchViewX>3</researchViewX>
     <researchViewY>2</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
+  <!-- depends on: drug production -->
+  <!-- unlocks: ketamine synthesis for auto-injectors -->
+  <ResearchProjectDef>
+    <defName>KetamineSynthesis</defName>
+    <label>ketamine synthesis</label>
+    <description>Building upon the fundamentals of drug production, this research explores the synthesis of ketamine for medical use as a dissociative anesthetic with powerful analgesic and sedative properties. Since ancient times, it has been widely used for emergency surgery in field conditions in war zones, for example, during the Vietnam War. A 2011 clinical practice guideline supports the use of ketamine as a sedative in emergency medicine, including during physically painful procedures.\n\nBy reverse-engineering the ancient pharmaceutical formulations from the early 2000s and developing precision dosing protocols, your colony will gain the knowledge required to synthesize ketamine safely. This unlocks the ability to craft ketamine for surgical use and to sedate uncooperative patients in the field, allowing your doctors to perform life-saving procedures on even the most unhinged "volunteers" to join your colony.\n\nWhile usually not addictive when used in therapeutic doses, abuse of ketamine can lead to dangerous buildup of the drug in the body, resulting in toxicity and overdose. Therefore, it is important to monitor patients closely for signs of ketamine buildup and to avoid excessive dosing.</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>DrugProduction</li>
+      <li>EmergencyMedicine</li>
+    </prerequisites>
+    <researchViewX>3</researchViewX>
+    <researchViewY>3</researchViewY>
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
 
