@@ -4,11 +4,9 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Injectors.Epinephrine;
 
-public class JobDriver_UseEpinephrine : JobDriver_UseInjector_GivesHediff
+public sealed class JobDriver_UseEpinephrine : JobDriver_UseInjector
 {
     public const string JOB_LABEL_KEY = "MI_UseEpinephrine";
-
-    protected override HediffDef HediffDef => KnownHediffDefOf.AdrenalineRush;
 
     protected override ThingDef DeviceDef => KnownThingDefOf.Epinephrine;
 

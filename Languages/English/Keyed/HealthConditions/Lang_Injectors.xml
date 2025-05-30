@@ -2,4 +2,6 @@
 <LanguageData>
   <!-- EN: Inject epinephrine -->
   <MI_UseEpinephrine>Inject epinephrine</MI_UseEpinephrine>
+  <!-- EN: Inject ketamine -->
+  <MI_UseKetamine>Inject ketamine</MI_UseKetamine>
 </LanguageData>

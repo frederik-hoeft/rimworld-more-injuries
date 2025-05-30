@@ -31,7 +31,14 @@
   <JobDef>
     <defName>UseEpinephrine</defName>
     <driverClass>MoreInjuries.HealthConditions.Injectors.Epinephrine.JobDriver_UseEpinephrine</driverClass>
-    <reportString>Injecting epinephrine on TargetA.</reportString>
+    <reportString>Injecting epinephrine into TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>UseKetamine</defName>
+    <driverClass>MoreInjuries.HealthConditions.Injectors.Ketamine.JobDriver_UseKetamine</driverClass>
+    <reportString>Injecting ketamine into TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 

@@ -6,7 +6,7 @@
     <description>Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.
 \nA skilled doctor must perform CPR to restore blood flow and hopefully restart the heart. In early stages of cardiac arrest, during ventricular fibrillation, a defibrillator can also be used to shock the heart back into a normal rhythm, which may be faster and more effective than CPR.</description>
     <makesSickThought>false</makesSickThought>
-    <lethalSeverity>1</lethalSeverity>
+    <maxSeverity>1</maxSeverity>
     <defaultLabelColor>(255, 52, 52)</defaultLabelColor>
     <tendable>false</tendable>
     <comps>
@@ -17,6 +17,57 @@
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
       <li Class="MoreInjuries.HealthConditions.CardiacArrest.HediffCompProperties_CardiacArrest"></li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <severityCurve>
+          <points>
+            <li>0, 0</li>
+            <li>0.55, 0.25</li>
+            <li>0.75, 1</li>
+            <li>1, 1</li>
+          </points>
+        </severityCurve>
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+            <tickInterval>250</tickInterval>
+            <hediffDef>OrganHypoxia</hediffDef>
+            <minSeverity>2</minSeverity>
+            <maxSeverity>4</maxSeverity>
+            <allowMultiple>true</allowMultiple>
+            <allowDuplicate>true</allowDuplicate>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.BodyPartHediffTargetEvaluator_RandomBleedable">
+              <height>Middle</height>
+              <depth>Inside</depth>
+              <excludedParts>
+                <li>Heart</li>
+              </excludedParts>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+            <tickInterval>500</tickInterval>
+            <hediffDef>OrganHypoxia</hediffDef>
+            <chance>0.25</chance>
+            <minSeverity>0.25</minSeverity>
+            <maxSeverity>2</maxSeverity>
+            <allowMultiple>true</allowMultiple>
+            <allowDuplicate>true</allowDuplicate>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.BodyPartHediffTargetEvaluator_Single">
+              <target>Heart</target>
+            </targetEvaluator>
+          </li>
+          <!-- a marker for brain damage hediffs (TODO) -->
+          <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+            <tickInterval>500</tickInterval>
+            <hediffDef>OrganHypoxia</hediffDef>
+            <chance>0.25</chance>
+            <minSeverity>0.1</minSeverity>
+            <allowMultiple>true</allowMultiple>
+            <allowDuplicate>true</allowDuplicate>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
     </comps>
     <stages>
       <li>
