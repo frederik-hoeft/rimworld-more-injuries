@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  <!-- EN: organ hypoxia -->
-  <OrganHypoxia.label>organ hypoxia</OrganHypoxia.label>
+  <!-- EN: circulatory hypoxia -->
+  <OrganHypoxia.label>circulatory hypoxia</OrganHypoxia.label>
   <!-- EN: insufficient oxygen -->
   <OrganHypoxia.labelNoun>insufficient oxygen</OrganHypoxia.labelNoun>
   <!-- EN: Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow. -->
