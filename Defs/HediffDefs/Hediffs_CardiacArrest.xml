@@ -22,19 +22,23 @@
           <points>
             <li>0, 0</li>
             <li>0.55, 0.25</li>
-            <li>0.75, 1</li>
+            <li>0.75, 0.9</li>
             <li>1, 1</li>
           </points>
         </severityCurve>
         <handlers>
           <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>250</tickInterval>
-            <hediffDef>OrganHypoxia</hediffDef>
-            <minSeverity>2</minSeverity>
-            <maxSeverity>4</maxSeverity>
-            <allowMultiple>true</allowMultiple>
-            <allowDuplicate>true</allowDuplicate>
-            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.BodyPartHediffTargetEvaluator_RandomBleedable">
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>OrganHypoxia</hediffDef>
+                <minSeverity>1</minSeverity>
+                <maxSeverity>5</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>true</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">
               <height>Middle</height>
               <depth>Inside</depth>
               <excludedParts>
@@ -44,25 +48,33 @@
           </li>
           <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>500</tickInterval>
-            <hediffDef>OrganHypoxia</hediffDef>
             <chance>0.25</chance>
-            <minSeverity>0.25</minSeverity>
-            <maxSeverity>2</maxSeverity>
-            <allowMultiple>true</allowMultiple>
-            <allowDuplicate>true</allowDuplicate>
-            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.BodyPartHediffTargetEvaluator_Single">
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>OrganHypoxia</hediffDef>
+                <minSeverity>0.01</minSeverity>
+                <maxSeverity>0.5</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>true</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
               <target>Heart</target>
             </targetEvaluator>
           </li>
-          <!-- a marker for brain damage hediffs (TODO) -->
           <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>500</tickInterval>
-            <hediffDef>OrganHypoxia</hediffDef>
-            <chance>0.25</chance>
-            <minSeverity>0.1</minSeverity>
-            <allowMultiple>true</allowMultiple>
-            <allowDuplicate>true</allowDuplicate>
-            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.BodyPartHediffTargetEvaluator_Single">
+            <chance>0.5</chance>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>BrainDamage_Hypoxia</hediffDef>
+                <minSeverity>0.1</minSeverity>
+                <maxSeverity>2</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
               <target>Brain</target>
             </targetEvaluator>
           </li>

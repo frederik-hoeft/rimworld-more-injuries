@@ -122,6 +122,17 @@
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>Minimum defibrillator success rate for unskilled user: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>
   <!-- EN: The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill < 8).\n\nThe actual success rate scales with the user's medicine skill: max(<this setting>, <medicine skill> / 8). -->
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8).</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>
+  <!-- =========== Feature: Neurological Damage =========== -->
+  <!-- EN: Neurological Damage -->
+  <MI_Settings_Features_NeuralDamage>Neurological Damage</MI_Settings_Features_NeuralDamage>
+  <!-- EN: Enable neurological damage mechanics (default: {DEFAULT}) -->
+  <MI_Settings_Features_NeuralDamage_EnableLabel>Enable neurological damage mechanics (default: {DEFAULT})</MI_Settings_Features_NeuralDamage_EnableLabel>
+  <!-- EN: If enabled, certain conditions (e.g., hypoxia, chemical exposure, or severe head injuries) may cause neurological damage to pawns, leading to various long-term effects such as impaired movement, speech, and cognitive functions. -->
+  <MI_Settings_Features_NeuralDamage_EnableTooltip>If enabled, certain conditions (e.g., hypoxia, chemical exposure, or severe head injuries) may cause neurological damage to pawns, leading to various long-term effects such as impaired movement, speech, and cognitive functions.</MI_Settings_Features_NeuralDamage_EnableTooltip>
+  <!-- EN: Reduction factor for neurological damage chance when patient is tended: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_NeuralDamage_TreatmentReductionFactorLabel>Reduction factor for neurological damage chance when patient is tended: {VALUE} (default: {DEFAULT})</MI_Settings_Features_NeuralDamage_TreatmentReductionFactorLabel>
+  <!-- EN: Tending the underlying condition that may cause neurological damage will reduce the chance of (further) neurological damage by this factor and will slow down the progression of the condition. Note that this may not prevent neurological damage from occurring, but only slow it down. To fully stabilize the patient, the underlying condition must be treated. -->
+  <MI_Settings_Features_NeuralDamage_TreatmentReductionFactorTooltip>Tending the underlying condition that may cause neurological damage will reduce the chance of (further) neurological damage by this factor and will slow down the progression of the condition. Note that this may not prevent neurological damage from occurring, but only slow it down. To fully stabilize the patient, the underlying condition must be treated.</MI_Settings_Features_NeuralDamage_TreatmentReductionFactorTooltip>
   <!-- ============ Feature: Concussion ============ -->
   <!-- EN: Concussion (Head Injury) -->
   <MI_Settings_Features_Concussion>Concussion (Head Injury)</MI_Settings_Features_Concussion>

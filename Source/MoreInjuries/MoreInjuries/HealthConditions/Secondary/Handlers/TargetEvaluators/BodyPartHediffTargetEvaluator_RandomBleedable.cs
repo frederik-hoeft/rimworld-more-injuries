@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace MoreInjuries.HealthConditions.Secondary.Handlers;
+namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
 public class BodyPartHediffTargetEvaluator_RandomBleedable : BodyPartHediffTargetEvaluator_Random
 {

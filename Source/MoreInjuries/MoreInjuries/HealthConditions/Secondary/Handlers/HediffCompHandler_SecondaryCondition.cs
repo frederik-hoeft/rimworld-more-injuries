@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.BuildIntrinsics;
+using MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 using System.Diagnostics.CodeAnalysis;
 using Verse;
 
@@ -10,19 +11,19 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers;
 public abstract class HediffCompHandler_SecondaryCondition
 {
     // don't rename this field. XML defs depend on this name
-    private readonly HediffDef hediffDef = default!;
-    // don't rename this field. XML defs depend on this name
     protected readonly float? chance = null;
     // don't rename this field. XML defs depend on this name
     private readonly int tickInterval = GenTicks.TickRareInterval;
+    // don't rename this field. XML defs depend on this name
+    private readonly HediffMakerProperties? hediffMakerProps = default;
 
-    public HediffDef HediffDef => hediffDef;
-
-    protected virtual float Chance => chance ?? 1f;
+    public virtual float Chance => chance ?? 1f;
 
     public int TickInterval => tickInterval;
 
-    protected virtual bool ShouldSkip(HediffComp_SecondaryCondition comp, float severityAdjustment)
+    public HediffMakerProperties? HediffMakerProps => hediffMakerProps;
+
+    public virtual bool ShouldSkip(HediffComp_SecondaryCondition comp, float severityAdjustment)
     {
         if (!comp.Pawn.IsHashIntervalTick(TickInterval))
         {

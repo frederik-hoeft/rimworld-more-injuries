@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Verse;
 
-namespace MoreInjuries.HealthConditions.Secondary.Handlers;
+namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
 // members initialized via XML defs
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
@@ -11,7 +11,7 @@ public class BodyPartHediffTargetEvaluator_Single : BodyPartHediffTargetEvaluato
     // don't rename this field. XML defs depend on this name
     private readonly BodyPartDef target = default!;
 
-    public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition_TargetsBodyPart handler)
+    public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)
     {
         if (target is null)
         {

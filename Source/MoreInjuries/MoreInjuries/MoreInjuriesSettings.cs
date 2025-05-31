@@ -65,6 +65,9 @@ public class MoreInjuriesSettings : ModSettings
     internal bool EnableCardiacArrestOnHighBloodLoss = ENABLE_CARDIAC_ARREST_ON_HIGH_BLOOD_LOSS_DEFAULT;
     internal float CardiacArrestChanceOnHighBloodLoss = CARDIAC_ARREST_CHANCE_ON_HIGH_BLOOD_LOSS_DEFAULT;
     internal float DefibrillatorMinimumSuccessRate = DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT;
+    // neural damage and permanent brain injuries
+    internal bool EnableNeuralDamage = ENABLE_NEURAL_DAMAGE_DEFAULT;
+    internal float NeuralDamageChanceReductionFactor = NEURAL_DAMAGE_CHANCE_REDUCTION_FACTOR_DEFAULT;
     // tourniquet-related injuries
     internal bool TourniquetsCanCauseGangrene = TOURNIQUETS_CAN_CAUSE_GANGRENE_DEFAULT;
     internal float MeanTimeBetweenGangreneOnTourniquet = MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT;
@@ -142,6 +145,9 @@ public class MoreInjuriesSettings : ModSettings
         Scribe_Values.Look(ref EnableCardiacArrestOnHighBloodLoss, nameof(EnableCardiacArrestOnHighBloodLoss), ENABLE_CARDIAC_ARREST_ON_HIGH_BLOOD_LOSS_DEFAULT);
         Scribe_Values.Look(ref CardiacArrestChanceOnHighBloodLoss, nameof(CardiacArrestChanceOnHighBloodLoss), CARDIAC_ARREST_CHANCE_ON_HIGH_BLOOD_LOSS_DEFAULT);
         Scribe_Values.Look(ref DefibrillatorMinimumSuccessRate, nameof(DefibrillatorMinimumSuccessRate), DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT);
+        // neural damage
+        Scribe_Values.Look(ref EnableNeuralDamage, nameof(EnableNeuralDamage), ENABLE_NEURAL_DAMAGE_DEFAULT);
+        Scribe_Values.Look(ref NeuralDamageChanceReductionFactor, nameof(NeuralDamageChanceReductionFactor), NEURAL_DAMAGE_CHANCE_REDUCTION_FACTOR_DEFAULT);
         // tourniquets
         Scribe_Values.Look(ref TourniquetsCanCauseGangrene, nameof(TourniquetsCanCauseGangrene), TOURNIQUETS_CAN_CAUSE_GANGRENE_DEFAULT);
         Scribe_Values.Look(ref MeanTimeBetweenGangreneOnTourniquet, nameof(MeanTimeBetweenGangreneOnTourniquet), MEAN_TIME_BETWEEN_GANGRENE_ON_TOURNIQUET_DEFAULT);

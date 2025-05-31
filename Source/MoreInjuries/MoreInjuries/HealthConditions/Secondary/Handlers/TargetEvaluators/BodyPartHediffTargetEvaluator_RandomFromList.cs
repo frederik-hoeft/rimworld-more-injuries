@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Verse;
 
-namespace MoreInjuries.HealthConditions.Secondary.Handlers;
+namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
 // members initialized via XML defs
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
@@ -14,7 +14,7 @@ public class BodyPartHediffTargetEvaluator_RandomFromList : BodyPartHediffTarget
     // don't rename this field. XML defs depend on this name
     private readonly List<BodyPartDef> targets = default!;
 
-    public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition_TargetsBodyPart handler)
+    public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)
     {
         if (targets is not { Count: > 0 })
         {

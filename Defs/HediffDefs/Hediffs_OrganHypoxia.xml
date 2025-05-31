@@ -28,4 +28,166 @@
       <destroyedOutLabel>Dead</destroyedOutLabel>
     </injuryProps>
   </HediffDef>
+
+  <HediffDef ParentName="InjuryBase">
+    <defName>BrainDamage_Hypoxia</defName>
+    <label>circulatory hypoxia</label>
+    <labelNoun>insufficient oxygen</labelNoun>
+    <description>Neurodegeneration caused by lack of oxygen to the brain. Most commonly caused by insufficient blood flow. Prolonged hypoxia can lead to permanent brain damage.</description>
+    <defaultLabelColor>(100, 15, 15)</defaultLabelColor>
+    <maxSeverity>9</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>tended</labelTendedWell>
+        <labelTendedWellInner>tended</labelTendedWellInner>
+        <labelSolidTendedWell>tended</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>Permanent hypoxia damage</permanentLabel>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <severityCurve>
+          <points>
+            <li>0, 0</li>
+            <li>1, 0.1</li>
+            <li>2, 0.45</li>
+            <li>3, 0.75</li>
+            <li>4, 0.95</li>
+            <li>5, 1</li>
+          </points>
+        </severityCurve>
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Hypoxia.Secondary.HediffCompHandler_SecondaryCondition_BrainDamage">
+            <tickInterval>2000</tickInterval>
+            <chance>0.02</chance>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_RandomFromList">
+              <hediffMakerDefs>
+                <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
+                  <hediffDef>BrainDamage_MotorDysfunction</hediffDef>
+                  <weight>1</weight>
+                  <minSeverity>0.01</minSeverity>
+                  <maxSeverity>0.5</maxSeverity>
+                  <allowMultiple>true</allowMultiple>
+                  <allowDuplicate>false</allowDuplicate>
+                </li>
+              </hediffMakerDefs>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>intial</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.95</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>minor</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <minSeverity>1</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.8</setMax>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.2</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>moderate</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <minSeverity>2</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.5</setMax>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.5</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.6</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>severe</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <minSeverity>3</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>very severe</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <minSeverity>4</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>critical</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <minSeverity>5</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>fatal</label>
+        <minSeverity>8</minSeverity>
+        <partIgnoreMissingHP>false</partIgnoreMissingHP>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <injuryProps>
+      <painPerSeverity>0.005</painPerSeverity>
+      <averagePainPerSeverityPermanent>0</averagePainPerSeverityPermanent>
+      <bleedRate>0</bleedRate>
+      <canMerge>true</canMerge>
+      <destroyedLabel>Dead</destroyedLabel>
+      <destroyedOutLabel>Dead</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
 </Defs>

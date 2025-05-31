@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Verse;
 
-namespace MoreInjuries.HealthConditions.Secondary.Handlers;
+namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
 // members initialized via XML defs
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
@@ -26,7 +26,7 @@ public class BodyPartHediffTargetEvaluator_Random : BodyPartHediffTargetEvaluato
         return excludedParts is null || !excludedParts.Contains(bodyPart.def);
     }
 
-    public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition_TargetsBodyPart handler)
+    public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)
     {
         IEnumerable<BodyPartRecord> bodyParts = comp.Pawn.health.hediffSet.GetNotMissingParts(height, depth);
         if (excludedParts is { Count: > 0 })

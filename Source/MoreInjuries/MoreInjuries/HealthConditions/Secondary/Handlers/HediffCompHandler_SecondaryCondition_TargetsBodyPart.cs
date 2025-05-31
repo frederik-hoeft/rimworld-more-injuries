@@ -1,4 +1,6 @@
 ﻿using MoreInjuries.BuildIntrinsics;
+using MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
+using MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 using System.Diagnostics.CodeAnalysis;
 using Verse;
 
@@ -9,15 +11,7 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers;
 public class HediffCompHandler_SecondaryCondition_TargetsBodyPart : HediffCompHandler_SecondaryCondition
 {
     // don't rename this field. XML defs depend on this name
-    private readonly BodyPartHediffTargetEvaluator targetEvaluator = default!;
-    // don't rename this field. XML defs depend on this name
-    protected readonly float minSeverity = 0f;
-    // don't rename this field. XML defs depend on this name
-    protected readonly float maxSeverity = 0f;
-    // don't rename this field. XML defs depend on this name
-    protected readonly bool allowDuplicate = false;
-    // don't rename this field. XML defs depend on this name
-    protected readonly bool allowMultiple = false;
+    protected readonly BodyPartHediffTargetEvaluator targetEvaluator = default!;
 
     public override void Evaluate(HediffComp_SecondaryCondition comp, float severityAdjustment)
     {
@@ -25,40 +19,40 @@ public class HediffCompHandler_SecondaryCondition_TargetsBodyPart : HediffCompHa
         {
             return;
         }
-        Logger.LogDebug($"Evaluating {comp.parent.LabelCap} ({HediffDef.defName}) for {comp.Pawn.Name} with severity {comp.parent.Severity}");
-        if (targetEvaluator is null)
-        {
-            Logger.Error($"{nameof(HediffCompHandler_SecondaryCondition_TargetsBodyPart)}: {comp.GetType().Name} has no target evaluator defined. Cannot evaluate.");
-            return;
-        }
+        _ = targetEvaluator ?? throw new InvalidOperationException($"{nameof(HediffCompHandler_SecondaryCondition_TargetsBodyPart)}: {comp.GetType().Name} has no target evaluator defined. Cannot evaluate.");
+        HediffMakerProperties hediffMakerProps = HediffMakerProps ?? throw new InvalidOperationException($"{nameof(HediffCompHandler_SecondaryCondition_TargetsBodyPart)}: {comp.GetType().Name} has no hediff maker properties defined. Cannot evaluate.");
         BodyPartRecord? targetBodyPart = targetEvaluator.GetTargetBodyPart(comp, this);
         if (targetBodyPart is null)
         {
             Logger.LogDebug($"No valid target body part found for {comp.Pawn.Name} ({comp.parent.LabelCap}). Skipping evaluation.");
             return;
         }
-        if (!comp.Pawn.health.hediffSet.TryGetHediff(HediffDef, out Hediff? existingHediff))
+        HediffMakerDef hediffMakerDef = hediffMakerProps.GetHediffMakerDef(comp, this, targetBodyPart);
+        HediffDef hediffDef = hediffMakerDef.HediffDef;
+        if (!comp.Pawn.health.hediffSet.TryGetHediff(hediffDef, out Hediff? existingHediff))
         {
-            Hediff hediff = MakeHediff(comp.Pawn, targetBodyPart);
+            float initialSeverity = hediffMakerDef.GetInitialSeverity();
+            Hediff hediff = MakeHediff(comp, hediffDef, targetBodyPart, initialSeverity);
             PostApplyHediff(comp, hediff);
             return;
         }
-        if (!allowMultiple)
+        if (!hediffMakerDef.AllowMultiple)
         {
             // if the hediff already exists, we don't need to create a new one
-            Logger.LogDebug($"Hediff {HediffDef.defName} already exists for {comp.Pawn.Name} ({comp.parent.LabelCap}). Skipping creation.");
+            Logger.LogDebug($"Hediff {hediffDef.defName} already exists for {comp.Pawn.Name} ({comp.parent.LabelCap}). Skipping creation.");
             return;
         }
-        if (allowDuplicate)
+        if (hediffMakerDef.AllowDuplicate)
         {
             // if duplicates are allowed, we can create a new hediff even if it already exists
-            Hediff hediff = MakeHediff(comp.Pawn, targetBodyPart);
+            float initialSeverity = hediffMakerDef.GetInitialSeverity();
+            Hediff hediff = MakeHediff(comp, hediffDef, targetBodyPart, initialSeverity);
             PostApplyHediff(comp, hediff);
         }
         else
         {
             // otherwise, we update the existing hediff's severity
-            existingHediff.Severity += GetInitialSeverity();
+            existingHediff.Severity += hediffMakerDef.GetInitialSeverity();
         }
     }
 
@@ -67,29 +61,31 @@ public class HediffCompHandler_SecondaryCondition_TargetsBodyPart : HediffCompHa
         // This method can be overridden to perform additional actions after the hediff is created
     }
 
-    protected virtual Hediff MakeHediff(Pawn pawn, BodyPartRecord targetBodyPart)
+    protected virtual Hediff MakeHediff(HediffComp_SecondaryCondition sourceComp, HediffDef hediffDef, BodyPartRecord targetBodyPart, float severity)
     {
-        Hediff hediff = HediffMaker.MakeHediff(HediffDef, pawn);
-        hediff.Severity = GetInitialSeverity();
-        pawn.health.AddHediff(hediff, targetBodyPart);
+        Hediff hediff = HediffMaker.MakeHediff(hediffDef, sourceComp.Pawn);
+        hediff.Severity = severity;
+        if (hediff is HediffWithComps hediffWithComps)
+        {
+            bool setCausedBy = false;
+            hediffWithComps.comps ??= [];
+            foreach (HediffComp? comp in hediffWithComps.comps)
+            {
+                if (comp is HediffComp_CausedBy compCausedBy)
+                {
+                    // set the CausedBy property to the reason this hediff was created
+                    compCausedBy.CausedBy = sourceComp.parent.Label.Colorize(sourceComp.parent.LabelColor);
+                    setCausedBy = true;
+                    break;
+                }
+            }
+            if (!setCausedBy)
+            {
+                // if no HediffComp_CausedBy was found, we add one
+                hediffWithComps.comps.Add(new HediffComp_CausedBy { CausedBy = sourceComp.parent.Label });
+            }
+        }
+        sourceComp.Pawn.health.AddHediff(hediff, targetBodyPart);
         return hediff;
-    }
-
-    protected virtual float GetInitialSeverity()
-    {
-        if (minSeverity == maxSeverity)
-        {
-            return minSeverity;
-        }
-        if (maxSeverity == 0f)
-        {
-            return minSeverity;
-        }
-        if (minSeverity > maxSeverity)
-        {
-            Logger.Error($"{nameof(HediffCompHandler_SecondaryCondition_TargetsBodyPart)}: {nameof(minSeverity)} ({minSeverity}) is greater than {nameof(maxSeverity)} ({maxSeverity}). Using {nameof(minSeverity)} instead.");
-            return minSeverity;
-        }
-        return Rand.Range(minSeverity, maxSeverity);
     }
 }

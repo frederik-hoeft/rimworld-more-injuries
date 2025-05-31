@@ -8,7 +8,7 @@ namespace MoreInjuries.HealthConditions.HypovolemicShock.Secondary;
 
 public sealed class HediffCompHandler_SecondaryCondition_CardiacArrest : HediffCompHandler_SecondaryCondition_TargetsBodyPart
 {
-    protected override bool ShouldSkip(HediffComp_SecondaryCondition comp, float severityAdjustment)
+    public override bool ShouldSkip(HediffComp_SecondaryCondition comp, float severityAdjustment)
     {
         if (base.ShouldSkip(comp, severityAdjustment) || !MoreInjuriesMod.Settings.EnableCardiacArrestOnHighBloodLoss)
         {
