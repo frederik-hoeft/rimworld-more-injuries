@@ -22,6 +22,7 @@
         <filter>
           <thingDefs>
             <li>MedicineIndustrial</li>
+            <li>MedicineUltratech</li>
           </thingDefs>
         </filter>
         <count>3</count>
@@ -30,6 +31,7 @@
     <fixedIngredientFilter>
       <thingDefs>
         <li>MedicineIndustrial</li>
+        <li>MedicineUltratech</li>
       </thingDefs>
     </fixedIngredientFilter>
     <surgerySuccessChanceFactor>1</surgerySuccessChanceFactor>

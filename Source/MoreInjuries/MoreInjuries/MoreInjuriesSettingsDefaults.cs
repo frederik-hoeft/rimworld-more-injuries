@@ -33,6 +33,9 @@ internal static class MoreInjuriesSettingsDefaults
     internal const bool ENABLE_CARDIAC_ARREST_ON_HIGH_BLOOD_LOSS_DEFAULT = true;
     internal const float CARDIAC_ARREST_CHANCE_ON_HIGH_BLOOD_LOSS_DEFAULT = 0.05f;
     internal const float DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT = 0.5f;
+    // neural damage and permanent brain injuries
+    internal const bool ENABLE_NEURAL_DAMAGE_DEFAULT = true;
+    internal const float NEURAL_DAMAGE_CHANCE_REDUCTION_FACTOR_DEFAULT = 0.5f;
     // choking
     internal const bool ENABLE_CHOKING_DEFAULT = true;
     internal const bool ENABLE_CHOKING_SOUNDS_DEFAULT = true;

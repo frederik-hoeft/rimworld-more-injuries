@@ -16,7 +16,6 @@ public static class HealthCondition_Initializer
     {
         // Note: not entirely sure what this is trying to achieve...
         KnownBodyPartDefOf.Skull.hitPoints = 35;
-        BodyPartDefOf.Head.hitPoints = 20;
 
         // inject hearing loss hooks into all gun defs
         IEnumerable<ThingDef> guns = DefDatabase<ThingDef>.AllDefsListForReading
@@ -33,14 +32,6 @@ public static class HealthCondition_Initializer
                 compClass = typeof(HearingLossComp)
             });
         }
-
-        // allow hypovolemic shock to be notified of blood loss
-        HediffDefOf.BloodLoss.comps ??= [];
-        HediffDefOf.BloodLoss.comps.Add(new HediffCompProperties
-        {
-            compClass = typeof(HediffComp_ShockMaker)
-        });
-        HediffDefOf.BloodLoss.hediffClass = typeof(HediffWithComps);
 
         // hook into all injury and missing part hediffs
         foreach (HediffDef hediffdef in DefDatabase<HediffDef>.AllDefsListForReading.Where(static hediffDef => hediffDef.hediffClass == typeof(Hediff_Injury)))

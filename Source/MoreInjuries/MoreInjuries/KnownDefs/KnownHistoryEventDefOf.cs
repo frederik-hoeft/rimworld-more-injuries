@@ -9,4 +9,5 @@ namespace MoreInjuries.KnownDefs;
 public static class KnownHistoryEventDefOf
 {
     public static HistoryEventDef ExtractedWholeBloodBag = null!;
+    public static HistoryEventDef AnesthetizedMember = null!;
 }

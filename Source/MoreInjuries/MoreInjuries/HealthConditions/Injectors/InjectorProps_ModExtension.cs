@@ -1,4 +1,6 @@
 ﻿using MoreInjuries.BuildIntrinsics;
+using MoreInjuries.HealthConditions.Injectors.Outcomes;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Verse;
 
@@ -10,7 +12,7 @@ namespace MoreInjuries.HealthConditions.Injectors;
 public class InjectorProps_ModExtension : DefModExtension
 {
     // don't rename this field. XML defs depend on this name
-    private readonly float severityOffset = default;
+    private readonly List<InjectionOutcomeDoer> outcomeDoers = default!;
 
-    public float SeverityOffset => severityOffset;
+    public List<InjectionOutcomeDoer> OutcomeDoers => outcomeDoers;
 }
