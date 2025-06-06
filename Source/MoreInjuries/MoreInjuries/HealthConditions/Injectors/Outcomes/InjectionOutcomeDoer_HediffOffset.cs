@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Verse;
 
-namespace MoreInjuries.HealthConditions.Injectors;
+namespace MoreInjuries.HealthConditions.Injectors.Outcomes;
 
 [SuppressMessage("Style", "IDE0032:Use auto property", Justification = Justifications.XML_DEF_REQUIRES_FIELD)]
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
@@ -11,7 +11,6 @@ public class InjectionOutcomeDoer_HediffOffset : InjectionOutcomeDoer
 {
     // don't rename this field. XML defs depend on this name
     private readonly HediffDef hediffDef = default!;
-
     // don't rename this field. XML defs depend on this name
     private readonly float severityOffset = default;
 
@@ -19,7 +18,7 @@ public class InjectionOutcomeDoer_HediffOffset : InjectionOutcomeDoer
 
     public float SeverityOffset => severityOffset;
 
-    public override bool TryDoOutcome(Pawn doctor, Pawn patient, Thing? device)
+    protected override bool DoOutcome(Pawn doctor, Pawn patient, Thing? device)
     {
         Hediff? hediff = patient.health.hediffSet.GetFirstHediffOfDef(HediffDef);
         if (hediff is null && SeverityOffset > 0)

@@ -88,7 +88,7 @@ public class HediffComp_Shock : HediffComp
         if (!PastFixedPoint)
         {
             // scale the severity of the shock based on the severity of the blood loss
-            parent.Severity = bloodLoss!.Severity;
+            parent.Severity = bloodLoss.Severity;
             return;
         }
         if (bloodLoss is null)

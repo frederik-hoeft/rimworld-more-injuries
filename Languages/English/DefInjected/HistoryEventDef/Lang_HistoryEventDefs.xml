@@ -2,4 +2,6 @@
 <LanguageData>
   <!-- EN: extracted blood bag from member without consent -->
   <ExtractedWholeBloodBag.label>extracted blood bag from member without consent</ExtractedWholeBloodBag.label>
+  <!-- EN: anesthetized member without consent -->
+  <AnesthetizedMember.label>anesthetized member without consent</AnesthetizedMember.label>
 </LanguageData>

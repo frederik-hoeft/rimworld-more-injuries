@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.BuildIntrinsics;
+using MoreInjuries.HealthConditions.Injectors.Outcomes;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Verse;

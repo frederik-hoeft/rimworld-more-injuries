@@ -41,7 +41,7 @@
     <modExtensions>
       <li Class="MoreInjuries.HealthConditions.Injectors.InjectorProps_ModExtension">
         <outcomeDoers>
-          <li Class="MoreInjuries.HealthConditions.Injectors.InjectionOutcomeDoer_HediffOffset">
+          <li Class="MoreInjuries.HealthConditions.Injectors.Outcomes.InjectionOutcomeDoer_HediffOffset">
             <hediffDef>AdrenalineRush</hediffDef>
             <severityOffset>0.75</severityOffset>
           </li>
@@ -91,11 +91,19 @@
     <modExtensions>
       <li Class="MoreInjuries.HealthConditions.Injectors.InjectorProps_ModExtension">
         <outcomeDoers>
-          <li Class="MoreInjuries.HealthConditions.Injectors.InjectionOutcomeDoer_HediffOffset">
+          <li Class="MoreInjuries.HealthConditions.Injectors.Outcomes.InjectionOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.HealthConditions.Injectors.Outcomes.Conditions.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.HealthConditions.Injectors.Outcomes.Conditions.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+            </condition>
+            <goodwillChange>-15</goodwillChange>
+            <historyEventDef>AnesthetizedMember</historyEventDef>
+            <isViolation>true</isViolation>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Injectors.Outcomes.InjectionOutcomeDoer_HediffOffset">
             <hediffDef>Anesthetic</hediffDef>
             <severityOffset>1.2</severityOffset>
           </li>
-          <li Class="MoreInjuries.HealthConditions.Injectors.InjectionOutcomeDoer_HediffOffset">
+          <li Class="MoreInjuries.HealthConditions.Injectors.Outcomes.InjectionOutcomeDoer_HediffOffset">
             <hediffDef>KetamineBuildup</hediffDef>
             <severityOffset>0.35</severityOffset>
           </li>
