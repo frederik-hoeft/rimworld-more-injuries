@@ -9,7 +9,9 @@ public class HediffComp_ShockMaker : HediffComp
     private static readonly SimpleCurve s_curve = new(
     [
         new CurvePoint(0f, 0f),
-        new CurvePoint(0.45f, 0.01f),
+        // don't apply shock until severity reaches 0.45
+        // (otherwise we'll get annoying "medical emergency" messages for minor injuries)
+        new CurvePoint(0.45f, 0f),
         new CurvePoint(0.6f, 0.0915f),
         new CurvePoint(1f, 0.1396f),
     ]);
