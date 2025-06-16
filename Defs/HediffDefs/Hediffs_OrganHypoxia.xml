@@ -2,7 +2,7 @@
 <Defs>
   <HediffDef ParentName="InjuryBase">
     <defName>OrganHypoxia</defName>
-    <label>circulatory hypoxia</label>
+    <label>hypoxia</label>
     <labelNoun>insufficient oxygen</labelNoun>
     <description>Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow.</description>
     <defaultLabelColor>(100, 15, 15)</defaultLabelColor>
@@ -31,7 +31,7 @@
 
   <HediffDef ParentName="InjuryBase">
     <defName>BrainDamage_Hypoxia</defName>
-    <label>circulatory hypoxia</label>
+    <label>hypoxia</label>
     <labelNoun>insufficient oxygen</labelNoun>
     <description>Neurodegeneration caused by lack of oxygen to the brain. Most commonly caused by insufficient blood flow. Prolonged hypoxia can lead to permanent brain damage.</description>
     <defaultLabelColor>(100, 15, 15)</defaultLabelColor>
@@ -52,7 +52,7 @@
         <severityCurve>
           <points>
             <li>0, 0</li>
-            <li>1, 0.1</li>
+            <li>1, 0.15</li>
             <li>2, 0.45</li>
             <li>3, 0.75</li>
             <li>4, 0.95</li>

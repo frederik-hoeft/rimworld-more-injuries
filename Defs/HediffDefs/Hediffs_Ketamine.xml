@@ -15,7 +15,35 @@
         <severityPerDay>-0.35</severityPerDay>
         <showHoursToRecover>true</showHoursToRecover>
       </li>
-      <!-- TODO: Future comp to simulate secondary effects of ketamine buildup --> 
+      <!-- TODO: WIP ....-->
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <severityCurve>
+          <points>
+            <li>0, 0</li>
+            <li>0.2, 0</li>
+            <li>0.4, 0.05</li>
+            <li>0.8, 1</li>
+            <li>1, 1</li>
+          </points>
+        </severityCurve>
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_CardiacArrest">
+            <tickInterval>300</tickInterval>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>CardiacArrest</hediffDef>
+                <minSeverity>0.1</minSeverity>
+                <maxSeverity>2</maxSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Heart</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
     </comps>
     <stages>
       <li>
