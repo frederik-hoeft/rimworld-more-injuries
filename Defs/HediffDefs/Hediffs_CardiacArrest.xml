@@ -29,6 +29,20 @@
         <handlers>
           <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>250</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediffCurve">
+                <hediffDef>Hypothermia</hediffDef>
+                <!-- hypothermia slows down the damaging effects of hypoxia: (hypothermia severity) => hypoxia chance factor -->
+                <severityCurve>
+                  <points>
+                    <li>0, 1</li>
+                    <li>0.2, 0.9</li>
+                    <li>0.6, 0.5</li>
+                    <li>1, 0.25</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>OrganHypoxia</hediffDef>
@@ -48,7 +62,7 @@
           </li>
           <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>500</tickInterval>
-            <chance>0.25</chance>
+            <baseChance>0.25</baseChance>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>OrganHypoxia</hediffDef>
@@ -64,7 +78,21 @@
           </li>
           <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>500</tickInterval>
-            <chance>0.5</chance>
+            <baseChance>0.5</baseChance>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediffCurve">
+                <hediffDef>Hypothermia</hediffDef>
+                <!-- hypothermia slows down the damaging effects of hypoxia: (hypothermia severity) => hypoxia chance factor -->
+                <severityCurve>
+                  <points>
+                    <li>0, 1</li>
+                    <li>0.2, 0.9</li>
+                    <li>0.6, 0.5</li>
+                    <li>1, 0.25</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>BrainDamage_Hypoxia</hediffDef>

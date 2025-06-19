@@ -1,5 +1,4 @@
 ﻿using MoreInjuries.BuildIntrinsics;
-using MoreInjuries.KnownDefs;
 using RimWorld;
 using System.Diagnostics.CodeAnalysis;
 using Verse;
@@ -11,11 +10,11 @@ namespace MoreInjuries.HealthConditions.Injectors.Outcomes;
 public class InjectionOutcomeDoer_FactionRelations : InjectionOutcomeDoer
 {
     // don't rename this field. XML defs depend on this name
-    private readonly int goodwillChange;
+    private readonly int goodwillChange = 0;
     // don't rename this field. XML defs depend on this name
     private readonly HistoryEventDef historyEventDef = default!;
     // don't rename this field. XML defs depend on this name
-    private readonly bool isViolation;
+    private readonly bool isViolation = false;
 
     public int GoodwillChange => goodwillChange;
 

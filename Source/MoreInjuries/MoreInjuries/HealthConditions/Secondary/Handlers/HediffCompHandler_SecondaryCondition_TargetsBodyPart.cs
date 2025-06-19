@@ -1,6 +1,7 @@
 ﻿using MoreInjuries.BuildIntrinsics;
 using MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
+using RimWorld;
 using System.Diagnostics.CodeAnalysis;
 using Verse;
 
@@ -12,6 +13,8 @@ public class HediffCompHandler_SecondaryCondition_TargetsBodyPart : HediffCompHa
 {
     // don't rename this field. XML defs depend on this name
     protected readonly BodyPartHediffTargetEvaluator targetEvaluator = default!;
+    // don't rename this field. XML defs depend on this name
+    protected readonly bool sendLetterWhenDiscovered = false;
 
     public override void Evaluate(HediffComp_SecondaryCondition comp, float severityAdjustment)
     {
@@ -58,7 +61,13 @@ public class HediffCompHandler_SecondaryCondition_TargetsBodyPart : HediffCompHa
 
     protected virtual void PostApplyHediff(HediffComp_SecondaryCondition comp, Hediff hediff)
     {
-        // This method can be overridden to perform additional actions after the hediff is created
+        Pawn pawn = hediff.pawn;
+        if (sendLetterWhenDiscovered && PawnUtility.ShouldSendNotificationAbout(pawn))
+        {
+            Find.LetterStack.ReceiveLetter("LetterHealthComplicationsLabel".Translate(pawn.LabelShort, hediff.LabelCap, pawn.Named("PAWN")).CapitalizeFirst(),
+                "LetterHealthComplications".Translate(pawn.LabelShortCap, hediff.LabelCap, comp.parent.LabelCap, pawn.Named("PAWN")).CapitalizeFirst(),
+                LetterDefOf.NegativeEvent, pawn);
+        }
     }
 
     protected virtual Hediff MakeHediff(HediffComp_SecondaryCondition sourceComp, HediffDef hediffDef, BodyPartRecord targetBodyPart, float severity)

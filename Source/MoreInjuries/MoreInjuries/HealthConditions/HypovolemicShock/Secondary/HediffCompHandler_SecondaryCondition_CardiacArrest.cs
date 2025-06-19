@@ -25,23 +25,7 @@ public sealed class HediffCompHandler_SecondaryCondition_CardiacArrest : HediffC
         {
             return true;
         }
-        // Biotech integration: don't apply cardiac arrest if the pawn is deathresting, otherwise leads to infinite cardiac arrest
-        if (ModLister.BiotechInstalled && comp.parent.pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest))
-        {
-            return true;
-        }
         // continue with the evaluation
         return false;
-    }
-
-    protected override void PostApplyHediff(HediffComp_SecondaryCondition comp, Hediff hediff)
-    {
-        Pawn pawn = hediff.pawn;
-        if (PawnUtility.ShouldSendNotificationAbout(pawn))
-        {
-            Find.LetterStack.ReceiveLetter("LetterHealthComplicationsLabel".Translate(pawn.LabelShort, hediff.LabelCap, pawn.Named("PAWN")).CapitalizeFirst(),
-                "LetterHealthComplications".Translate(pawn.LabelShortCap, hediff.LabelCap, comp.parent.LabelCap, pawn.Named("PAWN")).CapitalizeFirst(),
-                LetterDefOf.NegativeEvent, pawn);
-        }
     }
 }

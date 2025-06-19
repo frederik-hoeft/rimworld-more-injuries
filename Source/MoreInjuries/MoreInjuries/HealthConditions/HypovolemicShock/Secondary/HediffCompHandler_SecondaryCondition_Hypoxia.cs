@@ -6,7 +6,7 @@ namespace MoreInjuries.HealthConditions.HypovolemicShock.Secondary;
 
 public sealed class HediffCompHandler_SecondaryCondition_Hypoxia : HediffCompHandler_SecondaryCondition_TargetsBodyPart
 {
-    public override float Chance => MoreInjuriesMod.Settings.OrganHypoxiaChance * base.Chance;
+    public override float BaseChance => MoreInjuriesMod.Settings.OrganHypoxiaChance * base.BaseChance;
 
     public override bool ShouldSkip(HediffComp_SecondaryCondition comp, float severityAdjustment)
     {

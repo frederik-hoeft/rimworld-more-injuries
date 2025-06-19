@@ -6,7 +6,7 @@ namespace MoreInjuries.HealthConditions.Hypoxia.Secondary;
 
 public sealed class HediffCompHandler_SecondaryCondition_BrainDamage : HediffCompHandler_SecondaryCondition_TargetsBodyPart
 {
-    public override float Chance => MoreInjuriesMod.Settings.EnableNeuralDamage ? base.Chance : 0f;
+    public override float BaseChance => MoreInjuriesMod.Settings.EnableNeuralDamage ? base.BaseChance : 0f;
 
     public override bool ShouldSkip(HediffComp_SecondaryCondition comp, float severityAdjustment)
     {

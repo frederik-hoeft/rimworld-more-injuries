@@ -62,7 +62,7 @@
         <handlers>
           <li Class="MoreInjuries.HealthConditions.Hypoxia.Secondary.HediffCompHandler_SecondaryCondition_BrainDamage">
             <tickInterval>2000</tickInterval>
-            <chance>0.02</chance>
+            <baseChance>0.02</baseChance>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_RandomFromList">
               <hediffMakerDefs>
                 <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">

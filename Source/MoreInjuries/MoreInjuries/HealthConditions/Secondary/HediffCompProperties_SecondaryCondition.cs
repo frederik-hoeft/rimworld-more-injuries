@@ -14,13 +14,13 @@ public class HediffCompProperties_SecondaryCondition : HediffCompProperties
     private static readonly IReadOnlyList<HediffCompHandler_SecondaryCondition> s_emptyHandlers = [];
 
     // don't rename this field. XML defs depend on this name
-    private readonly SimpleCurve severityCurve = default!;
+    private readonly SimpleCurve? severityCurve = default;
     // don't rename this field. XML defs depend on this name
     private readonly List<HediffCompHandler_SecondaryCondition>? handlers = null;
 
     public HediffCompProperties_SecondaryCondition() => compClass = typeof(HediffComp_SecondaryCondition);
 
-    public SimpleCurve SeverityCurve => severityCurve;
+    public SimpleCurve? SeverityCurve => severityCurve;
 
     public IReadOnlyList<HediffCompHandler_SecondaryCondition> Handlers => handlers ?? s_emptyHandlers;
 }

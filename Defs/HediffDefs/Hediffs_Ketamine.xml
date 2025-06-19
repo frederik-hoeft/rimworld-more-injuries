@@ -15,25 +15,28 @@
         <severityPerDay>-0.35</severityPerDay>
         <showHoursToRecover>true</showHoursToRecover>
       </li>
-      <!-- TODO: WIP ....-->
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <severityCurve>
           <points>
             <li>0, 0</li>
             <li>0.2, 0</li>
-            <li>0.4, 0.05</li>
-            <li>0.8, 1</li>
-            <li>1, 1</li>
+            <li>0.4, 0.002</li>
+            <li>0.6, 0.03</li>
+            <li>0.8, 0.06</li>
+            <li>1, 0.175</li>
           </points>
         </severityCurve>
         <handlers>
-          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_CardiacArrest">
-            <tickInterval>300</tickInterval>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_TargetsBodyPart">
+            <tickInterval>2000</tickInterval>
+            <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_DisallowDeathResting"></li>
+            </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>CardiacArrest</hediffDef>
-                <minSeverity>0.1</minSeverity>
-                <maxSeverity>2</maxSeverity>
+                <minSeverity>0.01</minSeverity>
                 <allowMultiple>false</allowMultiple>
                 <allowDuplicate>false</allowDuplicate>
               </hediffMakerDef>

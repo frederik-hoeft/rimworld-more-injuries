@@ -7,6 +7,6 @@
 
   <HistoryEventDef>
     <defName>AnesthetizedMember</defName>
-    <label>anesthetized member without consent</label>
+    <label>anesthetized member without consent or medical need</label>
   </HistoryEventDef>
 </Defs>
