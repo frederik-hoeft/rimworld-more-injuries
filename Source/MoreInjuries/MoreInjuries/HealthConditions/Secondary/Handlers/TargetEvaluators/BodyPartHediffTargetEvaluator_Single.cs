@@ -6,7 +6,7 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
 // members initialized via XML defs
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
-public class BodyPartHediffTargetEvaluator_Single : BodyPartHediffTargetEvaluator
+public sealed class BodyPartHediffTargetEvaluator_Single : BodyPartHediffTargetEvaluator
 {
     // don't rename this field. XML defs depend on this name
     private readonly BodyPartDef target = default!;

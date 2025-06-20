@@ -4,7 +4,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock.Secondary;
 
-public sealed class HediffCompHandler_SecondaryCondition_Hypoxia : HediffCompHandler_SecondaryCondition_TargetsBodyPart
+public sealed class HediffCompHandler_SecondaryCondition_Hypoxia : HediffCompHandler_SecondaryCondition
 {
     public override float BaseChance => MoreInjuriesMod.Settings.OrganHypoxiaChance * base.BaseChance;
 

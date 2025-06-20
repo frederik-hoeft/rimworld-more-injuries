@@ -4,19 +4,19 @@ namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property, Inherited = false)]
-internal sealed class AllowNullAttribute : Attribute;
+public sealed class AllowNullAttribute : Attribute;
 
 /// <summary>Specifies that null is disallowed as an input even if the corresponding type allows it.</summary>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property, Inherited = false)]
-internal sealed class DisallowNullAttribute : Attribute;
+public sealed class DisallowNullAttribute : Attribute;
 
 /// <summary>Specifies that an output may be null even if the corresponding type disallows it.</summary>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, Inherited = false)]
-internal sealed class MaybeNullAttribute : Attribute;
+public sealed class MaybeNullAttribute : Attribute;
 
 /// <summary>Specifies that an output will not be null even if the corresponding type allows it. Specifies that an input argument was not null when the call returns.</summary>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, Inherited = false)]
-internal sealed class NotNullAttribute : Attribute;
+public sealed class NotNullAttribute : Attribute;
 
 /// <summary>Specifies that when a method returns <see cref="ReturnValue"/>, the parameter may be null even if the corresponding type disallows it.</summary>
 /// <remarks>Initializes the attribute with the specified return value condition.</remarks>
@@ -24,7 +24,7 @@ internal sealed class NotNullAttribute : Attribute;
 /// The return value condition. If the method returns this value, the associated parameter may be null.
 /// </param>
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-internal sealed class MaybeNullWhenAttribute(bool returnValue) : Attribute
+public sealed class MaybeNullWhenAttribute(bool returnValue) : Attribute
 {
 
     /// <summary>Gets the return value condition.</summary>
@@ -37,7 +37,7 @@ internal sealed class MaybeNullWhenAttribute(bool returnValue) : Attribute
 /// The return value condition. If the method returns this value, the associated parameter will not be null.
 /// </param>
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-internal sealed class NotNullWhenAttribute(bool returnValue) : Attribute
+public sealed class NotNullWhenAttribute(bool returnValue) : Attribute
 {
 
     /// <summary>Gets the return value condition.</summary>
@@ -50,7 +50,7 @@ internal sealed class NotNullWhenAttribute(bool returnValue) : Attribute
 /// The associated parameter name.  The output will be non-null if the argument to the parameter specified is non-null.
 /// </param>
 [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, AllowMultiple = true, Inherited = false)]
-internal sealed class NotNullIfNotNullAttribute(string parameterName) : Attribute
+public sealed class NotNullIfNotNullAttribute(string parameterName) : Attribute
 {
 
     /// <summary>Gets the associated parameter name.</summary>
@@ -59,7 +59,7 @@ internal sealed class NotNullIfNotNullAttribute(string parameterName) : Attribut
 
 /// <summary>Applied to a method that will never return under any circumstance.</summary>
 [AttributeUsage(AttributeTargets.Method, Inherited = false)]
-internal sealed class DoesNotReturnAttribute : Attribute;
+public sealed class DoesNotReturnAttribute : Attribute;
 
 /// <summary>Specifies that the method will not return if the associated Boolean parameter is passed the specified value.</summary>
 /// <remarks>Initializes the attribute with the specified parameter value.</remarks>
@@ -68,7 +68,7 @@ internal sealed class DoesNotReturnAttribute : Attribute;
 /// the associated parameter matches this value.
 /// </param>
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-internal sealed class DoesNotReturnIfAttribute(bool parameterValue) : Attribute
+public sealed class DoesNotReturnIfAttribute(bool parameterValue) : Attribute
 {
 
     /// <summary>Gets the condition parameter value.</summary>
@@ -77,7 +77,7 @@ internal sealed class DoesNotReturnIfAttribute(bool parameterValue) : Attribute
 
 /// <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values.</summary>
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
-internal sealed class MemberNotNullAttribute : Attribute
+public sealed class MemberNotNullAttribute : Attribute
 {
     /// <summary>Initializes the attribute with a field or property member.</summary>
     /// <param name="member">
@@ -97,7 +97,7 @@ internal sealed class MemberNotNullAttribute : Attribute
 
 /// <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values when returning with the specified return value condition.</summary>
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
-internal sealed class MemberNotNullWhenAttribute : Attribute
+public sealed class MemberNotNullWhenAttribute : Attribute
 {
     /// <summary>Initializes the attribute with the specified return value condition and a field or property member.</summary>
     /// <param name="returnValue">

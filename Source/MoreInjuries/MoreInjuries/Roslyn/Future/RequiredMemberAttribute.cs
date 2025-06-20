@@ -2,4 +2,4 @@
 
 namespace System.Runtime.CompilerServices;
 
-internal class RequiredMemberAttribute : Attribute;
+public sealed class RequiredMemberAttribute : Attribute;

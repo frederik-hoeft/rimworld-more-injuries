@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <HediffDef ParentName="InfectionBase">
+  <HediffDef ParentName="DiseaseBase">
     <defName>HypovolemicShock</defName>
     <label>hypovolemic shock</label>
     <description>A life-threatening state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure. 
 \nSeverity scales directly with blood loss severity until 60% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure.</description>
     <tendable>true</tendable>
-    <makesSickThought>true</makesSickThought>
     <maxSeverity>1</maxSeverity>
     <alwaysShowSeverity>true</alwaysShowSeverity>
     <defaultLabelColor>(255, 158, 158)</defaultLabelColor>
@@ -55,9 +54,9 @@
                 <severityCurve>
                   <points>
                     <li>0, 1</li>
-                    <li>0.2, 0.9</li>
-                    <li>0.6, 0.5</li>
-                    <li>1, 0.25</li>
+                    <li>0.2, 0.8</li>
+                    <li>0.6, 0.45</li>
+                    <li>1, 0.2</li>
                   </points>
                 </severityCurve>
               </li>
@@ -80,25 +79,8 @@
             </targetEvaluator>
           </li>
           <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
-            <tickInterval>500</tickInterval>
-            <baseChance>0.25</baseChance>
-            <!-- the heart is at the core of the body, so it won't usually cool down enough so that hypoxia progession is slowed significantly -->
-            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
-              <hediffMakerDef>
-                <hediffDef>OrganHypoxia</hediffDef>
-                <minSeverity>0.01</minSeverity>
-                <maxSeverity>0.5</maxSeverity>
-                <allowMultiple>true</allowMultiple>
-                <allowDuplicate>true</allowDuplicate>
-              </hediffMakerDef>
-            </hediffMakerProps>
-            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
-              <target>Heart</target>
-            </targetEvaluator>
-          </li>
-          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>250</tickInterval>
-            <baseChance>0.5</baseChance>
+            <baseChance>0.375</baseChance>
             <chanceModifiers>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediffCurve">
                 <hediffDef>Hypothermia</hediffDef>
@@ -106,15 +88,16 @@
                 <severityCurve>
                   <points>
                     <li>0, 1</li>
-                    <li>0.2, 0.9</li>
-                    <li>0.6, 0.5</li>
-                    <li>1, 0.25</li>
+                    <li>0.2, 0.8</li>
+                    <li>0.6, 0.45</li>
+                    <li>1, 0.2</li>
                   </points>
                 </severityCurve>
               </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediffCurve">
                 <hediffDef>BrainDamage_Hypoxia</hediffDef>
                 <!-- reduce chance for severe damage once hypoxia is already there -->
+                <!-- brain damage is added over time, this curve gives brain damage a chance to manifest -->
                 <severityCurve>
                   <points>
                     <li>0, 1</li>

@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <HediffDef ParentName="DiseaseBase">
+  <HediffDef>
     <defName>TourniquetApplied</defName>
     <label>tourniquet</label>
     <description>A tourniquet has been applied to a limb, stopping the bleeding but starving the limb of blood. If the tourniquet is not removed in time, ischemia (starvation of oxygen) and necrosis (cell death) will occur, which can lead to loss of the limb through gangrene or death from sepsis.
 \nThe tourniquet should be removed as soon as the patient is in a safe location and can receive proper medical care.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(254, 221, 0)</defaultLabelColor>
+    <initialSeverity>0.001</initialSeverity>
+    <removeOnRedressChanceByDaysCurve>
+      <points>
+        <li>(0, 1)</li>
+        <li>(1, 1)</li>
+      </points>
+    </removeOnRedressChanceByDaysCurve>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>1</severityPerDay>

@@ -62,7 +62,7 @@
         <handlers>
           <li Class="MoreInjuries.HealthConditions.Hypoxia.Secondary.HediffCompHandler_SecondaryCondition_BrainDamage">
             <tickInterval>2000</tickInterval>
-            <baseChance>0.02</baseChance>
+            <baseChance>0.06</baseChance>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_RandomFromList">
               <hediffMakerDefs>
                 <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
@@ -86,7 +86,6 @@
       <li>
         <label>intial</label>
         <partIgnoreMissingHP>true</partIgnoreMissingHP>
-        <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -98,7 +97,6 @@
         <label>minor</label>
         <partIgnoreMissingHP>true</partIgnoreMissingHP>
         <minSeverity>1</minSeverity>
-        <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -118,7 +116,6 @@
         <label>moderate</label>
         <partIgnoreMissingHP>true</partIgnoreMissingHP>
         <minSeverity>2</minSeverity>
-        <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -138,11 +135,10 @@
         <label>severe</label>
         <partIgnoreMissingHP>true</partIgnoreMissingHP>
         <minSeverity>3</minSeverity>
-        <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <setMax>0.01</setMax>
+            <setMax>0.1</setMax>
           </li>
         </capMods>
       </li>
@@ -150,7 +146,6 @@
         <label>very severe</label>
         <partIgnoreMissingHP>true</partIgnoreMissingHP>
         <minSeverity>4</minSeverity>
-        <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>

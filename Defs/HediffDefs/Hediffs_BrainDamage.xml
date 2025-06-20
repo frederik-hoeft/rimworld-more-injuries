@@ -4,7 +4,6 @@
     <defName>BrainDamage_MotorDysfunction</defName>
     <label>motor dysfunction</label>
     <description>Neurological damage to the motor cortex has resulted in permanent impairment of the motor system. This can manifest as weakness, tremors, or difficulty coordinating movements. The severity of the dysfunction can vary based on the extent of the damage.</description>
-    <hediffClass>HediffWithComps</hediffClass>
     <maxSeverity>1</maxSeverity>
     <defaultLabelColor>(175, 95, 115)</defaultLabelColor>
     <stages>

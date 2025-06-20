@@ -6,7 +6,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock.Secondary;
 
-public sealed class HediffCompHandler_SecondaryCondition_CardiacArrest : HediffCompHandler_SecondaryCondition_TargetsBodyPart
+public sealed class HediffCompHandler_SecondaryCondition_CardiacArrest : HediffCompHandler_SecondaryCondition
 {
     public override bool ShouldSkip(HediffComp_SecondaryCondition comp, float severityAdjustment)
     {

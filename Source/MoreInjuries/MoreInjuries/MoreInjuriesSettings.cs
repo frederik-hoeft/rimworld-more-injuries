@@ -1,10 +1,12 @@
-﻿using Verse;
+﻿using MoreInjuries.Roslyn.Metadata.KeyedMembers;
+using Verse;
 
 namespace MoreInjuries;
 
 using static MoreInjuriesSettingsDefaults;
 
-public class MoreInjuriesSettings : ModSettings
+[KeyedMembers(Visibility = Visibility.Internal)]
+public partial class MoreInjuriesSettings : ModSettings
 {
     // logging
     internal bool EnableLogging = ENABLE_LOGGING_DEFAULT;

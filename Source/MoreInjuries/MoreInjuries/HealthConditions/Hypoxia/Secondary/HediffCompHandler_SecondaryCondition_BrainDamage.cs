@@ -4,7 +4,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Hypoxia.Secondary;
 
-public sealed class HediffCompHandler_SecondaryCondition_BrainDamage : HediffCompHandler_SecondaryCondition_TargetsBodyPart
+public sealed class HediffCompHandler_SecondaryCondition_BrainDamage : HediffCompHandler_SecondaryCondition
 {
     public override float BaseChance => MoreInjuriesMod.Settings.EnableNeuralDamage ? base.BaseChance : 0f;
 

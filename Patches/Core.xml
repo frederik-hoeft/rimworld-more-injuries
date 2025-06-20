@@ -19,40 +19,4 @@
       </value>
     </match>
   </Operation>
-
-  <!-- Inject Hypovolemic Shock Giver into BloodLoss HediffDef -->
-  <!-- 1. ensure that BloodLoss is a HediffWithComps -->
-  <Operation Class="PatchOperationConditional">
-    <xpath>/Defs/HediffDef[defName="BloodLoss"]/hediffClass</xpath>
-    <nomatch Class="PatchOperationAdd">
-      <xpath>/Defs/HediffDef[defName="BloodLoss"]</xpath>
-      <value>
-        <hediffClass>HediffWithComps</hediffClass>
-      </value>
-    </nomatch>
-    <match Class="PatchOperationAdd">
-      <xpath>/Defs/HediffDef[defName="BloodLoss"]/hediffClass</xpath>
-      <value>
-        <hediffClass>HediffWithComps</hediffClass>
-      </value>
-    </match>
-  </Operation>
-  <!-- 2. add the Hypovolemic Shock Giver -->
-  <Operation Class="PatchOperationConditional">
-    <xpath>/Defs/HediffDef[defName="BloodLoss"]/comps</xpath>
-    <nomatch Class="PatchOperationAdd">
-      <xpath>/Defs/HediffDef[defName="BloodLoss"]</xpath>
-      <value>
-        <comps>
-          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.HediffCompProperties_ShockMaker"></li>
-        </comps>
-      </value>
-    </nomatch>
-    <match Class="PatchOperationAdd">
-      <xpath>/Defs/HediffDef[defName="BloodLoss"]/comps</xpath>
-      <value>
-        <li Class="MoreInjuries.HealthConditions.HypovolemicShock.HediffCompProperties_ShockMaker"></li>
-      </value>
-    </match>
-  </Operation>
 </Patch>
