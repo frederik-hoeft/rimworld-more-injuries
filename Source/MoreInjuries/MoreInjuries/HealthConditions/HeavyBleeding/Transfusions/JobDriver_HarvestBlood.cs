@@ -39,14 +39,14 @@ public class JobDriver_HarvestBlood : JobDriver_UseMedicalDevice
         }
         if (patient.Faction is Faction factionToInform && (factionToInform != Faction.OfPlayer || patient.IsQuestLodger()))
         {
-            Faction.OfPlayer.TryAffectGoodwillWith(factionToInform, -50, canSendHostilityLetter: !factionToInform.temporary, reason: KnownHistoryEventDefOf.ExtractedWholeBloodBag);
-            QuestUtility.SendQuestTargetSignals(patient.questTags, "SurgeryViolation", patient.Named("SUBJECT"));
+            Faction.OfPlayer.TryAffectGoodwillWith(factionToInform, goodwillChange: -50, canSendHostilityLetter: !factionToInform.temporary, reason: KnownHistoryEventDefOf.ExtractedWholeBloodBag);
+            QuestUtility.SendQuestTargetSignals(patient.questTags, QuestUtility.QuestTargetSignalPart_SurgeryViolation, patient.Named("SUBJECT"));
         }
         if (patient.Dead)
         {
             ThoughtUtility.GiveThoughtsForPawnExecuted(patient, doctor, PawnExecutionKind.OrganHarvesting);
             TaleRecorder.RecordTale(TaleDefOf.ExecutedPrisoner, doctor, patient);
-            if (doctor.needs.mood is not null)
+            if (doctor.needs?.mood?.thoughts?.memories is not null)
             {
                 Thought_Memory thought = (Thought_Memory)ThoughtMaker.MakeThought(KnownThoughtDefOf.HarvestedBlood_Bloodlust);
                 doctor.needs.mood.thoughts.memories.TryGainMemory(thought);

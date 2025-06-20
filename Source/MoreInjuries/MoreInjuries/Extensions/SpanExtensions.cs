@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MoreInjuries.Future;
+namespace MoreInjuries.Extensions;
 
 internal static class SpanExtensions
 {

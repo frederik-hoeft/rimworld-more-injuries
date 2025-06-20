@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Patch>
+  <!-- Inject MoreInjuries Component into all human ThingDefs -->
+  <!-- if you want to add custom races, you'll have to do so as well -->
   <Operation Class="PatchOperationConditional">
     <xpath>/Defs/ThingDef[defName="Human"]/comps</xpath>
     <nomatch Class="PatchOperationAdd">

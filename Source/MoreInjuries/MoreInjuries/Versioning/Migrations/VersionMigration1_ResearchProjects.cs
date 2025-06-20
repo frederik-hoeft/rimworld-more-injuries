@@ -5,24 +5,15 @@ using MoreInjuries.Localization;
 
 namespace MoreInjuries.Versioning.Migrations;
 
-internal sealed class VersionMigration1_ResearchProjects : IVersionMigration
+internal sealed class VersionMigration1_ResearchProjects : VersionMigrationBase
 {
     private const string UNLOCK_ESSENTIAL_RESEARCH_SIGNAL = "MI_Migration_Signal_v1_UnlockEssentialResearch";
     private const string UNLOCK_ALL_RESEARCH_SIGNAL = "MI_Migration_Signal_v1_UnlockAllResearch";
     private const string REQUIRE_ALL_RESEARCH_SIGNAL = "MI_Migration_Signal_v1_RequireAllResearch";
 
-    private string? _loadID;
+    public override int Version => 1;
 
-    public int Version => 1;
-
-    public void ExposeData()
-    {
-        Scribe_Values.Look(ref _loadID, "loadID", null);
-    }
-
-    public string GetUniqueLoadID() => _loadID ??= $"MoreInjuries.VersionMigration1_ResearchProjects_{Guid.NewGuid()}";
-
-    public void Migrate()
+    public override void Migrate()
     {
         Logger.LogDebug("VersionMigration1_ResearchProjects: Migrate");
         Pawn? randomColonist = Find.CurrentMap?.mapPawns?.FreeColonists?.MaxBy(static pawn => pawn.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? -1);
@@ -48,7 +39,7 @@ internal sealed class VersionMigration1_ResearchProjects : IVersionMigration
         Find.LetterStack.ReceiveLetter(letter);
     }
 
-    public void Execute(string signal)
+    public override void Execute(string signal)
     {
         Logger.LogDebug($"VersionMigration1_ResearchProjects: Execute: {signal}");
         if (signal is REQUIRE_ALL_RESEARCH_SIGNAL)

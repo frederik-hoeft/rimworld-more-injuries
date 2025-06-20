@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <HediffDef>
+  <HediffDef ParentName="DiseaseBase">
     <defName>AdrenalineRush</defName>
-    <hediffClass>HediffWithComps</hediffClass>
     <label>adrenaline rush</label>
     <labelNoun>an adrenaline rush</labelNoun>
     <description>A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.

@@ -3,4 +3,4 @@
 namespace System.Runtime.CompilerServices;
 
 // stuff required for modern C# language features to make the compiler happy
-internal static class IsExternalInit;
+public static class IsExternalInit;

@@ -12,6 +12,38 @@
         <severityPerDay>0.5</severityPerDay>
         <showHoursToRecover>false</showHoursToRecover>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <severityCurve>
+          <points>
+            <li>0, 0</li>
+            <li>0.2, 0</li>
+            <li>0.45, 0.04</li>
+            <li>0.75, 0.06</li>
+            <li>0.9, 0.1</li>
+            <li>1, 0.15</li>
+          </points>
+        </severityCurve>
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+            <tickInterval>2000</tickInterval>
+            <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_DisallowDeathResting"></li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>CardiacArrest</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Heart</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
     </comps>
     <stages>
       <li>
@@ -33,15 +65,6 @@
             <offset>-0.15</offset>
           </li>
         </capMods>
-        <hediffGivers>
-          <li Class="HediffGiver_Random">
-            <hediff>CardiacArrest</hediff>
-            <mtbDays>0.75</mtbDays>
-            <partsToAffect>
-              <li>Heart</li>
-            </partsToAffect>
-          </li>
-        </hediffGivers>
       </li>
       <li>
         <label>moderate obstructive shock</label>
@@ -55,15 +78,6 @@
             <offset>-0.25</offset>
           </li>
         </capMods>
-        <hediffGivers>
-          <li Class="HediffGiver_Random">
-            <hediff>CardiacArrest</hediff>
-            <mtbDays>0.5</mtbDays>
-            <partsToAffect>
-              <li>Heart</li>
-            </partsToAffect>
-          </li>
-        </hediffGivers>
       </li>
       <li>
         <label>severe obstructive shock</label>
@@ -77,15 +91,6 @@
             <offset>-0.35</offset>
           </li>
         </capMods>
-        <hediffGivers>
-          <li Class="HediffGiver_Random">
-            <hediff>CardiacArrest</hediff>
-            <mtbDays>0.25</mtbDays>
-            <partsToAffect>
-              <li>Heart</li>
-            </partsToAffect>
-          </li>
-        </hediffGivers>
       </li>
       <li>
         <label>extreme obstructive shock</label>
@@ -99,15 +104,6 @@
             <offset>-0.45</offset>
           </li>
         </capMods>
-        <hediffGivers>
-          <li Class="HediffGiver_Random">
-            <hediff>CardiacArrest</hediff>
-            <mtbDays>0.175</mtbDays>
-            <partsToAffect>
-              <li>Heart</li>
-            </partsToAffect>
-          </li>
-        </hediffGivers>
       </li>
     </stages>
   </HediffDef>
