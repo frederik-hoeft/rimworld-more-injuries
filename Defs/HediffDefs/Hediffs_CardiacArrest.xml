@@ -49,7 +49,7 @@
                 <minSeverity>1</minSeverity>
                 <maxSeverity>5</maxSeverity>
                 <allowMultiple>true</allowMultiple>
-                <allowDuplicate>true</allowDuplicate>
+                <allowDuplicate>false</allowDuplicate>
               </hediffMakerDef>
             </hediffMakerProps>
             <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">

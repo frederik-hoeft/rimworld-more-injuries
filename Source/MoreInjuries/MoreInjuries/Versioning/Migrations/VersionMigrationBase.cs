@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using MoreInjuries.Extensions;
+using Verse;
 
 namespace MoreInjuries.Versioning.Migrations;
 
@@ -17,7 +18,7 @@ internal abstract class VersionMigrationBase : IVersionMigration
         Scribe_Values.Look(ref _loadID, "loadID", defaultValue: null);
     }
 
-    public virtual string GetUniqueLoadID() => _loadID ??= $"MoreInjuries.{GetType().Name}_{Guid.NewGuid()}";
+    public virtual string GetUniqueLoadID() => _loadID ??= this.GenerateUniqueLoadID();
 
     public abstract void Migrate();
 }

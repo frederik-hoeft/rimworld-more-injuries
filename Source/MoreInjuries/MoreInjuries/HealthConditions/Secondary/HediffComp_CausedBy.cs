@@ -1,28 +1,54 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary;
 
-// TODO: support multiple causes (e.g., when multiple hypoxia hediffs are compressed into one hediff)
-// in this case it should show "Caused by: <cause1>, <cause2>, ..." in the tooltip
-// as soon as there are multiple causes, stage labels should be stripped. E.g., no "Caused by: <cause1> (Stage 1), <cause1> (Stage 2)"
-// TODO: also, maybe distinguish between different types of hypoxia?
-public class HediffComp_CausedBy : HediffComp
+public sealed class HediffComp_CausedBy : HediffComp
 {
-    private string? _causedBy;
-
-    public string? CausedBy 
-    { 
-        get => _causedBy; 
-        set => _causedBy = value; 
-    }
+    private List<string>? _causedBy;
 
     public override void CompExposeData()
     {
-        Scribe_Values.Look(ref _causedBy, "causedBy", defaultValue: null);
+        Scribe_Collections.Look(ref _causedBy, "causedBy", saveDestroyedThings: false, LookMode.Value);
     }
 
-    public override string CompTipStringExtra => !string.IsNullOrEmpty(_causedBy)
-        ? $"\n{"Cause".Translate()}: {_causedBy}".Colorize(ColoredText.SubtleGrayColor)
+    public void AddCause(Hediff cause)
+    {
+        if (cause is null)
+        {
+            return;
+        }
+        _causedBy ??= [];
+        if (_causedBy.Count == 0)
+        {
+            _causedBy.Add(cause.Label);
+            return;
+        }
+        if (_causedBy.Count == 1)
+        {
+            string originalCause = _causedBy[0];
+            if (originalCause.Equals(cause.Label, StringComparison.Ordinal))
+            {
+                return;
+            }
+            if (originalCause.LastIndexOf(" (") is int index && index != 0 && originalCause[originalCause.Length - 1] == ')')
+            {
+                originalCause = _causedBy[0] = originalCause.Substring(0, index);
+                if (originalCause.Equals(cause.LabelBase, StringComparison.Ordinal))
+                {
+                    return;
+                }
+            }
+        }
+        else if (_causedBy.IndexOf(cause.LabelBase) != -1)
+        {
+            return;
+        }
+        _causedBy.Add(cause.LabelBase);
+    }
+
+    public override string CompTipStringExtra => _causedBy is { Count: > 0 }
+        ? $"\n{"Cause".Translate()}: {string.Join(", ", _causedBy.Select(static cause => cause.Colorize(ColoredText.ThreatColor)))}".Colorize(ColoredText.SubtleGrayColor)
         : base.CompTipStringExtra;
 }

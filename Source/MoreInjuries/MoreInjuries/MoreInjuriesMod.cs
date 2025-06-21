@@ -173,7 +173,7 @@ public class MoreInjuriesMod : Mod
             "MI_Settings_Features_NeuralDamage_EnableTooltip".Translate());
         list.Label("MI_Settings_Features_NeuralDamage_TreatmentReductionFactorLabel".Translate(Settings.NeuralDamageChanceReductionFactor.NamedValue(), NEURAL_DAMAGE_CHANCE_REDUCTION_FACTOR_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_NeuralDamage_TreatmentReductionFactorTooltip".Translate());
-        Settings.NeuralDamageChanceReductionFactor = (float)Math.Round(list.Slider(Settings.NeuralDamageChanceReductionFactor, 0f, 1f), 2);
+        Settings.NeuralDamageChanceReductionFactor = (float)Math.Round(list.Slider(Settings.NeuralDamageChanceReductionFactor, 0.01f, 1f), 2);
         // concussion after blunt trauma
         list.GapLine();
         Text.Font = GameFont.Medium;

@@ -98,6 +98,7 @@ public class HediffCompHandler_SecondaryCondition
         else
         {
             // otherwise, we update the existing hediff's severity
+            UpdateHediffCause(existingHediff, comp);
             existingHediff.Severity += hediffMakerDef.GetInitialSeverity();
         }
     }
@@ -117,27 +118,31 @@ public class HediffCompHandler_SecondaryCondition
     {
         Hediff hediff = HediffMaker.MakeHediff(hediffDef, sourceComp.Pawn);
         hediff.Severity = severity;
-        if (hediff is HediffWithComps hediffWithComps)
-        {
-            bool setCausedBy = false;
-            hediffWithComps.comps ??= [];
-            foreach (HediffComp? comp in hediffWithComps.comps)
-            {
-                if (comp is HediffComp_CausedBy compCausedBy)
-                {
-                    // set the CausedBy property to the reason this hediff was created
-                    compCausedBy.CausedBy = sourceComp.parent.Label.Colorize(sourceComp.parent.LabelColor);
-                    setCausedBy = true;
-                    break;
-                }
-            }
-            if (!setCausedBy)
-            {
-                // if no HediffComp_CausedBy was found, we add one
-                hediffWithComps.comps.Add(new HediffComp_CausedBy { CausedBy = sourceComp.parent.Label });
-            }
-        }
+        UpdateHediffCause(hediff, sourceComp);
         sourceComp.Pawn.health.AddHediff(hediff, targetBodyPart);
         return hediff;
+    }
+
+    protected virtual void UpdateHediffCause(Hediff hediff, HediffComp_SecondaryCondition sourceComp)
+    {
+        if (hediff is not HediffWithComps hediffWithComps)
+        {
+            return;
+        }
+        hediffWithComps.comps ??= [];
+        foreach (HediffComp? comp in hediffWithComps.comps)
+        {
+            if (comp is HediffComp_CausedBy compCausedBy)
+            {
+                // update the CausedBy property to the reason this hediff was created
+                compCausedBy.AddCause(sourceComp.parent);
+                return;
+            }
+        }
+        // if no HediffComp_CausedBy was found, we add one
+        HediffComp_CausedBy newCompCausedBy = new();
+        newCompCausedBy.AddCause(sourceComp.parent);
+        // TODO: this doesn't persist the hediff comp, so it will be lost on save/load
+        hediffWithComps.comps.Add(newCompCausedBy);
     }
 }

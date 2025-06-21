@@ -36,4 +36,5 @@ public static class KnownHediffDefOf
     public static HediffDef CardiacArrest = null!;
     public static HediffDef GangreneDry = null!;
     public static HediffDef GangreneWet = null!;
+    public static HediffDef MechaniteTherapy = null!;
 }

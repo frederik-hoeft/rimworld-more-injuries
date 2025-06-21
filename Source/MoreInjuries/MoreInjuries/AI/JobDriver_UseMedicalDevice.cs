@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.Debug;
+using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions;
 using MoreInjuries.Things;
 using RimWorld;
@@ -308,7 +309,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
         public bool fromInventoryOnly;
         public bool oneShot;
 
-        public string GetUniqueLoadID() => loadId ??= $"JobParameters_{Guid.NewGuid()}";
+        public string GetUniqueLoadID() => loadId ??= this.GenerateUniqueLoadID();
 
         public virtual void ExposeData()
         {
@@ -321,10 +322,10 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
         {
             T parameters = new()
             {
-                loadId = $"JobParameters_{Guid.NewGuid()}",
                 fromInventoryOnly = fromInventoryOnly,
                 oneShot = oneShot
             };
+            parameters.loadId = parameters.GenerateUniqueLoadID();
             if (worker.TryGetComp(out MoreInjuryComp xmlSaveNode))
             {
                 xmlSaveNode.PersistJobParameters(parameters);

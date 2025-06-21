@@ -62,18 +62,77 @@
         <handlers>
           <li Class="MoreInjuries.HealthConditions.Hypoxia.Secondary.HediffCompHandler_SecondaryCondition_BrainDamage">
             <tickInterval>2000</tickInterval>
-            <baseChance>0.06</baseChance>
+            <baseChance>0.12</baseChance>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_RandomFromList">
               <hediffMakerDefs>
                 <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
                   <hediffDef>BrainDamage_MotorDysfunction</hediffDef>
                   <weight>1</weight>
                   <minSeverity>0.01</minSeverity>
-                  <maxSeverity>0.5</maxSeverity>
+                  <maxSeverity>0.25</maxSeverity>
+                  <allowMultiple>true</allowMultiple>
+                  <allowDuplicate>false</allowDuplicate>
+                </li>
+                <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
+                  <hediffDef>BrainDamage_LanguageAphasia</hediffDef>
+                  <weight>1</weight>
+                  <minSeverity>0.01</minSeverity>
+                  <maxSeverity>0.25</maxSeverity>
+                  <allowMultiple>true</allowMultiple>
+                  <allowDuplicate>false</allowDuplicate>
+                </li>
+                <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
+                  <hediffDef>BrainDamage_VisualAgnosia</hediffDef>
+                  <weight>1</weight>
+                  <minSeverity>0.01</minSeverity>
+                  <maxSeverity>0.25</maxSeverity>
+                  <allowMultiple>true</allowMultiple>
+                  <allowDuplicate>false</allowDuplicate>
+                </li>
+                <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
+                  <hediffDef>BrainDamage_FrontalLobe</hediffDef>
+                  <weight>1</weight>
+                  <minSeverity>0.01</minSeverity>
+                  <maxSeverity>0.25</maxSeverity>
+                  <allowMultiple>true</allowMultiple>
+                  <allowDuplicate>false</allowDuplicate>
+                </li>
+                <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
+                  <hediffDef>BrainDamage_Confusion</hediffDef>
+                  <weight>1</weight>
+                  <minSeverity>0.01</minSeverity>
+                  <maxSeverity>0.25</maxSeverity>
                   <allowMultiple>true</allowMultiple>
                   <allowDuplicate>false</allowDuplicate>
                 </li>
               </hediffMakerDefs>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Hypoxia.Secondary.HediffCompHandler_SecondaryCondition_BrainDamage">
+            <tickInterval>2000</tickInterval>
+            <baseChance>0.02</baseChance>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediffCurve">
+                <hediffDef>BrainDamage_PersonalityShift</hediffDef>
+                <severityCurve>
+                  <points>
+                    <li>0, 0</li>
+                    <li>1, 0</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>BrainDamage_PersonalityShift</hediffDef>
+                <minSeverity>0.05</minSeverity>
+                <maxSeverity>0.5</maxSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
             </hediffMakerProps>
             <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
               <target>Brain</target>
