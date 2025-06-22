@@ -1,7 +1,7 @@
-﻿using MoreInjuries.Tests.Localization;
+﻿using MoreInjuries.LocalizationTests.Localization;
 using System.Xml.Linq;
 
-namespace MoreInjuries.Tests;
+namespace MoreInjuries.LocalizationTests;
 
 [TestClass]
 public class DefInjectedLocalizationTests : LocalizationTestBase
@@ -19,5 +19,5 @@ public class DefInjectedLocalizationTests : LocalizationTestBase
 
 internal class DefInjectedLocalizationInfoRepository(string language) : LocalizationInfoRepository(language)
 {
-    protected override string CreateKey(XElement element, LocalizationInfoLoadContext context) => $"{context.SourceFile.Directory.Name}::{element.Name.LocalName}";
+    protected override string CreateKey(XElement element, LocalizationInfoLoadContext context) => $"{context.SourceFile.Directory?.Name}::{element.Name.LocalName}";
 }

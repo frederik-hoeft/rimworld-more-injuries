@@ -17,18 +17,19 @@
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
       <li Class="MoreInjuries.HealthConditions.CardiacArrest.HediffCompProperties_CardiacArrest"></li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <severityCurve>
           <points>
             <li>0, 0</li>
-            <li>0.55, 0.25</li>
-            <li>0.75, 0.9</li>
-            <li>1, 1</li>
+            <li>0.2, 0</li>
+            <li>0.645, 0.4</li>
+            <li>0.65, 1</li>
           </points>
         </severityCurve>
         <handlers>
           <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
-            <tickInterval>250</tickInterval>
+            <tickInterval>200</tickInterval>
             <chanceModifiers>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediffCurve">
                 <hediffDef>Hypothermia</hediffDef>
@@ -46,7 +47,7 @@
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>OrganHypoxia</hediffDef>
-                <minSeverity>1</minSeverity>
+                <minSeverity>1.5</minSeverity>
                 <maxSeverity>5</maxSeverity>
                 <allowMultiple>true</allowMultiple>
                 <allowDuplicate>false</allowDuplicate>

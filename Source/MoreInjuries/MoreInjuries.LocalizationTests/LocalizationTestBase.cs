@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.PlatformAbstractions;
-using MoreInjuries.Tests.Localization;
+using MoreInjuries.LocalizationTests.Localization;
 
-namespace MoreInjuries.Tests;
+namespace MoreInjuries.LocalizationTests;
 
 public abstract class LocalizationTestBase
 {
@@ -11,7 +11,7 @@ public abstract class LocalizationTestBase
     {
         string assemblyLocation = typeof(KeyedLocalizationTests).Assembly.GetAssemblyLocation();
         FileInfo assemblyFile = new(assemblyLocation);
-        // /Source/MoreInjuries/MoreInjuries.Tests/bin/*/net472/MoreInjuries.Tests.dll
+        // /Source/MoreInjuries/MoreInjuries.Tests/bin/*/net9.0/MoreInjuries.Tests.dll
         if (assemblyFile is not { Directory.Parent.Parent.Parent.Parent.Parent.Parent: DirectoryInfo modRoot })
         {
             throw new InvalidOperationException("Failed to locate the mod root directory.");

@@ -8,6 +8,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.BrainDamage;
 
+// TODO: doesn't show up in the surgery tab for some reason, even when AvailableOnNow returns true
 public class Recipe_TreatRandomBrainDamage : Recipe_Surgery
 {
     public override bool AvailableOnNow(Thing thing, BodyPartRecord? part = null)
@@ -17,7 +18,10 @@ public class Recipe_TreatRandomBrainDamage : Recipe_Surgery
             return false;
         }
 
-        return GetTreatmentOptions(pawn).TreatmentPossible && base.AvailableOnNow(thing, part);
+        TreatmentInfo treatmentInfo = GetTreatmentOptions(pawn);
+        bool available = treatmentInfo.TreatmentPossible && base.AvailableOnNow(thing, part);
+        Logger.LogDebug($"Recipe_TreatRandomBrainDamage: AvailableOnNow for {pawn.LabelShort} is {available} with treatment possible: {treatmentInfo.TreatmentPossible} and mod extension: {treatmentInfo.ModExtension}");
+        return available;
     }
 
     public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)

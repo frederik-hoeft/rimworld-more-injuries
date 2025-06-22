@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.BuildIntrinsics;
+using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
@@ -75,7 +76,10 @@ public class HediffCompHandler_SecondaryCondition
         BodyPartRecord? targetBodyPart = localTargetEvaluator.GetTargetBodyPart(comp, this);
         HediffMakerDef hediffMakerDef = hediffMakerProps.GetHediffMakerDef(comp, handler: this, targetBodyPart);
         HediffDef hediffDef = hediffMakerDef.HediffDef;
-        if (!comp.Pawn.health.hediffSet.TryGetHediff(hediffDef, out Hediff? existingHediff))
+        // check if the hediff already exists on the target body part (or anywhere if no body part is specified)
+        Hediff? existingHediff = null;
+        if (targetBodyPart is null && !comp.Pawn.health.hediffSet.TryGetHediff(hediffDef, out existingHediff) 
+            || targetBodyPart is not null && !comp.Pawn.health.hediffSet.TryGetFirstHediffMatchingPart(targetBodyPart, hediffDef, out existingHediff))
         {
             float initialSeverity = hediffMakerDef.GetInitialSeverity();
             Hediff hediff = MakeHediff(comp, hediffDef, targetBodyPart, initialSeverity);
@@ -95,7 +99,7 @@ public class HediffCompHandler_SecondaryCondition
             Hediff hediff = MakeHediff(comp, hediffDef, targetBodyPart, initialSeverity);
             PostApplyHediff(comp, hediff);
         }
-        else
+        else if (existingHediff is not null)
         {
             // otherwise, we update the existing hediff's severity
             UpdateHediffCause(existingHediff, comp);
@@ -125,11 +129,10 @@ public class HediffCompHandler_SecondaryCondition
 
     protected virtual void UpdateHediffCause(Hediff hediff, HediffComp_SecondaryCondition sourceComp)
     {
-        if (hediff is not HediffWithComps hediffWithComps)
+        if (hediff is not HediffWithComps { comps.Count: > 0 } hediffWithComps)
         {
             return;
         }
-        hediffWithComps.comps ??= [];
         foreach (HediffComp? comp in hediffWithComps.comps)
         {
             if (comp is HediffComp_CausedBy compCausedBy)
@@ -139,10 +142,5 @@ public class HediffCompHandler_SecondaryCondition
                 return;
             }
         }
-        // if no HediffComp_CausedBy was found, we add one
-        HediffComp_CausedBy newCompCausedBy = new();
-        newCompCausedBy.AddCause(sourceComp.parent);
-        // TODO: this doesn't persist the hediff comp, so it will be lost on save/load
-        hediffWithComps.comps.Add(newCompCausedBy);
     }
 }

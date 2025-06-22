@@ -1,8 +1,7 @@
-﻿using MoreInjuries.Tests.Localization;
-using System.Text;
+﻿using MoreInjuries.LocalizationTests.Localization;
 using System.Xml.Linq;
 
-namespace MoreInjuries.Tests;
+namespace MoreInjuries.LocalizationTests;
 
 [TestClass]
 public class KeyedLocalizationTests : LocalizationTestBase

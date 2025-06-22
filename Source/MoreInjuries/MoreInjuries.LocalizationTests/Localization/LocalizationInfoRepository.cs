@@ -1,17 +1,17 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace MoreInjuries.Tests.Localization;
+namespace MoreInjuries.LocalizationTests.Localization;
 
-public abstract class LocalizationInfoRepository(string language)
+public abstract partial class LocalizationInfoRepository(string language)
 {
-    private static readonly Regex s_commentNodeRegex = new(@"^<!-- EN: (?<comment>.+) -->$", RegexOptions.Compiled);
-
     private bool _isLoaded = false;
 
     public string Language { get; } = language;
+
+    [GeneratedRegex(@"^<!-- EN: (?<comment>.+) -->$")]
+    private static partial Regex CommentNodeRegex { get; }
 
     public Dictionary<string, Dictionary<string, LocalizationValue>> ScopedLocalizationInfo { get; } = [];
 
@@ -28,7 +28,7 @@ public abstract class LocalizationInfoRepository(string language)
         int parentPathLength = keyedLocalizationDirectory.FullName.Length + 1;
         foreach (FileInfo file in keyedLocalizationDirectory.EnumerateFiles("*.xml", SearchOption.AllDirectories))
         {
-            string relativePath = file.FullName.Substring(parentPathLength);
+            string relativePath = file.FullName[parentPathLength..];
             LocalizationInfoLoadContext context = new(Language, relativePath, file, errorContext);
             Dictionary<string, LocalizationValue> localizationScope = LoadLocalizationScope(file, context);
             foreach (LocalizationValue localizationValue in localizationScope.Values)
@@ -49,13 +49,13 @@ public abstract class LocalizationInfoRepository(string language)
         Dictionary<string, LocalizationValue> keyedLocalizationInfo = [];
         using FileStream stream = file.OpenRead();
         XDocument document = XDocument.Load(stream);
-        foreach (XElement element in document.Root.Elements())
+        foreach (XElement element in document.Root?.Elements() ?? [])
         {
             XNode? commentNode = element.PreviousNode;
             string? comment = null;
             if (commentNode is { NodeType: XmlNodeType.Comment })
             {
-                Match match = s_commentNodeRegex.Match(commentNode.ToString());
+                Match match = CommentNodeRegex.Match(commentNode.ToString());
                 if (match.Success)
                 {
                     Group commentGroup = match.Groups["comment"];

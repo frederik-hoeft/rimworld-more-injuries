@@ -24,7 +24,7 @@ public class BodyPartHediffTargetEvaluator_RandomFromList : BodyPartHediffTarget
         BodyPartRecord? target = comp.Pawn.health.hediffSet.GetNotMissingParts()
             .Where(part => targets.Contains(part.def))
             .ToList()
-            .SelectRandom();
+            .SelectRandomOrDefault();
         return target;
     }
 }

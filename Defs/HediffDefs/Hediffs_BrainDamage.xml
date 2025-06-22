@@ -9,6 +9,9 @@
         <daysToComplete>2</daysToComplete>
       </li>
     </modExtensions>
+    <comps>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
+    </comps>
   </HediffDef>
 
   <HediffDef ParentName="BrainDamageBase">
@@ -195,7 +198,7 @@
     </stages>
   </HediffDef>
 
-  <HediffDef ParentName="DiseaseBase">
+  <HediffDef ParentName="BrainDamageBase">
     <defName>BrainDamage_FrontalLobe</defName>
     <label>executive dysfunction</label>
     <description>Damage to the frontal lobes has impaired executive functions, including decision-making, planning, and impulse control. Affected individuals may act erratically or inappropriately, and struggle with maintaining attention or social decorum.</description>

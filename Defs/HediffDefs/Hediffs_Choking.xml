@@ -19,8 +19,9 @@
         <message>{0} is choking on blood!</message>
         <messageType>NegativeHealthEvent</messageType>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Choking.HediffCompProperties_Choking">
-        <_chokingIntervalTicks>750</_chokingIntervalTicks>
+        <chokingIntervalTicks>750</chokingIntervalTicks>
       </li>
     </comps>
     <stages>
@@ -126,6 +127,7 @@
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
     </comps>
     <stages>
       <li>

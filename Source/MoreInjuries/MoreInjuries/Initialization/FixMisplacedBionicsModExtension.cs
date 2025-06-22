@@ -29,7 +29,7 @@ public class FixMisplacedBionicsModExtension : DefModExtension
 
             if (bodyParts.Count > 0)
             {
-                bionic.Part = bodyParts.SelectRandom();
+                bionic.Part = bodyParts.SelectRandomOrDefault();
             }
             else
             {

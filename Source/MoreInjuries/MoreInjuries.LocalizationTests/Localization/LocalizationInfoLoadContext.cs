@@ -1,7 +1,6 @@
-﻿using System.Text;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
-namespace MoreInjuries.Tests.Localization;
+namespace MoreInjuries.LocalizationTests.Localization;
 
 public record LocalizationInfoLoadContext(string Language, string RelativePath, FileInfo SourceFile, LoadErrorContext ErrorContext)
 {

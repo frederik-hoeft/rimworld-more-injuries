@@ -71,6 +71,7 @@ Over time, dry gangrene may develop into wet gangrene if an infection develops i
       <li>
         <compClass>MoreInjuries.HealthConditions.Gangrene.GangreneDryHediffComp</compClass>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
     </comps>
     <stages>
       <li>
@@ -99,6 +100,7 @@ Over time, dry gangrene may develop into wet gangrene if an infection develops i
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>0.75</severityPerDay>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
     </comps>
     <stages>
       <li>

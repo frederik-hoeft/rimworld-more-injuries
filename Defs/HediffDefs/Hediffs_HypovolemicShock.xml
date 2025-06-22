@@ -35,6 +35,7 @@
           </points>
         </_bleedSeverityCurve>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <severityCurve>
           <points>
@@ -67,7 +68,7 @@
                 <minSeverity>1</minSeverity>
                 <maxSeverity>4</maxSeverity>
                 <allowMultiple>true</allowMultiple>
-                <allowDuplicate>true</allowDuplicate>
+                <allowDuplicate>false</allowDuplicate>
               </hediffMakerDef>
             </hediffMakerProps>
             <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">

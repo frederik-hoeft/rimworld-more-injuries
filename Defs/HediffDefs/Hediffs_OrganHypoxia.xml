@@ -18,6 +18,7 @@
       <li Class="HediffCompProperties_GetsPermanent">
         <permanentLabel>Permanent hypoxia damage</permanentLabel>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
     </comps>
     <injuryProps>
       <painPerSeverity>0.005</painPerSeverity>
@@ -33,7 +34,7 @@
     <defName>BrainDamage_Hypoxia</defName>
     <label>hypoxia</label>
     <labelNoun>insufficient oxygen</labelNoun>
-    <description>Neurodegeneration caused by lack of oxygen to the brain. Most commonly caused by insufficient blood flow. Prolonged hypoxia can lead to permanent brain damage.</description>
+    <description>Prolonged lack of oxygen to the brain has caused neurological damage. Depending on the severity and duration of the hypoxia, damaged cells may be able to recover, or they may die off and cause permanent brain damage and disability. There's nothing else to do but wait and see.</description>
     <defaultLabelColor>(100, 15, 15)</defaultLabelColor>
     <maxSeverity>9</maxSeverity>
     <comps>
@@ -48,6 +49,7 @@
       <li Class="HediffCompProperties_GetsPermanent">
         <permanentLabel>Permanent hypoxia damage</permanentLabel>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <severityCurve>
           <points>

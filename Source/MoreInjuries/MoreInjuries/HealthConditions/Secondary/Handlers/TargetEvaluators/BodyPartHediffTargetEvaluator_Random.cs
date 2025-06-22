@@ -38,6 +38,6 @@ public class BodyPartHediffTargetEvaluator_Random : BodyPartHediffTargetEvaluato
             IEnumerable<BodyPartRecord> allBodyParts = comp.Pawn.health.hediffSet.GetNotMissingParts();
             bodyParts = bodyParts.Union(allBodyParts.Where(bodyPart => includedParts.Contains(bodyPart.def)));
         }
-        return bodyParts.ToList().SelectRandom();
+        return bodyParts.ToList().SelectRandomOrDefault();
     }
 }

@@ -4,7 +4,7 @@ namespace MoreInjuries.Extensions;
 
 public static class ListExtensions
 {
-    public static T? SelectRandom<T>(this IReadOnlyList<T> list)
+    public static T? SelectRandomOrDefault<T>(this IReadOnlyList<T> list)
     {
         if (list.Count == 0)
         {
