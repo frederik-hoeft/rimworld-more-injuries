@@ -11,6 +11,8 @@ namespace MoreInjuries.HealthConditions.BrainDamage;
 // TODO: doesn't show up in the surgery tab for some reason, even when AvailableOnNow returns true
 public class Recipe_TreatRandomBrainDamage : Recipe_Surgery
 {
+    public override IEnumerable<BodyPartRecord> GetPartsToApplyOn(Pawn pawn, RecipeDef recipe) => [pawn.health.hediffSet.GetBrain()];
+
     public override bool AvailableOnNow(Thing thing, BodyPartRecord? part = null)
     {
         if (thing is not Pawn pawn)

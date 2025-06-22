@@ -8,6 +8,7 @@
     <jobString>Injecting mechanites into {0}'s brain to repair damage.</jobString>
     <workAmount>750</workAmount>
     <deathOnFailedSurgeryChance>0</deathOnFailedSurgeryChance>
+    <targetsBodyPart>true</targetsBodyPart>
     <anesthetize>false</anesthetize>
     <researchPrerequisites>
       <li>CellularRegeneration</li>
