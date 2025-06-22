@@ -1,5 +1,4 @@
-﻿using MoreInjuries.HealthConditions.Fractures;
-using MoreInjuries.HealthConditions.MechaniteTherapy;
+﻿using MoreInjuries.HealthConditions.MechaniteTherapy;
 using MoreInjuries.KnownDefs;
 using RimWorld;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.BrainDamage;
 
-// TODO: doesn't show up in the surgery tab for some reason, even when AvailableOnNow returns true
 public class Recipe_TreatRandomBrainDamage : Recipe_Surgery
 {
     public override IEnumerable<BodyPartRecord> GetPartsToApplyOn(Pawn pawn, RecipeDef recipe) => [pawn.health.hediffSet.GetBrain()];
@@ -22,7 +20,6 @@ public class Recipe_TreatRandomBrainDamage : Recipe_Surgery
 
         TreatmentInfo treatmentInfo = GetTreatmentOptions(pawn);
         bool available = treatmentInfo.TreatmentPossible && base.AvailableOnNow(thing, part);
-        Logger.LogDebug($"Recipe_TreatRandomBrainDamage: AvailableOnNow for {pawn.LabelShort} is {available} with treatment possible: {treatmentInfo.TreatmentPossible} and mod extension: {treatmentInfo.ModExtension}");
         return available;
     }
 
@@ -30,7 +27,7 @@ public class Recipe_TreatRandomBrainDamage : Recipe_Surgery
     {
         if (billDoer is null)
         {
-            Logger.Warning($"{nameof(Recipe_SplintFracture)} was called with a null {nameof(billDoer)}");
+            Logger.Warning($"{nameof(Recipe_TreatRandomBrainDamage)} was called with a null {nameof(billDoer)}");
             return;
         }
         if (GetTreatmentOptions(pawn) is not { TreatmentPossible: true, ModExtension: var modExtension })
