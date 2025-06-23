@@ -100,12 +100,8 @@
             <isViolation>true</isViolation>
           </li>
           <li Class="MoreInjuries.HealthConditions.Injectors.Outcomes.InjectionOutcomeDoer_HediffOffset">
-            <hediffDef>Anesthetic</hediffDef>
-            <severityOffset>1.2</severityOffset>
-          </li>
-          <li Class="MoreInjuries.HealthConditions.Injectors.Outcomes.InjectionOutcomeDoer_HediffOffset">
             <hediffDef>KetamineBuildup</hediffDef>
-            <severityOffset>0.35</severityOffset>
+            <severityOffset>0.45</severityOffset>
           </li>
         </outcomeDoers>
       </li>
@@ -113,12 +109,8 @@
     <ingestible>
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
-          <hediffDef>Anesthetic</hediffDef>
-          <severity>1.2</severity>
-        </li>
-        <li Class="IngestionOutcomeDoer_GiveHediff">
           <hediffDef>KetamineBuildup</hediffDef>
-          <severity>0.35</severity>
+          <severity>0.45</severity>
         </li>
       </outcomeDoers>
     </ingestible>

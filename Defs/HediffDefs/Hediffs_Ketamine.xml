@@ -2,10 +2,10 @@
 <Defs>
   <HediffDef ParentName="DiseaseBase">
     <defName>KetamineBuildup</defName>
-    <label>ketamine buildup</label>
+    <label>ketamine</label>
     <description>Ketamine is a fast-acting dissociative anesthetic used for pain relief, sedation, and anesthesia. It works by disrupting communication between the thalamus and cerebral cortex, producing a trance-like, pain-free state without significantly suppressing cardiovascular function at recommended doses.\n\nOnce administered, ketamine is distributed systemically and slowly metabolized by the liver. Blood concentrations diminish over time, but repeated or excessive doses can lead to dangerous accumulation resulting in toxicity and overdose.\n\nSymptoms of ketamine toxicity range from amnesia, confusion, and hallucinations to brain damage, respiratory depression, and death in severe cases of overdose.</description>
     <defaultLabelColor>(56, 185, 255)</defaultLabelColor>
-    <isBad>true</isBad>
+    <isBad>false</isBad>
     <maxSeverity>5</maxSeverity>
     <comps>
       <!-- Initialized to ~0.35 per injection. 12-hour in-game metabolic half-life -->
@@ -17,11 +17,11 @@
         <severityCurve>
           <points>
             <li>0, 0</li>
-            <li>0.2, 0</li>
-            <li>0.4, 0.002</li>
-            <li>0.6, 0.03</li>
-            <li>0.8, 0.06</li>
-            <li>1, 0.175</li>
+            <li>0.15, 0</li>
+            <li>0.4, 0.001</li>
+            <li>0.6, 0.01</li>
+            <li>0.85, 0.06</li>
+            <li>1.25, 0.175</li>
           </points>
         </severityCurve>
         <handlers>
@@ -34,7 +34,7 @@
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>CardiacArrest</hediffDef>
-                <minSeverity>0.01</minSeverity>
+                <minSeverity>0.001</minSeverity>
                 <allowMultiple>false</allowMultiple>
                 <allowDuplicate>false</allowDuplicate>
               </hediffMakerDef>
@@ -50,58 +50,86 @@
       <li>
         <label>trace exposure</label>
         <minSeverity>0</minSeverity>
-        <painFactor>0.95</painFactor>
-      </li>
-      <li>
-        <label>therapeutic dose</label>
-        <minSeverity>0.1</minSeverity>
-        <forgetMemoryThoughtMtbDays>4</forgetMemoryThoughtMtbDays>
-      </li>
-      <li>
-        <label>maximum safe dose</label>
-        <minSeverity>0.2</minSeverity>
-        <forgetMemoryThoughtMtbDays>2</forgetMemoryThoughtMtbDays>
-      </li>
-      <li>
-        <label>subclinical overdose</label>
-        <minSeverity>0.4</minSeverity>
-        <forgetMemoryThoughtMtbDays>1</forgetMemoryThoughtMtbDays>
+        <painFactor>0.8</painFactor>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <offset>-0.1</offset>
+            <setMax>0.7</setMax>
           </li>
           <li>
-            <capacity>Breathing</capacity>
-            <offset>-0.1</offset>
+            <capacity>Moving</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Talking</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Metabolism</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Sight</capacity>
+            <offset>-0.15</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>therapeutic dose</label>
+        <minSeverity>0.15</minSeverity>
+        <painFactor>0</painFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>maximum safe dose</label>
+        <minSeverity>0.4</minSeverity>
+        <painFactor>0</painFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>subclinical overdose</label>
+        <minSeverity>0.6</minSeverity>
+        <painFactor>0</painFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
           </li>
         </capMods>
       </li>
       <li>
         <label>severe overdose</label>
-        <minSeverity>0.6</minSeverity>
+        <minSeverity>0.85</minSeverity>
+        <painFactor>0</painFactor>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <offset>-0.2</offset>
-          </li>
-          <li>
-            <capacity>Breathing</capacity>
-            <offset>-0.2</offset>
+            <setMax>0.01</setMax>
           </li>
         </capMods>
       </li>
       <li>
         <label>toxic dose</label>
-        <minSeverity>0.8</minSeverity>
+        <minSeverity>1.25</minSeverity>
+        <painFactor>0</painFactor>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <offset>-0.5</offset>
-          </li>
-          <li>
-            <capacity>Breathing</capacity>
-            <offset>-0.4</offset>
+            <setMax>0.01</setMax>
           </li>
         </capMods>
       </li>
