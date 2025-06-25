@@ -9,6 +9,50 @@
     <alwaysShowSeverity>true</alwaysShowSeverity>
     <defaultLabelColor>(255, 52, 52)</defaultLabelColor>
     <tendable>false</tendable>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.TreatmentModifiers.TreatmentModifiers_ModExtension">
+        <modifiers>
+          <li Class="MoreInjuries.AI.TreatmentModifiers.TreatmentModifier_LinkedHediff_SimpleCurve">
+            <jobDef>UseDefibrillator</jobDef>
+            <otherHediffDef>AdrenalineRush</otherHediffDef>
+            <!-- Epinephrine can be used to increase the effectiveness of defibrillation -->
+            <effectivenessCurve>
+              <points>
+                <li>0, 1</li>
+                <li>0.2, 1.025</li>
+                <li>0.4, 1.1</li>
+                <li>0.6, 1.4</li>
+                <li>0.8, 1.5</li>
+                <li>1, 1.5</li>
+                <!-- OD'ing on adrenaline reduces effectiveness -->
+                <li>1.75, 0.9</li>
+                <li>2, 0.8</li>
+                <li>2.25, 0.6</li>
+              </points>
+            </effectivenessCurve>
+          </li>
+          <li Class="MoreInjuries.AI.TreatmentModifiers.TreatmentModifier_LinkedHediff_SimpleCurve">
+            <jobDef>PerformCpr</jobDef>
+            <otherHediffDef>AdrenalineRush</otherHediffDef>
+            <!-- Epinephrine can be used to increase the effectiveness of CPR -->
+            <effectivenessCurve>
+              <points>
+                <li>0, 1</li>
+                <li>0.2, 1.025</li>
+                <li>0.4, 1.1</li>
+                <li>0.6, 1.4</li>
+                <li>0.8, 1.5</li>
+                <li>1, 1.5</li>
+                <!-- OD'ing on adrenaline reduces effectiveness -->
+                <li>1.75, 0.9</li>
+                <li>2, 0.8</li>
+                <li>2.25, 0.6</li>
+              </points>
+            </effectivenessCurve>
+          </li>
+        </modifiers>
+      </li>
+    </modExtensions>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>8.0</severityPerDay>
