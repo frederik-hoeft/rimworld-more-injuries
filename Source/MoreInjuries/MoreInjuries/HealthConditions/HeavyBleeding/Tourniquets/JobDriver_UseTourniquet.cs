@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.AI;
 using MoreInjuries.Extensions;
+using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.KnownDefs;
 using Verse;
 using Verse.AI;
@@ -52,8 +53,12 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
         // apply choking hediff if the tourniquet is applied to the neck
         if (targetPart.def == KnownBodyPartDefOf.Neck)
         {
-            Hediff hediff = HediffMaker.MakeHediff(KnownHediffDefOf.ChokingOnTourniquet, patient);
-            patient.health.AddHediff(hediff);
+            Hediff chokingHediff = HediffMaker.MakeHediff(KnownHediffDefOf.ChokingOnTourniquet, patient);
+            if (chokingHediff.TryGetComp(out HediffComp_CausedBy? causedBy))
+            {
+                causedBy!.AddCause(appliedTourniquetHediff);
+            }
+            patient.health.AddHediff(chokingHediff);
         }
         device.DecreaseStack();
     }

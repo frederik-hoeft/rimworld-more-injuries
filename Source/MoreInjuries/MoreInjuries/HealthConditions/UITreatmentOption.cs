@@ -13,6 +13,8 @@ public enum UITreatmentOption
     RemoveTourniquet,
     ProvideFirstAid,
     UseEpinephrine,
+    UseKetamine,
+    UseChloroform,
     UseBloodBag,
     HarvestBlood
 }

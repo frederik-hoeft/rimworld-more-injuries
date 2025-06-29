@@ -1,9 +1,9 @@
 ﻿using MoreInjuries.Debug;
+using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions;
 using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -120,7 +120,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
         this.FailOnDespawnedNullOrForbidden(PATIENT_INDEX);
         this.FailOn(() =>
         {
-            // we can't apply a devices if the patient is set to no medical care
+            // we can't apply a device if the patient is set to no medical care
             if (doctor.Faction == Faction.OfPlayer && patient.playerSettings?.medCare is MedicalCareCategory.NoCare
                 // we can't apply a device if the doctor wants to tend himself but is set to no self-tend
                 || doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
@@ -173,12 +173,15 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
             waitToil = Toils_General.WaitWith_NewTemp(PATIENT_INDEX, ticks, maintainPosture: true, face: PATIENT_INDEX, pathEndMode: _pathEndMode);
             waitToil.initAction = () =>
             {
-                doctor.pather.StopDead();
+                Pawn doctorLocal = waitToil.actor;
+                doctorLocal.pather.StopDead();
                 if (waitToil.actor.CurJob.GetTarget(PATIENT_INDEX).Thing is not Pawn patientLocal)
                 {
                     return;
                 }
-                if (!patientLocal.InBed())
+                if (!patientLocal.InBed() 
+                    && (!patientLocal.HostileTo(doctorLocal) || patientLocal.Downed) 
+                    && waitToil.actor.CurJobDef.GetModExtension<MedicalDeviceJobProps_ModExtension>() is { ShouldEverBeTreatedFacingUp: true })
                 {
                     patientLocal.jobs.posture = PawnPosture.LayingOnGroundFaceUp;
                 }
@@ -192,7 +195,12 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
                 }
             });
         }
-        waitToil.WithProgressBarToilDelay(PATIENT_INDEX).PlaySustainerOrSound(SoundDef);
+        waitToil.WithProgressBarToilDelay(PATIENT_INDEX);
+        SoundDef? soundDef = SoundDefProvider.GetSoundDef(doctor, patient, DeviceUsed);
+        if (soundDef is not null)
+        {
+            waitToil.PlaySustainerOrSound(soundDef);
+        }
         waitToil.activeSkill = () => SkillDefOf.Medicine;
         waitToil.handlingFacing = true;
         waitToil.tickAction = () =>
@@ -306,7 +314,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
         public bool fromInventoryOnly;
         public bool oneShot;
 
-        public string GetUniqueLoadID() => loadId ??= $"JobParameters_{Guid.NewGuid()}";
+        public string GetUniqueLoadID() => loadId ??= this.GenerateUniqueLoadID();
 
         public virtual void ExposeData()
         {
@@ -319,10 +327,10 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
         {
             T parameters = new()
             {
-                loadId = $"JobParameters_{Guid.NewGuid()}",
                 fromInventoryOnly = fromInventoryOnly,
                 oneShot = oneShot
             };
+            parameters.loadId = parameters.GenerateUniqueLoadID();
             if (worker.TryGetComp(out MoreInjuryComp xmlSaveNode))
             {
                 xmlSaveNode.PersistJobParameters(parameters);

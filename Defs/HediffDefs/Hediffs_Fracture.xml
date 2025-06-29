@@ -91,6 +91,7 @@
       <li Class="HediffCompProperties_GetsPermanent">
         <permanentLabel>cut scar</permanentLabel>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
     </comps>
     <injuryProps>
       <painPerSeverity>0.0250</painPerSeverity>

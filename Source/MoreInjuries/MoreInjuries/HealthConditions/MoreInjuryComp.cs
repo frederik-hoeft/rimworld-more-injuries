@@ -17,7 +17,7 @@ using MoreInjuries.HealthConditions.HeadInjury.Concussions;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using System.Linq;
-using MoreInjuries.HealthConditions.Injectors;
+using MoreInjuries.HealthConditions.Drugs;
 
 namespace MoreInjuries.HealthConditions;
 
@@ -58,7 +58,7 @@ public class MoreInjuryComp : ThingComp
             new ConcussionExplosionsWorker(this),
             new HeavyBleedingWorker(this),
             new ProvideFirstAidWorker(this),
-            new InjectorWorker(this)
+            new DrugWorker(this)
         ];
         // cache handlers for performance
         _compGetGizmosExtraHandlers = [.. _pipeline.OfType<ICompGetGizmosExtraHandler>()];

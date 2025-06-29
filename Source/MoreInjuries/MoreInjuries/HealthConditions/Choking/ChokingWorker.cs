@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.HealthConditions.CardiacArrest;
+using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using RimWorld;
@@ -67,13 +68,17 @@ internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPos
                 && Rand.Chance(MoreInjuriesMod.Settings.ChokingChanceOnDamage))
             {
                 Hediff choking = HediffMaker.MakeHediff(KnownHediffDefOf.ChokingOnBlood, patient);
-                if (choking.TryGetComp(out HediffComp_Choking? comp))
+                if (!choking.TryGetComp(out HediffComp_Choking? chokingComp))
                 {
-                    comp!.Source = injury;
-                    patient.health.AddHediff(choking);
+                    Logger.Error($"Failed to get ChokingHediffComp from choking hediff! Could not apply choking condition to {patient}. This is a bug.");
                     return;
                 }
-                Logger.Error($"Failed to get ChokingHediffComp from choking hediff! Could not apply choking condition to {patient}. This is a bug.");
+                chokingComp!.Source = injury;
+                if (choking.TryGetComp(out HediffComp_CausedBy? causedBy))
+                {
+                    causedBy!.AddCause(injury);
+                }
+                patient.health.AddHediff(choking);
             }
         }
     }

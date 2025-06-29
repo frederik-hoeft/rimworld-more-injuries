@@ -1,6 +1,5 @@
 ﻿using MoreInjuries.BuildIntrinsics;
 using RimWorld;
-using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.KnownDefs;
@@ -17,4 +16,6 @@ public static class KnownSoundDefOf
     public static SoundDef UseAutoinjector = null!;
     public static SoundDef UseSuctionDevice = null!;
     public static SoundDef PerformCpr = null!;
+    public static SoundDef ChloroformMale = null!;
+    public static SoundDef ChloroformFemale = null!;
 }

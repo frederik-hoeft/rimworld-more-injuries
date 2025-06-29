@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.Fractures.Lacerations;
+using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using RimWorld;
@@ -160,6 +161,10 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
                             // severity is random between 0 and 5, but with a curve towards lower values
                             float curve = Rand.Range(0f, 1f);
                             shards.Severity = curve * curve * 5f;
+                            if (shards.TryGetComp(out HediffComp_CausedBy? causedBy))
+                            {
+                                causedBy!.AddCause(fracture);
+                            }
                             patient.health.AddHediff(shards);
                         }
                     }
