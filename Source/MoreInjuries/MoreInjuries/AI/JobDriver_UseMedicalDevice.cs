@@ -4,7 +4,6 @@ using MoreInjuries.HealthConditions;
 using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -174,14 +173,15 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
             waitToil = Toils_General.WaitWith_NewTemp(PATIENT_INDEX, ticks, maintainPosture: true, face: PATIENT_INDEX, pathEndMode: _pathEndMode);
             waitToil.initAction = () =>
             {
-                doctor.pather.StopDead();
+                Pawn doctorLocal = waitToil.actor;
+                doctorLocal.pather.StopDead();
                 if (waitToil.actor.CurJob.GetTarget(PATIENT_INDEX).Thing is not Pawn patientLocal)
                 {
                     return;
                 }
-                // if you want, you can try to run up to an enemy and try to treat them while they're up. 
-                // It's not recommended, but feel free to try. So in that case, we don't want to change the posture.
-                if (!patientLocal.InBed() && (!patientLocal.HostileTo(doctor) || patientLocal.Downed))
+                if (!patientLocal.InBed() 
+                    && (!patientLocal.HostileTo(doctorLocal) || patientLocal.Downed) 
+                    && waitToil.actor.CurJobDef.GetModExtension<MedicalDeviceJobProps_ModExtension>() is { ShouldEverBeTreatedFacingUp: true })
                 {
                     patientLocal.jobs.posture = PawnPosture.LayingOnGroundFaceUp;
                 }
@@ -195,7 +195,12 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
                 }
             });
         }
-        waitToil.WithProgressBarToilDelay(PATIENT_INDEX).PlaySustainerOrSound(SoundDef);
+        waitToil.WithProgressBarToilDelay(PATIENT_INDEX);
+        SoundDef? soundDef = SoundDefProvider.GetSoundDef(doctor, patient, DeviceUsed);
+        if (soundDef is not null)
+        {
+            waitToil.PlaySustainerOrSound(soundDef);
+        }
         waitToil.activeSkill = () => SkillDefOf.Medicine;
         waitToil.handlingFacing = true;
         waitToil.tickAction = () =>

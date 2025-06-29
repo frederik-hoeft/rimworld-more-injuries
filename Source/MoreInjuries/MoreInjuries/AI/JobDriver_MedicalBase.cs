@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using MoreInjuries.AI.Audio;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -18,7 +19,7 @@ public abstract class JobDriver_MedicalBase<TTarget> : JobDriver where TTarget :
 
     protected abstract TTarget GetTarget(ref readonly LocalTargetInfo targetInfo);
 
-    protected virtual SoundDef SoundDef => SoundDefOf.Interact_Tend;
+    protected virtual ISoundDefProvider<TTarget> SoundDefProvider => CachedSoundDefProvider.Of<TTarget>(SoundDefOf.Interact_Tend);
 
     protected virtual int CalculateTendDuration()
     {

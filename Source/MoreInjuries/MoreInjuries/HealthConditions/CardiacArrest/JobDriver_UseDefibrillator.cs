@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.AI.Audio;
 using MoreInjuries.AI.TreatmentModifiers;
 using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
@@ -20,7 +21,7 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
 
     protected override ThingDef DeviceDef => KnownThingDefOf.Defibrillator;
 
-    protected override SoundDef SoundDef => KnownSoundDefOf.Defibrillator;
+    protected override ISoundDefProvider<Pawn> SoundDefProvider => CachedSoundDefProvider.Of<Pawn>(KnownSoundDefOf.Defibrillator);
 
     protected override int BaseTendDuration => 180;
 

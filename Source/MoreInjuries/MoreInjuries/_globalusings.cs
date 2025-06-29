@@ -2,6 +2,7 @@
 global using Logger = MoreInjuries.Logging.Logger;
 global using Std = System;
 global using static MoreInjuries.Globals;
+global using System.Diagnostics.CodeAnalysis;
 
 namespace MoreInjuries;
 

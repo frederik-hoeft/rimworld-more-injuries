@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.AI.Audio;
 using MoreInjuries.KnownDefs;
 using RimWorld;
 using Verse;
@@ -16,7 +17,7 @@ public class JobDriver_HarvestBlood : JobDriver_UseMedicalDevice
 
     protected override bool RequiresDevice => false;
 
-    protected override SoundDef SoundDef => SoundDefOf.Recipe_Surgery;
+    protected override ISoundDefProvider<Pawn> SoundDefProvider => CachedSoundDefProvider.Of<Pawn>(SoundDefOf.Recipe_Surgery);
 
     protected override ThingDef DeviceDef => null!;
 

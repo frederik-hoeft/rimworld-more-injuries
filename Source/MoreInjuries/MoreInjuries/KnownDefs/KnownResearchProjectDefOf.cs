@@ -18,5 +18,6 @@ public static class KnownResearchProjectDefOf
     public static ResearchProjectDef EmergencyMedicine = null!;
     public static ResearchProjectDef EpinephrineSynthesis = null!;
     public static ResearchProjectDef KetamineSynthesis = null!;
+    public static ResearchProjectDef ChloroformSynthesis = null!;
     public static ResearchProjectDef Neurosurgery = null!;
 }

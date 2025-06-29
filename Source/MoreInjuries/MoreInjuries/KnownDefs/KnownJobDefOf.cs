@@ -1,6 +1,5 @@
 ﻿using MoreInjuries.BuildIntrinsics;
 using RimWorld;
-using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.KnownDefs;
@@ -21,6 +20,7 @@ public static class KnownJobDefOf
     public static JobDef UseBandage = null!;
     public static JobDef UseEpinephrine = null!;
     public static JobDef UseKetamine = null!;
+    public static JobDef UseChloroform = null!;
     public static JobDef UseBloodBag = null!;
     public static JobDef HarvestBlood = null!;
 }

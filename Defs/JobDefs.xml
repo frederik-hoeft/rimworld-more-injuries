@@ -5,6 +5,11 @@
     <driverClass>MoreInjuries.HealthConditions.Choking.JobDriver_UseSuctionDevice</driverClass>
     <reportString>Managing airways of TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
   
   <JobDef>
@@ -12,6 +17,11 @@
     <driverClass>MoreInjuries.HealthConditions.CardiacArrest.JobDriver_PerformCpr</driverClass>
     <reportString>Performing CPR on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 
   <JobDef>
@@ -26,20 +36,47 @@
     <driverClass>MoreInjuries.HealthConditions.CardiacArrest.JobDriver_UseDefibrillator</driverClass>
     <reportString>Using a defibrillator on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 
   <JobDef>
     <defName>UseEpinephrine</defName>
-    <driverClass>MoreInjuries.HealthConditions.Injectors.Epinephrine.JobDriver_UseEpinephrine</driverClass>
+    <driverClass>MoreInjuries.HealthConditions.Drugs.Epinephrine.JobDriver_UseEpinephrine</driverClass>
     <reportString>Injecting epinephrine into TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 
   <JobDef>
     <defName>UseKetamine</defName>
-    <driverClass>MoreInjuries.HealthConditions.Injectors.Ketamine.JobDriver_UseKetamine</driverClass>
+    <driverClass>MoreInjuries.HealthConditions.Drugs.Ketamine.JobDriver_UseKetamine</driverClass>
     <reportString>Injecting ketamine into TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>UseChloroform</defName>
+    <driverClass>MoreInjuries.HealthConditions.Drugs.Chloroform.JobDriver_UseChloroform</driverClass>
+    <reportString>Applying chloroform to TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>false</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 
   <JobDef>
@@ -47,6 +84,11 @@
     <driverClass>MoreInjuries.HealthConditions.Fractures.JobDriver_UseSplint</driverClass>
     <reportString>Splinting a fracture on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 
   <JobDef>
@@ -54,6 +96,11 @@
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_UseTourniquet</driverClass>
     <reportString>Applying a tourniquet on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 
   <JobDef>
@@ -61,6 +108,11 @@
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_RemoveTourniquet</driverClass>
     <reportString>Remove a tourniquet from TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 
   <JobDef>
@@ -75,6 +127,11 @@
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents.JobDriver_UseHemostaticAgent</driverClass>
     <reportString>Using a hemostatic agent on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 
   <JobDef>
@@ -82,6 +139,11 @@
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Bandages.JobDriver_UseBandage</driverClass>
     <reportString>Bandaging a wound on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 
   <JobDef>
@@ -89,6 +151,11 @@
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.JobDriver_UseBloodBag</driverClass>
     <reportString>Performing a blood transfusion on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 
   <JobDef>
@@ -96,5 +163,10 @@
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.JobDriver_HarvestBlood</driverClass>
     <reportString>Executing TargetA through blood extraction.</reportString>
     <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>false</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
   </JobDef>
 </Defs>

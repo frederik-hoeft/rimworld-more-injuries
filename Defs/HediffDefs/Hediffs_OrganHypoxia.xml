@@ -117,14 +117,9 @@
             <tickInterval>2000</tickInterval>
             <baseChance>0.02</baseChance>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediffCurve">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_Fixed">
                 <hediffDef>BrainDamage_PersonalityShift</hediffDef>
-                <severityCurve>
-                  <points>
-                    <li>0, 0</li>
-                    <li>1, 0</li>
-                  </points>
-                </severityCurve>
+                <chanceModifier>0</chanceModifier>
               </li>
             </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">

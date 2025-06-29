@@ -4,9 +4,9 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers;
 
 public sealed class HediffChanceModifier_DisallowUntracked : SecondaryHediffChanceModifier
 {
-    public override float GetModifer(Pawn pawn)
+    public override float GetModifier(HediffComp_SecondaryCondition comp, HediffCompHandler_SecondaryCondition compHandler)
     {
-        if (!pawn.HasComp<MoreInjuryComp>())
+        if (!comp.parent.pawn.HasComp<MoreInjuryComp>())
         {
             // if the pawn is not tracked by More Injuries, we return 0 chance
             return 0f;

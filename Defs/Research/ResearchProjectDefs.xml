@@ -70,6 +70,23 @@
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
 
+  <!-- depends on: basic first aid, drug production -->
+  <!-- unlocks: chloroform synthesis -->
+  <ResearchProjectDef>
+    <defName>ChloroformSynthesis</defName>
+    <label>chloroform synthesis</label>
+    <description>By studying the synthesis of chloroform, your researchers will unlock the ability to produce this powerful anesthetic. Chloroform can be used to sedate patients for surgery or other medical procedures, allowing your doctors to perform complex interventions with greater ease and precision. However, it is important to use chloroform carefully due to its high potential for overdose and toxicity.</description>
+    <baseCost>750</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>BasicFirstAid</li>
+      <li>DrugProduction</li>
+    </prerequisites>
+    <researchViewX>2</researchViewX>
+    <researchViewY>3</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+  
   <!-- ============= INDUSTRIAL ============= -->
   <!-- depends on: basic first aid -->
   <!-- unlocks: defibrillator, (in the future: saline IVs,) airway suction device, decompressive craniectomy, osteosynthetic surgery, thoracotomy -->
@@ -161,6 +178,7 @@
     <prerequisites>
       <li>DrugProduction</li>
       <li>EmergencyMedicine</li>
+      <li>ChloroformSynthesis</li>
     </prerequisites>
     <researchViewX>3</researchViewX>
     <researchViewY>3</researchViewY>

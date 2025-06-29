@@ -20,11 +20,9 @@ public class BodyPartHediffTargetEvaluator_Random : BodyPartHediffTargetEvaluato
     // don't rename this field. XML defs depend on this name
     private readonly List<BodyPartDef>? includedParts = null;
 
-    protected virtual bool IncludeBodyPart(BodyPartRecord bodyPart)
-    {
+    protected virtual bool IncludeBodyPart(BodyPartRecord bodyPart) =>
         // include all body parts that are not excluded
-        return excludedParts is null || !excludedParts.Contains(bodyPart.def);
-    }
+        excludedParts is null || !excludedParts.Contains(bodyPart.def);
 
     public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)
     {

@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.AI.Audio;
 using MoreInjuries.AI.TreatmentModifiers;
 using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
@@ -21,7 +22,7 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
 
     protected override ThingDef DeviceDef => null!;
 
-    protected override SoundDef SoundDef => KnownSoundDefOf.PerformCpr;
+    protected override ISoundDefProvider<Pawn> SoundDefProvider => CachedSoundDefProvider.Of<Pawn>(KnownSoundDefOf.PerformCpr);
 
     protected override int BaseTendDuration => 360;
 

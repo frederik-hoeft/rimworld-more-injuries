@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef Name="MedicalDrugBase" ParentName="MakeableDrugPillBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <possessionCount>32</possessionCount>
+    <graphicData>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <socialPropernessMatters>false</socialPropernessMatters>
+    <rotatable>false</rotatable>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <tradeNeverStack>false</tradeNeverStack>
+    <orderedTakeGroup>MedicalDevice</orderedTakeGroup>
+    <statBases>
+      <WorkToMake>600</WorkToMake>
+      <MarketValue>50</MarketValue>
+      <Mass>0.005</Mass>
+      <Flammability>0.7</Flammability>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <ingestible>
+      <drugCategory>Medical</drugCategory>
+      <ingestCommandString>Use {0}</ingestCommandString>
+      <ingestReportString>Using {0}.</ingestReportString>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <listOrder>1000</listOrder>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef Name="AutoInjectorBase" ParentName="MedicalDrugBase" Abstract="True">
+    <ingestible>
+      <ingestSound>UseAutoinjector</ingestSound>
+    </ingestible>
+  </ThingDef>
+
+  <ThingDef ParentName="AutoInjectorBase">
+    <defName>Epinephrine</defName>
+    <label>epinephrine autoinjector</label>
+    <description>An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose of epinephrine.</description>
+    <graphicData>
+      <texPath>Thing/Epinephrine</texPath>
+    </graphicData>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Drugs.MedicalDrugProps_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset">
+            <hediffDef>AdrenalineRush</hediffDef>
+            <severityOffset>0.75</severityOffset>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>AdrenalineRush</hediffDef>
+          <severity>0.75</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>EpinephrineSynthesis</li>
+      </researchPrerequisites>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+        <Intellectual>4</Intellectual>
+      </skillRequirements>
+      <soundWorking>Recipe_Drug</soundWorking>
+      <displayPriority>1500</displayPriority>
+    </recipeMaker>
+    <costList>
+      <Neutroamine>1</Neutroamine>
+      <Yayo>1</Yayo>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="AutoInjectorBase">
+    <defName>Ketamine</defName>
+    <label>ketamine autoinjector</label>
+    <description>A pre-loaded autoinjector containing a dissociative anesthetic for rapid sedation and pain relief. Effective in emergency field care for patients in severe pain or to induce anesthesia in patients resisting treatment.</description>
+    <graphicData>
+      <texPath>Thing/Ketamine</texPath>
+    </graphicData>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Drugs.MedicalDrugProps_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.HealthConditions.Drugs.Outcomes.Conditions.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.HealthConditions.Drugs.Outcomes.Conditions.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+            </condition>
+            <goodwillChange>-15</goodwillChange>
+            <historyEventDef>AnesthetizedMember</historyEventDef>
+            <isViolation>true</isViolation>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset">
+            <hediffDef>Anesthetic</hediffDef>
+            <severityOffset>1.2</severityOffset>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset">
+            <hediffDef>KetamineBuildup</hediffDef>
+            <severityOffset>0.35</severityOffset>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>Anesthetic</hediffDef>
+          <severity>1.2</severity>
+        </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>KetamineBuildup</hediffDef>
+          <severity>0.35</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>KetamineSynthesis</li>
+      </researchPrerequisites>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+        <Intellectual>5</Intellectual>
+      </skillRequirements>
+      <soundWorking>Recipe_Drug</soundWorking>
+      <displayPriority>1500</displayPriority>
+    </recipeMaker>
+    <costList>
+      <Yayo>1</Yayo>
+      <SmokeleafLeaves>4</SmokeleafLeaves>
+      <Chemfuel>1</Chemfuel>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <overdoseSeverityOffset>0.05~0.09</overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="MedicalDrugBase">
+    <defName>Chloroform</defName>
+    <label>chloroform-soaked cloth</label>
+    <description>A piece of cloth soaked in chloroform, used to render a patient unconscious for medical procedures. It is effective in emergency situations where rapid sedation is required. However, due to a variety of factors, such as duration of exposure, concentration of chloroform, and individual patient factors, administering an appropriate dose can be difficult and risk of overdose is high. Due to its high potential for side effects, such as respiratory depression, hepatic and renal damage, and cardiac arrest, modern medicine has largely replaced chloroform with safer alternatives.</description>
+    <graphicData>
+      <texPath>Thing/Chloroform</texPath>
+    </graphicData>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Drugs.MedicalDrugProps_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.HealthConditions.Drugs.Outcomes.Conditions.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.HealthConditions.Drugs.Outcomes.Conditions.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+            </condition>
+            <goodwillChange>-15</goodwillChange>
+            <historyEventDef>AnesthetizedMember</historyEventDef>
+            <isViolation>true</isViolation>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset">
+            <hediffDef>Anesthetic</hediffDef>
+            <severityOffset>1.2</severityOffset>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset_DoctorSkillCurve">
+            <hediffDef>ChloroformBuildup</hediffDef>
+            <minSeverityOffsetByDoctorSkill>
+              <points>
+                <!-- always at least 0.35 -->
+                <li>0, 0.35</li>
+                <!-- highly skilled doctors can reduce risk of overdose, since they know what they're doing -->
+                <li>20, 0.3</li>
+              </points>
+            </minSeverityOffsetByDoctorSkill>
+            <maxSeverityOffsetByDoctorSkill>
+              <points>
+                <!-- untrained doctors may cause toxic dosage -->
+                <li>0, 0.85</li>
+                <!-- drops quickly with skill to less severe overdose -->
+                <li>4, 0.65</li>
+                <li>8, 0.5</li>
+                <!-- but there is always a risk of overdose (> 0.4) -->
+                <li>20, 0.45</li>
+              </points>
+            </maxSeverityOffsetByDoctorSkill>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>Anesthetic</hediffDef>
+          <severity>1.2</severity>
+        </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>ChloroformBuildup</hediffDef>
+          <!-- if you chloroform yourself, you drop unconscious as soon as you have reached the minimum severity offset, so pretty safe (probably not, but it's easier to implement) -->
+          <severity>0.35</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>ChloroformSynthesis</li>
+      </researchPrerequisites>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+        <Intellectual>5</Intellectual>
+      </skillRequirements>
+      <soundWorking>Recipe_Drug</soundWorking>
+      <displayPriority>1500</displayPriority>
+    </recipeMaker>
+    <costList>
+      <SmokeleafLeaves>4</SmokeleafLeaves>
+      <Chemfuel>1</Chemfuel>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <overdoseSeverityOffset>0.05~0.09</overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>Morphine</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>morphine autoinjector</label>
+    <description>TODO</description>
+    <graphicData>
+      <texPath>Thing/Morphine</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>50</stackLimit>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <tradeNeverStack>false</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <Mass>1</Mass>
+      <MarketValue>250</MarketValue>
+      <MaxHitPoints>20</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
+  </ThingDef>
+</Defs>

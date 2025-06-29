@@ -11,6 +11,7 @@ public class KeyedLocalizationTests : LocalizationTestBase
 
     protected override LocalizationInfoRepository LoadLocalizationInfoRepository(DirectoryInfo languageDirectory, LoadErrorContext errorContext)
     {
+        Assert.IsNotNull(languageDirectory);
         LocalizationInfoRepository languageRepository = new KeyedLocalizationInfoRepository(languageDirectory.Name);
         languageRepository.Load(languageDirectory, "Keyed", errorContext);
         return languageRepository;

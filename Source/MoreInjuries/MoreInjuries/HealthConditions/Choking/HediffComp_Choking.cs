@@ -34,10 +34,7 @@ public class HediffComp_Choking : HediffComp
         ? "MI_Coughing".Translate()
         : string.Empty;
 
-    public override void CompExposeData()
-    {
-        Scribe_References.Look(ref _source, "source");
-    }
+    public override void CompExposeData() => Scribe_References.Look(ref _source, "source");
 
     public override void CompPostTick(ref float severityAdjustment)
     {

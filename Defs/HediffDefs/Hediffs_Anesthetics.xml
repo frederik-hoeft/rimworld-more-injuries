@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>KetamineBuildup</defName>
+    <label>ketamine buildup</label>
+    <description>Ketamine is a fast-acting dissociative anesthetic used for pain relief, sedation, and anesthesia. It works by disrupting communication between the thalamus and cerebral cortex, producing a trance-like, pain-free state without significantly suppressing cardiovascular function at recommended doses.\n\nOnce administered, ketamine is distributed systemically and slowly metabolized by the liver. Blood concentrations diminish over time, but repeated or excessive doses can lead to dangerous accumulation resulting in toxicity and overdose.\n\nSymptoms of ketamine toxicity range from amnesia, confusion, and hallucinations to brain damage, respiratory depression, and death in severe cases of overdose.</description>
+    <defaultLabelColor>(56, 185, 255)</defaultLabelColor>
+    <isBad>true</isBad>
+    <maxSeverity>5</maxSeverity>
+    <comps>
+      <!-- Initialized to ~0.35 per injection. 12-hour in-game metabolic half-life -->
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.35</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <severityCurve>
+          <points>
+            <li>0, 0</li>
+            <li>0.2, 0</li>
+            <li>0.4, 0.002</li>
+            <li>0.6, 0.03</li>
+            <li>0.8, 0.06</li>
+            <li>1, 0.175</li>
+          </points>
+        </severityCurve>
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+            <tickInterval>2000</tickInterval>
+            <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_DisallowDeathResting"></li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>CardiacArrest</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Heart</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>trace exposure</label>
+        <minSeverity>0</minSeverity>
+        <painFactor>0.95</painFactor>
+      </li>
+      <li>
+        <label>therapeutic dose</label>
+        <minSeverity>0.1</minSeverity>
+        <forgetMemoryThoughtMtbDays>4</forgetMemoryThoughtMtbDays>
+      </li>
+      <li>
+        <label>maximum safe dose</label>
+        <minSeverity>0.2</minSeverity>
+        <forgetMemoryThoughtMtbDays>2</forgetMemoryThoughtMtbDays>
+      </li>
+      <li>
+        <label>subclinical overdose</label>
+        <minSeverity>0.4</minSeverity>
+        <forgetMemoryThoughtMtbDays>1</forgetMemoryThoughtMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.1</offset>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>severe overdose</label>
+        <minSeverity>0.6</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.2</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>toxic dose</label>
+        <minSeverity>0.8</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.5</offset>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.4</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="DiseaseBase">
+    <defName>ChloroformBuildup</defName>
+    <label>chloroform buildup</label>
+    <description>Chloroform is a volatile anesthetic that induces unconsciousness and analgesia by depressing the central nervous system. It is commonly used in surgical procedures and as a solvent in laboratories. Chloroform is rapidly absorbed through the lungs, skin, and gastrointestinal tract, leading to systemic distribution and metabolism primarily in the liver.\n\nWhile effective at low doses, chloroform can cause toxicity and overdose at higher concentrations, leading to symptoms such as renal and hepatic damage, respiratory depression, and cardiac arrest. Due to its potential for severe side effects, chloroform is rarely used in modern medicine.</description>
+    <defaultLabelColor>(56, 185, 255)</defaultLabelColor>
+    <isBad>true</isBad>
+    <maxSeverity>5</maxSeverity>
+    <comps>
+      <!-- Initialized to ~0.35 per injection. 12-hour in-game metabolic half-life -->
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.35</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+            <tickInterval>2000</tickInterval>
+            <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_MeanTimeBetween_SimpleCurve">
+                <mttfDaysBySeverity>
+                  <points>
+                    <li>0, 10</li>
+                    <li>0.4, 1.5</li>
+                    <li>0.6, 0.75</li>
+                    <li>0.8, 0.25</li>
+                  </points>
+                </mttfDaysBySeverity>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>CardiacArrest</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Heart</target>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+            <tickInterval>2000</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_MeanTimeBetween_SimpleCurve">
+                <mttfDaysBySeverity>
+                  <points>
+                    <li>0, 5</li>
+                    <li>0.4, 0.5</li>
+                    <li>0.6, 0.15</li>
+                    <li>0.8, 0.075</li>
+                  </points>
+                </mttfDaysBySeverity>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>OrganChemicalInjury</hediffDef>
+                <minSeverity>0.2</minSeverity>
+                <maxSeverity>1.5</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomFromList">
+              <targets>
+                <li>Liver</li>
+                <li>Kidney</li>
+              </targets>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>trace exposure</label>
+        <minSeverity>0</minSeverity>
+        <painFactor>0.95</painFactor>
+        <vomitMtbDays>2</vomitMtbDays>
+      </li>
+      <li>
+        <label>therapeutic dose</label>
+        <minSeverity>0.1</minSeverity>
+        <vomitMtbDays>1</vomitMtbDays>
+      </li>
+      <li>
+        <label>maximum safe dose</label>
+        <minSeverity>0.2</minSeverity>
+        <vomitMtbDays>0.5</vomitMtbDays>
+      </li>
+      <li>
+        <label>subclinical overdose</label>
+        <minSeverity>0.4</minSeverity>
+        <vomitMtbDays>0.25</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.5</offset>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.25</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>severe overdose</label>
+        <minSeverity>0.6</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>toxic dose</label>
+        <minSeverity>0.8</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

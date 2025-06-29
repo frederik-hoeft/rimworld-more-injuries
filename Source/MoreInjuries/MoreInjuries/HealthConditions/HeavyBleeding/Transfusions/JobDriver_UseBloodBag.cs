@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.AI.Audio;
 using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
 using RimWorld;
@@ -24,7 +25,7 @@ public class JobDriver_UseBloodBag : JobDriver_UseMedicalDevice
 
     protected override ThingDef DeviceDef => JobDeviceDef;
 
-    protected override SoundDef SoundDef => SoundDefOf.Recipe_Surgery;
+    protected override ISoundDefProvider<Pawn> SoundDefProvider => CachedSoundDefProvider.Of<Pawn>(SoundDefOf.Recipe_Surgery);
 
     protected override int BaseTendDuration => 720;
 

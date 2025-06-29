@@ -4,7 +4,7 @@ using System.Xml.Linq;
 namespace MoreInjuries.LocalizationTests;
 
 [TestClass]
-public class DefInjectedLocalizationTests : LocalizationTestBase
+public sealed class DefInjectedLocalizationTests : LocalizationTestBase
 {
     protected override LocalizationInfoRepository LoadLocalizationInfoRepository(DirectoryInfo languageDirectory, LoadErrorContext errorContext)
     {
@@ -17,7 +17,7 @@ public class DefInjectedLocalizationTests : LocalizationTestBase
     public override void LanguageFileCompletenessTest() => base.LanguageFileCompletenessTest();
 }
 
-internal class DefInjectedLocalizationInfoRepository(string language) : LocalizationInfoRepository(language)
+internal sealed class DefInjectedLocalizationInfoRepository(string language) : LocalizationInfoRepository(language)
 {
     protected override string CreateKey(XElement element, LocalizationInfoLoadContext context) => $"{context.SourceFile.Directory?.Name}::{element.Name.LocalName}";
 }

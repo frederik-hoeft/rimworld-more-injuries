@@ -75,7 +75,7 @@
           <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>200</tickInterval>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediffCurve">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_SimpleCurve">
                 <hediffDef>Hypothermia</hediffDef>
                 <!-- hypothermia slows down the damaging effects of hypoxia: (hypothermia severity) => hypoxia chance factor -->
                 <severityCurve>
@@ -109,7 +109,7 @@
             <tickInterval>250</tickInterval>
             <baseChance>0.375</baseChance>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediffCurve">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_SimpleCurve">
                 <hediffDef>Hypothermia</hediffDef>
                 <!-- hypothermia slows down the damaging effects of hypoxia: (hypothermia severity) => hypoxia chance factor -->
                 <severityCurve>
@@ -121,7 +121,7 @@
                   </points>
                 </severityCurve>
               </li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediffCurve">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_SimpleCurve">
                 <hediffDef>BrainDamage_Hypoxia</hediffDef>
                 <!-- reduce chance for severe damage once hypoxia is already there -->
                 <!-- brain damage is added over time, this curve gives brain damage a chance to manifest -->

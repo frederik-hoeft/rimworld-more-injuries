@@ -1,7 +1,6 @@
 ﻿using MoreInjuries.BuildIntrinsics;
 using MoreInjuries.Extensions;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Verse;
 
@@ -28,3 +27,4 @@ public class BodyPartHediffTargetEvaluator_RandomFromList : BodyPartHediffTarget
         return target;
     }
 }
+
