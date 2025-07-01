@@ -15,7 +15,7 @@ public abstract class DrugFloatOptionsProvider(InjuryWorker parent) : ICompFloat
 
     protected abstract string JobLabelKey { get; }
 
-    protected abstract ThingDef InjectorDef { get; }
+    protected abstract ThingDef DrugThingDef { get; }
 
     protected abstract IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device);
 
@@ -26,7 +26,7 @@ public abstract class DrugFloatOptionsProvider(InjuryWorker parent) : ICompFloat
         {
             builder.Keys.Add(UITreatmentOption);
 
-            if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, InjectorDef) is not Thing injector)
+            if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, DrugThingDef) is not Thing injector)
             {
                 return;
             }

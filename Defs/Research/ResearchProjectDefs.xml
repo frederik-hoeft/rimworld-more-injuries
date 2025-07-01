@@ -70,6 +70,24 @@
     <tab>MIResearchTab</tab>
   </ResearchProjectDef>
 
+  <!-- depends on: basic first aid -->
+  <!-- unlocks: morphine autoinjector -->
+  <ResearchProjectDef>
+    <defName>MorphineSynthesis</defName>
+    <label>morphine synthesis</label>
+    <description>By studying the chemical extraction and synthesis of morphine, your researchers will gain the ability to produce this potent opioid analgesic for medical use. Morphine offers unparalleled pain relief in emergency situations, but it must be administered with caution - its depressive effects on respiration and circulation can complicate resuscitation efforts and worsen outcomes in cases of severe blood loss.\n\nThis research unlocks the ability to craft morphine autoinjectors for quick administration on the battlefield or for pain management in the hospital.</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>BasicFirstAid</li>
+      <li>DrugProduction</li>
+    </prerequisites>
+    <researchViewX>2</researchViewX>
+    <researchViewY>2</researchViewY>
+    <tab>MIResearchTab</tab>
+  </ResearchProjectDef>
+
   <!-- depends on: basic first aid, drug production -->
   <!-- unlocks: chloroform synthesis -->
   <ResearchProjectDef>

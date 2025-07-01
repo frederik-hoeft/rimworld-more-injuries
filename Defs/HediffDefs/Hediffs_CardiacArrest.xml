@@ -32,6 +32,22 @@
             </effectivenessCurve>
           </li>
           <li Class="MoreInjuries.AI.TreatmentModifiers.TreatmentModifier_LinkedHediff_SimpleCurve">
+            <jobDef>UseDefibrillator</jobDef>
+            <otherHediffDef>MorphineBuildup</otherHediffDef>
+            <!-- "A complication of morphine is the impediment of resuscitation efforts by its effect on decreasing blood pressure, heart rate, and respiration rate." -->
+            <!-- ref: https://wms.org/magazine/magazine/1372/TCCC-Pain%20Management/default.aspx -->
+            <effectivenessCurve>
+              <points>
+                <li>0.0, 1.0</li>
+                <li>0.2, 0.95</li>
+                <li>0.4, 0.85</li>
+                <li>0.6, 0.75</li>
+                <li>0.8, 0.6</li>
+                <li>1.0, 0.4</li>
+              </points>
+            </effectivenessCurve>
+          </li>
+          <li Class="MoreInjuries.AI.TreatmentModifiers.TreatmentModifier_LinkedHediff_SimpleCurve">
             <jobDef>PerformCpr</jobDef>
             <otherHediffDef>AdrenalineRush</otherHediffDef>
             <!-- Epinephrine can be used to increase the effectiveness of CPR -->
@@ -47,6 +63,22 @@
                 <li>1.75, 0.9</li>
                 <li>2, 0.8</li>
                 <li>2.25, 0.6</li>
+              </points>
+            </effectivenessCurve>
+          </li>
+          <li Class="MoreInjuries.AI.TreatmentModifiers.TreatmentModifier_LinkedHediff_SimpleCurve">
+            <jobDef>PerformCpr</jobDef>
+            <otherHediffDef>MorphineBuildup</otherHediffDef>
+            <!-- "A complication of morphine is the impediment of resuscitation efforts by its effect on decreasing blood pressure, heart rate, and respiration rate." -->
+            <!-- ref: https://wms.org/magazine/magazine/1372/TCCC-Pain%20Management/default.aspx -->
+            <effectivenessCurve>
+              <points>
+                <li>0.0, 1.0</li>
+                <li>0.2, 0.9</li>
+                <li>0.4, 0.75</li>
+                <li>0.6, 0.6</li>
+                <li>0.8, 0.4</li>
+                <li>1.0, 0.2</li>
               </points>
             </effectivenessCurve>
           </li>

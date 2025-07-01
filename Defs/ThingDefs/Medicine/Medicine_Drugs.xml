@@ -237,31 +237,54 @@
       </li>
     </comps>
   </ThingDef>
-  
-  <ThingDef ParentName="MedicalDeviceBase">
+
+  <ThingDef ParentName="AutoInjectorBase">
     <defName>Morphine</defName>
-    <thingClass>ThingWithComps</thingClass>
     <label>morphine autoinjector</label>
-    <description>TODO</description>
+    <description>A morphine autoinjector is a medical device used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol or ketamine.</description>
     <graphicData>
       <texPath>Thing/Morphine</texPath>
-      <graphicClass>Graphic_StackCount</graphicClass>
     </graphicData>
-    <resourceReadoutPriority>Middle</resourceReadoutPriority>
-    <stackLimit>50</stackLimit>
-    <drawGUIOverlay>true</drawGUIOverlay>
-    <tradeNeverStack>false</tradeNeverStack>
-    <useHitPoints>true</useHitPoints>
-    <statBases>
-      <Mass>1</Mass>
-      <MarketValue>250</MarketValue>
-      <MaxHitPoints>20</MaxHitPoints>
-    </statBases>
-    <thingCategories>
-      <li>Manufactured</li>
-    </thingCategories>
-    <tradeTags>
-      <li>ExoticMisc</li>
-    </tradeTags>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Drugs.MedicalDrugProps_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset">
+            <hediffDef>MorphineBuildup</hediffDef>
+            <severityOffset>0.35</severityOffset>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>MorphineBuildup</hediffDef>
+          <severity>0.35</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>MorphineSynthesis</li>
+      </researchPrerequisites>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>5</Crafting>
+        <Intellectual>3</Intellectual>
+      </skillRequirements>
+      <soundWorking>Recipe_Drug</soundWorking>
+      <displayPriority>1500</displayPriority>
+    </recipeMaker>
+    <costList>
+      <Flake>1</Flake>
+      <SmokeleafLeaves>1</SmokeleafLeaves>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+      </li>
+    </comps>
   </ThingDef>
 </Defs>

@@ -15,6 +15,7 @@ public enum UITreatmentOption
     UseEpinephrine,
     UseKetamine,
     UseChloroform,
+    UseMorphine,
     UseBloodBag,
     HarvestBlood
 }

@@ -1,6 +1,7 @@
 ﻿using MoreInjuries.HealthConditions.Drugs.Chloroform;
 using MoreInjuries.HealthConditions.Drugs.Epinephrine;
 using MoreInjuries.HealthConditions.Drugs.Ketamine;
+using MoreInjuries.HealthConditions.Drugs.Morphine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Drugs;
@@ -16,6 +17,7 @@ public class DrugWorker : InjuryWorker, ICompFloatMenuOptionsHandler
             new EpinephrineFloatOptionsProvider(this),
             new KetamineFloatOptionsProvider(this),
             new ChloroformFloatOptionsProvider(this),
+            new MorphineFloatOptionsProvider(this),
         ];
     }
 

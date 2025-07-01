@@ -56,6 +56,18 @@
   </JobDef>
 
   <JobDef>
+    <defName>UseMorphine</defName>
+    <driverClass>MoreInjuries.HealthConditions.Drugs.Morphine.JobDriver_UseMorphine</driverClass>
+    <reportString>Injecting morphine into TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
     <defName>UseKetamine</defName>
     <driverClass>MoreInjuries.HealthConditions.Drugs.Ketamine.JobDriver_UseKetamine</driverClass>
     <reportString>Injecting ketamine into TargetA.</reportString>

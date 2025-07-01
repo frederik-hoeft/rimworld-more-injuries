@@ -1,5 +1,4 @@
 ﻿using MoreInjuries.BuildIntrinsics;
-using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers;

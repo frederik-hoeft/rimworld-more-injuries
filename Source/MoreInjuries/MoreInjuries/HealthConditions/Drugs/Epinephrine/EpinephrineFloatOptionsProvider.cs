@@ -12,7 +12,7 @@ public class EpinephrineFloatOptionsProvider(InjuryWorker parent) : DrugFloatOpt
 
     protected override string JobLabelKey => JobDriver_UseEpinephrine.JOB_LABEL_KEY;
 
-    protected override ThingDef InjectorDef => KnownThingDefOf.Epinephrine;
+    protected override ThingDef DrugThingDef => KnownThingDefOf.Epinephrine;
 
     protected override IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device) =>
         JobDriver_UseEpinephrine.GetDispatcher(doctor, patient, device);

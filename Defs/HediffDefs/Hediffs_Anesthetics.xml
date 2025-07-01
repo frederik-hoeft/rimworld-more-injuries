@@ -194,11 +194,13 @@
       <li>
         <label>therapeutic dose</label>
         <minSeverity>0.1</minSeverity>
+        <painFactor>0.9</painFactor>
         <vomitMtbDays>1</vomitMtbDays>
       </li>
       <li>
         <label>maximum safe dose</label>
         <minSeverity>0.2</minSeverity>
+        <painFactor>0.85</painFactor>
         <vomitMtbDays>0.5</vomitMtbDays>
       </li>
       <li>

@@ -13,7 +13,7 @@ public class KetamineFloatOptionsProvider(InjuryWorker parent) : DrugFloatOption
 
     protected override string JobLabelKey => JobDriver_UseKetamine.JOB_LABEL_KEY;
 
-    protected override ThingDef InjectorDef => KnownThingDefOf.Ketamine;
+    protected override ThingDef DrugThingDef => KnownThingDefOf.Ketamine;
 
     protected override IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device) =>
         JobDriver_UseKetamine.GetDispatcher(doctor, patient, device);
