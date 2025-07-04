@@ -32,9 +32,6 @@ internal sealed class VersionMigration3_FieldSedatives : VersionMigrationBase
         ];
         Find.LetterStack.ReceiveLetter(letter);
     }
-    
-    public override void Execute(string signal)
-    {
-        Logger.LogDebug($"VersionMigration2_DedicatedCprResearch: Execute: {signal}");
-    }
+
+    public override void Execute(string signal) => Logger.LogDebug($"{GetType().Name}: Execute: {signal}");
 }
