@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef>
+    <defName>LostAbilityToSpeak</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>BrainDamage_LanguageAphasia</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>word-finding difficulty</label>
+        <description>Struggling to find the right words can be frustrating and isolating. I feel embarrassed when I can't express myself clearly.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>fragmented speech</label>
+        <description>I can speak, but my sentences are often incomplete or jumbled. It's like my thoughts are scattered, and I can't put them together.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+      <li>
+        <label>non-fluent</label>
+        <description>Every conversation feels like a struggle. I can't form complex sentences, and it's hard to communicate even basic ideas. I want to express myself, but my words fail me.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+      <li>
+        <label>barely verbal</label>
+        <description>My ability to speak has been reduced to almost nothing. I can only manage a few words at a time, and even those are difficult to pronounce. I feel trapped in my own silence.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+      <li>
+        <label>completely nonverbal</label>
+        <description>I can no longer speak at all. My thoughts are locked inside me, and I can't communicate with others. I feel alone and isolated, unable to share my feelings or ideas.</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>LostMotorFunction</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>BrainDamage_MotorDysfunction</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>clumsy</label>
+        <description>My movements feel less precise than they used to be. I drop things more often and stumble occasionally. It's frustrating, but manageable.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>shaky and unsteady</label>
+        <description>My hands tremble, and walking in a straight line takes concentration. Tasks that used to be simple now require real effort and care.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+      <li>
+        <label>struggling to control my body</label>
+        <description>Basic actions are difficult. My limbs don't always respond the way I want them to, and I often lose coordination. It makes me feel helpless and vulnerable.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+      <li>
+        <label>near-paralyzed</label>
+        <description>Moving feels like dragging weights through water. I can barely walk, and using my hands has become incredibly difficult. I rely on others for more than I'd like to admit.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+      <li>
+        <label>trapped in a failing body</label>
+        <description>My body no longer obeys me. Every step, every grasp is a monumental challenge. I feel like a living vegetable, unable to do anything for myself, and completely dependent on others. It's a nightmare.</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>LostVisualRecognition</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>BrainDamage_VisualAgnosia</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>things look unfamiliar</label>
+        <description>Sometimes I catch myself hesitating, unsure of what I'm looking at. It's subtle, but unsettling - like the world is just slightly off.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>misrecognizing people and objects</label>
+        <description>I keep mistaking objects—or even people—for others. It's confusing, and I often feel embarrassed or disoriented.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+      <li>
+        <label>faces blur together</label>
+        <description>Everyone looks the same. I have to rely on voices or context to tell people apart. It's isolating and makes social interaction exhausting.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+      <li>
+        <label>nothing makes visual sense</label>
+        <description>The world around me is a jumble of shapes and colors. I can't rely on sight to recognize what I see anymore. Every task is harder, and I feel disconnected from everything.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>ConfusedAndDisoriented</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>BrainDamage_Confusion</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>disoriented</label>
+        <description>Sometimes I forget why I walked into a room or what I was just doing. It's like my thoughts vanish mid-sentence.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>forgetting simple things</label>
+        <description>I've started forgetting names, places, tasks. It's frustrating, like sand slipping through my fingers whenever I try to recall something.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+      <li>
+        <label>losing track of time</label>
+        <description>Hours blur together. Sometimes I wake up not knowing where I am or what day it is. I feel lost - even in familiar places.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+      <li>
+        <label>memories feel distant</label>
+        <description>Memories feel like someone else's dreams. Faces, places, and events all seem unfamiliar. I'm scared of forgetting everything.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+      <li>
+        <label>losing sense of self</label>
+        <description>My identity feels fragile. I struggle to remember who I am, what I've done, or what I care about. It's like I'm fading away, and I don't know how to stop it.</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

@@ -64,7 +64,7 @@ New-Item -ItemType Directory "${upload_dir}/Source"
 Copy-Folder -FromPath "${mod_root}/oldversions/*" -ToPath $upload_dir -Exclude ".gitkeep",".gitignore"
 # create folder for current version
 New-Item -ItemType Directory "${upload_dir}/${game_version}/Assemblies"
-# copy assemblies (deps should be handled via mod dependencies from the workshop)
+# copy assemblies (external deps should be handled via mod dependencies from the workshop)
 Copy-Item -LiteralPath "${mod_root}/artifacts/${project_name}.dll" -Destination "${upload_dir}/${game_version}/Assemblies"
 # if there is a Patches directory in the mod root, copy that as well (to the latest version)
 if (Test-Path -LiteralPath "${mod_root}/Patches") {

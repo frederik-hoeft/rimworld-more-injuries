@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <HediffDef ParentName="InfectionBase">
+  <HediffDef ParentName="DiseaseBase">
     <defName>HypovolemicShock</defName>
     <label>hypovolemic shock</label>
-    <description>A life-threatening state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure. 
-\nSeverity scales directly with blood loss severity until 60% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure.</description>
+    <description>A life-threatening state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure.\n\nSeverity scales directly with blood loss severity until 60% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure.</description>
     <tendable>true</tendable>
-    <makesSickThought>true</makesSickThought>
-    <lethalSeverity>1</lethalSeverity>
+    <maxSeverity>1</maxSeverity>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
     <defaultLabelColor>(255, 158, 158)</defaultLabelColor>
     <comps>
       <li Class="HediffCompProperties_TendDuration">
@@ -19,7 +18,7 @@
       </li>
       <li Class="HediffCompProperties_MessageAfterTicks">
         <ticks>10</ticks>
-        <message>{0} is developing hypovolemic shock!</message>
+        <message>{0} is going into hypovolemic shock!</message>
         <messageType>NegativeHealthEvent</messageType>
       </li>
       <li Class="MoreInjuries.HealthConditions.HypovolemicShock.HediffCompProperties_Shock">
@@ -35,11 +34,149 @@
           </points>
         </_bleedSeverityCurve>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <severityCurve>
+          <points>
+            <li>0, 0</li>
+            <li>0.5, 0</li>
+            <li>0.95, 0.85</li>
+            <li>1, 1</li>
+          </points>
+        </severityCurve>
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+            <tickInterval>250</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_SimpleCurve">
+                <hediffDef>Hypothermia</hediffDef>
+                <!-- hypothermia slows down the damaging effects of hypoxia: (hypothermia severity) => hypoxia chance factor -->
+                <severityCurve>
+                  <points>
+                    <li>0, 1</li>
+                    <li>0.2, 0.8</li>
+                    <li>0.6, 0.45</li>
+                    <li>1, 0.2</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>OrganHypoxia</hediffDef>
+                <minSeverity>1</minSeverity>
+                <maxSeverity>4</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">
+              <height>Middle</height>
+              <depth>Inside</depth>
+              <excludedParts>
+                <li>Heart</li>
+              </excludedParts>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+            <tickInterval>250</tickInterval>
+            <baseChance>0.375</baseChance>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_SimpleCurve">
+                <hediffDef>Hypothermia</hediffDef>
+                <!-- hypothermia slows down the damaging effects of hypoxia: (hypothermia severity) => hypoxia chance factor -->
+                <severityCurve>
+                  <points>
+                    <li>0, 1</li>
+                    <li>0.2, 0.8</li>
+                    <li>0.6, 0.45</li>
+                    <li>1, 0.2</li>
+                  </points>
+                </severityCurve>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_SimpleCurve">
+                <hediffDef>BrainDamage_Hypoxia</hediffDef>
+                <!-- reduce chance for severe damage once hypoxia is already there -->
+                <!-- brain damage is added over time, this curve gives brain damage a chance to manifest -->
+                <severityCurve>
+                  <points>
+                    <li>0, 1</li>
+                    <li>2, 0.9</li>
+                    <li>4, 0.5</li>
+                    <li>6, 0.25</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>BrainDamage_Hypoxia</hediffDef>
+                <minSeverity>0.1</minSeverity>
+                <maxSeverity>0.75</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_CardiacArrest">
+            <tickInterval>250</tickInterval>
+            <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_DisallowDeathResting"></li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>CardiacArrest</hediffDef>
+                <minSeverity>0.01</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Heart</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
     </comps>
+    <!-- hypovolemia may cause hypothermia -->
     <stages>
       <li>
+        <label>minor</label>
         <minSeverity>0</minSeverity>
+        <statOffsets>
+          <ComfyTemperatureMin>5</ComfyTemperatureMin>
+        </statOffsets>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.5</minSeverity>
         <lifeThreatening>true</lifeThreatening>
+        <statOffsets>
+          <ComfyTemperatureMin>10</ComfyTemperatureMin>
+          <ComfyTemperatureMax>-5</ComfyTemperatureMax>
+        </statOffsets>
+      </li>
+      <li>
+        <label>severe</label>
+        <minSeverity>0.75</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <statOffsets>
+          <ComfyTemperatureMin>15</ComfyTemperatureMin>
+          <ComfyTemperatureMax>-5</ComfyTemperatureMax>
+        </statOffsets>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.9</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <statOffsets>
+          <ComfyTemperatureMin>20</ComfyTemperatureMin>
+          <ComfyTemperatureMax>-10</ComfyTemperatureMax>
+        </statOffsets>
       </li>
     </stages>
   </HediffDef>

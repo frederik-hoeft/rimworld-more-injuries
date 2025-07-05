@@ -50,4 +50,8 @@
   <MI_InjuryBleeding_TemporarilyReduced_Tooltip>Hemostasis: {TIME}, bleed rate decreased by {PERCENT}%</MI_InjuryBleeding_TemporarilyReduced_Tooltip>
   <!-- EN: Effective bleed rate: {PERCENT}% -->
   <MI_InjuryBleeding_EffectiveBleedRate_Tooltip>Effective bleed rate: {PERCENT}%</MI_InjuryBleeding_EffectiveBleedRate_Tooltip>
+  <!-- EN: Affected by: -->
+  <MI_InjuryBleeding_CrossInteraction_Tooltip_Header>Affected by:</MI_InjuryBleeding_CrossInteraction_Tooltip_Header>
+  <!-- EN: - {HEDIFF_label}: +{PERCENT}% -->
+  <MI_InjuryBleeding_CrossInteraction_Tooltip>- {HEDIFF_label}: +{PERCENT}%</MI_InjuryBleeding_CrossInteraction_Tooltip>
 </LanguageData>

@@ -108,4 +108,11 @@
   <ExtractWholeBloodBag.description>Extract blood from a patient to retrieve a blood bag that can be used for blood transfusions. If the patient does not have enough blood for a safe donation, the procedure will be aborted.</ExtractWholeBloodBag.description>
   <!-- EN: Drawing blood. -->
   <ExtractWholeBloodBag.jobString>Drawing blood.</ExtractWholeBloodBag.jobString>
+
+  <!-- EN: Treat brain damage: mechanite therapy -->
+  <TreatBrainDamage.label>Treat brain damage: mechanite therapy</TreatBrainDamage.label>
+  <!-- EN: Mechanite therapy is a glitterworld treatment that uses mechanites to slowly repair neurological damage in the brain on a cellular level. The procedure is expensive and may take several days to complete, but has shown promising results in restoring cognitive function and memory in patients with severe brain damage. Due to the experimental nature of this treatment, it is not widely available and may require multiple sessions to achieve the desired results. -->
+  <TreatBrainDamage.description>Mechanite therapy is a glitterworld treatment that uses mechanites to slowly repair neurological damage in the brain on a cellular level. The procedure is expensive and may take several days to complete, but has shown promising results in restoring cognitive function and memory in patients with severe brain damage. Due to the experimental nature of this treatment, it is not widely available and may require multiple sessions to achieve the desired results.</TreatBrainDamage.description>
+  <!-- EN: Injecting mechanites into {0}'s brain to repair damage. -->
+  <TreatBrainDamage.jobString>Injecting mechanites into {0}'s brain to repair damage.</TreatBrainDamage.jobString>
 </LanguageData>

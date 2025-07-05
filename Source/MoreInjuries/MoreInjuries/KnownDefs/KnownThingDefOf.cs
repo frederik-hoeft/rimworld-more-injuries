@@ -1,6 +1,5 @@
 ﻿using MoreInjuries.BuildIntrinsics;
 using RimWorld;
-using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.KnownDefs;
@@ -16,6 +15,8 @@ public static class KnownThingDefOf
     public static ThingDef Tourniquet = null!;
     public static ThingDef Defibrillator = null!;
     public static ThingDef Epinephrine = null!;
+    public static ThingDef Ketamine = null!;
+    public static ThingDef Chloroform = null!;
     public static ThingDef Morphine = null!;
     public static ThingDef WholeBloodBag = null!;
 }

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="InjuryBase">
+    <defName>OrganHypoxia</defName>
+    <label>hypoxia</label>
+    <labelNoun>insufficient oxygen</labelNoun>
+    <description>Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow.</description>
+    <defaultLabelColor>(100, 15, 15)</defaultLabelColor>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>tended</labelTendedWell>
+        <labelTendedWellInner>tended</labelTendedWellInner>
+        <labelSolidTendedWell>tended</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>permanent hypoxia damage</permanentLabel>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.005</painPerSeverity>
+      <averagePainPerSeverityPermanent>0</averagePainPerSeverityPermanent>
+      <bleedRate>0</bleedRate>
+      <canMerge>true</canMerge>
+      <destroyedLabel>dead</destroyedLabel>
+      <destroyedOutLabel>dead</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+
+  <HediffDef ParentName="InjuryBase">
+    <defName>BrainDamage_Hypoxia</defName>
+    <label>hypoxia</label>
+    <labelNoun>insufficient oxygen</labelNoun>
+    <description>Prolonged lack of oxygen to the brain has caused neurological damage. Depending on the severity and duration of the hypoxia, damaged cells may be able to recover, or they may die off and cause permanent brain damage and disability. There's nothing else to do but wait and see.</description>
+    <defaultLabelColor>(100, 15, 15)</defaultLabelColor>
+    <maxSeverity>9</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>tended</labelTendedWell>
+        <labelTendedWellInner>tended</labelTendedWellInner>
+        <labelSolidTendedWell>tended</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0</infectionChance>
+      </li>
+      <li Class="HediffCompProperties_GetsPermanent">
+        <permanentLabel>permanent hypoxia damage</permanentLabel>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <severityCurve>
+          <points>
+            <li>0, 0</li>
+            <li>1, 0.15</li>
+            <li>2, 0.45</li>
+            <li>3, 0.75</li>
+            <li>4, 0.95</li>
+            <li>5, 1</li>
+          </points>
+        </severityCurve>
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Hypoxia.Secondary.HediffCompHandler_SecondaryCondition_BrainDamage">
+            <tickInterval>2000</tickInterval>
+            <baseChance>0.12</baseChance>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_RandomFromList">
+              <hediffMakerDefs>
+                <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
+                  <hediffDef>BrainDamage_MotorDysfunction</hediffDef>
+                  <weight>1</weight>
+                  <minSeverity>0.01</minSeverity>
+                  <maxSeverity>0.25</maxSeverity>
+                  <allowMultiple>true</allowMultiple>
+                  <allowDuplicate>false</allowDuplicate>
+                </li>
+                <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
+                  <hediffDef>BrainDamage_LanguageAphasia</hediffDef>
+                  <weight>1</weight>
+                  <minSeverity>0.01</minSeverity>
+                  <maxSeverity>0.25</maxSeverity>
+                  <allowMultiple>true</allowMultiple>
+                  <allowDuplicate>false</allowDuplicate>
+                </li>
+                <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
+                  <hediffDef>BrainDamage_VisualAgnosia</hediffDef>
+                  <weight>1</weight>
+                  <minSeverity>0.01</minSeverity>
+                  <maxSeverity>0.25</maxSeverity>
+                  <allowMultiple>true</allowMultiple>
+                  <allowDuplicate>false</allowDuplicate>
+                </li>
+                <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
+                  <hediffDef>BrainDamage_FrontalLobe</hediffDef>
+                  <weight>1</weight>
+                  <minSeverity>0.01</minSeverity>
+                  <maxSeverity>0.25</maxSeverity>
+                  <allowMultiple>true</allowMultiple>
+                  <allowDuplicate>false</allowDuplicate>
+                </li>
+                <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
+                  <hediffDef>BrainDamage_Confusion</hediffDef>
+                  <weight>1</weight>
+                  <minSeverity>0.01</minSeverity>
+                  <maxSeverity>0.25</maxSeverity>
+                  <allowMultiple>true</allowMultiple>
+                  <allowDuplicate>false</allowDuplicate>
+                </li>
+              </hediffMakerDefs>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Hypoxia.Secondary.HediffCompHandler_SecondaryCondition_BrainDamage">
+            <tickInterval>2000</tickInterval>
+            <baseChance>0.02</baseChance>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_Fixed">
+                <hediffDef>BrainDamage_PersonalityShift</hediffDef>
+                <chanceModifier>0</chanceModifier>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>BrainDamage_PersonalityShift</hediffDef>
+                <minSeverity>0.05</minSeverity>
+                <maxSeverity>0.5</maxSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>initial</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.95</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>minor</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <minSeverity>1</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.8</setMax>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.2</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>moderate</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <minSeverity>2</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.5</setMax>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.5</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.6</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>severe</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <minSeverity>3</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>very severe</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <minSeverity>4</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>critical</label>
+        <partIgnoreMissingHP>true</partIgnoreMissingHP>
+        <minSeverity>5</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>fatal</label>
+        <minSeverity>8</minSeverity>
+        <partIgnoreMissingHP>false</partIgnoreMissingHP>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <injuryProps>
+      <painPerSeverity>0.005</painPerSeverity>
+      <averagePainPerSeverityPermanent>0</averagePainPerSeverityPermanent>
+      <bleedRate>0</bleedRate>
+      <canMerge>true</canMerge>
+      <destroyedLabel>dead</destroyedLabel>
+      <destroyedOutLabel>dead</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+</Defs>

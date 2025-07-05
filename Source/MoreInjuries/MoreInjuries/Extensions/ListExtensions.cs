@@ -4,5 +4,12 @@ namespace MoreInjuries.Extensions;
 
 public static class ListExtensions
 {
-    public static T SelectRandom<T>(this IReadOnlyList<T> list) => list[RandomX.Shared.Next(list.Count)];
+    public static T? SelectRandomOrDefault<T>(this IReadOnlyList<T> list)
+    {
+        if (list.Count == 0)
+        {
+            return default;
+        }
+        return list[RandomX.Shared.Next(list.Count)];
+    }
 }

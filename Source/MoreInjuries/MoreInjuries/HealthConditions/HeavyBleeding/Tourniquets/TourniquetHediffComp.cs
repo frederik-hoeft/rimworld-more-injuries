@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
+using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.KnownDefs;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,14 +85,21 @@ public class TourniquetHediffComp : HediffComp
                     _isGangreneApplied = true;
                     return;
                 }
+                Hediff gangrene;
                 if (Rand.Chance(MoreInjuriesMod.Settings.DryGangreneChance))
                 {
-                    parent.pawn.health.AddHediff(KnownHediffDefOf.GangreneDry, target);
+                    gangrene = HediffMaker.MakeHediff(KnownHediffDefOf.GangreneDry, parent.pawn, target);
                 }
                 else
                 {
-                    parent.pawn.health.AddHediff(KnownHediffDefOf.GangreneWet, target);
+                    gangrene = HediffMaker.MakeHediff(KnownHediffDefOf.GangreneWet, parent.pawn, target);
                 }
+                if (gangrene.TryGetComp(out HediffComp_CausedBy? causedBy))
+                {
+                    // the tourniquet is the cause of the gangrene
+                    causedBy!.AddCause(parent);
+                }
+                parent.pawn.health.AddHediff(gangrene, target);
             }
         }
     }

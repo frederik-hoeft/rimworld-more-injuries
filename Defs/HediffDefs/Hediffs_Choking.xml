@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <HediffDef ParentName="InfectionBase">
+  <HediffDef ParentName="DiseaseBase">
     <defName>ChokingOnBlood</defName>
     <label>choking on blood</label>
     <description>Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. The bleeding must be stopped and the airways cleared to prevent death. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. Otherwise, the airways must be cleared using a specialized airway suction device or by compressing the chest using CPR to expel the blood and restore breathing.</description>
-    <makesSickThought>false</makesSickThought>
     <lethalSeverity>1</lethalSeverity>
     <defaultLabelColor>(255, 102, 102)</defaultLabelColor>
     <tendable>false</tendable>
@@ -20,8 +19,9 @@
         <message>{0} is choking on blood!</message>
         <messageType>NegativeHealthEvent</messageType>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Choking.HediffCompProperties_Choking">
-        <_chokingIntervalTicks>750</_chokingIntervalTicks>
+        <chokingIntervalTicks>750</chokingIntervalTicks>
       </li>
     </comps>
     <stages>
@@ -37,7 +37,7 @@
       </li>
       <li>
         <minSeverity>0.15</minSeverity>
-        <label>initial</label>
+        <label>minor</label>
         <capMods>
           <li>
             <capacity>Breathing</capacity>
@@ -59,7 +59,7 @@
       </li>
       <li>
         <minSeverity>0.450</minSeverity>
-        <label>moderate</label>
+        <label>severe</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
@@ -74,7 +74,7 @@
       </li>
       <li>
         <minSeverity>0.650</minSeverity>
-        <label>moderate</label>
+        <label>very severe</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
@@ -105,13 +105,21 @@
     </stages>
   </HediffDef>
 
-  <HediffDef ParentName="InfectionBase">
+  <HediffDef>
     <defName>ChokingOnTourniquet</defName>
     <label>choking on tourniquet</label>
     <description>A severe lack of intellect caused a potentially fatal mishap in form of a misapplied tourniquet.</description>
+    <hediffClass>HediffWithComps</hediffClass>
     <makesSickThought>false</makesSickThought>
     <lethalSeverity>1</lethalSeverity>
     <tendable>false</tendable>
+    <initialSeverity>0.001</initialSeverity>
+    <removeOnRedressChanceByDaysCurve>
+      <points>
+        <li>(0, 1)</li>
+        <li>(1, 1)</li>
+      </points>
+    </removeOnRedressChanceByDaysCurve>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>8.0</severityPerDay>
@@ -119,6 +127,7 @@
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
     </comps>
     <stages>
       <li>

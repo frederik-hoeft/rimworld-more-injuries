@@ -4,4 +4,9 @@
     <defName>ExtractedWholeBloodBag</defName>
     <label>extracted blood bag from member without consent</label>
   </HistoryEventDef>
+
+  <HistoryEventDef>
+    <defName>AnesthetizedMember</defName>
+    <label>anesthetized member without consent or medical need</label>
+  </HistoryEventDef>
 </Defs>

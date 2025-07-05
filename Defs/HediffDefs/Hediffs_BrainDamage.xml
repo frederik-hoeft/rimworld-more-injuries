@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef Name="BrainDamageBase" ParentName="DiseaseBase" Abstract="true">
+    <maxSeverity>1</maxSeverity>
+    <defaultLabelColor>(175, 95, 115)</defaultLabelColor>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.BrainDamage.BrainDamageTreatmentProps_ModExtension">
+        <severityReductionRange>0.025~0.15</severityReductionRange>
+        <daysToComplete>2</daysToComplete>
+      </li>
+    </modExtensions>
+    <comps>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef ParentName="BrainDamageBase">
+    <defName>BrainDamage_MotorDysfunction</defName>
+    <label>motor dysfunction</label>
+    <description>Neurological damage to the motor cortex has resulted in permanent impairment of the motor system. This can manifest as weakness, tremors, or difficulty coordinating movements. The severity of the dysfunction can vary based on the extent of the damage.</description>
+    <stages>
+      <li>
+        <label>minor</label>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.2</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.2</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.2</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>severe</label>
+        <minSeverity>0.4</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.4</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.4</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>very severe</label>
+        <minSeverity>0.6</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.6</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.6</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.8</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.75</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.75</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="BrainDamageBase">
+    <defName>BrainDamage_LanguageAphasia</defName>
+    <label>aphasia</label>
+    <description>Permanent damage to nerve cells in the language centers of the brain has resulted in pronounced difficulty with communication. This can manifest as word-finding difficulties, fragmented speech, or even complete muteness. The severity of the aphasia can vary based on the extent of the damage.</description>
+    <stages>
+      <li>
+        <label>word-finding difficulty</label>
+        <statOffsets>
+          <TradePriceImprovement>-0.05</TradePriceImprovement>
+        </statOffsets>
+        <capMods>
+          <li>
+            <capacity>Talking</capacity>
+            <offset>-0.05</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>fragmented speech</label>
+        <minSeverity>0.2</minSeverity>
+        <statOffsets>
+          <TradePriceImprovement>-0.1</TradePriceImprovement>
+        </statOffsets>
+        <capMods>
+          <li>
+            <capacity>Talking</capacity>
+            <offset>-0.15</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>non-fluent</label>
+        <minSeverity>0.4</minSeverity>
+        <statOffsets>
+          <TradePriceImprovement>-0.15</TradePriceImprovement>
+        </statOffsets>
+        <capMods>
+          <li>
+            <capacity>Talking</capacity>
+            <offset>-0.35</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>barely verbal</label>
+        <minSeverity>0.6</minSeverity>
+        <statOffsets>
+          <TradePriceImprovement>-0.25</TradePriceImprovement>
+        </statOffsets>
+        <capMods>
+          <li>
+            <capacity>Talking</capacity>
+            <offset>-0.6</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>completely nonverbal</label>
+        <minSeverity>0.8</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Talking</capacity>
+            <setMax>0</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="BrainDamageBase">
+    <defName>BrainDamage_VisualAgnosia</defName>
+    <label>visual agnosia</label>
+    <description>Damage to the occipital or temporal lobes has impaired the ability to recognize objects or faces, despite normal vision. Affected patients may have trouble identifying items or people, leading to confusion and slower task performance.</description>
+    <stages>
+      <li>
+        <label>minor</label>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+          <SocialImpact>-0.1</SocialImpact>
+        </statOffsets>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.2</minSeverity>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+          <ResearchSpeed>-0.1</ResearchSpeed>
+          <SocialImpact>-0.2</SocialImpact>
+        </statOffsets>
+      </li>
+      <li>
+        <label>severe</label>
+        <minSeverity>0.5</minSeverity>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.2</WorkSpeedGlobal>
+          <ResearchSpeed>-0.2</ResearchSpeed>
+          <SocialImpact>-0.3</SocialImpact>
+        </statOffsets>
+      </li>
+      <li>
+        <label>very severe</label>
+        <minSeverity>0.65</minSeverity>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.25</WorkSpeedGlobal>
+          <ResearchSpeed>-0.25</ResearchSpeed>
+          <SocialImpact>-0.35</SocialImpact>
+        </statOffsets>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.8</minSeverity>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.3</WorkSpeedGlobal>
+          <ResearchSpeed>-0.3</ResearchSpeed>
+          <SocialImpact>-0.4</SocialImpact>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="BrainDamageBase">
+    <defName>BrainDamage_FrontalLobe</defName>
+    <label>executive dysfunction</label>
+    <description>Damage to the frontal lobes has impaired executive functions, including decision-making, planning, and impulse control. Affected individuals may act erratically or inappropriately, and struggle with organization, prioritization, and regulating emotions, leading to difficulties in daily life and social interactions.</description>
+    <stages>
+      <li>
+        <label>minor</label>
+        <mentalBreakMtbDays>60</mentalBreakMtbDays>
+        <socialFightChanceFactor>1.1</socialFightChanceFactor>
+        <statOffsets>
+          <MentalBreakThreshold>0.05</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.2</minSeverity>
+        <mentalBreakMtbDays>40</mentalBreakMtbDays>
+        <socialFightChanceFactor>1.25</socialFightChanceFactor>
+        <statOffsets>
+          <MentalBreakThreshold>0.1</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+      <li>
+        <label>severe</label>
+        <minSeverity>0.4</minSeverity>
+        <mentalBreakMtbDays>20</mentalBreakMtbDays>
+        <socialFightChanceFactor>1.5</socialFightChanceFactor>
+        <statOffsets>
+          <MentalBreakThreshold>0.2</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+      <li>
+        <label>very severe</label>
+        <minSeverity>0.6</minSeverity>
+        <mentalBreakMtbDays>10</mentalBreakMtbDays>
+        <socialFightChanceFactor>1.75</socialFightChanceFactor>
+        <statOffsets>
+          <MentalBreakThreshold>0.25</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.8</minSeverity>
+        <mentalBreakMtbDays>4</mentalBreakMtbDays>
+        <socialFightChanceFactor>2</socialFightChanceFactor>
+        <statOffsets>
+          <MentalBreakThreshold>0.3</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>BrainDamage_PersonalityShift</defName>
+    <label>personality shift</label>
+    <description>N/A</description>
+    <maxSeverity>1</maxSeverity>
+    <hediffClass>HediffWithComps</hediffClass>
+    <comps>
+      <li Class="MoreInjuries.HealthConditions.BrainDamage.HediffCompProperties_PersonalityShift"></li>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>900000~1000000</disappearsAfterTicks>
+      </li>
+      <li Class="HediffCompProperties_MessageAfterTicks">
+        <ticks>10</ticks>
+        <letterType>NegativeEvent</letterType>
+        <letterLabel>Personality Shift</letterLabel>
+        <letterText>Due to severe brain damage, {0} has undergone a significant shift in personality. They may have become more skilled in certain areas, but also may have lost some of their previous skills. This change is permanent and may require some reorientation for their role in the colony.</letterText>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>hidden</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="BrainDamageBase">
+    <defName>BrainDamage_Confusion</defName>
+    <label>hippocampal damage</label>
+    <description>Damage to the hippocampus has impaired memory formation and spatial navigation. Affected individuals may become confused about their surroundings, forget where they are, and have difficulty navigating or recalling past events.</description>
+    <comps>
+      <li Class="HediffCompProperties_Disorientation">
+        <wanderMtbHours>48</wanderMtbHours>
+        <wanderRadius>10</wanderRadius>
+        <singleWanderDurationTicks>5000</singleWanderDurationTicks>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>minor</label>
+        <forgetMemoryThoughtMtbDays>2</forgetMemoryThoughtMtbDays>
+        <statOffsets>
+          <GlobalLearningFactor>-0.1</GlobalLearningFactor>
+          <WorkSpeedGlobal>-0.1</WorkSpeedGlobal>
+        </statOffsets>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.2</minSeverity>
+        <forgetMemoryThoughtMtbDays>1.5</forgetMemoryThoughtMtbDays>
+        <statOffsets>
+          <GlobalLearningFactor>-0.2</GlobalLearningFactor>
+          <WorkSpeedGlobal>-0.2</WorkSpeedGlobal>
+        </statOffsets>
+      </li>
+      <li>
+        <label>severe</label>
+        <minSeverity>0.4</minSeverity>
+        <forgetMemoryThoughtMtbDays>1</forgetMemoryThoughtMtbDays>
+        <statOffsets>
+          <GlobalLearningFactor>-0.3</GlobalLearningFactor>
+          <WorkSpeedGlobal>-0.3</WorkSpeedGlobal>
+        </statOffsets>
+      </li>
+      <li>
+        <label>very severe</label>
+        <forgetMemoryThoughtMtbDays>0.5</forgetMemoryThoughtMtbDays>
+        <minSeverity>0.6</minSeverity>
+        <statOffsets>
+          <GlobalLearningFactor>-0.4</GlobalLearningFactor>
+          <WorkSpeedGlobal>-0.4</WorkSpeedGlobal>
+        </statOffsets>
+      </li>
+      <li>
+        <label>profound</label>
+        <minSeverity>0.8</minSeverity>
+        <forgetMemoryThoughtMtbDays>0.25</forgetMemoryThoughtMtbDays>
+        <statOffsets>
+          <GlobalLearningFactor>-0.5</GlobalLearningFactor>
+          <WorkSpeedGlobal>-0.5</WorkSpeedGlobal>
+        </statOffsets>
+        <mentalBreakMtbDays>6</mentalBreakMtbDays>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

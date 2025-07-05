@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: numbness and tingling -->
+  <Paralyzed.stages.numbness_and_tingling.label>numbness and tingling</Paralyzed.stages.numbness_and_tingling.label>
+  <!-- EN: I can't feel parts of my body the way I used to. It's so strange... like I'm half-disconnected from myself. -->
+  <Paralyzed.stages.numbness_and_tingling.description>I can't feel parts of my body the way I used to. It's so strange... like I'm half-disconnected from myself.</Paralyzed.stages.numbness_and_tingling.description>
+  <!-- EN: limited mobility -->
+  <Paralyzed.stages.limited_mobility.label>limited mobility</Paralyzed.stages.limited_mobility.label>
+  <!-- EN: Moving is difficult and frustrating. I feel trapped in my own body, and even simple tasks are exhausting. -->
+  <Paralyzed.stages.limited_mobility.description>Moving is difficult and frustrating. I feel trapped in my own body, and even simple tasks are exhausting.</Paralyzed.stages.limited_mobility.description>
+  <!-- EN: complete paralysis -->
+  <Paralyzed.stages.complete_paralysis.label>complete paralysis</Paralyzed.stages.complete_paralysis.label>
+  <!-- EN: I can't move. My body won't respond, no matter how hard I try. I'm like a vegetable - locked inside myself. Nothing will ever be the same again. -->
+  <Paralyzed.stages.complete_paralysis.description>I can't move. My body won't respond, no matter how hard I try. I'm like a vegetable - locked inside myself. Nothing will ever be the same again.</Paralyzed.stages.complete_paralysis.description>
+</LanguageData>

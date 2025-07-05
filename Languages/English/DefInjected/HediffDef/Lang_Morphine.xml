@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: morphine high -->
+  <MorphineBuildup.label>morphine high</MorphineBuildup.label>
+  <!-- EN: being high on morphine -->
+  <MorphineBuildup.labelNoun>being high on morphine</MorphineBuildup.labelNoun>
+  <!-- EN: Morphine is a powerful opioid analgesic used for rapid pain relief in battlefield trauma and emergency care. It works by suppressing the central nervous system, blocking pain signals, inducing sedation, and providing a sense of euphoria. However, it can cause dangerous respiratory depression, lower blood pressure, and worsen shock, making it especially hazardous during uncontrolled bleeding or resuscitation efforts, and potentially fatal in overdose. -->
+  <MorphineBuildup.description>Morphine is a powerful opioid analgesic used for rapid pain relief in battlefield trauma and emergency care. It works by suppressing the central nervous system, blocking pain signals, inducing sedation, and providing a sense of euphoria. However, it can cause dangerous respiratory depression, lower blood pressure, and worsen shock, making it especially hazardous during uncontrolled bleeding or resuscitation efforts, and potentially fatal in overdose.</MorphineBuildup.description>
+  <!-- EN: trace exposure -->
+  <MorphineBuildup.stages.trace_exposure.label>trace exposure</MorphineBuildup.stages.trace_exposure.label>
+  <!-- EN: therapeutic dose -->
+  <MorphineBuildup.stages.therapeutic_dose.label>therapeutic dose</MorphineBuildup.stages.therapeutic_dose.label>
+  <!-- EN: maximum safe dose -->
+  <MorphineBuildup.stages.maximum_safe_dose.label>maximum safe dose</MorphineBuildup.stages.maximum_safe_dose.label>
+  <!-- EN: minor overdose -->
+  <MorphineBuildup.stages.minor_overdose.label>minor overdose</MorphineBuildup.stages.minor_overdose.label>
+  <!-- EN: severe overdose -->
+  <MorphineBuildup.stages.severe_overdose.label>severe overdose</MorphineBuildup.stages.severe_overdose.label>
+  <!-- EN: toxic dose -->
+  <MorphineBuildup.stages.toxic_dose.label>toxic dose</MorphineBuildup.stages.toxic_dose.label>
+</LanguageData>

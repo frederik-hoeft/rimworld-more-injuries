@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef>
+    <defName>Paralyzed</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>SpinalCordParalysis</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>numbness and tingling</label>
+        <description>I can't feel parts of my body the way I used to. It's so strange... like I'm half-disconnected from myself.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>limited mobility</label>
+        <description>Moving is difficult and frustrating. I feel trapped in my own body, and even simple tasks are exhausting.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+      <li>
+        <label>complete paralysis</label>
+        <description>I can't move. My body won't respond, no matter how hard I try. I'm like a vegetable - locked inside myself. Nothing will ever be the same again.</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

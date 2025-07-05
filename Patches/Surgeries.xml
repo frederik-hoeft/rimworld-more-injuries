@@ -14,6 +14,7 @@
       <li>RemoveHemorrhagicStroke_Tribal</li>
       <li>RestoreHearing</li>
       <li>TreatParalysis</li>
+      <li>TreatBrainDamage</li>
     </value>
   </Operation>
 </Patch>

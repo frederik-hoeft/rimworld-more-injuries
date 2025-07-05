@@ -3,8 +3,7 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>Fracture</defName>
     <label>bone fracture</label>
-    <description>A partial or complete break of a bone caused by trauma, overuse, or disease. The bone may be cracked, splintered, or completely broken into two or more pieces. Until properly treated, the affected limb will be unable to bear weight or move properly, causing severe pain and loss of function.
-\nMust either be splinted to immobilize the bone and promote healing over time, or surgically repaired to realign and stabilize the bone, allowing for quick recovery.</description>
+    <description>A partial or complete break of a bone caused by trauma, overuse, or disease. The bone may be cracked, splintered, or completely broken into two or more pieces. Until properly treated, the affected limb will be unable to bear weight or move properly, causing severe pain and loss of function.\n\nMust either be splinted to immobilize the bone and promote healing over time, or surgically repaired to realign and stabilize the bone, allowing for quick recovery.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <comps></comps>
     <stages>
@@ -19,8 +18,7 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>FractureHealing</defName>
     <label>healing bone fracture</label>
-    <description>A bone fracture that is in the process of healing. The bone is still weak and restricted in movement, but the limb is slowly regaining function as the bone knits back together.
-\nOver time, the bone will become stronger and the limb will regain full function.</description>
+    <description>A bone fracture that is in the process of healing. The bone is still weak and restricted in movement, but the limb is slowly regaining function as the bone knits back together.\n\nOver time, the bone will become stronger and the limb will regain full function.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
@@ -91,6 +89,7 @@
       <li Class="HediffCompProperties_GetsPermanent">
         <permanentLabel>cut scar</permanentLabel>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
     </comps>
     <injuryProps>
       <painPerSeverity>0.0250</painPerSeverity>

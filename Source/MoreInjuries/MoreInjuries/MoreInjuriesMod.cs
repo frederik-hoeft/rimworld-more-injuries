@@ -164,6 +164,16 @@ public class MoreInjuriesMod : Mod
         list.Label("MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel".Translate(Settings.DefibrillatorMinimumSuccessRate.NamedValue(), DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip".Translate());
         Settings.DefibrillatorMinimumSuccessRate = (float)Math.Round(list.Slider(Settings.DefibrillatorMinimumSuccessRate, 0f, 1f), 2);
+        // neural damage
+        list.GapLine();
+        Text.Font = GameFont.Medium;
+        list.Label("MI_Settings_Features_NeuralDamage".Translate());
+        Text.Font = GameFont.Small;
+        list.CheckboxLabeled("MI_Settings_Features_NeuralDamage_EnableLabel".Translate(ENABLE_NEURAL_DAMAGE_DEFAULT.NamedDefault()), ref Settings.EnableNeuralDamage,
+            "MI_Settings_Features_NeuralDamage_EnableTooltip".Translate());
+        list.Label("MI_Settings_Features_NeuralDamage_TreatmentReductionFactorLabel".Translate(Settings.NeuralDamageChanceReductionFactor.NamedValue(), NEURAL_DAMAGE_CHANCE_REDUCTION_FACTOR_DEFAULT.NamedDefault()), -1,
+            "MI_Settings_Features_NeuralDamage_TreatmentReductionFactorTooltip".Translate());
+        Settings.NeuralDamageChanceReductionFactor = (float)Math.Round(list.Slider(Settings.NeuralDamageChanceReductionFactor, 0.01f, 1f), 2);
         // concussion after blunt trauma
         list.GapLine();
         Text.Font = GameFont.Medium;

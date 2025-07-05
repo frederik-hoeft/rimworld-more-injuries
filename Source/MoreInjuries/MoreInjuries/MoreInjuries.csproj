@@ -3,11 +3,17 @@
 		<TargetFramework>net472</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
-		<Version>1.5.2.3</Version>
+		<Version>1.5.3.0</Version>
 		<Platforms>AnyCPU</Platforms>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4409" />
 		<PackageReference Include="Lib.Harmony" Version="2.3.6" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\MoreInjuries.Roslyn.SourceGen\MoreInjuries.Roslyn.SourceGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 </Project>

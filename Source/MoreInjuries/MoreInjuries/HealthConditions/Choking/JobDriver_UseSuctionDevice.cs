@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.AI.Audio;
 using MoreInjuries.Extensions;
 using MoreInjuries.KnownDefs;
 using RimWorld;
@@ -18,7 +19,7 @@ public class JobDriver_UseSuctionDevice : JobDriver_UseMedicalDevice_TargetsHedi
 
     protected override ThingDef DeviceDef => KnownThingDefOf.SuctionDevice;
 
-    protected override SoundDef SoundDef => KnownSoundDefOf.UseSuctionDevice;
+    protected override ISoundDefProvider<Pawn> SoundDefProvider => CachedSoundDefProvider.Of<Pawn>(KnownSoundDefOf.UseSuctionDevice);
 
     protected override bool RequiresDevice => true;
 
