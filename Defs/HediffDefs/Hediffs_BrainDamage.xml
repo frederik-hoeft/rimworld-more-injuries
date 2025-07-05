@@ -187,6 +187,15 @@
         </statOffsets>
       </li>
       <li>
+        <label>very severe</label>
+        <minSeverity>0.65</minSeverity>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.25</WorkSpeedGlobal>
+          <ResearchSpeed>-0.25</ResearchSpeed>
+          <SocialImpact>-0.35</SocialImpact>
+        </statOffsets>
+      </li>
+      <li>
         <label>extreme</label>
         <minSeverity>0.8</minSeverity>
         <statOffsets>
@@ -201,7 +210,7 @@
   <HediffDef ParentName="BrainDamageBase">
     <defName>BrainDamage_FrontalLobe</defName>
     <label>executive dysfunction</label>
-    <description>Damage to the frontal lobes has impaired executive functions, including decision-making, planning, and impulse control. Affected individuals may act erratically or inappropriately, and struggle with maintaining attention or social decorum.</description>
+    <description>Damage to the frontal lobes has impaired executive functions, including decision-making, planning, and impulse control. Affected individuals may act erratically or inappropriately, and struggle with organization, prioritization, and regulating emotions, leading to difficulties in daily life and social interactions.</description>
     <stages>
       <li>
         <label>minor</label>
@@ -252,7 +261,7 @@
 
   <HediffDef>
     <defName>BrainDamage_PersonalityShift</defName>
-    <label>personality shift dummy hediff</label>
+    <label>personality shift</label>
     <description>N/A</description>
     <maxSeverity>1</maxSeverity>
     <hediffClass>HediffWithComps</hediffClass>
@@ -279,7 +288,7 @@
   <HediffDef ParentName="BrainDamageBase">
     <defName>BrainDamage_Confusion</defName>
     <label>hippocampal damage</label>
-    <description>This condition stems from damage to brain regions involved in memory formation and spatial navigation. Affected individuals may become confused about their surroundings, forget where they are, and have difficulty navigating or recalling past events</description>
+    <description>Damage to the hippocampus has impaired memory formation and spatial navigation. Affected individuals may become confused about their surroundings, forget where they are, and have difficulty navigating or recalling past events.</description>
     <comps>
       <li Class="HediffCompProperties_Disorientation">
         <wanderMtbHours>48</wanderMtbHours>
@@ -289,7 +298,7 @@
     </comps>
     <stages>
       <li>
-        <label>mild</label>
+        <label>minor</label>
         <forgetMemoryThoughtMtbDays>2</forgetMemoryThoughtMtbDays>
         <statOffsets>
           <GlobalLearningFactor>-0.1</GlobalLearningFactor>

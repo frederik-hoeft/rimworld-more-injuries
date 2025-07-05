@@ -13,10 +13,7 @@ internal abstract class VersionMigrationBase : IVersionMigration
 
     public abstract void Execute(string signal);
 
-    public virtual void ExposeData()
-    {
-        Scribe_Values.Look(ref _loadID, "loadID", defaultValue: null);
-    }
+    public virtual void ExposeData() => Scribe_Values.Look(ref _loadID, "loadID", defaultValue: null);
 
     public virtual string GetUniqueLoadID() => _loadID ??= this.GenerateUniqueLoadID();
 

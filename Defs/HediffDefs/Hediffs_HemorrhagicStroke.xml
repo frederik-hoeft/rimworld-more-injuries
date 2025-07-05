@@ -3,8 +3,7 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>HemorrhagicStroke</defName>
     <label>hemorrhagic stroke</label>
-    <description>A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.
-\nCan be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture.</description>
+    <description>A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.\n\nCan be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture.</description>
     <tendable>true</tendable>
     <makesSickThought>true</makesSickThought>
     <lethalSeverity>1</lethalSeverity>

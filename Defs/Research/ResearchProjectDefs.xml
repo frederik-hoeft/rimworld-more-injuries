@@ -111,7 +111,7 @@
   <ResearchProjectDef>
     <defName>EmergencyMedicine</defName>
     <label>emergency medicine</label>
-    <description>Bringing together advances in first aid, pharmacology, and electrical technology, this research opens the door to modern emergency medicine. Your doctors will learn to rapidly assess and stabilize patients facing life-threatening conditions—trauma, airway obstruction, cardiac arrest, and more. Through intensive training and access to specialized equipment like defibrillators and suction devices, your colony's medical responders will be prepared to perform critical interventions that can make the difference between life and death in the first golden hour. These capabilities also lay the foundation for complex surgical procedures in the future.</description>
+    <description>Bringing together advances in first aid, pharmacology, and electrical technology, this research opens the door to modern emergency medicine. Your doctors will learn to rapidly assess and stabilize patients facing life-threatening conditions - trauma, airway obstruction, cardiac arrest, and more. Through intensive training and access to specialized equipment like defibrillators and suction devices, your colony's medical responders will be prepared to perform critical interventions that can make the difference between life and death in the first golden hour. These capabilities also lay the foundation for complex surgical procedures in the future.</description>
     <baseCost>2000</baseCost>
     <techLevel>Industrial</techLevel>
     <prerequisites>

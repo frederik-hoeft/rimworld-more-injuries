@@ -3,6 +3,7 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>KetamineBuildup</defName>
     <label>ketamine buildup</label>
+    <labelNoun>a buildup of ketamine</labelNoun>
     <description>Ketamine is a fast-acting dissociative anesthetic used for pain relief, sedation, and anesthesia. It works by disrupting communication between the thalamus and cerebral cortex, producing a trance-like, pain-free state without significantly suppressing cardiovascular function at recommended doses.\n\nOnce administered, ketamine is distributed systemically and slowly metabolized by the liver. Blood concentrations diminish over time, but repeated or excessive doses can lead to dangerous accumulation resulting in toxicity and overdose.\n\nSymptoms of ketamine toxicity range from amnesia, confusion, and hallucinations to brain damage, respiratory depression, and death in severe cases of overdose.</description>
     <defaultLabelColor>(56, 185, 255)</defaultLabelColor>
     <isBad>true</isBad>
@@ -63,7 +64,7 @@
         <forgetMemoryThoughtMtbDays>2</forgetMemoryThoughtMtbDays>
       </li>
       <li>
-        <label>subclinical overdose</label>
+        <label>minor overdose</label>
         <minSeverity>0.4</minSeverity>
         <forgetMemoryThoughtMtbDays>1</forgetMemoryThoughtMtbDays>
         <capMods>
@@ -111,6 +112,7 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>ChloroformBuildup</defName>
     <label>chloroform buildup</label>
+    <labelNoun>a buildup of chloroform</labelNoun>
     <description>Chloroform is a volatile anesthetic that induces unconsciousness and analgesia by depressing the central nervous system. It is commonly used in surgical procedures and as a solvent in laboratories. Chloroform is rapidly absorbed through the lungs, skin, and gastrointestinal tract, leading to systemic distribution and metabolism primarily in the liver.\n\nWhile effective at low doses, chloroform can cause toxicity and overdose at higher concentrations, leading to symptoms such as renal and hepatic damage, respiratory depression, and cardiac arrest. Due to its potential for severe side effects, chloroform is rarely used in modern medicine.</description>
     <defaultLabelColor>(56, 185, 255)</defaultLabelColor>
     <isBad>true</isBad>
@@ -204,7 +206,7 @@
         <vomitMtbDays>0.5</vomitMtbDays>
       </li>
       <li>
-        <label>subclinical overdose</label>
+        <label>minor overdose</label>
         <minSeverity>0.4</minSeverity>
         <vomitMtbDays>0.25</vomitMtbDays>
         <capMods>

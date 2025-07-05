@@ -5,7 +5,7 @@
     <label>repair collapsed lung: thoracotomy</label>
     <description>Perform a thoracotomy to repair a collapsed lung.\nThoracotomy is a surgical procedure that involves making an incision in the chest wall to gain access to the lungs and the surrounding structures. The source of the air leak causing the lung collapse is identified and repaired, and pleural space is drained to allow the lung to re-expand and to relieve the pressure on the heart and other organs. Finally, the chest wall is closed and the incision is sutured.\n\nA complex and invasive surgery that requires a skilled surgeon and yields a moderate success rate.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
-    <jobString>Performing a thoracotomy</jobString>
+    <jobString>Performing a thoracotomy.</jobString>
     <workAmount>3000</workAmount>
     <removesHediff>LungCollapse</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully repaired {1}'s collapsed lung.</successfullyRemovedHediffMessage>

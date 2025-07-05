@@ -4,8 +4,7 @@
     <defName>AdrenalineRush</defName>
     <label>adrenaline rush</label>
     <labelNoun>an adrenaline rush</labelNoun>
-    <description>A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.
-\nHowever, if the rush is too intense, it can cause anxiety, panic, and overdose symptoms such as dizziness, double vision, and nausea. In extreme overdose cases, the body can go into shock, causing heart attack, stroke, or death.</description>
+    <description>A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.\n\nHowever, if the rush is too intense, it can cause anxiety, panic, and overdose symptoms such as dizziness, double vision, and nausea. In extreme overdose cases, the body can go into shock, causing heart attack, stroke, or death.</description>
     <defaultLabelColor>(25, 255, 136)</defaultLabelColor>
     <maxSeverity>5</maxSeverity>
     <isBad>false</isBad>

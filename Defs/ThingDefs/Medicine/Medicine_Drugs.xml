@@ -20,8 +20,8 @@
     <techLevel>Industrial</techLevel>
     <ingestible>
       <drugCategory>Medical</drugCategory>
-      <ingestCommandString>Use {0}</ingestCommandString>
-      <ingestReportString>Using {0}.</ingestReportString>
+      <ingestCommandString>use {0}</ingestCommandString>
+      <ingestReportString>using {0}.</ingestReportString>
     </ingestible>
     <comps>
       <li Class="CompProperties_Drug">
@@ -212,6 +212,8 @@
           <severity>0.35</severity>
         </li>
       </outcomeDoers>
+      <ingestCommandString>inhale chloroform</ingestCommandString>
+      <ingestReportString>inhaling chloroform.</ingestReportString>
     </ingestible>
     <recipeMaker>
       <researchPrerequisites>

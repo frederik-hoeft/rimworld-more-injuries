@@ -1,7 +1,8 @@
 ﻿using MoreInjuries.LocalizationTests.Localization;
+using MoreInjuries.LocalizationTests.Model;
 using System.Xml.Linq;
 
-namespace MoreInjuries.LocalizationTests;
+namespace MoreInjuries.LocalizationTests.Keyed;
 
 [TestClass]
 public class KeyedLocalizationTests : LocalizationTestBase
@@ -9,7 +10,7 @@ public class KeyedLocalizationTests : LocalizationTestBase
     [TestMethod]
     public override void LanguageFileCompletenessTest() => base.LanguageFileCompletenessTest();
 
-    protected override LocalizationInfoRepository LoadLocalizationInfoRepository(DirectoryInfo languageDirectory, LoadErrorContext errorContext)
+    private protected override LocalizationInfoRepository LoadLocalizationInfoRepository(DirectoryInfo languageDirectory, LoadErrorContext errorContext)
     {
         Assert.IsNotNull(languageDirectory);
         LocalizationInfoRepository languageRepository = new KeyedLocalizationInfoRepository(languageDirectory.Name);

@@ -3,8 +3,7 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>HypovolemicShock</defName>
     <label>hypovolemic shock</label>
-    <description>A life-threatening state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure. 
-\nSeverity scales directly with blood loss severity until 60% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure.</description>
+    <description>A life-threatening state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure.\n\nSeverity scales directly with blood loss severity until 60% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure.</description>
     <tendable>true</tendable>
     <maxSeverity>1</maxSeverity>
     <alwaysShowSeverity>true</alwaysShowSeverity>
@@ -19,7 +18,7 @@
       </li>
       <li Class="HediffCompProperties_MessageAfterTicks">
         <ticks>10</ticks>
-        <message>{0} is developing hypovolemic shock!</message>
+        <message>{0} is going into hypovolemic shock!</message>
         <messageType>NegativeHealthEvent</messageType>
       </li>
       <li Class="MoreInjuries.HealthConditions.HypovolemicShock.HediffCompProperties_Shock">

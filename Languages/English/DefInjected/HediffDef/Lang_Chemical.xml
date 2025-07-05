@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: chemical damage -->
+  <OrganChemicalInjury.label>chemical damage</OrganChemicalInjury.label>
+  <!-- EN: Tissue damage caused by toxic chemical exposure. This may result from direct contact with harmful substances or from the organ's own metabolic processing of certain drugs or toxins, producing reactive intermediates. Such damage often leads to cellular stress, necrosis, or scarring, and may cause irreversible harm to the affected organ, potentially leading to full organ failure if severe enough. -->
+  <OrganChemicalInjury.description>Tissue damage caused by toxic chemical exposure. This may result from direct contact with harmful substances or from the organ's own metabolic processing of certain drugs or toxins, producing reactive intermediates. Such damage often leads to cellular stress, necrosis, or scarring, and may cause irreversible harm to the affected organ, potentially leading to full organ failure if severe enough.</OrganChemicalInjury.description>
+  <!-- EN: chemical scarring -->
+  <OrganChemicalInjury.comps.HediffComp_GetsPermanent.permanentLabel>chemical scarring</OrganChemicalInjury.comps.HediffComp_GetsPermanent.permanentLabel>
+  <!-- EN: destroyed -->
+  <OrganChemicalInjury.injuryProps.destroyedLabel>destroyed</OrganChemicalInjury.injuryProps.destroyedLabel>
+  <!-- EN: destroyed -->
+  <OrganChemicalInjury.injuryProps.destroyedOutLabel>destroyed</OrganChemicalInjury.injuryProps.destroyedOutLabel>
+</LanguageData>

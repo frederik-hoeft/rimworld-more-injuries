@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: ketamine buildup -->
+  <KetamineBuildup.label>ketamine buildup</KetamineBuildup.label>
+  <!-- EN: a buildup of ketamine -->
+  <KetamineBuildup.labelNoun>a buildup of ketamine</KetamineBuildup.labelNoun>
+  <!-- EN: Ketamine is a fast-acting dissociative anesthetic used for pain relief, sedation, and anesthesia. It works by disrupting communication between the thalamus and cerebral cortex, producing a trance-like, pain-free state without significantly suppressing cardiovascular function at recommended doses.\n\nOnce administered, ketamine is distributed systemically and slowly metabolized by the liver. Blood concentrations diminish over time, but repeated or excessive doses can lead to dangerous accumulation resulting in toxicity and overdose.\n\nSymptoms of ketamine toxicity range from amnesia, confusion, and hallucinations to brain damage, respiratory depression, and death in severe cases of overdose. -->
+  <KetamineBuildup.description>Ketamine is a fast-acting dissociative anesthetic used for pain relief, sedation, and anesthesia. It works by disrupting communication between the thalamus and cerebral cortex, producing a trance-like, pain-free state without significantly suppressing cardiovascular function at recommended doses.\n\nOnce administered, ketamine is distributed systemically and slowly metabolized by the liver. Blood concentrations diminish over time, but repeated or excessive doses can lead to dangerous accumulation resulting in toxicity and overdose.\n\nSymptoms of ketamine toxicity range from amnesia, confusion, and hallucinations to brain damage, respiratory depression, and death in severe cases of overdose.</KetamineBuildup.description>
+  <!-- EN: trace exposure -->
+  <KetamineBuildup.stages.trace_exposure.label>trace exposure</KetamineBuildup.stages.trace_exposure.label>
+  <!-- EN: therapeutic dose -->
+  <KetamineBuildup.stages.therapeutic_dose.label>therapeutic dose</KetamineBuildup.stages.therapeutic_dose.label>
+  <!-- EN: maximum safe dose -->
+  <KetamineBuildup.stages.maximum_safe_dose.label>maximum safe dose</KetamineBuildup.stages.maximum_safe_dose.label>
+  <!-- EN: minor overdose -->
+  <KetamineBuildup.stages.minor_overdose.label>minor overdose</KetamineBuildup.stages.minor_overdose.label>
+  <!-- EN: severe overdose -->
+  <KetamineBuildup.stages.severe_overdose.label>severe overdose</KetamineBuildup.stages.severe_overdose.label>
+  <!-- EN: toxic dose -->
+  <KetamineBuildup.stages.toxic_dose.label>toxic dose</KetamineBuildup.stages.toxic_dose.label>
+  
+  <!-- EN: chloroform buildup -->
+  <ChloroformBuildup.label>chloroform buildup</ChloroformBuildup.label>
+  <!-- EN: a buildup of chloroform -->
+  <ChloroformBuildup.labelNoun>a buildup of chloroform</ChloroformBuildup.labelNoun>
+  <!-- EN: Chloroform is a volatile anesthetic that induces unconsciousness and analgesia by depressing the central nervous system. It is commonly used in surgical procedures and as a solvent in laboratories. Chloroform is rapidly absorbed through the lungs, skin, and gastrointestinal tract, leading to systemic distribution and metabolism primarily in the liver.\n\nWhile effective at low doses, chloroform can cause toxicity and overdose at higher concentrations, leading to symptoms such as renal and hepatic damage, respiratory depression, and cardiac arrest. Due to its potential for severe side effects, chloroform is rarely used in modern medicine. -->
+  <ChloroformBuildup.description>Chloroform is a volatile anesthetic that induces unconsciousness and analgesia by depressing the central nervous system. It is commonly used in surgical procedures and as a solvent in laboratories. Chloroform is rapidly absorbed through the lungs, skin, and gastrointestinal tract, leading to systemic distribution and metabolism primarily in the liver.\n\nWhile effective at low doses, chloroform can cause toxicity and overdose at higher concentrations, leading to symptoms such as renal and hepatic damage, respiratory depression, and cardiac arrest. Due to its potential for severe side effects, chloroform is rarely used in modern medicine.</ChloroformBuildup.description>
+  <!-- EN: trace exposure -->
+  <ChloroformBuildup.stages.trace_exposure.label>trace exposure</ChloroformBuildup.stages.trace_exposure.label>
+  <!-- EN: therapeutic dose -->
+  <ChloroformBuildup.stages.therapeutic_dose.label>therapeutic dose</ChloroformBuildup.stages.therapeutic_dose.label>
+  <!-- EN: maximum safe dose -->
+  <ChloroformBuildup.stages.maximum_safe_dose.label>maximum safe dose</ChloroformBuildup.stages.maximum_safe_dose.label>
+  <!-- EN: minor overdose -->
+  <ChloroformBuildup.stages.minor_overdose.label>minor overdose</ChloroformBuildup.stages.minor_overdose.label>
+  <!-- EN: severe overdose -->
+  <ChloroformBuildup.stages.severe_overdose.label>severe overdose</ChloroformBuildup.stages.severe_overdose.label>
+  <!-- EN: toxic dose -->
+  <ChloroformBuildup.stages.toxic_dose.label>toxic dose</ChloroformBuildup.stages.toxic_dose.label>
+</LanguageData>

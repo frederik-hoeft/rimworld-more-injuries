@@ -10,6 +10,5 @@ public static class MoreInjuries_VersionMigrations
     {
         GameComponent_MoreInjuries.RegisterMigration(new VersionMigration1_ResearchProjects());
         GameComponent_MoreInjuries.RegisterMigration(new VersionMigration2_DedicatedCprResearch());
-        GameComponent_MoreInjuries.RegisterMigration(new VersionMigration3_FieldSedatives());
     }
 }

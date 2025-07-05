@@ -34,4 +34,11 @@
   <DoctorRemoveTourniquetFromDead.verb>recover tourniquet from</DoctorRemoveTourniquetFromDead.verb>
   <!-- EN: recovering tourniquet from -->
   <DoctorRemoveTourniquetFromDead.gerund>recovering tourniquet from</DoctorRemoveTourniquetFromDead.gerund>
+
+  <!-- EN: apply a splint to an injured patient to stabilize a fracture and promote healing -->
+  <DoctorUseSplint.label>apply a splint to an injured patient to stabilize a fracture and promote healing</DoctorUseSplint.label>
+  <!-- EN: apply splint to -->
+  <DoctorUseSplint.verb>apply splint to</DoctorUseSplint.verb>
+  <!-- EN: applying splint to -->
+  <DoctorUseSplint.gerund>applying splint to</DoctorUseSplint.gerund>
 </LanguageData>

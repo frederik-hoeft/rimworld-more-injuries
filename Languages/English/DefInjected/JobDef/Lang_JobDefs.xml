@@ -12,8 +12,8 @@
   <!-- EN: Using a defibrillator on TargetA. -->
   <UseDefibrillator.reportString>Using a defibrillator on TargetA.</UseDefibrillator.reportString>
 
-  <!-- EN: Injecting epinephrine on TargetA. -->
-  <UseEpinephrine.reportString>Injecting epinephrine on TargetA.</UseEpinephrine.reportString>
+  <!-- EN: Injecting epinephrine into TargetA. -->
+  <UseEpinephrine.reportString>Injecting epinephrine into TargetA.</UseEpinephrine.reportString>
 
   <!-- EN: Splinting a fracture on TargetA. -->
   <UseSplint.reportString>Splinting a fracture on TargetA.</UseSplint.reportString>
@@ -38,4 +38,13 @@
 
   <!-- EN: Executing TargetA through blood extraction. -->
   <HarvestBlood.reportString>Executing TargetA through blood extraction.</HarvestBlood.reportString>
+
+  <!-- EN: Injecting morphine into TargetA. -->
+  <UseMorphine.reportString>Injecting morphine into TargetA.</UseMorphine.reportString>
+
+  <!-- EN: Sedating TargetA with ketamine. -->
+  <UseKetamine.reportString>Sedating TargetA with ketamine.</UseKetamine.reportString>
+
+  <!-- EN: Sedating TargetA with chloroform. -->
+  <UseChloroform.reportString>Sedating TargetA with chloroform.</UseChloroform.reportString>
 </LanguageData>

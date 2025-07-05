@@ -79,7 +79,7 @@
     <stages>
       <li>
         <label>things look unfamiliar</label>
-        <description>Sometimes I catch myself hesitating, unsure of what I'm looking at. It's subtle, but unsettling—like the world is just slightly off.</description>
+        <description>Sometimes I catch myself hesitating, unsure of what I'm looking at. It's subtle, but unsettling - like the world is just slightly off.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
       <li>

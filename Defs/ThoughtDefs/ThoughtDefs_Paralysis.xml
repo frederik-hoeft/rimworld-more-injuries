@@ -19,7 +19,7 @@
       </li>
       <li>
         <label>complete paralysis</label>
-        <description>I can't move. My body won't respond, no matter how hard I try. It's like being locked inside myself. Nothing will ever be the same again.</description>
+        <description>I can't move. My body won't respond, no matter how hard I try. I'm like a vegetable - locked inside myself. Nothing will ever be the same again.</description>
         <baseMoodEffect>-10</baseMoodEffect>
       </li>
     </stages>

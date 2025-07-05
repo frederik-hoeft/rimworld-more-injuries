@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MoreInjuries.LocalizationTests.Localization;
+namespace MoreInjuries.LocalizationTests.Model;
 
 public class LoadErrorContext
 {

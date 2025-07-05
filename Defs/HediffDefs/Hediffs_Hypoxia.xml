@@ -16,7 +16,7 @@
         <infectionChance>0</infectionChance>
       </li>
       <li Class="HediffCompProperties_GetsPermanent">
-        <permanentLabel>Permanent hypoxia damage</permanentLabel>
+        <permanentLabel>permanent hypoxia damage</permanentLabel>
       </li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
     </comps>
@@ -25,8 +25,8 @@
       <averagePainPerSeverityPermanent>0</averagePainPerSeverityPermanent>
       <bleedRate>0</bleedRate>
       <canMerge>true</canMerge>
-      <destroyedLabel>Dead</destroyedLabel>
-      <destroyedOutLabel>Dead</destroyedOutLabel>
+      <destroyedLabel>dead</destroyedLabel>
+      <destroyedOutLabel>dead</destroyedOutLabel>
     </injuryProps>
   </HediffDef>
 
@@ -47,7 +47,7 @@
         <infectionChance>0</infectionChance>
       </li>
       <li Class="HediffCompProperties_GetsPermanent">
-        <permanentLabel>Permanent hypoxia damage</permanentLabel>
+        <permanentLabel>permanent hypoxia damage</permanentLabel>
       </li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
@@ -140,7 +140,7 @@
     </comps>
     <stages>
       <li>
-        <label>intial</label>
+        <label>initial</label>
         <partIgnoreMissingHP>true</partIgnoreMissingHP>
         <capMods>
           <li>
@@ -237,8 +237,8 @@
       <averagePainPerSeverityPermanent>0</averagePainPerSeverityPermanent>
       <bleedRate>0</bleedRate>
       <canMerge>true</canMerge>
-      <destroyedLabel>Dead</destroyedLabel>
-      <destroyedOutLabel>Dead</destroyedOutLabel>
+      <destroyedLabel>dead</destroyedLabel>
+      <destroyedOutLabel>dead</destroyedOutLabel>
     </injuryProps>
   </HediffDef>
 </Defs>

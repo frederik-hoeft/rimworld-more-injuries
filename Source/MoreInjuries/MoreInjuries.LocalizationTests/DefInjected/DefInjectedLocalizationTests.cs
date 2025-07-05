@@ -1,12 +1,13 @@
 ﻿using MoreInjuries.LocalizationTests.Localization;
+using MoreInjuries.LocalizationTests.Model;
 using System.Xml.Linq;
 
-namespace MoreInjuries.LocalizationTests;
+namespace MoreInjuries.LocalizationTests.DefInjected;
 
 [TestClass]
 public sealed class DefInjectedLocalizationTests : LocalizationTestBase
 {
-    protected override LocalizationInfoRepository LoadLocalizationInfoRepository(DirectoryInfo languageDirectory, LoadErrorContext errorContext)
+    private protected override LocalizationInfoRepository LoadLocalizationInfoRepository(DirectoryInfo languageDirectory, LoadErrorContext errorContext)
     {
         LocalizationInfoRepository languageRepository = new DefInjectedLocalizationInfoRepository(languageDirectory.Name);
         languageRepository.Load(languageDirectory, "DefInjected", errorContext);

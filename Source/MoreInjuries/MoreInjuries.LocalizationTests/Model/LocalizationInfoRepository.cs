@@ -1,10 +1,11 @@
-﻿using System.Text.RegularExpressions;
+﻿using MoreInjuries.LocalizationTests.Model;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 
 namespace MoreInjuries.LocalizationTests.Localization;
 
-public abstract partial class LocalizationInfoRepository(string language)
+internal abstract partial class LocalizationInfoRepository(string language)
 {
     private bool _isLoaded = false;
 
@@ -44,7 +45,7 @@ public abstract partial class LocalizationInfoRepository(string language)
         }
     }
 
-    protected virtual Dictionary<string, LocalizationValue> LoadLocalizationScope(FileInfo file, LocalizationInfoLoadContext context)
+    private protected virtual Dictionary<string, LocalizationValue> LoadLocalizationScope(FileInfo file, LocalizationInfoLoadContext context)
     {
         Dictionary<string, LocalizationValue> keyedLocalizationInfo = [];
         using FileStream stream = file.OpenRead();

@@ -49,8 +49,7 @@
   <RecipeDef ParentName="SurgeryFlesh">
     <defName>SplintFracture</defName>
     <label>Splint a fracture</label>
-    <description>Apply a splint to immobilize a bone fracture and promote healing over time. The splint will stabilize the bone, prevent further damage, and allow the patient to move around without risking further injury. The stabilized bone will heal naturally over time.
-\nA simple and non-invasive procedure that can be performed by anyone with basic medical knowledge.</description>
+    <description>Apply a splint to immobilize a bone fracture and promote healing over time. The splint will stabilize the bone, prevent further damage, and allow the patient to move around without risking further injury. The stabilized bone will heal naturally over time.\n\nA simple and non-invasive procedure that can be performed by anyone with basic medical knowledge.</description>
     <workerClass>MoreInjuries.HealthConditions.Fractures.Recipe_SplintFracture</workerClass>
     <jobString>Splinting a fracture.</jobString>
     <workAmount>500</workAmount>

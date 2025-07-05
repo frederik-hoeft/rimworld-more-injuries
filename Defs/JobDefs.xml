@@ -70,7 +70,7 @@
   <JobDef>
     <defName>UseKetamine</defName>
     <driverClass>MoreInjuries.HealthConditions.Drugs.Ketamine.JobDriver_UseKetamine</driverClass>
-    <reportString>Injecting ketamine into TargetA.</reportString>
+    <reportString>Sedating TargetA with ketamine.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
       <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
@@ -82,7 +82,7 @@
   <JobDef>
     <defName>UseChloroform</defName>
     <driverClass>MoreInjuries.HealthConditions.Drugs.Chloroform.JobDriver_UseChloroform</driverClass>
-    <reportString>Applying chloroform to TargetA.</reportString>
+    <reportString>Sedating TargetA with chloroform.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
       <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
@@ -118,7 +118,7 @@
   <JobDef>
     <defName>RemoveTourniquet</defName>
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_RemoveTourniquet</driverClass>
-    <reportString>Remove a tourniquet from TargetA.</reportString>
+    <reportString>Removing a tourniquet from TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
       <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
@@ -130,7 +130,7 @@
   <JobDef>
     <defName>RemoveTourniquetFromDead</defName>
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_RemoveTourniquetFromDead</driverClass>
-    <reportString>Remove a tourniquet from TargetA.</reportString>
+    <reportString>Removing a tourniquet from TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
