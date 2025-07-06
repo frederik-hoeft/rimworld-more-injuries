@@ -19,11 +19,21 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
   - [Table of Contents](#table-of-contents)
   - [New Injuries and Medical Conditions](#new-injuries-and-medical-conditions)
     - [Adrenaline Rush](#adrenaline-rush)
+    - [Brain Damage](#brain-damage)
+      - [Agnosia](#agnosia)
+      - [Aphasia](#aphasia)
+      - [Executive Dysfunction](#executive-dysfunction)
+      - [Hippocampal Damage](#hippocampal-damage)
+      - [Motor Dysfunction](#motor-dysfunction)
+      - [Personality Shift](#personality-shift)
     - [Cardiac Arrest](#cardiac-arrest)
+    - [Chemical Damage](#chemical-damage)
     - [Chemical Peritonitis](#chemical-peritonitis)
+    - [Chloroform Buildup](#chloroform-buildup)
     - [Choking](#choking)
       - [Choking on Blood](#choking-on-blood)
       - [Choking on Tourniquet](#choking-on-tourniquet)
+    - [Coagulopathy](#coagulopathy)
     - [Concussion](#concussion)
     - [EMP Shutdown](#emp-shutdown)
     - [Enclosed Injuries](#enclosed-injuries)
@@ -37,14 +47,21 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Hearing Loss](#hearing-loss)
       - [Temporary Hearing Loss](#temporary-hearing-loss)
       - [(Permanent) Hearing Loss](#permanent-hearing-loss)
+    - [Hemodilution](#hemodilution)
     - [Hemorrhagic Stroke](#hemorrhagic-stroke)
     - [Hydrostatic Shock](#hydrostatic-shock)
+    - [Hypothermia](#hypothermia)
     - [Hypovolemic Shock](#hypovolemic-shock)
     - [Inhalation Injury](#inhalation-injury)
+    - [Ketamine Build-Up](#ketamine-build-up)
     - [Lung Collapse](#lung-collapse)
+    - [Mechanite Therapy](#mechanite-therapy)
+    - [Morphine High](#morphine-high)
     - [Organ Hypoxia](#organ-hypoxia)
     - [Paralysis](#paralysis)
     - [Spalling Injury](#spalling-injury)
+    - [Spontaneous Hemorrhage](#spontaneous-hemorrhage)
+    - [Vasodilation](#vasodilation)
   - [New Body Parts](#new-body-parts)
     - [Small and Large Intestines](#small-and-large-intestines)
     - [Femoral and Popliteal Arteries](#femoral-and-popliteal-arteries)
@@ -53,12 +70,15 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
     - [Airway Suction Device](#airway-suction-device)
     - [Bandage](#bandage)
     - [Blood Bag](#blood-bag)
+    - [Chloroform-Soaked Cloth](#chloroform-soaked-cloth)
     - [CPR](#cpr)
     - [Defibrillator](#defibrillator)
     - [Epinephrine Autoinjector](#epinephrine-autoinjector)
     - [First Aid](#first-aid)
     - [Hearing Protection](#hearing-protection)
     - [Hemostatic Agent](#hemostatic-agent)
+    - [Ketamine Autoinjector](#ketamine-autoinjector)
+    - [Morphine Autoinjector](#morphine-autoinjector)
     - [Splint](#splint)
     - [Thoracoscope](#thoracoscope)
     - [Tourniquet](#tourniquet)
@@ -110,6 +130,41 @@ Adrenaline, also known as epinephrine, is a naturally occurring hormone that is 
 
 **Treatment**: Adrenaline is naturally metabolized by the body over time and effects last between a few minutes to a few hours in severe cases. In cases of overdose, the pawn may require medical treatment to treat symptoms and secondary effects.
 
+### Brain Damage
+
+> [!CAUTION]
+> TODO: update docs
+
+#### Agnosia
+
+> [!CAUTION]
+> TODO: update docs
+
+#### Aphasia
+
+> [!CAUTION]
+> TODO: update docs
+
+#### Executive Dysfunction
+
+> [!CAUTION]
+> TODO: update docs
+
+#### Hippocampal Damage
+
+> [!CAUTION]
+> TODO: update docs
+
+#### Motor Dysfunction
+
+> [!CAUTION]
+> TODO: update docs
+
+#### Personality Shift
+
+> [!CAUTION]
+> TODO: update docs
+
 ### Cardiac Arrest
 
 Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. It is generally divided into two categories: `ventricular fibrillation` and asystole (flatline, `clinical death`). `Ventricular fibrillation` is a condition in which the heart's electrical signals become disorganized, causing the heart to quiver or "fibrillate" instead of pumping blood effectively. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). If left untreated, `ventricular fibrillation` can progress to `clinical death`, which is a condition in which the heart stops beating completely and [CPR](#cpr) must be performed to restore blood flow and hopefully restart the heart. Applying a [defibrillator](#defibrillator) to a clinically dead patient will not be effective and may cause additional harm.
@@ -127,6 +182,11 @@ Cardiac arrest is a sudden loss of blood flow resulting from the failure of the 
 > [!NOTE]
 > **Biotech DLC**: Sanguaphages are immune to cardiac arrest and will automatically recover from it once entering deathrest.
 
+### Chemical Damage
+
+> [!CAUTION]
+> TODO: update docs
+
 ### Chemical Peritonitis
 
 Also known as _"intestinal spillage,"_ chemical peritonitis is a life-threatening condition that occurs when gastric acid or other digestive fluids leak into the abdominal cavity, causing inflammation and tissue damage to surrounding organs ([small and large intestines](#small-and-large-intestines), stomach, kidneys, and liver). The condition carries a major risk of infection which can be life-threatening if left untreated.
@@ -139,6 +199,11 @@ Also known as _"intestinal spillage,"_ chemical peritonitis is a life-threatenin
 **Effects**: Inflammation of the abdominal cavity, severe pain, and a major risk of infection. Potentially life-threatening if a resulting infection is left untreated.
 
 **Treatment**: Medical treatment of the perforating injury and inflammation using high-quality medicine to prevent infection.
+
+### Chloroform Buildup
+
+> [!CAUTION]
+> TODO: update docs
 
 ### Choking
 
@@ -168,6 +233,11 @@ Choking is a medical emergency that occurs when a foreign object becomes lodged 
 **Effects**: Suffocation and death if not treated immediately.
 
 **Treatment**: Removing the [tourniquet](#tourniquet) from the neck will restore breathing and prevent death.
+
+### Coagulopathy
+
+> [!CAUTION]
+> TODO: update docs
 
 ### Concussion
 
@@ -300,6 +370,11 @@ _Vanilla RimWorld condition, see [Hearing loss (RimWorld Wiki)](https://rimworld
 
 **Treatment**: Implants or bionic ears (see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss)), or [cellular regenerative otologic surgery](#cellular-regenerative-otologic-surgery) to repair the damaged hair cells in the inner ear.
 
+### Hemodilution
+
+> [!CAUTION]
+> TODO: update docs
+
 ### Hemorrhagic Stroke
 
 In extreme cases of head trauma, a rupture of a blood vessel in the brain may occur, causing a life-threatening condition known as a hemorrhagic stroke. Blood from the ruptured vessel leaks into the brain, causing pressure to build up and compress the surrounding tissue, starving it of oxygen and nutrients and leading to rapid loss of consciousness and death if not surgically treated.
@@ -327,6 +402,11 @@ Due to the controversial nature of the concept, it is implemented as an optional
 
 If enabled, high-energy projectiles, such as bullets, may cause [hemorrhagic stroke](#hemorrhagic-stroke), even if the projectile does not directly hit the head.
 
+### Hypothermia
+
+> [!CAUTION]
+> TODO: update docs
+
 ### Hypovolemic Shock
 
 When a pawn loses a significant amount of blood, there may not be enough blood volume to circulate to the body's organs, leading to a life-threatening condition known as hypovolemic shock. Without immediate treatment, the insufficient blood flow can starve the organs of oxygen and nutrients, causing tissue damage, multiple organ failure, and ultimately death.
@@ -352,6 +432,11 @@ During the initial emergency treatment of hypovolemic shock, its progression can
 
 Inhalation injuries are caused by the inhalation of hot gases, steam, or smoke, which can cause burns to the respiratory tract and lungs. If enabled in the mod settings, inhalation injuries manifest themselves as burn injuries to the lungs, for example, when a pawn is exposed to a fire or explosion.
 
+### Ketamine Build-Up
+
+> [!CAUTION]
+> TODO: update docs
+
 ### Lung Collapse
 
 When a creature is exposed to a sudden change in pressure, such as caused by thermobaric weapons and other high-explosive devices, the lung tissue may rupture, causing air to leak into the chest cavity and compress the lung, leading to a life-threatening condition known as a lung collapse.
@@ -365,6 +450,16 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 **Effects**: Impaired breathing, chest pain, and a life-threatening condition known as a tension pneumothorax, which can lead to obstructive shock, [cardiac arrest](#cardiac-arrest), and death if not surgically treated.
 
 **Treatment**: Resuscitation if the patient goes into [cardiac arrest](#cardiac-arrest) and immediate [thoracotomic surgery](#thoracotomy) or [video-assisted thoracoscopic surgery](#video-assisted-thoracoscopic-surgery) to repair the lung collapse and prevent further complications.
+
+### Mechanite Therapy
+
+> [!CAUTION]
+> TODO: update docs
+
+### Morphine High
+
+> [!CAUTION]
+> TODO: update docs
 
 ### Organ Hypoxia
 
@@ -410,6 +505,16 @@ Modern armor is designed to prevent spalling by adding softer layers above the h
 
 > [!TIP]
 > You can tweak the chance, severity, and armor condition thresholds for spalling injuries in the mod settings to better balance the risk and reward of using degraded armor plating in combat.
+
+### Spontaneous Hemorrhage
+
+> [!CAUTION]
+> TODO: update docs
+
+### Vasodilation
+
+> [!CAUTION]
+> TODO: update docs
 
 ## New Body Parts
 
@@ -514,6 +619,11 @@ In order to effectively treat the new injuries and medical conditions introduced
 **Research Requirements**: [Basic first aid](#basic-first-aid)  
 **Ingredients**: N/A  
 **Success Chance**: 100%
+
+### Chloroform-Soaked Cloth
+
+> [!CAUTION]
+> TODO: update docs
 
 ### CPR
 
@@ -652,6 +762,16 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
 
 > [!TIP]
 > Hemostatic agents are a powerful tool to stop severe bleeding in an emergency, so make sure you have a few hemostatic agents ready in your hospital or carried by your combat medics to quickly treat severe injuries on the battlefield.
+
+### Ketamine Autoinjector
+
+> [!CAUTION]
+> TODO: update docs
+
+### Morphine Autoinjector
+
+> [!CAUTION]
+> TODO: update docs
 
 ### Splint
 
@@ -905,9 +1025,13 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 
 ## New Research Projects
 
+TODO: update docs
+
 More Injuries introduces several new research projects that can be undertaken to unlock new life-saving treatments and surgical procedures. These research projects expand the medical capabilities of your colony and allow you to treat previously untreatable injuries and medical conditions. As your technology advances, you will be able to provide better care to your colonists and save more lives in the harsh environment of the RimWorld.
 
 ![An overview of the new research projects added by More Injuries.](docs/assets/research.png)
+
+TODO: update image
 
 > [!TIP]
 > All new research projects can be found in the new *More Injuries* research tab.
