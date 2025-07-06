@@ -1,7 +1,6 @@
 ﻿using MoreInjuries.BuildIntrinsics;
 using MoreInjuries.HealthConditions.Secondary.Handlers;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary;

@@ -6,10 +6,9 @@ using UnityEngine;
 using MoreInjuries.Initialization;
 using System.Collections.Generic;
 using MoreInjuries.Localization;
+using static MoreInjuries.MoreInjuriesSettingsDefaults;
 
 namespace MoreInjuries;
-
-using static MoreInjuriesSettingsDefaults;
 
 public class MoreInjuriesMod : Mod
 {

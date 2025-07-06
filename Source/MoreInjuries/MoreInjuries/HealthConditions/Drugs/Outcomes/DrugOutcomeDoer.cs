@@ -1,6 +1,5 @@
 ﻿using MoreInjuries.BuildIntrinsics;
 using MoreInjuries.HealthConditions.Drugs.Outcomes.Conditions;
-using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Drugs.Outcomes;

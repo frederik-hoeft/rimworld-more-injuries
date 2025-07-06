@@ -4,7 +4,7 @@ using MoreInjuries.Things;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using RimWorld;
-using MoreInjuries.KnownDefs;
+using MoreInjuries.Defs.WellKnown;
 
 namespace MoreInjuries.AI.WorkGivers;
 

@@ -1,7 +1,7 @@
-﻿using MoreInjuries.Extensions;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using MoreInjuries.HealthConditions.Secondary;
-using MoreInjuries.KnownDefs;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;

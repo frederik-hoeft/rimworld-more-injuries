@@ -1,4 +1,4 @@
-# `/assets` Directory Structure
+# `/assets/art` Directory Structure
 
 This directory contains all the source files for the texture art and other assets used in the game. This document will provide a brief overview of what to find where.
 

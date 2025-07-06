@@ -1,5 +1,4 @@
 ﻿using MoreInjuries.BuildIntrinsics;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Verse;
 

@@ -1,4 +1,4 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Utils;
 using RimWorld;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.SpallingInjury;
 
-internal class SpallingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
+internal sealed class SpallingInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableSpalling;
 
@@ -93,5 +93,10 @@ internal class SpallingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
                 }
             }
         }
+    }
+
+    public sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new SpallingInjuryWorker(parent);
     }
 }

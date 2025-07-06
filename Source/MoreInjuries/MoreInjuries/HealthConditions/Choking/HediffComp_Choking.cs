@@ -1,4 +1,4 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using RimWorld;
 using UnityEngine;
 using Verse;

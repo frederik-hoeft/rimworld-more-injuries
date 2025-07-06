@@ -30,7 +30,7 @@
             <tickInterval>2000</tickInterval>
             <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
             </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
@@ -129,8 +129,8 @@
             <tickInterval>2000</tickInterval>
             <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_DisallowDeathResting"></li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_MeanTimeBetween_SimpleCurve">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
                 <mttfDaysBySeverity>
                   <points>
                     <li>0, 10</li>
@@ -156,7 +156,7 @@
           <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
             <tickInterval>2000</tickInterval>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_MeanTimeBetween_SimpleCurve">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
                 <mttfDaysBySeverity>
                   <points>
                     <li>0, 5</li>

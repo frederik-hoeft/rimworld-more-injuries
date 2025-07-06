@@ -117,7 +117,7 @@
             <tickInterval>2000</tickInterval>
             <baseChance>0.02</baseChance>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_Fixed">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_LinkedHediff_Fixed">
                 <hediffDef>BrainDamage_PersonalityShift</hediffDef>
                 <chanceModifier>0</chanceModifier>
               </li>
@@ -210,7 +210,7 @@
         </capMods>
       </li>
       <li>
-        <label>critical</label>
+        <label>extreme</label>
         <partIgnoreMissingHP>true</partIgnoreMissingHP>
         <minSeverity>5</minSeverity>
         <capMods>
@@ -221,7 +221,7 @@
         </capMods>
       </li>
       <li>
-        <label>fatal</label>
+        <label>terminal</label>
         <minSeverity>8</minSeverity>
         <partIgnoreMissingHP>false</partIgnoreMissingHP>
         <capMods>

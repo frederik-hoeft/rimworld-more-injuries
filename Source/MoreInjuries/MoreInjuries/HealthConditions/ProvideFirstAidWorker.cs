@@ -1,15 +1,15 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
-using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using Verse;
 
 namespace MoreInjuries.HealthConditions;
 
-public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent), ICompFloatMenuOptionsHandler
+internal sealed class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent), ICompFloatMenuOptionsHandler
 {
     public override bool IsEnabled => true;
 
@@ -54,5 +54,10 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
                 builder.Options.Add(new FloatMenuOption("MI_ProvideFirstAid".Translate(), JobDriver_ProvideFirstAid.GetDispatcher(selectedPawn, patient).StartJob));
             }
         }
+    }
+
+    public sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new ProvideFirstAidWorker(parent);
     }
 }

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>Coagulopathy</defName>
+    <label>coagulopathy</label>
+    <description>Trauma-induced coagulapathy (TIC) is a life-threatening condition in which the blood's ability to clot is impaired, often developing after severe trauma, blood loss, or shock. Without intervention, it can progress into disseminated intravascular coagulation (DIC), where widespread clotting depletes clotting factors and causes uncontrolled internal bleeding, leading to multiple organ failure and, ultimately, death. Treatment requires aggressive management of the underlying causes, such as hypothermia, acidosis, certain toxins, or dilution of clotting factors, and rapid replacement of blood components to restore coagulation function.</description>
+    <defaultLabelColor>(255, 185, 56)</defaultLabelColor>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <maxSeverity>1</maxSeverity>
+    <isBad>true</isBad>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers.BleedRateModifier_ModExtension">
+        <modifier Class="MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers.BleedRateModifier_SimpleCurve">
+          <severityCurve>
+            <points>
+              <li>0.0, 1.0</li>      <!-- No coagulopathy: normal bleed rate -->
+              <li>0.2, 1.5</li>      <!-- Mild coagulopathy: +50% higher bleed rate -->
+              <li>0.4, 2.0</li>      <!-- Moderate coagulopathy: double baseline -->
+              <li>0.6, 3.0</li>      <!-- Severe coagulopathy: triple baseline -->
+              <li>0.8, 4.5</li>      <!-- Critical coagulopathy: 4.5x baseline -->
+              <li>1.0, 6.0</li>      <!-- Terminal coagulopathy: 6x baseline -->
+            </points>
+          </severityCurve>
+        </modifier>
+      </li>
+    </modExtensions>
+    <comps>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Linked.HediffCompProperties_LinkedSeverity">
+        <tickInterval>2000</tickInterval>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy" />
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+            <tickInterval>250</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
+                <mttfDaysBySeverity>
+                  <points>
+                    <li>0, 10</li>
+                    <li>0.2, 5</li>
+                    <li>0.4, 1</li>
+                    <li>0.6, 0.5</li>
+                    <li>0.8, 0.25</li>
+                    <li>1, 0.05</li>
+                  </points>
+                </mttfDaysBySeverity>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>SpontaneousBleeding</hediffDef>
+                <minSeverity>0.1</minSeverity>
+                <minSeverity>1</minSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">
+              <depth>Inside</depth>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+            <tickInterval>2000</tickInterval>
+            <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
+                <mttfDaysBySeverity>
+                  <points>
+                    <li>0, 1000</li>
+                    <li>0.2, 500</li>
+                    <li>0.4, 100</li>
+                    <li>0.6, 10</li>
+                    <li>0.8, 1</li>
+                    <li>1, 0.5</li>
+                  </points>
+                </mttfDaysBySeverity>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>HemorrhagicStroke</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>minor</label>
+        <minSeverity>0</minSeverity>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.2</minSeverity>
+      </li>
+      <li>
+        <label>severe</label>
+        <minSeverity>0.4</minSeverity>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.6</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>terminal</label>
+        <minSeverity>0.8</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="InjuryBase">
+    <defName>SpontaneousBleeding</defName>
+    <label>spontaneous hemorrhage</label>
+    <labelNoun>a spontaneous hemorrhage</labelNoun>
+    <description>Spontaneous bleeding is a condition where bleeding occurs without any apparent external cause, often due to underlying medical issues such as coagulopathy or vascular abnormalities. It can manifest as bruising, nosebleeds, or internal bleeding and may require medical intervention to manage the underlying causes and prevent complications. In severe cases, it can lead to significant blood loss, multiple organ failure, and death if not treated promptly.</description>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <labelTendedWell>bandaged</labelTendedWell>
+        <labelTendedWellInner>sutured</labelTendedWellInner>
+        <labelSolidTendedWell>set</labelSolidTendedWell>
+      </li>
+      <li Class="HediffCompProperties_Infecter">
+        <infectionChance>0.05</infectionChance>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
+    </comps>
+    <injuryProps>
+      <painPerSeverity>0.0250</painPerSeverity>
+      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
+      <bleedRate>0.25</bleedRate>
+      <canMerge>true</canMerge>
+      <destroyedLabel>destroyed</destroyedLabel>
+      <destroyedOutLabel>destroyed</destroyedOutLabel>
+    </injuryProps>
+  </HediffDef>
+</Defs>

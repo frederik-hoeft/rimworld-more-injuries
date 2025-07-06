@@ -1,8 +1,7 @@
 ﻿using MoreInjuries.AI;
 using MoreInjuries.AI.Audio;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;

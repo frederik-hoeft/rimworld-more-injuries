@@ -2,8 +2,8 @@
 using Verse.AI;
 using Verse;
 using System.Collections.Generic;
-using MoreInjuries.KnownDefs;
 using MoreInjuries.Caching;
+using MoreInjuries.Defs.WellKnown;
 
 namespace MoreInjuries.AI.WorkGivers;
 

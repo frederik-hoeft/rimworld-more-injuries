@@ -1,11 +1,11 @@
-﻿using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using RimWorld;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HydrostaticShock;
 
-internal class HydrostaticShockWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+internal sealed class HydrostaticShockWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableHydrostaticShock;
 
@@ -24,5 +24,10 @@ internal class HydrostaticShockWorker(MoreInjuryComp parent) : InjuryWorker(pare
             }
             trauma.Severity += 0.1f;
         }
+    }
+
+    public sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new HydrostaticShockWorker(parent);
     }
 }

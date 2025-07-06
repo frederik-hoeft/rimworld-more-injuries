@@ -1,10 +1,10 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Paralysis;
 
-internal class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+internal sealed class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableParalysis;
 
@@ -31,5 +31,10 @@ internal class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(parent), IP
                 patient.health.AddHediff(paralysis, spinalCord);
             }
         }
+    }
+
+    internal sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new ParalysisWorker(parent);
     }
 }

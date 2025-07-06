@@ -1,6 +1,6 @@
 ﻿using MoreInjuries.Caching;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
 using RimWorld;
 using System.Collections;
 using System.Collections.Generic;

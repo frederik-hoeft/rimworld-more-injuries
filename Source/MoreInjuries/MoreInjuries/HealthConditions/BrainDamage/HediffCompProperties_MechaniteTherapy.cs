@@ -1,6 +1,5 @@
 ﻿using MoreInjuries.BuildIntrinsics;
 using MoreInjuries.HealthConditions.MechaniteTherapy;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Verse;
 

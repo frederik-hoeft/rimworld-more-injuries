@@ -1,6 +1,6 @@
-﻿using MoreInjuries.HealthConditions.HeadInjury.Concussions;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.HeadInjury.Concussions;
 using MoreInjuries.HealthConditions.HeadInjury.HemorrhagicStroke;
-using MoreInjuries.KnownDefs;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,5 +91,10 @@ public class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
                 giver.TryGiveInjury(patient, equivalentHeadTrauma);
             }
         }
+    }
+
+    public sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new HeadInjuryWorker(parent);
     }
 }

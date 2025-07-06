@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Verse;
+﻿using Verse;
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock;
 

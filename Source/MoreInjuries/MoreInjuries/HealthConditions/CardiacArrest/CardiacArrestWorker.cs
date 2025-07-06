@@ -1,4 +1,4 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Things;
 using Verse;
 
@@ -52,5 +52,10 @@ public class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(parent), 
                 builder.Options.Add(new FloatMenuOption(JobDriver_UseDefibrillator.JOB_LABEL_KEY.Translate(), JobDriver_UseDefibrillator.GetDispatcher(selectedPawn, patient, defibrillator).StartJob));
             }
         }
+    }
+
+    public sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new CardiacArrestWorker(parent);
     }
 }

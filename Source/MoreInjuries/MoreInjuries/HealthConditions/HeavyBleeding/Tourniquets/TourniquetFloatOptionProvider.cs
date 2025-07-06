@@ -1,5 +1,4 @@
-﻿using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Localization;
 using MoreInjuries.Things;
 using RimWorld;

@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
-using MoreInjuries.KnownDefs;
 using RimWorld;
 using Verse;
 

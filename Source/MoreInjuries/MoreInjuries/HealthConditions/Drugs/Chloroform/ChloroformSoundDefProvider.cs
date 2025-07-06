@@ -1,5 +1,5 @@
 ﻿using MoreInjuries.AI.Audio;
-using MoreInjuries.KnownDefs;
+using MoreInjuries.Defs.WellKnown;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Drugs.Chloroform;

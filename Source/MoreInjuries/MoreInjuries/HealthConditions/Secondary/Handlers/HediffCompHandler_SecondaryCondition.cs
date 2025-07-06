@@ -1,11 +1,10 @@
 ﻿using MoreInjuries.BuildIntrinsics;
 using MoreInjuries.Extensions;
-using MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
+using MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 using RimWorld;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using Verse;
 
@@ -14,7 +13,7 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers;
 // members initialized via XML defs
 [SuppressMessage("Style", "IDE0032:Use auto property", Justification = Justifications.XML_DEF_REQUIRES_FIELD)]
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
-public class HediffCompHandler_SecondaryCondition
+public class HediffCompHandler_SecondaryCondition : HediffCompHandler
 {
     // don't rename this field. XML defs depend on this name
     protected readonly float? baseChance = null;
@@ -23,7 +22,7 @@ public class HediffCompHandler_SecondaryCondition
     // don't rename this field. XML defs depend on this name
     private readonly HediffMakerProperties? hediffMakerProps = default;
     // don't rename this field. XML defs depend on this name
-    private readonly List<SecondaryHediffChanceModifier>? chanceModifiers = default;
+    private readonly List<SecondaryHediffModifier>? chanceModifiers = default;
     // don't rename this field. XML defs depend on this name
     protected readonly bool sendLetterWhenDiscovered = false;
     // don't rename this field. XML defs depend on this name
@@ -31,7 +30,7 @@ public class HediffCompHandler_SecondaryCondition
 
     public virtual float BaseChance => baseChance ?? 1f;
 
-    public int TickInterval => tickInterval;
+    public override int TickInterval => tickInterval;
 
     public HediffMakerProperties? HediffMakerProps => hediffMakerProps;
 
@@ -48,9 +47,9 @@ public class HediffCompHandler_SecondaryCondition
         float chance = BaseChance;
         if (chance > Mathf.Epsilon && chanceModifiers is { Count: > 0 })
         {
-            foreach (SecondaryHediffChanceModifier modifier in chanceModifiers)
+            foreach (SecondaryHediffModifier modifier in chanceModifiers)
             {
-                chance *= modifier.GetModifier(comp, this);
+                chance *= modifier.GetModifier(comp.parent, this);
                 if (chance <= Mathf.Epsilon)
                 {
                     Logger.LogDebug($"Chance for {comp.Pawn.Name} ({comp.parent.LabelCap}) to get the secondary condition is 0. Skipping evaluation.");
@@ -58,7 +57,7 @@ public class HediffCompHandler_SecondaryCondition
                 }
             }
         }
-        if (chance <= Mathf.Epsilon || !Rand.Chance(chance))
+        if (chance <= Mathf.Epsilon || chance < 1f && !Rand.Chance(chance))
         {
             return true;
         }

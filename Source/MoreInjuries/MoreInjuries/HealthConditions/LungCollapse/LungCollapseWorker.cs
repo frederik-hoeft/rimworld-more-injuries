@@ -1,5 +1,5 @@
-﻿using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.LungCollapse;
 
-public class LungCollapseWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
+internal sealed class LungCollapseWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableLungCollapse;
 
@@ -51,5 +51,10 @@ public class LungCollapseWorker(MoreInjuryComp parent) : InjuryWorker(parent), I
                 ++i;
             }
         }
+    }
+
+    public sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new LungCollapseWorker(parent);
     }
 }

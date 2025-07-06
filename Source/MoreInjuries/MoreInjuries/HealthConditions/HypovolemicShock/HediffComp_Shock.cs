@@ -1,5 +1,5 @@
-﻿using MoreInjuries.HealthConditions.HeavyBleeding;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.HeavyBleeding;
 using RimWorld;
 using UnityEngine;
 using Verse;

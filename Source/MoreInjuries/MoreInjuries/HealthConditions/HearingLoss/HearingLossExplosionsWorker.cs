@@ -1,10 +1,11 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HearingLoss;
 
-public class HearingLossExplosionsWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
+// This worker handles temporary hearing loss caused by explosions. Gunfire and other non-explosive damage is handled by the HearingLossComp.
+internal sealed class HearingLossExplosionsWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableBasicHearingDamage;
 
@@ -30,5 +31,10 @@ public class HearingLossExplosionsWorker(MoreInjuryComp parent) : InjuryWorker(p
                 HearingLossHelper.TryMakePermanentIfApplicable(patient, hearingLoss);
             }
         }
+    }
+
+    public sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new HearingLossExplosionsWorker(parent);
     }
 }

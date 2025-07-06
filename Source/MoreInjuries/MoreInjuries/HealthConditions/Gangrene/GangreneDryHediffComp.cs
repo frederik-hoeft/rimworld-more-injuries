@@ -1,6 +1,6 @@
-﻿using MoreInjuries.Extensions;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.Secondary;
-using MoreInjuries.KnownDefs;
 using RimWorld;
 using Verse;
 

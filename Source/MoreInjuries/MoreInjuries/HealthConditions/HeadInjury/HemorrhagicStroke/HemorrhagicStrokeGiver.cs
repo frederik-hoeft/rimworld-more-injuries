@@ -1,10 +1,10 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeadInjury.HemorrhagicStroke;
 
-public class HemorrhagicStrokeGiver() : HeadInjuryGiver()
+public class HemorrhagicStrokeGiver : HeadInjuryGiver
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableHemorrhagicStroke;
 

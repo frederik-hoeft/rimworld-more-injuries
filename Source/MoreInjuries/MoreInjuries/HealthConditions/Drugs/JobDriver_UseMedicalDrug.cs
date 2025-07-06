@@ -1,8 +1,8 @@
 ﻿using MoreInjuries.AI;
 using MoreInjuries.AI.Audio;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.Drugs.Outcomes;
-using MoreInjuries.KnownDefs;
 using Verse;
 using Verse.AI;
 

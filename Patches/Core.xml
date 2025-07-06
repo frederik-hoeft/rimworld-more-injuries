@@ -8,14 +8,18 @@
       <xpath>/Defs/ThingDef[defName="Human"]</xpath>
       <value>
         <comps>
-          <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProps"></li>
+          <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProperties">
+            <workerFactoryDef>InjuryWorkerDef</workerFactoryDef>
+          </li>
         </comps>
       </value>
     </nomatch>
     <match Class="PatchOperationAdd">
       <xpath>/Defs/ThingDef[defName="Human"]/comps</xpath>
       <value>
-        <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProps"></li>
+        <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProperties">
+          <workerFactoryDef>InjuryWorkerDef</workerFactoryDef>
+        </li>
       </value>
     </match>
   </Operation>

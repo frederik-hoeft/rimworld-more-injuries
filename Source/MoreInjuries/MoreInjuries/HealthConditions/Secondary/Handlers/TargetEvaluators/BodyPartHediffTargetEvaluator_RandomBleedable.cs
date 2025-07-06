@@ -4,9 +4,7 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
 public class BodyPartHediffTargetEvaluator_RandomBleedable : BodyPartHediffTargetEvaluator_Random
 {
-    protected override bool IncludeBodyPart(BodyPartRecord bodyPart)
-    {
+    protected override bool IncludeBodyPart(BodyPartRecord bodyPart) =>
         // include only body parts that have a bleed rate greater than 0
-        return base.IncludeBodyPart(bodyPart) && bodyPart.def.bleedRate > 0f;
-    }
+        base.IncludeBodyPart(bodyPart) && bodyPart.def.bleedRate > 0f;
 }

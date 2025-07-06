@@ -1,75 +1,47 @@
 ﻿using System.Collections.Generic;
 using Verse;
 using MoreInjuries.Debug;
-using MoreInjuries.HealthConditions.Choking;
-using MoreInjuries.HealthConditions.Fractures;
-using MoreInjuries.HealthConditions.Paralysis;
-using MoreInjuries.HealthConditions.IntestinalSpill;
-using MoreInjuries.HealthConditions.AdrenalineRush;
-using MoreInjuries.HealthConditions.HydrostaticShock;
-using MoreInjuries.HealthConditions.LungCollapse;
-using MoreInjuries.HealthConditions.InhalationInjury;
-using MoreInjuries.HealthConditions.SpallingInjury;
-using MoreInjuries.HealthConditions.EmpShutdown;
-using MoreInjuries.HealthConditions.HeadInjury;
-using MoreInjuries.HealthConditions.HearingLoss;
-using MoreInjuries.HealthConditions.HeadInjury.Concussions;
-using MoreInjuries.HealthConditions.CardiacArrest;
-using MoreInjuries.HealthConditions.HeavyBleeding;
 using System.Linq;
-using MoreInjuries.HealthConditions.Drugs;
 
 namespace MoreInjuries.HealthConditions;
 
 public class MoreInjuryComp : ThingComp
 {
-    private static readonly UIBuilder<FloatMenuOption> s_floatMenuOptionsBuilder = new([], []);
-    private static readonly UIBuilder<Gizmo> s_gizmosBuilder = new([], []);
+    private static readonly UIBuilder<FloatMenuOption> s_floatMenuOptionsBuilder = new(Keys: [], Options: []);
+    private static readonly UIBuilder<Gizmo> s_gizmosBuilder = new(Keys: [], Options: []);
 
     private DamageInfo _damageInfo;
-    private readonly InjuryWorker[] _pipeline;
-    private readonly ICompGetGizmosExtraHandler[] _compGetGizmosExtraHandlers;
-    private readonly ICompFloatMenuOptionsHandler[] _compFloatMenuOptionsHandlers;
-    private readonly IPostPostApplyDamageHandler[] _postPostApplyDamageHandlers;
-    private readonly IPostTakeDamageHandler[] _postTakeDamageHandlers;
+    private InjuryWorker[]? _pipeline;
+    private ICompGetGizmosExtraHandler[]? _compGetGizmosExtraHandlers;
+    private ICompFloatMenuOptionsHandler[]? _compFloatMenuOptionsHandlers;
+    private IPostPostApplyDamageHandler[]? _postPostApplyDamageHandlers;
+    private IPostTakeDamageHandler[]? _postTakeDamageHandlers;
+    private ICompTickHandler[]? _compTickHandlers;
 
     // we need an XML node to store our job parameters, so we do that on the pawn doing the job
     // because we can't be sure that the we are notified when the job is done, we need to store weak references
     // to allow the GC to do its job
     private readonly List<Std::WeakReference<IExposable>> _weakJobParameters = [];
 
-    public MoreInjuryComp()
-    {
-        _pipeline =
-        [
-            new ParalysisWorker(this),
-            new IntestinalSpillWorker(this),
-            new CardiacArrestWorker(this),
-            new HeadInjuryWorker(this),
-            new AdrenalineWorker(this),
-            new HydrostaticShockWorker(this),
-            new FractureWorker(this),
-            new LungCollapseWorker(this),
-            new InhalationInjuryWorker(this),
-            new SpallingWorker(this),
-            new ChokingWorker(this),
-            new EmpBionicsWorker(this),
-            new HearingLossExplosionsWorker(this),
-            new ConcussionExplosionsWorker(this),
-            new HeavyBleedingWorker(this),
-            new ProvideFirstAidWorker(this),
-            new DrugWorker(this)
-        ];
-        // cache handlers for performance
-        _compGetGizmosExtraHandlers = [.. _pipeline.OfType<ICompGetGizmosExtraHandler>()];
-        _compFloatMenuOptionsHandlers = [.. _pipeline.OfType<ICompFloatMenuOptionsHandler>()];
-        _postPostApplyDamageHandlers = [.. _pipeline.OfType<IPostPostApplyDamageHandler>()];
-        _postTakeDamageHandlers = [.. _pipeline.OfType<IPostTakeDamageHandler>()];
-    }
-
     public bool CallbackActive { get; private set; } = false;
 
     internal bool FailedLoading { get; set; } = false;
+
+    public MoreInjuryCompProperties Properties => (MoreInjuryCompProperties)props;
+
+    public Pawn Pawn => (Pawn)parent;
+
+    private InjuryWorker[] Pipeline => _pipeline ??= [.. Properties.WorkerFactories.Select(factory => factory.Create(this))];
+
+    private ICompGetGizmosExtraHandler[] CompGetGizmosExtraHandlers => _compGetGizmosExtraHandlers ??= [.. Pipeline.OfType<ICompGetGizmosExtraHandler>()];
+
+    private ICompFloatMenuOptionsHandler[] CompFloatMenuOptionsHandlers => _compFloatMenuOptionsHandlers ??= [.. Pipeline.OfType<ICompFloatMenuOptionsHandler>()];
+
+    private IPostPostApplyDamageHandler[] PostPostApplyDamageHandlers => _postPostApplyDamageHandlers ??= [.. Pipeline.OfType<IPostPostApplyDamageHandler>()];
+
+    private IPostTakeDamageHandler[] PostTakeDamageHandlers => _postTakeDamageHandlers ??= [.. Pipeline.OfType<IPostTakeDamageHandler>()];
+
+    private ICompTickHandler[] CompTickHandlers => _compTickHandlers ??= [.. Pipeline.OfType<ICompTickHandler>()];
 
     public void PersistJobParameters(IExposable jobParameter)
     {
@@ -119,16 +91,31 @@ public class MoreInjuryComp : ThingComp
         }
     }
 
+    public override void CompTick()
+    {
+        if (!MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers && Pawn.IsShambler)
+        {
+            return;
+        }
+        foreach (ICompTickHandler handler in CompTickHandlers)
+        {
+            if (handler.IsEnabled)
+            {
+                handler.CompTick();
+            }
+        }
+    }
+
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        Pawn pawn = (Pawn)parent;
+        Pawn pawn = Pawn;
         if (!MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers && pawn.IsShambler)
         {
             return [];
         }
         UIBuilder<Gizmo> builder = s_gizmosBuilder;
         builder.Clear();
-        foreach (ICompGetGizmosExtraHandler handler in _compGetGizmosExtraHandlers)
+        foreach (ICompGetGizmosExtraHandler handler in CompGetGizmosExtraHandlers)
         {
             if (handler.IsEnabled)
             {
@@ -140,14 +127,13 @@ public class MoreInjuryComp : ThingComp
 
     public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selectedPawn)
     {
-        Pawn pawn = (Pawn)parent;
-        if (!MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers && (pawn.IsShambler || selectedPawn.IsShambler))
+        if (!MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers && (Pawn.IsShambler || selectedPawn.IsShambler))
         {
             return [];
         }
         UIBuilder<FloatMenuOption> builder = s_floatMenuOptionsBuilder;
         builder.Clear();
-        foreach (ICompFloatMenuOptionsHandler handler in _compFloatMenuOptionsHandlers)
+        foreach (ICompFloatMenuOptionsHandler handler in CompFloatMenuOptionsHandlers)
         {
             if (handler.IsEnabled)
             {
@@ -165,7 +151,7 @@ public class MoreInjuryComp : ThingComp
         }
         if (parent.Map is not null)
         {
-            foreach (IPostPostApplyDamageHandler handler in _postPostApplyDamageHandlers)
+            foreach (IPostPostApplyDamageHandler handler in PostPostApplyDamageHandlers)
             {
                 if (handler.IsEnabled)
                 {
@@ -192,7 +178,7 @@ public class MoreInjuryComp : ThingComp
 
         if (MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers || parent is Pawn { IsShambler: false })
         {
-            foreach (IPostTakeDamageHandler handler in _postTakeDamageHandlers)
+            foreach (IPostTakeDamageHandler handler in PostTakeDamageHandlers)
             {
                 if (handler.IsEnabled)
                 {

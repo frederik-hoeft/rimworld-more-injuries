@@ -1,6 +1,5 @@
 ﻿using MoreInjuries.BuildIntrinsics;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;

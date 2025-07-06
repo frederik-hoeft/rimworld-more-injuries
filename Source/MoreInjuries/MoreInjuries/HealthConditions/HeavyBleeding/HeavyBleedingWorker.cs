@@ -6,7 +6,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding;
 
-public class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsHandler, ICompGetGizmosExtraHandler
+internal sealed class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsHandler, ICompGetGizmosExtraHandler
 {
     private readonly ICompFloatMenuOptionsHandler[] _childHandlers;
 
@@ -41,5 +41,10 @@ public class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsHandler, I
                 gizmoHandler.AddGizmosExtra(builder, selectedPawn);
             }
         }
+    }
+
+    public sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new HeavyBleedingWorker(parent);
     }
 }

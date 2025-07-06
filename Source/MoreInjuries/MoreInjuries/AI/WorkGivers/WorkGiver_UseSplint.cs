@@ -1,5 +1,5 @@
-﻿using MoreInjuries.HealthConditions.Fractures;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.Fractures;
 using MoreInjuries.Things;
 using RimWorld;
 using Verse;

@@ -6,7 +6,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Drugs;
 
-public class DrugWorker : InjuryWorker, ICompFloatMenuOptionsHandler
+internal sealed class DrugWorker : InjuryWorker, ICompFloatMenuOptionsHandler
 {
     private readonly ICompFloatMenuOptionsHandler[] _childHandlers;
 
@@ -36,5 +36,10 @@ public class DrugWorker : InjuryWorker, ICompFloatMenuOptionsHandler
                 handler.AddFloatMenuOptions(builder, selectedPawn);
             }
         }
+    }
+
+    public sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new DrugWorker(parent);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using MoreInjuries.AI;
-using MoreInjuries.KnownDefs;
+using MoreInjuries.Defs.WellKnown;
 using RimWorld;
 using System.Collections.Generic;
 using Verse;

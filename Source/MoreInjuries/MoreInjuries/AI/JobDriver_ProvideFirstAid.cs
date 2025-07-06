@@ -1,4 +1,5 @@
-﻿using MoreInjuries.Extensions;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.HealthConditions.HeavyBleeding;
@@ -6,7 +7,6 @@ using MoreInjuries.HealthConditions.HeavyBleeding.Bandages;
 using MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents;
 using MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
-using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;

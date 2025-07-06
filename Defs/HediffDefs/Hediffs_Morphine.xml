@@ -9,21 +9,28 @@
     <isBad>true</isBad>
     <maxSeverity>1</maxSeverity>
     <modExtensions>
-      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers.BleedRateModifier_ModExtension">
-        <modifier Class="MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers.BleedRateModifier_SimpleCurve">
-          <!-- adjust global bleed rate for all injuries based on morphine dosage -->
-          <!-- ref: https://www.tandfonline.com/doi/full/10.1080/10903127.2023.2172493 -->
-          <severityCurve>
-            <points>
-              <li>0.0, 1.0</li>      <!-- No morphine: normal bleed rate -->
-              <li>0.2, 1.6</li>      <!-- ~5mg dose: 60% higher bleed rate -->
-              <li>0.4, 2.0</li>      <!-- Double baseline: compensatory failure -->
-              <li>0.6, 2.5</li>      <!-- Subclinical overdose -->
-              <li>0.8, 3.25</li>     <!-- Severe hypotension -->
-              <li>1.0, 4.0</li>      <!-- Terminal vasodilatory shock -->
-            </points>
-          </severityCurve>
-        </modifier>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Linked.LinkedSeverityProperties_ModExtension">
+        <modifiedHediffs>
+          <li>
+            <linkedHediffDef>Vasodilation</linkedHediffDef>
+            <severityModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <!-- adjust severity of vasodilation based on morphine dose -->
+                <!-- ref: https://www.tandfonline.com/doi/full/10.1080/10903127.2023.2172493 -->
+                <severityCurve>
+                  <points>
+                    <li>0.0, 0.0</li>      <!-- No morphine: normal bleed rate -->
+                    <li>0.2, 0.6</li>      <!-- ~5mg dose: +60% higher bleed rate -->
+                    <li>0.4, 1.0</li>      <!-- Double baseline: compensatory failure -->
+                    <li>0.6, 1.5</li>      <!-- Subclinical overdose -->
+                    <li>0.8, 2.25</li>     <!-- Severe hypotension -->
+                    <li>1.0, 3.0</li>      <!-- Terminal vasodilatory shock -->
+                  </points>
+                </severityCurve>
+              </li>
+            </severityModifiers>
+          </li>
+        </modifiedHediffs>
       </li>
     </modExtensions>
     <comps>
@@ -38,8 +45,8 @@
             <tickInterval>2000</tickInterval>
             <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_DisallowDeathResting"></li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_MeanTimeBetween_SimpleCurve">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
                 <mttfDaysBySeverity>
                   <points>
                     <li>0, 100</li>
@@ -49,7 +56,7 @@
                   </points>
                 </mttfDaysBySeverity>
               </li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_SimpleCurve">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_LinkedHediff_SimpleCurve">
                 <hediffDef>AlcoholHigh</hediffDef>
                 <severityCurve>
                   <!-- map alcohol presence/severity to chance factor for cardiac arrest to simulate cross-interactions of other CNS depressants -->
@@ -75,6 +82,18 @@
             <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
               <target>Heart</target>
             </targetEvaluator>
+          </li>
+          <!-- ref: https://pmc.ncbi.nlm.nih.gov/articles/PMC5543001/ -->
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+            <tickInterval>2000</tickInterval>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>Vasodilation</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
           </li>
         </handlers>
       </li>

@@ -1,10 +1,10 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.AdrenalineRush;
 
-internal class AdrenalineWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+internal sealed class AdrenalineWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableAdrenaline && !Target.IsShambler;
 
@@ -28,5 +28,10 @@ internal class AdrenalineWorker(MoreInjuryComp parent) : InjuryWorker(parent), I
             float severity = Rand.Range(0, upperbound);
             adrenalineRush.Severity += severity;
         }
+    }
+
+    public sealed class Factory : IInjuryWorkerFactory
+    {
+        public InjuryWorker Create(MoreInjuryComp parent) => new AdrenalineWorker(parent);
     }
 }

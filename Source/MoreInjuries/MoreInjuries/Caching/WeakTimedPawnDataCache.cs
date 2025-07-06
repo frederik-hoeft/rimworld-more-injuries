@@ -11,14 +11,14 @@ public sealed class WeakTimedPawnDataCache<TData>(int minCacheRefreshIntervalTic
 
     public int MinCacheRefreshIntervalTicks => minCacheRefreshIntervalTicks;
 
-    public TData GetData(Pawn pawn)
+    public TData GetData(Pawn pawn, bool forceRefresh = false)
     {
+        Throw.ArgumentNullException.IfNull(pawn);
         lock (_lock)
         {
-            Throw.ArgumentNullException.IfNull(pawn);
             if (_cache.TryGetValue(pawn, out WeakTimedPawnDataCacheEntry<TData>? entry))
             {
-                if (!IsExpired(entry))
+                if (!forceRefresh && !IsExpired(entry))
                 {
                     // if the entry is not expired, return the cached data
                     return entry.Data!;

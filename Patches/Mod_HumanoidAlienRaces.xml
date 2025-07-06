@@ -15,7 +15,9 @@
             <match Class="PatchOperationAdd">
               <xpath>/Defs/AlienRace.ThingDef_AlienRace[alienRace/compatibility[isFlesh="true"]]/comps</xpath>
               <value>
-                <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProps" />
+                <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProperties">
+                  <workerFactoryDef>InjuryWorkerDef</workerFactoryDef>
+                </li>
               </value>
             </match>
             <!-- otherwise, create <comps> -->
@@ -23,7 +25,9 @@
               <xpath>/Defs/AlienRace.ThingDef_AlienRace[alienRace/compatibility[isFlesh="true"]]</xpath>
               <value>
                 <comps>
-                  <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProps" />
+                  <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProperties">
+                    <workerFactoryDef>InjuryWorkerDef</workerFactoryDef>
+                  </li>
                 </comps>
               </value>
             </nomatch>
@@ -39,7 +43,9 @@
             <match Class="PatchOperationAdd">
               <xpath>/Defs/AlienRace.ThingDef_AlienRace[not(alienRace/compatibility)]/comps</xpath>
               <value>
-                <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProps" />
+                <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProperties">
+                  <workerFactoryDef>InjuryWorkerDef</workerFactoryDef>
+                </li>
               </value>
             </match>
             <!-- Otherwise, create comps -->
@@ -47,7 +53,9 @@
               <xpath>/Defs/AlienRace.ThingDef_AlienRace[not(alienRace/compatibility)]</xpath>
               <value>
                 <comps>
-                  <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProps" />
+                  <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProperties">
+                    <workerFactoryDef>InjuryWorkerDef</workerFactoryDef>
+                  </li>
                 </comps>
               </value>
             </nomatch>

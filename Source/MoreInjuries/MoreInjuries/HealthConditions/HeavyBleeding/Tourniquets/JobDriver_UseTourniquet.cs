@@ -1,7 +1,7 @@
 ﻿using MoreInjuries.AI;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.Secondary;
-using MoreInjuries.KnownDefs;
 using Verse;
 using Verse.AI;
 
