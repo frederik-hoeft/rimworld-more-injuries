@@ -13,7 +13,7 @@ public class HediffModifier_SimpleCurve : HediffModifier_MeanTimeBetween
     {
         if (severityCurve is null)
         {
-            Logger.ConfigError($"{nameof(HediffModifier_MeanTimeBetween_SimpleCurve)} is not properly initialized. Current MTTF curve is null. Cannot evaluate chance.");
+            Logger.ConfigError($"{nameof(HediffModifier_SimpleCurve)} is not properly initialized. Current MTTF curve is null. Cannot evaluate chance.");
             return 1f;
         }
         return severityCurve.Evaluate(hediff.Severity);
