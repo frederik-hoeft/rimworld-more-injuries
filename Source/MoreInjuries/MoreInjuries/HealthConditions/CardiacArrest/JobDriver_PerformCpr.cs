@@ -1,5 +1,5 @@
-﻿using MoreInjuries.AI;
-using MoreInjuries.AI.Audio;
+﻿using MoreInjuries.AI.Audio;
+using MoreInjuries.AI.Jobs;
 using MoreInjuries.AI.TreatmentModifiers;
 using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
@@ -26,7 +26,7 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
 
     protected override int BaseTendDuration => 360;
 
-    protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
+    protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
         Hediff? choking = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.ChokingOnBlood);
         if (choking is not null)
@@ -70,6 +70,7 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
                 patient.health.RemoveHediff(cardiacArrest);
             }
         }
+        return true;
     }
 
     private static float DiffusedSigmoid(float x) => (1f / (1f + Mathf.Exp(-10f * (x - 0.5f)))) + Rand.Range(-0.1f, 0.1f);

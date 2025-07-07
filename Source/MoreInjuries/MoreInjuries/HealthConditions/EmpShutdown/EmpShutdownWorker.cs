@@ -29,9 +29,4 @@ internal sealed class EmpShutdownWorker(MoreInjuryComp parent) : InjuryWorker(pa
             }
         }
     }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new EmpShutdownWorker(parent);
-    }
 }

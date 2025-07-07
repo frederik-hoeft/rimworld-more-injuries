@@ -25,9 +25,4 @@ internal sealed class HydrostaticShockWorker(MoreInjuryComp parent) : InjuryWork
             trauma.Severity += 0.1f;
         }
     }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new HydrostaticShockWorker(parent);
-    }
 }

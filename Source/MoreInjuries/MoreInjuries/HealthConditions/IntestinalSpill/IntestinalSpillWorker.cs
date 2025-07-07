@@ -46,9 +46,4 @@ internal sealed class IntestinalSpillWorker(MoreInjuryComp parent) : InjuryWorke
             }
         }
     }
-
-    internal sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new IntestinalSpillWorker(parent);
-    }
 }

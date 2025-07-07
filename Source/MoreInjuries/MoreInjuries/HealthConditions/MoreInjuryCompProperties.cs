@@ -1,13 +1,12 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using MoreInjuries.Defs;
+﻿using MoreInjuries.Defs;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions;
 
 // members initialized via XML defs
-[SuppressMessage("Style", "IDE0032:Use auto property", Justification = Justifications.XML_DEF_REQUIRES_FIELD)]
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE0032_USE_AUTO_PROPERTY, Justification = JUSTIFY_IDE0032_XML_DEF_REQUIRES_FIELD)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public class MoreInjuryCompProperties : CompProperties
 {
     private readonly ReferenceableDef workerFactoryDef = default!;

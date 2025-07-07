@@ -1,5 +1,4 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using MoreInjuries.Extensions;
+﻿using MoreInjuries.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
@@ -7,7 +6,7 @@ using Verse;
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
 // members initialized via XML defs
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public class BodyPartHediffTargetEvaluator_Random : BodyPartHediffTargetEvaluator
 {
     // don't rename this field. XML defs depend on this name

@@ -1,11 +1,10 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using Verse;
+﻿using Verse;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
 // members initialized via XML defs
-[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "Members initialized via XML defs")]
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE0032_USE_AUTO_PROPERTY, Justification = "Members initialized via XML defs")]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public class HediffCompProperties_Choking : HediffCompProperties
 {
     // don't rename this field. XML defs depend on this name

@@ -2,7 +2,7 @@
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
-[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "Cannot use auto property for XML defs")]
+[SuppressMessage(CODE_STYLE, STYLE_IDE0032_USE_AUTO_PROPERTY, Justification = "Cannot use auto property for XML defs")]
 public class HediffCompProperties_Shock : HediffCompProperties
 {
     // don't rename this field. XML defs depend on this name

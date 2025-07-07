@@ -29,9 +29,4 @@ internal sealed class AdrenalineWorker(MoreInjuryComp parent) : InjuryWorker(par
             adrenalineRush.Severity += severity;
         }
     }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new AdrenalineWorker(parent);
-    }
 }

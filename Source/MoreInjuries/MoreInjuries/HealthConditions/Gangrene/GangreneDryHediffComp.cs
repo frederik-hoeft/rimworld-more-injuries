@@ -6,7 +6,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Gangrene;
 
-public class GangreneDryHediffComp : HediffComp
+public sealed class GangreneDryHediffComp : HediffComp
 {
     public override void CompPostTick(ref float severityAdjustment)
     {

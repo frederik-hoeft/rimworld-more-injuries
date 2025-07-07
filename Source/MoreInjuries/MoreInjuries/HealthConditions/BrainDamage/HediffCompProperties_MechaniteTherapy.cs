@@ -1,12 +1,11 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using MoreInjuries.HealthConditions.MechaniteTherapy;
+﻿using MoreInjuries.HealthConditions.MechaniteTherapy;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.BrainDamage;
 
 // members initialized via XML defs
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public sealed class HediffCompProperties_MechaniteTherapy : HediffCompProperties
 {
     // do not rename this field. XML defs depend on this name

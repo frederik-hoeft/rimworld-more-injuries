@@ -32,9 +32,4 @@ internal sealed class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(pare
             }
         }
     }
-
-    internal sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new ParalysisWorker(parent);
-    }
 }

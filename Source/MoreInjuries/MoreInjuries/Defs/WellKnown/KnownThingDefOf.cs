@@ -1,11 +1,10 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace MoreInjuries.Defs.WellKnown;
 
 [DefOf]
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_DEF_OF_REQUIRES_FIELD)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_DEF_OF_REQUIRES_FIELD)]
 public static class KnownThingDefOf
 {
     public static ThingDef Bandage = null!;
@@ -19,4 +18,5 @@ public static class KnownThingDefOf
     public static ThingDef Chloroform = null!;
     public static ThingDef Morphine = null!;
     public static ThingDef WholeBloodBag = null!;
+    public static ThingDef SalineBag = null!;
 }

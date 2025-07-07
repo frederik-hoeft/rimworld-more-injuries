@@ -37,9 +37,4 @@ internal sealed class DrugWorker : InjuryWorker, ICompFloatMenuOptionsHandler
             }
         }
     }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new DrugWorker(parent);
-    }
 }

@@ -172,9 +172,4 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
             }
         }
     }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new FractureWorker(parent);
-    }
 }

@@ -1,4 +1,4 @@
-﻿using MoreInjuries.AI;
+﻿using MoreInjuries.AI.Jobs;
 using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.Secondary;
@@ -15,7 +15,7 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
 
     protected override bool RequiresDevice => true;
 
-    protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device) =>
+    protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device) =>
         ApplyDevice(patient, device, _bodyPartKey);
 
     // we don't target a specific hediff
@@ -28,14 +28,14 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
     internal static void ApplyDevice(Pawn patient, Thing? device, BodyPartRecord? bodyPart) =>
         ApplyDevice(patient, device, GetUniqueBodyPartKey(bodyPart));
 
-    private static void ApplyDevice(Pawn patient, Thing? device, string? bodyPartKey)
+    private static bool ApplyDevice(Pawn patient, Thing? device, string? bodyPartKey)
     {
         if (string.IsNullOrEmpty(bodyPartKey)
             || device?.def.GetModExtension<HemostasisModExtension>() is not HemostasisModExtension extension
             || patient.RaceProps.body.AllParts.Find(part => GetUniqueBodyPartKey(part) == bodyPartKey) is not BodyPartRecord targetPart)
         {
             Logger.Warning($"Failed to apply tourniquet because of invalid parameters: {patient}, {device}, {bodyPartKey}");
-            return;
+            return false;
         }
         Hediff appliedTourniquetHediff = HediffMaker.MakeHediff(KnownHediffDefOf.TourniquetApplied, patient, targetPart);
         appliedTourniquetHediff.Severity = 0.01f;
@@ -46,7 +46,7 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
         else
         {
             Logger.Error("Failed to get TourniquetHediffComp from applied tourniquet hediff.");
-            return;
+            return false;
         }
         patient.health.AddHediff(appliedTourniquetHediff);
         comp.ReapplyEffectsToWounds();
@@ -61,6 +61,7 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
             patient.health.AddHediff(chokingHediff);
         }
         device.DecreaseStack();
+        return true;
     }
 
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, BodyPartRecord bodyPart) =>

@@ -1,4 +1,4 @@
-﻿using MoreInjuries.AI;
+﻿using MoreInjuries.AI.Jobs;
 using MoreInjuries.Defs.WellKnown;
 using RimWorld;
 using System.Collections.Generic;

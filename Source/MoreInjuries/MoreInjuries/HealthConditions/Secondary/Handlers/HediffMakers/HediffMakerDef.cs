@@ -1,9 +1,8 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using Verse;
+﻿using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public class HediffMakerDef(HediffDef hediffDef, float? minSeverity, float? maxSeverity, bool? allowDuplicate, bool? allowMultiple)
 {
     // don't rename this field. XML defs depend on this name

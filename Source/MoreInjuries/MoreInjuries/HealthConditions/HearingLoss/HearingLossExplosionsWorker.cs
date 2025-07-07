@@ -32,9 +32,4 @@ internal sealed class HearingLossExplosionsWorker(MoreInjuryComp parent) : Injur
             }
         }
     }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new HearingLossExplosionsWorker(parent);
-    }
 }

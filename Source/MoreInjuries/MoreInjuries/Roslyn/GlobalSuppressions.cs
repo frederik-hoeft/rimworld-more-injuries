@@ -3,5 +3,5 @@
 // Project-level suppressions either have no target or are given
 // a specific target and scoped to a namespace, type, member, etc.
 
-[assembly: SuppressMessage("Style", "IDE0130:Namespace does not match folder structure", Justification = "Shim for newer C# features", Scope = "namespace", Target = "~N:System.Diagnostics.CodeAnalysis")]
-[assembly: SuppressMessage("Style", "IDE0130:Namespace does not match folder structure", Justification = "Shim for newer C# features", Scope = "namespace", Target = "~N:System.Runtime.CompilerServices")]
+[assembly: SuppressMessage(CODE_STYLE, "IDE0130:Namespace does not match folder structure", Justification = "Shim for newer C# features", Scope = "namespace", Target = "~N:System.Diagnostics.CodeAnalysis")]
+[assembly: SuppressMessage(CODE_STYLE, "IDE0130:Namespace does not match folder structure", Justification = "Shim for newer C# features", Scope = "namespace", Target = "~N:System.Runtime.CompilerServices")]

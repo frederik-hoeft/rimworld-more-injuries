@@ -130,18 +130,36 @@
         </handlers>
       </li>
     </comps>
-    <!-- TODO: per-stage effects -->
     <stages>
       <li>
         <label>minor</label>
+        <capMods>
+          <li>
+            <!-- light-headedness -->
+            <capacity>Consciousness</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
       </li>
       <li>
         <label>moderate</label>
         <minSeverity>0.2</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.25</offset>
+          </li>
+        </capMods>
       </li>
       <li>
         <label>severe</label>
         <minSeverity>0.4</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.5</setMax>
+          </li>
+        </capMods>
       </li>
       <li>
         <label>extreme</label>

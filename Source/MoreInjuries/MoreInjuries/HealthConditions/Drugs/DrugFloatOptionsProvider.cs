@@ -1,4 +1,4 @@
-﻿using MoreInjuries.AI;
+﻿using MoreInjuries.AI.Jobs;
 using MoreInjuries.Localization;
 using MoreInjuries.Things;
 using Verse;

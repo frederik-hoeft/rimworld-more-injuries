@@ -5,23 +5,23 @@
     <modExtensions>
       <li Class="MoreInjuries.HealthConditions.WorkerFactoryProps_ModExtension">
         <workerFactories>
-          <li Class="MoreInjuries.HealthConditions.Paralysis.ParalysisWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.IntestinalSpill.IntestinalSpillWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.CardiacArrest.CardiacArrestWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.HeadInjury.HeadInjuryWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.AdrenalineRush.AdrenalineRushWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.HydrostaticShock.HydrostaticShockWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.Fractures.FractureWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.LungCollapse.LungCollapseWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.InhalationInjury.InhalationInjuryWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.SpallingInjury.SpallingInjuryWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.Choking.ChokingWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.EmpShutdown.EmpShutdownWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.HearingLoss.HearingLossExplosionsWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.HeadInjury.Concussions.ConcussionExplosionsWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HeavyBleedingWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.ProvideFirstAidWorker.Factory" />
-          <li Class="MoreInjuries.HealthConditions.Drugs.DrugWorker.Factory" />
+          <li Class="MoreInjuries.HealthConditions.Paralysis.ParalysisWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.IntestinalSpill.IntestinalSpillWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.CardiacArrest.CardiacArrestWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HeadInjury.HeadInjuryWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.AdrenalineRush.AdrenalineWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HydrostaticShock.HydrostaticShockWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.Fractures.FractureWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.LungCollapse.LungCollapseWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.InhalationInjury.InhalationInjuryWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.SpallingInjury.SpallingInjuryWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.Choking.ChokingWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.EmpShutdown.EmpShutdownWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HearingLoss.HearingLossExplosionsWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HeadInjury.Concussions.ConcussionExplosionsWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HeavyBleedingWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.ProvideFirstAidWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.Drugs.DrugWorkerFactory" />
         </workerFactories>
       </li>
     </modExtensions>

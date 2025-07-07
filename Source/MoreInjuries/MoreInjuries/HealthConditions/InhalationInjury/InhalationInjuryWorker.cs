@@ -39,9 +39,4 @@ internal sealed class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWork
             }
         }
     }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new InhalationInjuryWorker(parent);
-    }
 }

@@ -17,5 +17,6 @@ public enum UITreatmentOption
     UseChloroform,
     UseMorphine,
     UseBloodBag,
+    UseSalineBag,
     HarvestBlood
 }

@@ -6,7 +6,7 @@
     <reportString>Managing airways of TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -18,7 +18,7 @@
     <reportString>Performing CPR on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -26,7 +26,7 @@
 
   <JobDef>
     <defName>ProvideFirstAid</defName>
-    <driverClass>MoreInjuries.AI.JobDriver_ProvideFirstAid</driverClass>
+    <driverClass>MoreInjuries.AI.Jobs.JobDriver_ProvideFirstAid</driverClass>
     <reportString>Evaluating treatment options for TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
@@ -37,7 +37,7 @@
     <reportString>Using a defibrillator on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -49,7 +49,7 @@
     <reportString>Injecting epinephrine into TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -61,7 +61,7 @@
     <reportString>Injecting morphine into TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -73,7 +73,7 @@
     <reportString>Sedating TargetA with ketamine.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -85,7 +85,7 @@
     <reportString>Sedating TargetA with chloroform.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>false</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -97,7 +97,7 @@
     <reportString>Splinting a fracture on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -109,7 +109,7 @@
     <reportString>Applying a tourniquet on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -121,7 +121,7 @@
     <reportString>Removing a tourniquet from TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -140,7 +140,7 @@
     <reportString>Using a hemostatic agent on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -152,7 +152,7 @@
     <reportString>Bandaging a wound on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -164,7 +164,19 @@
     <reportString>Performing a blood transfusion on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>UseSalineBag</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.JobDriver_UseSalineBag</driverClass>
+    <reportString>Performing a saline infusion on TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
@@ -176,7 +188,7 @@
     <reportString>Executing TargetA through blood extraction.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
-      <li Class="MoreInjuries.AI.MedicalDeviceJobProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
         <shouldEverBeTreatedFacingUp>false</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>

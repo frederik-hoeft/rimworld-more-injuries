@@ -4,7 +4,7 @@
     <defName>WholeBloodBag</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>blood bag</label>
-    <description>A bag of whole blood from a standard blood donation, ready for transfusion. It is used in the treatment of massive bleeding and allows quick restoration of blood volume to combat the effects of hypovolemic shock. Must be stored in a refrigerator or freezer.\n\nBlood can be drawn from a healthy colonist or prisoner and stored in a blood bag for later use.</description>
+    <description>A 750ml bag of whole blood from a blood donation, ready for transfusion. It is used in the treatment of massive bleeding and allows quick restoration of blood volume to combat the effects of hypovolemic shock. Must be stored in a refrigerator or freezer.\n\nBlood can be drawn from a healthy colonist or prisoner and stored in a blood bag for later use.</description>
     <graphicData>
       <texPath>Thing/BloodBag</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>
@@ -21,6 +21,143 @@
         <rotDestroys>true</rotDestroys>
       </li>
     </comps>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.TransfusionProperties_ModExtension">
+        <bloodLossSeverityReduction>0.35</bloodLossSeverityReduction>
+      </li>
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_HasHediff">
+              <hediffDef>BloodLoss</hediffDef>
+            </condition>
+            <goodwillChange>5</goodwillChange>
+            <historyEventDef>TransfusedBloodMember</historyEventDef>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_Dynamic">
+            <hediffDef>Hemodilution</hediffDef>
+            <evaluator Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_DynamicRuntime_ProcedureCall">
+              <procedureDef>ProcDef_CalculateHemodilutionDelta</procedureDef>
+              <parameters>
+                <li>
+                  <symbol>dilution_factor</symbol>
+                  <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
+                    <value>-1</value>
+                  </value>
+                </li>
+                <li>
+                  <symbol>added_volume</symbol>
+                  <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
+                    <value>0.35</value>
+                  </value>
+                </li>
+              </parameters>
+            </evaluator>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
+            <hediffDef>BloodLoss</hediffDef>
+            <severityOffset>-0.35</severityOffset>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <statBases>
+      <Mass>0.5</Mass>
+      <MarketValue>50</MarketValue>
+      <MaxHitPoints>32</MaxHitPoints>
+    </statBases>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
+  </ThingDef>
+
+  <ThingDef ParentName="MedicalDeviceBase">
+    <defName>SalineBag</defName>
+    <thingClass>ThingWithComps</thingClass>
+    <label>saline IV bag</label>
+    <description>A 250ml bag of 0.9% sodium chloride solution, commonly known as normal saline. This sterile, isotonic fluid is used for intravenous resuscitation to quickly restore circulating volume during hypovolemic shock. While it helps stabilize blood pressure and prevent dehydration, it contains no red blood cells and cannot replace lost oxygen-carrying capacity or clotting factors.\n\nExcessive use may cause hemodilution or coagulopathy, so it should only be used in small amounts or in conjunction with whole blood or other blood products.</description>
+    <graphicData>
+      <texPath>Thing/SalineBag</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <stackLimit>25</stackLimit>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <tradeNeverStack>false</tradeNeverStack>
+    <useHitPoints>true</useHitPoints>
+    <tickerType>Rare</tickerType>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.TransfusionProperties_ModExtension">
+        <bloodLossSeverityReduction>0.15</bloodLossSeverityReduction>
+      </li>
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
+        <outcomeDoers>
+          <!-- +5 faction relation if there is blood loss and we're in the safe threshold -->
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Logic.OutcomeDoerCondition_And">
+              <conditions>
+                <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_HasHediff">
+                  <hediffDef>BloodLoss</hediffDef>
+                </li>
+                <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.OutcomeDoerCondition_Compare">
+                  <comparisonOperator Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Comparison.ComparisonOperator_LessThan" />
+                  <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_HediffSeverity">
+                    <hediffDef>Hemodilution</hediffDef>
+                  </left>
+                  <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
+                    <!-- 0.05 + 0.15 (from transfusion) < 0.4 (safety threshold) -->
+                    <value>0.25</value>
+                  </right>
+                </li>
+              </conditions>
+            </condition>
+            <goodwillChange>5</goodwillChange>
+            <historyEventDef>TransfusedBloodMember</historyEventDef>
+          </li>
+          <!-- -10 faction relation we're not below safe threshold -->
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.OutcomeDoerCondition_Compare">
+              <comparisonOperator Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Comparison.ComparisonOperator_Not">
+                <inner Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Comparison.ComparisonOperator_LessThan" />
+              </comparisonOperator>
+              <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_HediffSeverity">
+                <hediffDef>Hemodilution</hediffDef>
+              </left>
+              <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
+                <!-- 0.05 + 0.15 (from transfusion) >= 0.4 (safety threshold) -->
+                <value>0.25</value>
+              </right>
+            </condition>
+            <goodwillChange>-10</goodwillChange>
+            <historyEventDef>DangerousProcedureOnMember</historyEventDef>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_Dynamic">
+            <hediffDef>Hemodilution</hediffDef>
+            <evaluator Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_DynamicRuntime_ProcedureCall">
+              <procedureDef>ProcDef_CalculateHemodilutionDelta</procedureDef>
+              <parameters>
+                <li>
+                  <symbol>dilution_factor</symbol>
+                  <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
+                    <value>1</value>
+                  </value>
+                </li>
+                <li>
+                  <symbol>added_volume</symbol>
+                  <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
+                    <value>0.15</value>
+                  </value>
+                </li>
+              </parameters>
+            </evaluator>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
+            <hediffDef>BloodLoss</hediffDef>
+            <severityOffset>-0.15</severityOffset>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
     <statBases>
       <Mass>0.5</Mass>
       <MarketValue>50</MarketValue>

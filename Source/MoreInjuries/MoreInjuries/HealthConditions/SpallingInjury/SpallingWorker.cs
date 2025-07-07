@@ -94,9 +94,4 @@ internal sealed class SpallingInjuryWorker(MoreInjuryComp parent) : InjuryWorker
             }
         }
     }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new SpallingInjuryWorker(parent);
-    }
 }

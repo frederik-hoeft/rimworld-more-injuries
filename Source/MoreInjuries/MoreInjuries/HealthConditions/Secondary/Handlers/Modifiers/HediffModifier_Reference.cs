@@ -1,11 +1,10 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using MoreInjuries.Defs;
+﻿using MoreInjuries.Defs;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
 // members initialized via XML defs
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public class HediffModifier_Reference : SecondaryHediffModifier
 {
     // don't rename this field. XML defs depend on this name

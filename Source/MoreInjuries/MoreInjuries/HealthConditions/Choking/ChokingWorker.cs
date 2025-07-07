@@ -82,9 +82,4 @@ internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent
             }
         }
     }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new ChokingWorker(parent);
-    }
 }

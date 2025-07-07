@@ -4,7 +4,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.CardiacArrest;
 
-public class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(parent), ICompFloatMenuOptionsHandler
+public sealed class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(parent), ICompFloatMenuOptionsHandler
 {
     public override bool IsEnabled => true; // because we allow the base-game HeartAttack to be treated
 
@@ -52,10 +52,5 @@ public class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(parent), 
                 builder.Options.Add(new FloatMenuOption(JobDriver_UseDefibrillator.JOB_LABEL_KEY.Translate(), JobDriver_UseDefibrillator.GetDispatcher(selectedPawn, patient, defibrillator).StartJob));
             }
         }
-    }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new CardiacArrestWorker(parent);
     }
 }

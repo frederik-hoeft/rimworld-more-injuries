@@ -18,7 +18,8 @@ internal sealed class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsH
             new HemostaticAgentFloatOptionProvider(this),
             new TourniquetFloatOptionProvider(this),
             new UseBloodBagFloatOptionProvider(this),
-            new HarvestBloodFloatOptionProvider(this)
+            new UseSalineBagFloatOptionProvider(this),
+            new HarvestBloodFloatOptionProvider(this),
         ];
     }
 
@@ -41,10 +42,5 @@ internal sealed class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsH
                 gizmoHandler.AddGizmosExtra(builder, selectedPawn);
             }
         }
-    }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new HeavyBleedingWorker(parent);
     }
 }

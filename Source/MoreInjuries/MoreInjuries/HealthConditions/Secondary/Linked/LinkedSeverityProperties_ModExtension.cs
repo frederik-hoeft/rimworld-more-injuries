@@ -1,11 +1,10 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Linked;
 
 // members initialized via XML defs
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public sealed class LinkedSeverityProperties_ModExtension : DefModExtension
 {
     // don't rename this field. XML defs depend on this name

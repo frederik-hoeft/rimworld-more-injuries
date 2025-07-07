@@ -1,4 +1,4 @@
-﻿using MoreInjuries.AI;
+﻿using MoreInjuries.AI.Jobs;
 using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Choking;
@@ -9,6 +9,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions;
 
+// TODO: update logic to consider treating hemodilution
 internal sealed class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent), ICompFloatMenuOptionsHandler
 {
     public override bool IsEnabled => true;
@@ -54,10 +55,5 @@ internal sealed class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorke
                 builder.Options.Add(new FloatMenuOption("MI_ProvideFirstAid".Translate(), JobDriver_ProvideFirstAid.GetDispatcher(selectedPawn, patient).StartJob));
             }
         }
-    }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new ProvideFirstAidWorker(parent);
     }
 }

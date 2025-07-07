@@ -1,10 +1,9 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using RimWorld;
+﻿using RimWorld;
 
 namespace MoreInjuries.Defs.WellKnown;
 
 [DefOf]
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_DEF_OF_REQUIRES_FIELD)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_DEF_OF_REQUIRES_FIELD)]
 public static class KnownTraitDefOf
 {
     public static TraitDef SlowLearner = null!;

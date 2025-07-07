@@ -8,7 +8,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HeadInjury;
 
-public class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+public sealed class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     private readonly HeadInjuryGiver[] _headInjuryGivers =
     [
@@ -91,10 +91,5 @@ public class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
                 giver.TryGiveInjury(patient, equivalentHeadTrauma);
             }
         }
-    }
-
-    public sealed class Factory : IInjuryWorkerFactory
-    {
-        public InjuryWorker Create(MoreInjuryComp parent) => new HeadInjuryWorker(parent);
     }
 }

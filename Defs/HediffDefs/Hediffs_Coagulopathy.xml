@@ -51,7 +51,7 @@
               <hediffMakerDef>
                 <hediffDef>SpontaneousBleeding</hediffDef>
                 <minSeverity>0.1</minSeverity>
-                <minSeverity>1</minSeverity>
+                <maxSeverity>1</maxSeverity>
                 <allowMultiple>true</allowMultiple>
                 <allowDuplicate>false</allowDuplicate>
               </hediffMakerDef>

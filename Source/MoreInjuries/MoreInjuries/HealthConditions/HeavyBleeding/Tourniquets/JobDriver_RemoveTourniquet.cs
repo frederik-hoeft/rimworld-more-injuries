@@ -1,4 +1,4 @@
-﻿using MoreInjuries.AI;
+﻿using MoreInjuries.AI.Jobs;
 using MoreInjuries.Defs.WellKnown;
 using Verse;
 using Verse.AI;
@@ -15,17 +15,17 @@ public class JobDriver_RemoveTourniquet : JobDriver_TourniquetBase
 
     protected override bool IsTreatable(Hediff hediff) => hediff.def == KnownHediffDefOf.TourniquetApplied && GetUniqueBodyPartKey(hediff.Part) == _bodyPartKey;
 
-    protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device) =>
+    protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device) =>
         ApplyDevice(patient, _bodyPartKey);
 
     internal static void ApplyDevice(Pawn patient, BodyPartRecord? bodyPart) =>
         ApplyDevice(patient, GetUniqueBodyPartKey(bodyPart));
 
-    private static void ApplyDevice(Pawn patient, string? bodyPartKey)
+    private static bool ApplyDevice(Pawn patient, string? bodyPartKey)
     {
         if (string.IsNullOrEmpty(bodyPartKey))
         {
-            return;
+            return false;
         }
         Hediff? tourniquet = patient.health.hediffSet.hediffs.Find(hediff => hediff.def == KnownHediffDefOf.TourniquetApplied && GetUniqueBodyPartKey(hediff.Part) == bodyPartKey);
         if (tourniquet is not null)
@@ -42,7 +42,9 @@ public class JobDriver_RemoveTourniquet : JobDriver_TourniquetBase
             // spawn a tourniquet item on the ground
             Thing tourniquetThing = ThingMaker.MakeThing(KnownThingDefOf.Tourniquet);
             GenPlace.TryPlaceThing(tourniquetThing, patient.Position, patient.Map, ThingPlaceMode.Near);
+            return true;
         }
+        return false;
     }
 
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, BodyPartRecord bodyPart) =>
