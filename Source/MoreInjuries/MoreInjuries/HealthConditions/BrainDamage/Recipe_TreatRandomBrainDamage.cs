@@ -30,7 +30,7 @@ public class Recipe_TreatRandomBrainDamage : Recipe_Surgery
             Logger.Warning($"{nameof(Recipe_TreatRandomBrainDamage)} was called with a null {nameof(billDoer)}");
             return;
         }
-        if (GetTreatmentOptions(pawn) is not { TreatmentPossible: true, ModExtension: var modExtension })
+        if (GetTreatmentOptions(pawn) is not { TreatmentPossible: true, ModExtension: { } modExtension })
         {
             Logger.Warning($"{nameof(Recipe_TreatRandomBrainDamage)} could not start treatment on {pawn.LabelShort} because no brain damage hediffs are present or treatment is already in progress.");
             return;

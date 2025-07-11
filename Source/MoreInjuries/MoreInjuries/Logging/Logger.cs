@@ -21,10 +21,7 @@ internal static class Logger
     }
 
     [Conditional("DEBUG")]
-    public static void LogDebug(string message)
-    {
-        Log(message);
-    }
+    public static void LogDebug(string message) => Log(message);
 
     public static void Error(string message) =>
         Verse.Log.Error($"[{nameof(MoreInjuries)}] {message}");

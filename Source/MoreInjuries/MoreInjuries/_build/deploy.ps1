@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 # IMPORTANT: change to Release for stable deployments
 $configuration = "Release"
 $project_name = "MoreInjuries"
-$game_version = "1.5"
+$game_version = "1.6"
 $mod_root = (Get-Item -LiteralPath "${PSScriptRoot}/../../../..").FullName
 $project_path = "${PSScriptRoot}/../${project_name}.csproj"
 

@@ -10,7 +10,7 @@ have contributed to this project in one way or another.
 
 Grouped by game version, ordered alphabetically:
 
-1.5:
+1.5+:
 - chief-turkler:    medical equipment textures
 - Keshash:          artistic lead, textures, and new mod thumbnail
 - Th3_Fr3d:         Code, XML, feature design, and complete revamp of the mod
