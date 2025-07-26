@@ -19,8 +19,11 @@ public sealed class FloatOperator_HediffSeverity : FloatOperator
         Hediff? hediff = patient.health.hediffSet.GetFirstHediffOfDef(hediffDef);
         if (hediff is null)
         {
+            Logger.LogDebug($"No hediff of def {hediffDef.defName} found on {patient}. Returning 0 severity.");
             return 0f;
         }
         return hediff.Severity;
     }
+
+    public override string ToString() => $"hediff_severity({hediffDef?.defName})";
 }

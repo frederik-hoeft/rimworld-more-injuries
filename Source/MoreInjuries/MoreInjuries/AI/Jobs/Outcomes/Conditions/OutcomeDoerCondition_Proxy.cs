@@ -1,6 +1,6 @@
 ﻿namespace MoreInjuries.AI.Jobs.Outcomes.Conditions;
 
-[SuppressMessage(CODE_STYLE, "IDE0032:Use auto property", Justification = JUSTIFY_IDE0032_XML_DEF_REQUIRES_FIELD)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE0032_USE_AUTO_PROPERTY, Justification = JUSTIFY_IDE0032_XML_DEF_REQUIRES_FIELD)]
 [SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public abstract class OutcomeDoerCondition_Proxy : OutcomeDoerCondition 
 {

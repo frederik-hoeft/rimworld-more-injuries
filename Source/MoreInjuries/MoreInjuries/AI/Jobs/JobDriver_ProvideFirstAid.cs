@@ -136,7 +136,8 @@ public class JobDriver_ProvideFirstAid : JobDriver
             return StartJobAndScheduleScan(doctor, patient, job);
         }
         // is an immedite blood transfusion required?
-        if (MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, static hediff => JobDriver_TransfusionBase.JobCanTreat(hediff, bloodLossThreshold: 0.65f), fromInventoryOnly: true) is Thing bloodBag)
+        // TODO: support saline bags as well
+        if (MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, static hediff => JobDriver_UseBloodBag.JobCanTreat(hediff, BloodLossConstants.BLOOD_LOSS_THRESHOLD), fromInventoryOnly: true) is Thing bloodBag)
         {
             job = JobDriver_UseBloodBag.GetDispatcher(doctor, patient, bloodBag, fromInventoryOnly: true, fullyHeal: false).CreateJob();
             return StartJobAndScheduleScan(doctor, patient, job);

@@ -5,12 +5,18 @@ namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic;
 
 // memebers initialized via XML defs
 [SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class FloatOperator_Assign : FloatOperator
+public sealed class FloatOperator_Assign() : FloatOperator
 {
     // don't rename this field. XML defs depend on this name
     private readonly string? symbol = default;
     // don't rename this field. XML defs depend on this name
     private readonly FloatOperator? value = default;
+
+    internal FloatOperator_Assign(string symbol, FloatOperator value) : this()
+    {
+        this.symbol = symbol;
+        this.value = value;
+    }
 
     public override float Evaluate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState)
     {
@@ -21,4 +27,6 @@ public sealed class FloatOperator_Assign : FloatOperator
         runtimeState.Assign(symbol, evaluatedValue);
         return evaluatedValue;
     }
+
+    public override string ToString() => $"({symbol} = {value})";
 }

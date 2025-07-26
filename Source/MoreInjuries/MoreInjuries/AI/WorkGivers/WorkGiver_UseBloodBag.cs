@@ -9,14 +9,13 @@ using static MoreInjuries.HealthConditions.HeavyBleeding.BloodLossConstants;
 
 namespace MoreInjuries.AI.WorkGivers;
 
-// TODO: update logic to consider treating hemodilution
 public class WorkGiver_UseBloodBag : WorkGiver_MoreInjuriesTreatmentBase
 {
     protected override bool CanTreat(Hediff hediff) =>
-        JobDriver_TransfusionBase.JobCanTreat(hediff, BLOOD_LOSS_THRESHOLD);
+        JobDriver_UseBloodBag.JobCanTreat(hediff, BLOOD_LOSS_THRESHOLD);
 
     private Thing? TryFindBloodBag(Pawn doctor, Pawn patient) => 
-        MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, static hediff => JobDriver_TransfusionBase.JobCanTreat(hediff, BLOOD_LOSS_THRESHOLD));
+        MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, static hediff => JobDriver_UseBloodBag.JobCanTreat(hediff, BLOOD_LOSS_THRESHOLD));
 
     protected override bool IsValidPatient(Pawn doctor, Thing thing, out Pawn patient) => base.IsValidPatient(doctor, thing, out patient) 
         && patient.playerSettings?.medCare is not MedicalCareCategory.NoCare and not MedicalCareCategory.NoMeds;

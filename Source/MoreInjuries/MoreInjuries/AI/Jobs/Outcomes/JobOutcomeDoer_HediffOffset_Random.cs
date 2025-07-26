@@ -9,4 +9,6 @@ public sealed class JobOutcomeDoer_HediffOffset_Random : JobOutcomeDoer_HediffOf
     private readonly FloatRange severityOffsetRange = default!;
 
     protected override float GetSeverityOffset(Pawn doctor, Pawn patient, Thing? device) => severityOffsetRange.RandomInRange;
+
+    public override string ToString() => $"{base.ToString()} with random severity offset range {severityOffsetRange}";
 }

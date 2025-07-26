@@ -25,4 +25,6 @@ public sealed class OutcomeDoerCondition_Compare : OutcomeDoerCondition
         float rightValue = right.Evaluate(doctor, patient, device, runtimeState);
         return comparisonOperator.Compare(leftValue, rightValue);
     }
+
+    public override string ToString() => $"({left} {comparisonOperator} {right})";
 }

@@ -79,7 +79,7 @@ public class HediffComp_Shock : HediffComp
         // adrenaline increases blood pressure, which can offset the severity of the shock a bit,
         // at max 1.5x the normal recovery rate or 1/1.5 = 0.67x the normal increase rate
         float adrenalineBloodPressureOffset = Mathf.Clamp01((adrenaline?.Severity ?? 0f) / 2f) + 1f;
-        if (bloodLoss?.Severity is null or < BLOOD_LOSS_THRESHOLD || FixedNow)
+        if (bloodLoss is not { Severity: > BLOOD_LOSS_THRESHOLD } || FixedNow)
         {
             // the patient is stable, start recovery
             parent.Severity -= 0.00375f * adrenalineBloodPressureOffset;

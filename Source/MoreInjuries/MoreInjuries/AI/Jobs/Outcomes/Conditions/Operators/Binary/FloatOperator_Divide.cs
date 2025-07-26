@@ -5,6 +5,8 @@ namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary;
 
 public sealed class FloatOperator_Divide : FloatOperator_Binary
 {
+    protected override string OperatorSymbol => "/";
+
     public override float Evaluate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState)
     {
         float rightValue = Right.Evaluate(doctor, patient, device, runtimeState);

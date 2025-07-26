@@ -9,10 +9,8 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
-internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMenuOptionsHandler, ICompGetGizmosExtraHandler
+internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMenuOptionsHandler, ICompGetGizmosExtraHandler
 {
-    private readonly Dictionary<BodyPartRecord, float> _bleedRateByLimbCache = [];
-
     public bool IsEnabled => true;
 
     public void AddGizmosExtra(UIBuilder<Gizmo> builder, Pawn selectedPawn)
@@ -28,7 +26,7 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
             return;
         }
         string? failure = null;
-        if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL_KEY) is MedicalDeviceHelper.DisabledProcedureCause cause)
+        if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL_KEY, ignoreSelfTendSetting: true) is MedicalDeviceHelper.DisabledProcedureCause cause)
         {
             failure = cause.FailureReason;
             if (!cause.IsSoftFailure)
@@ -128,7 +126,6 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                     }
                 }
             }
-            _bleedRateByLimbCache.Clear();
         }
     }
 

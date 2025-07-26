@@ -3,7 +3,7 @@ using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[SuppressMessage(CODE_STYLE, "IDE0032:Use auto property", Justification = JUSTIFY_IDE0032_XML_DEF_REQUIRES_FIELD)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE0032_USE_AUTO_PROPERTY, Justification = JUSTIFY_IDE0032_XML_DEF_REQUIRES_FIELD)]
 [SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public abstract class JobOutcomeDoer
 {
@@ -16,10 +16,13 @@ public abstract class JobOutcomeDoer
     {
         if (Condition is null || Condition.ShouldDoOutcome(doctor, patient, device, runtimeState: null))
         {
+            Logger.LogDebug($"Execute outcome for {doctor} treating {patient} with {device?.LabelCap ?? "no device"}: {this}");
             return DoOutcome(doctor, patient, device);
         }
         return true; // condition not met, outcome not applied => no error
     }
 
     protected abstract bool DoOutcome(Pawn doctor, Pawn patient, Thing? device);
+
+    public abstract override string ToString();
 }

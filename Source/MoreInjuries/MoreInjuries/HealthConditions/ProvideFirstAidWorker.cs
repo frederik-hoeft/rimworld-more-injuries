@@ -9,7 +9,6 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions;
 
-// TODO: update logic to consider treating hemodilution
 internal sealed class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent), ICompFloatMenuOptionsHandler
 {
     public override bool IsEnabled => true;
@@ -29,6 +28,7 @@ internal sealed class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorke
                 return;
             }
             bool canTreat = false;
+            // blood bag usage possible => saling bag usage may be possible as well (no need to check)
             if (JobDriver_UseBloodBag.JobGetMedicalDeviceCountToFullyHeal(patient, fullyHeal: false) > 0)
             {
                 canTreat = true;

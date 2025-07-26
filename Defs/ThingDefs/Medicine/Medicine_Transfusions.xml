@@ -105,8 +105,8 @@
                     <hediffDef>Hemodilution</hediffDef>
                   </left>
                   <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
-                    <!-- 0.05 + 0.15 (from transfusion) < 0.4 (safety threshold) -->
-                    <value>0.25</value>
+                    <!-- 0.05 + 0.15 (from transfusion) < 0.45 (safety threshold) -->
+                    <value>0.3</value>
                   </right>
                 </li>
               </conditions>
@@ -124,8 +124,8 @@
                 <hediffDef>Hemodilution</hediffDef>
               </left>
               <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
-                <!-- 0.05 + 0.15 (from transfusion) >= 0.4 (safety threshold) -->
-                <value>0.25</value>
+                <!-- 0.05 + 0.15 (from transfusion) >= 0.45 (safety threshold) -->
+                <value>0.3</value>
               </right>
             </condition>
             <goodwillChange>-10</goodwillChange>

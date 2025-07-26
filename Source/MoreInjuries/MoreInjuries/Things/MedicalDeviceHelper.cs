@@ -19,13 +19,14 @@ public static class MedicalDeviceHelper
         return doctor.CanReach(patient, pathEndMode, maxDanger);
     }
 
-    public static DisabledProcedureCause? GetCauseForDisabledProcedure(Pawn doctor, Pawn patient, string jobTitleTranslationKey)
+    public static DisabledProcedureCause? GetCauseForDisabledProcedure(Pawn doctor, Pawn patient, string jobTitleTranslationKey, bool ignoreSelfTendSetting = false)
     {
         if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
         {
             return DisabledProcedureCause.Soft(Named.Keys.ProcedureFailed_CareDisabled.Translate(jobTitleTranslationKey.Translate(), patient.Named(Named.Params.PATIENT)));
         }
-        if (doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
+        if (ignoreSelfTendSetting 
+            || doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
         {
             return DisabledProcedureCause.Soft(Named.Keys.ProcedureFailed_SelfTendDisabled.Translate(jobTitleTranslationKey.Translate()));
         }

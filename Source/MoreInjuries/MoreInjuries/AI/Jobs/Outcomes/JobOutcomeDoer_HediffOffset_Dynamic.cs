@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators;
+using System.Text;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
@@ -20,4 +21,6 @@ public sealed class JobOutcomeDoer_HediffOffset_Dynamic : JobOutcomeDoer_HediffO
         // evaluate the expression using the doctor, patient, and device as context
         return evaluator.Evaluate(doctor, patient, device, runtimeState: null);
     }
+
+    public override string ToString() => $"{base.ToString()} with dynamic severity offset evaluator: {evaluator?.ToString() ?? "null"}";
 }

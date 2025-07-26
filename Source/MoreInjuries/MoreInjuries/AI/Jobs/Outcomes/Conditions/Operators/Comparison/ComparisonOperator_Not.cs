@@ -12,4 +12,6 @@ public sealed class ComparisonOperator_Not : ComparisonOperator
         _ = inner ?? throw new InvalidOperationException($"{nameof(ComparisonOperator_Not)} requires an inner operator to function correctly. Please check your XML definition.");
         return !inner.Compare(left, right);
     }
+
+    public override string ToString() => $"not({inner})";
 }

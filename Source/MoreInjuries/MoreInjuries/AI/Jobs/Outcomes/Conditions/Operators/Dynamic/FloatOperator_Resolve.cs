@@ -21,4 +21,6 @@ public sealed class FloatOperator_Resolve : FloatOperator
         }
         throw new KeyNotFoundException($"{nameof(FloatOperator_Resolve)}: Symbol '{symbol}' not found in runtime state");
     }
+
+    public override string ToString() => symbol ?? "null";
 }

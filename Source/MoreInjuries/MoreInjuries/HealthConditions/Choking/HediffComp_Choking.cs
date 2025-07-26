@@ -6,9 +6,9 @@ using Verse.Sound;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
-public class HediffComp_Choking : HediffComp
+public sealed class HediffComp_Choking : HediffComp
 {
-    private Hediff_Injury? _source;
+    private Std::WeakReference<Hediff_Injury>? _source;
 
     public HediffCompProperties_Choking Properties => (HediffCompProperties_Choking)props;
 
@@ -22,8 +22,25 @@ public class HediffComp_Choking : HediffComp
 
     public Hediff_Injury? Source
     {
-        get => _source;
-        set => _source = value;
+        get
+        {
+            if (_source is null || !_source.TryGetTarget(out Hediff_Injury? source))
+            {
+                return null;
+            }
+            return source;
+        }
+        set
+        {
+            if (value is null)
+            {
+                _source = null;
+            }
+            else
+            {
+                _source = new Std::WeakReference<Hediff_Injury>(value);
+            }
+        }
     }
 
     private bool Coughing => 
@@ -34,7 +51,12 @@ public class HediffComp_Choking : HediffComp
         ? "MI_Coughing".Translate()
         : string.Empty;
 
-    public override void CompExposeData() => Scribe_References.Look(ref _source, "source");
+    public override void CompExposeData()
+    {
+        Hediff_Injury? source = Source;
+        Scribe_References.Look(ref source, "source");
+        Source = source;
+    }
 
     public override void CompPostTick(ref float severityAdjustment)
     {
@@ -42,23 +64,25 @@ public class HediffComp_Choking : HediffComp
         {
             return;
         }
-        if (Source is null)
+        Hediff_Injury? source = Source;
+        if (source is null)
         {
-            Logger.Warning("Choking hediff has no source injury! Was this hediff added manually?");
+            Logger.LogDebug($"{nameof(Source)} is null, removing {nameof(HediffComp_Choking)} from {parent.pawn}. Perhaps the source injury was removed?");
+            parent.pawn.health.RemoveHediff(parent);
             return;
         }
         // a random walk with a bias towards increasing severity, increase depends on the bleed rate of the source injury and whether the patient is tended
         float increase = 0.1f;
         float decrease = 0f;
-        if (Source.BleedRate > 0.01f)
+        if (source.BleedRate > 0.01f)
         {
-            increase += Mathf.Clamp(Source.BleedRate / 5f, 0.05f, 0.25f);
+            increase += Mathf.Clamp(source.BleedRate / 5f, 0.05f, 0.25f);
         }
-        else if (Source.IsTended())
+        else if (source.IsTended())
         {
             decrease = 0.075f;
         }
-        else if (Source.BleedRate <= 0.01f)
+        else if (source.BleedRate <= 0.01f)
         {
             decrease = 0.05f;
         }
@@ -72,7 +96,7 @@ public class HediffComp_Choking : HediffComp
             change -= Rand.Range(0.05f, 0.15f);
         }
         float newSeverity = Mathf.Clamp01(parent.Severity + change);
-        if (newSeverity > 0f)
+        if (newSeverity > Mathf.Epsilon)
         {
             parent.Severity = newSeverity;
             if (MoreInjuriesMod.Settings.EnableChokingSounds)

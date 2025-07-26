@@ -20,11 +20,11 @@
   <!-- EN: Permanent damage to nerve cells in the language centers of the brain has resulted in pronounced difficulty with communication. This can manifest as word-finding difficulties, fragmented speech, or even complete muteness. The severity of the aphasia can vary based on the extent of the damage. -->
   <BrainDamage_LanguageAphasia.description>Permanent damage to nerve cells in the language centers of the brain has resulted in pronounced difficulty with communication. This can manifest as word-finding difficulties, fragmented speech, or even complete muteness. The severity of the aphasia can vary based on the extent of the damage.</BrainDamage_LanguageAphasia.description>
   <!-- EN: word-finding difficulty -->
-  <BrainDamage_LanguageAphasia.stages.word_finding_difficulty.label>word-finding difficulty</BrainDamage_LanguageAphasia.stages.word_finding_difficulty.label>
+  <BrainDamage_LanguageAphasia.stages.wordfinding_difficulty.label>word-finding difficulty</BrainDamage_LanguageAphasia.stages.wordfinding_difficulty.label>
   <!-- EN: fragmented speech -->
   <BrainDamage_LanguageAphasia.stages.fragmented_speech.label>fragmented speech</BrainDamage_LanguageAphasia.stages.fragmented_speech.label>
   <!-- EN: non-fluent -->
-  <BrainDamage_LanguageAphasia.stages.non_fluent.label>non-fluent</BrainDamage_LanguageAphasia.stages.non_fluent.label>
+  <BrainDamage_LanguageAphasia.stages.nonfluent.label>non-fluent</BrainDamage_LanguageAphasia.stages.nonfluent.label>
   <!-- EN: barely verbal -->
   <BrainDamage_LanguageAphasia.stages.barely_verbal.label>barely verbal</BrainDamage_LanguageAphasia.stages.barely_verbal.label>
   <!-- EN: completely nonverbal -->

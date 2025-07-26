@@ -1,10 +1,13 @@
 ﻿using MoreInjuries.AI.Jobs;
+using MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic;
 using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.Hemodilution;
+using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 
-// TODO: update logic to only allow saline bags to max sustainable hemodilution
 public sealed class JobDriver_UseSalineBag : JobDriver_TransfusionBase
 {
     public const string JOB_LABEL_KEY = "MI_UseSalineBag";
@@ -16,8 +19,23 @@ public sealed class JobDriver_UseSalineBag : JobDriver_TransfusionBase
     public static int JobGetMedicalDeviceCountToFullyHeal(Pawn patient, bool fullyHeal)
     {
         int requiredTransfusionsForBloodLoss = JobGetMedicalDeviceCountToFullyHealBloodLoss(patient, JobDeviceDef, fullyHeal);
-        // TODO: consider safety margin for hemodilution
-        return requiredTransfusionsForBloodLoss;
+        if (requiredTransfusionsForBloodLoss <= 0)
+        {
+            return 0;
+        }
+        float fluidVolumePerBag = GetFluidVolumePerBag(JobDeviceDef);
+        float hemodilutionSeverity = 0f;
+        if (patient.health.hediffSet.TryGetHediff(KnownHediffDefOf.Hemodilution, out Hediff hemodilution))
+        {
+            hemodilutionSeverity = hemodilution.Severity;
+        }
+        float bloodLossSeverity = 0f;
+        if (patient.health.hediffSet.TryGetHediff(HediffDefOf.BloodLoss, out Hediff bloodLoss))
+        {
+            bloodLossSeverity = bloodLoss.Severity;
+        }
+        int maxSafeTransfusions = HemodilutionEvaluator.CalculateMaximumSafeSalineTransfusions(hemodilutionSeverity, bloodLossSeverity, hemodilutionThreshold: BloodLossConstants.BLOOD_LOSS_THRESHOLD, fluidVolumePerBag);
+        return Mathf.Min(requiredTransfusionsForBloodLoss, maxSafeTransfusions);
     }
 
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly, bool fullyHeal) =>

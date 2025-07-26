@@ -32,4 +32,7 @@ public class JobOutcomeDoer_FactionRelations : JobOutcomeDoer
         }
         return true;
     }
+
+    public override string ToString() => 
+        $"JobOutcomeDoer_FactionRelations(GoodwillChange: {goodwillChange}, HistoryEventDef: {historyEventDef.defName}, IsViolation: {isViolation})";
 }

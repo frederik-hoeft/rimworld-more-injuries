@@ -12,4 +12,6 @@ public sealed class OutcomeDoerCondition_HasHediff : OutcomeDoerCondition
 
     public override bool ShouldDoOutcome(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState) => 
         patient.health?.hediffSet.HasHediff(hediffDef) ?? false;
+
+    public override string ToString() => $"has_hediff({hediffDef.defName})";
 }

@@ -26,7 +26,8 @@ internal static partial class Logger
     }
 
     [Conditional("DEBUG")]
-    public static void LogDebug(string message) => Log(message);
+    public static void LogDebug(string message, [CallerFilePath] string callsite = "", [CallerLineNumber] int lineNo = -1) => 
+        Log($"{FormatCallSite(callsite, lineNo)}{message}");
 
     public static void Error(string message, [CallerFilePath] string callsite = "", [CallerLineNumber] int lineNo = -1) =>
         Verse.Log.Error($"[{nameof(MoreInjuries)}] {FormatCallSite(callsite, lineNo)}{message}");
@@ -60,6 +61,6 @@ internal static partial class Logger
         {
             return $"{callsite}::L{lineNo}: ";
         }
-        return $"{callsite.Substring(fileNameIndex)}::L{lineNo}: ";
+        return $"{callsite[fileNameIndex..]}::L{lineNo}: ";
     }
 }

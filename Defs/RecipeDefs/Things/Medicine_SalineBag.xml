@@ -1,78 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <RecipeDef>
-    <defName>Make_Bandage</defName>
-    <label>make bandage</label>
-    <description>Make a bandage.</description>
-    <jobString>Making a bandage.</jobString>
-    <workAmount>150</workAmount>
+    <defName>Make_SalineBagFive</defName>
+    <label>make saline bags x5</label>
+    <description>Make 5 saline bags by grinding down stone blocks and extracting the natrium chloride required for the saline solution.</description>
+    <jobString>Making 5 saline bags.</jobString>
+    <workAmount>1000</workAmount>
     <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
     <effectWorking>Cook</effectWorking>
-    <soundWorking>Recipe_CookMeal</soundWorking>
+    <soundWorking>Recipe_Drug</soundWorking>
     <allowMixingIngredients>true</allowMixingIngredients>
     <researchPrerequisites>
-      <li>BasicAnatomy</li>
+      <li>EmergencyMedicine</li>
     </researchPrerequisites>
     <ingredients>
       <li>
         <filter>
           <categories>
-            <li>Textiles</li>
-          </categories>
-        </filter>
-        <count>2</count>
-      </li>
-    </ingredients>
-    <products>
-      <Bandage>1</Bandage>
-    </products>
-    <fixedIngredientFilter>
-      <categories>
-        <li>Textiles</li>
-      </categories>
-    </fixedIngredientFilter>
-    <recipeUsers>
-      <li>CraftingSpot</li>
-      <li>ElectricTailoringBench</li>
-      <li>HandTailoringBench</li>
-    </recipeUsers>
-  </RecipeDef>
-
-  <RecipeDef>
-    <defName>Make_BandageFive</defName>
-    <label>make bandages x5</label>
-    <description>Make 5 bandages.</description>
-    <jobString>Making 5 bandages.</jobString>
-    <workAmount>750</workAmount>
-    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
-    <effectWorking>Cook</effectWorking>
-    <soundWorking>Recipe_CookMeal</soundWorking>
-    <allowMixingIngredients>true</allowMixingIngredients>
-    <researchPrerequisites>
-      <li>BasicAnatomy</li>
-    </researchPrerequisites>
-    <ingredients>
-      <li>
-        <filter>
-          <categories>
-            <li>Textiles</li>
+            <li>StoneBlocks</li>
           </categories>
         </filter>
         <count>10</count>
       </li>
     </ingredients>
     <products>
-      <Bandage>5</Bandage>
+      <SalineBag>5</SalineBag>
     </products>
     <fixedIngredientFilter>
       <categories>
-        <li>Textiles</li>
+        <li>StoneBlocks</li>
       </categories>
     </fixedIngredientFilter>
     <recipeUsers>
-      <li>CraftingSpot</li>
-      <li>ElectricTailoringBench</li>
-      <li>HandTailoringBench</li>
+      <li>DrugLab</li>
+    </recipeUsers>
+  </RecipeDef>
+
+  <RecipeDef>
+    <defName>Make_SalineBag</defName>
+    <label>make saline bag</label>
+    <description>Make a saline bag by grinding down stone blocks and extracting the natrium chloride required for the saline solution.</description>
+    <jobString>Making a saline bag.</jobString>
+    <workAmount>200</workAmount>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_Drug</soundWorking>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <researchPrerequisites>
+      <li>EmergencyMedicine</li>
+    </researchPrerequisites>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>StoneBlocks</li>
+          </categories>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <products>
+      <SalineBag>1</SalineBag>
+    </products>
+    <fixedIngredientFilter>
+      <categories>
+        <li>StoneBlocks</li>
+      </categories>
+    </fixedIngredientFilter>
+    <recipeUsers>
+      <li>DrugLab</li>
     </recipeUsers>
   </RecipeDef>
 </Defs>

@@ -9,4 +9,6 @@ public sealed class JobOutcomeDoer_HediffOffset : JobOutcomeDoer_HediffOffsetBas
     private readonly float severityOffset = default;
 
     protected override float GetSeverityOffset(Pawn doctor, Pawn patient, Thing? device) => severityOffset;
+
+    public override string ToString() => $"{base.ToString()} with fixed severity offset {severityOffset}";
 }

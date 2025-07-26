@@ -24,4 +24,6 @@ public sealed class FloatOperator_Ternary : FloatOperator
         }
         return whenFalse.Evaluate(doctor, patient, device, runtimeState);
     }
+
+    public override string ToString() => $"({condition} ? {whenTrue} : {whenFalse})";
 }

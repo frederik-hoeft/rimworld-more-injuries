@@ -26,7 +26,7 @@
     </modExtensions>
     <comps>
       <li Class="MoreInjuries.HealthConditions.Secondary.Linked.HediffCompProperties_LinkedSeverity">
-        <tickInterval>2000</tickInterval>
+        <tickInterval>250</tickInterval>
       </li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy" />
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">

@@ -1,6 +1,5 @@
 ﻿using MoreInjuries.AI.Audio;
 using MoreInjuries.AI.Jobs;
-using MoreInjuries.Extensions;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -18,7 +17,7 @@ public abstract class JobDriver_TransfusionBase : JobDriver_OutcomeDoerBase
 
     protected override int GetMedicalDeviceCountToFullyHeal(Pawn patient) => JobGetMedicalDeviceCountToFullyHealBloodLoss(patient, DeviceDef, _fullyHeal);
 
-    protected static float GetBloodLossHealedPerBag(ThingDef ivFluidDef)
+    protected static float GetFluidVolumePerBag(ThingDef ivFluidDef)
     {
         if (ivFluidDef.GetModExtension<TransfusionProperties_ModExtension>() is { BloodLossSeverityReduction: float bloodLossHealedPerBag })
         {
@@ -31,13 +30,15 @@ public abstract class JobDriver_TransfusionBase : JobDriver_OutcomeDoerBase
     {
         if (patient.health.hediffSet.TryGetHediff(HediffDefOf.BloodLoss, out Hediff bloodLoss))
         {
-            float bloodLossHealedPerBag = GetBloodLossHealedPerBag(ivFluidDef);
-            float requiredTransfusions = bloodLoss.Severity / bloodLossHealedPerBag;
+            float bloodLossHealedPerBag = GetFluidVolumePerBag(ivFluidDef);
+            float requiredTransfusions;
             if (fullyHeal)
             {
+                requiredTransfusions = bloodLoss.Severity / bloodLossHealedPerBag;
                 return Mathf.CeilToInt(requiredTransfusions);
             }
-            return Mathf.FloorToInt(requiredTransfusions);
+            requiredTransfusions = Mathf.Max(0f, bloodLoss.Severity - BloodLossConstants.BLOOD_LOSS_THRESHOLD) / bloodLossHealedPerBag;
+            return Mathf.CeilToInt(requiredTransfusions);
         }
         return 0;
     }
@@ -48,10 +49,10 @@ public abstract class JobDriver_TransfusionBase : JobDriver_OutcomeDoerBase
         {
             return JobCanTreat(hediff, bloodLossThreshold: 0f);
         }
-        return JobCanTreat(hediff, GetBloodLossHealedPerBag(DeviceDef));
+        return JobCanTreat(hediff, GetFluidVolumePerBag(DeviceDef));
     }
 
-    public static bool JobCanTreat(Hediff hediff, float bloodLossThreshold) => hediff.def == HediffDefOf.BloodLoss && hediff.Severity > bloodLossThreshold;
+    protected static bool JobCanTreat(Hediff hediff, float bloodLossThreshold) => hediff.def == HediffDefOf.BloodLoss && hediff.Severity > bloodLossThreshold;
 
     protected override bool RequiresTreatment(Pawn patient) => JobGetMedicalDeviceCountToFullyHealBloodLoss(patient, DeviceDef, _fullyHeal) > 0;
 

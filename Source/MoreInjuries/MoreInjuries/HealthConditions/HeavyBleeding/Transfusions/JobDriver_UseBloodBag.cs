@@ -1,11 +1,12 @@
 ﻿using MoreInjuries.AI.Jobs;
 using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.Hemodilution;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 
-// TODO: update fully-heal logic to consider healing hemodilution
 public sealed class JobDriver_UseBloodBag : JobDriver_TransfusionBase
 {
     public const string JOB_LABEL_KEY = "MI_UseBloodBag";
@@ -16,11 +17,27 @@ public sealed class JobDriver_UseBloodBag : JobDriver_TransfusionBase
 
     protected override ThingDef DeviceDef => JobDeviceDef;
 
+    public static new bool JobCanTreat(Hediff hediff, float bloodLossThreshold) => 
+        JobDriver_TransfusionBase.JobCanTreat(hediff, bloodLossThreshold)
+        || (hediff.def == KnownHediffDefOf.Hemodilution && hediff.Severity > BloodLossConstants.BLOOD_LOSS_THRESHOLD);
+
     public static int JobGetMedicalDeviceCountToFullyHeal(Pawn patient, bool fullyHeal)
     {
         int requiredTransfusionsForBloodLoss = JobGetMedicalDeviceCountToFullyHealBloodLoss(patient, JobDeviceDef, fullyHeal);
-        // TODO: consider hemodilution
-        return requiredTransfusionsForBloodLoss;
+        float bloodBagFluidVolume = GetFluidVolumePerBag(JobDeviceDef);
+        float bloodLossSeverity = 0f;
+        if (patient.health.hediffSet.TryGetHediff(HediffDefOf.BloodLoss, out Hediff bloodLoss))
+        {
+            bloodLossSeverity = bloodLoss.Severity;
+        }
+        int requiredTransfusionsForHemodilution = 0;
+        if (patient.health.hediffSet.TryGetHediff(KnownHediffDefOf.Hemodilution, out Hediff hemodilution))
+        {
+            requiredTransfusionsForHemodilution = fullyHeal
+                ? HemodilutionEvaluator.CalculateMaxNeededBloodTransfusionsToTreatHemodilution(hemodilution.Severity, bloodLossSeverity, bloodBagFluidVolume)
+                : HemodilutionEvaluator.CalculateMinimumRequiredBloodTransfusionsToTreatHemodilution(hemodilution.Severity, bloodLossSeverity, hemodilutionThreshold: BloodLossConstants.BLOOD_LOSS_THRESHOLD, bloodBagFluidVolume);
+        }
+        return Mathf.Max(requiredTransfusionsForBloodLoss, requiredTransfusionsForHemodilution);
     }
 
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly, bool fullyHeal) =>

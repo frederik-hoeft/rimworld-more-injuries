@@ -17,98 +17,126 @@
           current_volume = 1.0f - (blood_loss = (LOOKUP(BloodLoss.Severity, default=0) * 0.5f))
           overflow_volume = added_volume - (replaced_volume = min(added_volume, blood_loss))
 
-          // dilution increases from saline infusion
-          return (((current_dilution * current_volume) / (current_volume + replaced_volume)) + (overflow_volume * dilution_factor)) - current_dilution
+          // Only saline (dilution_factor = +1) contributes to dilution in the replaced_volume
+          dilution_contribution = max(0, dilution_factor) * replaced_volume
+          new_dilution = ((current_dilution * current_volume) + dilution_contribution) / (current_volume + replaced_volume)
+          // Any overflow is fully diluted or fully concentrated depending on infusion type
+          new_dilution += overflow_volume * dilution_factor
+          return new_dilution - current_dilution
       }
-       -->
+      -->
       <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.DynamicRuntimeProcedureDef_ModExtension">
         <instructions>
-        <!-- load input values from external sources -->
-        <!-- current_dilution = LOOKUP(Hemodilution.Severity) -->
-        <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Assign">
-          <symbol>current_dilution</symbol>
-          <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_HediffSeverity">
-            <hediffDef>Hemodilution</hediffDef>
-          </value>
-        </li>
-        <!-- volume calculations -->
-        <!-- scale blood loss to represent only 50% of total volume (death at 50% loss, instead of 100%) -->
-        <!-- current_volume = 1f - (blood_loss = (LOOKUP(BloodLoss.Severity) * 0.5f)) -->
-        <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Assign">
-          <symbol>current_volume</symbol>
-          <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Subtract">
-            <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
-              <value>1</value>
-            </left>
-            <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Assign">
-              <symbol>blood_loss</symbol>
-              <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Multiply">
-                <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_HediffSeverity">
-                  <hediffDef>BloodLoss</hediffDef>
-                </left>
-                <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
-                  <value>0.5</value>
-                </right>
-              </value>
-            </right>
-          </value>
-        </li>
-        <!-- overflow_volume = added_volume - (replaced_volume = min(added_volume, blood_loss)) -->
-        <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Assign">
-          <symbol>overflow_volume</symbol>
-          <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Subtract">
-            <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
-              <symbol>added_volume</symbol>
-            </left>
-            <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Assign">
-              <symbol>replaced_volume</symbol>
-              <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Min">
-                <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
-                  <symbol>added_volume</symbol>
-                </left>
-                <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
-                  <symbol>blood_loss</symbol>
-                </right>
-              </value>
-            </right>
-          </value>
-        </li>
-        <!-- dilution calculation where any overflow directly reduces the remaining dilution -->
-        <!-- - current_dilution to get the delta change in dilution -->
-        <!-- return (((current_dilution * current_volume) / (current_volume + replaced_volume)) + (overflow_volume * dilution_factor)) - current_dilution -->
-        <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Subtract">
-          <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Add">
-            <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Divide">
-              <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Multiply">
-                <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
-                  <symbol>current_dilution</symbol>
-                </left>
-                <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
-                  <symbol>current_volume</symbol>
-                </right>
-              </left>
-              <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Add">
-                <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
-                  <symbol>current_volume</symbol>
-                </left>
-                <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
-                  <symbol>replaced_volume</symbol>
-                </right>
-              </right>
-            </left>
-            <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Multiply">
-              <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
-                <symbol>overflow_volume</symbol>
-              </left>
-              <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
-                <symbol>dilution_factor</symbol>
-              </right>
-            </right>
-          </left>
-          <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+          <!-- load input values from external sources -->
+          <!-- current_dilution = LOOKUP(Hemodilution.Severity) -->
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Assign">
             <symbol>current_dilution</symbol>
-          </right>
-        </li>
+            <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_HediffSeverity">
+              <hediffDef>Hemodilution</hediffDef>
+            </value>
+          </li>
+          <!-- volume calculations -->
+          <!-- scale blood loss to represent only 50% of total volume (death at 50% loss, instead of 100%) -->
+          <!-- current_volume = 1f - (blood_loss = (LOOKUP(BloodLoss.Severity) * 0.5f)) -->
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Assign">
+            <symbol>current_volume</symbol>
+            <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Subtract">
+              <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
+                <value>1</value>
+              </left>
+              <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Assign">
+                <symbol>blood_loss</symbol>
+                <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Multiply">
+                  <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_HediffSeverity">
+                    <hediffDef>BloodLoss</hediffDef>
+                  </left>
+                  <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
+                    <value>0.5</value>
+                  </right>
+                </value>
+              </right>
+            </value>
+          </li>
+          <!-- overflow_volume = added_volume - (replaced_volume = min(added_volume, blood_loss)) -->
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Assign">
+            <symbol>overflow_volume</symbol>
+            <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Subtract">
+              <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                <symbol>added_volume</symbol>
+              </left>
+              <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Assign">
+                <symbol>replaced_volume</symbol>
+                <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Min">
+                  <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                    <symbol>added_volume</symbol>
+                  </left>
+                  <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                    <symbol>blood_loss</symbol>
+                  </right>
+                </value>
+              </right>
+            </value>
+          </li>
+          <!-- dilution calculation where any overflow directly reduces the remaining dilution -->
+          <!-- subtracting current_dilution to get the delta change in dilution -->
+          <!-- inlined version of:
+          // Only saline (dilution_factor = +1) contributes to dilution in the replaced_volume
+          dilution_contribution = max(0, dilution_factor) * replaced_volume
+          new_dilution = ((current_dilution * current_volume) + dilution_contribution) / (current_volume + replaced_volume)
+          // Any overflow is fully diluted or fully concentrated depending on infusion type
+          new_dilution += overflow_volume * dilution_factor
+          return new_dilution - current_dilution
+          -->
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Subtract">
+            <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Add">
+              <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Divide">
+                <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Add">
+                  <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Multiply">
+                    <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                      <symbol>current_dilution</symbol>
+                    </left>
+                    <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                      <symbol>current_volume</symbol>
+                    </right>
+                  </left>
+                  <!-- // Only saline (dilution_factor = +1) contributes to dilution in the replaced_volume
+                  dilution_contribution = max(0, dilution_factor) * replaced_volume -->
+                  <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Multiply">
+                    <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Max">
+                      <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
+                        <value>0</value>
+                      </left>
+                      <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                        <symbol>dilution_factor</symbol>
+                      </right>
+                    </left>
+                    <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                      <symbol>replaced_volume</symbol>
+                    </right>
+                  </right>
+                </left>
+                <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Add">
+                  <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                    <symbol>current_volume</symbol>
+                  </left>
+                  <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                    <symbol>replaced_volume</symbol>
+                  </right>
+                </right>
+              </left>
+              <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary.FloatOperator_Multiply">
+                <left Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                  <symbol>overflow_volume</symbol>
+                </left>
+                <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+                  <symbol>dilution_factor</symbol>
+                </right>
+              </right>
+            </left>
+            <right Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_Resolve">
+              <symbol>current_dilution</symbol>
+            </right>
+          </li>
         </instructions>
       </li>
     </modExtensions>

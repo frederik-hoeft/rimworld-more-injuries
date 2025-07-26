@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.Extensions;
+using System.Linq;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
@@ -23,4 +24,7 @@ public sealed class JobOutcomeDoer_HediffOffset_DoctorSkillCurve : JobOutcomeDoe
         float maxOffset = maxSeverityOffsetByDoctorSkill.Evaluate(doctorSkill);
         return Rand.Range(minOffset, maxOffset);
     }
+
+    public override string ToString() => 
+        $"{base.ToString()} with doctor skill curve offsets: min={string.Join(", ", minSeverityOffsetByDoctorSkill.Points.Select(point => point.ToString()))}, max={string.Join(", ", maxSeverityOffsetByDoctorSkill?.Points.Select(point => point.ToString()) ?? [])}";
 }

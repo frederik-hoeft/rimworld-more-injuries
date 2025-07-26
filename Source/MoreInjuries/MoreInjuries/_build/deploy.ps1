@@ -9,13 +9,24 @@ $game_version = "1.6"
 $mod_root = (Get-Item -LiteralPath "${PSScriptRoot}/../../../..").FullName
 $project_path = "${PSScriptRoot}/../${project_name}.csproj"
 
+function Log-Message {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$Message
+    )
+    Write-Host "[${project_name} build $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')]: ${Message}"
+}
+
 # Read the hostconfig file
+Log-Message "Reading host configuration file..."
 $config = Get-Content -LiteralPath "${PSScriptRoot}/hostconfig.json" -Raw | ConvertFrom-Json
 
 # Use the path from the JSON file
 $upload_dir = "$($config.steam_root)/steamapps/common/RimWorld/Mods/${project_name}"
 
 # build and publish the project
+Log-Message "Building and publishing ${project_name} v${game_version}..."
 dotnet clean "${project_path}"
 if (!$?) { exit $LASTEXITCODE }
 dotnet restore "${project_path}" --no-cache
@@ -26,6 +37,7 @@ dotnet publish "${project_path}" -c "${configuration}" -p:PublishProfile=$config
 if (!$?) { exit $LASTEXITCODE }
 
 # clean upload dir
+Log-Message "Cleaning up the upload directory..."
 if (Test-Path -LiteralPath $upload_dir) {
     Remove-Item -LiteralPath $upload_dir -Recurse
 }
@@ -69,9 +81,11 @@ New-Item -ItemType Directory "${upload_dir}/Source"
 # enumerate subdirectories in the oldversions directory
 $old_versions_dir = "${mod_root}/oldversions"
 if (Test-Path -LiteralPath $old_versions_dir) {
+    Log-Message "Adding old versions from ${old_versions_dir}..."
     Get-ChildItem -Path $old_versions_dir -Directory | ForEach-Object {
         $version_dir = $_.FullName
         $version_name = $_.Name
+        Log-Message "Processing previous version: ${version_name} ..."
         # contains a single .ref file with the raw download link, glob the .ref file
         $ref_file = Get-ChildItem -Path $version_dir -Filter "*.ref" -File | Select-Object -First 1
         # check if the glob matched a file
@@ -81,7 +95,7 @@ if (Test-Path -LiteralPath $old_versions_dir) {
             $download_link = Get-Content -LiteralPath $ref_file.FullName -Raw
             # download the zip file to a temporary location
             $temp_zip = Join-Path $env:TEMP "${version_name}.zip"
-            Invoke-WebRequest -Uri $download_link -OutFile $temp_zip
+            Invoke-WebRequest -Verbose -Uri $download_link -OutFile $temp_zip
             # extract the zip file to a temporary directory
             $temp_extract_dir = Join-Path $env:TEMP "${version_name}_extract"
             Expand-Archive -Path $temp_zip -DestinationPath $temp_extract_dir -Force
@@ -90,7 +104,7 @@ if (Test-Path -LiteralPath $old_versions_dir) {
             # delete the temporary zip file and extraction directory
             Remove-Item -LiteralPath $temp_zip -Force
             Remove-Item -LiteralPath $temp_extract_dir -Recurse -Force
-            Write-Host "Added old version: ${raw_version} (${version_name})"
+            Log-Message "Added old version: ${raw_version} (${version_name})"
         }
     }
 }
@@ -131,4 +145,4 @@ Copy-Item -LiteralPath "${mod_root}/README.md" -Destination $upload_dir
 # include the LoadFolders.xml file
 Copy-Item -LiteralPath "${mod_root}/LoadFolders.xml" -Destination $upload_dir
 
-Write-Host "========== Deployment succeeded =========="
+Log-Message "========== Deployment succeeded =========="

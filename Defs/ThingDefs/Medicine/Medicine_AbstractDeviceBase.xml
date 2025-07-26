@@ -24,5 +24,6 @@
   <OrderedTakeGroupDef>
     <defName>MedicalDevice</defName>
     <label>medical device</label>
+    <max>25</max>
   </OrderedTakeGroupDef>
 </Defs>

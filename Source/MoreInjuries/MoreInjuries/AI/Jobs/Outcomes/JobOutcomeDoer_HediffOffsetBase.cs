@@ -18,13 +18,16 @@ public abstract class JobOutcomeDoer_HediffOffsetBase : JobOutcomeDoer
     {
         Hediff? hediff = patient.health.hediffSet.GetFirstHediffOfDef(HediffDef);
         float severityOffset = GetSeverityOffset(doctor, patient, device);
+        Logger.LogDebug($"Calculating hediff {HediffDef.defName} ({hediff?.Severity.ToString() ?? "null"}) severity offset for {patient}: {severityOffset}");
         if (hediff is null && severityOffset > Mathf.Epsilon)
         {
             hediff = HediffMaker.MakeHediff(HediffDef, patient);
             patient.health.AddHediff(hediff);
+            Logger.LogDebug($"Adding hediff {hediffDef.defName} to {patient}");
         }
         if (hediff is not null)
         {
+            Logger.LogDebug($"Adjusting hediff {hediffDef.defName} (severity={hediff.Severity}) severity for {patient} by {severityOffset}");
             float severity = hediff.Severity + severityOffset;
             if (severity <= Mathf.Epsilon)
             {
@@ -35,4 +38,6 @@ public abstract class JobOutcomeDoer_HediffOffsetBase : JobOutcomeDoer
         }
         return true;
     }
+
+    public override string ToString() => $"{GetType().Name}: {HediffDef.defName}";
 }

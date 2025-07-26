@@ -3,4 +3,6 @@
 public abstract class ComparisonOperator
 {
     public abstract bool Compare(float left, float right);
+
+    public abstract override string ToString();
 }
