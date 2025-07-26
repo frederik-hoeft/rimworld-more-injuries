@@ -15,6 +15,7 @@ $config = Get-Content -LiteralPath "${PSScriptRoot}/hostconfig.json" -Raw | Conv
 # Use the path from the JSON file
 $upload_dir = "$($config.steam_root)/steamapps/common/RimWorld/Mods/${project_name}"
 
+# build and publish the project
 dotnet clean "${project_path}"
 if (!$?) { exit $LASTEXITCODE }
 dotnet restore "${project_path}" --no-cache
