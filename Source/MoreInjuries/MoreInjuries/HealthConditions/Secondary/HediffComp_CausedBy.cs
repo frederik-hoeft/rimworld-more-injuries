@@ -99,9 +99,9 @@ public sealed class HediffComp_CausedBy : HediffComp
 
     private static bool TryGetCauseLabelBase(string causeLabel, [NotNullWhen(true)] out string? causeLabelBase)
     {
-        if (causeLabel.LastIndexOf(" (") is int index && index != 0 && causeLabel[causeLabel.Length - 1] == ')')
+        if (causeLabel.LastIndexOf(" (") is int index && index != 0 && causeLabel[^1] == ')')
         {
-            causeLabelBase = causeLabel.Substring(0, index);
+            causeLabelBase = causeLabel[..index];
             return true;
         }
         causeLabelBase = null;

@@ -170,7 +170,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
         }
         else
         {
-            waitToil = Toils_General.WaitWith_NewTemp(PATIENT_INDEX, ticks, maintainPosture: true, face: PATIENT_INDEX, pathEndMode: _pathEndMode);
+            waitToil = Toils_General.WaitWith(PATIENT_INDEX, ticks, maintainPosture: true, face: PATIENT_INDEX, pathEndMode: _pathEndMode);
             waitToil.initAction = () =>
             {
                 Pawn doctorLocal = waitToil.actor;
