@@ -56,7 +56,7 @@ internal static partial class Logger
         {
             return string.Empty;
         }
-        int fileNameIndex = callsite.LastIndexOf(CompileTimePlatformInfo.DirectorySeperatorChar);
+        int fileNameIndex = callsite.LastIndexOf(CompileTimePlatformInfo.DirectorySeparatorChar);
         if (fileNameIndex == -1 || ++fileNameIndex >= callsite.Length)
         {
             return $"{callsite}::L{lineNo}: ";

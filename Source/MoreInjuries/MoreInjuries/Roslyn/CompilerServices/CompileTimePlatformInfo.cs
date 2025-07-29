@@ -1,3 +1,3 @@
 ﻿namespace MoreInjuries.Roslyn.CompilerServices;
 
-public sealed record CompileTimePlatformInfo(char DirectorySeperatorChar);
+public sealed record CompileTimePlatformInfo(char DirectorySeparatorChar);

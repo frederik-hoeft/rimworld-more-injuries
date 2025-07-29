@@ -1,4 +1,4 @@
-﻿namespace MoreInjuries.BuildIntrinsics;
+﻿namespace MoreInjuries.Roslyn.BuildIntrinsics;
 
 internal static class Suppressions
 {
