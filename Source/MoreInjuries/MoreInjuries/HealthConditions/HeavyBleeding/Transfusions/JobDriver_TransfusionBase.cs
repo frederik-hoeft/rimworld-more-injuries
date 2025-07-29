@@ -77,7 +77,7 @@ public abstract class JobDriver_TransfusionBase : JobDriver_OutcomeDoerBase
         Scribe_Values.Look(ref _fullyHeal, "fullyHeal");
     }
 
-    public class JobDescriptor(JobDef jobDef,Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly, bool fullyHeal) : IJobDescriptor
+    public class JobDescriptor(JobDef jobDef, Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly, bool fullyHeal) : IJobDescriptor
     {
         public Job CreateJob()
         {
