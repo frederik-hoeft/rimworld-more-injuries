@@ -31,17 +31,34 @@ public class MoreInjuryComp : ThingComp
 
     public Pawn Pawn => (Pawn)parent;
 
-    private InjuryWorker[] Pipeline => _pipeline ??= [.. Properties.WorkerFactories.Select(factory => factory.Create(this))];
+    private ICompGetGizmosExtraHandler[] CompGetGizmosExtraHandlers => _compGetGizmosExtraHandlers!;
 
-    private ICompGetGizmosExtraHandler[] CompGetGizmosExtraHandlers => _compGetGizmosExtraHandlers ??= [.. Pipeline.OfType<ICompGetGizmosExtraHandler>()];
+    private ICompFloatMenuOptionsHandler[] CompFloatMenuOptionsHandlers => _compFloatMenuOptionsHandlers!;
 
-    private ICompFloatMenuOptionsHandler[] CompFloatMenuOptionsHandlers => _compFloatMenuOptionsHandlers ??= [.. Pipeline.OfType<ICompFloatMenuOptionsHandler>()];
+    private IPostPostApplyDamageHandler[] PostPostApplyDamageHandlers => _postPostApplyDamageHandlers!;
 
-    private IPostPostApplyDamageHandler[] PostPostApplyDamageHandlers => _postPostApplyDamageHandlers ??= [.. Pipeline.OfType<IPostPostApplyDamageHandler>()];
+    private IPostTakeDamageHandler[] PostTakeDamageHandlers => _postTakeDamageHandlers!;
 
-    private IPostTakeDamageHandler[] PostTakeDamageHandlers => _postTakeDamageHandlers ??= [.. Pipeline.OfType<IPostTakeDamageHandler>()];
+    private ICompTickHandler[] CompTickHandlers => _compTickHandlers!;
 
-    private ICompTickHandler[] CompTickHandlers => _compTickHandlers ??= [.. Pipeline.OfType<ICompTickHandler>()];
+    [MemberNotNull(
+        nameof(_pipeline), 
+        nameof(_compGetGizmosExtraHandlers), 
+        nameof(_compFloatMenuOptionsHandlers), 
+        nameof(_postPostApplyDamageHandlers),
+        nameof(_postTakeDamageHandlers), 
+        nameof(_compTickHandlers))]
+    public override void Initialize(CompProperties props)
+    {
+        base.Initialize(props);
+
+        _pipeline = [.. Properties.WorkerFactories.Select(factory => factory.Create(this))];
+        _compGetGizmosExtraHandlers = [.. _pipeline.OfType<ICompGetGizmosExtraHandler>()];
+        _compFloatMenuOptionsHandlers = [.. _pipeline.OfType<ICompFloatMenuOptionsHandler>()];
+        _postPostApplyDamageHandlers = [.. _pipeline.OfType<IPostPostApplyDamageHandler>()];
+        _postTakeDamageHandlers = [.. _pipeline.OfType<IPostTakeDamageHandler>()];
+        _compTickHandlers = [.. _pipeline.OfType<ICompTickHandler>()];
+    }
 
     public void PersistJobParameters(IExposable jobParameter)
     {
