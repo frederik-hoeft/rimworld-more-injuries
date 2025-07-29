@@ -79,14 +79,17 @@ public class MoreInjuryComp : ThingComp
             // remove dead references
             _weakJobParameters.RemoveAll(static wr => !wr.TryGetTarget(out _));
             // box everything to a list of strong references for serialization
-            jobParameters = _weakJobParameters.Select(wr =>
-            {
-                if (wr.TryGetTarget(out IExposable target))
+            jobParameters = 
+            [
+                .. _weakJobParameters.Select(wr =>
                 {
-                    return target;
-                }
-                return null;
-            }).Where(static x => x is not null).ToList()!;
+                    if (wr.TryGetTarget(out IExposable target))
+                    {
+                        return target;
+                    }
+                    return null;
+                }).Where(static x => x is not null)
+            ];
         }
         Scribe_Collections.Look(ref jobParameters, "jobParameters", LookMode.Deep);
         if (Scribe.mode is LoadSaveMode.LoadingVars)
