@@ -12,10 +12,18 @@
   <MI_Procedure_Stabilize>{0} (stabilize)</MI_Procedure_Stabilize>
   <!-- EN: {0} (fully heal) -->
   <MI_Procedure_FullyHeal>{0} (fully heal)</MI_Procedure_FullyHeal>
+  <!-- EN: {0} (max safe dose) -->
+  <MI_Procedure_MaxDose>{0} (max safe dose)</MI_Procedure_MaxDose>
+  <!-- EN: {0} (single) -->
+  <MI_Procedure_Single>{0} (single)</MI_Procedure_Single>
   <!-- EN: {0} (from inventory, stabilize) -->
   <MI_Procedure_FromInventory_Stabilize>{0} (from inventory, stabilize)</MI_Procedure_FromInventory_Stabilize>
   <!-- EN: {0} (from inventory, fully heal) -->
   <MI_Procedure_FromInventory_FullyHeal>{0} (from inventory, fully heal)</MI_Procedure_FromInventory_FullyHeal>
+  <!-- EN: {0} (from inventory, max safe dose) -->
+  <MI_Procedure_FromInventory_MaxDose>{0} (from inventory, max safe dose)</MI_Procedure_FromInventory_MaxDose>
+  <!-- EN: {0} (from inventory, single) -->
+  <MI_Procedure_FromInventory_Single>{0} (from inventory, single)</MI_Procedure_FromInventory_Single>
   <!-- EN: {0} and {1} are mutually exclusive -->
   <MI_Message_OptionMutuallyExclusive>{0} and {1} are mutually exclusive</MI_Message_OptionMutuallyExclusive>
   <!-- EN: {0} requires the '{1}' research project to be completed first -->

@@ -89,13 +89,23 @@ public static class MedicalDeviceHelper
     public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, HediffDef[] hediffDefs, bool fromInventoryOnly = false) =>
         FindMedicalDevice(doctor, patient, deviceDef, hediff => Array.IndexOf(hediffDefs, hediff.def) != -1, fromInventoryOnly);
 
-    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, Predicate<Hediff>? isTreatableWithDevice = null, bool fromInventoryOnly = false)
+    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, Predicate<Hediff>? isTreatableWithDevice = null, bool fromInventoryOnly = false) =>
+        FindMedicalDevice(
+            doctor: doctor,
+            patient: patient,
+            deviceDef: deviceDef,
+            getNumberOfRequiredMedicalDevices: isTreatableWithDevice is not null 
+                ? patient => GetMedicalDeviceCountToFullyHeal(patient, isTreatableWithDevice) 
+                : null,
+            fromInventoryOnly: fromInventoryOnly);
+
+    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, Func<Pawn, int>? getNumberOfRequiredMedicalDevices, bool fromInventoryOnly = false)
     {
         if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
         {
             return null;
         }
-        if (isTreatableWithDevice is not null && GetMedicalDeviceCountToFullyHeal(patient, isTreatableWithDevice) <= 0)
+        if (getNumberOfRequiredMedicalDevices is not null && getNumberOfRequiredMedicalDevices(patient) <= 0)
         {
             return null;
         }

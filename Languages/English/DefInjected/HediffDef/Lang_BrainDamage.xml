@@ -30,8 +30,8 @@
   <!-- EN: completely nonverbal -->
   <BrainDamage_LanguageAphasia.stages.completely_nonverbal.label>completely nonverbal</BrainDamage_LanguageAphasia.stages.completely_nonverbal.label>
 
-  <!-- EN: visual agnosia -->
-  <BrainDamage_VisualAgnosia.label>visual agnosia</BrainDamage_VisualAgnosia.label>
+  <!-- EN: agnosia -->
+  <BrainDamage_VisualAgnosia.label>agnosia</BrainDamage_VisualAgnosia.label>
   <!-- EN: Damage to the occipital or temporal lobes has impaired the ability to recognize objects or faces, despite normal vision. Affected patients may have trouble identifying items or people, leading to confusion and slower task performance. -->
   <BrainDamage_VisualAgnosia.description>Damage to the occipital or temporal lobes has impaired the ability to recognize objects or faces, despite normal vision. Affected patients may have trouble identifying items or people, leading to confusion and slower task performance.</BrainDamage_VisualAgnosia.description>
   <!-- EN: minor -->

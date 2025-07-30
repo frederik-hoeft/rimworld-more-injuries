@@ -6,7 +6,7 @@ namespace MoreInjuries.Caching;
 
 public abstract class WeakTimedMapThingCache<TThing> where TThing : Thing
 {
-    private readonly ConditionalWeakTable<Map, Dictionary<int, Std::WeakReference<TThing>>> _mapThingCache = new();
+    private readonly ConditionalWeakTable<Map, Dictionary<int, Std::WeakReference<TThing>>> _mapThingCache = [];
     private int _lastRefreshTicks;
 
     protected abstract int MinCacheRefreshIntervalTicks { get; }

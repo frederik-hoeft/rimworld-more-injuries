@@ -38,7 +38,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
 
     protected abstract bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device);
 
-    protected abstract bool IsTreatable(Hediff hediff);
+    protected virtual bool IsTreatable(Hediff hediff) => throw new NotSupportedException($"{nameof(IsTreatable)} must be overridden in {GetType().Name} to determine if a hediff is treatable with the device");
 
     protected virtual int GetMedicalDeviceCountToFullyHeal(Pawn patient) => MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, IsTreatable);
 
@@ -234,7 +234,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
         yield return FinalizeTreatmentToil();
         if (_usesDevice)
         {
-            DebugAssert.NotNull(reserveDevices, $"{nameof(reserveDevices)} cannot be null when using a device");
+            DebugAssert.IsNotNull(reserveDevices, $"{nameof(reserveDevices)} cannot be null when using a device");
             yield return FindMoreDevicesToil(doctor, patient, DEVICE_INDEX, job, reserveDevices!);
         }
         yield return Toils_Jump.Jump(gotoPatientToil);
@@ -297,7 +297,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
             {
                 return;
             }
-            Thing? device = MedicalDeviceHelper.FindMedicalDevice(doctor, patient, DeviceDef, IsTreatable, _fromInventoryOnly);
+            Thing? device = MedicalDeviceHelper.FindMedicalDevice(doctor, patient, DeviceDef, GetMedicalDeviceCountToFullyHeal, _fromInventoryOnly);
             if (device is not null)
             {
                 job.SetTarget(deviceIndex, device);

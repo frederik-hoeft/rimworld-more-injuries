@@ -28,7 +28,7 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
 
     protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
-        DebugAssert.NotNull(device, "Device cannot be null in JobDriver_HemostasisBase::ApplyDevice");
+        DebugAssert.IsNotNull(device, "Device cannot be null in JobDriver_HemostasisBase::ApplyDevice");
 
         Hediff? injury = patient.health.hediffSet.hediffs
             .Where(IsTreatable)

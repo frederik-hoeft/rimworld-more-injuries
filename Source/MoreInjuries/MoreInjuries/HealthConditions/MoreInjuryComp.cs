@@ -194,7 +194,7 @@ public class MoreInjuryComp : ThingComp
     public void PostDamageFull(DamageWorker.DamageResult damage)
     {
         DebugAssert.IsTrue(CallbackActive, "CallbackActive is false in PostDamageFull");
-        DebugAssert.NotNull(damage, "damage is null in PostDamageFull");
+        DebugAssert.IsNotNull(damage, "damage is null in PostDamageFull");
 
         if (MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers || parent is Pawn { IsShambler: false })
         {

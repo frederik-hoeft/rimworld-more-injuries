@@ -40,7 +40,7 @@
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
           <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
-            <tickInterval>2000</tickInterval>
+            <tickInterval>250</tickInterval>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>Coagulopathy</hediffDef>

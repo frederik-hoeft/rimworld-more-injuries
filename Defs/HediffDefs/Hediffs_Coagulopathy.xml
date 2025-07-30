@@ -3,7 +3,7 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>Coagulopathy</defName>
     <label>coagulopathy</label>
-    <description>Trauma-induced coagulapathy (TIC) is a life-threatening condition in which the blood's ability to clot is impaired, often developing after severe trauma, blood loss, or shock. Without intervention, it can progress into disseminated intravascular coagulation (DIC), where widespread clotting depletes clotting factors and causes uncontrolled internal bleeding, leading to multiple organ failure and, ultimately, death. Treatment requires aggressive management of the underlying causes, such as hypothermia, acidosis, certain toxins, or dilution of clotting factors, and rapid replacement of blood components to restore coagulation function.</description>
+    <description>Trauma-induced coagulopathy (TIC) is a life-threatening condition in which the blood's ability to clot is impaired, often developing after severe trauma, blood loss, or shock. Without intervention, it can progress into disseminated intravascular coagulation (DIC), where widespread clotting depletes clotting factors and causes uncontrolled internal bleeding, leading to multiple organ failure and, ultimately, death. Treatment requires aggressive management of the underlying causes, such as hypothermia, acidosis, certain toxins, or dilution of clotting factors, and rapid replacement of blood components to restore coagulation function.</description>
     <defaultLabelColor>(255, 185, 56)</defaultLabelColor>
     <alwaysShowSeverity>true</alwaysShowSeverity>
     <maxSeverity>1</maxSeverity>
@@ -41,8 +41,8 @@
                     <li>0.2, 5</li>
                     <li>0.4, 1</li>
                     <li>0.6, 0.5</li>
-                    <li>0.8, 0.25</li>
-                    <li>1, 0.05</li>
+                    <li>0.8, 0.125</li>
+                    <li>1, 0.025</li>
                   </points>
                 </mttfDaysBySeverity>
               </li>
@@ -129,31 +129,5 @@
         </capMods>
       </li>
     </stages>
-  </HediffDef>
-
-  <HediffDef ParentName="InjuryBase">
-    <defName>SpontaneousBleeding</defName>
-    <label>spontaneous hemorrhage</label>
-    <labelNoun>a spontaneous hemorrhage</labelNoun>
-    <description>Spontaneous bleeding is a condition where bleeding occurs without any apparent external cause, often due to underlying medical issues such as coagulopathy or vascular abnormalities. It can manifest as bruising, nosebleeds, or internal bleeding and may require medical intervention to manage the underlying causes and prevent complications. In severe cases, it can lead to significant blood loss, multiple organ failure, and death if not treated promptly.</description>
-    <comps>
-      <li Class="HediffCompProperties_TendDuration">
-        <labelTendedWell>bandaged</labelTendedWell>
-        <labelTendedWellInner>sutured</labelTendedWellInner>
-        <labelSolidTendedWell>set</labelSolidTendedWell>
-      </li>
-      <li Class="HediffCompProperties_Infecter">
-        <infectionChance>0.05</infectionChance>
-      </li>
-      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
-    </comps>
-    <injuryProps>
-      <painPerSeverity>0.0250</painPerSeverity>
-      <averagePainPerSeverityPermanent>0.00625</averagePainPerSeverityPermanent>
-      <bleedRate>0.25</bleedRate>
-      <canMerge>true</canMerge>
-      <destroyedLabel>destroyed</destroyedLabel>
-      <destroyedOutLabel>destroyed</destroyedOutLabel>
-    </injuryProps>
   </HediffDef>
 </Defs>

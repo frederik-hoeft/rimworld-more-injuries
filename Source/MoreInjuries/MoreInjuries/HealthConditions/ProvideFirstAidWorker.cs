@@ -28,7 +28,7 @@ internal sealed class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorke
                 return;
             }
             bool canTreat = false;
-            // blood bag usage possible => saling bag usage may be possible as well (no need to check)
+            // blood bag usage possible => saline bag usage may be possible as well (no need to check)
             if (JobDriver_UseBloodBag.JobGetMedicalDeviceCountToFullyHeal(patient, fullyHeal: false) > 0)
             {
                 canTreat = true;

@@ -173,7 +173,7 @@
   <JobDef>
     <defName>UseSalineBag</defName>
     <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.JobDriver_UseSalineBag</driverClass>
-    <reportString>Performing a saline infusion on TargetA.</reportString>
+    <reportString>Performing a saline IV infusion on TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
       <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">

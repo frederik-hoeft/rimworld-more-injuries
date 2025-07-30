@@ -2,9 +2,15 @@
 
 namespace MoreInjuries.Caching;
 
-internal sealed class WeakTimedPawnDataCacheEntry<TData>
+internal sealed class WeakTimedDataEntry<TData> : ITimedDataEntry<TData> where TData : class
 {
-    public TData? Data { get; private set; }
+    private WeakReference<TData>? _data;
+
+    public TData? Data
+    {
+        get => _data?.TryGetTarget(out TData? target) is true ? target : null; 
+        private set => _data = value is not null ? new WeakReference<TData>(value) : null;
+    }
 
     public int TimeStamp { get; private set; } = -1;
 

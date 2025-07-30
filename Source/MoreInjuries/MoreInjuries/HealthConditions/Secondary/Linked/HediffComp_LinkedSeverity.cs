@@ -7,22 +7,29 @@ namespace MoreInjuries.HealthConditions.Secondary.Linked;
 
 public sealed class HediffComp_LinkedSeverity : HediffComp
 {
-    private readonly WeakPawnDataCache<IReadOnlyList<LinkedSeverityData>> _severityDataCache;
-
-    public HediffComp_LinkedSeverity()
-    {
-        _severityDataCache = new WeakPawnDataCache<IReadOnlyList<LinkedSeverityData>>(dataProvider: GetLinkedHediffSeverityData);
-    }
+    private static readonly ObjectPool<Poolable<List<LinkedSeverityData>>> s_pooledSeverityDataLists = new
+    (
+        maxCapacity: 16,
+        factory: static pool => new Poolable<List<LinkedSeverityData>>
+        (
+            pool,
+            canPool: static value => value.Capacity <= 8,
+            factory: static () => [],
+            reset: static value => value.Clear()
+        )
+    );
 
     private HediffCompProperties_LinkedSeverity Properties => (HediffCompProperties_LinkedSeverity)props;
 
-    private IReadOnlyList<LinkedSeverityData> GetLinkedHediffSeverityData(Pawn pawn)
+    private Poolable<List<LinkedSeverityData>>? GetLinkedHediffSeverityData(Pawn pawn)
     {
         if (pawn.health.hediffSet.hediffs.Count == 0)
         {
-            return Array.Empty<LinkedSeverityData>();
+            return null;
         }
-        List<LinkedSeverityData> linkedSeverities = [];
+        Poolable<List<LinkedSeverityData>> result = s_pooledSeverityDataLists.Rent();
+        result.Initialize();
+        List<LinkedSeverityData> linkedSeverities = result.Value;
         foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
         {
             LinkedSeverityProperties_ModExtension? modExtension = hediff.def.GetModExtension<LinkedSeverityProperties_ModExtension>();
@@ -35,7 +42,7 @@ public sealed class HediffComp_LinkedSeverity : HediffComp
                 }
             }
         }
-        return linkedSeverities;
+        return result;
     }
 
     public override void CompPostTick(ref float severityAdjustment)
@@ -44,8 +51,8 @@ public sealed class HediffComp_LinkedSeverity : HediffComp
         {
             return;
         }
-        IReadOnlyList<LinkedSeverityData> linkedSeverityData = _severityDataCache.GetData(parent.pawn, forceRefresh: true);
-        if (linkedSeverityData.Count == 0)
+        using Poolable<List<LinkedSeverityData>>? linkedSeverityData = GetLinkedHediffSeverityData(parent.pawn);
+        if (linkedSeverityData is not { Value: { Count: > 0 } linkedSeverities })
         {
             return;
         }
@@ -53,7 +60,7 @@ public sealed class HediffComp_LinkedSeverity : HediffComp
         if (parent.TryGetComp(out HediffComp_CausedBy? causedBy))
         {
             causedBy!.ClearCauses();
-            foreach (LinkedSeverityData data in linkedSeverityData)
+            foreach (LinkedSeverityData data in linkedSeverities)
             {
                 totalSeverity += data.EffectiveSeverity;
                 causedBy.AddCause(data.HediffLabel);
@@ -61,7 +68,7 @@ public sealed class HediffComp_LinkedSeverity : HediffComp
         }
         else
         {
-            foreach (LinkedSeverityData data in linkedSeverityData)
+            foreach (LinkedSeverityData data in linkedSeverities)
             {
                 totalSeverity += data.EffectiveSeverity;
             }

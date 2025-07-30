@@ -32,6 +32,8 @@
   <MI_HarvestBloodFailed_MissingMedicalSkill>{0}: missing required medical skill ({1})</MI_HarvestBloodFailed_MissingMedicalSkill>
   <!-- EN: Transfuse blood -->
   <MI_UseBloodBag>Transfuse blood</MI_UseBloodBag>
+  <!-- EN: Infuse saline IV -->
+  <MI_UseSalineBag>Infuse saline IV</MI_UseSalineBag>
   <!-- EN: {0}: no blood bags available -->
   <MI_UseBloodBagFailed_Unavailable>{0}: no blood bags available</MI_UseBloodBagFailed_Unavailable>
   <!-- EN: {PATIENT_labelShort} doesn't have enough blood to safely donate blood. -->

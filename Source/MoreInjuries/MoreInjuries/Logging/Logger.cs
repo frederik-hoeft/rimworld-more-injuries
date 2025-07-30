@@ -21,22 +21,22 @@ internal static partial class Logger
     {
         if (MoreInjuriesMod.Settings.EnableVerboseLogging)
         {
-            Log(message);
+            Log($"VERBOSE: {message}");
         }
     }
 
     [Conditional("DEBUG")]
     public static void LogDebug(string message, [CallerFilePath] string callsite = "", [CallerLineNumber] int lineNo = -1) => 
-        Log($"{FormatCallSite(callsite, lineNo)}{message}");
+        Log($"DEBUG: {FormatCallSite(callsite, lineNo)}{message}");
 
     public static void Error(string message, [CallerFilePath] string callsite = "", [CallerLineNumber] int lineNo = -1) =>
-        Verse.Log.Error($"[{nameof(MoreInjuries)}] {FormatCallSite(callsite, lineNo)}{message}");
+        Verse.Log.Error($"[{nameof(MoreInjuries)}] ERROR: {FormatCallSite(callsite, lineNo)}{message}");
 
     public static void Warning(string message) =>
-        Verse.Log.Warning($"[{nameof(MoreInjuries)}] {message}");
+        Verse.Log.Warning($"[{nameof(MoreInjuries)}] WARNING: {message}");
 
     public static void LogAlways(string message) =>
-        Verse.Log.Message($"[{nameof(MoreInjuries)}] {message}");
+        Verse.Log.Message($"[{nameof(MoreInjuries)}] CRITICAL: {message}");
 
 #if DEBUG
     [DoesNotReturn]

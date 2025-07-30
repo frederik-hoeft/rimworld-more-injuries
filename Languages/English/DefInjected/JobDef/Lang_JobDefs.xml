@@ -36,6 +36,9 @@
   <!-- EN: Performing a blood transfusion on TargetA. -->
   <UseBloodBag.reportString>Performing a blood transfusion on TargetA.</UseBloodBag.reportString>
 
+  <!-- EN: Performing a saline IV infusion on TargetA. -->
+  <UseSalineBag.reportString>Performing a saline IV infusion on TargetA.</UseSalineBag.reportString>
+
   <!-- EN: Executing TargetA through blood extraction. -->
   <HarvestBlood.reportString>Executing TargetA through blood extraction.</HarvestBlood.reportString>
 

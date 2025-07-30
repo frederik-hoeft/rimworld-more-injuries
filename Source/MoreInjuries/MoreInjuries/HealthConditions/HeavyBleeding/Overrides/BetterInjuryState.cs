@@ -11,7 +11,7 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 
 public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState where TOwner : HediffWithComps, IInjuryStateOwner
 {
-    private static readonly WeakTimedPawnDataCache<IReadOnlyList<HediffCrossInteraction>> s_crossInteractionCache = new
+    private static readonly WeakTimedDataCache<Pawn, IReadOnlyList<HediffCrossInteraction>, TimedDataEntry<IReadOnlyList<HediffCrossInteraction>>> s_crossInteractionCache = new
     (
         minCacheRefreshIntervalTicks: GenTicks.TickRareInterval, 
         dataProvider: GetCrossInteractions

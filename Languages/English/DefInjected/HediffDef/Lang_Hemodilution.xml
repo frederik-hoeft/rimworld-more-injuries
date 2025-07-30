@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: hemodilution -->
+  <Hemodilution.label>hemodilution</Hemodilution.label>
+  <!-- EN: Hemodilution is the dilution of the concentration of red blood cells and plasma constituents by partially substituting the blood with colloids or crystalloids. It often occurs as a result of excessive fluid resuscitation, particularly in trauma patients, when large volumes of saline or other intravenous fluids are administered to restore blood volume and pressure after significant blood loss.\n\nWhile the body can compensate for some degree of hemodilution, excessive dilution can lead to a significant reduction in the oxygen-carrying capacity of the blood and impair coagulation. In severe cases, it can result in hypoxia and dilutional coagulopathy, both of which can lead to increased risk of hemorrhage, organ failure, and death if not managed appropriately. -->
+  <Hemodilution.description>Hemodilution is the dilution of the concentration of red blood cells and plasma constituents by partially substituting the blood with colloids or crystalloids. It often occurs as a result of excessive fluid resuscitation, particularly in trauma patients, when large volumes of saline or other intravenous fluids are administered to restore blood volume and pressure after significant blood loss.\n\nWhile the body can compensate for some degree of hemodilution, excessive dilution can lead to a significant reduction in the oxygen-carrying capacity of the blood and impair coagulation. In severe cases, it can result in hypoxia and dilutional coagulopathy, both of which can lead to increased risk of hemorrhage, organ failure, and death if not managed appropriately.</Hemodilution.description>
+  <!-- EN: minor -->
+  <Hemodilution.stages.minor.label>minor</Hemodilution.stages.minor.label>
+  <!-- EN: moderate -->
+  <Hemodilution.stages.moderate.label>moderate</Hemodilution.stages.moderate.label>
+  <!-- EN: severe -->
+  <Hemodilution.stages.severe.label>severe</Hemodilution.stages.severe.label>
+  <!-- EN: extreme -->
+  <Hemodilution.stages.extreme.label>extreme</Hemodilution.stages.extreme.label>
+  <!-- EN: terminal -->
+  <Hemodilution.stages.terminal.label>terminal</Hemodilution.stages.terminal.label>
+</LanguageData>
