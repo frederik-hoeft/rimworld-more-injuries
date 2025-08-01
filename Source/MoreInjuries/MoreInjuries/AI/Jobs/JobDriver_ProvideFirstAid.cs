@@ -161,7 +161,7 @@ public class JobDriver_ProvideFirstAid : JobDriver
         // since we finished vanilla treatment, we can now remove the tourniquets again
         if (bleedRateTotal < Mathf.Epsilon && patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.TourniquetApplied) is Hediff tourniquetApplied)
         {
-            job = JobDriver_RemoveTourniquet.GetDispatcher(doctor, patient, tourniquetApplied.Part).CreateJob();
+            job = JobDriver_RemoveTourniquetSafely.GetDispatcher(doctor, patient, tourniquetApplied.Part).CreateJob();
             return StartJobAndScheduleScan(doctor, patient, job);
         }
         return false;

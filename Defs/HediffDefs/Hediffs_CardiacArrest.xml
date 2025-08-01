@@ -102,8 +102,31 @@
             <li>0.65, 1</li>
           </points>
         </severityCurve>
-        <!-- TODO: simulate acidosis -->
         <handlers>
+          <!-- hypoxic damage to all parts of the body -->
+          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+            <tickInterval>400</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
+                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>OrganHypoxia</hediffDef>
+                <minSeverity>1</minSeverity>
+                <maxSeverity>5</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">
+              <excludedParts>
+                <li>Heart</li>
+                <li>Brain</li>
+              </excludedParts>
+            </targetEvaluator>
+          </li>
           <li Class="MoreInjuries.HealthConditions.CardiacArrest.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>200</tickInterval>
             <chanceModifiers>

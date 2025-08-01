@@ -21,12 +21,15 @@ public sealed class HediffComp_LinkedSeverity : HediffComp
 
     private HediffCompProperties_LinkedSeverity Properties => (HediffCompProperties_LinkedSeverity)props;
 
+    public override void CompPostPostAdd(DamageInfo? dinfo)
+    {
+        base.CompPostPostAdd(dinfo);
+        // we need to tick this hediff immediately to set the initial severity
+        Tick();
+    }
+
     private Poolable<List<LinkedSeverityData>>? GetLinkedHediffSeverityData(Pawn pawn)
     {
-        if (pawn.health.hediffSet.hediffs.Count == 0)
-        {
-            return null;
-        }
         Poolable<List<LinkedSeverityData>> result = s_pooledSeverityDataLists.Rent();
         result.Initialize();
         List<LinkedSeverityData> linkedSeverities = result.Value;
@@ -38,7 +41,7 @@ public sealed class HediffComp_LinkedSeverity : HediffComp
                 float effectiveSeverity = handler.Evaluate(hediff);
                 if (effectiveSeverity > 0f)
                 {
-                    linkedSeverities.Add(new LinkedSeverityData(hediff.LabelCap, effectiveSeverity));
+                    linkedSeverities.Add(new LinkedSeverityData(hediff.Label, effectiveSeverity));
                 }
             }
         }
@@ -47,10 +50,14 @@ public sealed class HediffComp_LinkedSeverity : HediffComp
 
     public override void CompPostTick(ref float severityAdjustment)
     {
-        if (!parent.pawn.IsHashIntervalTick(Properties.TickInterval))
+        if (parent.pawn.IsHashIntervalTick(Properties.TickInterval))
         {
-            return;
+            Tick();
         }
+    }
+
+    public void Tick()
+    {
         using Poolable<List<LinkedSeverityData>>? linkedSeverityData = GetLinkedHediffSeverityData(parent.pawn);
         if (linkedSeverityData is not { Value: { Count: > 0 } linkedSeverities })
         {

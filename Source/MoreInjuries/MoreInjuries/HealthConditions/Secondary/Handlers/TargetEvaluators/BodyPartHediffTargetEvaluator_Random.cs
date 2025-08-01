@@ -20,16 +20,13 @@ public class BodyPartHediffTargetEvaluator_Random : BodyPartHediffTargetEvaluato
 
     protected virtual bool IncludeBodyPart(BodyPartRecord bodyPart, Pawn pawn) =>
         // include all body parts that are not excluded
-        excludedParts is null || !excludedParts.Contains(bodyPart.def);
+        excludedParts is not { Count: > 0 } || !excludedParts.Contains(bodyPart.def);
 
     public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)
     {
         Pawn pawn = comp.Pawn;
         IEnumerable<BodyPartRecord> bodyParts = pawn.health.hediffSet.GetNotMissingParts(height, depth);
-        if (excludedParts is { Count: > 0 })
-        {
-            bodyParts = bodyParts.Where(bodyPart => IncludeBodyPart(bodyPart, pawn));
-        }
+        bodyParts = bodyParts.Where(bodyPart => IncludeBodyPart(bodyPart, pawn));
         if (includedParts is { Count: > 0 })
         {
             IEnumerable<BodyPartRecord> allBodyParts = pawn.health.hediffSet.GetNotMissingParts();

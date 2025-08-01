@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>Acidosis</defName>
+    <label>acidosis</label>
+    <description>Acidosis is a serious metabolic condition characterized by an excessive buildup of acid in the body, typically caused by inadequate oxygen delivery to tissues (hypoxia) following severe blood loss (hypovolemia), cardiac arrest, or other forms of shock. As oxygen becomes scarce, the body shifts to anaerobic metabolism, producing lactic acid and accumulating carbon dioxide, which together lower blood pH.\n\nThe condition contributes to a dangerous cycle known as the "lethal triad" of trauma: acidosis, hypothermia, and coagulopathy. As blood pH drops, clotting function becomes impaired, increasing the risk of uncontrolled bleeding and trauma-induced coagulopathy (TIC).\n\nAcidosis is treated by restoring oxygen delivery to tissues - typically through rapid control of bleeding, fluid resuscitation with blood products, and correction of hypoxia. Once tissue oxygenation is restored, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys.</description>
+    <defaultLabelColor>(255, 185, 56)</defaultLabelColor>
+    <isBad>true</isBad>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Linked.LinkedSeverityProperties_ModExtension">
+        <modifiedHediffs>
+          <li>
+            <linkedHediffDef>Coagulopathy</linkedHediffDef>
+            <severityModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <!-- adjust severity of coagulopathy based on degree of acidosis, currently a 1:1 mapping -->
+                <severityCurve>
+                  <points>
+                    <li>0.0, 0.0</li>
+                    <li>0.1, 0.1</li>
+                    <li>0.2, 0.2</li>
+                    <li>0.4, 0.4</li>
+                    <li>0.6, 0.6</li>
+                    <li>1.0, 1.0</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </severityModifiers>
+          </li>
+        </modifiedHediffs>
+      </li>
+    </modExtensions>
+    <comps>
+      <li Class="MoreInjuries.HealthConditions.Acidosis.HediffCompProperties_Acidosis">
+        <tickInterval>250</tickInterval>
+        <historyRetentionPeriodHours>1</historyRetentionPeriodHours>
+        <recoveryPerDay>8</recoveryPerDay>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+            <tickInterval>250</tickInterval>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>Coagulopathy</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+          </li>
+        </handlers>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>minor</label>
+        <statOffsets>
+          <ComfyTemperatureMin>2.5</ComfyTemperatureMin>
+        </statOffsets>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.1</minSeverity>
+        <statOffsets>
+          <!-- acidosis hinders mitochondrial function and reduces energy production, which is required for thermogenesis -->
+          <!-- this effect is significantly lower than hypovolemia, but still contributes to hypothermia -->
+          <ComfyTemperatureMin>2</ComfyTemperatureMin>
+        </statOffsets>
+      </li>
+      <li>
+        <label>severe</label>
+        <minSeverity>0.2</minSeverity>
+        <statOffsets>
+          <ComfyTemperatureMin>4</ComfyTemperatureMin>
+        </statOffsets>
+      </li>
+      <li>
+        <label>very severe</label>
+        <minSeverity>0.4</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <statOffsets>
+          <ComfyTemperatureMin>6</ComfyTemperatureMin>
+        </statOffsets>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.6</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <statOffsets>
+          <ComfyTemperatureMin>8</ComfyTemperatureMin>
+        </statOffsets>
+      </li>
+      <li>
+        <label>terminal</label>
+        <minSeverity>0.8</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <statOffsets>
+          <ComfyTemperatureMin>10</ComfyTemperatureMin>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

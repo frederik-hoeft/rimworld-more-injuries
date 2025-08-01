@@ -4,7 +4,7 @@
     <defName>Vasodilation</defName>
     <label>vasodilation</label>
     <description>Vasodilation, also known as vasorelaxation, is the widening of blood vessels, which decreases vascular resistance and increases blood flow. Due to this increase in blood flow, hemorrhagic resistance is reduced, leading to increased bleeding.\n\nVasodilation can be caused by various factors, including the use of certain opioid analgesics like morphine, which suppress the central nervous system and can lead to dangerous hypotension and shock.</description>
-    <defaultLabelColor>(255, 185, 56)</defaultLabelColor>
+    <defaultLabelColor>(192, 66, 0)</defaultLabelColor>
     <alwaysShowSeverity>true</alwaysShowSeverity>
     <isBad>true</isBad>
     <modExtensions>

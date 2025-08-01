@@ -116,8 +116,20 @@
   </JobDef>
 
   <JobDef>
-    <defName>RemoveTourniquet</defName>
-    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_RemoveTourniquet</driverClass>
+    <defName>RemoveTourniquetSafely</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_RemoveTourniquetSafely</driverClass>
+    <reportString>Slowly removing a tourniquet from TargetA to reduce effects of sudden reperfusion.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
+        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>RemoveTourniquetQuickly</defName>
+    <driverClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.JobDriver_RemoveTourniquetQuickly</driverClass>
     <reportString>Removing a tourniquet from TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>

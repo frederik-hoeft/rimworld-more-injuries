@@ -58,9 +58,12 @@ internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : IComp
                     {
                         if (patient.health.hediffSet.hediffs.Any(hediff => hediff.Part == bodyPart && hediff.def == KnownHediffDefOf.TourniquetApplied))
                         {
-                            options.Add(new FloatMenuOption("MI_TourniquetGizmo_RemoveLabel".Translate(bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white), patient.Downed
-                                ? () => JobDriver_RemoveTourniquet.ApplyDevice(patient, bodyPart)
-                                : JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                            options.Add(new FloatMenuOption("MI_TourniquetGizmo_RemoveSafelyLabel".Translate(bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white), patient.Downed
+                                ? () => JobDriver_RemoveTourniquetSafely.ApplyDevice(patient, bodyPart)
+                                : JobDriver_RemoveTourniquetSafely.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                            options.Add(new FloatMenuOption("MI_TourniquetGizmo_RemoveQuicklyLabel".Translate(bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white), patient.Downed
+                                ? () => JobDriver_RemoveTourniquetQuickly.ApplyDevice(patient, bodyPart)
+                                : JobDriver_RemoveTourniquetQuickly.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
                         }
                         else if (tourniquet is not null && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
                         {
@@ -108,10 +111,13 @@ internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : IComp
                 {
                     // even if you don't know what a tourniquet is, you can still remove it
                     builder.Options.Add(new FloatMenuOption(
-                        "MI_TourniquetFloatMenu_RemoveLabel".Translate(
-                            bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART),
-                            patient.Label.Colorize(Color.yellow).Named(Named.Params.PATIENTNAME)).Colorize(Color.white),
-                    JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                        "MI_TourniquetFloatMenu_RemoveSafelyLabel".Translate(
+                            bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white),
+                    JobDriver_RemoveTourniquetSafely.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                    builder.Options.Add(new FloatMenuOption(
+                        "MI_TourniquetFloatMenu_RemoveQuicklyLabel".Translate(
+                            bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white),
+                    JobDriver_RemoveTourniquetQuickly.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
                 }
                 else if (tourniquet is not null && selectedPawn.Drafted && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
                 {

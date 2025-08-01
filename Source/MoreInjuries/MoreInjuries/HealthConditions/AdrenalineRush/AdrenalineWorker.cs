@@ -23,10 +23,14 @@ internal sealed class AdrenalineWorker(MoreInjuryComp parent) : InjuryWorker(par
                 patient.health.AddHediff(adrenalineRush);
             }
             // possible upperbound of the severity increases with the total damage received, but is capped at 0.75
-            // 20 damage is a lot, so we use that as the upper threshold
             float upperbound = Math.Min(damage.totalDamageDealt / (2f * damageThreshold), 0.75f);
             float severity = Rand.Range(0, upperbound);
-            adrenalineRush.Severity += severity;
+            float newSeverity = adrenalineRush.Severity + severity;
+            // We don't want pawns to constantly overdose on adrenaline, so we clamp the severity here. Max overdosing severity is 5.0, btw
+            // starting from 1.75, overdosing will start to kick in. We allow slight overdosing to account for cases from medicine where
+            // extreme pain and stress actually causes overdosing symptoms.
+            // but we don't want to allow doses equivalent to multiple epinephrine injections, so we cap it at 1.8
+            adrenalineRush.Severity = Mathf.Min(newSeverity, 1.8f);
         }
     }
 }

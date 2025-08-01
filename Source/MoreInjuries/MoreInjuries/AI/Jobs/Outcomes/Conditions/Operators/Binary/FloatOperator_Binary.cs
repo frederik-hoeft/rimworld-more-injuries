@@ -1,4 +1,6 @@
-﻿namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary;
+﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+
+namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary;
 
 // members initialized via XML defs
 [SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
@@ -6,15 +8,31 @@
 public abstract class FloatOperator_Binary : FloatOperator
 {
     // don't rename this field. XML defs depend on this name
-    private readonly FloatOperator? left = default;
+    private FloatOperator? left = default;
     // don't rename this field. XML defs depend on this name
-    private readonly FloatOperator? right = default;
+    private FloatOperator? right = default;
 
     protected abstract string OperatorSymbol { get; }
 
-    public FloatOperator Left => left ?? throw new InvalidOperationException($"{nameof(FloatOperator_Binary)}: {nameof(Left)} operand is not set. This should never happen.");
+    public FloatOperator Left
+    {
+        get
+        {
+            Throw.InvalidOperationException.IfNull(this, left);
+            return left;
+        }
+        internal set => left = value;
+    }
 
-    public FloatOperator Right => right ?? throw new InvalidOperationException($"{nameof(FloatOperator_Binary)}: {nameof(Right)} operand is not set. This should never happen.");
+    public FloatOperator Right
+    {
+        get
+        {
+            Throw.InvalidOperationException.IfNull(this, right);
+            return right;
+        }
+        internal set => right = value;
+    }
 
     public override string ToString() => $"({Left} {OperatorSymbol} {Right})";
 }

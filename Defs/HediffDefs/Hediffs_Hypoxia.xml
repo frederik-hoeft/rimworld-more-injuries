@@ -6,6 +6,22 @@
     <labelNoun>insufficient oxygen</labelNoun>
     <description>Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow.</description>
     <defaultLabelColor>(100, 15, 15)</defaultLabelColor>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Linked.LinkedSeverityProperties_ModExtension">
+        <modifiedHediffs>
+          <li>
+            <linkedHediffDef>Acidosis</linkedHediffDef>
+            <severityModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_ConstantFactor">
+                <!-- 1.5% of hypoxia *damage* (0 to <some high number>) counts towards acidosis *severity* (0 to 1) -->
+                <!-- value determined by testing for balancing -->
+                <factor>0.015</factor>
+              </li>
+            </severityModifiers>
+          </li>
+        </modifiedHediffs>
+      </li>
+    </modExtensions>
     <comps>
       <li Class="HediffCompProperties_TendDuration">
         <labelTendedWell>tended</labelTendedWell>
@@ -19,6 +35,22 @@
         <permanentLabel>permanent hypoxia damage</permanentLabel>
       </li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <handlers>
+          <!-- since there are many hypoxia hediffs but only a single acidosis hediff, once attempt creation once per interval -->
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_SingleExecutionPerInterval">
+            <tickInterval>250</tickInterval>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>Acidosis</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+          </li>
+        </handlers>
+      </li>
     </comps>
     <injuryProps>
       <painPerSeverity>0.005</painPerSeverity>
@@ -37,6 +69,20 @@
     <description>Prolonged lack of oxygen to the brain has caused neurological damage. Depending on the severity and duration of the hypoxia, damaged cells may be able to recover, or they may die off and cause permanent brain damage and disability. There's nothing else to do but wait and see.</description>
     <defaultLabelColor>(100, 15, 15)</defaultLabelColor>
     <maxSeverity>9</maxSeverity>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Linked.LinkedSeverityProperties_ModExtension">
+        <modifiedHediffs>
+          <li>
+            <linkedHediffDef>Acidosis</linkedHediffDef>
+            <severityModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_ConstantFactor">
+                <factor>0.015</factor>
+              </li>
+            </severityModifiers>
+          </li>
+        </modifiedHediffs>
+      </li>
+    </modExtensions>
     <comps>
       <li Class="HediffCompProperties_TendDuration">
         <labelTendedWell>tended</labelTendedWell>
@@ -51,20 +97,35 @@
       </li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
-        <severityCurve>
-          <points>
-            <li>0, 0</li>
-            <li>1, 0.15</li>
-            <li>2, 0.45</li>
-            <li>3, 0.75</li>
-            <li>4, 0.95</li>
-            <li>5, 1</li>
-          </points>
-        </severityCurve>
         <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_SingleExecutionPerInterval">
+            <tickInterval>250</tickInterval>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>Acidosis</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+          </li>
           <li Class="MoreInjuries.HealthConditions.Hypoxia.Secondary.HediffCompHandler_SecondaryCondition_BrainDamage">
             <tickInterval>2000</tickInterval>
             <baseChance>0.12</baseChance>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <severityCurve>
+                  <points>
+                    <li>0, 0</li>
+                    <li>1, 0.15</li>
+                    <li>2, 0.45</li>
+                    <li>3, 0.75</li>
+                    <li>4, 0.95</li>
+                    <li>5, 1</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_RandomFromList">
               <hediffMakerDefs>
                 <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.WeightedHediffMakerDef">
@@ -120,6 +181,18 @@
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_LinkedHediff_Fixed">
                 <hediffDef>BrainDamage_PersonalityShift</hediffDef>
                 <chanceModifier>0</chanceModifier>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <severityCurve>
+                  <points>
+                    <li>0, 0</li>
+                    <li>1, 0.15</li>
+                    <li>2, 0.45</li>
+                    <li>3, 0.75</li>
+                    <li>4, 0.95</li>
+                    <li>5, 1</li>
+                  </points>
+                </severityCurve>
               </li>
             </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">

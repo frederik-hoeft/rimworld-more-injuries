@@ -36,7 +36,7 @@ public class HediffCompHandler_LinkedSeverity : HediffCompHandler
             severity *= modifier.GetModifier(hediff, this);
             if (severity <= Mathf.Epsilon)
             {
-                Logger.LogDebug($"Severity for {hediff.pawn.Name} ({hediff.LabelCap}) to get the secondary condition is 0. Skipping evaluation.");
+                Logger.LogDebug($"Secondary condition evaluation for {hediff.pawn.Name} ({hediff.Label}) failed. {modifier.GetType().Name} returned 0 severity or chance.");
                 return 0f;
             }
         }

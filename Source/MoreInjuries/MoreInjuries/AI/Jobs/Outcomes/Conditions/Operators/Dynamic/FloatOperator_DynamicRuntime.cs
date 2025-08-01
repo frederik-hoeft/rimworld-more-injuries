@@ -8,7 +8,7 @@ namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic;
 public sealed class FloatOperator_DynamicRuntime : FloatOperator_DynamicRuntime_ProcedureBase
 {
     // don't rename this field. XML defs depend on this name
-    public readonly List<FloatOperator> instructions = default!;
+    private readonly List<FloatOperator> instructions = default!;
 
     protected override List<FloatOperator> LoadInstructions() => instructions;
 

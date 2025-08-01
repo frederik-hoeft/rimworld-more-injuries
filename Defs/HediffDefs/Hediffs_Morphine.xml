@@ -5,7 +5,7 @@
     <label>morphine high</label>
     <labelNoun>being high on morphine</labelNoun>
     <description>Morphine is a powerful opioid analgesic used for rapid pain relief in battlefield trauma and emergency care. It works by suppressing the central nervous system, blocking pain signals, inducing sedation, and providing a sense of euphoria. However, it can cause dangerous respiratory depression, lower blood pressure, and worsen shock, making it especially hazardous during uncontrolled bleeding or resuscitation efforts, and potentially fatal in overdose.</description>
-    <defaultLabelColor>(255, 185, 56)</defaultLabelColor>
+    <defaultLabelColor>(255, 0, 128)</defaultLabelColor>
     <isBad>true</isBad>
     <maxSeverity>1</maxSeverity>
     <modExtensions>
