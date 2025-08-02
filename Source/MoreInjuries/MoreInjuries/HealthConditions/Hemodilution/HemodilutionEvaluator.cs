@@ -4,38 +4,38 @@ namespace MoreInjuries.HealthConditions.Hemodilution;
 
 public static class HemodilutionEvaluator
 {
-    public static float CalculateMaximumSafeAddedSalineVolume(float hemodulutionSeverity, float bloodLossSeverity, float hemodilutionThreshold)
+    public static float CalculateMaximumSafeAddedSalineVolume(float hemodilutionSeverity, float bloodLossSeverity, float hemodilutionThreshold)
     {
         // map blood loss = 1 (death) to 50% of total volume lost
         float currentVolume = 1f - (bloodLossSeverity * 0.5f);
-        return currentVolume * (hemodulutionSeverity - hemodilutionThreshold) / (hemodilutionThreshold - 1);
+        return currentVolume * (hemodilutionSeverity - hemodilutionThreshold) / (hemodilutionThreshold - 1);
     }
 
-    public static int CalculateMaximumSafeSalineTransfusions(float hemodulutionSeverity, float bloodLossSeverity, float hemodilutionThreshold, float salineBagVolume)
+    public static int CalculateMaximumSafeSalineTransfusions(float hemodilutionSeverity, float bloodLossSeverity, float hemodilutionThreshold, float salineBagVolume)
     {
-        float maxAllowedAddedVolume = CalculateMaximumSafeAddedSalineVolume(hemodulutionSeverity, bloodLossSeverity, hemodilutionThreshold);
+        float maxAllowedAddedVolume = CalculateMaximumSafeAddedSalineVolume(hemodilutionSeverity, bloodLossSeverity, hemodilutionThreshold);
         int maxAllowedTransfusions = (int)MathF.Floor(maxAllowedAddedVolume / salineBagVolume);
         return maxAllowedTransfusions;
     }
 
-    public static float CalculateMaxNeededWholeBloodVolumeToTreatHemodilution(float hemodulutionSeverity, float bloodLossSeverity)
+    public static float CalculateMaxNeededWholeBloodVolumeToTreatHemodilution(float hemodilutionSeverity, float bloodLossSeverity)
     {
         // map blood loss = 1 (death) to 50% of total volume lost
         float missingVolume = bloodLossSeverity * 0.5f;
         float currentVolume = 1f - missingVolume;
-        float minRequiredAddedVolume = missingVolume + (hemodulutionSeverity * currentVolume / (currentVolume + missingVolume));
+        float minRequiredAddedVolume = missingVolume + (hemodilutionSeverity * currentVolume / (currentVolume + missingVolume));
         return minRequiredAddedVolume;
     }
 
-    public static int CalculateMaxNeededBloodTransfusionsToTreatHemodilution(float hemodulutionSeverity, float bloodLossSeverity, float bloodBagVolume)
+    public static int CalculateMaxNeededBloodTransfusionsToTreatHemodilution(float hemodilutionSeverity, float bloodLossSeverity, float bloodBagVolume)
     {
-        float minRequiredAddedVolume = CalculateMaxNeededWholeBloodVolumeToTreatHemodilution(hemodulutionSeverity, bloodLossSeverity);
+        float minRequiredAddedVolume = CalculateMaxNeededWholeBloodVolumeToTreatHemodilution(hemodilutionSeverity, bloodLossSeverity);
         return (int)MathF.Ceiling(minRequiredAddedVolume / bloodBagVolume);
     }
 
-    public static float CalculateMinimumRequiredWholeBloodVolumeToTreatHemodilution(float hemodulutionSeverity, float bloodLossSeverity, float hemodilutionThreshold)
+    public static float CalculateMinimumRequiredWholeBloodVolumeToTreatHemodilution(float hemodilutionSeverity, float bloodLossSeverity, float hemodilutionThreshold)
     {
-        if (hemodulutionSeverity < hemodilutionThreshold)
+        if (hemodilutionSeverity < hemodilutionThreshold)
         {
             return 0f;
         }
