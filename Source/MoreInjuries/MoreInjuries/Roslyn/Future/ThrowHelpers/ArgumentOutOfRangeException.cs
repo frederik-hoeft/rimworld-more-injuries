@@ -43,7 +43,7 @@ public static partial class Throw
         private static void ThrowNotEqual<T>(T value, T other, string? paramName) =>
             throw new Std::ArgumentOutOfRangeException(paramName, value, $"{paramName} ('{value}') must be equal to {other}.");
 
-        /// <summary>Throws an <see cref="ArgumentOutOfRangeException"/> if <paramref name="value"/> is zero.</summary>
+        /// <summary>Throws an <see cref="Std::ArgumentOutOfRangeException"/> if <paramref name="value"/> is zero.</summary>
         /// <param name="value">The argument to validate as non-zero.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="value"/> corresponds.</param>
         public static void IfZero<T>(T value, [CallerArgumentExpression(nameof(value))] string? paramName = null)
@@ -55,7 +55,7 @@ public static partial class Throw
             }
         }
 
-        /// <summary>Throws an <see cref="ArgumentOutOfRangeException"/> if <paramref name="value"/> is negative.</summary>
+        /// <summary>Throws an <see cref="Std::ArgumentOutOfRangeException"/> if <paramref name="value"/> is negative.</summary>
         /// <param name="value">The argument to validate as non-negative.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="value"/> corresponds.</param>
         public static void IfNegative<T>(T value, [CallerArgumentExpression(nameof(value))] string? paramName = null)
@@ -67,7 +67,7 @@ public static partial class Throw
             }
         }
 
-        /// <summary>Throws an <see cref="ArgumentOutOfRangeException"/> if <paramref name="value"/> is negative or zero.</summary>
+        /// <summary>Throws an <see cref="Std::ArgumentOutOfRangeException"/> if <paramref name="value"/> is negative or zero.</summary>
         /// <param name="value">The argument to validate as non-zero or non-negative.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="value"/> corresponds.</param>
         public static void IfNegativeOrZero<T>(T value, [CallerArgumentExpression(nameof(value))] string? paramName = null)
@@ -79,7 +79,7 @@ public static partial class Throw
             }
         }
 
-        /// <summary>Throws an <see cref="ArgumentOutOfRangeException"/> if <paramref name="value"/> is equal to <paramref name="other"/>.</summary>
+        /// <summary>Throws an <see cref="Std::ArgumentOutOfRangeException"/> if <paramref name="value"/> is equal to <paramref name="other"/>.</summary>
         /// <param name="value">The argument to validate as not equal to <paramref name="other"/>.</param>
         /// <param name="other">The value to compare with <paramref name="value"/>.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="value"/> corresponds.</param>
@@ -91,7 +91,7 @@ public static partial class Throw
             }
         }
 
-        /// <summary>Throws an <see cref="ArgumentOutOfRangeException"/> if <paramref name="value"/> is not equal to <paramref name="other"/>.</summary>
+        /// <summary>Throws an <see cref="Std::ArgumentOutOfRangeException"/> if <paramref name="value"/> is not equal to <paramref name="other"/>.</summary>
         /// <param name="value">The argument to validate as equal to <paramref name="other"/>.</param>
         /// <param name="other">The value to compare with <paramref name="value"/>.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="value"/> corresponds.</param>
@@ -103,7 +103,7 @@ public static partial class Throw
             }
         }
 
-        /// <summary>Throws an <see cref="ArgumentOutOfRangeException"/> if <paramref name="value"/> is greater than <paramref name="other"/>.</summary>
+        /// <summary>Throws an <see cref="Std::ArgumentOutOfRangeException"/> if <paramref name="value"/> is greater than <paramref name="other"/>.</summary>
         /// <param name="value">The argument to validate as less or equal than <paramref name="other"/>.</param>
         /// <param name="other">The value to compare with <paramref name="value"/>.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="value"/> corresponds.</param>
@@ -116,7 +116,7 @@ public static partial class Throw
             }
         }
 
-        /// <summary>Throws an <see cref="ArgumentOutOfRangeException"/> if <paramref name="value"/> is greater than or equal <paramref name="other"/>.</summary>
+        /// <summary>Throws an <see cref="Std::ArgumentOutOfRangeException"/> if <paramref name="value"/> is greater than or equal <paramref name="other"/>.</summary>
         /// <param name="value">The argument to validate as less than <paramref name="other"/>.</param>
         /// <param name="other">The value to compare with <paramref name="value"/>.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="value"/> corresponds.</param>
@@ -129,7 +129,7 @@ public static partial class Throw
             }
         }
 
-        /// <summary>Throws an <see cref="ArgumentOutOfRangeException"/> if <paramref name="value"/> is less than <paramref name="other"/>.</summary>
+        /// <summary>Throws an <see cref="Std::ArgumentOutOfRangeException"/> if <paramref name="value"/> is less than <paramref name="other"/>.</summary>
         /// <param name="value">The argument to validate as greater than or equal than <paramref name="other"/>.</param>
         /// <param name="other">The value to compare with <paramref name="value"/>.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="value"/> corresponds.</param>
@@ -142,7 +142,7 @@ public static partial class Throw
             }
         }
 
-        /// <summary>Throws an <see cref="ArgumentOutOfRangeException"/> if <paramref name="value"/> is less than or equal <paramref name="other"/>.</summary>
+        /// <summary>Throws an <see cref="Std::ArgumentOutOfRangeException"/> if <paramref name="value"/> is less than or equal <paramref name="other"/>.</summary>
         /// <param name="value">The argument to validate as greater than than <paramref name="other"/>.</param>
         /// <param name="other">The value to compare with <paramref name="value"/>.</param>
         /// <param name="paramName">The name of the parameter with which <paramref name="value"/> corresponds.</param>

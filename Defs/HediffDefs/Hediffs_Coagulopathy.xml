@@ -31,8 +31,8 @@
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy" />
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
-            <tickInterval>125</tickInterval>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
+            <tickInterval>250</tickInterval>
             <chanceModifiers>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
                 <mttfDaysBySeverity>
@@ -51,16 +51,45 @@
               <hediffMakerDef>
                 <hediffDef>SpontaneousBleeding</hediffDef>
                 <minSeverity>0.1</minSeverity>
-                <maxSeverity>1.5</maxSeverity>
+                <maxSeverity>1</maxSeverity>
                 <allowMultiple>true</allowMultiple>
-                <allowDuplicate>false</allowDuplicate>
+                <allowDuplicate>true</allowDuplicate>
               </hediffMakerDef>
             </hediffMakerProps>
             <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">
               <depth>Inside</depth>
             </targetEvaluator>
           </li>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
+            <tickInterval>250</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
+                <mttfDaysBySeverity>
+                  <points>
+                    <li>0, 10</li>
+                    <li>0.2, 2</li>
+                    <li>0.4, 0.25</li>
+                    <li>0.6, 0.125</li>
+                    <li>0.8, 0.03125</li>
+                    <li>1, 0.00625</li>
+                  </points>
+                </mttfDaysBySeverity>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>Bruise</hediffDef>
+                <minSeverity>0.1</minSeverity>
+                <maxSeverity>1</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>true</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">
+              <depth>Outside</depth>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>2000</tickInterval>
             <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             <chanceModifiers>

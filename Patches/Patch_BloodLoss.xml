@@ -43,12 +43,12 @@
           </points>
         </severityCurve>
         <handlers>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>250</tickInterval>
             <chanceModifiers>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowUntracked"></li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_FeatureFlag">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag">
                 <key>EnableHypovolemicShock</key>
               </li>
             </chanceModifiers>

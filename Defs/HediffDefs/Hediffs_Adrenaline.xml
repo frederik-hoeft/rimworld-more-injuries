@@ -15,7 +15,7 @@
       </li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>2000</tickInterval>
             <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             <chanceModifiers>
@@ -43,7 +43,7 @@
               <target>Heart</target>
             </targetEvaluator>
           </li>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>2000</tickInterval>
             <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             <chanceModifiers>

@@ -2,6 +2,7 @@
 using MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
+using MoreInjuries.Roslyn.Future.ThrowHelpers;
 using RimWorld;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,30 +13,32 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers;
 // members initialized via XML defs
 [SuppressMessage(CODE_STYLE, STYLE_IDE0032_USE_AUTO_PROPERTY, Justification = JUSTIFY_IDE0032_XML_DEF_REQUIRES_FIELD)]
 [SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public class HediffCompHandler_SecondaryCondition : HediffCompHandler
+public abstract class HediffCompHandler_SecondaryCondition : HediffCompHandler
 {
     // don't rename this field. XML defs depend on this name
-    protected readonly float? baseChance = null;
-    // don't rename this field. XML defs depend on this name
-    private readonly int tickInterval = GenTicks.TickRareInterval;
+    private readonly float? baseChance = null;
     // don't rename this field. XML defs depend on this name
     private readonly HediffMakerProperties? hediffMakerProps = default;
     // don't rename this field. XML defs depend on this name
     private readonly List<SecondaryHediffModifier>? chanceModifiers = default;
     // don't rename this field. XML defs depend on this name
-    protected readonly bool sendLetterWhenDiscovered = false;
+    private readonly bool sendLetterWhenDiscovered = false;
     // don't rename this field. XML defs depend on this name
-    protected readonly BodyPartHediffTargetEvaluator? targetEvaluator = default;
+    private readonly BodyPartHediffTargetEvaluator? targetEvaluator = default;
 
     public virtual float BaseChance => baseChance ?? 1f;
 
-    public override int TickInterval => tickInterval;
-
     public HediffMakerProperties? HediffMakerProps => hediffMakerProps;
 
-    public virtual bool ShouldSkip(HediffComp_SecondaryCondition comp, float severityAdjustment)
+    public IReadOnlyList<SecondaryHediffModifier>? ChanceModifiers => chanceModifiers;
+
+    public bool SendLetterWhenDiscovered => sendLetterWhenDiscovered;
+
+    public BodyPartHediffTargetEvaluator TargetEvaluator => targetEvaluator ?? BodyPartHediffTargetEvaluator_WholeBody.Instance;
+
+    public virtual bool ShouldSkip(HediffComp_SecondaryCondition comp)
     {
-        if (!comp.Pawn.IsHashIntervalTick(TickInterval) || comp.Pawn.Dead)
+        if (comp.Pawn.Dead)
         {
             return true;
         }
@@ -44,9 +47,9 @@ public class HediffCompHandler_SecondaryCondition : HediffCompHandler
             return true;
         }
         float chance = BaseChance;
-        if (chance > Mathf.Epsilon && chanceModifiers is { Count: > 0 })
+        if (chance > Mathf.Epsilon && ChanceModifiers is { Count: > 0 })
         {
-            foreach (SecondaryHediffModifier modifier in chanceModifiers)
+            foreach (SecondaryHediffModifier modifier in ChanceModifiers)
             {
                 chance *= modifier.GetModifier(comp.parent, this);
                 if (chance <= Mathf.Epsilon)
@@ -63,20 +66,17 @@ public class HediffCompHandler_SecondaryCondition : HediffCompHandler
         return false;
     }
 
-    public virtual void Evaluate(HediffComp_SecondaryCondition comp, float severityAdjustment)
+    protected virtual void Evaulate(HediffComp_SecondaryCondition comp)
     {
-        if (ShouldSkip(comp, severityAdjustment))
-        {
-            return;
-        }
-        BodyPartHediffTargetEvaluator localTargetEvaluator = targetEvaluator ?? BodyPartHediffTargetEvaluator_WholeBody.Instance;
-        HediffMakerProperties hediffMakerProps = HediffMakerProps ?? throw new InvalidOperationException($"{nameof(HediffCompHandler_SecondaryCondition)}: {comp.GetType().Name} has no hediff maker properties defined. Cannot evaluate.");
+        Throw.InvalidOperationException.IfNull(this, HediffMakerProps);
+
+        BodyPartHediffTargetEvaluator localTargetEvaluator = TargetEvaluator;
         BodyPartRecord? targetBodyPart = localTargetEvaluator.GetTargetBodyPart(comp, this);
-        HediffMakerDef hediffMakerDef = hediffMakerProps.GetHediffMakerDef(comp, handler: this, targetBodyPart);
+        HediffMakerDef hediffMakerDef = HediffMakerProps.GetHediffMakerDef(comp, handler: this, targetBodyPart);
         HediffDef hediffDef = hediffMakerDef.HediffDef;
         // check if the hediff already exists on the target body part (or anywhere if no body part is specified)
         Hediff? existingHediff = null;
-        if (targetBodyPart is null && !comp.Pawn.health.hediffSet.TryGetHediff(hediffDef, out existingHediff) 
+        if (targetBodyPart is null && !comp.Pawn.health.hediffSet.TryGetHediff(hediffDef, out existingHediff)
             || targetBodyPart is not null && !comp.Pawn.health.hediffSet.TryGetFirstHediffMatchingPart(targetBodyPart, hediffDef, out existingHediff))
         {
             float initialSeverity = hediffMakerDef.GetInitialSeverity();
@@ -105,17 +105,6 @@ public class HediffCompHandler_SecondaryCondition : HediffCompHandler
         }
     }
 
-    protected virtual void PostApplyHediff(HediffComp_SecondaryCondition comp, Hediff hediff)
-    {
-        Pawn pawn = hediff.pawn;
-        if (sendLetterWhenDiscovered && PawnUtility.ShouldSendNotificationAbout(pawn))
-        {
-            Find.LetterStack.ReceiveLetter("LetterHealthComplicationsLabel".Translate(pawn.LabelShort, hediff.LabelCap, pawn.Named("PAWN")).CapitalizeFirst(),
-                "LetterHealthComplications".Translate(pawn.LabelShortCap, hediff.LabelCap, comp.parent.LabelCap, pawn.Named("PAWN")).CapitalizeFirst(),
-                LetterDefOf.NegativeEvent, pawn);
-        }
-    }
-
     protected virtual Hediff MakeHediff(HediffComp_SecondaryCondition sourceComp, HediffDef hediffDef, BodyPartRecord? targetBodyPart, float severity)
     {
         Hediff hediff = HediffMaker.MakeHediff(hediffDef, sourceComp.Pawn);
@@ -123,6 +112,17 @@ public class HediffCompHandler_SecondaryCondition : HediffCompHandler
         UpdateHediffCause(hediff, sourceComp);
         sourceComp.Pawn.health.AddHediff(hediff, targetBodyPart);
         return hediff;
+    }
+
+    protected virtual void PostApplyHediff(HediffComp_SecondaryCondition comp, Hediff hediff)
+    {
+        Pawn pawn = hediff.pawn;
+        if (SendLetterWhenDiscovered && PawnUtility.ShouldSendNotificationAbout(pawn))
+        {
+            Find.LetterStack.ReceiveLetter("LetterHealthComplicationsLabel".Translate(pawn.LabelShort, hediff.LabelCap, pawn.Named("PAWN")).CapitalizeFirst(),
+                "LetterHealthComplications".Translate(pawn.LabelShortCap, hediff.LabelCap, comp.parent.LabelCap, pawn.Named("PAWN")).CapitalizeFirst(),
+                LetterDefOf.NegativeEvent, pawn);
+        }
     }
 
     protected virtual void UpdateHediffCause(Hediff hediff, HediffComp_SecondaryCondition sourceComp)

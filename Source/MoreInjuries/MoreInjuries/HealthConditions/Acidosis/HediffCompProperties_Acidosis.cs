@@ -13,6 +13,8 @@ public sealed class HediffCompProperties_Acidosis : HediffCompProperties
     private readonly int tickInterval = default;
     // don't rename this field. XML defs depend on this name
     private readonly float recoveryPerDay = default;
+    // don't rename this field. XML defs depend on this name
+    private readonly float initializationSeverityThreshold = default;
 
     public HediffCompProperties_Acidosis() => compClass = typeof(HediffComp_Acidosis);
 
@@ -21,4 +23,6 @@ public sealed class HediffCompProperties_Acidosis : HediffCompProperties
     public int TickInterval => tickInterval;
 
     public float RecoveryPerDay => recoveryPerDay;
+
+    public float InitializationSeverityThreshold => initializationSeverityThreshold;
 }

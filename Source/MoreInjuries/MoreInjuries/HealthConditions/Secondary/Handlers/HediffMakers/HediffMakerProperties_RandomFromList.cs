@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
@@ -22,15 +23,9 @@ public class HediffMakerProperties_RandomFromList : HediffMakerProperties
 
     public override HediffMakerDef GetHediffMakerDef(HediffComp parentComp, HediffCompHandler_SecondaryCondition handler, BodyPartRecord? targetBodyPart)
     {
-        if (hediffMakerDefs is not { Count: > 0 })
-        {
-            throw new InvalidOperationException($"{nameof(HediffMakerProperties_RandomFromList)}: {parentComp.GetType().Name} has no hediff maker defs defined. Cannot evaluate.");
-        }
+        Throw.InvalidOperationException.If(hediffMakerDefs is not { Count: > 0 });
         t_cdfCache ??= new float[hediffMakerDefs.Count];
-        if (t_cdfCache.Length != hediffMakerDefs.Count)
-        {
-            throw new InvalidOperationException($"{nameof(HediffMakerProperties_RandomFromList)}: CDF cache length {t_cdfCache.Length} does not match hediff maker defs count {hediffMakerDefs.Count}.");
-        }
+        Throw.InvalidOperationException.If(t_cdfCache.Length != hediffMakerDefs.Count);
         float totalWeight = 0f;
         for (int i = 0; i < hediffMakerDefs.Count; i++)
         {

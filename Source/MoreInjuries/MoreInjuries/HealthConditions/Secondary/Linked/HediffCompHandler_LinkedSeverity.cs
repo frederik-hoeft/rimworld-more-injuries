@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.HealthConditions.Secondary.Handlers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
+using MoreInjuries.Roslyn.Future.ThrowHelpers;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
@@ -16,9 +17,14 @@ public class HediffCompHandler_LinkedSeverity : HediffCompHandler
     // don't rename this field. XML defs depend on this name
     private readonly HediffDef? linkedHediffDef = default;
 
-    public sealed override int TickInterval => throw new NotSupportedException($"{nameof(HediffCompHandler_LinkedSeverity)} does not support {nameof(TickInterval)}.");
-
-    public HediffDef LinkedHediffDef => linkedHediffDef ?? throw new InvalidOperationException($"{nameof(HediffCompHandler_LinkedSeverity)}: {nameof(linkedHediffDef)} is not defined. Cannot evaluate.");
+    public HediffDef LinkedHediffDef
+    {
+        get
+        {
+            Throw.InvalidOperationException.IfNull(this, linkedHediffDef);
+            return linkedHediffDef;
+        }
+    }
 
     public virtual float Evaluate(Hediff hediff)
     {

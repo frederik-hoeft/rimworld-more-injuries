@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <!-- EN: spontaneous hemorrhage -->
-  <SpontaneousBleeding.label>spontaneous hemorrhage</SpontaneousBleeding.label>
-  <!-- EN: a spontaneous hemorrhage -->
-  <SpontaneousBleeding.labelNoun>a spontaneous hemorrhage</SpontaneousBleeding.labelNoun>
-  <!-- EN: Spontaneous hemorrhage is a condition where bleeding occurs without any apparent external cause, often due to underlying medical issues such as coagulopathy or vascular abnormalities. It can manifest as bruising, nosebleeds, or internal bleeding and may require medical intervention to manage the underlying causes and prevent complications. In severe cases, it can lead to significant blood loss, multiple organ failure, and death if not treated promptly. -->
-  <SpontaneousBleeding.description>Spontaneous hemorrhage is a condition where bleeding occurs without any apparent external cause, often due to underlying medical issues such as coagulopathy or vascular abnormalities. It can manifest as bruising, nosebleeds, or internal bleeding and may require medical intervention to manage the underlying causes and prevent complications. In severe cases, it can lead to significant blood loss, multiple organ failure, and death if not treated promptly.</SpontaneousBleeding.description>
+  <!-- EN: hemorrhage -->
+  <SpontaneousBleeding.label>hemorrhage</SpontaneousBleeding.label>
+  <!-- EN: a hemorrhage -->
+  <SpontaneousBleeding.labelNoun>a hemorrhage</SpontaneousBleeding.labelNoun>
+  <!-- EN: Spontaneous hemorrhaging is a condition where bleeding occurs without any apparent external cause, often due to underlying medical issues such as coagulopathy or vascular abnormalities. It can manifest as bruising, nosebleeds, or internal bleeding and may require medical intervention to manage the underlying causes and prevent complications. In severe cases, it can lead to significant blood loss, multiple organ failure, and death if not treated promptly.\n\nWhile treating the underlying cause is essential, immediate management may include stabilizing the patient, controlling bleeding, and administering blood products for fluid resuscitation. -->
+  <SpontaneousBleeding.description>Spontaneous hemorrhaging is a condition where bleeding occurs without any apparent external cause, often due to underlying medical issues such as coagulopathy or vascular abnormalities. It can manifest as bruising, nosebleeds, or internal bleeding and may require medical intervention to manage the underlying causes and prevent complications. In severe cases, it can lead to significant blood loss, multiple organ failure, and death if not treated promptly.\n\nWhile treating the underlying cause is essential, immediate management may include stabilizing the patient, controlling bleeding, and administering blood products for fluid resuscitation.</SpontaneousBleeding.description>
   <!-- EN: bandaged -->
   <SpontaneousBleeding.comps.HediffComp_TendDuration.labelTendedWell>bandaged</SpontaneousBleeding.comps.HediffComp_TendDuration.labelTendedWell>
   <!-- EN: sutured -->

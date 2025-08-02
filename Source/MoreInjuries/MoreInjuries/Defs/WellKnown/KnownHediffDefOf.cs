@@ -14,7 +14,8 @@ public static class KnownHediffDefOf
     // added by MoreInjuries
     public static HediffDef Acidosis = null!;
     public static HediffDef AdrenalineRush = null!;
-    public static HediffDef BoneFragmentLaceration = null!; 
+    public static HediffDef BoneFragmentLaceration = null!;
+    public static HediffDef BrainDamage_Hypoxia = null!;
     public static HediffDef CardiacArrest = null!;
     public static HediffDef ChokingOnBlood = null!;
     public static HediffDef ChokingOnTourniquet = null!;
@@ -36,6 +37,7 @@ public static class KnownHediffDefOf
     public static HediffDef TourniquetQuicklyRemoved = null!;
     public static HediffDef SpallFragmentCut = null!;
     public static HediffDef SpinalCordParalysis = null!;
+    public static HediffDef SpontaneousBleeding = null!;
     public static HediffDef StomachAcidBurn = null!;
     public static HediffDef TourniquetApplied = null!;
 }

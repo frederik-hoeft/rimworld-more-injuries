@@ -9,15 +9,27 @@ public class HediffComp_SecondaryCondition : HediffComp
 
     public SimpleCurve? SeverityCurve => Properties.SeverityCurve;
 
+    public override void CompPostPostAdd(DamageInfo? dinfo)
+    {
+        if (parent.pawn is not { Dead: false })
+        {
+            return;
+        }
+        foreach (IHediffComp_SecondaryCondition_PostMakeHandler handler in Properties.PostMakeHandlers)
+        {
+            handler.PostMake(this);
+        }
+    }
+
     public override void CompPostTick(ref float severityAdjustment)
     {
         if (parent.pawn is not { Dead: false })
         {
             return;
         }
-        foreach (HediffCompHandler_SecondaryCondition handler in Properties.Handlers)
+        foreach (IHediffComp_SecondaryCondition_TickHandler handler in Properties.TickHandlers)
         {
-            handler.Evaluate(this, severityAdjustment);
+            handler.Tick(this);
         }
     }
 }

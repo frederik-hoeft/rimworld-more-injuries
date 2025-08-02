@@ -49,6 +49,7 @@ public sealed class KeyedMemberGenerator : IIncrementalGenerator
         context.RegisterSourceOutput(pipeline, static (context, model) =>
         {
             StringBuilder bobTheBuilder = new();
+            string fieldName = SymbolNameGenerator.MakeUnique("s_keyedMemberRegistry");
             bobTheBuilder.AppendLine(
                 $$"""
                 #nullable enable
@@ -58,11 +59,14 @@ public sealed class KeyedMemberGenerator : IIncrementalGenerator
                 partial class {{model.ClassName}}
                 {
                     [global::{{typeof(CompilerGeneratedAttribute).FullName}}]
-                    private static readonly global::{{KEYED_MEMBER_REGISTRY_FULL_NAME}}<{{model.ClassName}}> s_keyedMemberRegistry__generated = new(global::{{typeof(Enumerable).FullName}}.{{nameof(Enumerable.ToDictionary)}}(((string Field, global::{{FEATURE_FLAG_RESOLVER_FULL_NAME}}<{{model.ClassName}}> Resolver)[])
+                    private static readonly global::{{KEYED_MEMBER_REGISTRY_FULL_NAME}}<{{model.ClassName}}> {{fieldName}} = new(global::{{typeof(Enumerable).FullName}}.{{nameof(Enumerable.ToDictionary)}}(((string Field, global::{{FEATURE_FLAG_RESOLVER_FULL_NAME}}<{{model.ClassName}}> Resolver)[])
                     [
                 """);
             string indent = new(' ', 8);
-            IEnumerable<ISymbol> fields = model.Class.GetMembers().Where(static member => member is IFieldSymbol { IsStatic: false } field);
+            IEnumerable<ISymbol> fields = model.Class.GetMembers()
+                .Where(static member => member is IFieldSymbol or IPropertySymbol 
+                    && !member.IsStatic 
+                    && member.GetAttributes().All(static attr => attr.AttributeClass?.Name != nameof(CompilerGeneratedAttribute)));
             foreach (ISymbol field in fields)
             {
                 bobTheBuilder.AppendLine(
@@ -75,7 +79,7 @@ public sealed class KeyedMemberGenerator : IIncrementalGenerator
                     ], static kvp => kvp.Field, static kvp => kvp.Resolver));
                 
                     [global::{{typeof(CompilerGeneratedAttribute).FullName}}]
-                    {{model.Visibility}} global::{{SCOPED_KEYED_MEMBER_REGISTRY_FULL_NAME}}<{{model.ClassName}}> Keyed => new(this, s_keyedMemberRegistry__generated);
+                    {{model.Visibility}} global::{{SCOPED_KEYED_MEMBER_REGISTRY_FULL_NAME}}<{{model.ClassName}}> Keyed => new(this, {{fieldName}});
                 }
                 """);
             SourceText sourceText = SourceText.From(bobTheBuilder.ToString(), Encoding.UTF8);

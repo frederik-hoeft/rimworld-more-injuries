@@ -50,7 +50,7 @@ public class HediffMakerDef(HediffDef hediffDef, float? minSeverity, float? maxS
         }
         if (minSeverity > maxSeverity)
         {
-            Logger.Error($"{nameof(HediffCompHandler_SecondaryCondition)}: {nameof(minSeverity)} ({minSeverity}) is greater than {nameof(maxSeverity)} ({maxSeverity}). Using {nameof(minSeverity)} instead.");
+            Logger.Error($"{nameof(minSeverity)} ({minSeverity}) is greater than {nameof(maxSeverity)} ({maxSeverity}). Using {nameof(minSeverity)} instead.");
             return minSeverity;
         }
         return Rand.Range(minSeverity, maxSeverity);

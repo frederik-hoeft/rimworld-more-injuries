@@ -41,7 +41,7 @@
       </li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>2000</tickInterval>
             <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             <chanceModifiers>
@@ -84,8 +84,7 @@
             </targetEvaluator>
           </li>
           <!-- ref: https://pmc.ncbi.nlm.nih.gov/articles/PMC5543001/ -->
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
-            <tickInterval>2000</tickInterval>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_PostMake">
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>Vasodilation</hediffDef>

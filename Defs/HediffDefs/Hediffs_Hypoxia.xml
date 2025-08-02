@@ -12,10 +12,8 @@
           <li>
             <linkedHediffDef>Acidosis</linkedHediffDef>
             <severityModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_ConstantFactor">
-                <!-- 1.5% of hypoxia *damage* (0 to <some high number>) counts towards acidosis *severity* (0 to 1) -->
-                <!-- value determined by testing for balancing -->
-                <factor>0.015</factor>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_Gauge">
+                <key>HypoxiaAcidosisConversionFactor</key>
               </li>
             </severityModifiers>
           </li>
@@ -37,9 +35,7 @@
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
-          <!-- since there are many hypoxia hediffs but only a single acidosis hediff, once attempt creation once per interval -->
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_SingleExecutionPerInterval">
-            <tickInterval>250</tickInterval>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_PostMake">
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>Acidosis</hediffDef>
@@ -75,8 +71,8 @@
           <li>
             <linkedHediffDef>Acidosis</linkedHediffDef>
             <severityModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_ConstantFactor">
-                <factor>0.015</factor>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_Gauge">
+                <key>HypoxiaAcidosisConversionFactor</key>
               </li>
             </severityModifiers>
           </li>
@@ -98,8 +94,7 @@
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_SingleExecutionPerInterval">
-            <tickInterval>250</tickInterval>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_PostMake">
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>Acidosis</hediffDef>

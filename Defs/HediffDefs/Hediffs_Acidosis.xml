@@ -35,12 +35,12 @@
         <tickInterval>250</tickInterval>
         <historyRetentionPeriodHours>1</historyRetentionPeriodHours>
         <recoveryPerDay>8</recoveryPerDay>
+        <initializationSeverityThreshold>5</initializationSeverityThreshold>
       </li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
-            <tickInterval>250</tickInterval>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_PostMake">
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>Coagulopathy</hediffDef>
@@ -66,14 +66,14 @@
         <statOffsets>
           <!-- acidosis hinders mitochondrial function and reduces energy production, which is required for thermogenesis -->
           <!-- this effect is significantly lower than hypovolemia, but still contributes to hypothermia -->
-          <ComfyTemperatureMin>2</ComfyTemperatureMin>
+          <ComfyTemperatureMin>5</ComfyTemperatureMin>
         </statOffsets>
       </li>
       <li>
         <label>severe</label>
         <minSeverity>0.2</minSeverity>
         <statOffsets>
-          <ComfyTemperatureMin>4</ComfyTemperatureMin>
+          <ComfyTemperatureMin>7.5</ComfyTemperatureMin>
         </statOffsets>
       </li>
       <li>
@@ -81,7 +81,7 @@
         <minSeverity>0.4</minSeverity>
         <lifeThreatening>true</lifeThreatening>
         <statOffsets>
-          <ComfyTemperatureMin>6</ComfyTemperatureMin>
+          <ComfyTemperatureMin>10</ComfyTemperatureMin>
         </statOffsets>
       </li>
       <li>
@@ -89,7 +89,7 @@
         <minSeverity>0.6</minSeverity>
         <lifeThreatening>true</lifeThreatening>
         <statOffsets>
-          <ComfyTemperatureMin>8</ComfyTemperatureMin>
+          <ComfyTemperatureMin>12.5</ComfyTemperatureMin>
         </statOffsets>
       </li>
       <li>
@@ -97,7 +97,7 @@
         <minSeverity>0.8</minSeverity>
         <lifeThreatening>true</lifeThreatening>
         <statOffsets>
-          <ComfyTemperatureMin>10</ComfyTemperatureMin>
+          <ComfyTemperatureMin>15</ComfyTemperatureMin>
         </statOffsets>
       </li>
     </stages>

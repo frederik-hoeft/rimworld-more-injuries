@@ -35,7 +35,7 @@ public sealed class HediffModifier_MeanTimeBetween_Fixed : HediffModifier_MeanTi
                     + (years * GenDate.TicksPerYear);
                 if (mttf <= Mathf.Epsilon)
                 {
-                    Logger.ConfigError($"{nameof(HediffModifier_MeanTimeBetween)} not properly initialized (ticks={ticks}, hours={hours}, days={days}, quadrums={quadrums}, years={years}). MTTF must be > 0. Defaulting to 1 day.");
+                    Logger.ConfigError($"hediff modifier was not properly initialized (ticks={ticks}, hours={hours}, days={days}, quadrums={quadrums}, years={years}). MTTF must be > 0. Defaulting to 1 day.");
                     mttf = GenDate.TicksPerDay; // default to 1 day if not set
                 }
                 Interlocked.Exchange(ref _mttf, mttf);
@@ -44,6 +44,6 @@ public sealed class HediffModifier_MeanTimeBetween_Fixed : HediffModifier_MeanTi
         }
     }
 
-    public override float GetModifier(Hediff hediff, HediffCompHandler compHandler) =>
+    public override float GetModifier(Hediff hediff, IHediffComp_TickHandler compHandler) =>
         GetChanceFromMttf(Mttf, compHandler.TickInterval);
 }

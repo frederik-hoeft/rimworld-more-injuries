@@ -16,7 +16,7 @@ public class BodyPartHediffTargetEvaluator_RandomFromList : BodyPartHediffTarget
     {
         if (targets is not { Count: > 0 })
         {
-            Logger.Error($"{nameof(BodyPartHediffTargetEvaluator_RandomFromList)}: {comp.GetType().Name} has no target defined. Cannot evaluate.");
+            Logger.Error($"{comp.GetType().Name} has no target defined. Cannot evaluate.");
             return null;
         }
         BodyPartRecord? target = comp.Pawn.health.hediffSet.GetNotMissingParts()

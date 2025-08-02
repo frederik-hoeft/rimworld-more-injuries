@@ -2,7 +2,6 @@
 using MoreInjuries.AI.Jobs;
 using MoreInjuries.Caching;
 using RimWorld;
-using System.Numerics;
 using UnityEngine;
 using Verse;
 using Verse.AI;

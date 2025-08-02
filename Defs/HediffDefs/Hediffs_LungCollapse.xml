@@ -23,7 +23,7 @@
           </points>
         </severityCurve>
         <handlers>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>2000</tickInterval>
             <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             <chanceModifiers>
@@ -48,14 +48,14 @@
       <li>
         <label>initial</label>
         <minSeverity>0</minSeverity>
-        <partEfficiencyOffset>-0.25</partEfficiencyOffset>
+        <partEfficiencyOffset>-0.05</partEfficiencyOffset>
         <painOffset>0.1</painOffset>
         <lifeThreatening>true</lifeThreatening>
       </li>
       <li>
         <label>minor obstructive shock</label>
         <minSeverity>0.2</minSeverity>
-        <partEfficiencyOffset>-0.35</partEfficiencyOffset>
+        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
         <painOffset>0.3</painOffset>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
@@ -68,7 +68,7 @@
       <li>
         <label>moderate obstructive shock</label>
         <minSeverity>0.45</minSeverity>
-        <partEfficiencyOffset>-0.45</partEfficiencyOffset>
+        <partEfficiencyOffset>-0.2</partEfficiencyOffset>
         <painOffset>0.4</painOffset>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
@@ -81,7 +81,7 @@
       <li>
         <label>severe obstructive shock</label>
         <minSeverity>0.75</minSeverity>
-        <partEfficiencyOffset>-0.65</partEfficiencyOffset>
+        <partEfficiencyOffset>-0.3</partEfficiencyOffset>
         <painOffset>0.5</painOffset>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
@@ -94,7 +94,7 @@
       <li>
         <label>extreme obstructive shock</label>
         <minSeverity>0.9</minSeverity>
-        <partEfficiencyOffset>-0.9</partEfficiencyOffset>
+        <partEfficiencyOffset>-0.4</partEfficiencyOffset>
         <painOffset>0.7</painOffset>
         <lifeThreatening>true</lifeThreatening>
         <capMods>

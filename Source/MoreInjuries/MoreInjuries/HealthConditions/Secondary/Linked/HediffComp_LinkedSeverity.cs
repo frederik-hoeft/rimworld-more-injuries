@@ -28,7 +28,7 @@ public sealed class HediffComp_LinkedSeverity : HediffComp
         Tick();
     }
 
-    private Poolable<List<LinkedSeverityData>>? GetLinkedHediffSeverityData(Pawn pawn)
+    private Poolable<List<LinkedSeverityData>> GetLinkedHediffSeverityData(Pawn pawn)
     {
         Poolable<List<LinkedSeverityData>> result = s_pooledSeverityDataLists.Rent();
         result.Initialize();
@@ -58,11 +58,8 @@ public sealed class HediffComp_LinkedSeverity : HediffComp
 
     public void Tick()
     {
-        using Poolable<List<LinkedSeverityData>>? linkedSeverityData = GetLinkedHediffSeverityData(parent.pawn);
-        if (linkedSeverityData is not { Value: { Count: > 0 } linkedSeverities })
-        {
-            return;
-        }
+        using Poolable<List<LinkedSeverityData>> linkedSeverityData = GetLinkedHediffSeverityData(parent.pawn);
+        List<LinkedSeverityData> linkedSeverities = linkedSeverityData.Value;
         float totalSeverity = Properties.RemoveAtSeverity;
         if (parent.TryGetComp(out HediffComp_CausedBy? causedBy))
         {

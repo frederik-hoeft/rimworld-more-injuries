@@ -21,8 +21,11 @@
   <!-- EN: Applying a tourniquet on TargetA. -->
   <UseTourniquet.reportString>Applying a tourniquet on TargetA.</UseTourniquet.reportString>
 
+  <!-- EN: Slowly removing a tourniquet from TargetA to reduce effects of sudden reperfusion. -->
+  <RemoveTourniquetSafely.reportString>Slowly removing a tourniquet from TargetA to reduce effects of sudden reperfusion.</RemoveTourniquetSafely.reportString>
+
   <!-- EN: Removing a tourniquet from TargetA. -->
-  <RemoveTourniquet.reportString>Removing a tourniquet from TargetA.</RemoveTourniquet.reportString>
+  <RemoveTourniquetQuickly.reportString>Removing a tourniquet from TargetA.</RemoveTourniquetQuickly.reportString>
 
   <!-- EN: Removing a tourniquet from TargetA. -->
   <RemoveTourniquetFromDead.reportString>Removing a tourniquet from TargetA.</RemoveTourniquetFromDead.reportString>

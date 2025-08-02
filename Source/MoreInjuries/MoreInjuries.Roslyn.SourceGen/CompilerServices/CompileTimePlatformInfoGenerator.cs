@@ -27,7 +27,7 @@ public sealed class CompileTimePlatformInfoGenerator : IIncrementalGenerator
         context.RegisterSourceOutput(pipeline, static (context, model) =>
         {
             StringBuilder bobTheBuilder = new();
-            string generatedFieldName = $"s_compileTimePlatformInfo_{Guid.NewGuid():N}__generated";
+            string generatedFieldName = SymbolNameGenerator.MakeUnique("s_compileTimePlatformInfo");
             bobTheBuilder.AppendLine(
                 $$"""
                 #nullable enable

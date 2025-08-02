@@ -39,8 +39,7 @@
       </li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
-            <tickInterval>250</tickInterval>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_PostMake">
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>Coagulopathy</hediffDef>
@@ -141,11 +140,6 @@
             <offset>-0.1</offset>
           </li>
         </capMods>
-        <statOffsets>
-          <!-- fluid resuscitation contributes to hypothermia. We assume only blood products are pre-warmed. -->
-          <!-- (mostly because that's easier to implement, but also to promote the use of blood products for balancing reasons) -->
-          <ComfyTemperatureMin>2.5</ComfyTemperatureMin>
-        </statOffsets>
       </li>
       <li>
         <label>moderate</label>
@@ -156,9 +150,6 @@
             <offset>-0.25</offset>
           </li>
         </capMods>
-        <statOffsets>
-          <ComfyTemperatureMin>5</ComfyTemperatureMin>
-        </statOffsets>
       </li>
       <li>
         <label>severe</label>
@@ -170,9 +161,6 @@
             <setMax>0.4</setMax>
           </li>
         </capMods>
-        <statOffsets>
-          <ComfyTemperatureMin>7.5</ComfyTemperatureMin>
-        </statOffsets>
       </li>
       <li>
         <label>extreme</label>
@@ -184,9 +172,6 @@
             <setMax>0.01</setMax>
           </li>
         </capMods>
-        <statOffsets>
-          <ComfyTemperatureMin>10</ComfyTemperatureMin>
-        </statOffsets>
       </li>
       <li>
         <label>terminal</label>
@@ -198,9 +183,6 @@
             <setMax>0.01</setMax>
           </li>
         </capMods>
-        <statOffsets>
-          <ComfyTemperatureMin>10</ComfyTemperatureMin>
-        </statOffsets>
       </li>
     </stages>
   </HediffDef>

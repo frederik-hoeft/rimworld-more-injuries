@@ -6,11 +6,11 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock.Secondary;
 
-public sealed class HediffCompHandler_SecondaryCondition_CardiacArrest : HediffCompHandler_SecondaryCondition
+public sealed class HediffCompHandler_SecondaryCondition_CardiacArrest : HediffCompHandler_SecondaryCondition_Tick
 {
-    public override bool ShouldSkip(HediffComp_SecondaryCondition comp, float severityAdjustment)
+    public override bool ShouldSkip(HediffComp_SecondaryCondition comp)
     {
-        if (base.ShouldSkip(comp, severityAdjustment) || !MoreInjuriesMod.Settings.EnableCardiacArrestOnHighBloodLoss)
+        if (base.ShouldSkip(comp) || !MoreInjuriesMod.Settings.EnableCardiacArrestOnHighBloodLoss)
         {
             return true;
         }

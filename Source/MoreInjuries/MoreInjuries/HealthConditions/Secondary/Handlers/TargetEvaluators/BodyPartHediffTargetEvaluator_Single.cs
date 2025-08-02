@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
@@ -11,11 +12,7 @@ public sealed class BodyPartHediffTargetEvaluator_Single : BodyPartHediffTargetE
 
     public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)
     {
-        if (target is null)
-        {
-            Logger.Error($"{nameof(BodyPartHediffTargetEvaluator_Single)}: {comp.GetType().Name} has no target defined. Cannot evaluate.");
-            return null;
-        }
+        Throw.InvalidOperationException.IfNull(this, target);
         HediffSet hediffs = comp.Pawn.health.hediffSet;
         if (hediffs.GetBodyPartRecord(target) is BodyPartRecord targetRecord && !hediffs.PartIsMissing(targetRecord))
         {

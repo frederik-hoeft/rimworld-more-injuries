@@ -8,7 +8,7 @@ public sealed class HediffModifier_LinkedHediff_MeanTimeBetween_SimpleCurve : He
     // don't rename this field. XML defs depend on this name
     private readonly HediffDef hediffDef = default!;
 
-    public override float GetModifier(Hediff hediff, HediffCompHandler compHandler)
+    public override float GetModifier(Hediff hediff, IHediffComp_TickHandler compHandler)
     {
         if (mttfDaysBySeverity is null || hediffDef is null)
         {

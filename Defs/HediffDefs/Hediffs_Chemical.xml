@@ -11,7 +11,7 @@
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
-          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition">
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>2000</tickInterval>
             <chanceModifiers>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>

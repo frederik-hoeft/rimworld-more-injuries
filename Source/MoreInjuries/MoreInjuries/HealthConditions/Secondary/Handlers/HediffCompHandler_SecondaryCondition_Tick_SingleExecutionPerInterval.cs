@@ -4,13 +4,13 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers;
 
-public sealed class HediffCompHandler_SecondaryCondition_SingleExecutionPerInterval : HediffCompHandler_SecondaryCondition
+public sealed class HediffCompHandler_SecondaryCondition_Tick_SingleExecutionPerInterval : HediffCompHandler_SecondaryCondition_Tick
 {
     private readonly ConditionalWeakTable<Pawn, TimedDataEntry<bool>> _perHediffDefSingletonCache = [];
 
-    public override bool ShouldSkip(HediffComp_SecondaryCondition comp, float severityAdjustment)
+    public override bool ShouldSkip(HediffComp_SecondaryCondition comp)
     {
-        if (base.ShouldSkip(comp, severityAdjustment))
+        if (base.ShouldSkip(comp))
         {
             return true;
         }
@@ -32,7 +32,7 @@ public sealed class HediffCompHandler_SecondaryCondition_SingleExecutionPerInter
             entry = new TimedDataEntry<bool>();
             entry.Initialize(true, ticks);
             _perHediffDefSingletonCache.AddOrUpdate(comp.Pawn, entry);
-            Logger.LogDebug($"Initialized new entry for {comp.Pawn} in {nameof(HediffCompHandler_SecondaryCondition_SingleExecutionPerInterval)} for {comp.parent.def.defName}");
+            Logger.LogDebug($"Initialized new entry for {comp.Pawn} in {nameof(HediffCompHandler_SecondaryCondition_Tick_SingleExecutionPerInterval)} for {comp.parent.def.defName}");
         }
         return false;
     }
