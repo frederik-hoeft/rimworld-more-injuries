@@ -23,7 +23,7 @@
     <drawGUIOverlay>true</drawGUIOverlay>
     <modExtensions>
       <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HemostasisModExtension">
-        <coagulationMultiplier>0.5</coagulationMultiplier>
+        <coagulationMultiplier>0.2</coagulationMultiplier>
         <disappearsAfterTicks>30000</disappearsAfterTicks>
       </li>
     </modExtensions>
