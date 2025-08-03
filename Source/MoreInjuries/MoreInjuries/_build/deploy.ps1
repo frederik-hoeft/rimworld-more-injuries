@@ -3,7 +3,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 # IMPORTANT: change to Release for stable deployments
-$configuration = "Debug"
+$configuration = "Release"
 $project_name = "MoreInjuries"
 $game_version = "1.6"
 $mod_root = (Get-Item -LiteralPath "${PSScriptRoot}/../../../..").FullName

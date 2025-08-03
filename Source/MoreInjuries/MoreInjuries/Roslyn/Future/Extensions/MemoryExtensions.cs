@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace MoreInjuries.Extensions;
+namespace MoreInjuries.Roslyn.Future.Extensions;
 
-internal static class SpanExtensions
+public static class MemoryExtensions
 {
     public static bool Contains<T>(this ReadOnlySpan<T> span, T value)
     {

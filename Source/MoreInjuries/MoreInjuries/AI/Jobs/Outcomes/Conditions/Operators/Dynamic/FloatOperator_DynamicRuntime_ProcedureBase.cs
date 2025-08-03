@@ -63,6 +63,16 @@ public abstract class FloatOperator_DynamicRuntime_ProcedureBase : FloatOperator
             return false;
         }
 
+        public float ResolveRequired(string symbol)
+        {
+            Throw.ObjectDisposedException.If(_pooled, this);
+            if (_symbolTable.TryGetValue(symbol, out float value))
+            {
+                return value;
+            }
+            throw new KeyNotFoundException($"Failed to resolve required symbol '{symbol}' from runtime state. No such element found in the symbol table.");
+        }
+
         public void Initialize() => _pooled = false;
 
         public void Dispose()

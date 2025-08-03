@@ -36,22 +36,18 @@
           </li>
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_Dynamic">
             <hediffDef>Hemodilution</hediffDef>
-            <evaluator Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_DynamicRuntime_ProcedureCall">
-              <procedureDef>ProcDef_CalculateHemodilutionDelta</procedureDef>
-              <parameters>
-                <li>
+            <evaluator Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_DynamicRuntime">
+              <instructions>
+                <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_AssignConstant">
                   <symbol>dilution_factor</symbol>
-                  <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
-                    <value>-1</value>
-                  </value>
+                  <value>-1</value>
                 </li>
-                <li>
+                <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_AssignConstant">
                   <symbol>added_volume</symbol>
-                  <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
-                    <value>0.35</value>
-                  </value>
+                  <value>0.35</value>
                 </li>
-              </parameters>
+                <li Class="MoreInjuries.HealthConditions.Hemodilution.DynamicProcedureCall_CalculateHemodilution"></li>
+              </instructions>
             </evaluator>
           </li>
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
@@ -133,22 +129,18 @@
           </li>
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_Dynamic">
             <hediffDef>Hemodilution</hediffDef>
-            <evaluator Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_DynamicRuntime_ProcedureCall">
-              <procedureDef>ProcDef_CalculateHemodilutionDelta</procedureDef>
-              <parameters>
-                <li>
+            <evaluator Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_DynamicRuntime">
+              <instructions>
+                <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_AssignConstant">
                   <symbol>dilution_factor</symbol>
-                  <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
-                    <value>1</value>
-                  </value>
+                  <value>1</value>
                 </li>
-                <li>
+                <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_AssignConstant">
                   <symbol>added_volume</symbol>
-                  <value Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary.FloatOperator_Constant">
-                    <value>0.15</value>
-                  </value>
+                  <value>0.15</value>
                 </li>
-              </parameters>
+                <li Class="MoreInjuries.HealthConditions.Hemodilution.DynamicProcedureCall_CalculateHemodilution"></li>
+              </instructions>
             </evaluator>
           </li>
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
