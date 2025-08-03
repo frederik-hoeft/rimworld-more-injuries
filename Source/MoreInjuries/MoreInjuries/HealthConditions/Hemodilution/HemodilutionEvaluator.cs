@@ -92,9 +92,9 @@ public static class HemodilutionEvaluator
         return x;
     }
 
-    public static int CalculateMinimumRequiredBloodTransfusionsToTreatHemodilution(float hemodulution, float bloodLoss, float hemodilutionThreshold, float bloodBagVolume)
+    public static int CalculateMinimumRequiredBloodTransfusionsToTreatHemodilution(float hemodilution, float bloodLoss, float hemodilutionThreshold, float bloodBagVolume)
     {
-        float minRequiredAddedVolume = CalculateMinimumRequiredWholeBloodVolumeToTreatHemodilution(hemodulution, bloodLoss, hemodilutionThreshold);
+        float minRequiredAddedVolume = CalculateMinimumRequiredWholeBloodVolumeToTreatHemodilution(hemodilution, bloodLoss, hemodilutionThreshold);
         return (int)Math.Ceiling(minRequiredAddedVolume / bloodBagVolume);
     }
 }

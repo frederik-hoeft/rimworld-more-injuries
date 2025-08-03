@@ -26,6 +26,7 @@ internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : IComp
             return;
         }
         string? failure = null;
+        // Ignore self-tend setting here to allow the selected pawn to use a tourniquet on themselves regardless of their self-tend medical setting.
         if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL_KEY, ignoreSelfTendSetting: true) is MedicalDeviceHelper.DisabledProcedureCause cause)
         {
             failure = cause.FailureReason;
