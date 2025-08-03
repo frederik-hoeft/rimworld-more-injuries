@@ -27,7 +27,7 @@ public static class HemodilutionEvaluator
     /// <param name="hemodilution">The current hemodilution severity level, where 0 is no hemodilution and 1 is pure saline.</param>
     /// <param name="bloodLoss">The current blood loss severity level, used to determine the missing fluid volume.</param>
     /// <param name="addedVolume">The volume of fluid added, which can be either blood products or saline.</param>
-    /// <param name="dilutionFactor">The dilution factor determins how the added volume affects hemodilution: <c>+1.0</c> for saline, <c>-1.0</c> for blood products. Any other value is disallowed.</param>
+    /// <param name="dilutionFactor">The dilution factor determines how the added volume affects hemodilution: <c>+1.0</c> for saline, <c>-1.0</c> for blood products. Any other value is disallowed.</param>
     /// <returns>The change in hemodilution level after the addition of the specified volume.</returns>
     public static float CalculateHemodilutionDelta(float hemodilution, float bloodLoss, float addedVolume, float dilutionFactor)
     {
