@@ -1,5 +1,5 @@
-﻿using MoreInjuries.HealthConditions.HypovolemicShock;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.HypovolemicShock;
 using Verse;
 
 namespace MoreInjuries.Integrations.Biotech;

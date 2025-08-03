@@ -1,6 +1,6 @@
-﻿using MoreInjuries.HealthConditions.CardiacArrest;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Secondary;
-using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using RimWorld;
 using System.Linq;
@@ -8,7 +8,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
-internal class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler, ICompFloatMenuOptionsHandler
+internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler, ICompFloatMenuOptionsHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableChoking;
 

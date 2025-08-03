@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <MoreInjuries.Defs.ReferenceableDef>
+    <defName>HypothermiaReducesHypoxia_ModiferDef</defName>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifierReference_ModExtension">
+        <modifier Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_LinkedHediff_SimpleCurve">
+          <hediffDef>Hypothermia</hediffDef>
+          <!-- hypothermia slows down the damaging effects of hypoxia: (hypothermia severity) => hypoxia chance factor -->
+          <severityCurve>
+            <points>
+              <li>0, 1</li>
+              <li>0.2, 0.8</li>
+              <li>0.6, 0.45</li>
+              <li>1, 0.2</li>
+            </points>
+          </severityCurve>
+        </modifier>
+      </li>
+    </modExtensions>
+  </MoreInjuries.Defs.ReferenceableDef>
+</Defs>

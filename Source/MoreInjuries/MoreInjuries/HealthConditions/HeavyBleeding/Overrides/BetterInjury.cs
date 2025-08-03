@@ -1,5 +1,5 @@
-﻿using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using MoreInjuries.Localization;
 using RimWorld;
 using System.Collections.Generic;
@@ -13,19 +13,16 @@ public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
     private static HashSet<string>? s_indirectlyAddedInjuries;
     private readonly BetterInjuryState<BetterInjury> _state;
 
-    public static HashSet<string> IndirectlyAddedInjuries
-    {
-        get
-        {
-            s_indirectlyAddedInjuries ??=
-            [
-                KnownHediffDefOf.Fracture.defName,
-                KnownHediffDefOf.BoneFragmentLaceration.defName,
-                KnownHediffDefOf.SpallFragmentCut.defName
-            ];
-            return s_indirectlyAddedInjuries;
-        }
-    }
+    public static HashSet<string> IndirectlyAddedInjuries => s_indirectlyAddedInjuries ??=
+    [
+        KnownHediffDefOf.Fracture.defName,
+        KnownHediffDefOf.BoneFragmentLaceration.defName,
+        KnownHediffDefOf.SpallFragmentCut.defName,
+        KnownHediffDefOf.OrganHypoxia.defName,
+        KnownHediffDefOf.BrainDamage_Hypoxia.defName,
+        KnownHediffDefOf.HemorrhagicStroke.defName,
+        KnownHediffDefOf.Bruise.defName,
+    ];
 
     public BetterInjury()
     {

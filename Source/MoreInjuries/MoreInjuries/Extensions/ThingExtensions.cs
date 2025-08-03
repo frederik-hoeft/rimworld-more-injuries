@@ -30,7 +30,7 @@ public static class ThingExtensions
             thing.Destroy();
             return true;
         }
-        thing.stackCount--;
+        --thing.stackCount;
         return false;
     }
 }

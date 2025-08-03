@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>Hemodilution</defName>
+    <label>hemodilution</label>
+    <description>Hemodilution is the dilution of the concentration of red blood cells and plasma constituents by partially substituting the blood with colloids or crystalloids. It often occurs as a result of excessive fluid resuscitation, particularly in trauma patients, when large volumes of saline or other intravenous fluids are administered to restore blood volume and pressure after significant blood loss.\n\nWhile the body can compensate for some degree of hemodilution, excessive dilution can lead to a significant reduction in the oxygen-carrying capacity of the blood and impair coagulation. In severe cases, it can result in hypoxia and dilutional coagulopathy, both of which can lead to increased risk of hemorrhage, organ failure, and death if not managed appropriately.\n\nHemodilution is typically treated by carefully managing fluid resuscitation, using blood products to restore red blood cell and plasma levels, and monitoring the patient's hemodynamic status closely to prevent complications.</description>
+    <defaultLabelColor>(255, 185, 56)</defaultLabelColor>
+    <isBad>true</isBad>
+    <maxSeverity>1</maxSeverity>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Linked.LinkedSeverityProperties_ModExtension">
+        <modifiedHediffs>
+          <li>
+            <linkedHediffDef>Coagulopathy</linkedHediffDef>
+            <severityModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <!-- adjust severity of coagulopathy based on degree of hemodilution -->
+                <severityCurve>
+                  <points>
+                    <li>0.0, 0.0</li>      <!-- No hemodilution: normal bleed rate -->
+                    <li>0.2, 0.1</li>      <!-- Mild hemodilution: +60% higher bleed rate -->
+                    <li>0.4, 0.2</li>      <!-- Moderate hemodilution: double baseline -->
+                    <li>0.6, 0.5</li>      <!-- Severe hemodilution: triple baseline -->
+                    <li>0.8, 0.8</li>      <!-- Critical hemodilution: 4.5x baseline -->
+                    <li>1.0, 1.0</li>      <!-- Terminal hemodilution: 6x baseline -->
+                  </points>
+                </severityCurve>
+              </li>
+            </severityModifiers>
+          </li>
+        </modifiedHediffs>
+      </li>
+    </modExtensions>
+    <comps>
+      <!-- same as blood loss -->
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.333</severityPerDay>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_PostMake">
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>Coagulopathy</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+            <tickInterval>250</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <severityCurve>
+                  <points>
+                    <li>0, 0</li>
+                    <li>0.45, 0</li>
+                    <li>0.95, 0.85</li>
+                    <li>1, 1</li>
+                  </points>
+                </severityCurve>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
+                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>OrganHypoxia</hediffDef>
+                <minSeverity>1</minSeverity>
+                <maxSeverity>4</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">
+              <height>Middle</height>
+              <depth>Inside</depth>
+              <excludedParts>
+                <li>Heart</li>
+              </excludedParts>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+            <tickInterval>250</tickInterval>
+            <baseChance>0.375</baseChance>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <severityCurve>
+                  <points>
+                    <li>0, 0</li>
+                    <li>0.45, 0</li>
+                    <li>0.95, 0.85</li>
+                    <li>1, 1</li>
+                  </points>
+                </severityCurve>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
+                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_LinkedHediff_SimpleCurve">
+                <hediffDef>BrainDamage_Hypoxia</hediffDef>
+                <!-- reduce chance for severe damage once hypoxia is already there -->
+                <!-- brain damage is added over time, this curve gives brain damage a chance to manifest -->
+                <severityCurve>
+                  <points>
+                    <li>0, 1</li>
+                    <li>2, 0.9</li>
+                    <li>4, 0.5</li>
+                    <li>6, 0.25</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>BrainDamage_Hypoxia</hediffDef>
+                <minSeverity>0.1</minSeverity>
+                <maxSeverity>0.75</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>minor</label>
+        <capMods>
+          <li>
+            <!-- light-headedness -->
+            <capacity>Consciousness</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.2</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.25</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>severe</label>
+        <minSeverity>0.45</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.4</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.6</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>terminal</label>
+        <minSeverity>0.8</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

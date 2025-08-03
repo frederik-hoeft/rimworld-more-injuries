@@ -1,8 +1,7 @@
-﻿using MoreInjuries.HealthConditions.MechaniteTherapy;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.MechaniteTherapy;
 using RimWorld;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.BrainDamage;

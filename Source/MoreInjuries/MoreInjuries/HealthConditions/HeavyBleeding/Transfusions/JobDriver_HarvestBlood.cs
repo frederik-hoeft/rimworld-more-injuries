@@ -1,13 +1,13 @@
-﻿using MoreInjuries.AI;
-using MoreInjuries.AI.Audio;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.AI.Audio;
+using MoreInjuries.AI.Jobs;
+using MoreInjuries.Defs.WellKnown;
 using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
+using static MoreInjuries.HealthConditions.HeavyBleeding.BloodLossConstants;
 
-using static BloodLossConstants;
+namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 
 public class JobDriver_HarvestBlood : JobDriver_UseMedicalDevice
 {
@@ -25,7 +25,7 @@ public class JobDriver_HarvestBlood : JobDriver_UseMedicalDevice
 
     protected override bool RequiresTreatment(Pawn patient) => !patient.Dead;
 
-    protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
+    protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
         if (!patient.health.hediffSet.TryGetHediff(HediffDefOf.BloodLoss, out Hediff hediff))
         {
@@ -53,6 +53,7 @@ public class JobDriver_HarvestBlood : JobDriver_UseMedicalDevice
                 doctor.needs.mood.thoughts.memories.TryGainMemory(thought);
             }
         }
+        return true;
     }
 
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient) =>

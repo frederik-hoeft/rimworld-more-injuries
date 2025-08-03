@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.HearingLoss;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
-using MoreInjuries.HealthConditions.HypovolemicShock;
-using MoreInjuries.KnownDefs;
-using RimWorld;
 using Verse;
 
 namespace MoreInjuries.HealthConditions;

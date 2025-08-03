@@ -1,5 +1,4 @@
-﻿using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Localization;
 using MoreInjuries.Things;
 using RimWorld;
@@ -10,10 +9,8 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
-internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMenuOptionsHandler, ICompGetGizmosExtraHandler
+internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMenuOptionsHandler, ICompGetGizmosExtraHandler
 {
-    private readonly Dictionary<BodyPartRecord, float> _bleedRateByLimbCache = [];
-
     public bool IsEnabled => true;
 
     public void AddGizmosExtra(UIBuilder<Gizmo> builder, Pawn selectedPawn)
@@ -29,7 +26,8 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
             return;
         }
         string? failure = null;
-        if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL_KEY) is MedicalDeviceHelper.DisabledProcedureCause cause)
+        // Ignore self-tend setting here to allow the selected pawn to use a tourniquet on themselves regardless of their self-tend medical setting.
+        if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL_KEY, ignoreSelfTendSetting: true) is MedicalDeviceHelper.DisabledProcedureCause cause)
         {
             failure = cause.FailureReason;
             if (!cause.IsSoftFailure)
@@ -61,9 +59,12 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                     {
                         if (patient.health.hediffSet.hediffs.Any(hediff => hediff.Part == bodyPart && hediff.def == KnownHediffDefOf.TourniquetApplied))
                         {
-                            options.Add(new FloatMenuOption("MI_TourniquetGizmo_RemoveLabel".Translate(bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white), patient.Downed
-                                ? () => JobDriver_RemoveTourniquet.ApplyDevice(patient, bodyPart)
-                                : JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                            options.Add(new FloatMenuOption("MI_TourniquetGizmo_RemoveSafelyLabel".Translate(bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white), patient.Downed
+                                ? () => JobDriver_RemoveTourniquetSafely.ApplyDevice(patient, bodyPart)
+                                : JobDriver_RemoveTourniquetSafely.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                            options.Add(new FloatMenuOption("MI_TourniquetGizmo_RemoveQuicklyLabel".Translate(bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white), patient.Downed
+                                ? () => JobDriver_RemoveTourniquetQuickly.ApplyDevice(patient, bodyPart)
+                                : JobDriver_RemoveTourniquetQuickly.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
                         }
                         else if (tourniquet is not null && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
                         {
@@ -111,10 +112,13 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                 {
                     // even if you don't know what a tourniquet is, you can still remove it
                     builder.Options.Add(new FloatMenuOption(
-                        "MI_TourniquetFloatMenu_RemoveLabel".Translate(
-                            bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART),
-                            patient.Label.Colorize(Color.yellow).Named(Named.Params.PATIENTNAME)).Colorize(Color.white),
-                    JobDriver_RemoveTourniquet.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                        "MI_TourniquetFloatMenu_RemoveSafelyLabel".Translate(
+                            bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white),
+                    JobDriver_RemoveTourniquetSafely.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                    builder.Options.Add(new FloatMenuOption(
+                        "MI_TourniquetFloatMenu_RemoveQuicklyLabel".Translate(
+                            bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white),
+                    JobDriver_RemoveTourniquetQuickly.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
                 }
                 else if (tourniquet is not null && selectedPawn.Drafted && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
                 {
@@ -129,7 +133,6 @@ internal class TourniquetFloatOptionProvider(InjuryWorker parent) : ICompFloatMe
                     }
                 }
             }
-            _bleedRateByLimbCache.Clear();
         }
     }
 

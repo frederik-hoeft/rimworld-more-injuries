@@ -21,21 +21,9 @@
       <WorkToMake>150</WorkToMake>
     </statBases>
     <drawGUIOverlay>true</drawGUIOverlay>
-    <costStuffCount>2</costStuffCount>
-    <stuffCategories>
-      <li>Fabric</li>
-    </stuffCategories>
-    <recipeMaker>
-      <researchPrerequisite>BasicAnatomy</researchPrerequisite>
-      <recipeUsers>
-        <li>CraftingSpot</li>
-        <li>ElectricTailoringBench</li>
-        <li>HandTailoringBench</li>
-      </recipeUsers>
-    </recipeMaker>
     <modExtensions>
       <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HemostasisModExtension">
-        <coagulationMultiplier>0.5</coagulationMultiplier>
+        <coagulationMultiplier>0.2</coagulationMultiplier>
         <disappearsAfterTicks>30000</disappearsAfterTicks>
       </li>
     </modExtensions>

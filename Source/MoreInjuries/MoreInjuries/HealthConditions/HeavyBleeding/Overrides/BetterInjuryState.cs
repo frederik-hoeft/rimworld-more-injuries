@@ -11,7 +11,11 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 
 public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState where TOwner : HediffWithComps, IInjuryStateOwner
 {
-    private static readonly WeakTimedPawnDataCache<IList<HediffCrossInteraction>> s_crossInteractionCache = new(minCacheRefreshIntervalTicks: GenTicks.TickRareInterval, dataProvider: GetCrossInteractions);
+    private static readonly WeakTimedDataCache<Pawn, IReadOnlyList<HediffCrossInteraction>, TimedDataEntry<IReadOnlyList<HediffCrossInteraction>>> s_crossInteractionCache = new
+    (
+        minCacheRefreshIntervalTicks: GenTicks.TickRareInterval, 
+        dataProvider: GetCrossInteractions
+    );
 
     private int _coagulationFlags;
     private float _coagulationMultiplier = 1;
@@ -151,7 +155,7 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
                     .AppendLine("MI_InjuryBleeding_EffectiveBleedRate_Tooltip"
                         .Translate(effectiveBleedRate.Named(Named.Params.PERCENT)));
             }
-            IList<HediffCrossInteraction> crossInteractions = s_crossInteractionCache.GetData(owner.pawn);
+            IReadOnlyList<HediffCrossInteraction> crossInteractions = s_crossInteractionCache.GetData(owner.pawn);
             for (int i = 0; i < crossInteractions.Count; i++)
             {
                 if (i == 0)
@@ -199,7 +203,7 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
         }
     }
 
-    private static IList<HediffCrossInteraction> GetCrossInteractions(Pawn pawn)
+    private static IReadOnlyList<HediffCrossInteraction> GetCrossInteractions(Pawn pawn)
     {
         List<HediffCrossInteraction>? crossInteractions = null;
         foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
@@ -210,7 +214,7 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
                 crossInteractions.Add(new HediffCrossInteraction(hediff, modifier));
             }
         }
-        return (IList<HediffCrossInteraction>?)crossInteractions ?? Array.Empty<HediffCrossInteraction>();
+        return (IReadOnlyList<HediffCrossInteraction>?)crossInteractions ?? Array.Empty<HediffCrossInteraction>();
     }
 
     private readonly record struct HediffCrossInteraction(Hediff Hediff, BleedRateModifier Modifier);

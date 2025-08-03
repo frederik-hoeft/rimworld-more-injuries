@@ -1,7 +1,7 @@
-﻿using MoreInjuries.Extensions;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.Fractures.Lacerations;
 using MoreInjuries.HealthConditions.Secondary;
-using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using Verse.Sound;
 
 namespace MoreInjuries.HealthConditions.Fractures;
 
-internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler, ICompFloatMenuOptionsHandler
+internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler, ICompFloatMenuOptionsHandler
 {
     private static readonly Dictionary<BodyPartDef, ILacerationHandler> s_lacerationRegistry;
 

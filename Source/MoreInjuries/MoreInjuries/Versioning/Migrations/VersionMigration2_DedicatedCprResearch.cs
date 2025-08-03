@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 using Verse;
-using MoreInjuries.KnownDefs;
+using MoreInjuries.Defs.WellKnown;
 
 namespace MoreInjuries.Versioning.Migrations;
 

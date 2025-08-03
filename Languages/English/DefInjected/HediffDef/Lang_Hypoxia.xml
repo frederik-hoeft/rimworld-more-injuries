@@ -47,8 +47,8 @@
   <BrainDamage_Hypoxia.stages.severe.label>severe</BrainDamage_Hypoxia.stages.severe.label>
   <!-- EN: very severe -->
   <BrainDamage_Hypoxia.stages.very_severe.label>very severe</BrainDamage_Hypoxia.stages.very_severe.label>
-  <!-- EN: critical -->
-  <BrainDamage_Hypoxia.stages.critical.label>critical</BrainDamage_Hypoxia.stages.critical.label>
-  <!-- EN: fatal -->
-  <BrainDamage_Hypoxia.stages.fatal.label>fatal</BrainDamage_Hypoxia.stages.fatal.label>
+  <!-- EN: extreme -->
+  <BrainDamage_Hypoxia.stages.extreme.label>extreme</BrainDamage_Hypoxia.stages.extreme.label>
+  <!-- EN: terminal -->
+  <BrainDamage_Hypoxia.stages.terminal.label>terminal</BrainDamage_Hypoxia.stages.terminal.label>
 </LanguageData>

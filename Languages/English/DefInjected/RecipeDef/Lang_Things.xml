@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
+  <!-- EN: make bandage -->
+  <Make_Bandage.label>make bandage</Make_Bandage.label>
+  <!-- EN: Make a bandage. -->
+  <Make_Bandage.description>Make a bandage.</Make_Bandage.description>
+  <!-- EN: Making a bandage. -->
+  <Make_Bandage.jobString>Making a bandage.</Make_Bandage.jobString>
   <!-- EN: make bandages x5 -->
   <Make_BandageFive.label>make bandages x5</Make_BandageFive.label>
   <!-- EN: Make 5 bandages. -->
@@ -41,4 +47,17 @@
   <Make_Thoracoscope.description>Make a thoracoscope.</Make_Thoracoscope.description>
   <!-- EN: Making a thoracoscope. -->
   <Make_Thoracoscope.jobString>Making a thoracoscope.</Make_Thoracoscope.jobString>
+
+  <!-- EN: make saline bag -->
+  <Make_SalineBag.label>make saline bag</Make_SalineBag.label>
+  <!-- EN: Make a saline bag by grinding down stone blocks and extracting the natrium chloride required for the saline solution. -->
+  <Make_SalineBag.description>Make a saline bag by grinding down stone blocks and extracting the natrium chloride required for the saline solution.</Make_SalineBag.description>
+  <!-- EN: Making a saline bag. -->
+  <Make_SalineBag.jobString>Making a saline bag.</Make_SalineBag.jobString>
+  <!-- EN: make saline bags x5 -->
+  <Make_SalineBagFive.label>make saline bags x5</Make_SalineBagFive.label>
+  <!-- EN: Make 5 saline bags by grinding down stone blocks and extracting the natrium chloride required for the saline solution. -->
+  <Make_SalineBagFive.description>Make 5 saline bags by grinding down stone blocks and extracting the natrium chloride required for the saline solution.</Make_SalineBagFive.description>
+  <!-- EN: Making 5 saline bags. -->
+  <Make_SalineBagFive.jobString>Making 5 saline bags.</Make_SalineBagFive.jobString>
 </LanguageData>

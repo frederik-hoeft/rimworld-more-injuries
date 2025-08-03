@@ -21,6 +21,8 @@ public sealed class HediffComp_CausedBy : HediffComp
         }
     }
 
+    public void ClearCauses() => _causedBy?.Clear();
+
     public void AddCause(Hediff cause)
     {
         if (cause is null)

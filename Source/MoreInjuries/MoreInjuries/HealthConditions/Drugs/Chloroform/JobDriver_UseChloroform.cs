@@ -1,6 +1,6 @@
-﻿using MoreInjuries.AI;
-using MoreInjuries.AI.Audio;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.AI.Audio;
+using MoreInjuries.AI.Jobs;
+using MoreInjuries.Defs.WellKnown;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Drugs.Chloroform;

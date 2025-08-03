@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <!-- EN: word-finding difficulty -->
-  <LostAbilityToSpeak.stages.word_finding_difficulty.label>word-finding difficulty</LostAbilityToSpeak.stages.word_finding_difficulty.label>
+  <LostAbilityToSpeak.stages.wordfinding_difficulty.label>word-finding difficulty</LostAbilityToSpeak.stages.wordfinding_difficulty.label>
   <!-- EN: Struggling to find the right words can be frustrating and isolating. I feel embarrassed when I can't express myself clearly. -->
-  <LostAbilityToSpeak.stages.word_finding_difficulty.description>Struggling to find the right words can be frustrating and isolating. I feel embarrassed when I can't express myself clearly.</LostAbilityToSpeak.stages.word_finding_difficulty.description>
+  <LostAbilityToSpeak.stages.wordfinding_difficulty.description>Struggling to find the right words can be frustrating and isolating. I feel embarrassed when I can't express myself clearly.</LostAbilityToSpeak.stages.wordfinding_difficulty.description>
   <!-- EN: fragmented speech -->
   <LostAbilityToSpeak.stages.fragmented_speech.label>fragmented speech</LostAbilityToSpeak.stages.fragmented_speech.label>
   <!-- EN: I can speak, but my sentences are often incomplete or jumbled. It's like my thoughts are scattered, and I can't put them together. -->
   <LostAbilityToSpeak.stages.fragmented_speech.description>I can speak, but my sentences are often incomplete or jumbled. It's like my thoughts are scattered, and I can't put them together.</LostAbilityToSpeak.stages.fragmented_speech.description>
   <!-- EN: non-fluent -->
-  <LostAbilityToSpeak.stages.non_fluent.label>non-fluent</LostAbilityToSpeak.stages.non_fluent.label>
+  <LostAbilityToSpeak.stages.nonfluent.label>non-fluent</LostAbilityToSpeak.stages.nonfluent.label>
   <!-- EN: Every conversation feels like a struggle. I can't form complex sentences, and it's hard to communicate even basic ideas. I want to express myself, but my words fail me. -->
-  <LostAbilityToSpeak.stages.non_fluent.description>Every conversation feels like a struggle. I can't form complex sentences, and it's hard to communicate even basic ideas. I want to express myself, but my words fail me.</LostAbilityToSpeak.stages.non_fluent.description>
+  <LostAbilityToSpeak.stages.nonfluent.description>Every conversation feels like a struggle. I can't form complex sentences, and it's hard to communicate even basic ideas. I want to express myself, but my words fail me.</LostAbilityToSpeak.stages.nonfluent.description>
   <!-- EN: barely verbal -->
   <LostAbilityToSpeak.stages.barely_verbal.label>barely verbal</LostAbilityToSpeak.stages.barely_verbal.label>
   <!-- EN: My ability to speak has been reduced to almost nothing. I can only manage a few words at a time, and even those are difficult to pronounce. I feel trapped in my own silence. -->
@@ -34,9 +34,9 @@
   <!-- EN: Basic actions are difficult. My limbs don't always respond the way I want them to, and I often lose coordination. It makes me feel helpless and vulnerable. -->
   <LostMotorFunction.stages.struggling_to_control_my_body.description>Basic actions are difficult. My limbs don't always respond the way I want them to, and I often lose coordination. It makes me feel helpless and vulnerable.</LostMotorFunction.stages.struggling_to_control_my_body.description>
   <!-- EN: near-paralyzed -->
-  <LostMotorFunction.stages.near_paralyzed.label>near-paralyzed</LostMotorFunction.stages.near_paralyzed.label>
+  <LostMotorFunction.stages.nearparalyzed.label>near-paralyzed</LostMotorFunction.stages.nearparalyzed.label>
   <!-- EN: Moving feels like dragging weights through water. I can barely walk, and using my hands has become incredibly difficult. I rely on others for more than I'd like to admit. -->
-  <LostMotorFunction.stages.near_paralyzed.description>Moving feels like dragging weights through water. I can barely walk, and using my hands has become incredibly difficult. I rely on others for more than I'd like to admit.</LostMotorFunction.stages.near_paralyzed.description>
+  <LostMotorFunction.stages.nearparalyzed.description>Moving feels like dragging weights through water. I can barely walk, and using my hands has become incredibly difficult. I rely on others for more than I'd like to admit.</LostMotorFunction.stages.nearparalyzed.description>
   <!-- EN: trapped in a failing body -->
   <LostMotorFunction.stages.trapped_in_a_failing_body.label>trapped in a failing body</LostMotorFunction.stages.trapped_in_a_failing_body.label>
   <!-- EN: My body no longer obeys me. Every step, every grasp is a monumental challenge. I feel like a living vegetable, unable to do anything for myself, and completely dependent on others. It's a nightmare. -->

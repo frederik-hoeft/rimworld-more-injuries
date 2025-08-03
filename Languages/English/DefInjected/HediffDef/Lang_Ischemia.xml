@@ -14,6 +14,10 @@
   <TourniquetApplied.stages.initial_necrosis.label>initial necrosis</TourniquetApplied.stages.initial_necrosis.label>
   <!-- EN: advanced necrosis -->
   <TourniquetApplied.stages.advanced_necrosis.label>advanced necrosis</TourniquetApplied.stages.advanced_necrosis.label>
+  <!-- EN: quickly removed tourniquet -->
+  <TourniquetQuicklyRemoved.label>quickly removed tourniquet</TourniquetQuicklyRemoved.label>
+  <!-- EN: N/A -->
+  <TourniquetQuicklyRemoved.description>N/A</TourniquetQuicklyRemoved.description>
   <!-- EN: gangrene -->
   <GangreneDry.label>gangrene</GangreneDry.label>
   <!-- EN: Dry gangrene is a form of coagulative necrosis that develops in ischemic tissue, where the blood supply is inadequate to keep tissue viable. The affected part is dry, shrunken, and dark reddish-black. The line of separation usually brings about complete separation, with eventual falling off of the gangrenous tissue if it is not removed surgically, a process called autoamputation.\nOver time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.\n\nThe affected body part is irreversibly damaged and should be amputated to prevent sepsis. -->

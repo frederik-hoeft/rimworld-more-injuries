@@ -107,7 +107,7 @@
   
   <!-- ============= INDUSTRIAL ============= -->
   <!-- depends on: basic first aid -->
-  <!-- unlocks: defibrillator, (in the future: saline IVs,) airway suction device, decompressive craniectomy, osteosynthetic surgery, thoracotomy -->
+  <!-- unlocks: defibrillator, saline IVs, airway suction device, decompressive craniectomy, osteosynthetic surgery, thoracotomy -->
   <ResearchProjectDef>
     <defName>EmergencyMedicine</defName>
     <label>emergency medicine</label>

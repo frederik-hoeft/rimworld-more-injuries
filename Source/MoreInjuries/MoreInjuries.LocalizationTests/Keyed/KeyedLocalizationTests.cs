@@ -20,7 +20,7 @@ public class KeyedLocalizationTests : LocalizationTestBase
     }
 }
 
-internal class KeyedLocalizationInfoRepository(string language) : LocalizationInfoRepository(language)
+internal sealed class KeyedLocalizationInfoRepository(string language) : LocalizationInfoRepository(language)
 {
     protected override string CreateKey(XElement element, LocalizationInfoLoadContext context) => element.Name.LocalName;
 }

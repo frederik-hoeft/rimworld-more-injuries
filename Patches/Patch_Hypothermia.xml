@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <!-- 1. ensure Hypothermia is a HediffWithComps -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/HediffDef[defName="Hypothermia"]/hediffClass</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>/Defs/HediffDef[defName="Hypothermia"]</xpath>
+      <value>
+        <hediffClass>HediffWithComps</hediffClass>
+      </value>
+    </nomatch>
+    <match Class="PatchOperationReplace">
+      <xpath>/Defs/HediffDef[defName="Hypothermia"]/hediffClass</xpath>
+      <value>
+        <hediffClass>HediffWithComps</hediffClass>
+      </value>
+    </match>
+  </Operation>
+  <!-- 2. create the comps and modExtensions nodes if necessary -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/HediffDef[defName="Hypothermia"]/comps</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>/Defs/HediffDef[defName="Hypothermia"]</xpath>
+      <value>
+        <comps></comps>
+      </value>
+    </nomatch>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/HediffDef[defName="Hypothermia"]/modExtensions</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>/Defs/HediffDef[defName="Hypothermia"]</xpath>
+      <value>
+        <modExtensions></modExtensions>
+      </value>
+    </nomatch>
+  </Operation>
+  <!-- 3. add our secondary conditions -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/HediffDef[defName="Hypothermia"]/modExtensions</xpath>
+    <value>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Linked.LinkedSeverityProperties_ModExtension">
+        <modifiedHediffs>
+          <li>
+            <linkedHediffDef>Coagulopathy</linkedHediffDef>
+            <severityModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowHidden"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <!-- adjust severity of coagulopathy based on degree of hypothermia -->
+                <severityCurve>
+                  <points>
+                    <li>0.0, 0.0</li>      <!-- No hypothermia: no coagulopathy -->
+                    <li>0.2, 0.15</li>      <!-- Mild: subtle platelet dysfunction -->
+                    <li>0.4, 0.35</li>      <!-- Moderate: impaired fibrin generation -->
+                    <li>0.6, 0.6</li>      <!-- Severe: major coagulation delay -->
+                    <li>0.8, 0.85</li>     <!-- Extreme: near-failure of clotting -->
+                    <li>1.0, 1.0</li>      <!-- Terminal: DIC-level risk -->
+                  </points>
+                </severityCurve>
+              </li>
+            </severityModifiers>
+          </li>
+        </modifiedHediffs>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/HediffDef[defName="Hypothermia"]/comps</xpath>
+    <value>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
+            <tickInterval>250</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowHidden"></li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>Coagulopathy</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
+            <tickInterval>2000</tickInterval>
+            <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowUntracked"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
+                <mttfDaysBySeverity>
+                  <points>
+                    <li>0, 1000</li>
+                    <li>0.2, 750</li>
+                    <li>0.35, 4</li>
+                    <li>0.6, 2</li>
+                    <li>0.8, 0.75</li>
+                  </points>
+                </mttfDaysBySeverity>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>CardiacArrest</hediffDef>
+                <minSeverity>0.01</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Heart</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
+    </value>
+  </Operation>
+</Patch>

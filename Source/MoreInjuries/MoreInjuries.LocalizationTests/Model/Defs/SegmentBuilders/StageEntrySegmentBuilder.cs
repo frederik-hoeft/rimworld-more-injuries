@@ -29,7 +29,7 @@ internal sealed class StageEntrySegmentBuilder : IKeySegmentBuilder
             {
                 normalized.Append(c);
             }
-            else if (c is '-' or '_' or ' ')
+            else if (c is '_' or ' ')
             {
                 normalized.Append('_'); // Replace spaces and dashes with underscores
             }

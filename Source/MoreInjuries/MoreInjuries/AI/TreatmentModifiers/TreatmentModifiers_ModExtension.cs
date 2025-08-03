@@ -1,6 +1,4 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Verse;
@@ -8,7 +6,7 @@ using Verse;
 namespace MoreInjuries.AI.TreatmentModifiers;
 
 // members initialized via XML defs
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public sealed class TreatmentModifiers_ModExtension : DefModExtension
 {
     // do not rename this field. XML defs depend on this name

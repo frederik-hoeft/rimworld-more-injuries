@@ -1,5 +1,5 @@
-﻿using MoreInjuries.AI;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.AI.Jobs;
+using MoreInjuries.Defs.WellKnown;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents;

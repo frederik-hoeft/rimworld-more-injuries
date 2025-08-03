@@ -1,13 +1,10 @@
-﻿using MoreInjuries.HealthConditions.HeavyBleeding;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.HeavyBleeding;
 using RimWorld;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock;
-
-using static BloodLossConstants;
-using HediffInfo = (Hediff? BloodLoss, Hediff? AdrenalineRush);
 
 public class HediffComp_Shock : HediffComp
 {
@@ -17,7 +14,7 @@ public class HediffComp_Shock : HediffComp
 
     private HediffCompProperties_Shock Properties => (HediffCompProperties_Shock)props;
 
-    public bool PastFixedPoint => parent.Severity > 0.6f;
+    public bool PastFixedPoint => parent.Severity > 0.55f;
 
     public bool FixedNow 
     { 
@@ -79,10 +76,10 @@ public class HediffComp_Shock : HediffComp
         // adrenaline increases blood pressure, which can offset the severity of the shock a bit,
         // at max 1.5x the normal recovery rate or 1/1.5 = 0.67x the normal increase rate
         float adrenalineBloodPressureOffset = Mathf.Clamp01((adrenaline?.Severity ?? 0f) / 2f) + 1f;
-        if (bloodLoss?.Severity is null or < BLOOD_LOSS_THRESHOLD || FixedNow)
+        if (bloodLoss is not { Severity: > BloodLossConstants.BLOOD_LOSS_THRESHOLD } || FixedNow)
         {
             // the patient is stable, start recovery
-            parent.Severity -= 0.00375f * adrenalineBloodPressureOffset;
+            parent.Severity -= 0.0075f * adrenalineBloodPressureOffset;
             return;
         }
         if (!PastFixedPoint)
@@ -95,7 +92,10 @@ public class HediffComp_Shock : HediffComp
         {
             return;
         }
-        float maxSeverityIncrease = 0.0075f * bloodLoss.Severity / adrenalineBloodPressureOffset;
+        // we're past the point where the body can still compensate for the blood loss,
+        // total circulatory failure is imminent. from now on, the severity of the shock increases
+        // by itself, but at a reduced rate if the patient is tended.
+        float maxSeverityIncrease = 0.015f * bloodLoss.Severity / adrenalineBloodPressureOffset;
         if (parent.IsTended())
         {
             // if the patient is tended, the severity should increase slower, with a bit of randomness
@@ -104,6 +104,18 @@ public class HediffComp_Shock : HediffComp
         else
         {
             parent.Severity += maxSeverityIncrease;
+        }
+    }
+
+    private struct HediffInfo
+    {
+        internal Hediff? BloodLoss;
+        internal Hediff? AdrenalineRush;
+
+        public readonly void Deconstruct(out Hediff? bloodLoss, out Hediff? adrenaline)
+        {
+            bloodLoss = BloodLoss;
+            adrenaline = AdrenalineRush;
         }
     }
 }

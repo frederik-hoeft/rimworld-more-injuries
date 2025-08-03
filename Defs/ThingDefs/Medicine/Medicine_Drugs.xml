@@ -44,9 +44,9 @@
       <texPath>Thing/Epinephrine</texPath>
     </graphicData>
     <modExtensions>
-      <li Class="MoreInjuries.HealthConditions.Drugs.MedicalDrugProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
         <outcomeDoers>
-          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset">
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
             <hediffDef>AdrenalineRush</hediffDef>
             <severityOffset>0.75</severityOffset>
           </li>
@@ -94,21 +94,21 @@
       <texPath>Thing/Ketamine</texPath>
     </graphicData>
     <modExtensions>
-      <li Class="MoreInjuries.HealthConditions.Drugs.MedicalDrugProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
         <outcomeDoers>
-          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_FactionRelations">
-            <condition Class="MoreInjuries.HealthConditions.Drugs.Outcomes.Conditions.OutcomeDoerCondition_Not">
-              <condition Class="MoreInjuries.HealthConditions.Drugs.Outcomes.Conditions.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Logic.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
             </condition>
             <goodwillChange>-15</goodwillChange>
             <historyEventDef>AnesthetizedMember</historyEventDef>
             <isViolation>true</isViolation>
           </li>
-          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset">
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
             <hediffDef>Anesthetic</hediffDef>
             <severityOffset>1.2</severityOffset>
           </li>
-          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset">
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
             <hediffDef>KetamineBuildup</hediffDef>
             <severityOffset>0.35</severityOffset>
           </li>
@@ -161,21 +161,21 @@
       <texPath>Thing/Chloroform</texPath>
     </graphicData>
     <modExtensions>
-      <li Class="MoreInjuries.HealthConditions.Drugs.MedicalDrugProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
         <outcomeDoers>
-          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_FactionRelations">
-            <condition Class="MoreInjuries.HealthConditions.Drugs.Outcomes.Conditions.OutcomeDoerCondition_Not">
-              <condition Class="MoreInjuries.HealthConditions.Drugs.Outcomes.Conditions.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Logic.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
             </condition>
             <goodwillChange>-15</goodwillChange>
             <historyEventDef>AnesthetizedMember</historyEventDef>
             <isViolation>true</isViolation>
           </li>
-          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset">
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
             <hediffDef>Anesthetic</hediffDef>
             <severityOffset>1.2</severityOffset>
           </li>
-          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset_DoctorSkillCurve">
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_DoctorSkillCurve">
             <hediffDef>ChloroformBuildup</hediffDef>
             <minSeverityOffsetByDoctorSkill>
               <points>
@@ -248,9 +248,9 @@
       <texPath>Thing/Morphine</texPath>
     </graphicData>
     <modExtensions>
-      <li Class="MoreInjuries.HealthConditions.Drugs.MedicalDrugProps_ModExtension">
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
         <outcomeDoers>
-          <li Class="MoreInjuries.HealthConditions.Drugs.Outcomes.DrugOutcomeDoer_HediffOffset">
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
             <hediffDef>MorphineBuildup</hediffDef>
             <severityOffset>0.35</severityOffset>
           </li>

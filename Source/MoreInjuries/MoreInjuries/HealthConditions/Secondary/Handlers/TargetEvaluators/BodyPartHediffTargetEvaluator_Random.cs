@@ -1,14 +1,12 @@
-﻿using MoreInjuries.BuildIntrinsics;
-using MoreInjuries.Extensions;
+﻿using MoreInjuries.Extensions;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
 // members initialized via XML defs
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public class BodyPartHediffTargetEvaluator_Random : BodyPartHediffTargetEvaluator
 {
     // don't rename this field. XML defs depend on this name
@@ -20,20 +18,18 @@ public class BodyPartHediffTargetEvaluator_Random : BodyPartHediffTargetEvaluato
     // don't rename this field. XML defs depend on this name
     private readonly List<BodyPartDef>? includedParts = null;
 
-    protected virtual bool IncludeBodyPart(BodyPartRecord bodyPart) =>
+    protected virtual bool IncludeBodyPart(BodyPartRecord bodyPart, Pawn pawn) =>
         // include all body parts that are not excluded
-        excludedParts is null || !excludedParts.Contains(bodyPart.def);
+        excludedParts is not { Count: > 0 } || !excludedParts.Contains(bodyPart.def);
 
     public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)
     {
-        IEnumerable<BodyPartRecord> bodyParts = comp.Pawn.health.hediffSet.GetNotMissingParts(height, depth);
-        if (excludedParts is { Count: > 0 })
-        {
-            bodyParts = bodyParts.Where(IncludeBodyPart);
-        }
+        Pawn pawn = comp.Pawn;
+        IEnumerable<BodyPartRecord> bodyParts = pawn.health.hediffSet.GetNotMissingParts(height, depth);
+        bodyParts = bodyParts.Where(bodyPart => IncludeBodyPart(bodyPart, pawn));
         if (includedParts is { Count: > 0 })
         {
-            IEnumerable<BodyPartRecord> allBodyParts = comp.Pawn.health.hediffSet.GetNotMissingParts();
+            IEnumerable<BodyPartRecord> allBodyParts = pawn.health.hediffSet.GetNotMissingParts();
             bodyParts = bodyParts.Union(allBodyParts.Where(bodyPart => includedParts.Contains(bodyPart.def)));
         }
         return bodyParts.ToList().SelectRandomOrDefault();

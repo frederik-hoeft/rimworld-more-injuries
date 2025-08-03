@@ -21,8 +21,11 @@
   <!-- EN: Applying a tourniquet on TargetA. -->
   <UseTourniquet.reportString>Applying a tourniquet on TargetA.</UseTourniquet.reportString>
 
+  <!-- EN: Slowly removing a tourniquet from TargetA to reduce effects of sudden reperfusion. -->
+  <RemoveTourniquetSafely.reportString>Slowly removing a tourniquet from TargetA to reduce effects of sudden reperfusion.</RemoveTourniquetSafely.reportString>
+
   <!-- EN: Removing a tourniquet from TargetA. -->
-  <RemoveTourniquet.reportString>Removing a tourniquet from TargetA.</RemoveTourniquet.reportString>
+  <RemoveTourniquetQuickly.reportString>Removing a tourniquet from TargetA.</RemoveTourniquetQuickly.reportString>
 
   <!-- EN: Removing a tourniquet from TargetA. -->
   <RemoveTourniquetFromDead.reportString>Removing a tourniquet from TargetA.</RemoveTourniquetFromDead.reportString>
@@ -35,6 +38,9 @@
 
   <!-- EN: Performing a blood transfusion on TargetA. -->
   <UseBloodBag.reportString>Performing a blood transfusion on TargetA.</UseBloodBag.reportString>
+
+  <!-- EN: Performing a saline IV infusion on TargetA. -->
+  <UseSalineBag.reportString>Performing a saline IV infusion on TargetA.</UseSalineBag.reportString>
 
   <!-- EN: Executing TargetA through blood extraction. -->
   <HarvestBlood.reportString>Executing TargetA through blood extraction.</HarvestBlood.reportString>

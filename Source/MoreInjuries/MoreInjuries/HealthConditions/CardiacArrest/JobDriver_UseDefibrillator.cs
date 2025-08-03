@@ -1,10 +1,9 @@
-﻿using MoreInjuries.AI;
-using MoreInjuries.AI.Audio;
+﻿using MoreInjuries.AI.Audio;
+using MoreInjuries.AI.Jobs;
 using MoreInjuries.AI.TreatmentModifiers;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -43,7 +42,7 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
         return 0;
     }
 
-    protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
+    protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
         float minSuccessRate = MoreInjuriesMod.Settings.DefibrillatorMinimumSuccessRate;
         Hediff? heartAttack = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.HeartAttack);
@@ -62,6 +61,7 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
         {
             ReusabilityUtility.TryDestroyReusableIngredient(device, doctor);
         }
+        return true;
     }
 
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly = false) => 

@@ -1,4 +1,4 @@
-﻿using MoreInjuries.AI;
+﻿using MoreInjuries.AI.Jobs;
 using MoreInjuries.Debug;
 using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
@@ -26,9 +26,9 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
             State.IsTemporarilyCoagulated: false 
         };
 
-    protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
+    protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
-        DebugAssert.NotNull(device, "Device cannot be null in JobDriver_HemostasisBase::ApplyDevice");
+        DebugAssert.IsNotNull(device, "Device cannot be null in JobDriver_HemostasisBase::ApplyDevice");
 
         Hediff? injury = patient.health.hediffSet.hediffs
             .Where(IsTreatable)
@@ -41,6 +41,7 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
             state.ReducedBleedRateTicksTotal = extension.DisappearsAfterTicks;
             device?.DecreaseStack();
         }
+        return true;
     }
 
     protected static IJobDescriptor GetDispatcher(JobDef jobDef, Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly) => 

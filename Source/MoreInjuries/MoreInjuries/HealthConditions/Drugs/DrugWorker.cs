@@ -6,7 +6,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Drugs;
 
-public class DrugWorker : InjuryWorker, ICompFloatMenuOptionsHandler
+internal sealed class DrugWorker : InjuryWorker, ICompFloatMenuOptionsHandler
 {
     private readonly ICompFloatMenuOptionsHandler[] _childHandlers;
 

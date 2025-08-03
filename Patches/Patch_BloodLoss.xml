@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <!-- 1. ensure BloodLoss is a HediffWithComps -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/HediffDef[defName="BloodLoss"]/hediffClass</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>/Defs/HediffDef[defName="BloodLoss"]</xpath>
+      <value>
+        <hediffClass>HediffWithComps</hediffClass>
+      </value>
+    </nomatch>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/HediffDef[defName="BloodLoss"]/hediffClass</xpath>
+      <value>
+        <hediffClass>HediffWithComps</hediffClass>
+      </value>
+    </match>
+  </Operation>
+  <!-- 2. create the comps node if necessary -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/HediffDef[defName="BloodLoss"]/comps</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>/Defs/HediffDef[defName="BloodLoss"]</xpath>
+      <value>
+        <comps></comps>
+      </value>
+    </nomatch>
+  </Operation>
+  <!-- 3. add our secondary condition -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/HediffDef[defName="BloodLoss"]/comps</xpath>
+    <value>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <!-- map blood loss severity to hypovolemic shock chance -->
+        <severityCurve>
+          <points>
+            <li>0, 0</li>
+            <!-- don't apply shock until severity reaches 0.45 -->
+            <!-- (otherwise we'll get annoying "medical emergency" messages for minor injuries) -->
+            <li>0.45, 0</li>
+            <li>0.6, 0.0915</li>
+            <li>1, 0.1396</li>
+          </points>
+        </severityCurve>
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
+            <tickInterval>250</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowUntracked"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag">
+                <key>EnableHypovolemicShock</key>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>HypovolemicShock</hediffDef>
+                <minSeverity>0.01</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+          </li>
+        </handlers>
+      </li>
+    </value>
+  </Operation>
+</Patch>

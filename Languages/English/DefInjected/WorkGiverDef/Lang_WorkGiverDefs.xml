@@ -28,6 +28,13 @@
   <!-- EN: performing blood transfusion on -->
   <DoctorUseBloodBag.gerund>performing blood transfusion on</DoctorUseBloodBag.gerund>
 
+  <!-- EN: perform a saline IV infusion to stabilize patients with severe blood loss -->
+  <DoctorUseSalineBag.label>perform a saline IV infusion to stabilize patients with severe blood loss</DoctorUseSalineBag.label>
+  <!-- EN: perform saline IV infusion on -->
+  <DoctorUseSalineBag.verb>perform saline IV infusion on</DoctorUseSalineBag.verb>
+  <!-- EN: performing saline IV infusion on -->
+  <DoctorUseSalineBag.gerund>performing saline IV infusion on</DoctorUseSalineBag.gerund>
+
   <!-- EN: recover a tourniquet from a deceased patient to reuse it in the future -->
   <DoctorRemoveTourniquetFromDead.label>recover a tourniquet from a deceased patient to reuse it in the future</DoctorRemoveTourniquetFromDead.label>
   <!-- EN: recover tourniquet from -->

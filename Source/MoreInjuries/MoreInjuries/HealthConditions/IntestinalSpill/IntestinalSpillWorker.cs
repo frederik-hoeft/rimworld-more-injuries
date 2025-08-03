@@ -1,11 +1,11 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.IntestinalSpill;
 
-internal class IntestinalSpillWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+internal sealed class IntestinalSpillWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     private static readonly HashSet<BodyPartDef> s_afflictedOrgans =
     [

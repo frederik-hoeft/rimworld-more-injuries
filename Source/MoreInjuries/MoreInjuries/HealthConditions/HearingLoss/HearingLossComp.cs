@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MoreInjuries.KnownDefs;
+using MoreInjuries.Defs.WellKnown;
 using RimWorld;
 using UnityEngine;
 using Verse;

@@ -122,6 +122,13 @@
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>Minimum defibrillator success rate for unskilled user: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>
   <!-- EN: The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill < 8).\n\nThe actual success rate scales with the user's medicine skill: max(<this setting>, <medicine skill> / 8). -->
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8).</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>
+  <!-- =========== Feature: Acidosis ============ -->
+  <!-- EN: Acidosis -->
+  <MI_Settings_Features_Acidosis>Acidosis</MI_Settings_Features_Acidosis>
+  <!-- EN: Hypoxia to acidosis conversion factor: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_Acidosis_HypoxiaAcidosisConversionFactorLabel>Hypoxia to acidosis conversion factor: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Acidosis_HypoxiaAcidosisConversionFactorLabel>
+  <!-- EN: The factor by which the hypoxia severity is converted to acidosis severity. This is used to determine the severity of acidosis based on the severity of hypoxia. A value of 0 means that hypoxia does not contribute to acidosis at all (disabled), while a value of 5 means that 5% of all hypoxia damage contributes to acidosis severity. The actual conversion is done by multiplying the hypoxia severity by this factor. -->
+  <MI_Settings_Features_Acidosis_HypoxiaAcidosisConversionFactorTooltip>The factor by which the hypoxia severity is converted to acidosis severity. This is used to determine the severity of acidosis based on the severity of hypoxia. A value of 0 means that hypoxia does not contribute to acidosis at all (disabled), while a value of 5 means that 5% of all hypoxia damage contributes to acidosis severity. The actual conversion is done by multiplying the hypoxia severity by this factor.</MI_Settings_Features_Acidosis_HypoxiaAcidosisConversionFactorTooltip>
   <!-- =========== Feature: Neurological Damage =========== -->
   <!-- EN: Neurological Damage -->
   <MI_Settings_Features_NeuralDamage>Neurological Damage</MI_Settings_Features_NeuralDamage>

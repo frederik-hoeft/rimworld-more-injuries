@@ -45,20 +45,36 @@
           </points>
         </severityCurve>
         <handlers>
+          <!-- hypoxic damage to all parts of the body -->
+          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+            <tickInterval>500</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
+                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>OrganHypoxia</hediffDef>
+                <minSeverity>1</minSeverity>
+                <maxSeverity>4</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">
+              <excludedParts>
+                <li>Heart</li>
+                <li>Brain</li>
+              </excludedParts>
+            </targetEvaluator>
+          </li>
+          <!-- hypoxic damage to the organs are twice as likely (in addition to base chance), since they consume the most oxygen when the patient is unconscious -->
           <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>250</tickInterval>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_SimpleCurve">
-                <hediffDef>Hypothermia</hediffDef>
-                <!-- hypothermia slows down the damaging effects of hypoxia: (hypothermia severity) => hypoxia chance factor -->
-                <severityCurve>
-                  <points>
-                    <li>0, 1</li>
-                    <li>0.2, 0.8</li>
-                    <li>0.6, 0.45</li>
-                    <li>1, 0.2</li>
-                  </points>
-                </severityCurve>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
+                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
               </li>
             </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
@@ -78,23 +94,16 @@
               </excludedParts>
             </targetEvaluator>
           </li>
+          <!-- hypoxic damage to the brain. reduced chances since it will instant-kill if consciousness drops too low. -->
+          <!-- brain damage symptoms will be "discovered" over time, if any -->
           <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>250</tickInterval>
             <baseChance>0.375</baseChance>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_SimpleCurve">
-                <hediffDef>Hypothermia</hediffDef>
-                <!-- hypothermia slows down the damaging effects of hypoxia: (hypothermia severity) => hypoxia chance factor -->
-                <severityCurve>
-                  <points>
-                    <li>0, 1</li>
-                    <li>0.2, 0.8</li>
-                    <li>0.6, 0.45</li>
-                    <li>1, 0.2</li>
-                  </points>
-                </severityCurve>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
+                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
               </li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_LinkedHediff_SimpleCurve">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_LinkedHediff_SimpleCurve">
                 <hediffDef>BrainDamage_Hypoxia</hediffDef>
                 <!-- reduce chance for severe damage once hypoxia is already there -->
                 <!-- brain damage is added over time, this curve gives brain damage a chance to manifest -->
@@ -125,7 +134,7 @@
             <tickInterval>250</tickInterval>
             <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.ChanceModifiers.HediffChanceModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
             </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>

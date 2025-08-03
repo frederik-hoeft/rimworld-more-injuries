@@ -1,6 +1,6 @@
-﻿using MoreInjuries.AI;
+﻿using MoreInjuries.AI.Jobs;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -23,7 +23,7 @@ public class JobDriver_UseSplint : JobDriver_UseMedicalDevice_TargetsHediffDefs
 
     protected override int BaseTendDuration => 450;
 
-    protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
+    protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
         Hediff? fracture = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.Fracture);
         if (fracture is { Part: BodyPartRecord part })
@@ -31,6 +31,7 @@ public class JobDriver_UseSplint : JobDriver_UseMedicalDevice_TargetsHediffDefs
             SplintFracture(doctor, patient, fracture, part);
             device?.DecreaseStack();
         }
+        return true;
     }
 
     internal static void SplintFracture(Pawn doctor, Pawn patient, Hediff fracture, BodyPartRecord part, float severityOffset = 0f)

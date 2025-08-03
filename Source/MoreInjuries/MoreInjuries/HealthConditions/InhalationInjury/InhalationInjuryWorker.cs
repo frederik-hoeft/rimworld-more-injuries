@@ -1,4 +1,4 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.InhalationInjury;
 
-internal class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
+internal sealed class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableFireInhalation;
 

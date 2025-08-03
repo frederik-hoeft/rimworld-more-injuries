@@ -52,11 +52,23 @@ public static class Named
         /// <summary>{0} (fully heal)</summary>
         public static string Procedure_FullyHeal => "MI_Procedure_FullyHeal";
 
+        /// <summary>{0} (single)</summary>
+        public static string Procedure_Single => "MI_Procedure_Single";
+
+        /// <summary>{0} (max safe dose)</summary>
+        public static string Procedure_MaxDose => "MI_Procedure_MaxDose";
+
         /// <summary>{0} (from inventory, stabilize)</summary>
         public static string Procedure_FromInventory_Stabilize => "MI_Procedure_FromInventory_Stabilize";
 
         /// <summary>{0} (from inventory, fully heal)</summary>
         public static string Procedure_FromInventory_FullyHeal => "MI_Procedure_FromInventory_FullyHeal";
+
+        /// <summary>{0} (from inventory, single)</summary>
+        public static string Procedure_FromInventory_Single => "MI_Procedure_FromInventory_Single";
+
+        /// <summary>{0} (from inventory, max safe dose)</summary>
+        public static string Procedure_FromInventory_MaxDose => "MI_Procedure_FromInventory_MaxDose";
 
         /// <summary>{0}: medical care for {PATIENT_labelShort} disabled</summary>
         public static string ProcedureFailed_CareDisabled => "MI_ProcedureFailed_CareDisabled";

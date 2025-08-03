@@ -1,12 +1,12 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Localization;
 using RimWorld;
 using System.Collections.Generic;
 using Verse;
 
-namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
+using static MoreInjuries.HealthConditions.HeavyBleeding.BloodLossConstants;
 
-using static BloodLossConstants;
+namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 
 public class Recipe_ExtractBloodBag : Recipe_Surgery
 {

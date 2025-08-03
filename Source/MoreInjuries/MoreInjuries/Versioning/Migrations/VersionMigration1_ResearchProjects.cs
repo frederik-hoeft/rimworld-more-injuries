@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
-using MoreInjuries.KnownDefs;
 using MoreInjuries.Localization;
+using MoreInjuries.Defs.WellKnown;
 
 namespace MoreInjuries.Versioning.Migrations;
 

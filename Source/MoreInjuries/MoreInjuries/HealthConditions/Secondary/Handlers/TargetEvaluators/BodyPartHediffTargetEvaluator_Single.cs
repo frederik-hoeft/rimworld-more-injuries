@@ -1,10 +1,10 @@
-﻿using MoreInjuries.BuildIntrinsics;
+﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
 // members initialized via XML defs
-[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = Justifications.XML_NAMING_CONVENTION)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
 public sealed class BodyPartHediffTargetEvaluator_Single : BodyPartHediffTargetEvaluator
 {
     // don't rename this field. XML defs depend on this name
@@ -12,11 +12,7 @@ public sealed class BodyPartHediffTargetEvaluator_Single : BodyPartHediffTargetE
 
     public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)
     {
-        if (target is null)
-        {
-            Logger.Error($"{nameof(BodyPartHediffTargetEvaluator_Single)}: {comp.GetType().Name} has no target defined. Cannot evaluate.");
-            return null;
-        }
+        Throw.InvalidOperationException.IfNull(this, target);
         HediffSet hediffs = comp.Pawn.health.hediffSet;
         if (hediffs.GetBodyPartRecord(target) is BodyPartRecord targetRecord && !hediffs.PartIsMissing(targetRecord))
         {

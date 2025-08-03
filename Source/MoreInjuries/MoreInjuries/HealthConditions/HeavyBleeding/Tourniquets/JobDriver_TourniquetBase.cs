@@ -1,9 +1,6 @@
-﻿using MoreInjuries.AI;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.AI.Jobs;
+using MoreInjuries.Defs.WellKnown;
 using RimWorld;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -73,7 +70,7 @@ public abstract class JobDriver_TourniquetBase : JobDriver_UseMedicalDevice
         return true;
     }
 
-    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "Matches XML node naming.")]
+    [SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = "Matches XML node naming.")]
     protected class TourniquetBaseParameters : ExtendedJobParameters
     {
         public string? bodyPartKey;

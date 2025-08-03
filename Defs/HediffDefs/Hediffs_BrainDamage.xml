@@ -158,7 +158,7 @@
 
   <HediffDef ParentName="BrainDamageBase">
     <defName>BrainDamage_VisualAgnosia</defName>
-    <label>visual agnosia</label>
+    <label>agnosia</label>
     <description>Damage to the occipital or temporal lobes has impaired the ability to recognize objects or faces, despite normal vision. Affected patients may have trouble identifying items or people, leading to confusion and slower task performance.</description>
     <stages>
       <li>

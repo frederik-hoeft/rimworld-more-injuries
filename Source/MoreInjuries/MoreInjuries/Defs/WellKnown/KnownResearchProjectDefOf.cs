@@ -1,0 +1,22 @@
+﻿using RimWorld;
+using Verse;
+
+namespace MoreInjuries.Defs.WellKnown;
+
+[DefOf]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_DEF_OF_REQUIRES_FIELD)]
+public static class KnownResearchProjectDefOf
+{
+    public static ResearchProjectDef AdvancedFirstAid = null!;
+    public static ResearchProjectDef AdvancedThoracicSurgery = null!;
+    public static ResearchProjectDef BasicAnatomy = null!;
+    public static ResearchProjectDef BasicFirstAid = null!;
+    public static ResearchProjectDef CellularRegeneration = null!;
+    public static ResearchProjectDef Cpr = null!;
+    public static ResearchProjectDef EmergencyMedicine = null!;
+    public static ResearchProjectDef EpinephrineSynthesis = null!;
+    public static ResearchProjectDef KetamineSynthesis = null!;
+    public static ResearchProjectDef ChloroformSynthesis = null!;
+    public static ResearchProjectDef MorphineSynthesis = null!;
+    public static ResearchProjectDef Neurosurgery = null!;
+}

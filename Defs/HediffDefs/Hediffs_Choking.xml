@@ -30,7 +30,7 @@
         <capMods>
           <li>
             <capacity>Breathing</capacity>
-            <offset>-0.05</offset>
+            <setMax>0.95</setMax>
           </li>
         </capMods>
         <lifeThreatening>true</lifeThreatening>
@@ -41,7 +41,7 @@
         <capMods>
           <li>
             <capacity>Breathing</capacity>
-            <offset>-0.15</offset>
+            <setMax>0.85</setMax>
           </li>
         </capMods>
         <lifeThreatening>true</lifeThreatening>
@@ -53,7 +53,7 @@
         <capMods>
           <li>
             <capacity>Breathing</capacity>
-            <offset>-0.30</offset>
+            <setMax>0.7</setMax>
           </li>
         </capMods>
       </li>
@@ -64,7 +64,7 @@
         <capMods>
           <li>
             <capacity>Breathing</capacity>
-            <offset>-0.450</offset>
+            <setMax>0.55</setMax>
           </li>
           <li>
             <capacity>Moving</capacity>
@@ -79,7 +79,7 @@
         <capMods>
           <li>
             <capacity>Breathing</capacity>
-            <offset>-0.60</offset>
+            <setMax>0.4</setMax>
           </li>
           <li>
             <capacity>Moving</capacity>

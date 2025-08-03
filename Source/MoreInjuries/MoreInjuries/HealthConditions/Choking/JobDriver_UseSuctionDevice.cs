@@ -1,8 +1,7 @@
-﻿using MoreInjuries.AI;
-using MoreInjuries.AI.Audio;
+﻿using MoreInjuries.AI.Audio;
+using MoreInjuries.AI.Jobs;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -25,7 +24,7 @@ public class JobDriver_UseSuctionDevice : JobDriver_UseMedicalDevice_TargetsHedi
 
     protected override int BaseTendDuration => 600;
 
-    protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
+    protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
         Hediff? choking = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.ChokingOnBlood);
         float doctorSkill = doctor.GetMedicalSkillLevelOrDefault();
@@ -34,6 +33,7 @@ public class JobDriver_UseSuctionDevice : JobDriver_UseMedicalDevice_TargetsHedi
         {
             patient.health.RemoveHediff(choking);
         }
+        return true;
     }
 
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly = false) => 
