@@ -17,7 +17,8 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
 - [More Injuries User Manual](#more-injuries-user-manual)
   - [About More Injuries](#about-more-injuries)
   - [Table of Contents](#table-of-contents)
-  - [New Injuries and Medical Conditions](#new-injuries-and-medical-conditions)
+  - [Injuries and Medical Conditions A-Z](#injuries-and-medical-conditions-a-z)
+    - [Acidosis](#acidosis)
     - [Adrenaline Rush](#adrenaline-rush)
     - [Brain Damage](#brain-damage)
       - [Agnosia](#agnosia)
@@ -48,19 +49,20 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
       - [Temporary Hearing Loss](#temporary-hearing-loss)
       - [(Permanent) Hearing Loss](#permanent-hearing-loss)
     - [Hemodilution](#hemodilution)
+    - [Hemorrhage (Spontaneous)](#hemorrhage-spontaneous)
     - [Hemorrhagic Stroke](#hemorrhagic-stroke)
     - [Hydrostatic Shock](#hydrostatic-shock)
     - [Hypothermia](#hypothermia)
     - [Hypovolemic Shock](#hypovolemic-shock)
+    - [Hypoxia](#hypoxia)
+      - [Hypoxia (Brain)](#hypoxia-brain)
     - [Inhalation Injury](#inhalation-injury)
-    - [Ketamine Build-Up](#ketamine-build-up)
+    - [Ketamine Buildup](#ketamine-buildup)
     - [Lung Collapse](#lung-collapse)
     - [Mechanite Therapy](#mechanite-therapy)
     - [Morphine High](#morphine-high)
-    - [Organ Hypoxia](#organ-hypoxia)
     - [Paralysis](#paralysis)
     - [Spalling Injury](#spalling-injury)
-    - [Spontaneous Hemorrhage](#spontaneous-hemorrhage)
     - [Vasodilation](#vasodilation)
   - [New Body Parts](#new-body-parts)
     - [Small and Large Intestines](#small-and-large-intestines)
@@ -112,9 +114,14 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
 
 <!-- /code_chunk_output -->
 
-## New Injuries and Medical Conditions
+## Injuries and Medical Conditions A-Z
 
 The following sections provide an overview of the new injuries and medical conditions added by the More Injuries mod, as well as their effects and treatment options.
+
+### Acidosis
+
+> [!CAUTION]
+> TODO: update docs
 
 ### Adrenaline Rush
 
@@ -375,6 +382,11 @@ _Vanilla RimWorld condition, see [Hearing loss (RimWorld Wiki)](https://rimworld
 > [!CAUTION]
 > TODO: update docs
 
+### Hemorrhage (Spontaneous)
+
+> [!CAUTION]
+> TODO: update docs
+
 ### Hemorrhagic Stroke
 
 In extreme cases of head trauma, a rupture of a blood vessel in the brain may occur, causing a life-threatening condition known as a hemorrhagic stroke. Blood from the ruptured vessel leaks into the brain, causing pressure to build up and compress the surrounding tissue, starving it of oxygen and nutrients and leading to rapid loss of consciousness and death if not surgically treated.
@@ -428,11 +440,30 @@ During the initial emergency treatment of hypovolemic shock, its progression can
 > [!NOTE]
 > **Biotech DLC**: Deathresting sanguaphages will automatically recover from hypovolemic shock over time, as they can regenerate blood on their own.
 
+
+### Hypoxia
+
+Hypoxia is a condition in which the body or a region of the body is deprived of adequate oxygen supply at the tissue level. The cause of hypoxia may vary, but it is often the result of a severe lack of blood flow to the affected area, such as in cases of [hypovolemic shock](#hypovolemic-shock).
+
+> **In-Game Description**
+> _"**Hypoxia** &mdash; Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow."_
+
+**Causes**: Severe lack of blood flow to an organ, such as in cases of [hypovolemic shock](#hypovolemic-shock).
+
+**Effects**: Damage to the affected organ, which may lead to multiple organ failure and death if not treated immediately.
+
+**Treatment**: Organ hypoxia must be treated by restoring blood flow to the affected organ, which may require treating the underlying cause of the blood loss, such as stopping the bleeding or restoring blood volume through transfusion. See [hypovolemic shock](#hypovolemic-shock) for more information on treatment.
+
+#### Hypoxia (Brain)
+
+> [!CAUTION]
+> TODO: update docs
+
 ### Inhalation Injury
 
 Inhalation injuries are caused by the inhalation of hot gases, steam, or smoke, which can cause burns to the respiratory tract and lungs. If enabled in the mod settings, inhalation injuries manifest themselves as burn injuries to the lungs, for example, when a pawn is exposed to a fire or explosion.
 
-### Ketamine Build-Up
+### Ketamine Buildup
 
 > [!CAUTION]
 > TODO: update docs
@@ -460,19 +491,6 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 
 > [!CAUTION]
 > TODO: update docs
-
-### Organ Hypoxia
-
-Hypoxia is a condition in which the body or a region of the body is deprived of adequate oxygen supply at the tissue level. The cause of hypoxia may vary, but it is often the result of a severe lack of blood flow to the affected area, such as in cases of [hypovolemic shock](#hypovolemic-shock).
-
-> **In-Game Description**
-> _"**Organ hypoxia** &mdash; Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow."_
-
-**Causes**: Severe lack of blood flow to an organ, such as in cases of [hypovolemic shock](#hypovolemic-shock).
-
-**Effects**: Damage to the affected organ, which may lead to multiple organ failure and death if not treated immediately.
-
-**Treatment**: Organ hypoxia must be treated by restoring blood flow to the affected organ, which may require treating the underlying cause of the blood loss, such as stopping the bleeding or restoring blood volume through transfusion. See [hypovolemic shock](#hypovolemic-shock) for more information on treatment.
 
 ### Paralysis
 
@@ -505,11 +523,6 @@ Modern armor is designed to prevent spalling by adding softer layers above the h
 
 > [!TIP]
 > You can tweak the chance, severity, and armor condition thresholds for spalling injuries in the mod settings to better balance the risk and reward of using degraded armor plating in combat.
-
-### Spontaneous Hemorrhage
-
-> [!CAUTION]
-> TODO: update docs
 
 ### Vasodilation
 

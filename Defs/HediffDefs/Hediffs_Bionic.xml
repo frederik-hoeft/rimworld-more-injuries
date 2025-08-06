@@ -15,4 +15,20 @@
       <betterThanNatural>true</betterThanNatural>
     </addedPartProps>
   </HediffDef>
+  
+  <HediffDef ParentName="AddedBodyPartBase">
+    <defName>BionicLargeIntestine</defName>
+    <label>bionic large intestine</label>
+    <labelNoun>a bionic large intestine</labelNoun>
+    <description>An installed bionic large intestine.</description>
+    <descriptionHyperlinks>
+      <ThingDef>BionicLargeIntestine</ThingDef>
+    </descriptionHyperlinks>
+    <spawnThingOnRemoved>BionicLargeIntestine</spawnThingOnRemoved>
+    <addedPartProps>
+      <solid>true</solid>
+      <partEfficiency>1.35</partEfficiency>
+      <betterThanNatural>true</betterThanNatural>
+    </addedPartProps>
+  </HediffDef>
 </Defs>
