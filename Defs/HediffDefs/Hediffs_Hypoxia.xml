@@ -173,6 +173,9 @@
             <tickInterval>2000</tickInterval>
             <baseChance>0.02</baseChance>
             <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag">
+                <key>NeuralDamageEnablePersonalityShift</key>
+              </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_LinkedHediff_Fixed">
                 <hediffDef>BrainDamage_PersonalityShift</hediffDef>
                 <chanceModifier>0</chanceModifier>

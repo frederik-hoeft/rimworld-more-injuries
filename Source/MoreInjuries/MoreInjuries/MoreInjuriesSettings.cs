@@ -168,7 +168,10 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 0.5f)]
     internal partial ref float NeuralDamageChanceReductionFactor { get; }
-    
+
+    [SettingsEntry<bool>(DefaultValue = true)]
+    internal partial ref bool NeuralDamageEnablePersonalityShift { get; }
+
     // tourniquet-related injuries
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool TourniquetsCanCauseGangrene { get; }

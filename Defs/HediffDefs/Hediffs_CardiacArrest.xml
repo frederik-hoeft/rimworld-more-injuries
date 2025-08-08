@@ -199,6 +199,10 @@
             <capacity>Consciousness</capacity>
             <setMax>0.01</setMax>
           </li>
+          <statOffsets>
+            <ComfyTemperatureMin>10</ComfyTemperatureMin>
+            <ComfyTemperatureMax>-10</ComfyTemperatureMax>
+          </statOffsets>
         </capMods>
       </li>
       <li>
@@ -211,6 +215,10 @@
             <capacity>Consciousness</capacity>
             <setMax>0.01</setMax>
           </li>
+          <statOffsets>
+            <ComfyTemperatureMin>20</ComfyTemperatureMin>
+            <ComfyTemperatureMax>-10</ComfyTemperatureMax>
+          </statOffsets>
         </capMods>
       </li>
     </stages>

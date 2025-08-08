@@ -7,7 +7,8 @@ _If you would like to contribute to this project or improve the documentation, p
 
 ## About More Injuries
 
-The More Injuries mod aims to increase the simulation depth of RimWorld's medical system by adding a variety of new injuries, medical conditions, and treatment options, as well as simulating body part damage in more detail. Its goal is to make the medical system more challenging and interesting in some aspects, while also making it more realistic and immersive. A detailed mod settings menu is provided to allow players to customize many aspects of the mod to their liking.
+The More Injuries mod aims to increase the simulation depth of RimWorld's medical system by adding a variety of new injuries, medical conditions, and treatment options, as well as simulating body part damage in more detail and introducing pathophysiological interactions between injuries and medical conditions; meaning that injuries and medical conditions can affect each other in complex ways, leading to cascading effects that can be difficult to manage. The mod also adds new body parts, medical devices, procedures, surgeries, research projects, and work types to enhance the medical gameplay experience.
+Its goal is to make the medical system more challenging and interesting in some aspects, while also making it more realistic and immersive. A detailed mod settings menu is provided to allow players to customize many aspects of the mod to their liking.
 
 ## Table of Contents
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
@@ -17,6 +18,7 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
 - [More Injuries User Manual](#more-injuries-user-manual)
   - [About More Injuries](#about-more-injuries)
   - [Table of Contents](#table-of-contents)
+  - [Pathophysiological System](#pathophysiological-system)
   - [Concepts](#concepts)
     - [Lethal Triad of Trauma](#lethal-triad-of-trauma)
   - [Injuries and Medical Conditions A-Z](#injuries-and-medical-conditions-a-z)
@@ -118,6 +120,60 @@ The More Injuries mod aims to increase the simulation depth of RimWorld's medica
 
 <!-- /code_chunk_output -->
 
+## Pathophysiological System
+
+The More Injuries mod introduces a pathophysiological system that simulates the interactions between injuries and medical conditions in a more realistic and immersive way. This system allows for complex interactions between different injuries and medical conditions, leading to cascading effects that can be difficult to manage. For example, the presence of one injury may exacerbate the effects of another, or injecting a certain drug may have different effects depending on the presence of other injuries or medical conditions.
+
+To aid in understanding these interactions, this manual introduces a graphical representation of the pathophysiological system, including flowcharts and diagrams that illustrate the chain of cause and effect between different injuries and medical conditions. The direction of these interactions is indicated by arrows, whereas arrow colors indicate whether the interaction lessens (green) or worsens/causes (red) the condition, as shown in the following diagram:
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  a[condition a] == "`*increases severity of*`" ==> b[condition b]
+  c[condition a] == "`*reduces severity of*`" ==> d[condition b]
+
+  linkStyle 0 stroke: #b10000
+  linkStyle 1 stroke: #549b68
+```
+
+Additional arrow labels may be used to indicate conditional effects or modifiers, for example:
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  a[condition a] ==> b[condition b]
+  a ==> | overdose | b
+
+  linkStyle 0 stroke: #549b68
+  linkStyle 1 stroke: #b10000
+```
+
+In this example, condition a usually improves condition b, but in cases of overdose, it may actually worsen condition b instead.
+
+Some conditions may not improve or worsen other conditions directly, but instead may influence treatment outcomes of other conditions. For example, epinephrine administration in cases of cardiac arrest may improve the chances of successful defibrillation, while opioid-based painkillers may reduce the effectiveness of CPR. These interactions are represented by dashed arrows, the colors of which indicate the nature of the interaction (green for beneficial effects, red for harmful effects).
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  epinephrine[epinephrine] ==> cardiac_arrest[cardiac arrest]
+  epinephrine ==> | overdose | cardiac_arrest
+
+  linkStyle 0 stroke: #549b68, stroke-dasharray: 9,5
+  linkStyle 1 stroke: #b10000
+```
+
 ## Concepts
 
 This section provides an overview of key concepts related to trauma and injury management simulated by the More Injuries mod. These concepts are crucial for understanding how injuries and medical conditions interact with each other, and how they can be treated effectively.
@@ -161,12 +217,14 @@ flowchart LR
   blood_transfusion[blood transfusion] ==> hypovolemic_shock
   saline_infusion[saline IV infusion] ==> hypovolemic_shock
   saline_infusion ==> hemodilution
+  cardiac_arrest ==> hypothermia
+  external ~~~ hypothermia
 
-  a[ ] == causes/worsens/accelerates ==> b[ ]
-  c[ ] == fixes/improves/slows down ==> d[ ]
-
-  linkStyle 10,17,18,21 stroke: #3F704D
+  linkStyle 10,17,18 stroke: #549b68
+  linkStyle 0,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,19,20 stroke: #b10000
 ```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 As per basegame RimWorld, external factors like injuries or environmental conditions can quickly lead to hypothermia or bleeding injuries. More Injuries extends this simulation depth by simulating follow-up conditions and potential cascading effects that can arise from these initial injuries.
 
@@ -204,6 +262,24 @@ The condition contributes to a dangerous cycle known as the [lethal triad of tra
 
 **Effects**: Directly contributes to [coagulopathy](#coagulopathy) and [hypothermia](#hypothermia).
 
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+graph LR;
+  hypoxia[Hypoxia] ==> acidosis[Acidosis];
+  ischemia["Severe ischemia (tourniquet)"] ==> acidosis;
+  acidosis ==> coagulopathy[Coagulopathy];
+  acidosis ==> hypothermia[Hypothermia];
+
+  linkStyle 0,1,2,3 stroke: #b10000
+  style acidosis stroke-width: 4px
+```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Restore oxygen delivery to tissues: control bleeding, provide fluid resuscitation, preferably with [blood products](#blood-bag), and treat effects coagulopathy and hypothermia. Once underlying causes are addressed, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys.
 
 > [!WARNING]
@@ -219,44 +295,134 @@ Adrenaline, also known as epinephrine, is a naturally occurring hormone that is 
 
 **Causes**: Injuries or [epinephrine injections](#epinephrine-autoinjector).
 
-**Effects**: At lower levels, an adrenaline rush can provide a temporary boost to consciousness, moving, and pain tolerance. At higher levels, it can cause a reduction in manipulation and sight. In extreme cases of overdose, it can lead to anxiety, panic, nausea, as well as, coma, [cardiac arrest](#cardiac-arrest), [hemorrhagic stroke](#hemorrhagic-stroke), and subsequent death. As adrenaline raises the heart rate and blood pressure, it can also reduce the effects of [hypovolemic shock](#hypovolemic-shock) for a short period of time.
+**Effects**: At lower levels, an adrenaline rush can provide a temporary boost to consciousness, moving, and pain tolerance. At higher levels, it can cause a reduction in manipulation and sight. In extreme cases of overdose, it can lead to anxiety, panic, nausea, as well as, coma, [cardiac arrest](#cardiac-arrest), [hemorrhagic stroke](#hemorrhagic-stroke), and subsequent death. As adrenaline raises the heart rate and blood pressure, it can also reduce the effects of [hypovolemic shock](#hypovolemic-shock) for a short period of time.  
+In a similar way, epinephrine injections may be used to assist with [defibrillation](#defibrillator) efforts and [CPR](#cpr) in cases of [cardiac arrest](#cardiac-arrest).
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  painful_injury[painful injury] ==> adrenaline_rush[adrenaline rush]
+  epinephrine_injection[Epinephrine injection] ==> adrenaline_rush
+  adrenaline_rush ==> cardiac_arrest[Cardiac arrest]
+  adrenaline_rush ==> |overdose| cardiac_arrest[Cardiac arrest]
+  adrenaline_rush ==> |overdose| hemorrhagic_stroke[Hemorrhagic stroke]
+
+  linkStyle 2 stroke: #549b68, stroke-dasharray: 9,5
+  linkStyle 0,1,3,4 stroke: #b10000
+```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: Adrenaline is naturally metabolized by the body over time and effects last between a few minutes to a few hours in severe cases. In cases of overdose, the pawn may require medical treatment to treat symptoms and secondary effects.
 
 ### Brain Damage
 
-> [!CAUTION]
-> TODO: update docs
+In this context, "brain damage" refers to a range of temporary or permanent neurological conditions that can occur as a result of traumatic brain injury, stroke, or [hypoxia](#hypoxia). Brain damage can manifest in various ways, including cognitive impairments, motor dysfunction, and changes in personality. The severity and type of brain damage depend on the extent of the injury and the specific areas of the brain affected.
+
+Brain damage may not always be immediately apparent, as some symptoms may take time to develop as the patient recovers from the initial injury. In some cases, brain damage may be reversible with experimental treatments, such as [mechanite therapy](#mechanite-therapy) or [cellular regenerative neurosurgery](#cellular-regenerative-neurosurgery), which can help repair damaged brain tissue and restore normal function. However, these futuristic treatments require advanced research and technology, and may be expensive and time-consuming to perform.
+
+**Causes**: [hypoxia](#hypoxia-brain)
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  hypoxia[Hypoxia] ==> brain_damage[Brain damage]
+
+  linkStyle 0 stroke: #b10000
+```
+
+**Effects**: Effects of brain damage can vary widely depending on the specific areas of the brain affected and the severity of the injury. Common effects are listed below.
 
 #### Agnosia
 
-> [!CAUTION]
-> TODO: update docs
+Agnosia is a neurological disorder characterized by an inability to process sensory information. Often there is a loss of ability to recognize objects, persons, sounds, shapes, or smells while the specific sense is neither defective nor is there any significant memory loss.
+
+> **In-Game Description**
+> _"**Agnosia** &mdash; Damage to the occipital or temporal lobes has impaired the ability to recognize objects or faces, despite normal vision. Affected patients may have trouble identifying items or people, leading to confusion and slower task performance."_
+
+**Effects**: Reduced work speed, research speed, and social impact, depending on the severity of the condition. Negative mood effects may occur due to frustration or confusion caused by the inability to recognize familiar objects or people.
+
+**Thoughts per Stage**:
+> _"**Things look unfamiliar** (-2) &mdash; Sometimes I catch myself hesitating, unsure of what I'm looking at. It's subtle, but unsettling - like the world is just slightly off."_
+> _"**Misrecognizing people and objects** (-4) &mdash; I keep mistaking objects - or even people - for others. It's confusing, and I often feel embarrassed or disoriented."_
+> _"**Faces blur together** (-6) &mdash; Everyone looks the same. I have to rely on voices or context to tell people apart. It's isolating and makes social interaction exhausting."_
+> _"**Nothing makes visual sense** (-8) &mdash; The world around me is a jumble of shapes and colors. I can't rely on sight to recognize what I see anymore. Every task is harder, and I feel disconnected from everything."_
 
 #### Aphasia
 
-> [!CAUTION]
-> TODO: update docs
+Aphasia, also known as dysphasia, is an impairment in a person's ability to comprehend or formulate language because of dysfunction in specific brain regions.
+
+> **In-Game Description**
+> _"**Aphasia** &mdash; Permanent damage to nerve cells in the language centers of the brain has resulted in pronounced difficulty with communication. This can manifest as word-finding difficulties, fragmented speech, or even complete muteness. The severity of the aphasia can vary based on the extent of the damage."_
+
+**Effects**: Reduced talking capacity, trade price penalty when trading. Negative mood effects may occur due to frustration or confusion caused by the inability to communicate effectively.
+
+**Thoughts per Stage**:
+
+> _"**Word-finding difficulty** (-2) &mdash; Struggling to find the right words can be frustrating and isolating. I feel embarrassed when I can't express myself clearly."_
+> _"**Fragmented speech** (-4) &mdash; I can speak, but my sentences are often incomplete or jumbled. It's like my thoughts are scattered, and I can't put them together."_
+> _"**Non-fluent** (-6) &mdash; Every conversation feels like a struggle. I can't form complex sentences, and it's hard to communicate even basic ideas. I want to express myself, but my words fail me."_
+> _"**Barely verbal** (-8) &mdash; My ability to speak has been reduced to almost nothing. I can only manage a few words at a time, and even those are difficult to pronounce. I feel trapped in my own silence."_
+> _"**Completely nonverbal** (-10) &mdash; I can no longer speak at all. My thoughts are locked inside me, and I can't communicate with others. I feel alone and isolated, unable to share my feelings or ideas."_
 
 #### Executive Dysfunction
 
-> [!CAUTION]
-> TODO: update docs
+In psychology and neuroscience, executive dysfunction, or executive function deficit, is a disruption to the efficacy of the executive functions, which is a group of cognitive processes that regulate, control, and manage other cognitive processes. Executive dysfunction can refer to both neurocognitive deficits and behavioural symptoms.
+
+> **In-Game Description**
+> _"**Executive dysfunction** &mdash; Damage to the frontal lobes has impaired executive functions, including decision-making, planning, and impulse control. Affected individuals may act erratically or inappropriately, and struggle with organization, prioritization, and regulating emotions, leading to difficulties in daily life and social interactions."_
+
+**Effects**: Periodic mental breaks, increased risk of social fights.
 
 #### Hippocampal Damage
 
-> [!CAUTION]
-> TODO: update docs
+Hippocampal damage refers to damage to the hippocampus, a region of the brain that is critical for memory formation and spatial navigation. Damage to this area can result in significant memory impairments, including difficulty forming new memories and recalling past events.
+
+> **In-Game Description**
+> _"**Hippocampal damage** &mdash; Damage to the hippocampus has impaired memory formation and spatial navigation. Affected individuals may become confused about their surroundings, forget where they are, and have difficulty navigating or recalling past events."_
+
+**Effects**: Periodic mental breaks of type "confused wandering," memory loss, reduced learning factor, reduced work speed, periodic mental breaks at higher stages. Negative mood effects may occur due to frustration or confusion caused by memory impairments.
+
+**Thoughts per Stage**:
+> _"**Disoriented** (-2) &mdash; Sometimes I forget why I walked into a room or what I was just doing. It's like my thoughts vanish mid-sentence."_
+> _"**Forgetting simple things** (-4) &mdash; I've started forgetting names, places, tasks. It's frustrating, like sand slipping through my fingers whenever I try to recall something."_
+> _"**Losing track of time** (-6) &mdash; Hours blur together. Sometimes I wake up not knowing where I am or what day it is. I feel lost - even in familiar places."_
+> _"**Memories feel distant** (-8) &mdash; Memories feel like someone else's dreams. Faces, places, and events all seem unfamiliar. I'm scared of forgetting everything."_
+> _"**Losing sense of self** (-10) &mdash; My identity feels fragile. I struggle to remember who I am, what I've done, or what I care about. It's like I'm fading away, and I don't know how to stop it."_
 
 #### Motor Dysfunction
 
-> [!CAUTION]
-> TODO: update docs
+Motor dysfunction refers to a range of movement disorders that can occur as a result of brain damage. These disorders can affect coordination, balance, and fine motor skills, leading to difficulties with tasks such as walking, writing, or using tools.
+
+> **In-Game Description**
+> _"**Motor dysfunction** &mdash; Neurological damage to the motor cortex has resulted in permanent impairment of the motor system. This can manifest as weakness, tremors, or difficulty coordinating movements. The severity of the dysfunction can vary based on the extent of the damage."_
+
+**Effects**: Reduced moving speed, reduced manipulation capacity. Negative mood effects may occur due to frustration or confusion caused by motor impairments.
+
+**Thoughts per Stage**:
+> _"**Clumsy** (-2) &mdash; My movements feel less precise than they used to be. I drop things more often and stumble occasionally. It's frustrating, but manageable."_
+> _"**Shaky and unsteady** (-4) &mdash; My hands tremble, and walking in a straight line takes concentration. Tasks that used to be simple now require real effort and care."_
+> _"**Struggling to control my body** (-6) &mdash; Basic actions are difficult. My limbs don't always respond the way I want them to, and I often lose coordination. It makes me feel helpless and vulnerable."_
+> _"**Near-paralyzed** (-8) &mdash; Moving feels like dragging weights through water. I can barely walk, and using my hands has become incredibly difficult. I rely on others for more than I'd like to admit."_
+> _"**Trapped in a failing body** (-10) &mdash; My body no longer obeys me. Every step, every grasp is a monumental challenge. I feel like a living vegetable, unable to do anything for myself, and completely dependent on others. It's a nightmare."_
 
 #### Personality Shift
 
-> [!CAUTION]
-> TODO: update docs
+> **In-Game Description**
+> _"Due to severe brain damage, {0} has undergone a significant shift in personality. They may have become more skilled in certain areas, but also may have lost some of their previous skills. This change is permanent and may require some reorientation for their role in the colony."_
+
+**Effects**: Permanent change in personality, which includes a redistribution of skills corresponding to the extend of the brain damage. For example, a pawn may become more skilled in combat or social interactions, but lose some of their previous skills in crafting or research. This change is permanent and may require some reorientation for their role in the colony.
+
+> [!NOTE]
+> This feature can be disabled in the mod settings if you prefer not to have personality shifts as a result of brain damage.
 
 ### Cardiac Arrest
 
@@ -266,37 +432,115 @@ Cardiac arrest is a sudden loss of blood flow resulting from the failure of the 
 > _"**Cardiac arrest** &mdash; Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.
 > A skilled doctor must perform CPR to restore blood flow and hopefully restart the heart. In early stages of cardiac arrest, during ventricular fibrillation, a defibrillator can also be used to shock the heart back into a normal rhythm, which may be faster and more effective than CPR."_
 
-**Causes**: Extreme blood loss ([hypovolemic shock](#hypovolemic-shock)), [adrenaline overdose](#adrenaline-rush), and other conditions that starve the heart of oxygen.
+**Causes**: Extreme blood loss ([hypovolemic shock](#hypovolemic-shock)), [pneumothorax](#lung-collapse), [adrenaline overdose](#adrenaline-rush), [ketamine overdose](#ketamine-overdose), [chloroform overdose](#chloroform-buildup), [morphine overdose](#morphine-overdose), or other conditions that starve the heart of oxygen.
 
-**Effects**: Loss of consciousness, coma, multiple organ failure, and death if not treated immediately.
+**Effects**: Loss of consciousness, coma, [hypoxia](#hypoxia), multiple organ failure, and death if not treated immediately. [Hypothermia](#hypothermia) will set in quickly as the body is unable to distribute heat effectively.
 
-**Treatment**: Cardiac arrest must be treated immediately with [CPR](#cpr) (which needs to be researched first) to restore blood flow and hopefully restart the heart. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). In cases of `clinical death`, only [CPR](#cpr) will be effective.
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+hypovolemic_shock[hypovolemic shock] ==> cardiac_arrest[cardiac arrest]
+pneumothorax["pneumothorax
+(lung collapse)"] ==> cardiac_arrest
+adrenaline[adrenaline] ==> cardiac_arrest
+adrenaline ==> |overdose| cardiac_arrest
+cardiac_arrest ==> hypoxia[hypoxia]
+cardiac_arrest ==> hypothermia[hypothermia]
+hypothermia ==> cardiac_arrest
+ketamine[ketamine] ==> | overdose | cardiac_arrest
+chloroform[chloroform] ==> | overdose | cardiac_arrest
+morphine[morphine] ==> | overdose | cardiac_arrest
+
+linkStyle 0,1,3,4,5,6,7,8,9 stroke: #b10000
+linkStyle 2 stroke: #549b68, stroke-dasharray: 9,5
+```
+
+**Treatment**: Cardiac arrest must be treated immediately with [CPR](#cpr) (which needs to be researched first) to restore blood flow and hopefully restart the heart. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). In cases of `clinical death`, only [CPR](#cpr) will be effective. [Epinephrine](#epinephrine-autoinjector) may be administered to assist with defibrillation efforts and [CPR](#cpr) in cases of cardiac arrest, but it is not required.
 
 > [!NOTE]
 > **Biotech DLC**: Sanguaphages are immune to cardiac arrest and will automatically recover from it once entering deathrest.
 
 ### Chemical Damage
 
-> [!CAUTION]
-> TODO: update docs
+Chemical damage is a collective term for various toxic effects caused by exposure to harmful substances, such as drugs, chemicals, or toxins.
+
+> **In-Game Description**
+> _"**Chemical damage** &mdash; Tissue damage caused by toxic chemical exposure. This may result from direct contact with harmful substances or from the organ's own metabolic processing of certain drugs or toxins, producing reactive intermediates. Such damage often leads to cellular stress, necrosis, or scarring, and may cause irreversible harm to the affected organ, potentially leading to full organ failure if severe enough."_
+
+**Causes**: [Chloroform buildup](#chloroform-buildup) (from overdose) causes chemical damage to the liver and kidneys.
+
+**Effects**: Damage to the affected organ, which may lead to complete organ failure if severe enough. The severity of the damage depends on the type and amount of chemical exposure, as well as the duration of exposure.
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+chloroform[chloroform] ==> |overdose| chemical_damage[chemical damage]
+
+linkStyle 0 stroke: #b10000
+```
+
+**Treatment**: Treatment of chemical damage typically involves removing the source of exposure and providing supportive care to the affected organ. In severe cases, surgical intervention may be required to replace the damaged organ.
 
 ### Chemical Peritonitis
 
 Also known as _"intestinal spillage,"_ chemical peritonitis is a life-threatening condition that occurs when gastric acid or other digestive fluids leak into the abdominal cavity, causing inflammation and tissue damage to surrounding organs ([small and large intestines](#small-and-large-intestines), stomach, kidneys, and liver). The condition carries a major risk of infection which can be life-threatening if left untreated.
 
 > **In-Game Description**
-> _"**Chemical peritonitis** &mdash; As a result of a perforating injury to the intestines or stomach, gastric acid has inflicted tissue damage on surrounding organs, causing inflammation. Carries a major risk of infection."_
+> _"**Chemical peritonitis** &mdash; As a result of a perforating injury to intestines or stomach, gastric acid has inflicted tissue damage on surrounding organs, causing inflammation. Carries a major risk of infection."_
 
 **Causes**: A perforating injury to the intestines or stomach, such as a gunshot wound or stab wound, that allows gastric acid to leak into the abdominal cavity and cause tissue damage.
 
 **Effects**: Inflammation of the abdominal cavity, severe pain, and a major risk of infection. Potentially life-threatening if a resulting infection is left untreated.
 
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  perforating_injury[perforating injury to abdomen] ==> chemical_peritonitis[chemical peritonitis]
+  chemical_peritonitis ==> infection[infection]
+
+  linkStyle 0,1 stroke: #b10000
+```
+
 **Treatment**: Medical treatment of the perforating injury and inflammation using high-quality medicine to prevent infection.
 
 ### Chloroform Buildup
 
-> [!CAUTION]
-> TODO: update docs
+Chloroform buildup is a condition that occurs when a pawn is exposed to [chloroform](#chloroform-soaked-cloth). Chloroform is metabolized by the liver and kidneys, and excessive exposure can lead to a severe buildup of chloroform in the body. This can cause [chemical damage](#chemical-damage) to the liver and kidneys, leading to organ failure if severe enough.
+
+> **In-Game Description**
+> _"**Chloroform buildup** &mdash; Chloroform is a volatile anesthetic that induces unconsciousness and analgesia by depressing the central nervous system. It was historically used in surgical procedures and as a solvent in laboratories. Chloroform is rapidly absorbed through the lungs, skin, and gastrointestinal tract, leading to systemic distribution and metabolism primarily in the liver.  
+> While effective at low doses, chloroform can cause toxicity and overdose at higher concentrations, leading to symptoms such as renal and hepatic damage, respiratory depression, and cardiac arrest. Due to its potential for severe side effects and the difficulty of controlling dosage through inhalation, chloroform is rarely used in modern medicine.
+
+**Causes**: Inhalation of [chloroform](#chloroform-soaked-cloth).
+
+**Effects**: Loss of consciousness, respiratory depression, [chemical damage](#chemical-damage) to the liver and kidneys, and [cardiac arrest](#cardiac-arrest) in severe cases of overdose. The severity of the effects strongly depends on the administered dose and the duration of exposure. Generally, skilled doctors will be able to administer chloroform in a way that prevents overdose, but due to the nature of administration (inhalation), it is difficult to achieve a precise dosage.
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  chloroform[chloroform inhalation] ==> chloroform_buildup[chloroform buildup]
+  chloroform_buildup ==> | overdose | chemical_damage[chemical damage]
+  chloroform_buildup ==> | overdose | cardiac_arrest[cardiac arrest]
+
+  linkStyle 0,1,2 stroke: #b10000
+```
+
 
 ### Choking
 
@@ -311,6 +555,19 @@ Choking is a medical emergency that occurs when a foreign object becomes lodged 
 
 **Effects**: Coughing, suffocation, loss of consciousness, and death if not treated immediately.
 
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  bleeding[bleeding injury in the airways] ==> choking_on_blood[choking on blood]
+  choking_on_blood ==> | severity = 1 | death[death]
+
+  linkStyle 0,1 stroke: #b10000
+```
+
 **Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. If the patient is unconscious, the airways must be cleared using a specialized [airway suction device](#airway-suction-device) or by compressing the chest using [CPR](#cpr) to expel the blood and restore breathing. To unlock [CPR](#cpr), you must first complete the [cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr) research project.
 
 > [!NOTE]
@@ -324,6 +581,19 @@ Choking is a medical emergency that occurs when a foreign object becomes lodged 
 **Causes**: Someone had the bright idea to apply a [tourniquet](#tourniquet) to the neck :woozy_face: Only a severe lack of intellect and medical incompetence can cause this condition.
 
 **Effects**: Suffocation and death if not treated immediately.
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  tourniquet[tourniquet applied to neck] ==> choking_on_tourniquet[choking on tourniquet]
+  choking_on_tourniquet ==> | severity = 1 | death[death]
+
+  linkStyle 0,1 stroke: #b10000
+```
 
 **Treatment**: Removing the [tourniquet](#tourniquet) from the neck will restore breathing and prevent death.
 

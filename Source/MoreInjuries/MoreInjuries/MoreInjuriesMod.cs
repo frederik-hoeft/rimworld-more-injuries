@@ -180,6 +180,8 @@ public class MoreInjuriesMod : Mod
         list.Label("MI_Settings_Features_NeuralDamage_TreatmentReductionFactorLabel".Translate(Settings.NeuralDamageChanceReductionFactor.NamedValue(), NEURAL_DAMAGE_CHANCE_REDUCTION_FACTOR_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_NeuralDamage_TreatmentReductionFactorTooltip".Translate());
         Settings.NeuralDamageChanceReductionFactor = (float)Math.Round(list.Slider(Settings.NeuralDamageChanceReductionFactor, 0.01f, 1f), 2);
+        list.CheckboxLabeled("MI_Settings_Features_NeuralDamage_EnablePersonalityShiftLabel".Translate(NEURAL_DAMAGE_ENABLE_PERSONALITY_SHIFT_DEFAULT.NamedDefault()), ref Settings.NeuralDamageEnablePersonalityShift,
+            "MI_Settings_Features_NeuralDamage_EnablePersonalityShiftTooltip".Translate());
         // concussion after blunt trauma
         list.GapLine();
         Text.Font = GameFont.Medium;
