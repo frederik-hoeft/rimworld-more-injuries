@@ -41,7 +41,7 @@
     <descriptionHyperlinks>
       <ThingDef>BionicSmallIntestine</ThingDef>
     </descriptionHyperlinks>
-    <jobString>Installing bionic intestine.</jobString>
+    <jobString>Installing bionic small intestine.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -104,7 +104,7 @@
     <descriptionHyperlinks>
       <ThingDef>BionicLargeIntestine</ThingDef>
     </descriptionHyperlinks>
-    <jobString>Installing bionic intestine.</jobString>
+    <jobString>Installing bionic large intestine.</jobString>
     <ingredients>
       <li>
         <filter>

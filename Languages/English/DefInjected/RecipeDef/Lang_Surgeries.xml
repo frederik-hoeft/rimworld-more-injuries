@@ -65,8 +65,8 @@
   <InstallBionicSmallIntestine.label>install bionic small intestine</InstallBionicSmallIntestine.label>
   <!-- EN: Install a bionic small intestine. -->
   <InstallBionicSmallIntestine.description>Install a bionic small intestine.</InstallBionicSmallIntestine.description>
-  <!-- EN: Installing bionic intestine. -->
-  <InstallBionicSmallIntestine.jobString>Installing bionic intestine.</InstallBionicSmallIntestine.jobString>
+  <!-- EN: Installing bionic small intestine. -->
+  <InstallBionicSmallIntestine.jobString>Installing bionic small intestine.</InstallBionicSmallIntestine.jobString>
 
   <!-- EN: install large intestine -->
   <InstallLargeIntestine.label>install large intestine</InstallLargeIntestine.label>
