@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef ParentName="MedicalDeviceBase">
+  <ThingDef ParentName="MIMedicalDeviceBase">
     <defName>WholeBloodBag</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>blood bag</label>
@@ -67,7 +67,7 @@
     </thingCategories>
   </ThingDef>
 
-  <ThingDef ParentName="MedicalDeviceBase">
+  <ThingDef ParentName="MIMedicalDeviceBase">
     <defName>SalineBag</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>saline IV bag</label>

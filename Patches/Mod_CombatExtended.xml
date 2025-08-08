@@ -6,7 +6,7 @@
       <li>Combat Extended</li>
     </mods>
     <match Class="PatchOperationRemove">
-      <xpath>Defs/ThingDef[@Name="MedicalDeviceBase"]/orderedTakeGroup</xpath>
+      <xpath>Defs/ThingDef[@Name="MIMedicalDeviceBase"]/orderedTakeGroup</xpath>
     </match>
   </Operation>
 

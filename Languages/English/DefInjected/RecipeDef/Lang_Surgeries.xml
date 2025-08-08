@@ -75,6 +75,13 @@
   <!-- EN: Installing large intestine. -->
   <InstallLargeIntestine.jobString>Installing large intestine.</InstallLargeIntestine.jobString>
 
+  <!-- EN: install bionic large intestine -->
+  <InstallBionicLargeIntestine.label>install bionic large intestine</InstallBionicLargeIntestine.label>
+  <!-- EN: Install a bionic large intestine. -->
+  <InstallBionicLargeIntestine.description>Install a bionic large intestine.</InstallBionicLargeIntestine.description>
+  <!-- EN: Installing bionic large intestine. -->
+  <InstallBionicLargeIntestine.jobString>Installing bionic large intestine.</InstallBionicLargeIntestine.jobString>
+
   <!-- EN: repair collapsed lung: thoracotomy -->
   <RepairCollapsedLung_Industrial.label>repair collapsed lung: thoracotomy</RepairCollapsedLung_Industrial.label>
   <!-- EN: Perform a thoracotomy to repair a collapsed lung.\nThoracotomy is a surgical procedure that involves making an incision in the chest wall to gain access to the lungs and the surrounding structures. The source of the air leak causing the lung collapse is identified and repaired, and pleural space is drained to allow the lung to re-expand and to relieve the pressure on the heart and other organs. Finally, the chest wall is closed and the incision is sutured.\n\nA complex and invasive surgery that requires a skilled surgeon and yields a moderate success rate. -->
