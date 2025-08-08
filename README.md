@@ -356,9 +356,9 @@ Agnosia is a neurological disorder characterized by an inability to process sens
 **Effects**: Reduced work speed, research speed, and social impact, depending on the severity of the condition. Negative mood effects may occur due to frustration or confusion caused by the inability to recognize familiar objects or people.
 
 **Thoughts per Stage**:
-> _"**Things look unfamiliar** (-2) &mdash; Sometimes I catch myself hesitating, unsure of what I'm looking at. It's subtle, but unsettling - like the world is just slightly off."_
-> _"**Misrecognizing people and objects** (-4) &mdash; I keep mistaking objects - or even people - for others. It's confusing, and I often feel embarrassed or disoriented."_
-> _"**Faces blur together** (-6) &mdash; Everyone looks the same. I have to rely on voices or context to tell people apart. It's isolating and makes social interaction exhausting."_
+> _"**Things look unfamiliar** (-2) &mdash; Sometimes I catch myself hesitating, unsure of what I'm looking at. It's subtle, but unsettling - like the world is just slightly off."_  
+> _"**Misrecognizing people and objects** (-4) &mdash; I keep mistaking objects - or even people - for others. It's confusing, and I often feel embarrassed or disoriented."_  
+> _"**Faces blur together** (-6) &mdash; Everyone looks the same. I have to rely on voices or context to tell people apart. It's isolating and makes social interaction exhausting."_  
 > _"**Nothing makes visual sense** (-8) &mdash; The world around me is a jumble of shapes and colors. I can't rely on sight to recognize what I see anymore. Every task is harder, and I feel disconnected from everything."_
 
 #### Aphasia
@@ -372,10 +372,10 @@ Aphasia, also known as dysphasia, is an impairment in a person's ability to comp
 
 **Thoughts per Stage**:
 
-> _"**Word-finding difficulty** (-2) &mdash; Struggling to find the right words can be frustrating and isolating. I feel embarrassed when I can't express myself clearly."_
-> _"**Fragmented speech** (-4) &mdash; I can speak, but my sentences are often incomplete or jumbled. It's like my thoughts are scattered, and I can't put them together."_
-> _"**Non-fluent** (-6) &mdash; Every conversation feels like a struggle. I can't form complex sentences, and it's hard to communicate even basic ideas. I want to express myself, but my words fail me."_
-> _"**Barely verbal** (-8) &mdash; My ability to speak has been reduced to almost nothing. I can only manage a few words at a time, and even those are difficult to pronounce. I feel trapped in my own silence."_
+> _"**Word-finding difficulty** (-2) &mdash; Struggling to find the right words can be frustrating and isolating. I feel embarrassed when I can't express myself clearly."_  
+> _"**Fragmented speech** (-4) &mdash; I can speak, but my sentences are often incomplete or jumbled. It's like my thoughts are scattered, and I can't put them together."_  
+> _"**Non-fluent** (-6) &mdash; Every conversation feels like a struggle. I can't form complex sentences, and it's hard to communicate even basic ideas. I want to express myself, but my words fail me."_  
+> _"**Barely verbal** (-8) &mdash; My ability to speak has been reduced to almost nothing. I can only manage a few words at a time, and even those are difficult to pronounce. I feel trapped in my own silence."_  
 > _"**Completely nonverbal** (-10) &mdash; I can no longer speak at all. My thoughts are locked inside me, and I can't communicate with others. I feel alone and isolated, unable to share my feelings or ideas."_
 
 #### Executive Dysfunction
@@ -397,10 +397,10 @@ Hippocampal damage refers to damage to the hippocampus, a region of the brain th
 **Effects**: Periodic mental breaks of type "confused wandering," memory loss, reduced learning factor, reduced work speed, periodic mental breaks at higher stages. Negative mood effects may occur due to frustration or confusion caused by memory impairments.
 
 **Thoughts per Stage**:
-> _"**Disoriented** (-2) &mdash; Sometimes I forget why I walked into a room or what I was just doing. It's like my thoughts vanish mid-sentence."_
-> _"**Forgetting simple things** (-4) &mdash; I've started forgetting names, places, tasks. It's frustrating, like sand slipping through my fingers whenever I try to recall something."_
-> _"**Losing track of time** (-6) &mdash; Hours blur together. Sometimes I wake up not knowing where I am or what day it is. I feel lost - even in familiar places."_
-> _"**Memories feel distant** (-8) &mdash; Memories feel like someone else's dreams. Faces, places, and events all seem unfamiliar. I'm scared of forgetting everything."_
+> _"**Disoriented** (-2) &mdash; Sometimes I forget why I walked into a room or what I was just doing. It's like my thoughts vanish mid-sentence."_  
+> _"**Forgetting simple things** (-4) &mdash; I've started forgetting names, places, tasks. It's frustrating, like sand slipping through my fingers whenever I try to recall something."_  
+> _"**Losing track of time** (-6) &mdash; Hours blur together. Sometimes I wake up not knowing where I am or what day it is. I feel lost - even in familiar places."_  
+> _"**Memories feel distant** (-8) &mdash; Memories feel like someone else's dreams. Faces, places, and events all seem unfamiliar. I'm scared of forgetting everything."_  
 > _"**Losing sense of self** (-10) &mdash; My identity feels fragile. I struggle to remember who I am, what I've done, or what I care about. It's like I'm fading away, and I don't know how to stop it."_
 
 #### Motor Dysfunction
@@ -413,10 +413,10 @@ Motor dysfunction refers to a range of movement disorders that can occur as a re
 **Effects**: Reduced moving speed, reduced manipulation capacity. Negative mood effects may occur due to frustration or confusion caused by motor impairments.
 
 **Thoughts per Stage**:
-> _"**Clumsy** (-2) &mdash; My movements feel less precise than they used to be. I drop things more often and stumble occasionally. It's frustrating, but manageable."_
-> _"**Shaky and unsteady** (-4) &mdash; My hands tremble, and walking in a straight line takes concentration. Tasks that used to be simple now require real effort and care."_
-> _"**Struggling to control my body** (-6) &mdash; Basic actions are difficult. My limbs don't always respond the way I want them to, and I often lose coordination. It makes me feel helpless and vulnerable."_
-> _"**Near-paralyzed** (-8) &mdash; Moving feels like dragging weights through water. I can barely walk, and using my hands has become incredibly difficult. I rely on others for more than I'd like to admit."_
+> _"**Clumsy** (-2) &mdash; My movements feel less precise than they used to be. I drop things more often and stumble occasionally. It's frustrating, but manageable."_  
+> _"**Shaky and unsteady** (-4) &mdash; My hands tremble, and walking in a straight line takes concentration. Tasks that used to be simple now require real effort and care."_  
+> _"**Struggling to control my body** (-6) &mdash; Basic actions are difficult. My limbs don't always respond the way I want them to, and I often lose coordination. It makes me feel helpless and vulnerable."_  
+> _"**Near-paralyzed** (-8) &mdash; Moving feels like dragging weights through water. I can barely walk, and using my hands has become incredibly difficult. I rely on others for more than I'd like to admit."_  
 > _"**Trapped in a failing body** (-10) &mdash; My body no longer obeys me. Every step, every grasp is a monumental challenge. I feel like a living vegetable, unable to do anything for myself, and completely dependent on others. It's a nightmare."_
 
 #### Personality Shift
