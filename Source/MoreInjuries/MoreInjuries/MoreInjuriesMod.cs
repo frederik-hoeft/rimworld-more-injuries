@@ -165,10 +165,12 @@ public class MoreInjuriesMod : Mod
         Settings.DefibrillatorMinimumSuccessRate = (float)Math.Round(list.Slider(Settings.DefibrillatorMinimumSuccessRate, 0f, 1f), 2);
         list.GapLine();
         Text.Font = GameFont.Medium;
-        list.Label("MI_Settings_Features_Acidosis".Translate());
+        list.Label("MI_Settings_Features_LethalTriad".Translate());
         Text.Font = GameFont.Small;
-        list.Label("MI_Settings_Features_Acidosis_HypoxiaAcidosisConversionFactorLabel".Translate(Math.Round(Settings.HypoxiaAcidosisConversionFactor / 100f, 2).NamedValue(), HYPOXIA_ACIDOSIS_CONVERSION_FACTOR_DEFAULT.NamedDefault()), -1,
-            "MI_Settings_Features_Acidosis_HypoxiaAcidosisConversionFactorTooltip".Translate());
+        list.CheckboxLabeled("MI_Settings_Features_LethalTriad_EnableLabel".Translate(ENABLE_ADVANCED_TRAUMA_SIMULATION_DEFAULT.NamedDefault()), ref Settings.EnableAdvancedTraumaSimulation,
+            "MI_Settings_Features_LethalTriad_EnableTooltip".Translate());
+        list.Label("MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorLabel".Translate(Math.Round(Settings.HypoxiaAcidosisConversionFactor / 100f, 2).NamedValue(), HYPOXIA_ACIDOSIS_CONVERSION_FACTOR_DEFAULT.NamedDefault()), -1,
+            "MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorTooltip".Translate());
         Settings.HypoxiaAcidosisConversionFactor = (float)Math.Round(list.Slider((float)Math.Round(Settings.HypoxiaAcidosisConversionFactor / 100f, 2), 0f, 5f) * 100f, 4);
         // neural damage
         list.GapLine();

@@ -159,6 +159,9 @@ public partial class MoreInjuriesSettings : ModSettings
     [SettingsEntry<float>(DefaultValue = 0.5f)]
     internal partial ref float DefibrillatorMinimumSuccessRate { get; }
 
+    [SettingsEntry<bool>(DefaultValue = true)]
+    internal partial ref bool EnableAdvancedTraumaSimulation { get; }
+
     [SettingsEntry<float>(DefaultValue = 0.015f)]
     internal partial ref float HypoxiaAcidosisConversionFactor { get; }
     

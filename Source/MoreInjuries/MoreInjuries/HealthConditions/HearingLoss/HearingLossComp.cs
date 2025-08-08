@@ -7,7 +7,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HearingLoss;
 
-public class HearingLossComp : ThingComp
+public sealed class HearingLossComp : ThingComp
 {
     private static readonly Dictionary<string, bool> s_apparelEarCoverageCache = [];
     private static BodyPartGroupDef[]? s_earGroups = null;

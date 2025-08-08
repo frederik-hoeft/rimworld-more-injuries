@@ -243,6 +243,9 @@ Keep in mind that the human body is a complex system and requires some time to s
 > [!WARNING]
 > Once a certain point of no return has been reached and the lethal triad of trauma has caused the patient to enter a death spiral, it may become impossible to save them, even with the best medical care. As such, it is crucial to act quickly and decisively in the face of severe injuries and complications. Keep trained medics with the appropriate equipment on standby when engaging in combat and have pawns carry life-saving equipment like [tourniquets](#tourniquet) at all times.
 
+> [!TIP]
+> While More Injuries attempts to approximate the complexities of real-world trauma care, it is understandable if you don't want to deal with the added complexity of the lethal triad of trauma in your game. Keep in mind that you can customize many aspects of the mod in the mod settings. If you want to disable the advanced trauma simulation, you can do so by un-checking the `Enable advanced trauma simulation` option.
+
 ## Injuries and Medical Conditions A-Z
 
 The following sections provide an overview of the new injuries and medical conditions added by the More Injuries mod, as well as their effects and treatment options.
@@ -269,10 +272,10 @@ config:
     htmlLabels: true
 ---
 graph LR;
-  hypoxia[Hypoxia] ==> acidosis[Acidosis];
-  ischemia["Severe ischemia (tourniquet)"] ==> acidosis;
-  acidosis ==> coagulopathy[Coagulopathy];
-  acidosis ==> hypothermia[Hypothermia];
+  hypoxia[hypoxia] ==> acidosis[acidosis];
+  ischemia["severe ischemia (tourniquet)"] ==> acidosis;
+  acidosis ==> coagulopathy[coagulopathy];
+  acidosis ==> hypothermia[hypothermia];
 
   linkStyle 0,1,2,3 stroke: #b10000
   style acidosis stroke-width: 4px
@@ -307,12 +310,13 @@ config:
 flowchart LR
   painful_injury[painful injury] ==> adrenaline_rush[adrenaline rush]
   epinephrine_injection[Epinephrine injection] ==> adrenaline_rush
-  adrenaline_rush ==> cardiac_arrest[Cardiac arrest]
-  adrenaline_rush ==> |overdose| cardiac_arrest[Cardiac arrest]
-  adrenaline_rush ==> |overdose| hemorrhagic_stroke[Hemorrhagic stroke]
+  adrenaline_rush ==> cardiac_arrest[cardiac arrest]
+  adrenaline_rush ==> |overdose| cardiac_arrest
+  adrenaline_rush ==> |overdose| hemorrhagic_stroke[hemorrhagic stroke]
 
   linkStyle 2 stroke: #549b68, stroke-dasharray: 9,5
   linkStyle 0,1,3,4 stroke: #b10000
+  style adrenaline_rush stroke-width: 4px
 ```
 
 *See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
@@ -334,9 +338,10 @@ config:
     htmlLabels: true
 ---
 flowchart LR
-  hypoxia[Hypoxia] ==> brain_damage[Brain damage]
+  hypoxia[hypoxia] ==> brain_damage[brain damage]
 
   linkStyle 0 stroke: #b10000
+  style brain_damage stroke-width: 4px
 ```
 
 **Effects**: Effects of brain damage can vary widely depending on the specific areas of the brain affected and the severity of the injury. Common effects are listed below.
@@ -457,6 +462,7 @@ morphine[morphine] ==> | overdose | cardiac_arrest
 
 linkStyle 0,1,3,4,5,6,7,8,9 stroke: #b10000
 linkStyle 2 stroke: #549b68, stroke-dasharray: 9,5
+style cardiac_arrest stroke-width: 4px
 ```
 
 **Treatment**: Cardiac arrest must be treated immediately with [CPR](#cpr) (which needs to be researched first) to restore blood flow and hopefully restart the heart. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). In cases of `clinical death`, only [CPR](#cpr) will be effective. [Epinephrine](#epinephrine-autoinjector) may be administered to assist with defibrillation efforts and [CPR](#cpr) in cases of cardiac arrest, but it is not required.
@@ -485,6 +491,7 @@ flowchart LR
 chloroform[chloroform] ==> |overdose| chemical_damage[chemical damage]
 
 linkStyle 0 stroke: #b10000
+style chemical_damage stroke-width: 4px
 ```
 
 **Treatment**: Treatment of chemical damage typically involves removing the source of exposure and providing supportive care to the affected organ. In severe cases, surgical intervention may be required to replace the damaged organ.
@@ -511,6 +518,7 @@ flowchart LR
   chemical_peritonitis ==> infection[infection]
 
   linkStyle 0,1 stroke: #b10000
+  style chemical_peritonitis stroke-width: 4px
 ```
 
 **Treatment**: Medical treatment of the perforating injury and inflammation using high-quality medicine to prevent infection.
@@ -539,6 +547,7 @@ flowchart LR
   chloroform_buildup ==> | overdose | cardiac_arrest[cardiac arrest]
 
   linkStyle 0,1,2 stroke: #b10000
+  style chloroform_buildup stroke-width: 4px
 ```
 
 
@@ -566,6 +575,7 @@ flowchart LR
   choking_on_blood ==> | severity = 1 | death[death]
 
   linkStyle 0,1 stroke: #b10000
+  style choking_on_blood stroke-width: 4px
 ```
 
 **Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. If the patient is unconscious, the airways must be cleared using a specialized [airway suction device](#airway-suction-device) or by compressing the chest using [CPR](#cpr) to expel the blood and restore breathing. To unlock [CPR](#cpr), you must first complete the [cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr) research project.
@@ -593,14 +603,44 @@ flowchart LR
   choking_on_tourniquet ==> | severity = 1 | death[death]
 
   linkStyle 0,1 stroke: #b10000
+  style choking_on_tourniquet stroke-width: 4px
 ```
 
 **Treatment**: Removing the [tourniquet](#tourniquet) from the neck will restore breathing and prevent death.
 
 ### Coagulopathy
 
-> [!CAUTION]
-> TODO: update docs
+Coagulopathy is a dangerous condition that directly contributes to the [lethal triad of trauma](#lethal-triad-of-trauma). It is characterized by a reduced ability of blood to clot, leading to an increased risk of bleeding and hemorrhage.
+
+> **In-Game Description**  
+> _"**Coagulopathy** &mdash; Trauma-induced coagulopathy (TIC) is a life-threatening condition in which the blood's ability to clot is impaired, often developing after severe trauma, blood loss, or shock. Without intervention, it can progress into disseminated intravascular coagulation (DIC), where widespread clotting depletes clotting factors and causes bruising and uncontrolled internal bleeding, leading to multiple organ failure and, ultimately, death. Treatment requires aggressive management of the underlying causes, such as hypothermia, acidosis, certain toxins, or dilution of clotting factors, and rapid replacement of blood components to restore coagulation function.  
+> Treatment is focused on addressing the underlying causes and may include measures such as warming the patient, correcting acidosis by restoring adequate oxygenation and blood flow, restoring blood volume through transfusions, and triaging patients based on the severity of their condition."_
+
+**Causes**: [Acidosis](#acidosis), [hemodilution](#hemodilution), [hypothermia](#hypothermia), or other conditions that impair the blood's ability to clot.
+
+**Effects**: Globally increased bleeding rates, increased risk of spontaneous [hemorrhaging](#hemorrhage-spontaneous), and a key contributor to the [lethal triad of trauma](#lethal-triad-of-trauma).
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  acidosis[acidosis] ==> coagulopathy[coagulopathy]
+  hypothermia[hypothermia] ==> coagulopathy
+  hemodilution[hemodilution] ==> coagulopathy
+  coagulopathy ==> hemorrhage_spontaneous["hemorrhage (spontaneous)"]
+  acidosis ==> hypothermia
+
+  linkStyle 0,1,2,3,4 stroke: #b10000
+  style coagulopathy stroke-width: 4px
+```
+
+**Treatment**: Coagulopathy is an emerging condition that requires treatment of the underlying causes, such as warming the patient to prevent [hypothermia](#hypothermia), restoring adequate oxygenation and blood flow to correct [acidosis](#acidosis), which is caused by [hypoxia](#hypoxia), and restoring blood volume by administering [blood products](#blood-bag) to correct [hypovolemic shock](#hypovolemic-shock) or [hemodilution](#hemodilution). Once the underlying causes are addressed, the body's clotting function will gradually normalize over time as the body recovers and regenerates any missing clotting factors.
+
+> [!NOTE]
+> For more information on the pathophysiology of coagulopathy, see [lethal triad of trauma](#lethal-triad-of-trauma).
 
 ### Concussion
 
@@ -611,6 +651,19 @@ flowchart LR
 **Causes**: Blunt force trauma to the head. May be caused by any violent impact to the head, such as hand-to-hand combat, being struck by a projectile, or explosions.
 
 **Effects**: A concussion may range from a mild headache to full unconsciousness, depending on the severity of the injury. The pawn may experience a temporary loss of consciousness, memory loss, painful headaches, disorientation,difficulty with thinking, nausea and vomiting, blurred vision, and dizziness. Repeated head injuries may worsen the condition or lead to a [hemorrhagic stroke](#hemorrhagic-stroke).
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  blunt_trauma[blunt force trauma to head] ==> concussion[concussion]
+
+  linkStyle 0 stroke: #b10000
+  style concussion stroke-width: 4px
+```
 
 **Treatment**: Concussions are generally self-limiting and will resolve on their own within a few days.
 
@@ -652,6 +705,20 @@ When a pawn takes damage to a bone or solid body part, there is a chance that a 
 
 **Effects**: A bone fracture will cause the affected limb to be unable to bear weight or move properly, causing full immobility of the corresponding body part and `+15%` pain. Bone fractures may also cause [bone fragment lacerations](#bone-fragment-laceration) if bone fragments break off and cut into the surrounding tissue.
 
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  damage[sharp or blunt damage to bone] ==> bone_fracture[bone fracture]
+  bone_fracture ==> | random chance | bone_fragment_laceration[bone fragment laceration]
+
+  linkStyle 0,1 stroke: #b10000
+  style bone_fracture stroke-width: 4px
+```
+
 **Treatment**: Bone fractures must be treated using a [splint](#splint) to immobilize the bone and promote [healing over time](#healing-bone-fracture), or [osteosynthetic surgery](#osteosynthetic-surgery) to realign and stabilize the bone with metal implants, allowing for a quick recovery.
 
 #### Healing Bone Fracture
@@ -677,6 +744,19 @@ When a bone is fractured, there is a chance that fragments of the bone will brea
 
 **Effects**: A bone fragment laceration will cause additional pain and bleeding, as well as a risk of infection if not properly treated.
 
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  bone_fracture[bone fracture] ==> | random chance | bone_fragment_laceration[bone fragment laceration]
+
+  linkStyle 0 stroke: #b10000
+  style bone_fragment_laceration stroke-width: 4px
+```
+
 **Treatment**: Bone fragment lacerations can be treated like any other cut or laceration, by treating the wound with or without medicine, preferably in a clean environment to reduce the risk of infection.
 
 ### Gangrene
@@ -694,6 +774,21 @@ Gangrene is a type of tissue death caused by a lack of blood supply. Symptoms ma
 
 **Effects**: The affected body part will become dry, shrunken, and dark reddish-black, and may eventually fall off if not removed surgically. Dry gangrene may progress to [wet gangrene](#wet-gangrene) if an infection develops in the dead tissues.
 
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  tourniquet[prolonged tourniquet application] ==> dry_gangrene["gangrene (dry)"]
+  dry_gangrene ==> | infection develops | wet_gangrene["gangrene (wet)"]
+  dry_gangrene ==> | autoamputation | amputation[amputation]
+
+  linkStyle 0,1,2 stroke: #b10000
+  style dry_gangrene stroke-width: 4px
+```
+
 **Treatment**: The affected body part is irreversibly damaged and should be amputated to prevent life-threatening infection.
 
 #### Wet Gangrene
@@ -705,6 +800,21 @@ Gangrene is a type of tissue death caused by a lack of blood supply. Symptoms ma
 **Causes**: A lack of blood supply to a body part that caused the tissue to die and become infected with bacteria, often due to a [tourniquet](#tourniquet) that has been applied for too long or due to [dry gangrene](#dry-gangrene) that has become infected.
 
 **Effects**: The affected body part will become saturated with stagnant blood, promoting the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and eventually death.
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  tourniquet[prolonged tourniquet application] ==> | infection develops | wet_gangrene["gangrene (wet)"]
+  dry_gangrene["gangrene (dry)"] ==> | infection develops | wet_gangrene
+  wet_gangrene ==> | severity = 1 | death[death]
+
+  linkStyle 0,1,2 stroke: #b10000
+  style wet_gangrene stroke-width: 4px
+```
 
 **Treatment**: The affected body part should be amputated as soon as possible to save the patient's life.
 
@@ -721,6 +831,20 @@ Hearing loss is a partial or total inability to hear. It may be temporary or per
 
 **Effects**: Temporary reduction in hearing ability, ranging from mild to complete deafness, depending on the severity of the exposure. May progress to [permanent hearing loss](#permanent-hearing-loss) if the exposure is severe or prolonged.
 
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  loud_noise[loud noise exposure] ==> temporary_hearing_loss["temporary hearing loss"]
+  temporary_hearing_loss ==> | severity-based random chance | permanent_hearing_loss["permanent hearing loss"]
+
+  linkStyle 0,1 stroke: #b10000
+  style temporary_hearing_loss stroke-width: 4px
+```
+
 **Treatment**: Temporary hearing loss will resolve on its own over time, but may become permanent if the exposure is severe or prolonged.
 
 #### (Permanent) Hearing Loss
@@ -731,17 +855,77 @@ _Vanilla RimWorld condition, see [Hearing loss (RimWorld Wiki)](https://rimworld
 
 **Effects**: Permanent reduction in hearing ability, see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss).
 
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  vanilla_factors[vanilla factors] ==> permanent_hearing_loss["permanent hearing loss"]
+  temporary_hearing_loss["temporary hearing loss"] ==> | severity-based random chance | permanent_hearing_loss
+
+  linkStyle 0,1 stroke: #b10000
+  style permanent_hearing_loss stroke-width: 4px
+```
+
 **Treatment**: Implants or bionic ears (see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss)), or [cellular regenerative otologic surgery](#cellular-regenerative-otologic-surgery) to repair the damaged hair cells in the inner ear.
 
 ### Hemodilution
 
-> [!CAUTION]
-> TODO: update docs
+Hemodilution is a condition that occurs when the concentration of red blood cells in the blood is reduced, such as through excessive usage of [saline IV infusions](#saline-iv-bag) for fluid resuscitation, leading to a decrease in the blood's ability to carry oxygen.
+
+> **In-Game Description**
+> _"**Hemodilution** &mdash; Hemodilution is the dilution of the concentration of red blood cells and plasma constituents by partially substituting the blood with colloids or crystalloids. It often occurs as a result of excessive fluid resuscitation, particularly in trauma patients, when large volumes of saline or other intravenous fluids are administered to restore blood volume and pressure after significant blood loss.  
+> While the body can compensate for some degree of hemodilution, excessive dilution can lead to a significant reduction in the oxygen-carrying capacity of the blood and impair coagulation. In severe cases, it can result in hypoxia and dilutional coagulopathy, both of which can lead to increased risk of hemorrhage, organ failure, and death if not managed appropriately.  
+> Hemodilution is typically treated by carefully managing fluid resuscitation, using blood products to restore red blood cell and plasma levels, and monitoring the patient's hemodynamic status closely to prevent complications."_
+
+**Causes**: Excessive usage of [saline IV infusions](#saline-iv-bag) for fluid resuscitation, particularly in trauma patients, when large volumes of saline or other intravenous fluids are administered to restore blood volume and pressure after significant blood loss. Keep in mind that dilution will be more pronounced if the patient has already lost a significant amount of blood, as the remaining blood volume will be diluted by the additional fluids.
+
+**Effects**: Hemodilution can lead to a significant reduction in the oxygen-carrying capacity of the blood and impair coagulation. In severe cases, it can result in loss of consciousness, [hypoxia](#hypoxia) and [dilutional coagulopathy](#coagulopathy), both of which can lead to increased risk of [hemorrhage](#hemorrhage-spontaneous), organ failure, and death if not managed appropriately.
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  saline_iv[saline IV infusion] ==> hemodilution[hemodilution]
+  hemodilution ==> hypoxia[hypoxia]
+  hemodilution ==> coagulopathy[coagulopathy]
+
+  linkStyle 0,1,2 stroke: #b10000
+  style hemodilution stroke-width: 4px
+```
+
+**Treatment**: Hemodilution will resolve on its own over time as the body regenerates red blood cells and plasma constituents. However, in severe cases of hemodilution, it may be necessary to administer [blood products](#blood-bag) to restore red blood cell and plasma levels immediately, as well as carefully managing fluid resuscitation to prevent further dilution.
 
 ### Hemorrhage (Spontaneous)
 
-> [!CAUTION]
-> TODO: update docs
+> **In-Game Description**
+> _"**Hemorrhage** &mdash; Spontaneous hemorrhaging is a condition where bleeding occurs without any apparent external cause, often due to underlying medical issues such as coagulopathy or vascular abnormalities. It can manifest as bruising, nosebleeds, or internal bleeding and may require medical intervention to manage the underlying causes and prevent complications. In severe cases, it can lead to significant blood loss, multiple organ failure, and death if not treated promptly.  
+> While treating the underlying cause is essential, immediate management may include stabilizing the patient, controlling bleeding, and administering blood products for fluid resuscitation."_
+
+**Causes**: [Coagulopathy](#coagulopathy)
+
+**Effects**: Spontaneous bleeding injuries that require immediate medical intervention to prevent further blood loss and complications.
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  coagulopathy[coagulopathy] ==> hemorrhage_spontaneous["hemorrhage (spontaneous)"]
+  hemorrhage_spontaneous ==> blood_loss[blood loss]
+
+  linkStyle 0,1 stroke: #b10000
+  style hemorrhage_spontaneous stroke-width: 4px
+```
+
+**Treatment**: Stabilizing the patient, controlling bleeding, bandaging the affected area, and reversing the underlying cause of the coagulopathy, such as [acidosis](#acidosis), [hypothermia](#hypothermia), or [hemodilution](#hemodilution). In severe cases, it may be necessary to administer [blood products](#blood-bag) for fluid resuscitation and to restore blood volume.
 
 ### Hemorrhagic Stroke
 
@@ -750,12 +934,30 @@ In extreme cases of head trauma, a rupture of a blood vessel in the brain may oc
 _Basically a more severe and dangerous version of a [concussion](#concussion)._
 
 > **In-Game Description**
-> _"**Hemorrhagic stroke** &mdash; A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.
+> _"**Hemorrhagic stroke** &mdash; A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.  
 > Can be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture."_
 
-**Causes**: Severe blunt force trauma to the head, e.g., any violent impact to the head, such as hand-to-hand combat, being struck by a projectile, or explosions, as well as extreme blood pressure caused by [adrenaline overdose](#adrenaline-rush) may cause a rupture of a blood vessel in the brain. If simulation of [hydrostatic shock](#hydrostatic-shock) is enabled in the mod settings, high-energy projectiles that cause massive temporary cavity formation and pressure waves in the tissue may also cause a hemorrhagic stroke.
+**Causes**: Severe blunt force trauma to the head, e.g., any violent impact to the head, such as hand-to-hand combat, being struck by a projectile, or explosions, as well as extreme blood pressure caused by [adrenaline overdose](#adrenaline-rush) may cause a rupture of a blood vessel in the brain. [Coagulopathy](#coagulopathy) may cause micro-ruptures in the blood vessels supplying the brain to occur and worsen over time, leading to a hemorrhagic stroke.  
+If simulation of [hydrostatic shock](#hydrostatic-shock) is enabled in the mod settings, high-energy projectiles that cause massive temporary cavity formation and pressure waves in the tissue may also cause a hemorrhagic stroke.
 
 **Effects**: Headache, memory loss, confusion, vomiting, rapid loss of consciousness, coma, and death if not surgically treated.
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  external_factors[blunt force trauma] ==> hemorrhagic_stroke[hemorrhagic stroke]
+  coagulopathy[coagulopathy] ==> hemorrhagic_stroke
+  adrenaline[adrenaline] ==> | overdose | hemorrhagic_stroke
+  hemorrhagic_stroke ==> | severity = 1 | death[death]
+  hydrostatic_shock[hydrostatic shock] ==> | enabled | hemorrhagic_stroke
+
+  linkStyle 0,1,2,3,4 stroke: #b10000
+  style hemorrhagic_stroke stroke-width: 4px
+```
 
 **Treatment**: Hemorrhagic stroke can be temporarily stabilized using medicine to slow progression until surgery can be performed to permanently repair the rupture. Ultimately, surgical intervention through [trepanation](#trepanation), [decompressive craniectomy](#decompressive-craniectomy), or [stereotactic surgery](#stereotactic-surgery) is required to save the patient's life.
 
@@ -772,48 +974,135 @@ If enabled, high-energy projectiles, such as bullets, may cause [hemorrhagic str
 
 ### Hypothermia
 
-> [!CAUTION]
-> TODO: update docs
+_Vanilla RimWorld condition, see [Hypothermia (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hypothermia)_
+
+**Causes**: Exposure to cold temperatures (see [Hypothermia (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hypothermia)), hypoperfusion due to [hypovolemic shock](#hypovolemic-shock) or [cardiac arrest](#cardiac-arrest), and reduced thermogenesis due to [acidosis](#acidosis).
+
+**Effects**: Hypothermia can cause a range of symptoms, including shivering, confusion, fatigue, and impaired motor function. In severe cases, it can lead to loss of consciousness, [cardiac arrest](#cardiac-arrest), and death if not treated promptly. Due to reduced cellular metabolism at extremely low body temperatures, hypothermia can protect the body from further damage from [hypoxia](#hypoxia), albeit within limits.
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  exposure[exposure] ==> hypothermia[hypothermia]
+  hypovolemic_shock[hypovolemic shock] ==> hypothermia
+  cardiac_arrest[cardiac arrest] ==> hypothermia
+  acidosis[acidosis] ==> hypothermia
+  hypothermia ==> | severity = 1 | death[death]
+  hypothermia ==> cardiac_arrest
+  hypothermia ==> hypoxia[hypoxia]
+
+  linkStyle 0,1,2,3,4,5 stroke: #b10000
+  linkStyle 6 stroke: #549b68, stroke-dasharray: 9,5
+  style hypothermia stroke-width: 4px
+```
+
+**Treatment**: Hypothermia is primarily treated by warming the patient, either through external means (e.g., blankets, heating pads) or by ensuring adequate perfusion and thermogenesis (e.g., preventing [acidosis](#acidosis) and restoring blood volume using [blood bags](#blood-bag)). Hypothermia caused by exposure is best pro-actively prevented by ensuring that pawns are properly equipped with warm clothing and shelter in cold environments.
 
 ### Hypovolemic Shock
 
-When a pawn loses a significant amount of blood, there may not be enough blood volume to circulate to the body's organs, leading to a life-threatening condition known as hypovolemic shock. Without immediate treatment, the insufficient blood flow can starve the organs of oxygen and nutrients, causing tissue damage, multiple organ failure, and ultimately death.
+When a pawn loses a significant amount of blood, there may not be enough blood volume to circulate to the body's organs, leading to a life-threatening condition known as hypovolemic shock. Without immediate treatment, the insufficient blood flow can starve the organs of oxygen and nutrients, causing tissue damage, multiple organ failure, and ultimately death. At the same time, the reduced blood flow prevents body temperature from being adequately maintained, which can lead to [hypothermia](#hypothermia) and further complications.
 
 > **In-Game Description**
-> _"**Hypovolemic shock** &mdash; A life threating state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure. 
-> Severity scales directly with blood loss severity until 60% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure."_
+> _"**Hypovolemic shock** &mdash; A life-threatening state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure. 
+> Severity scales directly with blood loss severity until 55% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure."_
 
 **Causes**: Severe blood loss from injuries, such as lacerations, gunshot wounds, or surgical procedures.
 
-**Effects**: Hypovolemic shock is a medical emergency that can cause a rapid decline in consciousness, blood pressure, and heart rate, leading to [organ hypoxia](#organ-hypoxia), multiple organ failure, [cardiac arrest](#cardiac-arrest), and death if not treated immediately. Once the progression of hypovolemic shock reaches 60% severity, it will start causing [organ hypoxia](#organ-hypoxia) and accelerate the progression of the condition, even if the bleeding is stopped.
+**Effects**: Hypovolemic shock is a medical emergency that can cause a rapid decline in consciousness, blood pressure, body temperature, and heart rate, leading to [hypothermia](#hypothermia), [hypoxia](#hypoxia), multiple organ failure, and [cardiac arrest](#cardiac-arrest). The body can compensate for some degree of blood loss, but once the progression of hypovolemic shock reaches 55% severity, the condition will quickly deteriorate, even if the bleeding is stopped, and the patient will enter a [death spiral](#lethal-triad-of-trauma) that will become increasingly difficult to reverse.
 
-**Treatment**: Hypovolemic shock is *primarily treated* by treating the underlying cause of the blood loss (e.g., stopping the bleeding) and restoring blood volume to compensate for the loss of blood. Depending on the severity of the condition, preventing further blood loss may be sufficient to allow the body to recover on its own. In more severe cases, when the progression of hypovolemic shock has reached above 60% severity, blood volume must be restored through transfusion using [blood bags](#blood-bag), [hemogen packs](https://rimworldwiki.com/wiki/Hemogen_pack), or other means (i.e., any other mod that reduces blood loss severity). Once the blood loss is no longer `severe`, the severity of hypovolemic shock will start to decrease over time, allowing the patient to recover. Note that this recovery period may take several hours as the blood volume is restored by the IV fluids or blood transfusion. During this recovery period, the patient must be kept under close observation, especially when past 60% severity, and secondary effects, like [organ hypoxia](#organ-hypoxia) or [cardiac arrest](#cardiac-arrest), must be treated as they might still occur until the patient has been fully stabilized (blood loss severity at `moderate` or lower and hypovolemic shock severity below 60%).  
-During the initial emergency treatment of hypovolemic shock, its progression can be slowed by administering [epinephrine](#adrenaline-rush) to increase heart rate and blood pressure, which will help to increase the blood flow to the organs and reduce the risk of organ hypoxia and multiple organ failure. Additionally, hypovolemic shock itself may be treated using conventional medicine to decrease progression further for a short period of time until the patient can be fully stabilized using blood transfusion. Note, however, that **the only way to fully stabilize and save the patient's life is to restore blood volume.**
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  blood_loss[blood loss] ==> | &gt; severe | hypovolemic_shock[hypovolemic shock]
+  hypovolemic_shock ==> cardiac_arrest[cardiac arrest]
+  hypovolemic_shock ==> organ_hypoxia[hypoxia]
+  hypovolemic_shock ==> hypothermia[hypothermia]
+
+  linkStyle 0,1,2,3 stroke: #b10000
+  style hypovolemic_shock stroke-width: 4px
+```
+
+**Treatment**: Hypovolemic shock is treated by treating the underlying cause of the blood loss (e.g., stopping the bleeding) and restoring blood volume to compensate for the loss of blood. Depending on the severity of the condition, preventing further blood loss may be sufficient to allow the body to recover on its own. In more severe cases, when the progression of hypovolemic shock has reached above 55% severity, blood volume must be restored through fluid resuscitation using [saline IV infusions](#saline-iv-bag) or [blood transfusion](#blood-bag). Once the blood loss is no longer `severe`, the severity of hypovolemic shock will start to decrease over time, allowing the patient to recover. Note that this recovery period may take several hours as the blood volume is restored by the IV fluids or blood transfusion. During this recovery period, the patient must be kept under close observation, especially when past 55% severity, and secondary effects, like [hypoxia](#hypoxia) or [cardiac arrest](#cardiac-arrest), must be treated as they might still occur until the patient has been fully stabilized (blood loss severity at `moderate` or lower and hypovolemic shock severity below 55%).  
+During the initial emergency treatment of hypovolemic shock, its progression can be slowed by administering [epinephrine](#adrenaline-rush) to increase heart rate and blood pressure, which will help to increase the blood flow to the organs and reduce the risk of hypoxia and multiple organ failure. Additionally, hypovolemic shock itself may be treated using conventional medicine to decrease progression further for a short period of time until the patient can be fully stabilized using blood transfusion. Note, however, that **the only way to fully stabilize and save the patient's life is to restore blood volume.**
 
 > [!TIP]
-> As time is of the essence when treating hypovolemic shock, it is recommended to have a stockpile of [blood bags](#blood-bag) or other blood transfusion items ready in your hospital to quickly treat patients with severe blood loss. You may even want to assign some medically skilled pawns to be dedicated combat medics who keep a few blood bags in their inventory at all times to immediately stabilize and treat injured pawns on the battlefield. This can be achieved by telling the medic to "pick up" a number of blood bags (or including blood bags in [Combat Extended](https://github.com/CombatExtended-Continued/CombatExtended) loadouts) and then telling the drafted medic to `transfuse blood (from inventory, stabilize)` to the injured pawn.
+> As time is of the essence when treating hypovolemic shock, it is recommended to have a stockpile of [saline IV bags](#saline-iv-bag), [blood bags](#blood-bag), or other blood transfusion items ready in your hospital to quickly treat patients with severe blood loss. You may even want to assign some medically skilled pawns to be dedicated combat medics who keep a few blood bags in their inventory at all times to immediately stabilize and treat injured pawns on the battlefield. This can be achieved by telling the medic to "pick up" a number of blood bags (or including blood bags in [Combat Extended](https://github.com/CombatExtended-Continued/CombatExtended) loadouts) and then telling the drafted medic to `transfuse blood (from inventory, stabilize)` to the injured pawn.
 
 > [!NOTE]
 > **Biotech DLC**: Deathresting sanguaphages will automatically recover from hypovolemic shock over time, as they can regenerate blood on their own.
 
-
 ### Hypoxia
 
-Hypoxia is a condition in which the body or a region of the body is deprived of adequate oxygen supply at the tissue level. The cause of hypoxia may vary, but it is often the result of a severe lack of blood flow to the affected area, such as in cases of [hypovolemic shock](#hypovolemic-shock).
+Hypoxia is a condition in which the body or a region of the body is deprived of adequate oxygen supply at the tissue level. The cause of hypoxia may vary, but it is often the result of a severe lack of blood flow to the affected area, such as in cases of [hypovolemic shock](#hypovolemic-shock) and [cardiac arrest](#cardiac-arrest), or due to reduced oxygen levels in the blood, for example, caused by [hemodilution](#hemodilution). Hypoxia can lead to tissue damage, multiple organ failure, and death if not treated immediately. Additionally, cells will start to metabolize anaerobically in hypoxic conditions, leading to the production of lactic acid and [acidosis](#acidosis), which can further exacerbate the overall condition of the patient.
 
 > **In-Game Description**
-> _"**Hypoxia** &mdash; Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow."_
+> _"**Hypoxia** &mdash; Insufficient oxygen supply to this part of the body has caused cells to start metabolizing anaerobically, leading to the production of lactic acid and acidosis, and to eventually die, causing tissue damage. If the underlying cause of the hypoxia is not immediately treated, the affected tissue will continue to deteriorate, eventually leading to multiple organ failure and death."_
 
-**Causes**: Severe lack of blood flow to an organ, such as in cases of [hypovolemic shock](#hypovolemic-shock).
+**Causes**: Hypoperfusion due to [hypovolemic shock](#hypovolemic-shock) or [cardiac arrest](#cardiac-arrest), reduced oxygen levels in the blood due to [hemodilution](#hemodilution), or other conditions that prevent adequate oxygen supply to the affected area.  
+[Hypothermia](#hypothermia) may slow down the progression of hypoxia, as the reduced cellular metabolism at extremely low body temperatures can protect the body from further damage, albeit within limits.
 
-**Effects**: Damage to the affected organ, which may lead to multiple organ failure and death if not treated immediately.
+**Effects**: Damage to the affected tissue, and anaerobic metabolism leading to the production of lactic acid and [acidosis](#acidosis). If not treated immediately, hypoxia can lead to tissue damage, multiple organ failure, and death.
 
-**Treatment**: Organ hypoxia must be treated by restoring blood flow to the affected organ, which may require treating the underlying cause of the blood loss, such as stopping the bleeding or restoring blood volume through transfusion. See [hypovolemic shock](#hypovolemic-shock) for more information on treatment.
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  hypovolemic_shock[hypovolemic shock] ==> hypoxia[hypoxia]
+  cardiac_arrest[cardiac arrest] ==> hypoxia
+  hemodilution[hemodilution] ==> hypoxia
+  hypothermia[hypothermia] ==> hypoxia
+  hypoxia ==> acidosis[acidosis]
+  hypoxia ==> tissue_damage[tissue damage]
+  tissue_damage ==> organ_failure[organ failure]
+
+  linkStyle 0,1,2,4,5,6 stroke: #b10000
+  linkStyle 3 stroke: #549b68
+  style hypoxia stroke-width: 4px
+```
+
+**Treatment**: Rapid correction of the underlying cause of hypoxia is essential. This may involve resuscitation measures to restore blood flow and oxygen supply to the affected area, such as [saline IV infusions](#saline-iv-bag) or, preferably, [blood transfusions](#blood-bag) to restore blood volume, or [cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr) to restore circulation and oxygenation in cases of cardiac arrest. Additionally, treating the damaged tissue with conventional medicine can help improve recovery and reduce the risk of further complications. In cases of hypoxia caused by [hemodilution](#hemodilution), it is necessary to administer [blood products](#blood-bag) to restore red blood cell and plasma levels.
 
 #### Hypoxia (Brain)
 
-> [!CAUTION]
-> TODO: update docs
+> **In-Game Description**
+> _"**Hypoxia** &mdash; Prolonged lack of oxygen to the brain has caused neurological damage. Depending on the severity and duration of the hypoxia, damaged cells may be able to recover, or they may die off and cause permanent brain damage and disability. There's nothing else to do but wait and see."_
+
+**Causes**: See [hypoxia](#hypoxia), but specifically refers to any damage to the brain tissue.
+
+**Effects**: Same as [hypoxia](#hypoxia), but additionally can lead to [brain damage](#brain-damage) and associated cognitive deficits. As more and more brain cells die off, the patient may become unconscious, enter a coma, or decease.
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  hypovolemic_shock[hypovolemic shock] ==> hypoxia["hypoxia (brain)"]
+  cardiac_arrest[cardiac arrest] ==> hypoxia
+  hemodilution[hemodilution] ==> hypoxia
+  hypothermia[hypothermia] ==> hypoxia
+  hypoxia ==> acidosis[acidosis]
+  hypoxia ==> brain_damage[brain damage]
+  hypoxia ==> death[death]
+
+  linkStyle 0,1,2,4,5,6 stroke: #b10000
+  linkStyle 3 stroke: #549b68
+  style hypoxia stroke-width: 4px
+```
+
+**Treatment**: See [hypoxia](#hypoxia).
 
 ### Inhalation Injury
 
@@ -863,6 +1152,9 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 **Effects**: Damage to the spinal cord prevents the transmission of signals between the brain and the affected body parts, causing a loss of movement and sensation in the affected limbs. Depending on the severity of the injury, patients may experience a range of symptoms, from sensory loss to complete loss of movement.
 
 **Treatment**: By itself, paralysis is an irreversible condition that cannot be treated with conventional medicine. However, bionic implants or prosthetics may be used to restore partial or full function to the affected body parts. There have also been reports of successful experimental treatments on distant glitterworlds using [cellular regenerative neurosurgery](#cellular-regenerative-neurosurgery) to repair damaged nerve tissue and restore function to paralyzed limbs.
+
+> [!CAUTION]
+> TODO: update docs
 
 ### Spalling Injury
 
