@@ -257,8 +257,8 @@ Acidosis is a serious metabolic condition caused by an excessive buildup of acid
 The condition contributes to a dangerous cycle known as the [lethal triad of trauma](#lethal-triad-of-trauma): acidosis, [hypothermia](#hypothermia), and [coagulopathy](#coagulopathy). As blood pH drops, blood clotting function becomes impaired, increasing the risk of uncontrolled [hemorrhage](#hemorrhage-spontaneous) and [trauma-induced coagulopathy](#coagulopathy). At the same time, acidosis impairs mitochondrial function (the powerhouse of the cell), leading to decreased ATP (energy) production in cells, which is required for thermogenesis and maintaining body temperature. This contributes to [hypothermia](#hypothermia) and further exacerbates the cycle of trauma.
 
 > **In-Game Description**
-> _"**Acidosis** &mdash; Acidosis is a serious metabolic condition characterized by an excessive buildup of acid in the body, typically caused by inadequate oxygen delivery to tissues (hypoxia) following severe blood loss (hypovolemia), cardiac arrest, or other forms of shock. As oxygen becomes scarce, the body shifts to anaerobic metabolism, producing lactic acid and accumulating carbon dioxide, which together lower blood pH.
-> The condition contributes to a dangerous cycle known as the "lethal triad" of trauma: acidosis, hypothermia, and coagulopathy. As blood pH drops, clotting function becomes impaired, increasing the risk of uncontrolled bleeding and trauma-induced coagulopathy (TIC). At the same time, mitochondrial function declines and cell-energy production is impaired, hindering thermogenesis and maintaining body temperature, ultimately leading to hypothermia and further exacerbating the cycle of trauma.
+> _"**Acidosis** &mdash; Acidosis is a serious metabolic condition characterized by an excessive buildup of acid in the body, typically caused by inadequate oxygen delivery to tissues (hypoxia) following severe blood loss (hypovolemia), cardiac arrest, or other forms of shock. As oxygen becomes scarce, the body shifts to anaerobic metabolism, producing lactic acid and accumulating carbon dioxide, which together lower blood pH.  
+> The condition contributes to a dangerous cycle known as the "lethal triad" of trauma: acidosis, hypothermia, and coagulopathy. As blood pH drops, clotting function becomes impaired, increasing the risk of uncontrolled bleeding and trauma-induced coagulopathy (TIC). At the same time, mitochondrial function declines and cell-energy production is impaired, hindering thermogenesis and maintaining body temperature, ultimately leading to hypothermia and further exacerbating the cycle of trauma.  
 > Acidosis is treated by restoring oxygen delivery to tissues - typically through rapid control of bleeding, fluid resuscitation with blood products, and correction of hypoxia. Once tissue oxygenation is restored, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys."_
 
 **Causes**: [Hypoxia](#hypoxia) or [severe ischemia after prolonged tourniquet application](#ischemia).
@@ -293,7 +293,7 @@ graph LR;
 Adrenaline, also known as epinephrine, is a naturally occurring hormone that is released in response to stress or danger. It increases heart rate, blood pressure, and energy levels, preparing the body for a fight-or-flight response. In the game, an adrenaline rush can occur naturally in pawns as a result of combat and injury, or it can artificially be induced through the use of an [epinephrine injection](#epinephrine-autoinjector).
 
 > **In-Game Description**
-> _"**Adrenaline rush** &mdash; A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.
+> _"**Adrenaline rush** &mdash; A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.  
 > However, if the rush is too intense, it can cause anxiety, panic, and overdose symptoms such as dizziness, double vision, and nausea. In extreme overdose cases, the body can go into shock, causing heart attack, stroke, or death."_
 
 **Causes**: Injuries or [epinephrine injections](#epinephrine-autoinjector).
@@ -434,7 +434,7 @@ Motor dysfunction refers to a range of movement disorders that can occur as a re
 Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. It is generally divided into two categories: `ventricular fibrillation` and asystole (flatline, `clinical death`). `Ventricular fibrillation` is a condition in which the heart's electrical signals become disorganized, causing the heart to quiver or "fibrillate" instead of pumping blood effectively. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). If left untreated, `ventricular fibrillation` can progress to `clinical death`, which is a condition in which the heart stops beating completely and [CPR](#cpr) must be performed to restore blood flow and hopefully restart the heart. Applying a [defibrillator](#defibrillator) to a clinically dead patient will not be effective and may cause additional harm.
 
 > **In-Game Description**
-> _"**Cardiac arrest** &mdash; Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.
+> _"**Cardiac arrest** &mdash; Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.  
 > A skilled doctor must perform CPR to restore blood flow and hopefully restart the heart. In early stages of cardiac arrest, during ventricular fibrillation, a defibrillator can also be used to shock the heart back into a normal rhythm, which may be faster and more effective than CPR."_
 
 **Causes**: Extreme blood loss ([hypovolemic shock](#hypovolemic-shock)), [pneumothorax](#lung-collapse), [adrenaline overdose](#adrenaline-rush), [ketamine overdose](#ketamine-overdose), [chloroform overdose](#chloroform-buildup), [morphine overdose](#morphine-overdose), or other conditions that starve the heart of oxygen.
@@ -645,7 +645,7 @@ flowchart LR
 ### Concussion
 
 > **In-Game Description**  
-> _"**Concussion** &mdash; A concussion, also known as a mild traumatic brain injury (mTBI), is a head injury that temporarily affects brain functioning. Symptoms may include loss of consciousness; memory loss; headaches; difficulty with thinking, concentration, or balance; nausea; blurred vision; dizziness; sleep disturbances, and mood changes.
+> _"**Concussion** &mdash; A concussion, also known as a mild traumatic brain injury (mTBI), is a head injury that temporarily affects brain functioning. Symptoms may include loss of consciousness; memory loss; headaches; difficulty with thinking, concentration, or balance; nausea; blurred vision; dizziness; sleep disturbances, and mood changes.  
 > Should resolve on its own within a few days, but can be worsened by repeated head injuries."_
 
 **Causes**: Blunt force trauma to the head. May be caused by any violent impact to the head, such as hand-to-hand combat, being struck by a projectile, or explosions.
@@ -724,7 +724,7 @@ flowchart LR
 #### Healing Bone Fracture
 
 > **In-Game Description**  
-> _"**Healing bone fracture** &mdash; A bone fracture that is in the process of healing. The bone is still weak and restricted in movement, but the limb is slowly regaining function as the bone knits back together.
+> _"**Healing bone fracture** &mdash; A bone fracture that is in the process of healing. The bone is still weak and restricted in movement, but the limb is slowly regaining function as the bone knits back together.  
 > Over time, the bone will become stronger and the limb will regain full function."_
 
 **Causes**: A [bone fracture](#bone-fracture) that has been stabilized with a [splint](#splint) and is in the process of healing.
@@ -766,8 +766,8 @@ Gangrene is a type of tissue death caused by a lack of blood supply. Symptoms ma
 #### Dry Gangrene
 
 > **In-Game Description**
-> _"**Gangrene (dry)** &mdash; Dry gangrene is a form of coagulative necrosis that develops in ischemic tissue, where the blood supply is inadequate to keep tissue viable. The affected part is dry, shrunken, and dark reddish-black. The line of separation usually brings about complete separation, with eventual falling off of the gangrenous tissue if it is not removed surgically, a process called autoamputation.
-> Over time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.
+> _"**Gangrene (dry)** &mdash; Dry gangrene is a form of coagulative necrosis that develops in ischemic tissue, where the blood supply is inadequate to keep tissue viable. The affected part is dry, shrunken, and dark reddish-black. The line of separation usually brings about complete separation, with eventual falling off of the gangrenous tissue if it is not removed surgically, a process called autoamputation.  
+> Over time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.  
 > The affected body part is irreversibly damaged and should be amputated to prevent sepsis."_
 
 **Causes**: A lack of blood supply to a body part, often due to a [tourniquet](#tourniquet) that has been applied for too long or other conditions that restrict blood flow.
@@ -794,7 +794,7 @@ flowchart LR
 #### Wet Gangrene
 
 > **In-Game Description**
-> _"**Gangrene (wet)** &mdash; Wet, or infected, gangrene is characterized by thriving bacteria and has a poor prognosis (compared to dry gangrene) due to sepsis resulting from the free communication between infected fluid and circulatory fluid. The affected part is saturated with stagnant blood, which promotes the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and finally death.
+> _"**Gangrene (wet)** &mdash; Wet, or infected, gangrene is characterized by thriving bacteria and has a poor prognosis (compared to dry gangrene) due to sepsis resulting from the free communication between infected fluid and circulatory fluid. The affected part is saturated with stagnant blood, which promotes the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and finally death.  
 > The affected body part should be amputated as soon as possible to save the patient's life._"
 
 **Causes**: A lack of blood supply to a body part that caused the tissue to die and become infected with bacteria, often due to a [tourniquet](#tourniquet) that has been applied for too long or due to [dry gangrene](#dry-gangrene) that has become infected.
@@ -1007,7 +1007,7 @@ flowchart LR
 When a pawn loses a significant amount of blood, there may not be enough blood volume to circulate to the body's organs, leading to a life-threatening condition known as hypovolemic shock. Without immediate treatment, the insufficient blood flow can starve the organs of oxygen and nutrients, causing tissue damage, multiple organ failure, and ultimately death. At the same time, the reduced blood flow prevents body temperature from being adequately maintained, which can lead to [hypothermia](#hypothermia) and further complications.
 
 > **In-Game Description**
-> _"**Hypovolemic shock** &mdash; A life-threatening state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure. 
+> _"**Hypovolemic shock** &mdash; A life-threatening state caused by insufficient blood flow to the body. Hypovolemic shock is a medical emergency; if left untreated, the insufficient blood flow can cause damage to organs, leading to hypoxia and multiple organ failure.  
 > Severity scales directly with blood loss severity until 55% severity, after which it continues to worsen, even if bleeding is stopped. Must be treated with blood transfusion or other means to restore blood volume. Progession can also be slowed by administering adrenaline to increase heart rate and blood pressure."_
 
 **Causes**: Severe blood loss from injuries, such as lacerations, gunshot wounds, or surgical procedures.
@@ -1108,10 +1108,19 @@ flowchart LR
 
 Inhalation injuries are caused by the inhalation of hot gases, steam, or smoke, which can cause burns to the respiratory tract and lungs. If enabled in the mod settings, inhalation injuries manifest themselves as burn injuries to the lungs, for example, when a pawn is exposed to a fire or explosion.
 
-### Ischemia
+### Ischemia (Tourniquet)
 
-> [!CAUTION]
-> TODO: update docs
+Ischemia occurs when blood flow to a tissue is restricted, leading to a shortage of oxygen and nutrients needed for cellular metabolism. Over time, this can result in tissue damage and necrosis if not promptly addressed. The only cause of ischemia in More Injuries is the application of a tourniquet.
+
+> **In-Game Description**
+> _"**Tourniquet** &mdash; A tourniquet has been applied to a limb, stopping the bleeding but starving the limb of blood. If the tourniquet is not removed in time, ischemia (starvation of oxygen) and necrosis (cell death) will occur, which can lead to loss of the limb through gangrene or death from sepsis.  
+> The tourniquet should be removed as soon as the patient is in a safe location and can receive proper medical care."_
+
+**Causes**: Application of a tourniquet.
+
+**Effects**: Pain, reduced mobility of the affected limb, and [gangrene](#gangrene) if left applied for too long. If removed carelessly after prolonged application, it can lead to systemic [acidosis](#acidosis) as stagnant blood is quickly reintroduced into the circulation.
+
+**Treatment**: Remove the tourniquet as soon as possible and provide appropriate medical care to the affected limb. If possible, remove the tourniquet in a controlled manner (`Remove tourniquet from {BODYPART} (safely)`), which takes more time but eliminates the risk of introducing systemic [acidosis](#acidosis).
 
 ### Ketamine Buildup
 
@@ -1123,7 +1132,7 @@ Inhalation injuries are caused by the inhalation of hot gases, steam, or smoke, 
 When a creature is exposed to a sudden change in pressure, such as caused by thermobaric weapons and other high-explosive devices, the lung tissue may rupture, causing air to leak into the chest cavity and compress the lung, leading to a life-threatening condition known as a lung collapse.
 
 > **In-Game Description**
-> _"**Lung collapse** &mdash; A buildup of air inside the chest cavity creates pressure against the lung. Pressure increases as more air enters this space. The lung collapses, impairing normal breathing causing surrounding structures to shift. When severe enough to cause these shifts and hypotension, it is called a tension pneumothorax. In this life-threatening condition, the increased pressure inside the chest can compress the heart and lead to a collapse of the blood vessels that drain to the heart, causing obstructive shock. With the heart unable to fill, cardiac output drops. Hypotension and shock ensue. If left untreated treated, it can lead to cardiac arrest and death.
+> _"**Lung collapse** &mdash; A buildup of air inside the chest cavity creates pressure against the lung. Pressure increases as more air enters this space. The lung collapses, impairing normal breathing causing surrounding structures to shift. When severe enough to cause these shifts and hypotension, it is called a tension pneumothorax. In this life-threatening condition, the increased pressure inside the chest can compress the heart and lead to a collapse of the blood vessels that drain to the heart, causing obstructive shock. With the heart unable to fill, cardiac output drops. Hypotension and shock ensue. If left untreated treated, it can lead to cardiac arrest and death.  
 > Must be surgically repaired."_
 
 **Causes**: Exposure to a sudden change in pressure, such as caused by thermobaric weapons and other high-explosive devices.
@@ -1263,7 +1272,7 @@ In order to effectively treat the new injuries and medical conditions introduced
   <img align="right" src="./Textures/Thing/BloodBag/blood_bag_a.png" height="64" alt="Blood Bag" />
 
 > **In-Game Description**
-> _"**Blood bag** &mdash; A bag of whole blood from a standard blood donation, ready for transfusion. It is used in the treatment of massive bleeding and allows quick restoration of blood volume to combat the effects of hypovolemic shock. Must be stored in a refrigerator or freezer.
+> _"**Blood bag** &mdash; A bag of whole blood from a standard blood donation, ready for transfusion. It is used in the treatment of massive bleeding and allows quick restoration of blood volume to combat the effects of hypovolemic shock. Must be stored in a refrigerator or freezer.  
 > Blood can be drawn from a healthy colonist or prisoner and stored in a blood bag for later use."_
 
 </p>
@@ -1325,7 +1334,7 @@ Defibrillation is a treatment for life-threatening conditions that affect the rh
   <img align="right" src="./Textures/Thing/Defibrillator/defibrillator_a.png" height="64" alt="Defibrillator" />
 
 > **In-Game Description**
-> _"**Defibrillator** &mdash; A defibrillator is a reusable device that gives a high energy electric shock to the heart through the chest wall to restore normal heart rhythm in cases of ventricular fibrillation (irregular heartbeat) which may be caused by heart attacks or in early stages of cardiac arrest.
+> _"**Defibrillator** &mdash; A defibrillator is a reusable device that gives a high energy electric shock to the heart through the chest wall to restore normal heart rhythm in cases of ventricular fibrillation (irregular heartbeat) which may be caused by heart attacks or in early stages of cardiac arrest.  
 > Note that the defibrillator can only be used on patients suffering from heart attack or ventricular fibrillation. In case of full cardiac arrest (clinical death), only CPR can save the patient."_
 
 </p>
@@ -1408,7 +1417,7 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
   <img align="right" src="./Textures/Thing/Hemostat/hemostat_a.png" height="64" alt="Hemostatic Agent" />
 
 > **In-Game Description**
-> _"**Hemostatic agent** &mdash; A special chemical compound designed to promote blood clotting and reduce the flow of blood from wounds. Hemostatic agents are used to control bleeding in emergency situations, such as when a patient is suffering from severe trauma or has been injured in combat. The compound is fast-acting and can be used to stabilize a patient until they can be treated by a doctor. However, it is not a substitute for proper medical treatment.
+> _"**Hemostatic agent** &mdash; A special chemical compound designed to promote blood clotting and reduce the flow of blood from wounds. Hemostatic agents are used to control bleeding in emergency situations, such as when a patient is suffering from severe trauma or has been injured in combat. The compound is fast-acting and can be used to stabilize a patient until they can be treated by a doctor. However, it is not a substitute for proper medical treatment.  
 > Quick to apply and effective at stopping severe bleeding, hemostatic agents are an essential part of any first aid kit."_
 
 </p>
@@ -1479,7 +1488,7 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
   <img align="right" src="./Textures/Thing/Thoracoscope/thoracoscope_a.png" height="64" alt="Tourniquet" />
 
 > **In-Game Description**
-> _"**Thoracoscope** &mdash; A thoracoscope is a specialized medical instrument equipped with a camera and light source, designed for minimally invasive examination and procedures within the chest cavity. It is inserted through a small incision in the chest wall, allowing surgeons to visualize and operate on the lungs, pleura, or other thoracic structures.
+> _"**Thoracoscope** &mdash; A thoracoscope is a specialized medical instrument equipped with a camera and light source, designed for minimally invasive examination and procedures within the chest cavity. It is inserted through a small incision in the chest wall, allowing surgeons to visualize and operate on the lungs, pleura, or other thoracic structures.  
 > Thoracoscopes are commonly used in video-assisted thoracoscopic surgery (VATS), such as repairing collapsed lungs or removing diseased tissue."_
 
 </p>
@@ -1501,7 +1510,7 @@ After each step, the doctor will re-evaluate the patient's condition and decide 
   <img align="right" src="./Textures/Thing/Tourniquet/tourniquet_a.png" height="64" alt="Tourniquet" />
 
 > **In-Game Description**
-> _"**Tourniquet** &mdash; A tourniquet is a constricting or compressing device used to control venous and arterial circulation to an extremity for a period of time. It is used to stop hemorrhaging (bleeding) and is most commonly used in emergency situations, such as battlefield injuries or accidents, to prevent hypovolemic shock and death.
+> _"**Tourniquet** &mdash; A tourniquet is a constricting or compressing device used to control venous and arterial circulation to an extremity for a period of time. It is used to stop hemorrhaging (bleeding) and is most commonly used in emergency situations, such as battlefield injuries or accidents, to prevent hypovolemic shock and death.  
 > As a tourniquet restricts blood flow to the limb, it should be removed as soon as possible to prevent ischemia (starvation of oxygen) and necrosis (cell death) in the limb, which can lead to gangrene or death from sepsis."_
 
 </p>
@@ -1589,8 +1598,8 @@ $\rightarrow$ *see [permanent hearing loss](#permanent-hearing-loss)*
 $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 
 > **In-Game Description**
-> _"**Cure stroke: decompressive craniectomy** &mdash; Perform a decompressive craniectomy to cure a hemorrhagic stroke.
-> Decompressive craniectomy is a neurosurgical procedure in which part of the skull is removed to allow a swelling or herniating brain room to expand without being squeezed. It is performed on victims of traumatic brain injury, stroke, and other conditions associated with raised intracranial pressure. Use of this surgery is controversial and associated with a higher risk of complications, but it can be life-saving in cases of severe brain swelling.
+> _"**Cure stroke: decompressive craniectomy** &mdash; Perform a decompressive craniectomy to cure a hemorrhagic stroke.  
+> Decompressive craniectomy is a neurosurgical procedure in which part of the skull is removed to allow a swelling or herniating brain room to expand without being squeezed. It is performed on victims of traumatic brain injury, stroke, and other conditions associated with raised intracranial pressure. Use of this surgery is controversial and associated with a higher risk of complications, but it can be life-saving in cases of severe brain swelling.  
 > A challenging surgery that requires familiarity with neurosurgical techniques and a steady hand. Yields a moderate success rate."_
 
 **Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with good medical knowledge and industrial equipment at a moderate success rate.
@@ -1607,7 +1616,7 @@ $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 $\rightarrow$ *see [bone fracture](#bone-fracture)*
 
 > **In-Game Description**
-> _"**Repair fracture: osteosynthetic surgery** &mdash; Surgically repair a bone fracture. The bone will be set in place, realigned, and reinforced with metal plates and screws to prevent micromovements and promote proper healing, allowing the patient to regain full use of the affected limb much faster than with other methods.
+> _"**Repair fracture: osteosynthetic surgery** &mdash; Surgically repair a bone fracture. The bone will be set in place, realigned, and reinforced with metal plates and screws to prevent micromovements and promote proper healing, allowing the patient to regain full use of the affected limb much faster than with other methods.  
 > Although being more invasive than other methods, surgery allows for a more precise and stable repair of the fracture, ensuring a faster and more complete recovery."_
 
 **Used for**: Treating [bone fractures](#bone-fracture) with more expensive and invasive surgical techniques to speed up the healing process significantly.
@@ -1624,8 +1633,8 @@ $\rightarrow$ *see [bone fracture](#bone-fracture)*
 $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 
 > **In-Game Description**
-> _"**Cure stroke: stereotactic surgery** &mdash; Perform stereotactic surgery to cure a hemorrhagic stroke.
-> Stereotactic surgery is a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of the ruptured blood vessel while minimizing damage to surrounding tissues.
+> _"**Cure stroke: stereotactic surgery** &mdash; Perform stereotactic surgery to cure a hemorrhagic stroke.  
+> Stereotactic surgery is a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of the ruptured blood vessel while minimizing damage to surrounding tissues.  
 > A very complex and delicate procedure that requires a high level of skill and precision but yields a very high success rate."_
 
 **Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with excellent medical knowledge and advanced medical equipment at a high success rate.
@@ -1642,8 +1651,8 @@ $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 $\rightarrow$ *see [lung collapse](#lung-collapse)*
 
 > **In-Game Description**
-> _"**Repair collapsed lung: thoracotomy** &mdash; Perform a thoracotomy to repair a collapsed lung.
-> Thoracotomy is a surgical procedure that involves making an incision in the chest wall to gain access to the lungs and the surrounding structures. The source of the air leak causing the lung collapse is identified and repaired, and pleural space is drained to allow the lung to re-expand and to relieve the pressure on the heart and other organs. Finally, the chest wall is closed and the incision is sutured.
+> _"**Repair collapsed lung: thoracotomy** &mdash; Perform a thoracotomy to repair a collapsed lung.  
+> Thoracotomy is a surgical procedure that involves making an incision in the chest wall to gain access to the lungs and the surrounding structures. The source of the air leak causing the lung collapse is identified and repaired, and pleural space is drained to allow the lung to re-expand and to relieve the pressure on the heart and other organs. Finally, the chest wall is closed and the incision is sutured.  
 > A complex and invasive surgery that requires a skilled surgeon and yields a moderate success rate."_
 
 **Used for**: Treating [lung collapse](#lung-collapse) with invasive surgical techniques to repair the damage and restore the lung to full function. Moderate success rate and moderate risk of complications.
@@ -1660,8 +1669,8 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 
 > **In-Game Description**
-> _"**Cure stroke: trepanation** &mdash; Perform a trepanation to cure a hemorrhagic stroke.
-> Trepanation is a surgical intervention in which a hole is drilled or scraped into the human skull to treat health problems related to intracranial diseases or release pressured blood buildup from an injury. It is one of the oldest surgical procedures known to humanity, with evidence of its practice dating back to the Neolithic era. While it is a simple and straightforward procedure, it carries a high risk of infection and complications.
+> _"**Cure stroke: trepanation** &mdash; Perform a trepanation to cure a hemorrhagic stroke.  
+> Trepanation is a surgical intervention in which a hole is drilled or scraped into the human skull to treat health problems related to intracranial diseases or release pressured blood buildup from an injury. It is one of the oldest surgical procedures known to humanity, with evidence of its practice dating back to the Neolithic era. While it is a simple and straightforward procedure, it carries a high risk of infection and complications.  
 > A basic surgery that can be performed by anyone with rudimentary medical knowledge. Yields a low success rate."_
 
 **Used for**: Treating [hemorrhagic stroke](#hemorrhagic-stroke) with readily available equipment and basic medical knowledge at a mediocre success rate.
@@ -1681,8 +1690,8 @@ $\rightarrow$ *see [hemorrhagic stroke](#hemorrhagic-stroke)*
 $\rightarrow$ *see [lung collapse](#lung-collapse)*
 
 > **In-Game Description**
-> _"**Repair collapsed lung: video-assisted thoracoscopic surgery** &mdash; Perform a video-assisted thoracoscopic surgery to repair a collapsed lung.
-> Video-assisted thoracoscopic surgery (VATS) is a minimally invasive surgical procedure that involves making small incisions in the chest wall and using a camera and specialized instruments to repair the collapsed lung. Since the surgery is performed through small incisions, it is associated with less pain, shorter recovery time, and reduced risk of complications compared to traditional open surgery.
+> _"**Repair collapsed lung: video-assisted thoracoscopic surgery** &mdash; Perform a video-assisted thoracoscopic surgery to repair a collapsed lung.  
+> Video-assisted thoracoscopic surgery (VATS) is a minimally invasive surgical procedure that involves making small incisions in the chest wall and using a camera and specialized instruments to repair the collapsed lung. Since the surgery is performed through small incisions, it is associated with less pain, shorter recovery time, and reduced risk of complications compared to traditional open surgery.  
 > While VATS is less invasive and offers a higher success rate than thoracotomy, it requires highly specialized equipment, additional training, and takes longer to perform, given the complexity of the procedure."_
 
 **Used for**: Treating [lung collapse](#lung-collapse) with minimally invasive surgical techniques to repair the damage and restore the lung to full function. High success rate and low risk of complications.
@@ -1725,7 +1734,7 @@ TODO: update image
 ### Cardiopulmonary Resuscitation (CPR)
 
 > **In-Game Description**
-> _"**Cardiopulmonary resuscitation (CPR)** &mdash; A foundational resuscitation technique discovered in the early 1960s, cardiopulmonary resuscitation (CPR) is the first line of defense against cardiac or respiratory arrest. By experimenting with different chest compression and rescue breathing procedures, your medical professionals will learn CPR to restore circulation and oxygenation in patients whose hearts have stopped. This research provides your colony with the knowledge needed to perform CPR in emergencies, significantly improving survival rates in the first few minutes of the golden hour to save the patient's life.
+> _"**Cardiopulmonary resuscitation (CPR)** &mdash; A foundational resuscitation technique discovered in the early 1960s, cardiopulmonary resuscitation (CPR) is the first line of defense against cardiac or respiratory arrest. By experimenting with different chest compression and rescue breathing procedures, your medical professionals will learn CPR to restore circulation and oxygenation in patients whose hearts have stopped. This research provides your colony with the knowledge needed to perform CPR in emergencies, significantly improving survival rates in the first few minutes of the golden hour to save the patient's life.  
 >Upon completion of this research, a new right-click action will be available for drafted doctors to perform CPR on patients in need of resuscitation."_
 
 **Tech Level**: Industrial  
@@ -1801,7 +1810,7 @@ TODO: update image
 ### Epinephrine Synthesis
 
 > **In-Game Description**
-> _"**Epinephrine synthesis** &mdash; Research into the synthesis of epinephrine, a hormone and neurotransmitter that plays a vital role in the body's fight-or-flight response. By developing an autoinjector that can deliver a precise dose of epinephrine in emergency situations, you will be able to craft epinephrine autoinjectors that can be used to boost blood pressure and increase heart rate to temporarily reduce the adverse effects of hypovolemic shock and anemia.
+> _"**Epinephrine synthesis** &mdash; Research into the synthesis of epinephrine, a hormone and neurotransmitter that plays a vital role in the body's fight-or-flight response. By developing an autoinjector that can deliver a precise dose of epinephrine in emergency situations, you will be able to craft epinephrine autoinjectors that can be used to boost blood pressure and increase heart rate to temporarily reduce the adverse effects of hypovolemic shock and anemia.  
 > We suspect an additional potential use for this drug as a combat stimulant, but further research is required to confirm its efficacy."_
 
 **Tech Level**: Industrial  
