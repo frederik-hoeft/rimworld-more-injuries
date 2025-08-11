@@ -194,15 +194,15 @@
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
         <minSeverity>0</minSeverity>
+        <statOffsets>
+          <ComfyTemperatureMin>10</ComfyTemperatureMin>
+          <ComfyTemperatureMax>-5</ComfyTemperatureMax>
+        </statOffsets>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
             <setMax>0.01</setMax>
           </li>
-          <statOffsets>
-            <ComfyTemperatureMin>10</ComfyTemperatureMin>
-            <ComfyTemperatureMax>-10</ComfyTemperatureMax>
-          </statOffsets>
         </capMods>
       </li>
       <li>
@@ -210,15 +210,15 @@
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
         <minSeverity>0.65</minSeverity>
+        <statOffsets>
+          <ComfyTemperatureMin>20</ComfyTemperatureMin>
+          <ComfyTemperatureMax>-5</ComfyTemperatureMax>
+        </statOffsets>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
             <setMax>0.01</setMax>
           </li>
-          <statOffsets>
-            <ComfyTemperatureMin>20</ComfyTemperatureMin>
-            <ComfyTemperatureMax>-10</ComfyTemperatureMax>
-          </statOffsets>
         </capMods>
       </li>
     </stages>

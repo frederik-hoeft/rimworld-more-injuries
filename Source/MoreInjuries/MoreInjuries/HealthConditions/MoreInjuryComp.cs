@@ -2,6 +2,7 @@
 using Verse;
 using MoreInjuries.Debug;
 using System.Linq;
+using MoreInjuries.Roslyn.Future.ThrowHelpers;
 
 namespace MoreInjuries.HealthConditions;
 
@@ -12,11 +13,12 @@ public class MoreInjuryComp : ThingComp
 
     private DamageInfo _damageInfo;
     private InjuryWorker[]? _pipeline;
-    private ICompGetGizmosExtraHandler[]? _compGetGizmosExtraHandlers;
-    private ICompFloatMenuOptionsHandler[]? _compFloatMenuOptionsHandlers;
-    private IPostPostApplyDamageHandler[]? _postPostApplyDamageHandlers;
-    private IPostTakeDamageHandler[]? _postTakeDamageHandlers;
-    private ICompTickHandler[]? _compTickHandlers;
+    private readonly HandlerChain<ICompGetGizmosExtraHandler> _compGetGizmosExtraHandlers = new();
+    private readonly HandlerChain<ICompFloatMenuOptionsHandler> _compFloatMenuOptionsHandlers = new();
+    private readonly HandlerChain<IPostPostApplyDamageHandler> _postPostApplyDamageHandlers = new();
+    private readonly HandlerChain<IPostTakeDamageHandler> _postTakeDamageHandlers = new();
+    private readonly HandlerChain<ICompTickHandler> _compTickHandlers = new();
+    private readonly HandlerChain<INotify_UsedVerbHandler> _usedVerbHandlers = new();
 
     // we need an XML node to store our job parameters, so we do that on the pawn doing the job
     // because we can't be sure that the we are notified when the job is done, we need to store weak references
@@ -31,33 +33,18 @@ public class MoreInjuryComp : ThingComp
 
     public Pawn Pawn => (Pawn)parent;
 
-    private ICompGetGizmosExtraHandler[] CompGetGizmosExtraHandlers => _compGetGizmosExtraHandlers!;
-
-    private ICompFloatMenuOptionsHandler[] CompFloatMenuOptionsHandlers => _compFloatMenuOptionsHandlers!;
-
-    private IPostPostApplyDamageHandler[] PostPostApplyDamageHandlers => _postPostApplyDamageHandlers!;
-
-    private IPostTakeDamageHandler[] PostTakeDamageHandlers => _postTakeDamageHandlers!;
-
-    private ICompTickHandler[] CompTickHandlers => _compTickHandlers!;
-
-    [MemberNotNull(
-        nameof(_pipeline), 
-        nameof(_compGetGizmosExtraHandlers), 
-        nameof(_compFloatMenuOptionsHandlers), 
-        nameof(_postPostApplyDamageHandlers),
-        nameof(_postTakeDamageHandlers), 
-        nameof(_compTickHandlers))]
+    [MemberNotNull(nameof(_pipeline))]
     public override void Initialize(CompProperties props)
     {
         base.Initialize(props);
 
         _pipeline = [.. Properties.WorkerFactories.Select(factory => factory.Create(this))];
-        _compGetGizmosExtraHandlers = [.. _pipeline.OfType<ICompGetGizmosExtraHandler>()];
-        _compFloatMenuOptionsHandlers = [.. _pipeline.OfType<ICompFloatMenuOptionsHandler>()];
-        _postPostApplyDamageHandlers = [.. _pipeline.OfType<IPostPostApplyDamageHandler>()];
-        _postTakeDamageHandlers = [.. _pipeline.OfType<IPostTakeDamageHandler>()];
-        _compTickHandlers = [.. _pipeline.OfType<ICompTickHandler>()];
+        _compGetGizmosExtraHandlers.Initialize(_pipeline.OfType<ICompGetGizmosExtraHandler>());
+        _compFloatMenuOptionsHandlers.Initialize(_pipeline.OfType<ICompFloatMenuOptionsHandler>());
+        _postPostApplyDamageHandlers.Initialize(_pipeline.OfType<IPostPostApplyDamageHandler>());
+        _postTakeDamageHandlers.Initialize(_pipeline.OfType<IPostTakeDamageHandler>());
+        _compTickHandlers.Initialize(_pipeline.OfType<ICompTickHandler>());
+        _usedVerbHandlers.Initialize(_pipeline.OfType<INotify_UsedVerbHandler>());
     }
 
     public void PersistJobParameters(IExposable jobParameter)
@@ -117,12 +104,21 @@ public class MoreInjuryComp : ThingComp
         {
             return;
         }
-        foreach (ICompTickHandler handler in CompTickHandlers)
+        foreach (ICompTickHandler handler in _compTickHandlers.GetActive())
         {
-            if (handler.IsEnabled)
-            {
-                handler.CompTick();
-            }
+            handler.CompTick();
+        }
+    }
+
+    public override void Notify_UsedVerb(Pawn pawn, Verb verb)
+    {
+        if (!MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers && Pawn.IsShambler)
+        {
+            return;
+        }
+        foreach (INotify_UsedVerbHandler handler in _usedVerbHandlers.GetActive())
+        {
+            handler.Notify_UsedVerb(pawn, verb);
         }
     }
 
@@ -135,12 +131,9 @@ public class MoreInjuryComp : ThingComp
         }
         UIBuilder<Gizmo> builder = s_gizmosBuilder;
         builder.Clear();
-        foreach (ICompGetGizmosExtraHandler handler in CompGetGizmosExtraHandlers)
+        foreach (ICompGetGizmosExtraHandler handler in _compGetGizmosExtraHandlers.GetActive())
         {
-            if (handler.IsEnabled)
-            {
-                handler.AddGizmosExtra(builder, pawn);
-            }
+            handler.AddGizmosExtra(builder, pawn);
         }
         return builder.Options;
     }
@@ -153,12 +146,9 @@ public class MoreInjuryComp : ThingComp
         }
         UIBuilder<FloatMenuOption> builder = s_floatMenuOptionsBuilder;
         builder.Clear();
-        foreach (ICompFloatMenuOptionsHandler handler in CompFloatMenuOptionsHandlers)
+        foreach (ICompFloatMenuOptionsHandler handler in _compFloatMenuOptionsHandlers.GetActive())
         {
-            if (handler.IsEnabled)
-            {
-                handler.AddFloatMenuOptions(builder, selectedPawn);
-            }
+            handler.AddFloatMenuOptions(builder, selectedPawn);
         }
         return builder.Options;
     }
@@ -171,15 +161,11 @@ public class MoreInjuryComp : ThingComp
         }
         if (parent.Map is not null)
         {
-            foreach (IPostPostApplyDamageHandler handler in PostPostApplyDamageHandlers)
+            foreach (IPostPostApplyDamageHandler handler in _postPostApplyDamageHandlers.GetActive())
             {
-                if (handler.IsEnabled)
-                {
-                    handler.PostPostApplyDamage(in dinfo);
-                }
+                handler.PostPostApplyDamage(in dinfo);
             }
         }
-
         base.PostPostApplyDamage(dinfo, totalDamageDealt);
     }
 
@@ -198,15 +184,38 @@ public class MoreInjuryComp : ThingComp
 
         if (MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers || parent is Pawn { IsShambler: false })
         {
-            foreach (IPostTakeDamageHandler handler in PostTakeDamageHandlers)
+            foreach (IPostTakeDamageHandler handler in _postTakeDamageHandlers.GetActive())
             {
-                if (handler.IsEnabled)
-                {
-                    handler.PostTakeDamage(damage, in _damageInfo);
-                }
+                handler.PostTakeDamage(damage, in _damageInfo);
             }
         }
         CallbackActive = false;
         _damageInfo = default;
+    }
+
+    private sealed class HandlerChain<THandler> where THandler : IInjuryHandler
+    {
+        private THandler[]? _handlers;
+
+        [MemberNotNull(nameof(_handlers))]
+        public void Initialize(IEnumerable<THandler> handlers)
+        {
+            Throw.InvalidOperationException.If(_handlers is not null, "handler chain was already initialized");
+            _handlers = [.. handlers];
+        }
+
+        public IEnumerable<THandler> GetActive()
+        {
+            THandler[]? handlers = _handlers;
+            DebugAssert.IsNotNull(handlers);
+            for (int i = 0; i < handlers.Length; ++i)
+            {
+                THandler handler = handlers[i];
+                if (handler.IsEnabled)
+                {
+                    yield return handler;
+                }
+            }
+        }
     }
 }

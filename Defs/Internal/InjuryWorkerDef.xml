@@ -17,6 +17,12 @@
           <li Class="MoreInjuries.HealthConditions.SpallingInjury.SpallingInjuryWorkerFactory" />
           <li Class="MoreInjuries.HealthConditions.Choking.ChokingWorkerFactory" />
           <li Class="MoreInjuries.HealthConditions.EmpShutdown.EmpShutdownWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HearingLoss.HearingLossWorkerFactory" >
+            <earGroups>
+              <li>UpperHead</li>
+              <li>FullHead</li>
+            </earGroups>
+          </li>
           <li Class="MoreInjuries.HealthConditions.HearingLoss.HearingLossExplosionsWorkerFactory" />
           <li Class="MoreInjuries.HealthConditions.HeadInjury.Concussions.ConcussionExplosionsWorkerFactory" />
           <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HeavyBleedingWorkerFactory" />

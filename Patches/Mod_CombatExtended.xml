@@ -19,6 +19,19 @@
     </match>
   </Operation>
 
+  <!-- White-list CE's shooting mechanic as valid causes for hearing loss -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Combat Extended</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/MoreInjuries.Defs.ReferenceableDef[defName="HearingLossVerbInfo"]/modExtensions/li[@Class="MoreInjuries.HealthConditions.HearingLoss.HearingLossVerbInfoProperties_ModExtension"]/supportedVerbBaseClasses</xpath>
+      <value>
+        <li>CombatExtended.Verb_ShootCE</li>
+      </value>
+    </match>
+  </Operation>
+
   <!-- tweak some of the body part coverage changes made by Combat Extended -->
   <Operation Class="PatchOperationFindMod">
     <mods>
