@@ -1,5 +1,9 @@
 name: Markdown links verifier
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main", "rc-*" ]
+  pull_request:
+    branches: [ "main", "rc-*" ]
 
 jobs:
   validate_links:
