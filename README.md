@@ -61,7 +61,7 @@ Its goal is to make the medical system more challenging and interesting in some 
     - [Hypoxia](#hypoxia)
       - [Hypoxia (Brain)](#hypoxia-brain)
     - [Inhalation Injury](#inhalation-injury)
-    - [Ischemia](#ischemia)
+    - [Ischemia (Tourniquet)](#ischemia-tourniquet)
     - [Ketamine Buildup](#ketamine-buildup)
     - [Lung Collapse](#lung-collapse)
     - [Mechanite Therapy](#mechanite-therapy)
@@ -331,6 +331,8 @@ Brain damage may not always be immediately apparent, as some symptoms may take t
 
 **Causes**: [hypoxia](#hypoxia-brain)
 
+**Effects**: Effects of brain damage can vary widely depending on the specific areas of the brain affected and the severity of the injury. Common effects are listed below.
+
 ```mermaid
 ---
 config:
@@ -344,7 +346,7 @@ flowchart LR
   style brain_damage stroke-width: 4px
 ```
 
-**Effects**: Effects of brain damage can vary widely depending on the specific areas of the brain affected and the severity of the injury. Common effects are listed below.
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 #### Agnosia
 
@@ -465,6 +467,8 @@ linkStyle 2 stroke: #549b68, stroke-dasharray: 9,5
 style cardiac_arrest stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Cardiac arrest must be treated immediately with [CPR](#cpr) (which needs to be researched first) to restore blood flow and hopefully restart the heart. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). In cases of `clinical death`, only [CPR](#cpr) will be effective. [Epinephrine](#epinephrine-autoinjector) may be administered to assist with defibrillation efforts and [CPR](#cpr) in cases of cardiac arrest, but it is not required.
 
 > [!NOTE]
@@ -494,6 +498,8 @@ linkStyle 0 stroke: #b10000
 style chemical_damage stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Treatment of chemical damage typically involves removing the source of exposure and providing supportive care to the affected organ. In severe cases, surgical intervention may be required to replace the damaged organ.
 
 ### Chemical Peritonitis
@@ -520,6 +526,8 @@ flowchart LR
   linkStyle 0,1 stroke: #b10000
   style chemical_peritonitis stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: Medical treatment of the perforating injury and inflammation using high-quality medicine to prevent infection.
 
@@ -550,6 +558,9 @@ flowchart LR
   style chloroform_buildup stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
+**Treatment**: Chloroform is naturally metabolized by the body over time and effects last between a few minutes to a few hours in severe cases. In cases of overdose, the pawn may require medical treatment to treat symptoms and secondary effects.
 
 ### Choking
 
@@ -578,6 +589,8 @@ flowchart LR
   style choking_on_blood stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. If the patient is unconscious, the airways must be cleared using a specialized [airway suction device](#airway-suction-device) or by compressing the chest using [CPR](#cpr) to expel the blood and restore breathing. To unlock [CPR](#cpr), you must first complete the [cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr) research project.
 
 > [!NOTE]
@@ -605,6 +618,8 @@ flowchart LR
   linkStyle 0,1 stroke: #b10000
   style choking_on_tourniquet stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: Removing the [tourniquet](#tourniquet) from the neck will restore breathing and prevent death.
 
@@ -637,6 +652,8 @@ flowchart LR
   style coagulopathy stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Coagulopathy is an emerging condition that requires treatment of the underlying causes, such as warming the patient to prevent [hypothermia](#hypothermia), restoring adequate oxygenation and blood flow to correct [acidosis](#acidosis), which is caused by [hypoxia](#hypoxia), and restoring blood volume by administering [blood products](#blood-bag) to correct [hypovolemic shock](#hypovolemic-shock) or [hemodilution](#hemodilution). Once the underlying causes are addressed, the body's clotting function will gradually normalize over time as the body recovers and regenerates any missing clotting factors.
 
 > [!NOTE]
@@ -664,6 +681,8 @@ flowchart LR
   linkStyle 0 stroke: #b10000
   style concussion stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: Concussions are generally self-limiting and will resolve on their own within a few days.
 
@@ -719,6 +738,8 @@ flowchart LR
   style bone_fracture stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Bone fractures must be treated using a [splint](#splint) to immobilize the bone and promote [healing over time](#healing-bone-fracture), or [osteosynthetic surgery](#osteosynthetic-surgery) to realign and stabilize the bone with metal implants, allowing for a quick recovery.
 
 #### Healing Bone Fracture
@@ -757,6 +778,8 @@ flowchart LR
   style bone_fragment_laceration stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Bone fragment lacerations can be treated like any other cut or laceration, by treating the wound with or without medicine, preferably in a clean environment to reduce the risk of infection.
 
 ### Gangrene
@@ -789,6 +812,8 @@ flowchart LR
   style dry_gangrene stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: The affected body part is irreversibly damaged and should be amputated to prevent life-threatening infection.
 
 #### Wet Gangrene
@@ -815,6 +840,8 @@ flowchart LR
   linkStyle 0,1,2 stroke: #b10000
   style wet_gangrene stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: The affected body part should be amputated as soon as possible to save the patient's life.
 
@@ -845,6 +872,8 @@ flowchart LR
   style temporary_hearing_loss stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Temporary hearing loss will resolve on its own over time, but may become permanent if the exposure is severe or prolonged.
 
 #### (Permanent) Hearing Loss
@@ -868,6 +897,8 @@ flowchart LR
   linkStyle 0,1 stroke: #b10000
   style permanent_hearing_loss stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: Implants or bionic ears (see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss)), or [cellular regenerative otologic surgery](#cellular-regenerative-otologic-surgery) to repair the damaged hair cells in the inner ear.
 
@@ -899,6 +930,8 @@ flowchart LR
   style hemodilution stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Hemodilution will resolve on its own over time as the body regenerates red blood cells and plasma constituents. However, in severe cases of hemodilution, it may be necessary to administer [blood products](#blood-bag) to restore red blood cell and plasma levels immediately, as well as carefully managing fluid resuscitation to prevent further dilution.
 
 ### Hemorrhage (Spontaneous)
@@ -924,6 +957,8 @@ flowchart LR
   linkStyle 0,1 stroke: #b10000
   style hemorrhage_spontaneous stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: Stabilizing the patient, controlling bleeding, bandaging the affected area, and reversing the underlying cause of the coagulopathy, such as [acidosis](#acidosis), [hypothermia](#hypothermia), or [hemodilution](#hemodilution). In severe cases, it may be necessary to administer [blood products](#blood-bag) for fluid resuscitation and to restore blood volume.
 
@@ -958,6 +993,8 @@ flowchart LR
   linkStyle 0,1,2,3,4 stroke: #b10000
   style hemorrhagic_stroke stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: Hemorrhagic stroke can be temporarily stabilized using medicine to slow progression until surgery can be performed to permanently repair the rupture. Ultimately, surgical intervention through [trepanation](#trepanation), [decompressive craniectomy](#decompressive-craniectomy), or [stereotactic surgery](#stereotactic-surgery) is required to save the patient's life.
 
@@ -1000,6 +1037,8 @@ flowchart LR
   style hypothermia stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Hypothermia is primarily treated by warming the patient, either through external means (e.g., blankets, heating pads) or by ensuring adequate perfusion and thermogenesis (e.g., preventing [acidosis](#acidosis) and restoring blood volume using [blood bags](#blood-bag)). Hypothermia caused by exposure is best pro-actively prevented by ensuring that pawns are properly equipped with warm clothing and shelter in cold environments.
 
 ### Hypovolemic Shock
@@ -1029,6 +1068,8 @@ flowchart LR
   linkStyle 0,1,2,3 stroke: #b10000
   style hypovolemic_shock stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: Hypovolemic shock is treated by treating the underlying cause of the blood loss (e.g., stopping the bleeding) and restoring blood volume to compensate for the loss of blood. Depending on the severity of the condition, preventing further blood loss may be sufficient to allow the body to recover on its own. In more severe cases, when the progression of hypovolemic shock has reached above 55% severity, blood volume must be restored through fluid resuscitation using [saline IV infusions](#saline-iv-bag) or [blood transfusion](#blood-bag). Once the blood loss is no longer `severe`, the severity of hypovolemic shock will start to decrease over time, allowing the patient to recover. Note that this recovery period may take several hours as the blood volume is restored by the IV fluids or blood transfusion. During this recovery period, the patient must be kept under close observation, especially when past 55% severity, and secondary effects, like [hypoxia](#hypoxia) or [cardiac arrest](#cardiac-arrest), must be treated as they might still occur until the patient has been fully stabilized (blood loss severity at `moderate` or lower and hypovolemic shock severity below 55%).  
 During the initial emergency treatment of hypovolemic shock, its progression can be slowed by administering [epinephrine](#adrenaline-rush) to increase heart rate and blood pressure, which will help to increase the blood flow to the organs and reduce the risk of hypoxia and multiple organ failure. Additionally, hypovolemic shock itself may be treated using conventional medicine to decrease progression further for a short period of time until the patient can be fully stabilized using blood transfusion. Note, however, that **the only way to fully stabilize and save the patient's life is to restore blood volume.**
@@ -1071,6 +1112,8 @@ flowchart LR
   style hypoxia stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
+
 **Treatment**: Rapid correction of the underlying cause of hypoxia is essential. This may involve resuscitation measures to restore blood flow and oxygen supply to the affected area, such as [saline IV infusions](#saline-iv-bag) or, preferably, [blood transfusions](#blood-bag) to restore blood volume, or [cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr) to restore circulation and oxygenation in cases of cardiac arrest. Additionally, treating the damaged tissue with conventional medicine can help improve recovery and reduce the risk of further complications. In cases of hypoxia caused by [hemodilution](#hemodilution), it is necessary to administer [blood products](#blood-bag) to restore red blood cell and plasma levels.
 
 #### Hypoxia (Brain)
@@ -1101,6 +1144,8 @@ flowchart LR
   linkStyle 3 stroke: #549b68
   style hypoxia stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: See [hypoxia](#hypoxia).
 
