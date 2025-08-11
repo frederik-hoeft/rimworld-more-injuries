@@ -18,11 +18,11 @@ internal sealed class WeakTimedDataEntry<TData> : ITimedDataEntry<TData> where T
     public void Initialize(TData data, int currentTimeStamp)
     {
         Throw.ArgumentNullException.IfNull(data);
-        Throw.ArgumentOutOfRangeException.IfNegative(currentTimeStamp, nameof(currentTimeStamp));
+        Throw.ArgumentOutOfRangeException.IfNegative(currentTimeStamp);
         if (currentTimeStamp == 0)
         {
             // may happen during game initialization, but is unexpected otherwise
-            Logger.Warning($"Initializing {nameof(WeakTimedDataEntry<TData>)} with zero timestamp. Unless you are currently creating a new game, please report this as a bug.");
+            Logger.Warning("Initializing with zero timestamp. Unless you are currently creating a new game, please report this as a bug.");
         }
         Data = data;
         TimeStamp = currentTimeStamp;
