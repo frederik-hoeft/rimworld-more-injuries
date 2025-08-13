@@ -18,19 +18,6 @@ Its goal is to make the medical system more challenging and interesting in some 
 - [More Injuries User Manual](#more-injuries-user-manual)
   - [About More Injuries](#about-more-injuries)
   - [Table of Contents](#table-of-contents)
-  - [Pathophysiological System](#pathophysiological-system)
-  - [Concepts](#concepts)
-    - [Lethal Triad of Trauma](#lethal-triad-of-trauma)
-  - [Injuries and Medical Conditions A-Z](#injuries-and-medical-conditions-a-z)
-    - [Acidosis](#acidosis)
-    - [Adrenaline Rush](#adrenaline-rush)
-    - [Brain Damage](#brain-damage)
-      - [Agnosia](#agnosia)
-      - [Aphasia](#aphasia)
-      - [Executive Dysfunction](#executive-dysfunction)
-      - [Hippocampal Damage](#hippocampal-damage)
-      - [Motor Dysfunction](#motor-dysfunction)
-      - [Personality Shift](#personality-shift)
     - [Cardiac Arrest](#cardiac-arrest)
     - [Chemical Damage](#chemical-damage)
     - [Chemical Peritonitis](#chemical-peritonitis)
@@ -120,318 +107,10 @@ Its goal is to make the medical system more challenging and interesting in some 
 
 <!-- /code_chunk_output -->
 
-## Pathophysiological System
-
-The More Injuries mod introduces a pathophysiological system that simulates the interactions between injuries and medical conditions in a more realistic and immersive way. This system allows for complex interactions between different injuries and medical conditions, leading to cascading effects that can be difficult to manage. For example, the presence of one injury may exacerbate the effects of another, or injecting a certain drug may have different effects depending on the presence of other injuries or medical conditions.
-
-To aid in understanding these interactions, this manual introduces a graphical representation of the pathophysiological system, including flowcharts and diagrams that illustrate the chain of cause and effect between different injuries and medical conditions. The direction of these interactions is indicated by arrows, whereas arrow colors indicate whether the interaction lessens (green) or worsens/causes (red) the condition, as shown in the following diagram:
-
-```mermaid
----
-config:
-  flowchart:
-    htmlLabels: true
----
-flowchart LR
-  a[condition a] == "`*increases severity of*`" ==> b[condition b]
-  c[condition a] == "`*reduces severity of*`" ==> d[condition b]
-
-  linkStyle 0 stroke: #b10000
-  linkStyle 1 stroke: #549b68
-```
-
-Additional arrow labels may be used to indicate conditional effects or modifiers, for example:
-
-```mermaid
----
-config:
-  flowchart:
-    htmlLabels: true
----
-flowchart LR
-  a[condition a] ==> b[condition b]
-  a ==> | overdose | b
-
-  linkStyle 0 stroke: #549b68
-  linkStyle 1 stroke: #b10000
-```
-
-In this example, condition a usually improves condition b, but in cases of overdose, it may actually worsen condition b instead.
-
-Some conditions may not improve or worsen other conditions directly, but instead may influence treatment outcomes of other conditions. For example, epinephrine administration in cases of cardiac arrest may improve the chances of successful defibrillation, while opioid-based painkillers may reduce the effectiveness of CPR. These interactions are represented by dashed arrows, the colors of which indicate the nature of the interaction (green for beneficial effects, red for harmful effects).
-
-```mermaid
----
-config:
-  flowchart:
-    htmlLabels: true
----
-flowchart LR
-  epinephrine[epinephrine] ==> cardiac_arrest[cardiac arrest]
-  epinephrine ==> | overdose | cardiac_arrest
-
-  linkStyle 0 stroke: #549b68, stroke-dasharray: 9,5
-  linkStyle 1 stroke: #b10000
-```
-
-## Concepts
-
-This section provides an overview of key concepts related to trauma and injury management simulated by the More Injuries mod. These concepts are crucial for understanding how injuries and medical conditions interact with each other, and how they can be treated effectively.
-
-### Lethal Triad of Trauma
-
-<p>
-<img align="right" style="height: 5cm; background-color: white" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Trauma_triad_of_death.svg" alt="trauma triad of death (wikimedia commons)">
-  
-The "lethal triad of trauma" is a critical concept in trauma medicine that describes the dangerous cycle of three interrelated conditions: [acidosis](#acidosis), [hypothermia](#hypothermia), and [coagulopathy](#coagulopathy). These conditions often occur together in severely injured patients and can lead to a rapid deterioration of the patient's condition, ultimately resulting in death if not addressed promptly.
-
-More Injuries tries to simulate these interactions in a gamified, yet realistic way, making severe blood loss and trauma more challenging and interesting to manage. An overview of the interactions between these conditions is provided below, along with a flowchart that illustrates the relationships between them.
-
-</p>
-
-```mermaid
----
-config:
-  flowchart:
-    htmlLabels: true
----
-flowchart LR
-
-  external[external factors] ==> hemorrhage[hemorrhage]
-  external ==> cardiac_arrest[cardiac arrest]
-  external ==> hypothermia[hypothermia]
-  hemorrhage ==> hypovolemic_shock[hypovolemic shock]
-  hypovolemic_shock ==> cardiac_arrest
-  hypovolemic_shock ==> hypothermia
-  hemodilution[hemodilution] ==> hypoxia
-  hemodilution ==> coagulopathy[coagulopathy]
-  cardiac_arrest ==> hypoxia[hypoxia]
-  coagulopathy ==> hemorrhage
-  hypothermia ==> hypoxia
-  hypovolemic_shock ==> hypoxia
-  hypoxia ==> acidosis[acidosis]
-  acidosis ==> hypothermia
-  acidosis ==> coagulopathy
-  hypothermia ==> coagulopathy
-  hypothermia ==> cardiac_arrest
-  blood_transfusion[blood transfusion] ==> hypovolemic_shock
-  saline_infusion[saline IV infusion] ==> hypovolemic_shock
-  saline_infusion ==> hemodilution
-  cardiac_arrest ==> hypothermia
-  external ~~~ hypothermia
-
-  linkStyle 10,17,18 stroke: #549b68
-  linkStyle 0,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,19,20 stroke: #b10000
-```
-
-*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
-
-As per basegame RimWorld, external factors like injuries or environmental conditions can quickly lead to hypothermia or bleeding injuries. More Injuries extends this simulation depth by simulating follow-up conditions and potential cascading effects that can arise from these initial injuries.
-
-In the context of trauma management, this means that a seemingly minor injury can rapidly escalate into life-threatening conditions if not properly addressed. Let's explore some examples of these cascading effects.
-
-If a pawn suffers a severe injury that causes significant blood loss, they may go into [hypovolemic shock](#hypovolemic-shock), meaning their body is unable to maintain adequate blood pressure and perfusion to vital organs. This, in turn, may cause a cascade of complications, further worsening the pawn's condition. For example, the reduced flow of oxygenated blood to the tissues can starve the cells of oxygen, which leads to [hypoxia](#hypoxia) and cell death, which not only affects the local tissue (e.g., causing organ failure, brain damage, or death), but can also trigger a systemic condition. In their oxygen-deprived state, the cells begin to switch to anaerobic metabolism, producing lactic acid which lowers the blood pH, leading to [acidosis](#acidosis). The increased acidity in the blood hinders the cells' ability to produce energy, which is required for thermogenesis and maintaining body temperature, leading to [hypothermia](#hypothermia), which is further accelerated by the reduced blood flow caused by hypovolemic shock, so warmer blood is not able to reach the extremities. Both, hypothermia and acidosis, negatively affect the blood's ability to clot, leading to [coagulopathy](#coagulopathy), a condition where even minor injuries can cause uncontrolled bleeding or even new spontaneous hemorrhages. This can create a dangerous cycle known as the "lethal triad of trauma," where uncontrolled bleeding further exacerbates hypovolemic shock, leading to more hypoxia, more acidosis, and more severe hypothermia, which in turn worsens coagulopathy and increases the risk of further hemorrhages.
-
-In order to break this vicious cycle, it is crucial to address the underlying causes of each condition. For example, stopping severe arterial bleeding in the limbs with a [tourniquet](#tourniquet) will buy time to bandage the wound and perform fluid resuscitation with [blood transfusions](#blood-bag) or [IV saline infusion](#saline-iv-bag) to restore blood volume and combat hypovolemic shock. If the patient is hypothermic, they should be wrapped in warm blankets or placed in a warm environment to prevent further heat loss. This might involve warming up the operating room to uncomfortably high temperatures to ensure the patient retains heat. 
-
-Depending on how far gone the patient is, continued medical treatment may be required to stabilize the patient and prevent further deterioration, even during recovery. [Defibrillation](#defibrillator) or [CPR](#cpr) may be required in cases of [cardiac arrest](#cardiac-arrest) due to hypothermia or hypovolemic shock, and [hemodilution](#hemodilution) caused by excessive use of [saline IVs](#saline-iv-bag) may require administering additional [blood transfusions](#blood-bag) to restore adequate blood volume and improve tissue perfusion. 
-
-To reduce the amount of micro-management required, new [work types](#new-work-types) have been added to allow doctors to automatically triage and treat patients ***who are in hospital beds*** based on their injuries and conditions. Nevertheless, after severe injuries, it is still recommended to keep a close eye on the patient and monitor their condition, and to manually intervene if necessary, especially if new conditions arise while the doctor is busy treating unrelated conditions or other patients.
-
-Keep in mind that the human body is a complex system and requires some time to stabilize and for conditions to start improving. Even after blood volume has been restored, it takes time to break down and clear metabolic byproducts like lactic acid from the body, and to restore normal blood pH levels. It is not uncommon for patients to require multiple rounds of triage and treatment before they are fully stabilized and start recovering by themselves.
-
-> [!WARNING]
-> Once a certain point of no return has been reached and the lethal triad of trauma has caused the patient to enter a death spiral, it may become impossible to save them, even with the best medical care. As such, it is crucial to act quickly and decisively in the face of severe injuries and complications. Keep trained medics with the appropriate equipment on standby when engaging in combat and have pawns carry life-saving equipment like [tourniquets](#tourniquet) at all times.
-
-> [!TIP]
-> While More Injuries attempts to approximate the complexities of real-world trauma care, it is understandable if you don't want to deal with the added complexity of the lethal triad of trauma in your game. Keep in mind that you can customize many aspects of the mod in the mod settings. If you want to disable the advanced trauma simulation, you can do so by un-checking the `Enable advanced trauma simulation` option.
-
-## Injuries and Medical Conditions A-Z
-
-The following sections provide an overview of the new injuries and medical conditions added by the More Injuries mod, as well as their effects and treatment options.
-
-### Acidosis
-
-Acidosis is a serious metabolic condition caused by an excessive buildup of acid in the body, typically caused by inadequate oxygen delivery to tissues ([hypoxia](#hypoxia)) following severe blood loss ([hypovolemic shock](#hypovolemic-shock)), [cardiac arrest](#cardiac-arrest), or other forms of shock. As oxygenated blood stops flowing to the tissues (due to one or more of above conditions), the body shifts to anaerobic metabolism, meaning it starts producing energy without oxygen, which results in the production of lactic acid and the accumulation of carbon dioxide. These byproducts lower the blood pH, leading to acidosis.
-
-The condition contributes to a dangerous cycle known as the [lethal triad of trauma](#lethal-triad-of-trauma): acidosis, [hypothermia](#hypothermia), and [coagulopathy](#coagulopathy). As blood pH drops, blood clotting function becomes impaired, increasing the risk of uncontrolled [hemorrhage](#hemorrhage-spontaneous) and [trauma-induced coagulopathy](#coagulopathy). At the same time, acidosis impairs mitochondrial function (the powerhouse of the cell), leading to decreased ATP (energy) production in cells, which is required for thermogenesis and maintaining body temperature. This contributes to [hypothermia](#hypothermia) and further exacerbates the cycle of trauma.
-
-> **In-Game Description**
-> _"**Acidosis** &mdash; Acidosis is a serious metabolic condition characterized by an excessive buildup of acid in the body, typically caused by inadequate oxygen delivery to tissues (hypoxia) following severe blood loss (hypovolemia), cardiac arrest, or other forms of shock. As oxygen becomes scarce, the body shifts to anaerobic metabolism, producing lactic acid and accumulating carbon dioxide, which together lower blood pH.  
-> The condition contributes to a dangerous cycle known as the "lethal triad" of trauma: acidosis, hypothermia, and coagulopathy. As blood pH drops, clotting function becomes impaired, increasing the risk of uncontrolled bleeding and trauma-induced coagulopathy (TIC). At the same time, mitochondrial function declines and cell-energy production is impaired, hindering thermogenesis and maintaining body temperature, ultimately leading to hypothermia and further exacerbating the cycle of trauma.  
-> Acidosis is treated by restoring oxygen delivery to tissues - typically through rapid control of bleeding, fluid resuscitation with blood products, and correction of hypoxia. Once tissue oxygenation is restored, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys."_
-
-**Causes**: [Hypoxia](#hypoxia) or [severe ischemia after prolonged tourniquet application](#ischemia-tourniquet).
-
-**Effects**: Directly contributes to [coagulopathy](#coagulopathy) and [hypothermia](#hypothermia).
-
-```mermaid
----
-config:
-  flowchart:
-    htmlLabels: true
----
-graph LR;
-  hypoxia[hypoxia] ==> acidosis[acidosis];
-  ischemia["severe ischemia (tourniquet)"] ==> acidosis;
-  acidosis ==> coagulopathy[coagulopathy];
-  acidosis ==> hypothermia[hypothermia];
-
-  linkStyle 0,1,2,3 stroke: #b10000
-  style acidosis stroke-width: 4px
-```
-
-*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
-
-**Treatment**: Restore oxygen delivery to tissues: control bleeding, provide fluid resuscitation, preferably with [blood products](#blood-bag), and treat effects coagulopathy and hypothermia. Once underlying causes are addressed, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys.
-
-> [!WARNING]
-> Acidosis naturally "lags behind" the underlying causes, meaning that it doesn't set in immediately after oxygen delivery to tissues is impaired, and it may take some time for the body to clear metabolic byproducts after oxygen delivery is restored. This means that even after a pawn has been stabilized and blood volume has been restored, they may still suffer from acidosis for a while. Keep a close eye on their condition and be prepared to provide further treatment as needed.
-
-### Adrenaline Rush
-
-Adrenaline, also known as epinephrine, is a naturally occurring hormone that is released in response to stress or danger. It increases heart rate, blood pressure, and energy levels, preparing the body for a fight-or-flight response. In the game, an adrenaline rush can occur naturally in pawns as a result of combat and injury, or it can artificially be induced through the use of an [epinephrine injection](#epinephrine-autoinjector).
-
-> **In-Game Description**
-> _"**Adrenaline rush** &mdash; A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.  
-> However, if the rush is too intense, it can cause anxiety, panic, and overdose symptoms such as dizziness, double vision, and nausea. In extreme overdose cases, the body can go into shock, causing heart attack, stroke, or death."_
-
-**Causes**: Injuries or [epinephrine injections](#epinephrine-autoinjector).
-
-**Effects**: At lower levels, an adrenaline rush can provide a temporary boost to consciousness, moving, and pain tolerance. At higher levels, it can cause a reduction in manipulation and sight. In extreme cases of overdose, it can lead to anxiety, panic, nausea, as well as, coma, [cardiac arrest](#cardiac-arrest), [hemorrhagic stroke](#hemorrhagic-stroke), and subsequent death. As adrenaline raises the heart rate and blood pressure, it can also reduce the effects of [hypovolemic shock](#hypovolemic-shock) for a short period of time.  
-In a similar way, epinephrine injections may be used to assist with [defibrillation](#defibrillator) efforts and [CPR](#cpr) in cases of [cardiac arrest](#cardiac-arrest).
-
-```mermaid
----
-config:
-  flowchart:
-    htmlLabels: true
----
-flowchart LR
-  painful_injury[painful injury] ==> adrenaline_rush[adrenaline rush]
-  epinephrine_injection[Epinephrine injection] ==> adrenaline_rush
-  adrenaline_rush ==> cardiac_arrest[cardiac arrest]
-  adrenaline_rush ==> |overdose| cardiac_arrest
-  adrenaline_rush ==> |overdose| hemorrhagic_stroke[hemorrhagic stroke]
-
-  linkStyle 2 stroke: #549b68, stroke-dasharray: 9,5
-  linkStyle 0,1,3,4 stroke: #b10000
-  style adrenaline_rush stroke-width: 4px
-```
-
-*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
-
-**Treatment**: Adrenaline is naturally metabolized by the body over time and effects last between a few minutes to a few hours in severe cases. In cases of overdose, the pawn may require medical treatment to treat symptoms and secondary effects.
-
-### Brain Damage
-
-In this context, "brain damage" refers to a range of temporary or permanent neurological conditions that can occur as a result of traumatic brain injury, stroke, or [hypoxia](#hypoxia). Brain damage can manifest in various ways, including cognitive impairments, motor dysfunction, and changes in personality. The severity and type of brain damage depend on the extent of the injury and the specific areas of the brain affected.
-
-Brain damage may not always be immediately apparent, as some symptoms may take time to develop as the patient recovers from the initial injury. In some cases, brain damage may be reversible with experimental treatments, such as [mechanite therapy](#mechanite-therapy) or [cellular regenerative neurosurgery](#cellular-regenerative-neurosurgery), which can help repair damaged brain tissue and restore normal function. However, these futuristic treatments require advanced research and technology, and may be expensive and time-consuming to perform.
-
-**Causes**: [hypoxia](#hypoxia-brain)
-
-**Effects**: Effects of brain damage can vary widely depending on the specific areas of the brain affected and the severity of the injury. Common effects are listed below.
-
-```mermaid
----
-config:
-  flowchart:
-    htmlLabels: true
----
-flowchart LR
-  hypoxia[hypoxia] ==> brain_damage[brain damage]
-
-  linkStyle 0 stroke: #b10000
-  style brain_damage stroke-width: 4px
-```
-
-*See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
-
-#### Agnosia
-
-Agnosia is a neurological disorder characterized by an inability to process sensory information. Often there is a loss of ability to recognize objects, persons, sounds, shapes, or smells while the specific sense is neither defective nor is there any significant memory loss.
-
-> **In-Game Description**
-> _"**Agnosia** &mdash; Damage to the occipital or temporal lobes has impaired the ability to recognize objects or faces, despite normal vision. Affected patients may have trouble identifying items or people, leading to confusion and slower task performance."_
-
-**Effects**: Reduced work speed, research speed, and social impact, depending on the severity of the condition. Negative mood effects may occur due to frustration or confusion caused by the inability to recognize familiar objects or people.
-
-**Thoughts per Stage**:
-> _"**Things look unfamiliar** (-2) &mdash; Sometimes I catch myself hesitating, unsure of what I'm looking at. It's subtle, but unsettling - like the world is just slightly off."_  
-> _"**Misrecognizing people and objects** (-4) &mdash; I keep mistaking objects - or even people - for others. It's confusing, and I often feel embarrassed or disoriented."_  
-> _"**Faces blur together** (-6) &mdash; Everyone looks the same. I have to rely on voices or context to tell people apart. It's isolating and makes social interaction exhausting."_  
-> _"**Nothing makes visual sense** (-8) &mdash; The world around me is a jumble of shapes and colors. I can't rely on sight to recognize what I see anymore. Every task is harder, and I feel disconnected from everything."_
-
-#### Aphasia
-
-Aphasia, also known as dysphasia, is an impairment in a person's ability to comprehend or formulate language because of dysfunction in specific brain regions.
-
-> **In-Game Description**
-> _"**Aphasia** &mdash; Permanent damage to nerve cells in the language centers of the brain has resulted in pronounced difficulty with communication. This can manifest as word-finding difficulties, fragmented speech, or even complete muteness. The severity of the aphasia can vary based on the extent of the damage."_
-
-**Effects**: Reduced talking capacity, trade price penalty when trading. Negative mood effects may occur due to frustration or confusion caused by the inability to communicate effectively.
-
-**Thoughts per Stage**:
-
-> _"**Word-finding difficulty** (-2) &mdash; Struggling to find the right words can be frustrating and isolating. I feel embarrassed when I can't express myself clearly."_  
-> _"**Fragmented speech** (-4) &mdash; I can speak, but my sentences are often incomplete or jumbled. It's like my thoughts are scattered, and I can't put them together."_  
-> _"**Non-fluent** (-6) &mdash; Every conversation feels like a struggle. I can't form complex sentences, and it's hard to communicate even basic ideas. I want to express myself, but my words fail me."_  
-> _"**Barely verbal** (-8) &mdash; My ability to speak has been reduced to almost nothing. I can only manage a few words at a time, and even those are difficult to pronounce. I feel trapped in my own silence."_  
-> _"**Completely nonverbal** (-10) &mdash; I can no longer speak at all. My thoughts are locked inside me, and I can't communicate with others. I feel alone and isolated, unable to share my feelings or ideas."_
-
-#### Executive Dysfunction
-
-In psychology and neuroscience, executive dysfunction, or executive function deficit, is a disruption to the efficacy of the executive functions, which is a group of cognitive processes that regulate, control, and manage other cognitive processes. Executive dysfunction can refer to both neurocognitive deficits and behavioural symptoms.
-
-> **In-Game Description**
-> _"**Executive dysfunction** &mdash; Damage to the frontal lobes has impaired executive functions, including decision-making, planning, and impulse control. Affected individuals may act erratically or inappropriately, and struggle with organization, prioritization, and regulating emotions, leading to difficulties in daily life and social interactions."_
-
-**Effects**: Periodic mental breaks, increased risk of social fights.
-
-#### Hippocampal Damage
-
-Hippocampal damage refers to damage to the hippocampus, a region of the brain that is critical for memory formation and spatial navigation. Damage to this area can result in significant memory impairments, including difficulty forming new memories and recalling past events.
-
-> **In-Game Description**
-> _"**Hippocampal damage** &mdash; Damage to the hippocampus has impaired memory formation and spatial navigation. Affected individuals may become confused about their surroundings, forget where they are, and have difficulty navigating or recalling past events."_
-
-**Effects**: Periodic mental breaks of type "confused wandering," memory loss, reduced learning factor, reduced work speed, periodic mental breaks at higher stages. Negative mood effects may occur due to frustration or confusion caused by memory impairments.
-
-**Thoughts per Stage**:
-> _"**Disoriented** (-2) &mdash; Sometimes I forget why I walked into a room or what I was just doing. It's like my thoughts vanish mid-sentence."_  
-> _"**Forgetting simple things** (-4) &mdash; I've started forgetting names, places, tasks. It's frustrating, like sand slipping through my fingers whenever I try to recall something."_  
-> _"**Losing track of time** (-6) &mdash; Hours blur together. Sometimes I wake up not knowing where I am or what day it is. I feel lost - even in familiar places."_  
-> _"**Memories feel distant** (-8) &mdash; Memories feel like someone else's dreams. Faces, places, and events all seem unfamiliar. I'm scared of forgetting everything."_  
-> _"**Losing sense of self** (-10) &mdash; My identity feels fragile. I struggle to remember who I am, what I've done, or what I care about. It's like I'm fading away, and I don't know how to stop it."_
-
-#### Motor Dysfunction
-
-Motor dysfunction refers to a range of movement disorders that can occur as a result of brain damage. These disorders can affect coordination, balance, and fine motor skills, leading to difficulties with tasks such as walking, writing, or using tools.
-
-> **In-Game Description**
-> _"**Motor dysfunction** &mdash; Neurological damage to the motor cortex has resulted in permanent impairment of the motor system. This can manifest as weakness, tremors, or difficulty coordinating movements. The severity of the dysfunction can vary based on the extent of the damage."_
-
-**Effects**: Reduced moving speed, reduced manipulation capacity. Negative mood effects may occur due to frustration or confusion caused by motor impairments.
-
-**Thoughts per Stage**:
-> _"**Clumsy** (-2) &mdash; My movements feel less precise than they used to be. I drop things more often and stumble occasionally. It's frustrating, but manageable."_  
-> _"**Shaky and unsteady** (-4) &mdash; My hands tremble, and walking in a straight line takes concentration. Tasks that used to be simple now require real effort and care."_  
-> _"**Struggling to control my body** (-6) &mdash; Basic actions are difficult. My limbs don't always respond the way I want them to, and I often lose coordination. It makes me feel helpless and vulnerable."_  
-> _"**Near-paralyzed** (-8) &mdash; Moving feels like dragging weights through water. I can barely walk, and using my hands has become incredibly difficult. I rely on others for more than I'd like to admit."_  
-> _"**Trapped in a failing body** (-10) &mdash; My body no longer obeys me. Every step, every grasp is a monumental challenge. I feel like a living vegetable, unable to do anything for myself, and completely dependent on others. It's a nightmare."_
-
-#### Personality Shift
-
-> **In-Game Description**
-> _"Due to severe brain damage, {0} has undergone a significant shift in personality. They may have become more skilled in certain areas, but also may have lost some of their previous skills. This change is permanent and may require some reorientation for their role in the colony."_
-
-**Effects**: Permanent change in personality, which includes a redistribution of skills corresponding to the extend of the brain damage. For example, a pawn may become more skilled in combat or social interactions, but lose some of their previous skills in crafting or research. This change is permanent and may require some reorientation for their role in the colony.
-
-> [!NOTE]
-> This feature can be disabled in the mod settings if you prefer not to have personality shifts as a result of brain damage.
-
 ### Cardiac Arrest
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. It is generally divided into two categories: `ventricular fibrillation` and asystole (flatline, `clinical death`). `Ventricular fibrillation` is a condition in which the heart's electrical signals become disorganized, causing the heart to quiver or "fibrillate" instead of pumping blood effectively. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). If left untreated, `ventricular fibrillation` can progress to `clinical death`, which is a condition in which the heart stops beating completely and [CPR](#cpr) must be performed to restore blood flow and hopefully restart the heart. Applying a [defibrillator](#defibrillator) to a clinically dead patient will not be effective and may cause additional harm.
 
@@ -474,7 +153,13 @@ style cardiac_arrest stroke-width: 4px
 > [!NOTE]
 > **Biotech DLC**: Sanguaphages are immune to cardiac arrest and will automatically recover from it once entering deathrest.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Chemical Damage
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Chemical damage is a collective term for various toxic effects caused by exposure to harmful substances, such as drugs, chemicals, or toxins.
 
@@ -501,6 +186,9 @@ style chemical_damage stroke-width: 4px
 *See the section on the [pathophysiological system](#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: Treatment of chemical damage typically involves removing the source of exposure and providing supportive care to the affected organ. In severe cases, surgical intervention may be required to replace the damaged organ.
+
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
 
 ### Chemical Peritonitis
 
@@ -531,7 +219,13 @@ flowchart LR
 
 **Treatment**: Medical treatment of the perforating injury and inflammation using high-quality medicine to prevent infection.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Chloroform Buildup
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Chloroform buildup is a condition that occurs when a pawn is exposed to [chloroform](#chloroform-soaked-cloth). Chloroform is metabolized by the liver and kidneys, and excessive exposure can lead to a severe buildup of chloroform in the body. This can cause [chemical damage](#chemical-damage) to the liver and kidneys, leading to organ failure if severe enough.
 
@@ -562,7 +256,13 @@ flowchart LR
 
 **Treatment**: Chloroform is naturally metabolized by the body over time and effects last between a few minutes to a few hours in severe cases. In cases of overdose, the pawn may require medical treatment to treat symptoms and secondary effects.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Choking
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Choking is a medical emergency that occurs when a foreign object becomes lodged in the throat or windpipe, blocking the flow of air. It can be a life-threatening situation that requires immediate intervention to clear the airway and restore breathing.
 
@@ -623,7 +323,13 @@ flowchart LR
 
 **Treatment**: Removing the [tourniquet](#tourniquet) from the neck will restore breathing and prevent death.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Coagulopathy
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Coagulopathy is a dangerous condition that directly contributes to the [lethal triad of trauma](#lethal-triad-of-trauma). It is characterized by a reduced ability of blood to clot, leading to an increased risk of bleeding and hemorrhage.
 
@@ -659,7 +365,13 @@ flowchart LR
 > [!NOTE]
 > For more information on the pathophysiology of coagulopathy, see [lethal triad of trauma](#lethal-triad-of-trauma).
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Concussion
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 > **In-Game Description**  
 > _"**Concussion** &mdash; A concussion, also known as a mild traumatic brain injury (mTBI), is a head injury that temporarily affects brain functioning. Symptoms may include loss of consciousness; memory loss; headaches; difficulty with thinking, concentration, or balance; nausea; blurred vision; dizziness; sleep disturbances, and mood changes.  
@@ -686,7 +398,13 @@ flowchart LR
 
 **Treatment**: Concussions are generally self-limiting and will resolve on their own within a few days.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### EMP Shutdown
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 > **In-Game Description**
 > _"**Servos disabled** &mdash; A bionic bodypart was disabled by an EMP blast. It will take around one day to reboot itself."_
@@ -697,7 +415,13 @@ flowchart LR
 
 **Treatment**: The bionic body part will reboot itself after around one day and return to normal function.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Enclosed Injuries
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 > **In-Game Description**
 > _"**&lt;injury type&gt; (enclosed)**"_
@@ -710,7 +434,13 @@ Bleed rates of injuries are now dynamically calculated and depend on the depth o
 
 **Treatment**: Enclosed injuries may be treated with vanilla RimWorld treatment methods, such as medicine or treatment without medicine.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Fractures
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 When a pawn takes damage to a bone or solid body part, there is a chance that a fracture will occur, based on the severity of the injury and the mod settings.
 
@@ -782,7 +512,13 @@ flowchart LR
 
 **Treatment**: Bone fragment lacerations can be treated like any other cut or laceration, by treating the wound with or without medicine, preferably in a clean environment to reduce the risk of infection.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Gangrene
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Gangrene is a type of tissue death caused by a lack of blood supply. Symptoms may include a change in skin color to red or black, numbness, swelling, pain, skin breakdown, and coolness. Depending on the presence of infection, gangrene may be classified as dry or wet.
 
@@ -845,7 +581,13 @@ flowchart LR
 
 **Treatment**: The affected body part should be amputated as soon as possible to save the patient's life.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Hearing Loss
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Hearing loss is a partial or total inability to hear. It may be temporary or permanent and can affect one or both ears and can be commonly caused by exposure to loud noises, trauma, or age-related degeneration.
 
@@ -902,7 +644,13 @@ flowchart LR
 
 **Treatment**: Implants or bionic ears (see [Hearing loss (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hearing_loss)), or [cellular regenerative otologic surgery](#cellular-regenerative-otologic-surgery) to repair the damaged hair cells in the inner ear.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Hemodilution
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Hemodilution is a condition that occurs when the concentration of red blood cells in the blood is reduced, such as through excessive usage of [saline IV infusions](#saline-iv-bag) for fluid resuscitation, leading to a decrease in the blood's ability to carry oxygen.
 
@@ -934,7 +682,13 @@ flowchart LR
 
 **Treatment**: Hemodilution will resolve on its own over time as the body regenerates red blood cells and plasma constituents. However, in severe cases of hemodilution, it may be necessary to administer [blood products](#blood-bag) to restore red blood cell and plasma levels immediately, as well as carefully managing fluid resuscitation to prevent further dilution.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Hemorrhage (Spontaneous)
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 > **In-Game Description**
 > _"**Hemorrhage** &mdash; Spontaneous hemorrhaging is a condition where bleeding occurs without any apparent external cause, often due to underlying medical issues such as coagulopathy or vascular abnormalities. It can manifest as bruising, nosebleeds, or internal bleeding and may require medical intervention to manage the underlying causes and prevent complications. In severe cases, it can lead to significant blood loss, multiple organ failure, and death if not treated promptly.  
@@ -962,7 +716,13 @@ flowchart LR
 
 **Treatment**: Stabilizing the patient, controlling bleeding, bandaging the affected area, and reversing the underlying cause of the coagulopathy, such as [acidosis](#acidosis), [hypothermia](#hypothermia), or [hemodilution](#hemodilution). In severe cases, it may be necessary to administer [blood products](#blood-bag) for fluid resuscitation and to restore blood volume.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Hemorrhagic Stroke
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 In extreme cases of head trauma, a rupture of a blood vessel in the brain may occur, causing a life-threatening condition known as a hemorrhagic stroke. Blood from the ruptured vessel leaks into the brain, causing pressure to build up and compress the surrounding tissue, starving it of oxygen and nutrients and leading to rapid loss of consciousness and death if not surgically treated.
 
@@ -998,7 +758,13 @@ flowchart LR
 
 **Treatment**: Hemorrhagic stroke can be temporarily stabilized using medicine to slow progression until surgery can be performed to permanently repair the rupture. Ultimately, surgical intervention through [trepanation](#trepanation), [decompressive craniectomy](#decompressive-craniectomy), or [stereotactic surgery](#stereotactic-surgery) is required to save the patient's life.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Hydrostatic Shock
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 > [!WARNING]
 > The concept is controversial and not universally accepted in the medical community.
@@ -1009,7 +775,13 @@ Due to the controversial nature of the concept, it is implemented as an optional
 
 If enabled, high-energy projectiles, such as bullets, may cause [hemorrhagic stroke](#hemorrhagic-stroke), even if the projectile does not directly hit the head.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Hypothermia
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 _Vanilla RimWorld condition, see [Hypothermia (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hypothermia)_
 
@@ -1041,7 +813,13 @@ flowchart LR
 
 **Treatment**: Hypothermia is primarily treated by warming the patient, either through external means (e.g., blankets, heating pads) or by ensuring adequate perfusion and thermogenesis (e.g., preventing [acidosis](#acidosis) and restoring blood volume using [blood bags](#blood-bag)). Hypothermia caused by exposure is best pro-actively prevented by ensuring that pawns are properly equipped with warm clothing and shelter in cold environments.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Hypovolemic Shock
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 When a pawn loses a significant amount of blood, there may not be enough blood volume to circulate to the body's organs, leading to a life-threatening condition known as hypovolemic shock. Without immediate treatment, the insufficient blood flow can starve the organs of oxygen and nutrients, causing tissue damage, multiple organ failure, and ultimately death. At the same time, the reduced blood flow prevents body temperature from being adequately maintained, which can lead to [hypothermia](#hypothermia) and further complications.
 
@@ -1080,7 +858,13 @@ During the initial emergency treatment of hypovolemic shock, its progression can
 > [!NOTE]
 > **Biotech DLC**: Deathresting sanguaphages will automatically recover from hypovolemic shock over time, as they can regenerate blood on their own.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Hypoxia
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Hypoxia is a condition in which the body or a region of the body is deprived of adequate oxygen supply at the tissue level. The cause of hypoxia may vary, but it is often the result of a severe lack of blood flow to the affected area, such as in cases of [hypovolemic shock](#hypovolemic-shock) and [cardiac arrest](#cardiac-arrest), or due to reduced oxygen levels in the blood, for example, caused by [hemodilution](#hemodilution). Hypoxia can lead to tissue damage, multiple organ failure, and death if not treated immediately. Additionally, cells will start to metabolize anaerobically in hypoxic conditions, leading to the production of lactic acid and [acidosis](#acidosis), which can further exacerbate the overall condition of the patient.
 
@@ -1149,11 +933,23 @@ flowchart LR
 
 **Treatment**: See [hypoxia](#hypoxia).
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Inhalation Injury
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Inhalation injuries are caused by the inhalation of hot gases, steam, or smoke, which can cause burns to the respiratory tract and lungs. If enabled in the mod settings, inhalation injuries manifest themselves as burn injuries to the lungs, for example, when a pawn is exposed to a fire or explosion.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Ischemia (Tourniquet)
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Ischemia occurs when blood flow to a tissue is restricted, leading to a shortage of oxygen and nutrients needed for cellular metabolism. Over time, this can result in tissue damage and necrosis if not promptly addressed. The only cause of ischemia in More Injuries is the application of a tourniquet.
 
@@ -1167,12 +963,24 @@ Ischemia occurs when blood flow to a tissue is restricted, leading to a shortage
 
 **Treatment**: Remove the tourniquet as soon as possible and provide appropriate medical care to the affected limb. If possible, remove the tourniquet in a controlled manner (`Remove tourniquet from {BODYPART} (safely)`), which takes more time but eliminates the risk of introducing systemic [acidosis](#acidosis).
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Ketamine Buildup
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 > [!CAUTION]
 > TODO: update docs
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Lung Collapse
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 When a creature is exposed to a sudden change in pressure, such as caused by thermobaric weapons and other high-explosive devices, the lung tissue may rupture, causing air to leak into the chest cavity and compress the lung, leading to a life-threatening condition known as a lung collapse.
 
@@ -1186,17 +994,35 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 
 **Treatment**: Resuscitation if the patient goes into [cardiac arrest](#cardiac-arrest) and immediate [thoracotomic surgery](#thoracotomy) or [video-assisted thoracoscopic surgery](#video-assisted-thoracoscopic-surgery) to repair the lung collapse and prevent further complications.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Mechanite Therapy
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 > [!CAUTION]
 > TODO: update docs
+
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
 
 ### Morphine High
 
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
+
 > [!CAUTION]
 > TODO: update docs
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Paralysis
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 > **In-Game Description**
 > _"**Paralysis** &mdash; Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Although there have been reports of successful experimental treatments on distant glitterworlds using cellular regenerative neurosurgery to repair damaged nerve tissue and restore function to paralyzed limbs, for most people paralysis is a life-changing condition that requires the use of bionic implants or prosthetics to restore function."_
@@ -1210,7 +1036,13 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 > [!CAUTION]
 > TODO: update docs
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Spalling Injury
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 When high-velocity projectiles are stopped by armor, the large amount of kinetic energy can cause the projectile and top layer of the armor to shatter into fragments, which can cause additional injuries to the wearer of the armor, even if the projectile itself did not penetrate. The chance and severity of spalling depends on a variety of factors, such as the angle of impact and the hardness and condition of the armor. 
 
@@ -1231,12 +1063,24 @@ Modern armor is designed to prevent spalling by adding softer layers above the h
 > [!TIP]
 > You can tweak the chance, severity, and armor condition thresholds for spalling injuries in the mod settings to better balance the risk and reward of using degraded armor plating in combat.
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ### Vasodilation
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 > [!CAUTION]
 > TODO: update docs
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ## New Body Parts
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 More Injuries simulates a variety of new body parts and re-scales the coverage of existing body parts to provide a more detailed and realistic simulation of injuries and medical conditions.
 
@@ -1260,6 +1104,9 @@ Emergency treatment often requires the use of a [tourniquet](#tourniquet) to res
 The spinal cord is a bundle of nerves that runs down the center of the back and connects the brain to the rest of the body. Damage to the spinal cord can cause irreversible and life-changing [paralysis](#paralysis), ranging from sensory loss in the legs to complete loss of movement in the entire body. Surgical intervention and bionic implants may be used to restore partial or full function to the affected body parts.
 
 ## Medical Devices and Procedures
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 In order to effectively treat the new injuries and medical conditions introduced by More Injuries, several new medical devices and treatment options have been added to the game.
 
@@ -1598,7 +1445,13 @@ Applying a tourniquet is part of the [First Aid](#first-aid) order for *drafted*
 > [!WARNING]
 > While generally easy to handle, severly incompetent doctors (medicine and intellectual skill below 3) may have a hard time applying a tourniquet correctly, potentially even having the not-so-bright idea to apply it to the neck. It goes without saying that such misuses of a tourniquet are not recommended and may lead to the patient [choking to death](#choking-on-tourniquet).
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ## Surgeries
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 Some injuries and medical conditions require surgical intervention to repair the damage and restore the patient to full health. More Injuries introduces a variety of new surgeries that can be performed by skilled doctors to treat complex injuries and medical conditions.  
 Just like base game surgeries, these new surgeries will be available in the *operations* tab of the selected pawn.
@@ -1748,7 +1601,13 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 **Death on Failed Surgery Chance[^3]**: 1%  
 **Work Amount**: 4000
 
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
+
 ## New Research Projects
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @end_generated_block -->
 
 TODO: update docs
 
@@ -1940,6 +1799,9 @@ Unless having other tasks to perform, assigned doctors will recover [tourniquets
 
 **Parent Work Type[^4]**: `Doctor`  
 **Priority In Type[^5]**: 5
+
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+<!-- @end_generated_block -->
 
 ## Known Issues and Incompatibilities
 
