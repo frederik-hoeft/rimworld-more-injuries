@@ -8,7 +8,20 @@ TODO: update docs
 
 More Injuries introduces several new research projects that can be undertaken to unlock new life-saving treatments and surgical procedures. These research projects expand the medical capabilities of your colony and allow you to treat previously untreatable injuries and medical conditions. As your technology advances, you will be able to provide better care to your colonists and save more lives in the harsh environment of the RimWorld.
 
-![An overview of the new research projects added by More Injuries.](docs/assets/research.png)
+<!-- @generate_toc {"source": "$self", "indent": 2} -->
+- [New Research Projects](/docs/wiki/research.md#new-research-projects)
+  - [Basic Anatomy](/docs/wiki/research.md#basic-anatomy)
+  - [Cardiopulmonary Resuscitation (CPR)](/docs/wiki/research.md#cardiopulmonary-resuscitation-cpr)
+  - [Basic First Aid](/docs/wiki/research.md#basic-first-aid)
+  - [Advanced First Aid](/docs/wiki/research.md#advanced-first-aid)
+  - [Emergency Medicine](/docs/wiki/research.md#emergency-medicine)
+  - [Neurosurgery](/docs/wiki/research.md#neurosurgery)
+  - [Advanced Thoracic Surgery](/docs/wiki/research.md#advanced-thoracic-surgery)
+  - [Epinephrine Synthesis](/docs/wiki/research.md#epinephrine-synthesis)
+  - [Cellular Regenerative Medicine](/docs/wiki/research.md#cellular-regenerative-medicine)
+<!-- @end_generated_block -->
+
+![An overview of the new research projects added by More Injuries.](/docs/assets/research.png)
 
 TODO: update image
 
@@ -21,10 +34,10 @@ TODO: update image
 > _"**Basic anatomy** &mdash; Delving into the fundamentals of human anatomy, this research uncovers ancient knowledge from the earliest recorded forms of medicine. By studying these time-honored practices, your scientists will equip your doctors with the skills to perform basic medical procedures, including wound treatment and disease management. This marks a vital first step toward restoring advanced medical practices in your colony."_
 
 **Tech Level**: Neolithic  
-**Unlocks**: [Bandages](#bandage), [splints](#splint), [trepanation](#trepanation)  
+**Unlocks**: [Bandages](/docs/wiki/medical-devices.md#bandage), [splints](/docs/wiki/medical-devices.md#splint), [trepanation](/docs/wiki/surgeries.md#trepanation)  
 **Required Research Bench & Addon**: Simple  
 **Research Requirements**: None  
-**Unlocks Research Projects**: [Basic first aid](#basic-first-aid)  
+**Unlocks Research Projects**: [Basic first aid](/docs/wiki/research.md#basic-first-aid)  
 **Research Cost**: 500
 
 > [!TIP]
@@ -37,10 +50,10 @@ TODO: update image
 >Upon completion of this research, a new right-click action will be available for drafted doctors to perform CPR on patients in need of resuscitation."_
 
 **Tech Level**: Industrial  
-**Unlocks**: [CPR](#cpr)  
+**Unlocks**: [CPR](/docs/wiki/medical-devices.md#cpr)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Basic anatomy](#basic-anatomy)  
-**Unlocks Research Projects**: [Emergency medicine](#emergency-medicine)  
+**Research Requirements**: [Basic anatomy](/docs/wiki/research.md#basic-anatomy)  
+**Unlocks Research Projects**: [Emergency medicine](/docs/wiki/research.md#emergency-medicine)  
 **Research Cost**: 500
 
 > [!TIP]
@@ -52,10 +65,10 @@ TODO: update image
 > _"**Basic first aid** &mdash; Building upon the knowledge of basic anatomy, this research delves into the fundamental principles of first aid. By studying approaches to reduce blood loss and stabilize patients in critical condition, your colony will be better equipped to handle medical emergencies."_
 
 **Tech Level**: Medieval  
-**Unlocks**: [Blood transfusions](#blood-bag), [tourniquets](#tourniquet)  
+**Unlocks**: [Blood transfusions](/docs/wiki/medical-devices.md#blood-bag), [tourniquets](/docs/wiki/medical-devices.md#tourniquet)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Basic anatomy](#basic-anatomy), machining  
-**Unlocks Research Projects**: [Cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr), [advanced first aid](#advanced-first-aid)  
+**Research Requirements**: [Basic anatomy](/docs/wiki/research.md#basic-anatomy), machining  
+**Unlocks Research Projects**: [Cardiopulmonary resuscitation (CPR)](/docs/wiki/research.md#cardiopulmonary-resuscitation-cpr), [advanced first aid](/docs/wiki/research.md#advanced-first-aid)  
 **Research Cost**: 1000
 
 ## Advanced First Aid
@@ -64,9 +77,9 @@ TODO: update image
 > _"**Advanced first aid** &mdash; Expanding on the principles of basic first aid and drug synthesis, your researchers will investigate the development of hemostatic agents. These advanced coagulants can be used to limit severe bleeding even more effectively than traditional bandages, reducing the risk of exsanguination in patients with severe injuries."_
 
 **Tech Level**: Industrial  
-**Unlocks**: [Hemostatic agents](#hemostatic-agent)  
+**Unlocks**: [Hemostatic agents](/docs/wiki/medical-devices.md#hemostatic-agent)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Basic first aid](#basic-first-aid), drug production  
+**Research Requirements**: [Basic first aid](/docs/wiki/research.md#basic-first-aid), drug production  
 **Unlocks Research Projects**: None  
 **Research Cost**: 1500
 
@@ -76,10 +89,10 @@ TODO: update image
 > _"**Emergency medicine** &mdash; Bringing together advances in first aid, pharmacology, and electrical technology, this research opens the door to modern emergency medicine. Your doctors will learn to rapidly assess and stabilize patients facing life-threatening conditions—trauma, airway obstruction, cardiac arrest, and more. Through intensive training and access to specialized equipment like defibrillators and suction devices, your colony's medical responders will be prepared to perform critical interventions that can make the difference between life and death in the first golden hour. These capabilities also lay the foundation for complex surgical procedures in the future."_
 
 **Tech Level**: Industrial  
-**Unlocks**: [defibrillators](#defibrillator), [airway suction devices](#airway-suction-device), [decompressive craniectomy](#decompressive-craniectomy), [osteosynthetic surgery](#osteosynthetic-surgery), [thoracotomy](#thoracotomy)  
+**Unlocks**: [defibrillators](/docs/wiki/medical-devices.md#defibrillator), [airway suction devices](/docs/wiki/medical-devices.md#airway-suction-device), [decompressive craniectomy](/docs/wiki/surgeries.md#decompressive-craniectomy), [osteosynthetic surgery](/docs/wiki/surgeries.md#osteosynthetic-surgery), [thoracotomy](/docs/wiki/surgeries.md#thoracotomy)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr), [basic first aid](#basic-first-aid), electricity  
-**Unlocks Research Projects**: [Cellular regeneration](#cellular-regenerative-medicine), [advanced thoracic surgery](#advanced-thoracic-surgery), [epinephrine synthesis](#epinephrine-synthesis)  
+**Research Requirements**: [Cardiopulmonary resuscitation (CPR)](/docs/wiki/research.md#cardiopulmonary-resuscitation-cpr), [basic first aid](/docs/wiki/research.md#basic-first-aid), electricity  
+**Unlocks Research Projects**: [Cellular regeneration](/docs/wiki/research.md#cellular-regenerative-medicine), [advanced thoracic surgery](/docs/wiki/research.md#advanced-thoracic-surgery), [epinephrine synthesis](/docs/wiki/research.md#epinephrine-synthesis)  
 **Research Cost**: 2000
 
 ## Neurosurgery
@@ -88,9 +101,9 @@ TODO: update image
 > _"**Neurosurgery** &mdash; By specializing in the field of neurosurgery, your doctors will be able to perform complex procedures on the brain. This research unlocks the use of stereotactic surgery, a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of hemorrhages and tumors while minimizing neurological damage."_
 
 **Tech Level**: Industrial  
-**Unlocks**: [Stereotactic surgery](#stereotactic-surgery)  
+**Unlocks**: [Stereotactic surgery](/docs/wiki/surgeries.md#stereotactic-surgery)  
 **Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
-**Research Requirements**: [Emergency medicine](#emergency-medicine), fabrication  
+**Research Requirements**: [Emergency medicine](/docs/wiki/research.md#emergency-medicine), fabrication  
 **Unlocks Research Projects**: None  
 **Research Cost**: 3000
 
@@ -100,9 +113,9 @@ TODO: update image
 > _"**Advanced thoracic surgery** &mdash; Investigate the usage of video technology in thoracic surgery, allowing for minimally invasive procedures to be performed on the lungs and other thoracic structures. By equipping your doctors with thoracoscopes and training them in video-assisted thoracoscopic surgery (VATS), your colony will be able to perform complex lung surgeries with greater precision and reduced risk of complications."_
 
 **Tech Level**: Industrial  
-**Unlocks**: [Thoracoscopes](#thoracoscope), [video-assisted thoracoscopic surgery](#video-assisted-thoracoscopic-surgery)  
+**Unlocks**: [Thoracoscopes](/docs/wiki/medical-devices.md#thoracoscope), [video-assisted thoracoscopic surgery](/docs/wiki/surgeries.md#video-assisted-thoracoscopic-surgery)  
 **Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
-**Research Requirements**: [Emergency medicine](#emergency-medicine), Vitals monitor  
+**Research Requirements**: [Emergency medicine](/docs/wiki/research.md#emergency-medicine), Vitals monitor  
 **Unlocks Research Projects**: None  
 **Research Cost**: 2500
 
@@ -113,9 +126,9 @@ TODO: update image
 > We suspect an additional potential use for this drug as a combat stimulant, but further research is required to confirm its efficacy."_
 
 **Tech Level**: Industrial  
-**Unlocks**: [Epinephrine autoinjectors](#epinephrine-autoinjector)  
+**Unlocks**: [Epinephrine autoinjectors](/docs/wiki/medical-devices.md#epinephrine-autoinjector)  
 **Required Research Bench & Addon**: Hi-tech  
-**Research Requirements**: [Emergency medicine](#emergency-medicine), drug production  
+**Research Requirements**: [Emergency medicine](/docs/wiki/research.md#emergency-medicine), drug production  
 **Unlocks Research Projects**: None  
 **Research Cost**: 2000
 
@@ -125,9 +138,9 @@ TODO: update image
 > _"**Cellular regenerative medicine** &mdash; Unlock the secrets of cellular regeneration, a cutting-edge medical technology that allows for the repair and regrowth of damaged tissues at the cellular level. By using mechanites to stimulate the body's natural healing processes, your doctors will be able to cure injuries that were previously considered untreatable, such as hearing and nerve damage. The same technology is used on glitterworlds to treat paralysis and degenerative diseases, but its application is still experimental and its long-term effects are not yet fully understood."_
 
 **Tech Level**: Spacer  
-**Unlocks**: [Cellular regenerative neurosurgery](#cellular-regenerative-neurosurgery), [cellular regenerative otologic surgery](#cellular-regenerative-otologic-surgery)  
+**Unlocks**: [Cellular regenerative neurosurgery](/docs/wiki/surgeries.md#cellular-regenerative-neurosurgery), [cellular regenerative otologic surgery](/docs/wiki/surgeries.md#cellular-regenerative-otologic-surgery)  
 **Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
-**Research Requirements**: [Neurosurgery](#neurosurgery), bionics  
+**Research Requirements**: [Neurosurgery](/docs/wiki/research.md#neurosurgery), bionics  
 **Unlocks Research Projects**: None  
 **Research Cost**: 4000
 

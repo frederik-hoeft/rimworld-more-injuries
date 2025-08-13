@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "CreateIndex": {
-      "commandName": "Project",
-      "commandLineArgs": "--root docs/content --src ../../../../../content"
-    }
-  }
-}
