@@ -33,9 +33,9 @@ if [[ ! -d "${script_dir}/artifacts" || $compile ]]; then
   touch "${script_dir}/artifacts/.gitkeep"
 fi
 
-# now run the generator on the content directory, forward the --clean flag if set
+# now run the generator on the wiki directory, forward the --clean flag if set
 if [[ $clean ]]; then
-  "${executable}" --root "docs/content" --src "${script_dir}/../content" --clean
+  "${executable}" --root "docs/wiki" --src "${script_dir}/../wiki" --clean
 else
-  "${executable}" --root "docs/content" --src "${script_dir}/../content"
+  "${executable}" --root "docs/wiki" --src "${script_dir}/../wiki"
 fi

@@ -1,7 +1,7 @@
 # Brain Damage
 
 <!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
-_:file_folder: [More Injuries User Manual](/docs/content/README.md) :arrow_right: [Injuries and Medical Conditions A-Z](/docs/content/injuries-and-medical-conditions-a-z/README.md) :arrow_right: [Brain Damage](/docs/content/injuries-and-medical-conditions-a-z/brain-damage.md)_
+_:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [Injuries and Medical Conditions A-Z](/docs/wiki/injuries-and-medical-conditions-a-z/README.md) :arrow_right: [Brain Damage](/docs/wiki/injuries-and-medical-conditions-a-z/brain-damage.md)_
 <!-- @end_generated_block -->
 
 In this context, "brain damage" refers to a range of temporary or permanent neurological conditions that can occur as a result of traumatic brain injury, stroke, or [hypoxia](#hypoxia). Brain damage can manifest in various ways, including cognitive impairments, motor dysfunction, and changes in personality. The severity and type of brain damage depend on the extent of the injury and the specific areas of the brain affected.
@@ -30,13 +30,13 @@ flowchart LR
 Brain damage may manifest in one of the following ways:
 
 <!-- @generate_toc {"source": "./brain-damage", "indent": 2} -->
-- [Brain Damage](/docs/content/injuries-and-medical-conditions-a-z/brain-damage.md#brain-damage)
-  - [Agnosia](/docs/content/injuries-and-medical-conditions-a-z/brain-damage.md#agnosia)
-  - [Aphasia](/docs/content/injuries-and-medical-conditions-a-z/brain-damage.md#aphasia)
-  - [Executive Dysfunction](/docs/content/injuries-and-medical-conditions-a-z/brain-damage.md#executive-dysfunction)
-  - [Hippocampal Damage](/docs/content/injuries-and-medical-conditions-a-z/brain-damage.md#hippocampal-damage)
-  - [Motor Dysfunction](/docs/content/injuries-and-medical-conditions-a-z/brain-damage.md#motor-dysfunction)
-  - [Personality Shift](/docs/content/injuries-and-medical-conditions-a-z/brain-damage.md#personality-shift)
+- [Brain Damage](/docs/wiki/injuries-and-medical-conditions-a-z/brain-damage.md#brain-damage)
+  - [Agnosia](/docs/wiki/injuries-and-medical-conditions-a-z/brain-damage.md#agnosia)
+  - [Aphasia](/docs/wiki/injuries-and-medical-conditions-a-z/brain-damage.md#aphasia)
+  - [Executive Dysfunction](/docs/wiki/injuries-and-medical-conditions-a-z/brain-damage.md#executive-dysfunction)
+  - [Hippocampal Damage](/docs/wiki/injuries-and-medical-conditions-a-z/brain-damage.md#hippocampal-damage)
+  - [Motor Dysfunction](/docs/wiki/injuries-and-medical-conditions-a-z/brain-damage.md#motor-dysfunction)
+  - [Personality Shift](/docs/wiki/injuries-and-medical-conditions-a-z/brain-damage.md#personality-shift)
 <!-- @end_generated_block -->
 
 ## Agnosia

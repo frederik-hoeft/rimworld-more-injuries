@@ -1,7 +1,7 @@
 # Concepts
 
 <!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
-_:file_folder: [More Injuries User Manual](/docs/content/README.md) :arrow_right: [Concepts](/docs/content/concepts.md)_
+_:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [Concepts](/docs/wiki/concepts.md)_
 <!-- @end_generated_block -->
 
 This section provides an overview of key concepts related to trauma and injury management simulated by the More Injuries mod. These concepts are crucial for understanding how injuries and medical conditions interact with each other, and how they can be treated effectively.
