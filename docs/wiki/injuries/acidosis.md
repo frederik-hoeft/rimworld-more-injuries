@@ -33,7 +33,7 @@ graph LR;
   style acidosis stroke-width: 4px
 ```
 
-*See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system) for more information on the graphical representation.*
+*See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
 
 **Treatment**: Restore oxygen delivery to tissues: control bleeding, provide fluid resuscitation, preferably with [blood products](/docs/wiki/medical-devices.md#blood-bag), and treat effects coagulopathy and hypothermia. Once underlying causes are addressed, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys.
 
