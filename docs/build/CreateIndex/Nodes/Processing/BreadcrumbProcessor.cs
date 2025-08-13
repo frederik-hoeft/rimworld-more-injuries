@@ -25,13 +25,19 @@ public sealed partial class BreadcrumbProcessor : LineProcessorBase
         }
         root ??= node.GetRoot();
         Stack<INode> navStack = [];
+        INode? previous = null;
         for (INode? current = node; current is not null; current = current.Parent)
         {
+            if (current is DirectoryNode { Descriptor: { } descriptor } && previous == descriptor)
+            {
+                continue;
+            }
             navStack.Push(current);
-            if (current == root || root is DirectoryNode { Descriptor: { } descriptor } && current == descriptor)
+            if (current == root)
             {
                 break;
             }
+            previous = current;
         }
         StringBuilder sb = new();
         string connector = parameters?.Connector ?? " > ";

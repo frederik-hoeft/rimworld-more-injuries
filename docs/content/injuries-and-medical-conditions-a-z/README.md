@@ -1,7 +1,7 @@
 # Injuries and Medical Conditions A-Z
 
 <!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
-_:file_folder: [More Injuries User Manual](/docs/content/README.md) :arrow_right: [Injuries and Medical Conditions A-Z](/docs/content/injuries-and-medical-conditions-a-z/README.md) :arrow_right: [Injuries and Medical Conditions A-Z](/docs/content/injuries-and-medical-conditions-a-z/README.md)_
+_:file_folder: [More Injuries User Manual](/docs/content/README.md) :arrow_right: [Injuries and Medical Conditions A-Z](/docs/content/injuries-and-medical-conditions-a-z/README.md)_
 <!-- @end_generated_block -->
 
 The following sections provide an overview of the new injuries and medical conditions added by the More Injuries mod, as well as their effects and treatment options.
