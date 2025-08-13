@@ -12,6 +12,7 @@ Just like base game surgeries, these new surgeries will be available in the *ope
   - [Cellular Regenerative Neurosurgery](/docs/wiki/surgeries.md#cellular-regenerative-neurosurgery)
   - [Cellular Regenerative Otologic Surgery](/docs/wiki/surgeries.md#cellular-regenerative-otologic-surgery)
   - [Decompressive Craniectomy](/docs/wiki/surgeries.md#decompressive-craniectomy)
+  - [Mechanite Therapy](/docs/wiki/surgeries.md#mechanite-therapy)
   - [Osteosynthetic Surgery](/docs/wiki/surgeries.md#osteosynthetic-surgery)
   - [Stereotactic Surgery](/docs/wiki/surgeries.md#stereotactic-surgery)
   - [Thoracotomy](/docs/wiki/surgeries.md#thoracotomy)
@@ -71,6 +72,11 @@ $\rightarrow$ *see [hemorrhagic stroke](/docs/wiki/injuries/hemorrhagic-stroke.m
 **Surgery Success Chance Factor[^2]**: 110%  
 **Death on Failed Surgery Chance[^3]**: 2.5%  
 **Work Amount**: 3000  
+
+## Mechanite Therapy
+
+> [!CAUTION]
+> TODO: update docs
 
 ## Osteosynthetic Surgery
 

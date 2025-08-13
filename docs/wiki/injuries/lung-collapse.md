@@ -12,7 +12,21 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 
 **Causes**: Exposure to a sudden change in pressure, such as caused by thermobaric weapons and other high-explosive devices.
 
-**Effects**: Impaired breathing, chest pain, and a life-threatening condition known as a tension pneumothorax, which can lead to obstructive shock, [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest), and death if not surgically treated.
+**Effects**: Impaired breathing, chest pain, and a life-threatening condition known as a tension pneumothorax, which can lead to obstructive shock, [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest), and potentially death if not surgically treated.
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  external_factors[external factors] ==> lung_collapse[lung collapse]
+  lung_collapse ==> | obstructive shock | cardiac_arrest[cardiac arrest]
+
+  linkStyle 0,1 stroke: #b10000
+  style lung_collapse stroke-width: 4px
+```
 
 **Treatment**: Resuscitation if the patient goes into [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest) and immediate [thoracotomic surgery](/docs/wiki/surgeries.md#thoracotomy) or [video-assisted thoracoscopic surgery](/docs/wiki/surgeries.md#video-assisted-thoracoscopic-surgery) to repair the lung collapse and prevent further complications.
 

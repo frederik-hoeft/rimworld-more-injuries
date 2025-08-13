@@ -106,6 +106,7 @@ Its goal is to make the medical system more challenging and interesting in some 
     - [Cellular Regenerative Neurosurgery](/docs/wiki/surgeries.md#cellular-regenerative-neurosurgery)
     - [Cellular Regenerative Otologic Surgery](/docs/wiki/surgeries.md#cellular-regenerative-otologic-surgery)
     - [Decompressive Craniectomy](/docs/wiki/surgeries.md#decompressive-craniectomy)
+    - [Mechanite Therapy](/docs/wiki/surgeries.md#mechanite-therapy)
     - [Osteosynthetic Surgery](/docs/wiki/surgeries.md#osteosynthetic-surgery)
     - [Stereotactic Surgery](/docs/wiki/surgeries.md#stereotactic-surgery)
     - [Thoracotomy](/docs/wiki/surgeries.md#thoracotomy)
