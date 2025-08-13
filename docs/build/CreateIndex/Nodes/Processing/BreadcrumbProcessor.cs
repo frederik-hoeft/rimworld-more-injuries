@@ -28,7 +28,7 @@ public sealed partial class BreadcrumbProcessor : LineProcessorBase
         for (INode? current = node; current is not null; current = current.Parent)
         {
             navStack.Push(current);
-            if (current == root)
+            if (current == root || root is DirectoryNode { Descriptor: { } descriptor } && current == descriptor)
             {
                 break;
             }

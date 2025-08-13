@@ -109,7 +109,7 @@ Its goal is to make the medical system more challenging and interesting in some 
 
 ### Cardiac Arrest
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. It is generally divided into two categories: `ventricular fibrillation` and asystole (flatline, `clinical death`). `Ventricular fibrillation` is a condition in which the heart's electrical signals become disorganized, causing the heart to quiver or "fibrillate" instead of pumping blood effectively. In cases of `ventricular fibrillation`, a [defibrillator](#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](#cpr). If left untreated, `ventricular fibrillation` can progress to `clinical death`, which is a condition in which the heart stops beating completely and [CPR](#cpr) must be performed to restore blood flow and hopefully restart the heart. Applying a [defibrillator](#defibrillator) to a clinically dead patient will not be effective and may cause additional harm.
@@ -158,7 +158,7 @@ style cardiac_arrest stroke-width: 4px
 
 ### Chemical Damage
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Chemical damage is a collective term for various toxic effects caused by exposure to harmful substances, such as drugs, chemicals, or toxins.
@@ -224,7 +224,7 @@ flowchart LR
 
 ### Chloroform Buildup
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Chloroform buildup is a condition that occurs when a pawn is exposed to [chloroform](#chloroform-soaked-cloth). Chloroform is metabolized by the liver and kidneys, and excessive exposure can lead to a severe buildup of chloroform in the body. This can cause [chemical damage](#chemical-damage) to the liver and kidneys, leading to organ failure if severe enough.
@@ -261,7 +261,7 @@ flowchart LR
 
 ### Choking
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Choking is a medical emergency that occurs when a foreign object becomes lodged in the throat or windpipe, blocking the flow of air. It can be a life-threatening situation that requires immediate intervention to clear the airway and restore breathing.
@@ -328,7 +328,7 @@ flowchart LR
 
 ### Coagulopathy
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Coagulopathy is a dangerous condition that directly contributes to the [lethal triad of trauma](#lethal-triad-of-trauma). It is characterized by a reduced ability of blood to clot, leading to an increased risk of bleeding and hemorrhage.
@@ -370,7 +370,7 @@ flowchart LR
 
 ### Concussion
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 > **In-Game Description**  
@@ -403,7 +403,7 @@ flowchart LR
 
 ### EMP Shutdown
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 > **In-Game Description**
@@ -420,7 +420,7 @@ flowchart LR
 
 ### Enclosed Injuries
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 > **In-Game Description**
@@ -439,7 +439,7 @@ Bleed rates of injuries are now dynamically calculated and depend on the depth o
 
 ### Fractures
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 When a pawn takes damage to a bone or solid body part, there is a chance that a fracture will occur, based on the severity of the injury and the mod settings.
@@ -517,7 +517,7 @@ flowchart LR
 
 ### Gangrene
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Gangrene is a type of tissue death caused by a lack of blood supply. Symptoms may include a change in skin color to red or black, numbness, swelling, pain, skin breakdown, and coolness. Depending on the presence of infection, gangrene may be classified as dry or wet.
@@ -586,7 +586,7 @@ flowchart LR
 
 ### Hearing Loss
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Hearing loss is a partial or total inability to hear. It may be temporary or permanent and can affect one or both ears and can be commonly caused by exposure to loud noises, trauma, or age-related degeneration.
@@ -649,7 +649,7 @@ flowchart LR
 
 ### Hemodilution
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Hemodilution is a condition that occurs when the concentration of red blood cells in the blood is reduced, such as through excessive usage of [saline IV infusions](#saline-iv-bag) for fluid resuscitation, leading to a decrease in the blood's ability to carry oxygen.
@@ -687,7 +687,7 @@ flowchart LR
 
 ### Hemorrhage (Spontaneous)
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 > **In-Game Description**
@@ -721,7 +721,7 @@ flowchart LR
 
 ### Hemorrhagic Stroke
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 In extreme cases of head trauma, a rupture of a blood vessel in the brain may occur, causing a life-threatening condition known as a hemorrhagic stroke. Blood from the ruptured vessel leaks into the brain, causing pressure to build up and compress the surrounding tissue, starving it of oxygen and nutrients and leading to rapid loss of consciousness and death if not surgically treated.
@@ -763,7 +763,7 @@ flowchart LR
 
 ### Hydrostatic Shock
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 > [!WARNING]
@@ -780,7 +780,7 @@ If enabled, high-energy projectiles, such as bullets, may cause [hemorrhagic str
 
 ### Hypothermia
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 _Vanilla RimWorld condition, see [Hypothermia (RimWorld Wiki)](https://rimworldwiki.com/wiki/Ailments#Hypothermia)_
@@ -818,7 +818,7 @@ flowchart LR
 
 ### Hypovolemic Shock
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 When a pawn loses a significant amount of blood, there may not be enough blood volume to circulate to the body's organs, leading to a life-threatening condition known as hypovolemic shock. Without immediate treatment, the insufficient blood flow can starve the organs of oxygen and nutrients, causing tissue damage, multiple organ failure, and ultimately death. At the same time, the reduced blood flow prevents body temperature from being adequately maintained, which can lead to [hypothermia](#hypothermia) and further complications.
@@ -863,7 +863,7 @@ During the initial emergency treatment of hypovolemic shock, its progression can
 
 ### Hypoxia
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Hypoxia is a condition in which the body or a region of the body is deprived of adequate oxygen supply at the tissue level. The cause of hypoxia may vary, but it is often the result of a severe lack of blood flow to the affected area, such as in cases of [hypovolemic shock](#hypovolemic-shock) and [cardiac arrest](#cardiac-arrest), or due to reduced oxygen levels in the blood, for example, caused by [hemodilution](#hemodilution). Hypoxia can lead to tissue damage, multiple organ failure, and death if not treated immediately. Additionally, cells will start to metabolize anaerobically in hypoxic conditions, leading to the production of lactic acid and [acidosis](#acidosis), which can further exacerbate the overall condition of the patient.
@@ -938,7 +938,7 @@ flowchart LR
 
 ### Inhalation Injury
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Inhalation injuries are caused by the inhalation of hot gases, steam, or smoke, which can cause burns to the respiratory tract and lungs. If enabled in the mod settings, inhalation injuries manifest themselves as burn injuries to the lungs, for example, when a pawn is exposed to a fire or explosion.
@@ -948,7 +948,7 @@ Inhalation injuries are caused by the inhalation of hot gases, steam, or smoke, 
 
 ### Ischemia (Tourniquet)
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Ischemia occurs when blood flow to a tissue is restricted, leading to a shortage of oxygen and nutrients needed for cellular metabolism. Over time, this can result in tissue damage and necrosis if not promptly addressed. The only cause of ischemia in More Injuries is the application of a tourniquet.
@@ -968,7 +968,7 @@ Ischemia occurs when blood flow to a tissue is restricted, leading to a shortage
 
 ### Ketamine Buildup
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 > [!CAUTION]
@@ -979,7 +979,7 @@ Ischemia occurs when blood flow to a tissue is restricted, leading to a shortage
 
 ### Lung Collapse
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 When a creature is exposed to a sudden change in pressure, such as caused by thermobaric weapons and other high-explosive devices, the lung tissue may rupture, causing air to leak into the chest cavity and compress the lung, leading to a life-threatening condition known as a lung collapse.
@@ -999,7 +999,7 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 
 ### Mechanite Therapy
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 > [!CAUTION]
@@ -1010,7 +1010,7 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 
 ### Morphine High
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 > [!CAUTION]
@@ -1021,7 +1021,7 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 
 ### Paralysis
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 > **In-Game Description**
@@ -1041,7 +1041,7 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 
 ### Spalling Injury
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 When high-velocity projectiles are stopped by armor, the large amount of kinetic energy can cause the projectile and top layer of the armor to shatter into fragments, which can cause additional injuries to the wearer of the armor, even if the projectile itself did not penetrate. The chance and severity of spalling depends on a variety of factors, such as the angle of impact and the hardness and condition of the armor. 
@@ -1068,7 +1068,7 @@ Modern armor is designed to prevent spalling by adding softer layers above the h
 
 ### Vasodilation
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 > [!CAUTION]
@@ -1079,7 +1079,7 @@ Modern armor is designed to prevent spalling by adding softer layers above the h
 
 ## New Body Parts
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 More Injuries simulates a variety of new body parts and re-scales the coverage of existing body parts to provide a more detailed and realistic simulation of injuries and medical conditions.
@@ -1105,7 +1105,7 @@ The spinal cord is a bundle of nerves that runs down the center of the back and 
 
 ## Medical Devices and Procedures
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 In order to effectively treat the new injuries and medical conditions introduced by More Injuries, several new medical devices and treatment options have been added to the game.
@@ -1450,7 +1450,7 @@ Applying a tourniquet is part of the [First Aid](#first-aid) order for *drafted*
 
 ## Surgeries
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 Some injuries and medical conditions require surgical intervention to repair the damage and restore the patient to full health. More Injuries introduces a variety of new surgeries that can be performed by skilled doctors to treat complex injuries and medical conditions.  
@@ -1606,7 +1606,7 @@ $\rightarrow$ *see [lung collapse](#lung-collapse)*
 
 ## New Research Projects
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
 <!-- @end_generated_block -->
 
 TODO: update docs

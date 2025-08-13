@@ -1,7 +1,7 @@
 # Pathophysiological System
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
-_:file_folder: [More Injuries User Manual](/docs/content/README.md) $\rightarrow$ [Pathophysiological System](/docs/content/pathophysiological-system.md)_
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
+_:file_folder: [More Injuries User Manual](/docs/content/README.md) :arrow_right: [Pathophysiological System](/docs/content/pathophysiological-system.md)_
 <!-- @end_generated_block -->
 
 The More Injuries mod introduces a pathophysiological system that simulates the interactions between injuries and medical conditions in a more realistic and immersive way. This system allows for complex interactions between different injuries and medical conditions, leading to cascading effects that can be difficult to manage. For example, the presence of one injury may exacerbate the effects of another, or injecting a certain drug may have different effects depending on the presence of other injuries or medical conditions.

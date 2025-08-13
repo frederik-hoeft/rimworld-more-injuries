@@ -1,7 +1,7 @@
 # Adrenaline Rush
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
-_:file_folder: [More Injuries User Manual](/docs/content/README.md) $\rightarrow$ [Injuries and Medical Conditions A-Z](/docs/content/injuries-and-medical-conditions-a-z/README.md) $\rightarrow$ [Adrenaline Rush](/docs/content/injuries-and-medical-conditions-a-z/adrenaline-rush.md)_
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
+_:file_folder: [More Injuries User Manual](/docs/content/README.md) :arrow_right: [Injuries and Medical Conditions A-Z](/docs/content/injuries-and-medical-conditions-a-z/README.md) :arrow_right: [Adrenaline Rush](/docs/content/injuries-and-medical-conditions-a-z/adrenaline-rush.md)_
 <!-- @end_generated_block -->
 
 Adrenaline, also known as epinephrine, is a naturally occurring hormone that is released in response to stress or danger. It increases heart rate, blood pressure, and energy levels, preparing the body for a fight-or-flight response. In the game, an adrenaline rush can occur naturally in pawns as a result of combat and injury, or it can artificially be induced through the use of an [epinephrine injection](#epinephrine-autoinjector).

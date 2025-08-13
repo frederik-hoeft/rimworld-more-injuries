@@ -1,7 +1,7 @@
 # Brain Damage
 
-<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " $\\rightarrow$ "} -->
-_:file_folder: [More Injuries User Manual](/docs/content/README.md) $\rightarrow$ [Injuries and Medical Conditions A-Z](/docs/content/injuries-and-medical-conditions-a-z/README.md) $\rightarrow$ [Brain Damage](/docs/content/injuries-and-medical-conditions-a-z/brain-damage.md)_
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
+_:file_folder: [More Injuries User Manual](/docs/content/README.md) :arrow_right: [Injuries and Medical Conditions A-Z](/docs/content/injuries-and-medical-conditions-a-z/README.md) :arrow_right: [Brain Damage](/docs/content/injuries-and-medical-conditions-a-z/brain-damage.md)_
 <!-- @end_generated_block -->
 
 In this context, "brain damage" refers to a range of temporary or permanent neurological conditions that can occur as a result of traumatic brain injury, stroke, or [hypoxia](#hypoxia). Brain damage can manifest in various ways, including cognitive impairments, motor dysfunction, and changes in personality. The severity and type of brain damage depend on the extent of the injury and the specific areas of the brain affected.
