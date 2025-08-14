@@ -11,7 +11,7 @@ _:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [
 
 **Effects**: Slight reduction in consciousness and cognitive function during the treatment period.
 
-**Treatment**: N/A
+**Treatment**: After a few days of rest and recovery, the patient will gradually regain full cognitive function as the mechanites complete their work.
 
 <!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
 ---

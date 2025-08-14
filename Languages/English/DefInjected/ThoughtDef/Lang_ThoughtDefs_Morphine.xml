@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: slight buzz -->
+  <MorphineHigh.stages.slight_buzz.label>slight buzz</MorphineHigh.stages.slight_buzz.label>
+  <!-- EN: Ah... yeah... things aren't as sharp anymore. -->
+  <MorphineHigh.stages.slight_buzz.description>Ah... yeah... things aren't as sharp anymore.</MorphineHigh.stages.slight_buzz.description>
+  <!-- EN: warm pudding limbs -->
+  <MorphineHigh.stages.warm_pudding_limbs.label>warm pudding limbs</MorphineHigh.stages.warm_pudding_limbs.label>
+  <!-- EN: Yeah... that's the stuff. My limbs feel like warm pudding. -->
+  <MorphineHigh.stages.warm_pudding_limbs.description>Yeah... that's the stuff. My limbs feel like warm pudding.</MorphineHigh.stages.warm_pudding_limbs.description>
+  <!-- EN: pure euphoria -->
+  <MorphineHigh.stages.pure_euphoria.label>pure euphoria</MorphineHigh.stages.pure_euphoria.label>
+  <!-- EN: Wheeeeeeeeeeeeeeeeeeeeeeee. -->
+  <MorphineHigh.stages.pure_euphoria.description>Wheeeeeeeeeeeeeeeeeeeeeeee.</MorphineHigh.stages.pure_euphoria.description>
+  <!-- EN: too comfy to care -->
+  <MorphineHigh.stages.too_comfy_to_care.label>too comfy to care</MorphineHigh.stages.too_comfy_to_care.label>
+  <!-- EN: Whoa... the walls are melting. ...uh... stay awake... nah, too comfy... -->
+  <MorphineHigh.stages.too_comfy_to_care.description>Whoa... the walls are melting. ...uh... stay awake... nah, too comfy...</MorphineHigh.stages.too_comfy_to_care.description>
+</LanguageData>
