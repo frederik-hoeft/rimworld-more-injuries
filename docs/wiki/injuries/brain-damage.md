@@ -8,10 +8,6 @@ In this context, "brain damage" refers to a range of temporary or permanent neur
 
 Brain damage may not always be immediately apparent, as some symptoms may take time to develop as the patient recovers from the initial injury. In some cases, brain damage may be reversible with experimental treatments, such as [mechanite therapy](/docs/wiki/injuries/mechanite-therapy.md#mechanite-therapy) or [cellular regenerative neurosurgery](/docs/wiki/surgeries.md#cellular-regenerative-neurosurgery), which can help repair damaged brain tissue and restore normal function. However, these futuristic treatments require advanced research and technology, and may be expensive and time-consuming to perform.
 
-**Causes**: [hypoxia](/docs/wiki/injuries/hypoxia.md#hypoxia-brain)
-
-**Effects**: Effects of brain damage can vary widely depending on the specific areas of the brain affected and the severity of the injury. Common effects are listed below.
-
 ```mermaid
 ---
 config:
@@ -26,6 +22,10 @@ flowchart LR
 ```
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: [hypoxia](/docs/wiki/injuries/hypoxia.md#hypoxia-brain)
+
+**Effects**: Effects of brain damage can vary widely depending on the specific areas of the brain affected and the severity of the injury. Common effects are listed below.
 
 Brain damage may manifest in one of the following ways:
 

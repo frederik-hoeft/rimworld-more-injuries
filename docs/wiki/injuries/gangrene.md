@@ -14,10 +14,6 @@ Gangrene is a type of tissue death caused by a lack of blood supply. Symptoms ma
 > Over time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.  
 > The affected body part is irreversibly damaged and should be amputated to prevent sepsis."_
 
-**Causes**: A lack of blood supply to a body part, often due to a [tourniquet](/docs/wiki/medical-devices.md#tourniquet) that has been applied for too long or other conditions that restrict blood flow.
-
-**Effects**: The affected body part will become dry, shrunken, and dark reddish-black, and may eventually fall off if not removed surgically. Dry gangrene may progress to [wet gangrene](#wet-gangrene) if an infection develops in the dead tissues.
-
 ```mermaid
 ---
 config:
@@ -34,6 +30,10 @@ flowchart LR
 ```
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: A lack of blood supply to a body part, often due to a [tourniquet](/docs/wiki/medical-devices.md#tourniquet) that has been applied for too long or other conditions that restrict blood flow.
+
+**Effects**: The affected body part will become dry, shrunken, and dark reddish-black, and may eventually fall off if not removed surgically. Dry gangrene may progress to [wet gangrene](#wet-gangrene) if an infection develops in the dead tissues.
 
 **Treatment**: The affected body part is irreversibly damaged and should be amputated to prevent life-threatening infection.
 

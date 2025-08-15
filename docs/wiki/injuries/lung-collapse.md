@@ -10,10 +10,6 @@ When a creature is exposed to a sudden change in pressure, such as caused by the
 > _"**Lung collapse** &mdash; A buildup of air inside the chest cavity creates pressure against the lung. Pressure increases as more air enters this space. The lung collapses, impairing normal breathing causing surrounding structures to shift. When severe enough to cause these shifts and hypotension, it is called a tension pneumothorax. In this life-threatening condition, the increased pressure inside the chest can compress the heart and lead to a collapse of the blood vessels that drain to the heart, causing obstructive shock. With the heart unable to fill, cardiac output drops. Hypotension and shock ensue. If left untreated treated, it can lead to cardiac arrest and death.  
 > Must be surgically repaired."_
 
-**Causes**: Exposure to a sudden change in pressure, such as caused by thermobaric weapons and other high-explosive devices.
-
-**Effects**: Impaired breathing, chest pain, and a life-threatening condition known as a tension pneumothorax, which can lead to obstructive shock, [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest), and potentially death if not surgically treated.
-
 ```mermaid
 ---
 config:
@@ -27,6 +23,12 @@ flowchart LR
   linkStyle 0,1 stroke: #b10000
   style lung_collapse stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: Exposure to a sudden change in pressure, such as caused by thermobaric weapons and other high-explosive devices.
+
+**Effects**: Impaired breathing, chest pain, and a life-threatening condition known as a tension pneumothorax, which can lead to obstructive shock, [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest), and potentially death if not surgically treated.
 
 **Treatment**: Resuscitation if the patient goes into [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest) and immediate [thoracotomic surgery](/docs/wiki/surgeries.md#thoracotomy) or [video-assisted thoracoscopic surgery](/docs/wiki/surgeries.md#video-assisted-thoracoscopic-surgery) to repair the lung collapse and prevent further complications.
 

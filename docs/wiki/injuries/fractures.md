@@ -13,10 +13,6 @@ When a pawn takes damage to a bone or solid body part, there is a chance that a 
 > _"**Bone fracture** &mdash; A partial or complete break of a bone caused by trauma, overuse, or disease. The bone may be cracked, splintered, or completely broken into two or more pieces. Until properly treated, the affected limb will be unable to bear weight or move properly, causing severe pain and loss of function.  
 > Must either be splinted to immobilize the bone and promote healing over time, or surgically repaired to realign and stabilize the bone, allowing for quick recovery."_
 
-**Causes**: Sharp or blunt damage to a bone or solid body part.
-
-**Effects**: A bone fracture will cause the affected limb to be unable to bear weight or move properly, causing full immobility of the corresponding body part and `+15%` pain. Bone fractures may also cause [bone fragment lacerations](#bone-fragment-laceration) if bone fragments break off and cut into the surrounding tissue.
-
 ```mermaid
 ---
 config:
@@ -32,6 +28,10 @@ flowchart LR
 ```
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: Sharp or blunt damage to a bone or solid body part.
+
+**Effects**: A bone fracture will cause the affected limb to be unable to bear weight or move properly, causing full immobility of the corresponding body part and `+15%` pain. Bone fractures may also cause [bone fragment lacerations](#bone-fragment-laceration) if bone fragments break off and cut into the surrounding tissue.
 
 **Treatment**: Bone fractures must be treated using a [splint](/docs/wiki/medical-devices.md#splint) to immobilize the bone and promote [healing over time](#healing-bone-fracture), or [osteosynthetic surgery](/docs/wiki/surgeries.md#osteosynthetic-surgery) to realign and stabilize the bone with metal implants, allowing for a quick recovery.
 
@@ -54,10 +54,6 @@ When a bone is fractured, there is a chance that fragments of the bone will brea
 > **In-Game Description**  
 > _"**Cut (bone fragments)** &mdash; A cut caused by fragments of a bone."_
 
-**Causes**: A [bone fracture](#bone-fracture) may result in sharp bone fragments breaking off and cutting into the surrounding tissue.
-
-**Effects**: A bone fragment laceration will cause additional pain and bleeding, as well as a risk of infection if not properly treated.
-
 ```mermaid
 ---
 config:
@@ -72,6 +68,10 @@ flowchart LR
 ```
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: A [bone fracture](#bone-fracture) may result in sharp bone fragments breaking off and cutting into the surrounding tissue.
+
+**Effects**: A bone fragment laceration will cause additional pain and bleeding, as well as a risk of infection if not properly treated.
 
 **Treatment**: Bone fragment lacerations can be treated like any other cut or laceration, by treating the wound with or without medicine, preferably in a clean environment to reduce the risk of infection.
 

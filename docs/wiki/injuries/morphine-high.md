@@ -26,23 +26,25 @@ flowchart LR
   style morphine_high stroke-width: 4px
 ```
 
+*See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
 **Causes**: Administering a [morphine autoinjector](/docs/wiki/medical-devices.md#morphine-autoinjector).
 
 **Effects**: Euphoria, pain relief, reduced consciousness, and [vasodilation](/docs/wiki/injuries/vasodilation.md#vasodilation). In high doses or when mixed with other depressants like alcohol, it can lead to respiratory depression, [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest), and death.
 
 **Treatment**: Currently, no specific antidote for morphine overdose has been implemented in the game. Treatment for overdose involves supportive care and treating symptoms as they arise.
 
-> [!WARNING]
-> Due to its adverse effects on the respiratory systems, morphine should be used with caution, and patients should be closely monitored for any signs of complications.
-
-> [!NOTE]
-> While a decisive factor in real-world medical scenarios, the addictive properties of morphine are not currently simulated in the game.
-
 **Thoughts per Stage**:
 > _"**Slight buzz** (+3) &mdash; Ah... yeah... things aren't as sharp anymore."_  
 > _"**Warm pudding limbs** (+10) &mdash; Yeah... that's the stuff. My limbs feel like warm pudding."_  
 > _"**Pure euphoria** (+15) &mdash; Wheeeeeeeeeeeeeeeeeeeeeeee."_  
 > _"**Too comfy to care** (+5) &mdash; Whoa... the walls are melting. ...uh... stay awake... nah, too comfy..."_
+
+> [!WARNING]
+> Due to its adverse effects on the respiratory systems, morphine should be used with caution, and patients should be closely monitored for any signs of complications.
+
+> [!NOTE]
+> While a decisive factor in real-world medical scenarios, the addictive properties of morphine are not currently simulated in the game.
 
 <!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
 ---

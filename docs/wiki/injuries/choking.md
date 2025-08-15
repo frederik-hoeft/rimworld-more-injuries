@@ -11,10 +11,6 @@ Choking is a medical emergency that occurs when a foreign object becomes lodged 
 > **In-Game Description**
 > _"**Choking on blood** &mdash; Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. The bleeding must be stopped and the airways cleared to prevent death. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. Otherwise, the airways must be cleared using a specialized airway suction device or by compressing the chest using CPR to expel the blood and restore breathing."_
 
-**Causes**: Severe injuries to the mouth, throat, or chest that cause bleeding into the airways.
-
-**Effects**: Coughing, suffocation, loss of consciousness, and death if not treated immediately.
-
 ```mermaid
 ---
 config:
@@ -22,7 +18,7 @@ config:
     htmlLabels: true
 ---
 flowchart LR
-  bleeding[bleeding injury in the airways] ==> choking_on_blood[choking on blood]
+  bleeding[bleeding airway injury] ==> choking_on_blood[choking on blood]
   choking_on_blood ==> | severity = 1 | death[death]
 
   linkStyle 0,1 stroke: #b10000
@@ -30,6 +26,10 @@ flowchart LR
 ```
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: Severe injuries to the mouth, throat, or chest that cause bleeding into the airways.
+
+**Effects**: Coughing, suffocation, loss of consciousness, and death if not treated immediately.
 
 **Treatment**: Stopping the bleeding of the mouth, throat, or chest will prevent further blood from entering the airways and slow the progression of the condition. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. If the patient is unconscious, the airways must be cleared using a specialized [airway suction device](/docs/wiki/medical-devices.md#airway-suction-device) or by compressing the chest using [CPR](/docs/wiki/medical-devices.md#cpr) to expel the blood and restore breathing. To unlock [CPR](/docs/wiki/medical-devices.md#cpr), you must first complete the [cardiopulmonary resuscitation (CPR)](/docs/wiki/research.md#cardiopulmonary-resuscitation-cpr) research project.
 

@@ -13,10 +13,6 @@ The condition contributes to a dangerous cycle known as the [lethal triad of tra
 > The condition contributes to a dangerous cycle known as the "lethal triad" of trauma: acidosis, hypothermia, and coagulopathy. As blood pH drops, clotting function becomes impaired, increasing the risk of uncontrolled bleeding and trauma-induced coagulopathy (TIC). At the same time, mitochondrial function declines and cell-energy production is impaired, hindering thermogenesis and maintaining body temperature, ultimately leading to hypothermia and further exacerbating the cycle of trauma.  
 > Acidosis is treated by restoring oxygen delivery to tissues - typically through rapid control of bleeding, fluid resuscitation with blood products, and correction of hypoxia. Once tissue oxygenation is restored, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys."_
 
-**Causes**: [Hypoxia](/docs/wiki/injuries/hypoxia.md) or [severe ischemia after prolonged tourniquet application](/docs/wiki/injuries/ischemia.md#ischemia-tourniquet).
-
-**Effects**: Directly contributes to [coagulopathy](/docs/wiki/injuries/coagulopathy.md) and [hypothermia](/docs/wiki/injuries/hypothermia.md).
-
 ```mermaid
 ---
 config:
@@ -34,6 +30,10 @@ graph LR;
 ```
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: [Hypoxia](/docs/wiki/injuries/hypoxia.md) or [severe ischemia after prolonged tourniquet application](/docs/wiki/injuries/ischemia.md#ischemia-tourniquet).
+
+**Effects**: Directly contributes to [coagulopathy](/docs/wiki/injuries/coagulopathy.md) and [hypothermia](/docs/wiki/injuries/hypothermia.md).
 
 **Treatment**: Restore oxygen delivery to tissues: control bleeding, provide fluid resuscitation, preferably with [blood products](/docs/wiki/medical-devices.md#blood-bag), and treat effects coagulopathy and hypothermia. Once underlying causes are addressed, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys.
 

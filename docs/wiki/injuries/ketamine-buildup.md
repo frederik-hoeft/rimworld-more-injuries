@@ -9,10 +9,6 @@ _:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [
 > Once administered, ketamine is distributed systemically and slowly metabolized by the liver. Blood concentrations diminish over time, but repeated or excessive doses can lead to dangerous accumulation resulting in toxicity and overdose.  
 > Symptoms of ketamine toxicity range from amnesia, confusion, and hallucinations to brain damage, respiratory depression, and death in severe cases of overdose."_
 
-**Causes**: Administration of one or more [ketamine autoinjectors](/docs/wiki/medical-devices.md#ketamine-autoinjector) lead to a buildup of ketamine in the body, which gets naturally metabolized over time.
-
-**Effects**: At therapeutic doses, ketamine provides pain relief and sedation. Memory loss, confusion, and hallucinations may occur, especially as doses increase or with prolonged use. While generally safe at recommended doses, overdose can lead to respiratory depression, unconsciousness, and death.
-
 ```mermaid
 ---
 config:
@@ -26,6 +22,12 @@ flowchart LR
   linkStyle 0,1 stroke: #b10000
   style ketamine_buildup stroke-width: 4px
 ```
+
+*See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: Administration of one or more [ketamine autoinjectors](/docs/wiki/medical-devices.md#ketamine-autoinjector) lead to a buildup of ketamine in the body, which gets naturally metabolized over time.
+
+**Effects**: At therapeutic doses, ketamine provides pain relief and sedation. Memory loss, confusion, and hallucinations may occur, especially as doses increase or with prolonged use. While generally safe at recommended doses, overdose can lead to respiratory depression, unconsciousness, and death.
 
 **Treatment**: Ketamine is automatically metabolized by the body over time. Supportive care in cases of overdose may include administering [epinephrine](/docs/wiki/medical-devices.md#epinephrine-autoinjector) to stimulate breathing and counteract respiratory depression.
 

@@ -10,10 +10,6 @@ Cardiac arrest is a sudden loss of blood flow resulting from the failure of the 
 > _"**Cardiac arrest** &mdash; Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.  
 > A skilled doctor must perform CPR to restore blood flow and hopefully restart the heart. In early stages of cardiac arrest, during ventricular fibrillation, a defibrillator can also be used to shock the heart back into a normal rhythm, which may be faster and more effective than CPR."_
 
-**Causes**: Extreme blood loss ([hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock)), [pneumothorax](/docs/wiki/injuries/lung-collapse.md#lung-collapse), [adrenaline overdose](/docs/wiki/injuries/adrenaline-rush.md#adrenaline-rush), [ketamine overdose](/docs/wiki/injuries/ketamine-buildup.md#ketamine-buildup), [chloroform overdose](/docs/wiki/injuries/chloroform-buildup.md#chloroform-buildup), [morphine overdose](/docs/wiki/injuries/morphine-high.md#morphine-high), or other conditions that starve the heart of oxygen.
-
-**Effects**: Loss of consciousness, coma, [hypoxia](/docs/wiki/injuries/hypoxia.md#hypoxia), multiple organ failure, and death if not treated immediately. [Hypothermia](/docs/wiki/injuries/hypothermia.md#hypothermia) will set in quickly as the body is unable to distribute heat effectively.
-
 ```mermaid
 ---
 config:
@@ -39,6 +35,10 @@ style cardiac_arrest stroke-width: 4px
 ```
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: Extreme blood loss ([hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock)), [pneumothorax](/docs/wiki/injuries/lung-collapse.md#lung-collapse), [adrenaline overdose](/docs/wiki/injuries/adrenaline-rush.md#adrenaline-rush), [ketamine overdose](/docs/wiki/injuries/ketamine-buildup.md#ketamine-buildup), [chloroform overdose](/docs/wiki/injuries/chloroform-buildup.md#chloroform-buildup), [morphine overdose](/docs/wiki/injuries/morphine-high.md#morphine-high), or other conditions that starve the heart of oxygen.
+
+**Effects**: Loss of consciousness, coma, [hypoxia](/docs/wiki/injuries/hypoxia.md#hypoxia), multiple organ failure, and death if not treated immediately. [Hypothermia](/docs/wiki/injuries/hypothermia.md#hypothermia) will set in quickly as the body is unable to distribute heat effectively.
 
 **Treatment**: Cardiac arrest must be treated immediately with [CPR](/docs/wiki/medical-devices.md#cpr) (which needs to be researched first) to restore blood flow and hopefully restart the heart. In cases of `ventricular fibrillation`, a [defibrillator](/docs/wiki/medical-devices.md#defibrillator) can be used to shock the heart back into a normal rhythm, which may be faster and more effective than [CPR](/docs/wiki/medical-devices.md#cpr). In cases of `clinical death`, only [CPR](/docs/wiki/medical-devices.md#cpr) will be effective. [Epinephrine](/docs/wiki/medical-devices.md#epinephrine-autoinjector) may be administered to assist with defibrillation efforts and [CPR](/docs/wiki/medical-devices.md#cpr) in cases of cardiac arrest, but it is not required.
 

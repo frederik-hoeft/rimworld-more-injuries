@@ -12,10 +12,6 @@ Hearing loss is a partial or total inability to hear. It may be temporary or per
 > **In-Game Description**
 > _"**Temporary hearing loss** &mdash; Temporary deafness caused by prolonged exposure to loud noises, such as gunfire, explosions, or machinery. The hair cells in the inner ear are damaged, leading to hearing loss. The damage can become permanent if the exposure is severe or prolonged."_
 
-**Causes**: Prolonged exposure to gunfire or explosions without [hearing protection](/docs/wiki/medical-devices.md#hearing-protection). More likely to occur indoors or in close proximity to the source of the noise.
-
-**Effects**: Temporary reduction in hearing ability, ranging from mild to complete deafness, depending on the severity of the exposure. May progress to [permanent hearing loss](#permanent-hearing-loss) if the exposure is severe or prolonged.
-
 ```mermaid
 ---
 config:
@@ -31,6 +27,10 @@ flowchart LR
 ```
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: Prolonged exposure to gunfire or explosions without [hearing protection](/docs/wiki/medical-devices.md#hearing-protection). More likely to occur indoors or in close proximity to the source of the noise.
+
+**Effects**: Temporary reduction in hearing ability, ranging from mild to complete deafness, depending on the severity of the exposure. May progress to [permanent hearing loss](#permanent-hearing-loss) if the exposure is severe or prolonged.
 
 **Treatment**: Temporary hearing loss will resolve on its own over time, but may become permanent if the exposure is severe or prolonged.
 
