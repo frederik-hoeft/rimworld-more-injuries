@@ -2,7 +2,7 @@
 <Defs>
   <WorkGiverDef>
     <defName>DoctorUseDefibrillator</defName>
-    <label>stabilize or resuscitate patients with arythmia or cardiac arrest</label>
+    <label>stabilize or resuscitate patients with arrhythmia or cardiac arrest</label>
     <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_UseDefibrillator</giverClass>
     <workType>Doctor</workType>
     <emergency>true</emergency>

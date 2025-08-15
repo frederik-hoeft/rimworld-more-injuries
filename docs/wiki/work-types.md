@@ -19,7 +19,7 @@ More Injuries introduces several new automated work types for doctors to handle 
 ## Defibrillation
 
 > **In-Game Label**
-> _"Stabilize or resuscitate patients with arythmia or cardiac arrest"_
+> _"Stabilize or resuscitate patients with arrhythmia or cardiac arrest"_
 
 Assigned doctors will automatically attempt to defibrillate patients in hospital beds who are suffering from a [heart attack](https://rimworldwiki.com/wiki/Ailments#Heart_attack) or [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest) during the `ventricular fibrillation` stage. The doctor will search for an accessible [defibrillator](/docs/wiki/medical-devices.md#defibrillator) and start the defibrillation procedure to restore normal heart rhythm and save the patient's life.
 
