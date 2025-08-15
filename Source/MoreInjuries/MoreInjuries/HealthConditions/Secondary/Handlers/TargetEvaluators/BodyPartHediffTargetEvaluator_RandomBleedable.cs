@@ -7,7 +7,8 @@ public class BodyPartHediffTargetEvaluator_RandomBleedable : BodyPartHediffTarge
 {
     protected override bool IncludeBodyPart(BodyPartRecord bodyPart, Pawn pawn) =>
         // include only body parts that have a bleed rate greater than 0
-        base.IncludeBodyPart(bodyPart, pawn) 
-        && bodyPart.def.bleedRate > Mathf.Epsilon 
-        && !bodyPart.def.IsSolid(bodyPart, pawn.health.hediffSet.hediffs);
+        base.IncludeBodyPart(bodyPart, pawn)
+        && bodyPart.def.bleedRate > Mathf.Epsilon
+        && !bodyPart.def.IsSolid(bodyPart, pawn.health.hediffSet.hediffs)
+        && bodyPart.coverage > 0f;
 }
