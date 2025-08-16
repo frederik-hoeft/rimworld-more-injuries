@@ -6,6 +6,7 @@
 		<Version>1.6.0.0-beta3</Version>
 		<Platforms>AnyCPU</Platforms>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<Configurations>Debug;Release;Test</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,6 +24,10 @@
 	
 	<PropertyGroup Condition="'$(ModBadHygiene)'=='enable'">
 		<DefineConstants>$(DefineConstants);MOD_BAD_HYGIENE</DefineConstants>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|AnyCPU'">
+		<DefineConstants>$(DefineConstants);TEST;DEBUG</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup Condition="'$(ModBadHygiene)'=='enable'">
