@@ -8,6 +8,8 @@ $project_name = "MoreInjuries"
 $game_version = "1.6"
 $mod_root = (Get-Item -LiteralPath "${PSScriptRoot}/../../../..").FullName
 $project_path = "${PSScriptRoot}/../${project_name}.csproj"
+# conditional compilation
+$mod_feature_flags = @("ModBadHygiene")
 
 function Log-Message {
     [CmdletBinding()]
@@ -25,15 +27,21 @@ $config = Get-Content -LiteralPath "${PSScriptRoot}/hostconfig.json" -Raw | Conv
 # Use the path from the JSON file
 $upload_dir = "$($config.steam_root)/steamapps/common/RimWorld/Mods/${project_name}"
 
+# append /p:<mod_feature_flags[i]>="enable" for all defined feature flags
+$mod_flag_properties = @()
+foreach ($flag in $mod_feature_flags) {
+    $mod_flag_properties += "-p:${flag}=enable"
+}
+
 # build and publish the project
 Log-Message "Building and publishing ${project_name} v${game_version}..."
 dotnet clean "${project_path}"
 if (!$?) { exit $LASTEXITCODE }
 dotnet restore "${project_path}" --no-cache
 if (!$?) { exit $LASTEXITCODE }
-dotnet build "${project_path}" -c "${configuration}"
+dotnet build "${project_path}" -c "${configuration}" @mod_flag_properties
 if (!$?) { exit $LASTEXITCODE }
-dotnet publish "${project_path}" -c "${configuration}" -p:PublishProfile=$configuration
+dotnet publish "${project_path}" -c "${configuration}" -p:PublishProfile=$configuration @mod_flag_properties
 if (!$?) { exit $LASTEXITCODE }
 
 # clean upload dir

@@ -43,8 +43,6 @@ internal sealed class HearingLossWorker(MoreInjuryComp parent, IReadOnlyList<Bod
 
     public void Notify_UsedVerb(Pawn pawn, Verb verb)
     {
-        Logger.LogDebug($"Used verb {verb.verbProps?.label} ({verb.GetType()}). Pawn: {pawn?.Name}");
-
         // early exit if the pawn is not equipped with a gun
         if (!IsLoudAction(verb) || verb is not 
         {

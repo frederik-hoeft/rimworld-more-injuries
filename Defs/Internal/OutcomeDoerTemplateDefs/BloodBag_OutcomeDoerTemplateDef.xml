@@ -32,6 +32,9 @@
             <hediffDef>BloodLoss</hediffDef>
             <severityOffset>-0.35</severityOffset>
           </li>
+          <li MayRequire="Dubwise.DubsBadHygiene" Class="MoreInjuries.Integrations.DubsBadHygiene.OutcomeDoer_TransfusionHydration">
+            <needDef>DBHThirst</needDef>
+          </li>
         </outcomeDoers>
       </li>
     </modExtensions>

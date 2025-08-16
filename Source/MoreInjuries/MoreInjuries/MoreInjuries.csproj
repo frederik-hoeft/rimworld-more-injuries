@@ -3,17 +3,31 @@
 		<TargetFramework>net472</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
-		<Version>1.6.0.0-beta2</Version>
+		<Version>1.6.0.0-beta3</Version>
 		<Platforms>AnyCPU</Platforms>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4535" />
 		<PackageReference Include="Lib.Harmony" Version="2.3.6" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<ProjectReference Include="..\MoreInjuries.Roslyn.SourceGen\MoreInjuries.Roslyn.SourceGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<ModBadHygiene>enable</ModBadHygiene>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(ModBadHygiene)'=='enable'">
+		<DefineConstants>$(DefineConstants);MOD_BAD_HYGIENE</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(ModBadHygiene)'=='enable'">
+		<Reference Include="BadHygiene">
+			<HintPath>_build\dependencies\BadHygiene.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 </Project>

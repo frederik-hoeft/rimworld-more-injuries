@@ -169,9 +169,9 @@ public class MoreInjuriesMod : Mod
         Text.Font = GameFont.Small;
         list.CheckboxLabeled("MI_Settings_Features_LethalTriad_EnableLabel".Translate(ENABLE_ADVANCED_TRAUMA_SIMULATION_DEFAULT.NamedDefault()), ref Settings.EnableAdvancedTraumaSimulation,
             "MI_Settings_Features_LethalTriad_EnableTooltip".Translate());
-        list.Label("MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorLabel".Translate(Math.Round(Settings.HypoxiaAcidosisConversionFactor / 100f, 2).NamedValue(), HYPOXIA_ACIDOSIS_CONVERSION_FACTOR_DEFAULT.NamedDefault()), -1,
+        list.Label("MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorLabel".Translate(Math.Round(Settings.HypoxiaAcidosisConversionFactor * 100f, 2).NamedValue(), Math.Round(HYPOXIA_ACIDOSIS_CONVERSION_FACTOR_DEFAULT * 100f, 2).NamedDefault()), -1,
             "MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorTooltip".Translate());
-        Settings.HypoxiaAcidosisConversionFactor = (float)Math.Round(list.Slider((float)Math.Round(Settings.HypoxiaAcidosisConversionFactor / 100f, 2), 0f, 5f) * 100f, 4);
+        Settings.HypoxiaAcidosisConversionFactor = (float)Math.Round(list.Slider((float)Math.Round(Settings.HypoxiaAcidosisConversionFactor * 100f, 2), 0f, 5f) / 100f, 4);
         // neural damage
         list.GapLine();
         Text.Font = GameFont.Medium;
