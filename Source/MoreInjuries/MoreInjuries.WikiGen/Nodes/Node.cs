@@ -1,8 +1,8 @@
-﻿using CreateIndex.Model;
+﻿using MoreInjuries.WikiGen.Model;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
-namespace CreateIndex.Nodes;
+namespace MoreInjuries.WikiGen.Nodes;
 
 internal abstract class Node(string name, string? displayName, int level) : INode
 {

@@ -1,4 +1,4 @@
-﻿namespace CreateIndex.Nodes;
+﻿namespace MoreInjuries.WikiGen.Nodes;
 
 internal sealed class IndentCache(int indentSize)
 {

@@ -1,8 +1,8 @@
-﻿using CreateIndex.Model;
+﻿using MoreInjuries.WikiGen.Model;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-namespace CreateIndex.Nodes.Processing;
+namespace MoreInjuries.WikiGen.Nodes.Processing;
 
 internal sealed partial class ToTopProcessor : LineProcessorBase
 {

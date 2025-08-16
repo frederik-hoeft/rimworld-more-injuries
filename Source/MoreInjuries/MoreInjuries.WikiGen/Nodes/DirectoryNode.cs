@@ -1,6 +1,6 @@
-﻿using CreateIndex.Model;
+﻿using MoreInjuries.WikiGen.Model;
 
-namespace CreateIndex.Nodes;
+namespace MoreInjuries.WikiGen.Nodes;
 
 internal sealed class DirectoryNode(string name, string? displayName, int level, DirectoryInfo info) : Node(name, displayName, level)
 {

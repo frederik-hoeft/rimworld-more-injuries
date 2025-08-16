@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CreateIndex.Model;
+namespace MoreInjuries.WikiGen.Model;
 
 [method: JsonConstructor]
 internal sealed record ToTopParams

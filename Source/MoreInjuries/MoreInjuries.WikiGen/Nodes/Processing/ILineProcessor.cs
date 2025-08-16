@@ -1,4 +1,4 @@
-﻿namespace CreateIndex.Nodes.Processing;
+﻿namespace MoreInjuries.WikiGen.Nodes.Processing;
 
 internal interface ILineProcessor
 {

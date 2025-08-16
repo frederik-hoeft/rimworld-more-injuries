@@ -1,7 +1,7 @@
 ﻿using System.Collections.Immutable;
 using System.Text.RegularExpressions;
 
-namespace CreateIndex.Nodes.Processing;
+namespace MoreInjuries.WikiGen.Nodes.Processing;
 
 internal abstract partial class LineProcessorBase : ILineProcessor
 {

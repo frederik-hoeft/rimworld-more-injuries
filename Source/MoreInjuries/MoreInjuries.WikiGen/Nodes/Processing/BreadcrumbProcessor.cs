@@ -1,9 +1,9 @@
-﻿using CreateIndex.Model;
+﻿using MoreInjuries.WikiGen.Model;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-namespace CreateIndex.Nodes.Processing;
+namespace MoreInjuries.WikiGen.Nodes.Processing;
 
 internal sealed partial class BreadcrumbProcessor : LineProcessorBase
 {

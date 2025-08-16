@@ -1,7 +1,7 @@
-﻿using CreateIndex.Model;
+﻿using MoreInjuries.WikiGen.Model;
 using System.Diagnostics;
 
-namespace CreateIndex.Nodes;
+namespace MoreInjuries.WikiGen.Nodes;
 
 internal sealed class MarkdownNode(string name, string? displayName, int level, FileInfo info) : Node(name, displayName, level)
 {

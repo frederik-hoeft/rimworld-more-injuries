@@ -1,11 +1,11 @@
-﻿using CreateIndex.Model;
-using CreateIndex.Nodes.Processing;
+﻿using MoreInjuries.WikiGen.Model;
+using MoreInjuries.WikiGen.Nodes.Processing;
 using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace CreateIndex.Nodes;
+namespace MoreInjuries.WikiGen.Nodes;
 
 internal sealed partial class FileNode(string name, string? displayName, int level, FileInfo info) : Node(name, displayName, level)
 {

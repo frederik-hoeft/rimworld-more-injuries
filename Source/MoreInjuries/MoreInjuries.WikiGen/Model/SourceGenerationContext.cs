@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CreateIndex.Model;
+namespace MoreInjuries.WikiGen.Model;
 
 [JsonSerializable(typeof(BreadcrumbParams))]
 [JsonSerializable(typeof(TocParams))]

@@ -1,5 +1,5 @@
 using ConsoleAppFramework;
-using CreateIndex;
+using MoreInjuries.WikiGen.Nodes;
 
 ConsoleApp.Run(args, CreateIndex);
 
@@ -12,8 +12,15 @@ ConsoleApp.Run(args, CreateIndex);
 static void CreateIndex(string root, string src, bool clean = false)
 {
     ValidateArguments(root, src);
-    IndexProcessor processor = new();
-    processor.CreateIndex(root, src, clean);
+    DirectoryInfo source = new(src);
+    FileInfo[] files = source.GetFiles("*.md", SearchOption.AllDirectories);
+    DirectoryNode rootNode = new(name: root, displayName: null, level: 0, info: source);
+    foreach (FileInfo file in files)
+    {
+        rootNode.AddChild(file, file.FullName);
+    }
+    rootNode.Initialize();
+    rootNode.Process(clean);
 }
 
 static void ValidateArguments(string root, string src)

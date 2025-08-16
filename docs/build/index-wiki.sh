@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# strict mode
+set -euo pipefail
+
+compile=
+clean=
+
 # parse arguments (--compile, --clean flags)
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -20,17 +26,18 @@ done
 script_dir=$(realpath "$(dirname "${BASH_SOURCE[0]}")")
 
 runtime=win-x64
-executable="${script_dir}/artifacts/CreateIndex.exe"
+output_dir="${script_dir}/artifacts/bin"
+executable="${output_dir}/MoreInjuries.WikiGen.exe"
 
 # check if the build artifacts exist (or the --compile flag is set)
 # if we need to compile, build the solution to script_dir/artifacts
-if [[ ! -d "${script_dir}/artifacts" || $compile ]]; then
+if [[ ! -f "${executable}" || $compile ]]; then
   # clean existing artifacts
-  rm -rf "${script_dir}/artifacts/*"
-  solution="${script_dir}/CreateIndex/CreateIndex.sln"
-  dotnet publish "${solution}" --configuration Release --output "${script_dir}/artifacts" --runtime "${runtime}"
-  # re-create the gitkeep file ...
-  touch "${script_dir}/artifacts/.gitkeep"
+  if [[ -d "${output_dir}" ]]; then
+    rm -r "${output_dir}"
+  fi
+  project="${script_dir}/../../Source/MoreInjuries/MoreInjuries.WikiGen/MoreInjuries.WikiGen.csproj"
+  dotnet publish "${project}" --configuration Release --output "${output_dir}" --runtime "${runtime}"
 fi
 
 # now run the generator on the wiki directory, forward the --clean flag if set

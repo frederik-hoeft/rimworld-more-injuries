@@ -1,6 +1,6 @@
-﻿using CreateIndex.Model;
+﻿using MoreInjuries.WikiGen.Model;
 
-namespace CreateIndex.Nodes;
+namespace MoreInjuries.WikiGen.Nodes;
 
 internal interface INode
 {

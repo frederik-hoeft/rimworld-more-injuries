@@ -68,7 +68,7 @@ public class MoreInjuryComp : ThingComp
             // box everything to a list of strong references for serialization
             jobParameters = 
             [
-                .. _weakJobParameters.Select(wr =>
+                .. _weakJobParameters.Select(static wr =>
                 {
                     if (wr.TryGetTarget(out IExposable target))
                     {

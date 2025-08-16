@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5CDA0DA5-6F4F-48F6-B937-CF7CB34D068C}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreInjuries.Roslyn.SourceGen", "MoreInjuries.Roslyn.SourceGen\MoreInjuries.Roslyn.SourceGen.csproj", "{D7821F37-9F26-4D28-BCF3-4004E1A4AC63}"
@@ -15,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreInjuries.LocalizationTests", "MoreInjuries.LocalizationTests\MoreInjuries.LocalizationTests.csproj", "{F4C8C700-F28E-4C51-AB6E-28326EA1C0E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreInjuries.Tests", "MoreInjuries.Tests\MoreInjuries.Tests.csproj", "{BE4FE1C4-DC16-4A74-A819-241A99FAE4D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreInjuries.WikiGen", "MoreInjuries.WikiGen\MoreInjuries.WikiGen.csproj", "{72E8E49E-DD4F-4EE1-A604-624CD22671EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +41,10 @@ Global
 		{BE4FE1C4-DC16-4A74-A819-241A99FAE4D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE4FE1C4-DC16-4A74-A819-241A99FAE4D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE4FE1C4-DC16-4A74-A819-241A99FAE4D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72E8E49E-DD4F-4EE1-A604-624CD22671EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E8E49E-DD4F-4EE1-A604-624CD22671EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72E8E49E-DD4F-4EE1-A604-624CD22671EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72E8E49E-DD4F-4EE1-A604-624CD22671EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
