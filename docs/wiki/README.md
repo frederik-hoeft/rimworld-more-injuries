@@ -4,7 +4,7 @@
 _:file_folder: [More Injuries User Manual](/docs/wiki/README.md)_
 <!-- @end_generated_block -->
 
-_This document is intended to provide a comprehensive guide to the More Injuries mod for RimWorld. It is intended to be a reference for players who are looking to understand the mod's features and mechanics, as well as how to use them effectively._
+_This collection of documents is intended to provide a comprehensive guide to the More Injuries mod for RimWorld. It is intended to be a reference for players who are looking to understand the mod's features and mechanics, as well as how to use them effectively._
 
 _For instructions on how to install the mod, please refer to the [installation guide](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/INSTALL.md)._  
 _If you would like to contribute to this project or improve the documentation, please refer to the [contribution guidelines](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/CONTRIBUTING.md) to get started._
