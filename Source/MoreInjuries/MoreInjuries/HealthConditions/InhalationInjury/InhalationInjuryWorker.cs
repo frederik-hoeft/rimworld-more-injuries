@@ -14,7 +14,7 @@ internal sealed class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWork
     public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
     {
         Pawn patient = Target;
-        if (dinfo.Def?.hediff != KnownHediffDefOf.Burn)
+        if (dinfo.Def?.hediff != KnownHediffDefOf.Burn || !patient.IsBurning())
         {
             return;
         }
