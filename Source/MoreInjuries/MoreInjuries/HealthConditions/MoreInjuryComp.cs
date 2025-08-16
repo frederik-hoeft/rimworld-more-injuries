@@ -3,6 +3,7 @@ using Verse;
 using MoreInjuries.Debug;
 using System.Linq;
 using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using MoreInjuries.Extensions;
 
 namespace MoreInjuries.HealthConditions;
 
@@ -68,14 +69,7 @@ public class MoreInjuryComp : ThingComp
             // box everything to a list of strong references for serialization
             jobParameters = 
             [
-                .. _weakJobParameters.Select(static wr =>
-                {
-                    if (wr.TryGetTarget(out IExposable target))
-                    {
-                        return target;
-                    }
-                    return null;
-                }).Where(static x => x is not null)
+                .. _weakJobParameters.Transform(static (Std::WeakReference<IExposable> wr, out IExposable target) => wr.TryGetTarget(out target))
             ];
         }
         Scribe_Collections.Look(ref jobParameters, "jobParameters", LookMode.Deep);

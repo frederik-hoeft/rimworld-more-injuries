@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
@@ -9,7 +10,7 @@ namespace MoreInjuries.AI.Jobs.Outcomes;
 public class JobOutcomeProperties_ModExtension : DefModExtension
 {
     // don't rename this field. XML defs depend on this name
-    private readonly List<JobOutcomeDoer> outcomeDoers = default!;
+    protected readonly List<JobOutcomeDoer>? outcomeDoers = default!;
 
-    public List<JobOutcomeDoer> OutcomeDoers => outcomeDoers;
+    public virtual IReadOnlyList<JobOutcomeDoer> OutcomeDoers => Throw.InvalidOperationException.IfNull(this, outcomeDoers);
 }

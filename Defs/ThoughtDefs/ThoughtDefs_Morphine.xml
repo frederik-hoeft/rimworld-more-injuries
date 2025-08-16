@@ -3,7 +3,7 @@
   <ThoughtDef>
     <defName>MorphineHigh</defName>
     <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>MorphineHigh</hediff>
+    <hediff>MorphineBuildup</hediff>
     <validWhileDespawned>true</validWhileDespawned>
     <developmentalStageFilter>Child, Adult</developmentalStageFilter>
     <stages>

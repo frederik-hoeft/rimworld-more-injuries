@@ -61,7 +61,6 @@ public sealed class JobDriver_UseSalineBag : JobDriver_TransfusionBase
             hemodilutionThreshold: BloodLossConstants.BLOOD_LOSS_THRESHOLD, 
             fluidVolumePerBag);
         int requiredTransfusions = Mathf.Min(requiredTransfusionsForBloodLoss, maxSafeTransfusions);
-        Logger.LogDebug($"Calculated required saline transfusions for {patient.Name}: {requiredTransfusions} (blood loss: {bloodLossSeverity}, hemodilution: {hemodilutionSeverity}, max safe: {maxSafeTransfusions})");
         return requiredTransfusions;
     }
 

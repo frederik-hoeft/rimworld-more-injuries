@@ -22,4 +22,35 @@
       </nomatch>
     </match>
   </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Biotech</li>
+    </mods>
+    <match Class="PatchOperationConditional">
+      <xpath>Defs/ThingDef[defName="HemogenPack"]/modExtensions</xpath>
+      <nomatch Class="PatchOperationAdd">
+        <xpath>Defs/ThingDef[defName="HemogenPack"]</xpath>
+        <value>
+          <modExtensions></modExtensions>
+        </value>
+      </nomatch>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Biotech</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="HemogenPack"]/modExtensions</xpath>
+      <value>
+        <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.TransfusionProperties_ModExtension">
+          <bloodLossSeverityReduction>0.35</bloodLossSeverityReduction>
+        </li>
+        <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension_TemplateRef">
+          <templateDef>BloodBag_OutcomeDoerTemplateDef</templateDef>
+        </li>
+      </value>
+    </match>
+  </Operation>
 </Patch>
