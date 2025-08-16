@@ -121,7 +121,7 @@ internal sealed class DirectoryNode(string name, string? displayName, int level,
                 yield return node;
             }
         }
-        foreach (INode child in Children.OrderBy(static node => node.Name))
+        foreach (INode child in Children.OrderBy(static node => node.DisplayName ?? node.Name))
         {
             foreach (TocNode node in child.EnumerateTocEntries(parameters, currentLevel + 1))
             {
