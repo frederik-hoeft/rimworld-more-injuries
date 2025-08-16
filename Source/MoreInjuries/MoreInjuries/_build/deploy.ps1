@@ -150,6 +150,10 @@ Copy-Folder -FromPath "${mod_root}/Source" -ToPath "${upload_dir}/Source" -Exclu
 # copy README because why not
 Copy-Item -LiteralPath "${mod_root}/README.md" -Destination $upload_dir
 
+# include docs/wiki
+New-Item -ItemType Directory -Path "${upload_dir}/docs"
+Copy-Item -LiteralPath "${mod_root}/docs/wiki" -Recurse -Destination "${upload_dir}/docs/wiki" -Container
+
 # include the LoadFolders.xml file
 Copy-Item -LiteralPath "${mod_root}/LoadFolders.xml" -Destination $upload_dir
 
