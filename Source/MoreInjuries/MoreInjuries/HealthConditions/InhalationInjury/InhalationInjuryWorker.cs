@@ -2,6 +2,7 @@
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.InhalationInjury;
@@ -13,29 +14,35 @@ internal sealed class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWork
     public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
     {
         Pawn patient = Target;
-        if (dinfo.Def?.hediff == KnownHediffDefOf.Burn)
+        if (dinfo.Def?.hediff != KnownHediffDefOf.Burn)
         {
-            // defensive snapshot enumeration to avoid adding a lung burn hediff that destroys the lung and modifies the collection
-            List<BodyPartRecord> lungs = [.. patient.health.hediffSet.GetNotMissingParts().Where(static bodyPart => bodyPart.def == BodyPartDefOf.Lung)];
-            foreach (BodyPartRecord lung in lungs)
+            return;
+        }
+        float flammability = patient.GetStatValue(StatDefOf.Flammability);
+        if (flammability <= Mathf.Epsilon || dinfo.Amount <= Mathf.Epsilon || KnownHediffDefOf.CE_WearingGasMask is { } ceGasMask && patient.health.hediffSet.HasHediff(ceGasMask))
+        {
+            // this pawn is immune to inhalation injuries
+            return;
+        }
+        // defensive snapshot enumeration to avoid adding a lung burn hediff that destroys the lung and modifies the collection
+        List<BodyPartRecord> lungs = [.. patient.health.hediffSet.GetNotMissingParts().Where(static bodyPart => bodyPart.def == BodyPartDefOf.Lung)];
+        foreach (BodyPartRecord lung in lungs)
+        {
+            bool hasBurnedLung = false;
+            // get burn injuries on that lung
+            foreach (Hediff lungBurn in patient.health.hediffSet.hediffs)
             {
-                bool hasBurnedLung = false;
-                // get burn injuries on that lung
-                for (int i = 0; i < patient.health.hediffSet.hediffs.Count; ++i)
+                if (lungBurn.def == KnownHediffDefOf.Burn && lungBurn.Part == lung)
                 {
-                    Hediff lungBurn = patient.health.hediffSet.hediffs[i];
-                    if (lungBurn.def == KnownHediffDefOf.Burn && lungBurn.Part == lung)
-                    {
-                        hasBurnedLung = true;
-                        lungBurn.Severity += Rand.Range(0.05f, 0.5f);
-                    }
+                    hasBurnedLung = true;
+                    lungBurn.Severity += flammability * Rand.Range(0.05f, 1f);
                 }
-                if (!hasBurnedLung)
-                {
-                    Hediff lungBurn = HediffMaker.MakeHediff(KnownHediffDefOf.Burn, patient, lung);
-                    lungBurn.Severity = Rand.Range(0.05f, 0.5f);
-                    patient.health.AddHediff(lungBurn, lung);
-                }
+            }
+            if (!hasBurnedLung)
+            {
+                Hediff lungBurn = HediffMaker.MakeHediff(KnownHediffDefOf.Burn, patient, lung);
+                lungBurn.Severity = flammability * Rand.Range(0.05f, 1f);
+                patient.health.AddHediff(lungBurn, lung);
             }
         }
     }

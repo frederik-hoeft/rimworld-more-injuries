@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using MoreInjuries.Integrations;
+using RimWorld;
 using Verse;
 
 namespace MoreInjuries.Defs.WellKnown;
@@ -40,4 +41,8 @@ public static class KnownHediffDefOf
     public static HediffDef SpontaneousBleeding = null!;
     public static HediffDef StomachAcidBurn = null!;
     public static HediffDef TourniquetApplied = null!;
+    // CE stuff
+    [DefAlias("WearingGasMask")]
+    [MayRequire(SupportedMods.COMBAT_EXTENDED)]
+    public static HediffDef? CE_WearingGasMask = null;
 }
