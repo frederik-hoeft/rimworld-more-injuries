@@ -1,4 +1,5 @@
-﻿using MoreInjuries.Defs.WellKnown;
+﻿using MoreInjuries.Caching;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
 using MoreInjuries.Localization;
 using RimWorld;
@@ -10,23 +11,51 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 
 public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
 {
-    private static HashSet<string>? s_indirectlyAddedInjuries;
+    private static HashSet<HediffDef>? s_indirectlyAddedInjuries;
     private readonly BetterInjuryState<BetterInjury> _state;
+    private readonly TimedDataField<BetterInjury, bool, TimedDataEntry<bool>> _isInternalInjuryCache;
 
-    public static HashSet<string> IndirectlyAddedInjuries => s_indirectlyAddedInjuries ??=
+    public static HashSet<HediffDef> IndirectlyAddedInjuries => s_indirectlyAddedInjuries ??=
     [
-        KnownHediffDefOf.Fracture.defName,
-        KnownHediffDefOf.BoneFragmentLaceration.defName,
-        KnownHediffDefOf.SpallFragmentCut.defName,
-        KnownHediffDefOf.OrganHypoxia.defName,
-        KnownHediffDefOf.BrainDamage_Hypoxia.defName,
-        KnownHediffDefOf.HemorrhagicStroke.defName,
-        KnownHediffDefOf.Bruise.defName,
+        KnownHediffDefOf.Fracture,
+        KnownHediffDefOf.BoneFragmentLaceration,
+        KnownHediffDefOf.SpallFragmentCut,
+        KnownHediffDefOf.OrganHypoxia,
+        KnownHediffDefOf.BrainDamage_Hypoxia,
+        KnownHediffDefOf.HemorrhagicStroke,
+        KnownHediffDefOf.Bruise,
     ];
 
     public BetterInjury()
     {
         _state = new BetterInjuryState<BetterInjury>(this);
+        _isInternalInjuryCache = new TimedDataField<BetterInjury, bool, TimedDataEntry<bool>>
+        (
+            owner: this,
+            minRefreshIntervalTicks: GenTicks.TickRareInterval,
+            dataProvider: static self =>
+            {
+                // returns true if we are an internal injury and all related external injuries are tended to the best of our ability
+                // so Plugged <=> this is an internal injury that is still bleeding and all related external injuries are tended, hemostat applied, or aren't bleeding
+                foreach (Hediff hediff in self.pawn.health.hediffSet.hediffs)
+                {
+                    // must be an external injury that is still bleeding
+                    if (hediff is IStatefulInjury injury and HediffWithComps { Part.depth: BodyPartDepth.Outside, def.injuryProps.bleedRate: > 0 }
+                        // must be related to this injury
+                        && (hediff.Part == self.Part || hediff.Part == self.Part.parent || hediff.Part.parent == self.Part || hediff.Part.parent == self.Part.parent)
+                        // must be tendable now (an active injury)
+                        && hediff.TendableNow())
+                    {
+                        // if the external injury is still bleeding (not tended), we are not plugged
+                        if (injury.State.CoagulationFlags.IsEmpty && !hediff.IsTended())
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+        );
     }
 
     public IInjuryState State => _state;
@@ -54,26 +83,7 @@ public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
             {
                 return false;
             }
-
-            // returns true if we are an internal injury and all related external injuries are tended to the best of our ability
-            // so Plugged <=> this is an internal injury that is still bleeding and all related external injuries are tended, hemostat applied, or aren't bleeding
-            foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
-            {
-                // must be an external injury that is still bleeding
-                if (hediff is IStatefulInjury injury and HediffWithComps { Part.depth: BodyPartDepth.Outside, def.injuryProps.bleedRate: > 0 }
-                    // must be related to this injury
-                    && (hediff.Part == Part || hediff.Part == Part.parent || hediff.Part.parent == Part || hediff.Part.parent == Part.parent)
-                    // must be tendable now (an active injury)
-                    && hediff.TendableNow())
-                {
-                    // if the external injury is still bleeding (not tended), we are not plugged
-                    if (injury.State.CoagulationFlags.IsEmpty && !hediff.IsTended())
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
+            return _isInternalInjuryCache.GetData();
         }
     }
 
@@ -102,7 +112,7 @@ public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
     public override void PostAdd(DamageInfo? dinfo)
     {
         // CE isn't playing nicely with us, so we have to do this
-        if (Part is { coverageAbs: <= 0f } && (MoreInjuriesMod.CombatExtendedLoaded || IndirectlyAddedInjuries.Contains(def.defName)))
+        if (Part is { coverageAbs: <= 0f } && (MoreInjuriesMod.CombatExtendedLoaded || IndirectlyAddedInjuries.Contains(def)))
         {
             // these injuries were added by us, so override "Added injury to <part> but it should be impossible to hit" error
             // the correct way to do this would be to transpile the error check in the base implementation, but we don't do that for the following reasons:
@@ -123,6 +133,7 @@ public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
                 checkForJobOverride: false
             );
             dinfo = fakeInfo;
+            Logger.Warning($"using legacy compatibility fallback for {this.ToStringSafe()} on {Part.ToStringSafe()}");
         }
         base.PostAdd(dinfo);
     }

@@ -8,6 +8,12 @@ internal sealed class TimedDataEntry<TData> : ITimedDataEntry<TData>
 
     public int TimeStamp { get; private set; } = -1;
 
+    public void Clear()
+    {
+        Data = default;
+        TimeStamp = -1;
+    }
+
     [MemberNotNull(nameof(Data))]
     public void Initialize(TData data, int currentTimeStamp)
     {
@@ -21,4 +27,6 @@ internal sealed class TimedDataEntry<TData> : ITimedDataEntry<TData>
         Data = data;
         TimeStamp = currentTimeStamp;
     }
+
+    public bool IsExpired(ITimedCache cache, int currentTimeStamp) => TimeStamp == -1 || TimeStamp + cache.MinRefreshIntervalTicks < currentTimeStamp;
 }

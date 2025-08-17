@@ -189,17 +189,13 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
 
     public void Tick()
     {
-        if (!CoagulationFlags.IsEmpty && _reducedBleedRateTicksRemaining > 0)
+        if (!CoagulationFlags.IsEmpty && _reducedBleedRateTicksRemaining > 0 && --_reducedBleedRateTicksRemaining <= 0)
         {
-            _reducedBleedRateTicksRemaining--;
-            if (_reducedBleedRateTicksRemaining <= 0)
-            {
-                // revert the multiplier
-                TemporarilyTamponadedMultiplierBase = 1;
-                ReducedBleedRateTicksTotal = 0;
-                // remove any temporary tamponade flags
-                CoagulationFlags = CoagulationFlag.Unset(CoagulationFlags, CoagulationFlag.Timed);
-            }
+            // revert the multiplier
+            TemporarilyTamponadedMultiplierBase = 1;
+            ReducedBleedRateTicksTotal = 0;
+            // remove any temporary tamponade flags
+            CoagulationFlags = CoagulationFlag.Unset(CoagulationFlags, CoagulationFlag.Timed);
         }
     }
 

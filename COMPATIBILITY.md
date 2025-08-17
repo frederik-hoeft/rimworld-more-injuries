@@ -29,6 +29,7 @@ The following mods are officially supported by More Injuries and even integrate 
 These mods are known to be compatible with More Injuries, but they aren't directly integrated into More Injuries, and there may not necessarily be cross-interactions between features. We won't list every compatible mod here, but rather focus on those frequently asked about:
 
 - Death Rattle
+- Diseases+
 
 ### Incompatible Mods
 
