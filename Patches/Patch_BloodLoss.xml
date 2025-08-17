@@ -9,7 +9,7 @@
         <hediffClass>HediffWithComps</hediffClass>
       </value>
     </nomatch>
-    <match Class="PatchOperationAdd">
+    <match Class="PatchOperationReplace">
       <xpath>/Defs/HediffDef[defName="BloodLoss"]/hediffClass</xpath>
       <value>
         <hediffClass>HediffWithComps</hediffClass>
