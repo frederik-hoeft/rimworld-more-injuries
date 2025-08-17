@@ -20,6 +20,7 @@ public class MoreInjuryComp : ThingComp
     private readonly HandlerChain<IPostTakeDamageHandler> _postTakeDamageHandlers = new();
     private readonly HandlerChain<ICompTickHandler> _compTickHandlers = new();
     private readonly HandlerChain<INotify_UsedVerbHandler> _usedVerbHandlers = new();
+    private readonly HandlerChain<IPostApplyDamageToPartHandler> _postApplyDamageToPartHandlers = new();
 
     // we need an XML node to store our job parameters, so we do that on the pawn doing the job
     // because we can't be sure that the we are notified when the job is done, we need to store weak references
@@ -46,6 +47,7 @@ public class MoreInjuryComp : ThingComp
         _postTakeDamageHandlers.Initialize(_pipeline.OfType<IPostTakeDamageHandler>());
         _compTickHandlers.Initialize(_pipeline.OfType<ICompTickHandler>());
         _usedVerbHandlers.Initialize(_pipeline.OfType<INotify_UsedVerbHandler>());
+        _postApplyDamageToPartHandlers.Initialize(_pipeline.OfType<IPostApplyDamageToPartHandler>());
     }
 
     public void PersistJobParameters(IExposable jobParameter)
@@ -185,6 +187,18 @@ public class MoreInjuryComp : ThingComp
         }
         CallbackActive = false;
         _damageInfo = default;
+    }
+
+    public void ApplyDamageToPart(ref readonly DamageInfo dinfo, Pawn pawn, DamageWorker.DamageResult result)
+    {
+        if (!MoreInjuriesMod.Settings.AnomalyEnableConditionsForShamblers && Pawn.IsShambler)
+        {
+            return;
+        }
+        foreach (IPostApplyDamageToPartHandler handler in _postApplyDamageToPartHandlers.GetActive())
+        {
+            handler.ApplyDamageToPart(in dinfo, pawn, result);
+        }
     }
 
     private sealed class HandlerChain<THandler> where THandler : IInjuryHandler

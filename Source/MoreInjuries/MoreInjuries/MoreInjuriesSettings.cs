@@ -83,8 +83,11 @@ public partial class MoreInjuriesSettings : ModSettings
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableLungCollapse { get; }
 
-    [SettingsEntry<float>(DefaultValue = 0.4f)]
-    internal partial ref float LungCollapseChanceOnDamage { get; }
+    [SettingsEntry<float>(DefaultValue = 0.4f, Name = "LungCollapseChanceOnDamage")]
+    internal partial ref float LungCollapseChanceOnThermobaricDamage { get; }
+
+    [SettingsEntry<float>(DefaultValue = 0.2f)]
+    internal partial ref float LungCollapseChanceOnPerforatingDamage { get; }
 
     [SettingsEntry<float>(DefaultValue = 0.85f)]
     internal partial ref float LungCollapseMaxSeverityRoot { get; }

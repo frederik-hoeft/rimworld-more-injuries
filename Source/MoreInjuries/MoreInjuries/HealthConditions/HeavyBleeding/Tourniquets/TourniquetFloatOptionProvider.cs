@@ -19,7 +19,7 @@ internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : IComp
         {
             return;
         }
-        Pawn patient = parent.Target;
+        Pawn patient = parent.Pawn;
         if (patient.Downed && patient.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation) < 0.2f)
         {
             // pawn is downed and has too low manipulation to do anything
@@ -89,7 +89,7 @@ internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : IComp
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = parent.Target;
+        Pawn patient = parent.Pawn;
         if (!builder.Keys.Contains(UITreatmentOption.UseTourniquet))
         {
             builder.Keys.Add(UITreatmentOption.UseTourniquet);

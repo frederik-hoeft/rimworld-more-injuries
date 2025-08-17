@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
   <!-- remove duplicate "Pick up" right-click options for medical devices -->
-  <Operation Class="PatchOperationFindMod">
+  <!--<Operation Class="PatchOperationFindMod">
     <mods>
       <li>Combat Extended</li>
     </mods>
@@ -17,7 +17,7 @@
     <match Class="PatchOperationRemove">
       <xpath>Defs/ThingDef[defName="Epinephrine"]/orderedTakeGroup</xpath>
     </match>
-  </Operation>
+  </Operation>-->
 
   <!-- White-list CE's shooting mechanic as valid causes for hearing loss -->
   <Operation Class="PatchOperationFindMod">

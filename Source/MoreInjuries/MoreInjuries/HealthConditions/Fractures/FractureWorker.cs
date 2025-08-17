@@ -89,7 +89,7 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (!builder.Keys.Contains(UITreatmentOption.UseSplint) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(static hediff => hediff.def == KnownHediffDefOf.Fracture))
         {
             builder.Keys.Add(UITreatmentOption.UseSplint);
@@ -126,7 +126,7 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
             return;
         }
 
-        Pawn patient = Target;
+        Pawn patient = Pawn;
 
         if (damage.parts is not null && patient is { Dead: false } && patient.Map is Map map)
         {

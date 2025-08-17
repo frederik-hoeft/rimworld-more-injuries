@@ -87,6 +87,8 @@ public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
         }
     }
 
+    public bool GetIsClosedInternalWound(bool forceRefresh = false) => _isInternalInjuryCache.GetData(forceRefresh);
+
     public override float BleedRate => base.BleedRate * _state.EffectiveBleedRateMultiplier;
 
     public override string Label => _state.Label;

@@ -13,12 +13,14 @@ internal sealed class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWork
 
     public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (dinfo.Def?.hediff != KnownHediffDefOf.Burn || !patient.IsBurning())
         {
             return;
         }
         float flammability = patient.GetStatValue(StatDefOf.Flammability);
+        float toxicResistance = patient.GetStatValue(StatDefOf.ToxicEnvironmentResistance);
+        Logger.LogDebug($"{patient} has a toxic resistance of {toxicResistance}, flammability is {flammability}");
         if (flammability <= Mathf.Epsilon || dinfo.Amount <= Mathf.Epsilon || KnownHediffDefOf.CE_WearingGasMask is { } ceGasMask && patient.health.hediffSet.HasHediff(ceGasMask))
         {
             // this pawn is immune to inhalation injuries

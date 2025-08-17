@@ -124,9 +124,12 @@ public class MoreInjuriesMod : Mod
             "MI_Settings_Features_Respiratory_EnableInhalationTooltip".Translate());
         list.CheckboxLabeled("MI_Settings_Features_Respiratory_EnableLungCollapseLabel".Translate(ENABLE_LUNG_COLLAPSE_DEFAULT.NamedDefault()), ref Settings.EnableLungCollapse,
             "MI_Settings_Features_Respiratory_EnableLungCollapseTooltip".Translate());
-        list.Label("MI_Settings_Features_Respiratory_LungCollapseChanceLabel".Translate(Settings.LungCollapseChanceOnDamage.NamedValue(), LUNG_COLLAPSE_CHANCE_ON_DAMAGE_DEFAULT.NamedDefault()), -1,
+        list.Label("MI_Settings_Features_Respiratory_LungCollapseChanceLabel".Translate(Settings.LungCollapseChanceOnThermobaricDamage.NamedValue(), LUNG_COLLAPSE_CHANCE_ON_THERMOBARIC_DAMAGE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_Respiratory_LungCollapseChanceTooltip".Translate());
-        Settings.LungCollapseChanceOnDamage = (float)Math.Round(list.Slider(Settings.LungCollapseChanceOnDamage, 0f, 1f), 2);
+        Settings.LungCollapseChanceOnThermobaricDamage = (float)Math.Round(list.Slider(Settings.LungCollapseChanceOnThermobaricDamage, 0f, 1f), 2);
+        list.Label("MI_Settings_Features_Respiratory_LungCollapseOnPerforationChanceLabel".Translate(Settings.LungCollapseChanceOnPerforatingDamage.NamedValue(), LUNG_COLLAPSE_CHANCE_ON_PERFORATING_DAMAGE_DEFAULT.NamedDefault()), -1,
+            "MI_Settings_Features_Respiratory_LungCollapseOnPerforationChanceLabelTooltip".Translate());
+        Settings.LungCollapseChanceOnPerforatingDamage = (float)Math.Round(list.Slider(Settings.LungCollapseChanceOnPerforatingDamage, 0f, 1f), 2);
         list.Label("MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootLabel".Translate(Settings.LungCollapseMaxSeverityRoot.NamedValue(), LUNG_COLLAPSE_MAX_SEVERITY_ROOT_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootTooltip".Translate());
         Settings.LungCollapseMaxSeverityRoot = (float)Math.Round(list.Slider(Mathf.Clamp(Settings.LungCollapseMaxSeverityRoot, 0.1f, 1f), 0.1f, 1f), 2);

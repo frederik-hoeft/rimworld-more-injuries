@@ -11,7 +11,7 @@ internal sealed class HearingLossExplosionsWorker(MoreInjuryComp parent) : Injur
 
     public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (dinfo.Def is not null && KnownDamageGroupNames.Explosions.Value.Contains(dinfo.Def.defName))
         {
             const float E_INVERSE = 1f / (float)Math.E;

@@ -10,7 +10,7 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
 
     public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (dinfo.Def is not null && KnownDamageGroupNames.Explosions.Value.Contains(dinfo.Def.defName))
         {
             // ((1 / e) * x) / ((1 / e) * x + 1)

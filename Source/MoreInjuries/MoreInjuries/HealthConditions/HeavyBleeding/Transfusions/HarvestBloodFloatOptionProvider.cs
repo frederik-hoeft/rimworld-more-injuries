@@ -30,7 +30,7 @@ internal class HarvestBloodFloatOptionProvider(InjuryWorker parent) : ICompFloat
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = parent.Target;
+        Pawn patient = parent.Pawn;
         if (!builder.Keys.Contains(UITreatmentOption.HarvestBlood) && selectedPawn != patient && (patient.Downed || patient.IsPrisoner))
         {
             builder.Keys.Add(UITreatmentOption.HarvestBlood);
