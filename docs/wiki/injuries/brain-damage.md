@@ -4,7 +4,7 @@
 _:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [Injuries and Medical Conditions A-Z](/docs/wiki/injuries/README.md) :arrow_right: [Brain Damage](/docs/wiki/injuries/brain-damage.md)_
 <!-- @end_generated_block -->
 
-In this context, "brain damage" refers to a range of temporary or permanent neurological conditions that can occur as a result of traumatic brain injury, stroke, or [hypoxia](/docs/wiki/injuries/hypoxia.md#hypoxia). Brain damage can manifest in various ways, including cognitive impairments, motor dysfunction, and changes in personality. The severity and type of brain damage depend on the extent of the injury and the specific areas of the brain affected.
+In this context, "brain damage" refers to a range of temporary or permanent neurological conditions that can occur as a result of traumatic brain injury, stroke, or [cerebral hypoxia](/docs/wiki/injuries/hypoxia.md#cerebral-hypoxia). Brain damage can manifest in various ways, including cognitive impairments, motor dysfunction, and changes in personality. The severity and type of brain damage depend on the extent of the injury and the specific areas of the brain affected.
 
 Brain damage may not always be immediately apparent, as some symptoms may take time to develop as the patient recovers from the initial injury. In some cases, brain damage may be reversible with experimental treatments, such as [mechanite therapy](/docs/wiki/injuries/mechanite-therapy.md#mechanite-therapy) or [cellular regenerative neurosurgery](/docs/wiki/surgeries.md#cellular-regenerative-neurosurgery), which can help repair damaged brain tissue and restore normal function. However, these futuristic treatments require advanced research and technology, and may be expensive and time-consuming to perform.
 
@@ -15,7 +15,7 @@ config:
     htmlLabels: true
 ---
 flowchart LR
-  hypoxia[hypoxia] ==> brain_damage[brain damage]
+  hypoxia[cerebral hypoxia] ==> brain_damage[brain damage]
 
   linkStyle 0 stroke: #b10000
   style brain_damage stroke-width: 4px
@@ -23,7 +23,7 @@ flowchart LR
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
 
-**Causes**: [hypoxia](/docs/wiki/injuries/hypoxia.md#hypoxia-brain)
+**Causes**: [cerebral hypoxia](/docs/wiki/injuries/hypoxia.md#cerebral-hypoxia)
 
 **Effects**: Effects of brain damage can vary widely depending on the specific areas of the brain affected and the severity of the injury. Common effects are listed below.
 

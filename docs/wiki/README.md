@@ -60,7 +60,7 @@ Its goal is to make the medical system more challenging and interesting in some 
     - [Hypothermia](/docs/wiki/injuries/hypothermia.md#hypothermia)
     - [Hypovolemic Shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock)
     - [Hypoxia](/docs/wiki/injuries/hypoxia.md#hypoxia)
-      - [Hypoxia (Brain)](/docs/wiki/injuries/hypoxia.md#hypoxia-brain)
+      - [Cerebral Hypoxia](/docs/wiki/injuries/hypoxia.md#cerebral-hypoxia)
     - [Inhalation Injury](/docs/wiki/injuries/inhalation-injury.md#inhalation-injury)
     - [Ischemia (Tourniquet)](/docs/wiki/injuries/ischemia.md#ischemia-tourniquet)
     - [Ketamine Buildup](/docs/wiki/injuries/ketamine-buildup.md#ketamine-buildup)
