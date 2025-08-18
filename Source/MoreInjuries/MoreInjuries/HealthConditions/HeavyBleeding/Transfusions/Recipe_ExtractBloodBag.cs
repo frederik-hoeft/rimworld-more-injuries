@@ -8,10 +8,9 @@ using static MoreInjuries.HealthConditions.HeavyBleeding.BloodLossConstants;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 
-public class Recipe_ExtractBloodBag : Recipe_Surgery
+public sealed class Recipe_ExtractBloodBag : Recipe_Surgery
 {
     private const float BLOOD_LOSS_SEVERITY = BLOOD_LOSS_THRESHOLD;
-    private const float MIN_BLOODLOSS_FOR_FAILURE = BLOOD_LOSS_THRESHOLD;
 
     public override bool AvailableOnNow(Thing thing, BodyPartRecord? part = null)
     {
@@ -37,12 +36,10 @@ public class Recipe_ExtractBloodBag : Recipe_Surgery
     public override void CheckForWarnings(Pawn medPawn)
     {
         base.CheckForWarnings(medPawn);
-        if (PawnHasEnoughBloodForExtraction(medPawn))
+        if (!PawnHasEnoughBloodForExtraction(medPawn))
         {
-            return;
+            Messages.Message("MI_DonateBloodFailed_MissingBloodVolume_Message".Translate(medPawn.Named(Named.Params.PATIENT)), medPawn, MessageTypeDefOf.NeutralEvent, false);
         }
-
-        Messages.Message("MI_DonateBloodFailed_MissingBloodVolume_Message".Translate(medPawn.Named(Named.Params.PATIENT)), medPawn, MessageTypeDefOf.NeutralEvent, false);
     }
 
     public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
@@ -80,8 +77,15 @@ public class Recipe_ExtractBloodBag : Recipe_Surgery
 
     private static bool PawnHasEnoughBloodForExtraction(Pawn pawn)
     {
-        Hediff firstHediffOfDef = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BloodLoss);
-        return firstHediffOfDef == null || firstHediffOfDef.Severity + BLOOD_LOSS_SEVERITY < MIN_BLOODLOSS_FOR_FAILURE;
+        // pawn must not have blood loss or hemodilution
+        foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
+        {
+            if (hediff.def == HediffDefOf.BloodLoss || hediff.def == KnownHediffDefOf.Hemodilution)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static bool CanSafelyBeQueued(Pawn pawn) => KnownRecipeDefOf.ExtractWholeBloodBag.Worker is Recipe_Surgery worker

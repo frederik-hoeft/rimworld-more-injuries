@@ -31,26 +31,30 @@
     <xpath>/Defs/HediffDef[defName="BloodLoss"]/comps</xpath>
     <value>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
-        <!-- map blood loss severity to hypovolemic shock chance -->
-        <severityCurve>
-          <points>
-            <li>0, 0</li>
-            <!-- don't apply shock until severity reaches 0.45 -->
-            <!-- (otherwise we'll get annoying "medical emergency" messages for minor injuries) -->
-            <li>0.45, 0</li>
-            <li>0.6, 0.0915</li>
-            <li>1, 0.1396</li>
-          </points>
-        </severityCurve>
         <handlers>
+          <!-- map blood loss severity to hypovolemic shock chance -->
           <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>250</tickInterval>
             <chanceModifiers>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowUntracked"></li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag">
                 <key>EnableHypovolemicShock</key>
               </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <severityCurve>
+                  <points>
+                    <li>0, 0</li>
+                    <!-- don't apply shock until severity reaches 0.45 -->
+                    <!-- (otherwise we'll get annoying "medical emergency" messages for minor injuries) -->
+                    <li>0.45, 0</li>
+                    <!-- ~1 hour -->
+                    <li>0.6, 0.0915</li>
+                    <!-- ~0.5 hours -->
+                    <li>1, 0.1396</li>
+                  </points>
+                </severityCurve>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowUntracked"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
             </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
@@ -61,8 +65,88 @@
               </hediffMakerDef>
             </hediffMakerProps>
           </li>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
+            <tickInterval>60</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag">
+                <key>PreventDeathByBloodLoss</key>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowUntracked"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <!-- if advanced trauma simulation is enabled, blood loss doesn't kill, hypoxia does -->
+                <severityCurve>
+                  <points>
+                    <li>0, 0</li>
+                    <li>0.999, 0</li>
+                    <li>1, 1</li>
+                  </points>
+                </severityCurve>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
+                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>BrainDamage_Hypoxia</hediffDef>
+                <minSeverity>0.01</minSeverity>
+                <maxSeverity>0.5</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HediffCompHandler_SecondaryCondition_BloodLossDeath">
+            <tickInterval>60</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag_Disabled">
+                <key>PreventDeathByBloodLoss</key>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <severityCurve>
+                  <points>
+                    <li>0, 0</li>
+                    <li>0.999, 0</li>
+                    <li>1, 1</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </chanceModifiers>
+          </li>
         </handlers>
       </li>
     </value>
   </Operation>
+  <!-- 4. cap blood loss severity at 1 -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/HediffDef[defName="BloodLoss"]/maxSeverity</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>/Defs/HediffDef[defName="BloodLoss"]</xpath>
+      <value>
+        <maxSeverity>1</maxSeverity>
+      </value>
+    </nomatch>
+    <match Class="PatchOperationReplace">
+      <xpath>/Defs/HediffDef[defName="BloodLoss"]/maxSeverity</xpath>
+      <value>
+        <maxSeverity>1</maxSeverity>
+      </value>
+    </match>
+  </Operation>
+  <!-- 5. blood loss is no longer the primary cause of death (no longer lethal) -->
+  <!-- we manually bypass the max severity if we want to kill by blood loss -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/HediffDef[defName="BloodLoss"]/lethalSeverity</xpath>
+    <match Class="PatchOperationReplace">
+      <xpath>/Defs/HediffDef[defName="BloodLoss"]/lethalSeverity</xpath>
+      <value>
+        <lethalSeverity>1.001</lethalSeverity>
+      </value>
+    </match>
+  </Operation>
+  
 </Patch>

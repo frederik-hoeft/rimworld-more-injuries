@@ -44,7 +44,7 @@ public sealed class HediffComp_Choking : HediffComp
     }
 
     private bool Coughing => 
-        Source is { Bleeding: false } && (parent.pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.45f
+        Source is not { Bleeding: true } && (parent.pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.3f
         || ModLister.BiotechInstalled && parent.pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest));
 
     public override string CompLabelInBracketsExtra => Coughing
@@ -65,26 +65,20 @@ public sealed class HediffComp_Choking : HediffComp
             return;
         }
         Hediff_Injury? source = Source;
-        if (source is null)
-        {
-            Logger.LogDebug($"{nameof(Source)} is null, removing {nameof(HediffComp_Choking)} from {parent.pawn}. Perhaps the source injury was removed?");
-            parent.pawn.health.RemoveHediff(parent);
-            return;
-        }
         // a random walk with a bias towards increasing severity, increase depends on the bleed rate of the source injury and whether the patient is tended
         float increase = 0.1f;
         float decrease = 0f;
-        if (source.BleedRate > 0.01f)
+        if (source is { BleedRate: > 0.01f })
         {
             increase += Mathf.Clamp(source.BleedRate / 5f, 0.05f, 0.25f);
         }
-        else if (source.IsTended())
+        else if (source is null || source.IsTended())
         {
             decrease = 0.075f;
         }
         else if (source.BleedRate <= 0.01f)
         {
-            decrease = 0.05f;
+            decrease = 0.025f;
         }
         float change = Rand.Range(-decrease, increase);
         bool coughing = Coughing;

@@ -86,7 +86,7 @@ public partial class MoreInjuriesSettings : ModSettings
     [SettingsEntry<float>(DefaultValue = 0.4f, Name = "LungCollapseChanceOnDamage")]
     internal partial ref float LungCollapseChanceOnThermobaricDamage { get; }
 
-    [SettingsEntry<float>(DefaultValue = 0.2f)]
+    [SettingsEntry<float>(DefaultValue = 0.4f)]
     internal partial ref float LungCollapseChanceOnPerforatingDamage { get; }
 
     [SettingsEntry<float>(DefaultValue = 0.85f)]
@@ -165,6 +165,9 @@ public partial class MoreInjuriesSettings : ModSettings
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableAdvancedTraumaSimulation { get; }
 
+    [SettingsEntry<bool>(DefaultValue = false)]
+    internal partial ref bool PreventDeathByBloodLoss { get; }
+
     [SettingsEntry<float>(DefaultValue = 0.015f)]
     internal partial ref float HypoxiaAcidosisConversionFactor { get; }
     
@@ -175,7 +178,7 @@ public partial class MoreInjuriesSettings : ModSettings
     [SettingsEntry<float>(DefaultValue = 0.5f)]
     internal partial ref float NeuralDamageChanceReductionFactor { get; }
 
-    [SettingsEntry<bool>(DefaultValue = true)]
+    [SettingsEntry<bool>(DefaultValue = false)]
     internal partial ref bool NeuralDamageEnablePersonalityShift { get; }
 
     // tourniquet-related injuries

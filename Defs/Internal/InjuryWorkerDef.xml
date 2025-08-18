@@ -12,7 +12,8 @@
           <li Class="MoreInjuries.HealthConditions.AdrenalineRush.AdrenalineWorkerFactory" />
           <li Class="MoreInjuries.HealthConditions.HydrostaticShock.HydrostaticShockWorkerFactory" />
           <li Class="MoreInjuries.HealthConditions.Fractures.FractureWorkerFactory" />
-          <li Class="MoreInjuries.HealthConditions.LungCollapse.LungCollapseWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.LungCollapse.LungCollapseThermobaricWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.LungCollapse.LungCollapsePerforationWorkerFactory" />
           <li Class="MoreInjuries.HealthConditions.InhalationInjury.InhalationInjuryWorkerFactory" />
           <li Class="MoreInjuries.HealthConditions.SpallingInjury.SpallingInjuryWorkerFactory" />
           <li Class="MoreInjuries.HealthConditions.Choking.ChokingWorkerFactory" />

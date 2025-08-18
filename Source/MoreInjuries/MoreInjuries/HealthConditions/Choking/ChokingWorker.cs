@@ -9,7 +9,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
-internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler, ICompFloatMenuOptionsHandler
+internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostApplyDamageToPartHandler, ICompFloatMenuOptionsHandler
 {
     private static readonly Dictionary<BodyPartDef, bool> s_bodyPartAffectsBreathingCache = [];
 
@@ -61,19 +61,19 @@ internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent
         }
     }
 
-    public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
+    public void ApplyDamageToPart(ref readonly DamageInfo dinfo, Pawn pawn, DamageWorker.DamageResult result)
     {
         Pawn patient = Pawn;
-        if (dinfo.HitPart is not { } bodyPart || !AffectsBreathing(bodyPart))
+        if (dinfo.HitPart is not { } bodyPart || !AffectsBreathing(bodyPart) || result.hediffs is not { Count: > 0 })
         {
             return;
         }
         // there was damage done to a body part essential for breathing. Check for any bleeding injuries on the respiratory system.
-        foreach (Hediff_Injury injury in patient.health.hediffSet.GetHediffsTendable().OfType<Hediff_Injury>())
+        foreach (Hediff hediff in result.hediffs)
         {
-            if (injury is { Bleeding: true, Part: { } part } 
+            if (hediff is Hediff_Injury { Bleeding: true, Part: { } part } injury
+                && part == bodyPart
                 && injury.BleedRate >= MoreInjuriesMod.Settings.ChokingMinimumBleedRate
-                && AffectsBreathing(part)
                 && Rand.Chance(MoreInjuriesMod.Settings.ChokingChanceOnDamage))
             {
                 Hediff choking = HediffMaker.MakeHediff(KnownHediffDefOf.ChokingOnBlood, patient);

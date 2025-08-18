@@ -2,7 +2,7 @@
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
-public sealed class HediffModifier_Settings_FeatureFlag : HediffModifier_Settings
+public class HediffModifier_Settings_FeatureFlag : HediffModifier_Settings
 {
     public override float GetModifier(Hediff hediff, HediffCompHandler compHandler)
     {

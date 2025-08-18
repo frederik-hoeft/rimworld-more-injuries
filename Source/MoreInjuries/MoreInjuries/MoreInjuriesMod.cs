@@ -128,7 +128,7 @@ public class MoreInjuriesMod : Mod
             "MI_Settings_Features_Respiratory_LungCollapseChanceTooltip".Translate());
         Settings.LungCollapseChanceOnThermobaricDamage = (float)Math.Round(list.Slider(Settings.LungCollapseChanceOnThermobaricDamage, 0f, 1f), 2);
         list.Label("MI_Settings_Features_Respiratory_LungCollapseOnPerforationChanceLabel".Translate(Settings.LungCollapseChanceOnPerforatingDamage.NamedValue(), LUNG_COLLAPSE_CHANCE_ON_PERFORATING_DAMAGE_DEFAULT.NamedDefault()), -1,
-            "MI_Settings_Features_Respiratory_LungCollapseOnPerforationChanceLabelTooltip".Translate());
+            "MI_Settings_Features_Respiratory_LungCollapseOnPerforationChanceTooltip".Translate());
         Settings.LungCollapseChanceOnPerforatingDamage = (float)Math.Round(list.Slider(Settings.LungCollapseChanceOnPerforatingDamage, 0f, 1f), 2);
         list.Label("MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootLabel".Translate(Settings.LungCollapseMaxSeverityRoot.NamedValue(), LUNG_COLLAPSE_MAX_SEVERITY_ROOT_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootTooltip".Translate());
@@ -172,6 +172,8 @@ public class MoreInjuriesMod : Mod
         Text.Font = GameFont.Small;
         list.CheckboxLabeled("MI_Settings_Features_LethalTriad_EnableLabel".Translate(ENABLE_ADVANCED_TRAUMA_SIMULATION_DEFAULT.NamedDefault()), ref Settings.EnableAdvancedTraumaSimulation,
             "MI_Settings_Features_LethalTriad_EnableTooltip".Translate());
+        list.CheckboxLabeled("MI_Settings_Features_LethalTriad_PreventDeathByBloodLoss_Label".Translate(PREVENT_DEATH_BY_BLOOD_LOSS_DEFAULT.NamedDefault()), ref Settings.PreventDeathByBloodLoss,
+            "MI_Settings_Features_LethalTriad_PreventDeathByBloodLoss_Tooltip".Translate());
         list.Label("MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorLabel".Translate(Math.Round(Settings.HypoxiaAcidosisConversionFactor * 100f, 2).NamedValue(), Math.Round(HYPOXIA_ACIDOSIS_CONVERSION_FACTOR_DEFAULT * 100f, 2).NamedDefault()), -1,
             "MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorTooltip".Translate());
         Settings.HypoxiaAcidosisConversionFactor = (float)Math.Round(list.Slider((float)Math.Round(Settings.HypoxiaAcidosisConversionFactor * 100f, 2), 0f, 5f) / 100f, 4);

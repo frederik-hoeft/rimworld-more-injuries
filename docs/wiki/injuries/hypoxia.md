@@ -38,12 +38,13 @@ flowchart LR
 
 **Treatment**: Rapid correction of the underlying cause of hypoxia is essential. This may involve resuscitation measures to restore blood flow and oxygen supply to the affected area, such as [saline IV infusions](/docs/wiki/medical-devices.md#saline-iv-bag) or, preferably, [blood transfusions](/docs/wiki/medical-devices.md#blood-bag) to restore blood volume, or [cardiopulmonary resuscitation (CPR)](/docs/wiki/research.md#cardiopulmonary-resuscitation-cpr) to restore circulation and oxygenation in cases of cardiac arrest. Additionally, treating the damaged tissue with conventional medicine can help improve recovery and reduce the risk of further complications. In cases of hypoxia caused by [hemodilution](/docs/wiki/injuries/hemodilution.md#hemodilution), it is necessary to administer [blood products](/docs/wiki/medical-devices.md#blood-bag) to restore red blood cell and plasma levels.
 
-## Hypoxia (Brain)
+## Cerebral Hypoxia
 
 > **In-Game Description**
-> _"**Hypoxia** &mdash; Prolonged lack of oxygen to the brain has caused neurological damage. Depending on the severity and duration of the hypoxia, damaged cells may be able to recover, or they may die off and cause permanent brain damage and disability. There's nothing else to do but wait and see."_
+> _"**Cerebral hypoxia** &mdash; Prolonged lack of oxygen to the brain has caused neurological damage. Depending on the severity and duration of the hypoxia, damaged cells may be able to recover, or they may die off and cause permanent brain damage and disability. There's nothing else to do but wait and see."_
 
-**Causes**: See [hypoxia](/docs/wiki/injuries/hypoxia.md#hypoxia), but specifically refers to any damage to the brain tissue.
+**Causes**: Hypoperfusion due to [hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock) or [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest), reduced oxygen-carrying abilities of the blood due to [hemodilution](/docs/wiki/injuries/hemodilution.md#hemodilution), [hemorrhagic stroke](/docs/wiki/injuries/hemorrhagic-stroke.md#hemorrhagic-stroke), or other conditions that prevent adequate oxygen supply to the affected area.  
+[Hypothermia](/docs/wiki/injuries/hypothermia.md#hypothermia) may slow down the progression of hypoxia, as the reduced cellular metabolism at extremely low body temperatures can protect the body from further damage, albeit within limits.
 
 **Effects**: Same as [hypoxia](/docs/wiki/injuries/hypoxia.md#hypoxia), but additionally can lead to [brain damage](/docs/wiki/injuries/brain-damage.md#brain-damage) and associated cognitive deficits. As more and more brain cells die off, the patient may become unconscious, enter a coma, or decease.
 
@@ -54,18 +55,22 @@ config:
     htmlLabels: true
 ---
 flowchart LR
-  hypovolemic_shock[hypovolemic shock] ==> hypoxia["hypoxia (brain)"]
+  hypovolemic_shock[hypovolemic shock] ==> hypoxia["cerebral hypoxia"]
   cardiac_arrest[cardiac arrest] ==> hypoxia
   hemodilution[hemodilution] ==> hypoxia
+  hemorrhagic_stroke[hemorrhagic stroke] ==> hypoxia
   hypothermia[hypothermia] ==> hypoxia
+  blood_loss[blood loss*] ==> | severity = 100% | hypoxia
   hypoxia ==> acidosis[acidosis]
   hypoxia ==> brain_damage[brain damage]
   hypoxia ==> death[death]
 
-  linkStyle 0,1,2,4,5,6 stroke: #b10000
-  linkStyle 3 stroke: #549b68
+  linkStyle 0,1,2,3,5,6,7,8 stroke: #b10000
+  linkStyle 4 stroke: #549b68
   style hypoxia stroke-width: 4px
 ```
+
+*\*If `Prevent direct death by blood loss` is enabled in the mod settings, then blood loss reaching 100% will kill over time through cerebral hypoxia*.
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
 
