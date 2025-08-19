@@ -20,7 +20,7 @@ config:
     htmlLabels: true
 ---
 flowchart LR
-  damage[sharp or blunt damage to bone] ==> bone_fracture[bone fracture]
+  damage["skeletal trauma"] ==> bone_fracture[bone fracture]
   bone_fracture ==> | random chance | bone_fragment_laceration[bone fragment laceration]
 
   linkStyle 0,1 stroke: #b10000

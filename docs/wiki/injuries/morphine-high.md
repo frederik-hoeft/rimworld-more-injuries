@@ -38,7 +38,7 @@ flowchart LR
 > _"**Slight buzz** (+3) &mdash; Ah... yeah... things aren't as sharp anymore."_  
 > _"**Warm pudding limbs** (+10) &mdash; Yeah... that's the stuff. My limbs feel like warm pudding."_  
 > _"**Pure euphoria** (+15) &mdash; Wheeeeeeeeeeeeeeeeeeeeeeee."_  
-> _"**Too comfy to care** (+5) &mdash; Whoa... the walls are melting. ...uh... stay awake... nah, too comfy..."_
+> _"**Drifting away** (-10) &mdash; The pain left, but something stranger came to visit. Whoa... my hands are filled with teeth. Why are they chewing? Huh? ... Oh, the floor just whispered my name and asked me to lie down forever. It's getting hard to breathe... the air is thick like soup, like I'm choking on alphabet letters. Why is gravity apologizing to me? I think I should go to sleep now..."_
 
 > [!WARNING]
 > Due to its adverse effects on the respiratory systems, morphine should be used with caution, and patients should be closely monitored for any signs of complications.

@@ -21,7 +21,7 @@ config:
 ---
 graph LR;
   hypoxia[hypoxia] ==> acidosis[acidosis];
-  ischemia["severe ischemia (tourniquet)"] ==> acidosis;
+  ischemia["ischemia (tourniquet)"] ==> | very severe | acidosis;
   acidosis ==> coagulopathy[coagulopathy];
   acidosis ==> hypothermia[hypothermia];
 

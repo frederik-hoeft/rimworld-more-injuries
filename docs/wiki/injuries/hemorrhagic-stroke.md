@@ -9,7 +9,7 @@ In extreme cases of head trauma, a rupture of a blood vessel in the brain may oc
 _Basically a more severe and dangerous version of a [concussion](/docs/wiki/injuries/concussion.md#concussion)._
 
 > **In-Game Description**
-> _"**Hemorrhagic stroke** &mdash; A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.  
+> _"**Hemorrhagic stroke** &mdash; A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. As pressure accumulates, additional blood vessels may be compressed or ruptured, leading to cerebral hypoxia. Symptoms range from initial confusion and vomiting to coma, (permanent) brain damage, and death.  
 > Can be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture."_
 
 ```mermaid
@@ -22,7 +22,7 @@ flowchart LR
   external_factors[blunt force trauma] ==> hemorrhagic_stroke[hemorrhagic stroke]
   coagulopathy[coagulopathy] ==> hemorrhagic_stroke
   adrenaline[adrenaline] ==> | overdose | hemorrhagic_stroke
-  hemorrhagic_stroke ==> | severity = 1 | death[death]
+  hemorrhagic_stroke ==> hypoxia[cerebral hypoxia]
   hydrostatic_shock[hydrostatic shock] ==> | enabled | hemorrhagic_stroke
 
   linkStyle 0,1,2,3,4 stroke: #b10000
@@ -34,7 +34,7 @@ flowchart LR
 **Causes**: Severe blunt force trauma to the head, e.g., any violent impact to the head, such as hand-to-hand combat, being struck by a projectile, or explosions, as well as extreme blood pressure caused by [adrenaline overdose](/docs/wiki/injuries/adrenaline-rush.md#adrenaline-rush) may cause a rupture of a blood vessel in the brain. [Coagulopathy](/docs/wiki/injuries/coagulopathy.md#coagulopathy) may cause micro-ruptures in the blood vessels supplying the brain to occur and worsen over time, leading to a hemorrhagic stroke.  
 If simulation of [hydrostatic shock](/docs/wiki/injuries/hydrostatic-shock.md#hydrostatic-shock) is enabled in the mod settings, high-energy projectiles that cause massive temporary cavity formation and pressure waves in the tissue may also cause a hemorrhagic stroke.
 
-**Effects**: Headache, memory loss, confusion, vomiting, rapid loss of consciousness, coma, and death if not surgically treated.
+**Effects**: Headache, memory loss, confusion, vomiting, rapid loss of consciousness, [cerebral hypoxia](/docs/wiki/injuries/hypoxia.md#cerebral-hypoxia), and death if not surgically treated. If the patient survives, they may suffer from permanent brain damage, including memory loss, cognitive impairment, and motor function issues.
 
 **Treatment**: Hemorrhagic stroke can be temporarily stabilized using medicine to slow progression until surgery can be performed to permanently repair the rupture. Ultimately, surgical intervention through [trepanation](/docs/wiki/surgeries.md#trepanation), [decompressive craniectomy](/docs/wiki/surgeries.md#decompressive-craniectomy), or [stereotactic surgery](/docs/wiki/surgeries.md#stereotactic-surgery) is required to save the patient's life.
 
