@@ -170,6 +170,9 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 0.015f)]
     internal partial ref float HypoxiaAcidosisConversionFactor { get; }
+
+    [SettingsEntry<float>(DefaultValue = 0.05f)]
+    internal partial ref float IndependentCoagulopathySalineIvSafetyThreshold { get; }
     
     // neural damage and permanent brain injuries
     [SettingsEntry<bool>(DefaultValue = true)]

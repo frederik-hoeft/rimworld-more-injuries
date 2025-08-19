@@ -8,4 +8,5 @@ public static class KnownThoughtDefOf
 {
     public static ThoughtDef HarvestedBlood_Bloodlust = null!;
     public static ThoughtDef DonatedBlood = null!;
+    public static ThoughtDef SedatedMe = null!;
 }

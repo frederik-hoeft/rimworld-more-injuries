@@ -25,5 +25,7 @@ public interface ITimedDataEntry<TData>
     /// <param name="currentTimeStamp">The current time stamp.</param>
     bool IsExpired(ITimedCache cache, int currentTimeStamp);
 
+    void MarkDirty();
+
     void Clear();
 }

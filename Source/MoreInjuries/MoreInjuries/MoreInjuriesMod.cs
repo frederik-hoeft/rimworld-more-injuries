@@ -145,7 +145,7 @@ public class MoreInjuriesMod : Mod
         list.Label("MI_Settings_Features_Spalling_ChanceLabel".Translate(Settings.SpallingChance.NamedValue(), SPALLING_CHANCE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_Spalling_ChanceTooltip".Translate());
         Settings.SpallingChance = (float)Math.Round(list.Slider(Settings.SpallingChance, 0f, 1f), 2);
-        // hypovolemic shock, cardiac arrest, and the trauma triad of death
+        // hypovolemic shock and cardiac arrest
         list.GapLine();
         Text.Font = GameFont.Medium;
         list.Label("MI_Settings_Features_HypovolemicShock".Translate());
@@ -166,6 +166,7 @@ public class MoreInjuriesMod : Mod
         list.Label("MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel".Translate(Settings.DefibrillatorMinimumSuccessRate.NamedValue(), DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip".Translate());
         Settings.DefibrillatorMinimumSuccessRate = (float)Math.Round(list.Slider(Settings.DefibrillatorMinimumSuccessRate, 0f, 1f), 2);
+        // trauma simulation
         list.GapLine();
         Text.Font = GameFont.Medium;
         list.Label("MI_Settings_Features_LethalTriad".Translate());
@@ -177,6 +178,9 @@ public class MoreInjuriesMod : Mod
         list.Label("MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorLabel".Translate(Math.Round(Settings.HypoxiaAcidosisConversionFactor * 100f, 2).NamedValue(), Math.Round(HYPOXIA_ACIDOSIS_CONVERSION_FACTOR_DEFAULT * 100f, 2).NamedDefault()), -1,
             "MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorTooltip".Translate());
         Settings.HypoxiaAcidosisConversionFactor = (float)Math.Round(list.Slider((float)Math.Round(Settings.HypoxiaAcidosisConversionFactor * 100f, 2), 0f, 5f) / 100f, 4);
+        list.Label("MI_Settings_Features_LethalTriad_CoagulopathySalineIvSafetyThresholdLabel".Translate(Settings.IndependentCoagulopathySalineIvSafetyThreshold.NamedValue(), INDEPENDENT_COAGULOPATHY_SALINE_IV_SAFETY_THRESHOLD_DEFAULT.NamedDefault()), -1,
+            "MI_Settings_Features_LethalTriad_CoagulopathySalineIvSafetyThresholdTooltip".Translate());
+        Settings.IndependentCoagulopathySalineIvSafetyThreshold = (float)Math.Round(list.Slider(Settings.IndependentCoagulopathySalineIvSafetyThreshold, 0f, 1f), 2);
         // neural damage
         list.GapLine();
         Text.Font = GameFont.Medium;

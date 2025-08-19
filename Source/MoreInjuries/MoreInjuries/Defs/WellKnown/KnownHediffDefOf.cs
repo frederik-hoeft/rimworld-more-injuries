@@ -20,6 +20,7 @@ public static class KnownHediffDefOf
     public static HediffDef CardiacArrest = null!;
     public static HediffDef ChokingOnBlood = null!;
     public static HediffDef ChokingOnTourniquet = null!;
+    public static HediffDef Coagulopathy = null!;
     public static HediffDef Concussion = null!;
     public static HediffDef Crush = null!;
     public static HediffDef EmpShutdown = null!;

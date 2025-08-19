@@ -47,7 +47,9 @@ In order to effectively treat the new injuries and medical conditions introduced
 **Production Skill Requirement**: `Crafting` at level 4  
 **Research Requirements**: [Emergency medicine](/docs/wiki/research.md#emergency-medicine)  
 **Ingredients**: 25x `Steel`, 20x `Chemfuel`, 1x `Component`, 5x `Plasteel`  
-**Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.
+**Success Chance**: `<medicine skill>  / 8`, but at least the configured minimum success chance in the mod settings.  
+**Mass**: 0.4 kg  
+**Bulk (Combat Extended)**: 1.5
 
 ## Bandage
 
@@ -60,7 +62,7 @@ In order to effectively treat the new injuries and medical conditions introduced
 
 </p>
 
-**Used for**: Temporarily reducing the bleed rate of wounds to allow the patient to be stabilized by a doctor. Bandages are a simple and effective way to slow the progression of blood loss and prevent the patient from going into [hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock) until more advanced medical treatment can be provided. This type of elastic bandage allows to reduce the bleed rate of the wound by up to 50% and lasts approximately 12 hours until fully soaked with blood. Effectiveness scales linearly with time during this period. Bandages are a good choice for treating minor to moderate bleeding wounds, but may not be as effective as [hemostatic agents](/docs/wiki/medical-devices.md#hemostatic-agent) in stopping severe bleeding.
+**Used for**: Temporarily reducing the bleed rate of wounds to allow the patient to be stabilized by a doctor. Bandages are a simple and effective way to slow the progression of blood loss and prevent the patient from going into [hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock) until more advanced medical treatment can be provided. This type of elastic bandage allows to reduce the bleed rate of the wound by up to 80% and lasts approximately 12 hours until fully soaked with blood. Effectiveness scales linearly with time during this period. Bandages are a good choice for treating minor to moderate bleeding wounds, but may not be as effective as [hemostatic agents](/docs/wiki/medical-devices.md#hemostatic-agent) in stopping severe bleeding.
 
 **Usage**:
 
@@ -71,27 +73,35 @@ In order to effectively treat the new injuries and medical conditions introduced
 **Production Skill Requirement**: None  
 **Research Requirements**: [Basic anatomy](/docs/wiki/research.md#basic-anatomy)  
 **Ingredients**: 2x `any fabric`  
-**Success Chance**: 100%
+**Success Chance**: 100%  
+**Mass**: 0.05 kg  
+**Bulk (Combat Extended)**: 0.05
 
 ## Blood Bag
+
+Blood bags are one of the two options for fluid resuscitation in patients suffering from severe blood loss and [hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock), the other one being [saline IV infusions](#saline-iv-bag). While saline IV bags are generally easier to produce and store, blood bags provide the advantage of restoring actual blood components, making them the only safe option for treating patients with advanced [coagulopathy](/docs/wiki/injuries/coagulopathy.md#coagulopathy) or [acidosis](/docs/wiki/injuries/acidosis.md#acidosis).
 
 <p>
   <img align="right" src="/Textures/Thing/BloodBag/blood_bag_b.png" height="64" alt="Blood Bag" />
   <img align="right" src="/Textures/Thing/BloodBag/blood_bag_a.png" height="64" alt="Blood Bag" />
 
 > **In-Game Description**
-> _"**Blood bag** &mdash; A bag of whole blood from a standard blood donation, ready for transfusion. It is used in the treatment of massive bleeding and allows quick restoration of blood volume to combat the effects of hypovolemic shock. Must be stored in a refrigerator or freezer.  
+> _"**Blood bag** &mdash; A 750ml bag of whole blood from a blood donation, ready for transfusion. It is used in the treatment of massive bleeding and allows quick restoration of blood volume to combat the effects of hypovolemic shock. Must be stored in a refrigerator or freezer.  
 > Blood can be drawn from a healthy colonist or prisoner and stored in a blood bag for later use."_
 
 </p>
 
-**Used for**: Restoring blood volume in patients suffering from severe blood loss and [hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock). Blood transfusion is the only way to fully stabilize and save the patient's life in severe cases of [hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock). It is recommended to keep a ready supply of blood bags in your hospital supply room for emergency situations. You may even want to keep a few blood bags in the inventory of your combat medics to perform immediate blood transfusions on the battlefield.
+**Used for**: Restoring blood volume in patients suffering from severe blood loss and [hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock). Blood transfusion is the only way to fully stabilize and save the patient's life in severe cases of [hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock). It is recommended to keep a ready supply of blood bags in your hospital supply room for emergency situations. You may even want to keep a few blood bags in the inventory of your combat medics to perform immediate blood transfusions on the battlefield.  
+Blood bags are also the only way to stabilize pawns with severe [hemodilution](/docs/wiki/injuries/hemodilution.md#hemodilution) or patients with advanced [acidosis](/docs/wiki/injuries/acidosis.md#acidosis) and [coagulopathy](/docs/wiki/injuries/coagulopathy.md#coagulopathy) to restore their blood volume and allow them to recover. Blood bags can be stored in a refrigerator or freezer to keep them fresh for longer periods of time.
 
 **Usage**:
 
 1. Tell a *drafted* pawn capable of doctoring to transfuse blood from a blood bag to a patient using one of the `Transfuse blood` options in the right-click context menu of the patient. The blood bag must be accessible in a stockpile or the doctor's inventory. Self-treatment is not possible. Depending on the selected options (`stabilize` or `fully heal`), the patient's blood loss will be reduced by a certain amount, or the patient will be fully healed. Each blood bag is capable of restoring 35% blood volume.
 2. Transfusing blood (`stabilize`) from a blood bag is part of the [First Aid](/docs/wiki/medical-devices.md#first-aid) order for *drafted* pawns.
-3. Alternatively, restoring blood volume to a stable condition is now part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with severe blood loss, any non-drafted doctor will automatically attempt to restore blood volume using a blood bag, in accordance with the configured work priorities.
+3. Alternatively, restoring blood volume to a stable condition is part of a new general, high-priority work type for all doctors. So, if you have a patient in a hospital bed with severe blood loss, any non-drafted doctor will automatically attempt to restore blood volume using a blood bag, in accordance with the configured work priorities.
+
+> [!TIP]
+> Performing a life-saving blood transfusion on members of other factions can help improve faction relations.
 
 **Production**: 
 
@@ -101,12 +111,35 @@ In order to effectively treat the new injuries and medical conditions introduced
 
 **Research Requirements**: [Basic first aid](/docs/wiki/research.md#basic-first-aid)  
 **Ingredients**: N/A  
-**Success Chance**: 100%
+**Success Chance**: 100%  
+**Mass**: 0.75 kg  
+**Bulk (Combat Extended)**: 1.5
 
 ## Chloroform-Soaked Cloth
 
-> [!CAUTION]
-> TODO: update docs
+<p>
+  <img align="right" src="/Textures/Thing/Chloroform/chloroform_b.png" height="64" alt="Chloroform" />
+  <img align="right" src="/Textures/Thing/Chloroform/chloroform_a.png" height="64" alt="Chloroform" />
+
+> **In-Game Description**
+> _"**Chloroform-soaked cloth** &mdash; A piece of cloth soaked in chloroform, used to render a patient unconscious for medical procedures. It is effective in emergency situations where rapid sedation is required. However, due to a variety of factors, such as duration of exposure, concentration of chloroform, and individual patient factors, administering an appropriate dose can be difficult and risk of overdose is high. Due to its high potential for side effects, such as respiratory depression, hepatic and renal damage, and cardiac arrest, modern medicine has largely replaced chloroform with safer alternatives."_
+
+</p>
+
+**Used for**: Administering [chloroform](/docs/wiki/injuries/chloroform-buildup.md#chloroform-buildup) to induce sedation in patients and render them unconscious. While used extensively in the past, modern medicine has largely replaced chloroform with safer alternatives due to its difficulty in controlling dosage and high potential for side effects, such as [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest), [hepatic and renal damage](/docs/wiki/injuries/chemical-damage.md#chemical-damage), and respiratory depression.
+
+**Usage**:
+
+1. Tell a *drafted* pawn capable of doctoring to use the chloroform-soaked cloth on a patient using the `Sedate (chloroform)` option in the right-click context menu. The chloroform must be accessible in a stockpile or the doctor's inventory. Self-treatment is possible.
+2. Alternatively, since chloroform is considered a drug, it can be administered as part of the normal medical treatment using the *operations* tab of the patient or by telling the pawn to injest the drug directly by right-clicking on the drug and selecting `inhale chloroform`.
+
+**Production**: At a drug lab.  
+**Production Skill Requirement**: `Crafting` at level 4, `Intellectual` at level 2  
+**Research Requirements**: [Chloroform synthesis](/docs/wiki/research.md#chloroform-synthesis)  
+**Ingredients**: 4x `Smokeleaf leaves`, 1x `Chemfuel`  
+**Success Chance**: 100%  
+**Mass**: 0.05 kg  
+**Bulk (Combat Extended)**: 0.05
 
 ## CPR
 
@@ -133,6 +166,8 @@ Cardiopulmonary resuscitation (CPR) is an emergency procedure that combines ches
 > Depending on the randomized factor $z$, poor medical skill of the doctor may do more harm than good when performing CPR. It is recommended to have a decently skilled doctor perform CPR to ensure the best possible outcome.
 
 ## Defibrillator
+
+TODO from below
 
 Defibrillation is a treatment for life-threatening conditions that affect the rhythm of the heart, such as [heart attacks](https://rimworldwiki.com/wiki/Ailments#Heart_attack) and the `ventricular fibrillation` stage of [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest). It involves delivering a high-energy electric shock to the heart with a reusable device called a defibrillator to restore normal heart rhythm. It is a more specialized and faster treatment than [CPR](/docs/wiki/medical-devices.md#cpr) in these cases, however, it requires a defibrillator to be available and accessible to the treating doctor.
 

@@ -3,6 +3,8 @@ using MoreInjuries.Caching;
 using MoreInjuries.Debug;
 using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.Hemodilution;
+using MoreInjuries.HealthConditions.Secondary.Linked;
+using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
@@ -16,6 +18,46 @@ public sealed class JobDriver_UseSalineBag : JobDriver_TransfusionBase
         minCacheRefreshIntervalTicks: GenTicks.TickRareInterval,
         dataProvider: static (pawn, fullyHeal) => new TransfusionState(fullyHeal, JobGetMedicalDeviceCountToFullyHeal(pawn, fullyHeal))
     );
+    private static readonly WeakTimedDataCache<Pawn, float, TimedDataEntry<float>> s_pawnUnreleatedCoagulopathyCache = new
+    (
+        minCacheRefreshIntervalTicks: GenTicks.TicksPerRealSecond,
+        dataProvider: static patient =>
+        {
+            float coagulopathyNotCausedByHemodilution = 0f;
+            foreach (Hediff hediff in patient.health.hediffSet.hediffs)
+            {
+                // check if this hediff is something other than hemodilution, but also causes coagulopathy
+                if (hediff.def != KnownHediffDefOf.Hemodilution && CoagulopathyCauses.TryGetValue(hediff.def, out HediffCompHandler_LinkedSeverity? handler))
+                {
+                    coagulopathyNotCausedByHemodilution += handler.Evaluate(hediff);
+                }
+            }
+            return coagulopathyNotCausedByHemodilution;
+        }
+    );
+
+    private static Dictionary<HediffDef, HediffCompHandler_LinkedSeverity>? s_coagulopathyCauses;
+
+    private static IReadOnlyDictionary<HediffDef, HediffCompHandler_LinkedSeverity> CoagulopathyCauses
+    {
+        get
+        {
+            if (s_coagulopathyCauses is null)
+            {
+                Dictionary<HediffDef, HediffCompHandler_LinkedSeverity> causes = [];
+                foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefsListForReading)
+                {
+                    if (hediffDef.GetModExtension<LinkedSeverityProperties_ModExtension>() is { } modExtension 
+                        && modExtension.LinkedSeverityHandlers.TryGetValue(KnownHediffDefOf.Coagulopathy, out HediffCompHandler_LinkedSeverity? handler))
+                    {
+                        causes.Add(hediffDef, handler);
+                    }
+                }
+                s_coagulopathyCauses = causes;
+            }
+            return s_coagulopathyCauses;
+        }
+    }
 
     public static ThingDef JobDeviceDef => KnownThingDefOf.SalineBag;
 
@@ -41,6 +83,15 @@ public sealed class JobDriver_UseSalineBag : JobDriver_TransfusionBase
 
     public static int JobGetMedicalDeviceCountToFullyHeal(Pawn patient, bool fullyHeal)
     {
+        // get from cache, refreshed every second
+        float coagulopathyNotCausedByHemodilution = s_pawnUnreleatedCoagulopathyCache.GetData(patient);
+        if (coagulopathyNotCausedByHemodilution > MoreInjuriesMod.Settings.IndependentCoagulopathySalineIvSafetyThreshold)
+        {
+            // there is too much other stuff going on that contributes quite a lot to coagulopathy
+            // automatic saline infusions wouldn't be safe.
+            return 0;
+        }
+        // run hemodilution checks
         int requiredTransfusionsForBloodLoss = JobGetMedicalDeviceCountToFullyHealBloodLoss(patient, JobDeviceDef, fullyHeal, out Hediff? bloodLoss);
         if (requiredTransfusionsForBloodLoss <= 0)
         {

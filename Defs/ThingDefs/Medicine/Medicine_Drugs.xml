@@ -14,13 +14,14 @@
     <statBases>
       <WorkToMake>600</WorkToMake>
       <MarketValue>50</MarketValue>
-      <Mass>0.005</Mass>
+      <Mass>0.05</Mass>
+      <Bulk MayRequire="CETeam.CombatExtended">0.05</Bulk>
       <Flammability>0.7</Flammability>
     </statBases>
     <techLevel>Industrial</techLevel>
     <ingestible>
       <drugCategory>Medical</drugCategory>
-      <ingestCommandString>use {0}</ingestCommandString>
+      <ingestCommandString>Use {0}</ingestCommandString>
       <ingestReportString>using {0}.</ingestReportString>
     </ingestible>
     <comps>
@@ -104,6 +105,12 @@
             <historyEventDef>AnesthetizedMember</historyEventDef>
             <isViolation>true</isViolation>
           </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_SocialThought">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Logic.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+            </condition>
+            <thoughtDef>SedatedMe</thoughtDef>
+          </li>
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
             <hediffDef>Anesthetic</hediffDef>
             <severityOffset>1.2</severityOffset>
@@ -171,6 +178,12 @@
             <historyEventDef>AnesthetizedMember</historyEventDef>
             <isViolation>true</isViolation>
           </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_SocialThought">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Logic.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+            </condition>
+            <thoughtDef>SedatedMe</thoughtDef>
+          </li>
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
             <hediffDef>Anesthetic</hediffDef>
             <severityOffset>1.2</severityOffset>
@@ -212,7 +225,7 @@
           <severity>0.35</severity>
         </li>
       </outcomeDoers>
-      <ingestCommandString>inhale chloroform</ingestCommandString>
+      <ingestCommandString>Inhale chloroform</ingestCommandString>
       <ingestReportString>inhaling chloroform.</ingestReportString>
     </ingestible>
     <recipeMaker>
@@ -223,8 +236,8 @@
         <li>DrugLab</li>
       </recipeUsers>
       <skillRequirements>
-        <Crafting>6</Crafting>
-        <Intellectual>5</Intellectual>
+        <Crafting>4</Crafting>
+        <Intellectual>2</Intellectual>
       </skillRequirements>
       <soundWorking>Recipe_Drug</soundWorking>
       <displayPriority>1500</displayPriority>

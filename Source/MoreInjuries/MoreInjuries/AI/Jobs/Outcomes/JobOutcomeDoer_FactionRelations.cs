@@ -1,5 +1,7 @@
-﻿using RimWorld;
+﻿using MoreInjuries.Defs.WellKnown;
+using RimWorld;
 using Verse;
+using Verse.Profile;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
@@ -34,5 +36,5 @@ public class JobOutcomeDoer_FactionRelations : JobOutcomeDoer
     }
 
     public override string ToString() => 
-        $"JobOutcomeDoer_FactionRelations(GoodwillChange: {goodwillChange}, HistoryEventDef: {historyEventDef.defName}, IsViolation: {isViolation})";
+        $"{nameof(JobOutcomeDoer_FactionRelations)}(GoodwillChange: {goodwillChange}, HistoryEventDef: {historyEventDef.defName}, IsViolation: {isViolation})";
 }

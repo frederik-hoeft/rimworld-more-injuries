@@ -10,6 +10,8 @@ public sealed class JobDriver_UseKetamine : JobDriver_UseMedicalDrug
 
     protected override ThingDef DeviceDef => KnownThingDefOf.Ketamine;
 
+    protected override bool MustReservePatient(Pawn doctor, Pawn patient) => false;
+
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device) =>
         new JobDescriptor(KnownJobDefOf.UseKetamine, doctor, patient, device);
 }

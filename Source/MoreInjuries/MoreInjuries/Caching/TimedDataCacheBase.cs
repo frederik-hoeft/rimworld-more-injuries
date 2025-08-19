@@ -49,4 +49,18 @@ public abstract class TimedDataCacheBase<TOwner, TData, TState, TCacheEntry>
     public abstract bool RemoveData(TOwner key);
 
     public abstract void Clear();
+
+    public virtual bool MarkDirty(TOwner owner)
+    {
+        Throw.ArgumentNullException.IfNull(owner);
+        lock (_lock)
+        {
+            if (TryGetValue(owner, out TCacheEntry? entry))
+            {
+                entry.MarkDirty();
+                return true;
+            }
+            return false;
+        }
+    }
 }

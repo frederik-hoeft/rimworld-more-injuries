@@ -14,7 +14,8 @@
     <tradeNeverStack>false</tradeNeverStack>
     <useHitPoints>true</useHitPoints>
     <statBases>
-      <Mass>0.01</Mass>
+      <Mass>0.1</Mass>
+      <Bulk MayRequire="CETeam.CombatExtended">0.1</Bulk>
       <MarketValue>5</MarketValue>
       <MaxHitPoints>100</MaxHitPoints>
     </statBases>

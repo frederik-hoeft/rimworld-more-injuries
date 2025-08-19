@@ -30,7 +30,8 @@
       </li>
     </modExtensions>
     <statBases>
-      <Mass>0.5</Mass>
+      <Mass>0.75</Mass>
+      <Bulk MayRequire="CETeam.CombatExtended">1.5</Bulk>
       <MarketValue>50</MarketValue>
       <MaxHitPoints>32</MaxHitPoints>
     </statBases>
@@ -126,7 +127,8 @@
       </li>
     </modExtensions>
     <statBases>
-      <Mass>0.5</Mass>
+      <Mass>0.25</Mass>
+      <Bulk MayRequire="CETeam.CombatExtended">0.5</Bulk>
       <MarketValue>50</MarketValue>
       <MaxHitPoints>32</MaxHitPoints>
     </statBases>
