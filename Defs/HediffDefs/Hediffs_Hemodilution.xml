@@ -40,6 +40,11 @@
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
           <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_PostMake">
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag">
+                <key>EnableAdvancedTraumaSimulation</key>
+              </li>
+            </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>Coagulopathy</hediffDef>
@@ -137,7 +142,7 @@
           <li>
             <!-- light-headedness -->
             <capacity>Consciousness</capacity>
-            <offset>-0.1</offset>
+            <setMax>0.9</setMax>
           </li>
         </capMods>
       </li>
@@ -147,7 +152,7 @@
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <offset>-0.25</offset>
+            <setMax>0.75</setMax>
           </li>
         </capMods>
       </li>

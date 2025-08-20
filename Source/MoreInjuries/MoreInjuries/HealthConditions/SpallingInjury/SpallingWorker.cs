@@ -18,7 +18,7 @@ internal sealed class SpallingInjuryWorker(MoreInjuryComp parent) : InjuryWorker
         {
             return;
         }
-        Pawn patient = Target;
+        Pawn patient = Pawn;
 
         // if there is no armor there is nothing for the bullet to fragment off of (quick check)
         if (patient.apparel?.WornApparel.Count is not > 0)

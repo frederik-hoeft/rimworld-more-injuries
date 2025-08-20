@@ -25,12 +25,14 @@ public static partial class Throw
         /// <param name="instance">The instance whose member is being validated.</param>
         /// <param name="member">The member to validate as non-zero.</param>
         /// <param name="memberName">The name of the member with which <paramref name="member"/> corresponds.</param>
-        public static void IfNull<T>([DisallowNull] object instance, [NotNull] T? member, [CallerArgumentExpression(nameof(member))] string? memberName = null)
+        [return: NotNull]
+        public static T IfNull<T>([DisallowNull] object instance, [NotNull] T? member, [CallerArgumentExpression(nameof(member))] string? memberName = null)
         {
             if (member is null)
             {
                 ThrowNull(instance.GetType().Name, memberName);
             }
+            return member;
         }
 
         /// <summary>

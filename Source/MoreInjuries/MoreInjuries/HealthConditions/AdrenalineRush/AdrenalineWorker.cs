@@ -6,11 +6,11 @@ namespace MoreInjuries.HealthConditions.AdrenalineRush;
 
 internal sealed class AdrenalineWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
-    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableAdrenaline && !Target.IsShambler;
+    public override bool IsEnabled => MoreInjuriesMod.Settings.EnableAdrenaline && !Pawn.IsShambler;
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         // clamp the damage threshold to 1 to avoid division by zero
         float damageThreshold = Mathf.Max(MoreInjuriesMod.Settings.CertainAdrenalineThreshold, 1f);
         if (Rand.Chance(MoreInjuriesMod.Settings.AdrenalineChanceOnDamage) || damage.totalDamageDealt > damageThreshold)

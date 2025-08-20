@@ -88,6 +88,10 @@
             <capacity>Consciousness</capacity>
             <offset>0.05</offset>
           </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>0.05</offset>
+          </li>
         </capMods>
       </li>
       <li>
@@ -102,6 +106,10 @@
           </li>
           <li>
             <capacity>Consciousness</capacity>
+            <offset>0.075</offset>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
             <offset>0.075</offset>
           </li>
         </capMods>
@@ -120,6 +128,10 @@
             <capacity>Consciousness</capacity>
             <offset>0.1</offset>
           </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>0.1</offset>
+          </li>
         </capMods>
       </li>
       <li>
@@ -134,6 +146,10 @@
           </li>
           <li>
             <capacity>Consciousness</capacity>
+            <offset>0.125</offset>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
             <offset>0.125</offset>
           </li>
         </capMods>
@@ -152,6 +168,10 @@
             <capacity>Consciousness</capacity>
             <offset>0.15</offset>
           </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>0.15</offset>
+          </li>
         </capMods>
       </li>
       <li>
@@ -167,6 +187,10 @@
           <li>
             <capacity>Consciousness</capacity>
             <offset>0.3</offset>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>0.2</offset>
           </li>
           <li>
             <capacity>Manipulation</capacity>

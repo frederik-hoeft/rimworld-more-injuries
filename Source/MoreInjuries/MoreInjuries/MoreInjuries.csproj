@@ -6,14 +6,33 @@
 		<Version>1.6.0.0</Version>
 		<Platforms>AnyCPU</Platforms>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<Configurations>Debug;Release;Test</Configurations>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4535" />
-		<PackageReference Include="Lib.Harmony" Version="2.3.6" />
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4543" />
+		<PackageReference Include="Lib.Harmony" Version="2.4.0" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<ProjectReference Include="..\MoreInjuries.Roslyn.SourceGen\MoreInjuries.Roslyn.SourceGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<ModBadHygiene>enable</ModBadHygiene>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(ModBadHygiene)'=='enable'">
+		<DefineConstants>$(DefineConstants);MOD_BAD_HYGIENE</DefineConstants>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|AnyCPU'">
+		<DefineConstants>$(DefineConstants);TEST;DEBUG</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(ModBadHygiene)'=='enable'">
+		<Reference Include="BadHygiene">
+			<HintPath>_build\dependencies\BadHygiene.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 </Project>

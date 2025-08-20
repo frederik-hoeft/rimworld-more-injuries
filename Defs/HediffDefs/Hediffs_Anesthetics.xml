@@ -113,7 +113,7 @@
     <defName>ChloroformBuildup</defName>
     <label>chloroform buildup</label>
     <labelNoun>a buildup of chloroform</labelNoun>
-    <description>Chloroform is a volatile anesthetic that induces unconsciousness and analgesia by depressing the central nervous system. It is commonly used in surgical procedures and as a solvent in laboratories. Chloroform is rapidly absorbed through the lungs, skin, and gastrointestinal tract, leading to systemic distribution and metabolism primarily in the liver.\n\nWhile effective at low doses, chloroform can cause toxicity and overdose at higher concentrations, leading to symptoms such as renal and hepatic damage, respiratory depression, and cardiac arrest. Due to its potential for severe side effects, chloroform is rarely used in modern medicine.</description>
+    <description>Chloroform is a volatile anesthetic that induces unconsciousness and analgesia by depressing the central nervous system. It was historically used in surgical procedures and as a solvent in laboratories. Chloroform is rapidly absorbed through the lungs, skin, and gastrointestinal tract, leading to systemic distribution and metabolism primarily in the liver.\n\nWhile effective at low doses, chloroform can cause toxicity and overdose at higher concentrations, leading to symptoms such as renal and hepatic damage, respiratory depression, and cardiac arrest. Due to its potential for severe side effects, chloroform is rarely used in modern medicine.</description>
     <defaultLabelColor>(56, 185, 255)</defaultLabelColor>
     <isBad>true</isBad>
     <maxSeverity>5</maxSeverity>

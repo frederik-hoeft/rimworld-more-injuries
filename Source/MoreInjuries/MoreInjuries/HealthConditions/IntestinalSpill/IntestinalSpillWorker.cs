@@ -20,7 +20,7 @@ internal sealed class IntestinalSpillWorker(MoreInjuryComp parent) : InjuryWorke
 
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {
-        Pawn targetPawn = Target;
+        Pawn targetPawn = Pawn;
         if (damage.parts is null)
         {
             return;

@@ -17,4 +17,15 @@ public interface ITimedDataEntry<TData>
     /// </summary>
     [MemberNotNull(nameof(Data))]
     void Initialize(TData data, int currentTimeStamp);
+
+    /// <summary>
+    /// Checks whether this cache entry is expired.
+    /// </summary>
+    /// <param name="cache">The cache that this entry is part of</param>
+    /// <param name="currentTimeStamp">The current time stamp.</param>
+    bool IsExpired(ITimedCache cache, int currentTimeStamp);
+
+    void MarkDirty();
+
+    void Clear();
 }

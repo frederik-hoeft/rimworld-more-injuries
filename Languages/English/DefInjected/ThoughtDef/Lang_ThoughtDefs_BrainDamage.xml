@@ -48,8 +48,8 @@
   <LostVisualRecognition.stages.things_look_unfamiliar.description>Sometimes I catch myself hesitating, unsure of what I'm looking at. It's subtle, but unsettling - like the world is just slightly off.</LostVisualRecognition.stages.things_look_unfamiliar.description>
   <!-- EN: misrecognizing people and objects -->
   <LostVisualRecognition.stages.misrecognizing_people_and_objects.label>misrecognizing people and objects</LostVisualRecognition.stages.misrecognizing_people_and_objects.label>
-  <!-- EN: I keep mistaking objects—or even people—for others. It's confusing, and I often feel embarrassed or disoriented. -->
-  <LostVisualRecognition.stages.misrecognizing_people_and_objects.description>I keep mistaking objects—or even people—for others. It's confusing, and I often feel embarrassed or disoriented.</LostVisualRecognition.stages.misrecognizing_people_and_objects.description>
+  <!-- EN: I keep mistaking objects - or even people - for others. It's confusing, and I often feel embarrassed or disoriented. -->
+  <LostVisualRecognition.stages.misrecognizing_people_and_objects.description>I keep mistaking objects - or even people - for others. It's confusing, and I often feel embarrassed or disoriented.</LostVisualRecognition.stages.misrecognizing_people_and_objects.description>
   <!-- EN: faces blur together -->
   <LostVisualRecognition.stages.faces_blur_together.label>faces blur together</LostVisualRecognition.stages.faces_blur_together.label>
   <!-- EN: Everyone looks the same. I have to rely on voices or context to tell people apart. It's isolating and makes social interaction exhausting. -->

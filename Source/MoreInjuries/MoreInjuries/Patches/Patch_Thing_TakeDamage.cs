@@ -16,4 +16,3 @@ public static class Patch_Thing_TakeDamage
         }
     }
 }
-

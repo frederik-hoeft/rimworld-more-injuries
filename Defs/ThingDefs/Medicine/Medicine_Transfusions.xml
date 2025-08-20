@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef ParentName="MedicalDeviceBase">
+  <ThingDef ParentName="MIMedicalDeviceBase">
     <defName>WholeBloodBag</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>blood bag</label>
@@ -25,40 +25,13 @@
       <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.TransfusionProperties_ModExtension">
         <bloodLossSeverityReduction>0.35</bloodLossSeverityReduction>
       </li>
-      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
-        <outcomeDoers>
-          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
-            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_HasHediff">
-              <hediffDef>BloodLoss</hediffDef>
-            </condition>
-            <goodwillChange>5</goodwillChange>
-            <historyEventDef>TransfusedBloodMember</historyEventDef>
-          </li>
-          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_Dynamic">
-            <hediffDef>Hemodilution</hediffDef>
-            <evaluator Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_DynamicRuntime">
-              <instructions>
-                <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_AssignConstant">
-                  <symbol>dilution_factor</symbol>
-                  <value>-1</value>
-                </li>
-                <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_AssignConstant">
-                  <symbol>added_volume</symbol>
-                  <value>0.35</value>
-                </li>
-                <li Class="MoreInjuries.HealthConditions.Hemodilution.DynamicProcedureCall_CalculateHemodilution"></li>
-              </instructions>
-            </evaluator>
-          </li>
-          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
-            <hediffDef>BloodLoss</hediffDef>
-            <severityOffset>-0.35</severityOffset>
-          </li>
-        </outcomeDoers>
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension_TemplateRef">
+        <templateDef>BloodBag_OutcomeDoerTemplateDef</templateDef>
       </li>
     </modExtensions>
     <statBases>
-      <Mass>0.5</Mass>
+      <Mass>0.75</Mass>
+      <Bulk MayRequire="CETeam.CombatExtended">1.5</Bulk>
       <MarketValue>50</MarketValue>
       <MaxHitPoints>32</MaxHitPoints>
     </statBases>
@@ -67,7 +40,7 @@
     </thingCategories>
   </ThingDef>
 
-  <ThingDef ParentName="MedicalDeviceBase">
+  <ThingDef ParentName="MIMedicalDeviceBase">
     <defName>SalineBag</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>saline IV bag</label>
@@ -109,6 +82,7 @@
             </condition>
             <goodwillChange>5</goodwillChange>
             <historyEventDef>TransfusedBloodMember</historyEventDef>
+            <onlyIfFriendly>true</onlyIfFriendly>
           </li>
           <!-- -10 faction relation we're not below safe threshold -->
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
@@ -125,6 +99,7 @@
               </right>
             </condition>
             <goodwillChange>-10</goodwillChange>
+            <onlyIfFriendly>true</onlyIfFriendly>
             <historyEventDef>DangerousProcedureOnMember</historyEventDef>
           </li>
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_Dynamic">
@@ -147,11 +122,15 @@
             <hediffDef>BloodLoss</hediffDef>
             <severityOffset>-0.15</severityOffset>
           </li>
+          <li MayRequire="Dubwise.DubsBadHygiene" Class="MoreInjuries.Integrations.DubsBadHygiene.OutcomeDoer_TransfusionHydration">
+            <needDef>DBHThirst</needDef>
+          </li>
         </outcomeDoers>
       </li>
     </modExtensions>
     <statBases>
-      <Mass>0.5</Mass>
+      <Mass>0.25</Mass>
+      <Bulk MayRequire="CETeam.CombatExtended">0.5</Bulk>
       <MarketValue>50</MarketValue>
       <MaxHitPoints>32</MaxHitPoints>
     </statBases>

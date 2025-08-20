@@ -2,17 +2,26 @@
 
 namespace MoreInjuries.Caching;
 
-internal sealed class TimedDataEntry<TData> : ITimedDataEntry<TData>
+internal sealed class TimedDataEntry<TData> : TimedDataEntryBase<TData>
 {
-    public TData? Data { get; private set; }
+    public override TData? Data { get; protected set; }
 
-    public int TimeStamp { get; private set; } = -1;
+    public override void Clear()
+    {
+        Data = default;
+        TimeStamp = -1;
+    }
 
     [MemberNotNull(nameof(Data))]
-    public void Initialize(TData data, int currentTimeStamp)
+    public override void Initialize(TData data, int currentTimeStamp)
     {
         Throw.ArgumentNullException.IfNull(data);
-        Throw.ArgumentOutOfRangeException.IfNegativeOrZero(currentTimeStamp, nameof(currentTimeStamp));
+        Throw.ArgumentOutOfRangeException.IfNegative(currentTimeStamp);
+        if (currentTimeStamp == 0)
+        {
+            // may happen during game initialization, but is unexpected otherwise
+            Logger.Warning("Initializing with zero timestamp. Unless you are currently creating a new game, please report this as a bug.");
+        }
         Data = data;
         TimeStamp = currentTimeStamp;
     }

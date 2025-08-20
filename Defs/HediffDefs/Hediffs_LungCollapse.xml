@@ -11,6 +11,7 @@
         <severityPerDay>0.5</severityPerDay>
         <showHoursToRecover>false</showHoursToRecover>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <severityCurve>
           <points>

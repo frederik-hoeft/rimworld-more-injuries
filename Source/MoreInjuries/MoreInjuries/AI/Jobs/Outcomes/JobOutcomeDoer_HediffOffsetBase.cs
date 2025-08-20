@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
@@ -8,20 +9,21 @@ namespace MoreInjuries.AI.Jobs.Outcomes;
 public abstract class JobOutcomeDoer_HediffOffsetBase : JobOutcomeDoer
 {
     // don't rename this field. XML defs depend on this name
-    private readonly HediffDef hediffDef = default!;
+    private readonly HediffDef? hediffDef = default;
 
-    public HediffDef HediffDef => hediffDef;
+    public HediffDef HediffDef => Throw.InvalidOperationException.IfNull(this, hediffDef);
 
     protected abstract float GetSeverityOffset(Pawn doctor, Pawn patient, Thing? device);
 
     protected override bool DoOutcome(Pawn doctor, Pawn patient, Thing? device)
     {
-        Hediff? hediff = patient.health.hediffSet.GetFirstHediffOfDef(HediffDef);
+        HediffDef hediffDef = HediffDef;
+        Hediff? hediff = patient.health.hediffSet.GetFirstHediffOfDef(hediffDef);
         float severityOffset = GetSeverityOffset(doctor, patient, device);
-        Logger.LogDebug($"Calculating hediff {HediffDef.defName} ({hediff?.Severity.ToString() ?? "null"}) severity offset for {patient}: {severityOffset}");
+        Logger.LogDebug($"Calculating hediff {hediffDef.defName} ({hediff?.Severity.ToString() ?? "null"}) severity offset for {patient}: {severityOffset}");
         if (hediff is null && severityOffset > Mathf.Epsilon)
         {
-            hediff = HediffMaker.MakeHediff(HediffDef, patient);
+            hediff = HediffMaker.MakeHediff(hediffDef, patient);
             patient.health.AddHediff(hediff);
             Logger.LogDebug($"Adding hediff {hediffDef.defName} to {patient}");
         }
@@ -34,7 +36,7 @@ public abstract class JobOutcomeDoer_HediffOffsetBase : JobOutcomeDoer
                 patient.health.RemoveHediff(hediff);
                 return true;
             }
-            hediff.Severity = Mathf.Min(severity, HediffDef.maxSeverity);
+            hediff.Severity = Mathf.Min(severity, hediffDef.maxSeverity);
         }
         return true;
     }

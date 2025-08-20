@@ -54,7 +54,6 @@ public abstract class HediffCompHandler_SecondaryCondition : HediffCompHandler
                 chance *= modifier.GetModifier(comp.parent, this);
                 if (chance <= Mathf.Epsilon)
                 {
-                    Logger.LogDebug($"Chance for {comp.Pawn.Name} ({comp.parent.LabelCap}) to get the secondary condition is 0. Skipping evaluation.");
                     return true;
                 }
             }

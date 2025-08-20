@@ -166,8 +166,8 @@
                   <points>
                     <li>0, 1</li>
                     <li>2, 0.9</li>
-                    <li>4, 0.5</li>
-                    <li>6, 0.25</li>
+                    <li>4, 0.75</li>
+                    <li>6, 0.35</li>
                   </points>
                 </severityCurve>
               </li>
@@ -194,6 +194,10 @@
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
         <minSeverity>0</minSeverity>
+        <statOffsets>
+          <ComfyTemperatureMin>10</ComfyTemperatureMin>
+          <ComfyTemperatureMax>-5</ComfyTemperatureMax>
+        </statOffsets>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
@@ -206,6 +210,10 @@
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
         <minSeverity>0.65</minSeverity>
+        <statOffsets>
+          <ComfyTemperatureMin>20</ComfyTemperatureMin>
+          <ComfyTemperatureMax>-5</ComfyTemperatureMax>
+        </statOffsets>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>

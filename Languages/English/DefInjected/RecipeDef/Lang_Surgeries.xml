@@ -65,8 +65,8 @@
   <InstallBionicSmallIntestine.label>install bionic small intestine</InstallBionicSmallIntestine.label>
   <!-- EN: Install a bionic small intestine. -->
   <InstallBionicSmallIntestine.description>Install a bionic small intestine.</InstallBionicSmallIntestine.description>
-  <!-- EN: Installing bionic intestine. -->
-  <InstallBionicSmallIntestine.jobString>Installing bionic intestine.</InstallBionicSmallIntestine.jobString>
+  <!-- EN: Installing bionic small intestine. -->
+  <InstallBionicSmallIntestine.jobString>Installing bionic small intestine.</InstallBionicSmallIntestine.jobString>
 
   <!-- EN: install large intestine -->
   <InstallLargeIntestine.label>install large intestine</InstallLargeIntestine.label>
@@ -74,6 +74,13 @@
   <InstallLargeIntestine.description>Install a large intestine.</InstallLargeIntestine.description>
   <!-- EN: Installing large intestine. -->
   <InstallLargeIntestine.jobString>Installing large intestine.</InstallLargeIntestine.jobString>
+
+  <!-- EN: install bionic large intestine -->
+  <InstallBionicLargeIntestine.label>install bionic large intestine</InstallBionicLargeIntestine.label>
+  <!-- EN: Install a bionic large intestine. -->
+  <InstallBionicLargeIntestine.description>Install a bionic large intestine.</InstallBionicLargeIntestine.description>
+  <!-- EN: Installing bionic large intestine. -->
+  <InstallBionicLargeIntestine.jobString>Installing bionic large intestine.</InstallBionicLargeIntestine.jobString>
 
   <!-- EN: repair collapsed lung: thoracotomy -->
   <RepairCollapsedLung_Industrial.label>repair collapsed lung: thoracotomy</RepairCollapsedLung_Industrial.label>

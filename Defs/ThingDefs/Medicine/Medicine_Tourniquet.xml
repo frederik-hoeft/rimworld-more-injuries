@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef ParentName="MedicalDeviceBase">
+  <ThingDef ParentName="MIMedicalDeviceBase">
     <defName>Tourniquet</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>tourniquet</label>
@@ -14,7 +14,8 @@
     <tradeNeverStack>false</tradeNeverStack>
     <useHitPoints>true</useHitPoints>
     <statBases>
-      <Mass>0.01</Mass>
+      <Mass>0.08</Mass>
+      <Bulk MayRequire="CETeam.CombatExtended">0.08</Bulk>
       <MarketValue>5</MarketValue>
       <MaxHitPoints>5</MaxHitPoints>
       <WorkToMake>100</WorkToMake>

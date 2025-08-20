@@ -3,18 +3,21 @@ using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.Things;
 using RimWorld;
+using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
-internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler, ICompFloatMenuOptionsHandler
+internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostApplyDamageToPartHandler, ICompFloatMenuOptionsHandler
 {
+    private static readonly Dictionary<BodyPartDef, bool> s_bodyPartAffectsBreathingCache = [];
+
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableChoking;
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (selectedPawn == patient || !selectedPawn.Drafted)
         {
             return;
@@ -58,13 +61,19 @@ internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent
         }
     }
 
-    public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
+    public void ApplyDamageToPart(ref readonly DamageInfo dinfo, Pawn pawn, DamageWorker.DamageResult result)
     {
-        Pawn patient = Target;
-        foreach (Hediff_Injury injury in patient.health.hediffSet.GetHediffsTendable().OfType<Hediff_Injury>())
+        Pawn patient = Pawn;
+        if (dinfo.HitPart is not { } bodyPart || !AffectsBreathing(bodyPart) || result.hediffs is not { Count: > 0 })
         {
-            if (injury is { Bleeding: true } && injury.BleedRate >= MoreInjuriesMod.Settings.ChokingMinimumBleedRate
-                && injury.Part.def.tags.Any(static tag => tag == BodyPartTagDefOf.BreathingSource || tag == BodyPartTagDefOf.BreathingPathway)
+            return;
+        }
+        // there was damage done to a body part essential for breathing. Check for any bleeding injuries on the respiratory system.
+        foreach (Hediff hediff in result.hediffs)
+        {
+            if (hediff is Hediff_Injury { Bleeding: true, Part: { } part } injury
+                && part == bodyPart
+                && injury.BleedRate >= MoreInjuriesMod.Settings.ChokingMinimumBleedRate
                 && Rand.Chance(MoreInjuriesMod.Settings.ChokingChanceOnDamage))
             {
                 Hediff choking = HediffMaker.MakeHediff(KnownHediffDefOf.ChokingOnBlood, patient);
@@ -81,5 +90,23 @@ internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent
                 patient.health.AddHediff(choking);
             }
         }
+    }
+
+    private static bool AffectsBreathing(BodyPartRecord bodyPart)
+    {
+        BodyPartDef bodyPartDef = bodyPart.def;
+        if (!s_bodyPartAffectsBreathingCache.TryGetValue(bodyPartDef, out bool value))
+        {
+            foreach (BodyPartTagDef tag in bodyPartDef.tags)
+            {
+                if (tag == BodyPartTagDefOf.BreathingSource || tag == BodyPartTagDefOf.BreathingPathway)
+                {
+                    value = true;
+                    break;
+                }
+            }
+            s_bodyPartAffectsBreathingCache[bodyPartDef] = value;
+        }
+        return value;
     }
 }

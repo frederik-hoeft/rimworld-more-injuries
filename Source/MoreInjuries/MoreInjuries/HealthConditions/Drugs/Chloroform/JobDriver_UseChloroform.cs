@@ -16,6 +16,8 @@ public sealed class JobDriver_UseChloroform : JobDriver_UseMedicalDrug
 
     protected override int BaseTendDuration => 120;
 
+    protected override bool MustReservePatient(Pawn doctor, Pawn patient) => false;
+
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device) =>
         new JobDescriptor(KnownJobDefOf.UseChloroform, doctor, patient, device);
 }

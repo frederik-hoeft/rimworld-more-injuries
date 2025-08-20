@@ -23,4 +23,17 @@
       </value>
     </match>
   </Operation>
+  <!-- hijack bleeding injury implementations to allow us to simulate dynamic bleed rates (not possible through comps) -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>/Defs/HediffDef[hediffClass="Hediff_Injury"]/hediffClass</xpath>
+    <value>
+      <hediffClass>MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BetterInjury</hediffClass>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>/Defs/HediffDef[hediffClass="Hediff_MissingPart"]/hediffClass</xpath>
+    <value>
+      <hediffClass>MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BetterMissingPart</hediffClass>
+    </value>
+  </Operation>
 </Patch>

@@ -11,7 +11,7 @@ internal class UseSalineBagFloatOptionProvider(InjuryWorker parent) : ICompFloat
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = parent.Target;
+        Pawn patient = parent.Pawn;
         if (!builder.Keys.Contains(UITreatmentOption.UseSalineBag) 
             && selectedPawn.Drafted 
             && JobDriver_TransfusionBase.JobGetMedicalDeviceCountToFullyHealBloodLoss(patient, JobDriver_UseSalineBag.JobDeviceDef, fullyHeal: true, out _) > 0)

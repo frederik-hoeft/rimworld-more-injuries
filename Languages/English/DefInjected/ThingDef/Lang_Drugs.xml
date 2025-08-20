@@ -4,26 +4,26 @@
   <Epinephrine.label>epinephrine autoinjector</Epinephrine.label>
   <!-- EN: An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose of epinephrine. -->
   <Epinephrine.description>An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose of epinephrine.</Epinephrine.description>
-  <!-- EN: use {0} -->
-  <Epinephrine.ingestible.ingestCommandString>use {0}</Epinephrine.ingestible.ingestCommandString>
+  <!-- EN: Use {0} -->
+  <Epinephrine.ingestible.ingestCommandString>Use {0}</Epinephrine.ingestible.ingestCommandString>
   <!-- EN: using {0}. -->
   <Epinephrine.ingestible.ingestReportString>using {0}.</Epinephrine.ingestible.ingestReportString>
 
   <!-- EN: ketamine autoinjector -->
   <Ketamine.label>ketamine autoinjector</Ketamine.label>
-  <!-- EN: A pre-loaded autoinjector containing a dissociative anesthetic for rapid sedation and pain relief. Effective in emergency field care for patients in severe pain or to induce anesthesia in patients resisting treatment. -->
-  <Ketamine.description>A pre-loaded autoinjector containing a dissociative anesthetic for rapid sedation and pain relief. Effective in emergency field care for patients in severe pain or to induce anesthesia in patients resisting treatment.</Ketamine.description>
-  <!-- EN: use {0} -->
-  <Ketamine.ingestible.ingestCommandString>use {0}</Ketamine.ingestible.ingestCommandString>
+  <!-- EN: A pre-loaded autoinjector containing a strong dissociative anesthetic. Effective in emergency field care for patients in severe pain or to induce rapid sedation in patients resisting treatment. -->
+  <Ketamine.description>A pre-loaded autoinjector containing a strong dissociative anesthetic. Effective in emergency field care for patients in severe pain or to induce rapid sedation in patients resisting treatment.</Ketamine.description>
+  <!-- EN: Use {0} -->
+  <Ketamine.ingestible.ingestCommandString>Use {0}</Ketamine.ingestible.ingestCommandString>
   <!-- EN: using {0}. -->
   <Ketamine.ingestible.ingestReportString>using {0}.</Ketamine.ingestible.ingestReportString>
 
   <!-- EN: morphine autoinjector -->
   <Morphine.label>morphine autoinjector</Morphine.label>
-  <!-- EN: A morphine autoinjector is a medical device used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol or ketamine. -->
-  <Morphine.description>A morphine autoinjector is a medical device used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol or ketamine.</Morphine.description>
-  <!-- EN: use {0} -->
-  <Morphine.ingestible.ingestCommandString>use {0}</Morphine.ingestible.ingestCommandString>
+  <!-- EN: A morphine autoinjector is a spring-loaded syringe used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol. -->
+  <Morphine.description>A morphine autoinjector is a spring-loaded syringe used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol.</Morphine.description>
+  <!-- EN: Use {0} -->
+  <Morphine.ingestible.ingestCommandString>Use {0}</Morphine.ingestible.ingestCommandString>
   <!-- EN: using {0}. -->
   <Morphine.ingestible.ingestReportString>using {0}.</Morphine.ingestible.ingestReportString>
 
@@ -31,8 +31,8 @@
   <Chloroform.label>chloroform-soaked cloth</Chloroform.label>
   <!-- EN: A piece of cloth soaked in chloroform, used to render a patient unconscious for medical procedures. It is effective in emergency situations where rapid sedation is required. However, due to a variety of factors, such as duration of exposure, concentration of chloroform, and individual patient factors, administering an appropriate dose can be difficult and risk of overdose is high. Due to its high potential for side effects, such as respiratory depression, hepatic and renal damage, and cardiac arrest, modern medicine has largely replaced chloroform with safer alternatives. -->
   <Chloroform.description>A piece of cloth soaked in chloroform, used to render a patient unconscious for medical procedures. It is effective in emergency situations where rapid sedation is required. However, due to a variety of factors, such as duration of exposure, concentration of chloroform, and individual patient factors, administering an appropriate dose can be difficult and risk of overdose is high. Due to its high potential for side effects, such as respiratory depression, hepatic and renal damage, and cardiac arrest, modern medicine has largely replaced chloroform with safer alternatives.</Chloroform.description>
-  <!-- EN: inhale chloroform -->
-  <Chloroform.ingestible.ingestCommandString>inhale chloroform</Chloroform.ingestible.ingestCommandString>
+  <!-- EN: Inhale chloroform -->
+  <Chloroform.ingestible.ingestCommandString>Inhale chloroform</Chloroform.ingestible.ingestCommandString>
   <!-- EN: inhaling chloroform. -->
   <Chloroform.ingestible.ingestReportString>inhaling chloroform.</Chloroform.ingestible.ingestReportString>
 </LanguageData>

@@ -11,7 +11,7 @@ internal sealed class EmpShutdownWorker(MoreInjuryComp parent) : InjuryWorker(pa
 
     public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
 
         if (dinfo.Def == DamageDefOf.EMP || dinfo.Def == DamageDefOf.ElectricalBurn)
         {

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MoreInjuries.WikiGen": {
+      "commandName": "Project",
+      "commandLineArgs": "--root docs/wiki --src ../../../../../../docs/wiki"
+    }
+  }
+}

@@ -26,29 +26,34 @@
         <minSeverity>0</minSeverity>
         <label>restricted blood flow</label>
         <partEfficiencyOffset>-0.4</partEfficiencyOffset>
+        <painOffset>0.05</painOffset>
       </li>
       <li>
         <minSeverity>0.4</minSeverity>
         <label>initial ischemia</label>
         <partEfficiencyOffset>-0.6</partEfficiencyOffset>
+        <painOffset>0.1</painOffset>
       </li>
       <li>
         <minSeverity>0.6</minSeverity>
         <label>advanced ischemia</label>
         <lifeThreatening>true</lifeThreatening>
         <partEfficiencyOffset>-0.8</partEfficiencyOffset>
+        <painOffset>0.2</painOffset>
       </li>
       <li>
         <minSeverity>0.8</minSeverity>
         <label>initial necrosis</label>
         <lifeThreatening>true</lifeThreatening>
         <partEfficiencyOffset>-0.9</partEfficiencyOffset>
+        <painOffset>0.3</painOffset>
       </li>
       <li>
         <minSeverity>0.9</minSeverity>
         <label>advanced necrosis</label>
         <lifeThreatening>true</lifeThreatening>
         <partEfficiencyOffset>-1</partEfficiencyOffset>
+        <painOffset>0.4</painOffset>
       </li>
     </stages>
   </HediffDef>
@@ -80,6 +85,11 @@
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
           <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_PostMake">
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag">
+                <key>EnableAdvancedTraumaSimulation</key>
+              </li>
+            </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>Acidosis</hediffDef>

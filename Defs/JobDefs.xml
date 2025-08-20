@@ -74,7 +74,7 @@
     <casualInterruptible>false</casualInterruptible>
     <modExtensions>
       <li Class="MoreInjuries.AI.Jobs.MedicalJobProperties_ModExtension">
-        <shouldEverBeTreatedFacingUp>true</shouldEverBeTreatedFacingUp>
+        <shouldEverBeTreatedFacingUp>false</shouldEverBeTreatedFacingUp>
       </li>
     </modExtensions>
   </JobDef>

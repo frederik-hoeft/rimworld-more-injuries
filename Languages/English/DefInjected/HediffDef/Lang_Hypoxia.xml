@@ -4,8 +4,8 @@
   <OrganHypoxia.label>hypoxia</OrganHypoxia.label>
   <!-- EN: insufficient oxygen -->
   <OrganHypoxia.labelNoun>insufficient oxygen</OrganHypoxia.labelNoun>
-  <!-- EN: Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow. -->
-  <OrganHypoxia.description>Damage from lack of oxygen to the organ. Most commonly caused by insufficient blood flow.</OrganHypoxia.description>
+  <!-- EN: Insufficient oxygen supply to this part of the body has caused cells to start metabolizing anaerobically, leading to the production of lactic acid and acidosis, and to eventually die, causing tissue damage. If the underlying cause of the hypoxia is not immediately treated, the affected tissue will continue to deteriorate, eventually leading to multiple organ failure and death. -->
+  <OrganHypoxia.description>Insufficient oxygen supply to this part of the body has caused cells to start metabolizing anaerobically, leading to the production of lactic acid and acidosis, and to eventually die, causing tissue damage. If the underlying cause of the hypoxia is not immediately treated, the affected tissue will continue to deteriorate, eventually leading to multiple organ failure and death.</OrganHypoxia.description>
   <!-- EN: tended -->
   <OrganHypoxia.comps.HediffComp_TendDuration.labelTendedWell>tended</OrganHypoxia.comps.HediffComp_TendDuration.labelTendedWell>
   <!-- EN: tended -->
@@ -19,10 +19,8 @@
   <!-- EN: dead -->
   <OrganHypoxia.injuryProps.destroyedOutLabel>dead</OrganHypoxia.injuryProps.destroyedOutLabel>
 
-  <!-- EN: hypoxia -->
-  <BrainDamage_Hypoxia.label>hypoxia</BrainDamage_Hypoxia.label>
-  <!-- EN: insufficient oxygen -->
-  <BrainDamage_Hypoxia.labelNoun>insufficient oxygen</BrainDamage_Hypoxia.labelNoun>
+  <!-- EN: cerebral hypoxia -->
+  <BrainDamage_Hypoxia.label>cerebral hypoxia</BrainDamage_Hypoxia.label>
   <!-- EN: Prolonged lack of oxygen to the brain has caused neurological damage. Depending on the severity and duration of the hypoxia, damaged cells may be able to recover, or they may die off and cause permanent brain damage and disability. There's nothing else to do but wait and see. -->
   <BrainDamage_Hypoxia.description>Prolonged lack of oxygen to the brain has caused neurological damage. Depending on the severity and duration of the hypoxia, damaged cells may be able to recover, or they may die off and cause permanent brain damage and disability. There's nothing else to do but wait and see.</BrainDamage_Hypoxia.description>
   <!-- EN: tended -->

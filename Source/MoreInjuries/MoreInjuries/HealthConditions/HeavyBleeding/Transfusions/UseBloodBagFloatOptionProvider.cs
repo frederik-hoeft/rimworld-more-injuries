@@ -11,7 +11,7 @@ internal class UseBloodBagFloatOptionProvider(InjuryWorker parent) : ICompFloatM
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = parent.Target;
+        Pawn patient = parent.Pawn;
         if (!builder.Keys.Contains(UITreatmentOption.UseBloodBag) 
             && selectedPawn.Drafted 
             && JobDriver_UseBloodBag.JobGetMedicalDeviceCountToFullyHeal(patient, fullyHeal: true) > 0)

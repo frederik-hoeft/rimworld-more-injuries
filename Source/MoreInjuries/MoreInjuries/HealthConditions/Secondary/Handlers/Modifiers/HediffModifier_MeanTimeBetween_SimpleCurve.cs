@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using RimWorld;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
@@ -11,11 +12,7 @@ public class HediffModifier_MeanTimeBetween_SimpleCurve : HediffModifier_MeanTim
 
     public override float GetModifier(Hediff hediff, IHediffComp_TickHandler compHandler)
     {
-        if (mttfDaysBySeverity is null)
-        {
-            Logger.ConfigError($"{nameof(HediffModifier_MeanTimeBetween_SimpleCurve)} is not properly initialized. Current MTTF curve is null. Cannot evaluate chance.");
-            return 1f;
-        }
+        Throw.InvalidOperationException.IfNull(this, mttfDaysBySeverity);
         float mttfDays = mttfDaysBySeverity.Evaluate(hediff.Severity);
         return GetChanceFromMttf(mttfDays * GenDate.TicksPerDay, compHandler.TickInterval);
     }

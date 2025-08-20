@@ -14,7 +14,7 @@ internal sealed class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(pare
         {
             return;
         }
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (bodyParts.FirstOrDefault(static bodyPart => bodyPart.def == KnownBodyPartDefOf.SpinalCord) is BodyPartRecord spinalCord && !patient.health.hediffSet.PartIsMissing(spinalCord))
         {
             // determine whether to apply paralysis based on the defined 50% damage threshold

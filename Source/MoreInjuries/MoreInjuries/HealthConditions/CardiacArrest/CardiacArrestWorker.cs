@@ -10,7 +10,7 @@ public sealed class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(pa
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (selectedPawn == patient || !selectedPawn.Drafted)
         {
             return;

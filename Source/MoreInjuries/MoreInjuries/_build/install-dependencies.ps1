@@ -9,6 +9,6 @@ $config = Get-Content -LiteralPath "${PSScriptRoot}/hostconfig.json" -Raw | Conv
 
 # copy dependencies to dependencies folder
 # add dependencies here
-#Copy-Item -LiteralPath "$($config.steam_root)/steamapps/workshop/content/294100/2938891185/1.5/Assemblies/CombatAI.dll" -Destination "${PSScriptRoot}/dependencies/CombatAI.dll"
+Copy-Item -LiteralPath "$($config.steam_root)/steamapps/workshop/content/294100/836308268/1.6/Assemblies/BadHygiene.dll" -Destination "${PSScriptRoot}/dependencies/BadHygiene.dll"
 
 Write-Host "Dependencies copied to dependencies folder"

@@ -44,6 +44,8 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
 
     protected virtual bool RequiresTreatment(Pawn patient) => patient.health.hediffSet.hediffs.Any(IsTreatable);
 
+    protected virtual bool MustReservePatient(Pawn doctor, Pawn patient) => true;
+
     public override void ExposeData()
     {
         base.ExposeData();
@@ -82,27 +84,29 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
     {
-        if (Patient != Doctor && !Doctor.Reserve(Patient, job, errorOnFailed: errorOnFailed))
+        Pawn doctor = Doctor;
+        Pawn patient = Patient;
+        if (patient != doctor && !doctor.Reserve(Patient, job, errorOnFailed: errorOnFailed) && MustReservePatient(doctor, patient))
         {
             // we couldn't reserve the patient, so we can't do the job
             return false;
         }
         if (RequiresDevice && DeviceUsed is null)
         {
-            // we need a splint to do the job
+            // we need a device to do the job
             return false;
         }
         if (DeviceUsed is not null)
         {
             // we allow up to 10 pawns to concurrently reserve devices from the same stack (taken from JobDriver_TendPatient)
-            int availableDevices = Doctor.Map.reservationManager.CanReserveStack(Doctor, DeviceUsed, maxPawns: MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS);
+            int availableDevices = doctor.Map.reservationManager.CanReserveStack(doctor, DeviceUsed, maxPawns: MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS);
             int requiredDevices = 1;
             if (!_oneShot)
             {
                 requiredDevices = GetMedicalDeviceCountToFullyHeal(Patient);
             }
-            // attempt to reserve a splint
-            if (availableDevices >= 1 && Doctor.Reserve(DeviceUsed, job, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, 
+            // attempt to reserve a device
+            if (availableDevices >= 1 && doctor.Reserve(DeviceUsed, job, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, 
                 Mathf.Min(availableDevices, requiredDevices),
                 errorOnFailed: errorOnFailed))
             {
@@ -130,7 +134,10 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
             }
             return false;
         });
-        this.FailOnAggroMentalState(PATIENT_INDEX);
+        if (MustReservePatient(doctor, patient))
+        {
+            this.FailOnAggroMentalState(PATIENT_INDEX);
+        }
 
         AddEndCondition(() =>
         {

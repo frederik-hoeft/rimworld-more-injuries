@@ -21,7 +21,7 @@ public abstract class DrugFloatOptionsProvider(InjuryWorker parent) : ICompFloat
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = parent.Target;
+        Pawn patient = parent.Pawn;
         if (!builder.Keys.Contains(UITreatmentOption) && RequiresTreatment(patient))
         {
             builder.Keys.Add(UITreatmentOption);
