@@ -164,7 +164,7 @@ More Injuries introduces several new research projects that can be undertaken to
 > While usually not addictive when used in therapeutic doses, abuse of ketamine can lead to dangerous buildup of the drug in the body, resulting in toxicity and overdose. Therefore, it is important to monitor patients closely for signs of ketamine buildup and to avoid excessive dosing."_
 
 **Tech Level**: Industrial  
-**Unlocks**: [Epinephrine autoinjectors](/docs/wiki/medical-devices.md#epinephrine-autoinjector)  
+**Unlocks**: [Ketamine autoinjectors](/docs/wiki/medical-devices.md#ketamine-autoinjector)  
 **Required Research Bench & Addon**: Hi-tech  
 **Research Requirements**: [Emergency medicine](#emergency-medicine), drug production, [chloroform synthesis](#chloroform-synthesis)  
 **Unlocks Research Projects**: None  
