@@ -82,6 +82,7 @@
             </condition>
             <goodwillChange>5</goodwillChange>
             <historyEventDef>TransfusedBloodMember</historyEventDef>
+            <onlyIfFriendly>true</onlyIfFriendly>
           </li>
           <!-- -10 faction relation we're not below safe threshold -->
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
@@ -98,6 +99,7 @@
               </right>
             </condition>
             <goodwillChange>-10</goodwillChange>
+            <onlyIfFriendly>true</onlyIfFriendly>
             <historyEventDef>DangerousProcedureOnMember</historyEventDef>
           </li>
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_Dynamic">

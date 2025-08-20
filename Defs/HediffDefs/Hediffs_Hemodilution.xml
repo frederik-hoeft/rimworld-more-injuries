@@ -142,7 +142,7 @@
           <li>
             <!-- light-headedness -->
             <capacity>Consciousness</capacity>
-            <offset>-0.1</offset>
+            <setMax>0.9</setMax>
           </li>
         </capMods>
       </li>
@@ -152,7 +152,7 @@
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <offset>-0.25</offset>
+            <setMax>0.75</setMax>
           </li>
         </capMods>
       </li>

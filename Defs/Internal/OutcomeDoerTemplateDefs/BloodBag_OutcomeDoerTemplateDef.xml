@@ -11,6 +11,7 @@
             </condition>
             <goodwillChange>5</goodwillChange>
             <historyEventDef>TransfusedBloodMember</historyEventDef>
+            <onlyIfFriendly>true</onlyIfFriendly>
           </li>
           <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_Dynamic">
             <hediffDef>Hemodilution</hediffDef>

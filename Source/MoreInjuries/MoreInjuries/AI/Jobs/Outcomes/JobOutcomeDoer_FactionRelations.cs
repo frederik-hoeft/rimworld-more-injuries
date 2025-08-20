@@ -15,6 +15,8 @@ public class JobOutcomeDoer_FactionRelations : JobOutcomeDoer
     private readonly HistoryEventDef historyEventDef = default!;
     // don't rename this field. XML defs depend on this name
     private readonly bool isViolation = false;
+    // don't rename this field. XML defs depend on this name
+    private readonly bool onlyIfFriendly = false;
 
     public int GoodwillChange => goodwillChange;
 
@@ -24,7 +26,9 @@ public class JobOutcomeDoer_FactionRelations : JobOutcomeDoer
 
     protected override bool DoOutcome(Pawn doctor, Pawn patient, Thing? device)
     {
-        if (patient.Faction is Faction factionToInform && (factionToInform != Faction.OfPlayer || patient.IsQuestLodger()))
+        if (patient.Faction is Faction factionToInform 
+            && (factionToInform != Faction.OfPlayer || patient.IsQuestLodger()) 
+            && !(onlyIfFriendly && factionToInform.HostileTo(Faction.OfPlayer)))
         {
             Faction.OfPlayer.TryAffectGoodwillWith(factionToInform, goodwillChange, canSendHostilityLetter: !factionToInform.temporary, reason: historyEventDef);
             if (isViolation)
