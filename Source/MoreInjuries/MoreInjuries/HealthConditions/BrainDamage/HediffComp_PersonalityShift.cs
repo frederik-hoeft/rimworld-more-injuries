@@ -16,8 +16,8 @@ public sealed class HediffComp_PersonalityShift : HediffComp
         foreach (SkillRecord skill in parent.pawn.skills.skills)
         {
             // apply a random shift to the skill level based on the severity of the hediff
-            float shift = Rand.Range(-severity, severity) * 10;
-            skill.Level += (int)shift;
+            float shift = Rand.Range(-severity, severity) * 10f;
+            skill.Level = Math.Max(0, skill.Level + (int)shift);
         }
     }
 }
