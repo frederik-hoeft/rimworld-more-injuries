@@ -35,12 +35,14 @@ public static class DynamicProcedure
 
     private static int GetSignatureHash(ReferenceableDef procedureDef, ReadOnlySpan<ProcedureParameter> parameters)
     {
-        int hash = procedureDef.defNameHash;
+        HashCode hashCode = new();
+        hashCode.Add(procedureDef.defNameHash);
         foreach (ProcedureParameter parameter in parameters)
         {
-            hash = HashCode.Combine(hash, parameter.Name.GetHashCode(), parameter.Value.GetHashCode());
+            hashCode.Add(parameter.Name);
+            hashCode.Add(parameter.Value);
         }
-        return hash;
+        return hashCode.ToHashCode();
     }
 
     public readonly record struct ProcedureParameter(string Name, float Value);

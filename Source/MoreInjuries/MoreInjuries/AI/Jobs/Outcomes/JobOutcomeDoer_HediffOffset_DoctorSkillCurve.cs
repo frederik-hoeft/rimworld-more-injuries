@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.Extensions;
 using System.Linq;
+using System.Text;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
@@ -25,6 +26,35 @@ public sealed class JobOutcomeDoer_HediffOffset_DoctorSkillCurve : JobOutcomeDoe
         return Rand.Range(minOffset, maxOffset);
     }
 
-    public override string ToString() => 
-        $"{base.ToString()} with doctor skill curve offsets: min={string.Join(", ", minSeverityOffsetByDoctorSkill.Points.Select(point => point.ToString()))}, max={string.Join(", ", maxSeverityOffsetByDoctorSkill?.Points.Select(point => point.ToString()) ?? [])}";
+    public override string ToString()
+    {
+        StringBuilder sb = new();
+        sb.Append(base.ToString());
+        sb.Append(" with doctor skill curve offsets: min=");
+        AddCurvePoints(minSeverityOffsetByDoctorSkill, sb);
+        sb.Append(", max=");
+        AddCurvePoints(maxSeverityOffsetByDoctorSkill, sb);
+        return sb.ToString();
+
+        static void AddCurvePoints(SimpleCurve? curve, StringBuilder sb)
+        {
+            if (curve is { Points: { } points })
+            {
+                bool first = true;
+                foreach (CurvePoint point in points)
+                {
+                    if (!first)
+                    {
+                        sb.Append(", ");
+                    }
+                    sb.Append(point.ToString());
+                    first = false;
+                }
+            }
+            else
+            {
+                sb.Append("null");
+            }
+        }
+    }
 }
