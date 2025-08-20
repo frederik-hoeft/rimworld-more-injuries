@@ -77,8 +77,9 @@
       <displayPriority>1500</displayPriority>
     </recipeMaker>
     <costList>
-      <Neutroamine>1</Neutroamine>
+      <Chemfuel>4</Chemfuel>
       <Yayo>1</Yayo>
+      <Flake>1</Flake>
     </costList>
     <comps>
       <li Class="CompProperties_Drug">
@@ -90,7 +91,7 @@
   <ThingDef ParentName="AutoInjectorBase">
     <defName>Ketamine</defName>
     <label>ketamine autoinjector</label>
-    <description>A pre-loaded autoinjector containing a dissociative anesthetic for rapid sedation and pain relief. Effective in emergency field care for patients in severe pain or to induce anesthesia in patients resisting treatment.</description>
+    <description>A pre-loaded autoinjector containing a strong dissociative anesthetic. Effective in emergency field care for patients in severe pain or to induce rapid sedation in patients resisting treatment.</description>
     <graphicData>
       <texPath>Thing/Ketamine</texPath>
     </graphicData>
@@ -256,7 +257,7 @@
   <ThingDef ParentName="AutoInjectorBase">
     <defName>Morphine</defName>
     <label>morphine autoinjector</label>
-    <description>A morphine autoinjector is a medical device used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol or ketamine.</description>
+    <description>A morphine autoinjector is a spring-loaded syringe used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol.</description>
     <graphicData>
       <texPath>Thing/Morphine</texPath>
     </graphicData>
@@ -294,7 +295,8 @@
     </recipeMaker>
     <costList>
       <Flake>1</Flake>
-      <SmokeleafLeaves>1</SmokeleafLeaves>
+      <SmokeleafLeaves>4</SmokeleafLeaves>
+      <Chemfuel>1</Chemfuel>
     </costList>
     <comps>
       <li Class="CompProperties_Drug">

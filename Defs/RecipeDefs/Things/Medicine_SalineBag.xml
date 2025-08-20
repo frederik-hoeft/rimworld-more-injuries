@@ -22,6 +22,14 @@
         </filter>
         <count>10</count>
       </li>
+      <li MayRequire="Dubwise.DubsBadHygiene">
+        <filter>
+          <thingDefs>
+            <li>DBH_WaterBottle</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
     </ingredients>
     <products>
       <SalineBag>5</SalineBag>
@@ -55,6 +63,14 @@
           <categories>
             <li>StoneBlocks</li>
           </categories>
+        </filter>
+        <count>2</count>
+      </li>
+      <li MayRequire="Dubwise.DubsBadHygiene">
+        <filter>
+          <thingDefs>
+            <li>DBH_WaterBottle</li>
+          </thingDefs>
         </filter>
         <count>2</count>
       </li>

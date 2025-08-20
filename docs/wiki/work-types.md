@@ -1,19 +1,20 @@
-# New Work Types
+# Work Types
 
 <!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
-_:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [New Work Types](/docs/wiki/work-types.md)_
+_:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [Work Types](/docs/wiki/work-types.md)_
 <!-- @end_generated_block -->
 
 More Injuries introduces several new automated work types for doctors to handle emergency situations and stabilize patients without the need for manual intervention. These new work types are designed to reduce the micromanagement required to treat patients with life-threatening conditions and allow the player to focus on managing the more severe injuries and medical conditions.
 
 <!-- @generate_toc {"source": "$self", "indent": 2} -->
-- [New Work Types](/docs/wiki/work-types.md#new-work-types)
-  - [Defibrillation](/docs/wiki/work-types.md#defibrillation)
-  - [Airway Management](/docs/wiki/work-types.md#airway-management)
-  - [Performing CPR](/docs/wiki/work-types.md#performing-cpr)
-  - [Blood Transfusions](/docs/wiki/work-types.md#blood-transfusions)
-  - [Splinting Fractures](/docs/wiki/work-types.md#splinting-fractures)
-  - [Tourniquet Recovery](/docs/wiki/work-types.md#tourniquet-recovery)
+- [Work Types](#work-types)
+  - [Defibrillation](#defibrillation)
+  - [Airway Management](#airway-management)
+  - [Performing CPR](#performing-cpr)
+  - [Saline IV Infusions](#saline-iv-infusions)
+  - [Blood Transfusions](#blood-transfusions)
+  - [Splinting Fractures](#splinting-fractures)
+  - [Tourniquet Recovery](#tourniquet-recovery)
 <!-- @end_generated_block -->
 
 ## Defibrillation
@@ -45,6 +46,19 @@ Assigned doctors will automatically start performing [CPR](/docs/wiki/medical-de
 
 **Parent Work Type[^1]**: `Doctor`  
 **Priority In Type[^2]**: 115
+
+## Saline IV Infusions
+
+> **In-Game Label**
+> _"Perform a saline IV infusion to stabilize patients with severe blood loss"_
+
+Assigned doctors will automatically start administering [saline IV infusions](/docs/wiki/medical-devices.md#saline-iv-bag) to patients in hospital beds who are suffering from `severe` blood loss. The doctor will search for an accessible [saline IV bag](/docs/wiki/medical-devices.md#saline-iv-bag) and start the infusion procedure to restore fluid balance within the safety thresholds of [hemodilution](/docs/wiki/injuries/hemodilution.md#hemodilution) and prevent [hypovolemic shock](/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock).
+
+**Parent Work Type[^1]**: `Doctor`  
+**Priority In Type[^2]**: 106
+
+> [!NOTE]
+> Evaluating whether saline IV infusions are safe to perform requires the doctor to make a prognosis for the patient's condition, taking into account factors such as [coagulopathy](/docs/wiki/injuries/coagulopathy.md#coagulopathy) and [acidosis](/docs/wiki/injuries/acidosis.md#acidosis), which could lead to severe complications with [hemodilution](/docs/wiki/injuries/hemodilution.md#hemodilution) caused by saline infusions. You can customize the risk assessment process by adjusting the safety threshold (`Saline IV infusion safety threshold of independent coagulopathy`) in the mod settings, where values close to 0 will be highly restrictive, and values close to 1 will allow doctors to perform saline IV infusions, even in cases with high risk of complications.
 
 ## Blood Transfusions
 
@@ -78,7 +92,7 @@ Unless having other tasks to perform, assigned doctors will recover [tourniquets
 
 <!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
 ---
-_[back to the top](#new-work-types)_
+_[back to the top](#work-types)_
 <!-- @end_generated_block -->
 
 [^1]: see [Work Types](https://rimworldwiki.com/wiki/Work#Work_types) on the RimWorld Wiki.

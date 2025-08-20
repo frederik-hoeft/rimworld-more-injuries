@@ -30,13 +30,13 @@ flowchart LR
 Brain damage may manifest in one of the following ways:
 
 <!-- @generate_toc {"source": "$self", "indent": 2} -->
-- [Brain Damage](/docs/wiki/injuries/brain-damage.md#brain-damage)
-  - [Agnosia](/docs/wiki/injuries/brain-damage.md#agnosia)
-  - [Aphasia](/docs/wiki/injuries/brain-damage.md#aphasia)
-  - [Executive Dysfunction](/docs/wiki/injuries/brain-damage.md#executive-dysfunction)
-  - [Hippocampal Damage](/docs/wiki/injuries/brain-damage.md#hippocampal-damage)
-  - [Motor Dysfunction](/docs/wiki/injuries/brain-damage.md#motor-dysfunction)
-  - [Personality Shift](/docs/wiki/injuries/brain-damage.md#personality-shift)
+- [Brain Damage](#brain-damage)
+  - [Agnosia](#agnosia)
+  - [Aphasia](#aphasia)
+  - [Executive Dysfunction](#executive-dysfunction)
+  - [Hippocampal Damage](#hippocampal-damage)
+  - [Motor Dysfunction](#motor-dysfunction)
+  - [Personality Shift](#personality-shift)
 <!-- @end_generated_block -->
 
 ## Agnosia

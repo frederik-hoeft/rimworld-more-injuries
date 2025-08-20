@@ -15,7 +15,7 @@ internal sealed class MarkdownNode(string name, string? displayName, int level, 
         node.Parent = this;
     }
 
-    public override string GetLink(string? childSegment)
+    public override string GetLink(string? childSegment, INode? relativeTo)
     {
         // markdown nodes are always at least in a file lol
         Debug.Assert(Parent is not null);
@@ -23,7 +23,7 @@ internal sealed class MarkdownNode(string name, string? displayName, int level, 
         {
             childSegment = Name;
         }
-        return Parent.GetLink(childSegment);
+        return Parent.GetLink(childSegment, relativeTo);
     }
 
     public override void Initialize() => Console.WriteLine($"Parsing node '{GetLink()}'");

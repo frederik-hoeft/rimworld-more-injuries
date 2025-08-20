@@ -18,7 +18,7 @@ internal interface INode
 
     string GetLink();
 
-    string GetLink(string? childSegment);
+    string GetLink(string? childSegment, INode? relativeTo);
 
     void AddChild(FileInfo file, ReadOnlySpan<char> remainingPath);
 

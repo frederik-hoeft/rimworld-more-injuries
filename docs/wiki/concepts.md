@@ -7,14 +7,15 @@ _:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [
 This section provides an overview of key concepts related to trauma and injury management simulated by the More Injuries mod. These concepts are crucial for understanding how injuries and medical conditions interact with each other, and how they can be treated effectively.
 
 <!-- @generate_toc {"source": "$self", "indent": 2} -->
-- [Concepts](/docs/wiki/concepts.md#concepts)
-  - [Lethal Triad of Trauma](/docs/wiki/concepts.md#lethal-triad-of-trauma)
+- [Concepts](#concepts)
+  - [Lethal Triad of Trauma](#lethal-triad-of-trauma)
+  - [Hemodilution Simulation](#hemodilution-simulation)
 <!-- @end_generated_block -->
 
 ## Lethal Triad of Trauma
 
 <p>
-<img align="right" style="height: 5cm; background-color: white" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Trauma_triad_of_death.svg" alt="trauma triad of death (wikimedia commons)">
+<img align="right" style="height: 5cm" src="/docs/assets/Trauma_triad_of_death.jpg" alt="trauma triad of death (wikimedia commons)">
   
 The "lethal triad of trauma" is a critical concept in trauma medicine that describes the dangerous cycle of three interrelated conditions: [acidosis](/docs/wiki/injuries/acidosis.md#acidosis), [hypothermia](/docs/wiki/injuries/hypothermia.md#hypothermia), and [coagulopathy](/docs/wiki/injuries/coagulopathy.md#coagulopathy). These conditions often occur together in severely injured patients and can lead to a rapid deterioration of the patient's condition, ultimately resulting in death if not addressed promptly.
 
@@ -81,6 +82,91 @@ Keep in mind that the human body is a complex system and requires some time to s
 
 > [!TIP]
 > If you prefer realistic trauma simulation, consider enabling the experimental `Prevent direct death by blood loss` option in the mod settings. This will prevent pawns from dying immediately once blood loss reaches 100%. Instead, they will receive cerebral hypoxia over time as the cardiovascular system collapses completely, buying you a few minutes to restore blood volume and save them at the cost of potentially permanent brain damage.
+
+## Hemodilution Simulation
+
+More Injuries simulates hemodilution, which is the dilution of the concentration of red blood cells and plasma constituents in the blood, as a result of excessive fluid resuscitation, particularly in trauma patients. To simulate this in a realistic manner, the mod employs a mathematical model that takes into account various factors such as blood loss severity, current circulating volume, and infusion volume partitioning.
+
+The following sections outline the key components of the hemodilution simulation model and present the relevant equations. Note, that all variables are defined over the real numbers ($\mathbb{R}$), within the limitations of the 32-bit IEEE-754 floating-point representation.
+
+**1. Blood Loss Severity $\rightarrow$ Missing Volume**
+
+As per vanilla RimWorld, blood loss severity is defined on a normalized scale:
+
+- $0$: no blood loss (healthy)
+- $1$: lethal blood loss
+
+Since in real life death occurs before **100% volume loss**, we remap such that **death occurs at 50% of blood volume lost**:
+
+$$V_{\text{missing}} = s_{\text{loss}} \cdot 0.5$$
+
+where
+
+- $s_{\text{loss}} \in [0,1]$ is the **blood loss severity**  
+- $V_{\text{missing}} \in [0,0.5]$ is the **fraction of blood volume missing**  
+
+**2. Current Circulating Volume**
+
+The remaining circulating blood volume is then given by:
+
+$$V_{\text{current}} = 1 - V_{\text{missing}}$$
+
+**3. Infusion Volume Partitioning**
+
+An administered infusion volume $V_{\text{add}}$ is partitioned into:
+
+- **Replaced Volume** (limited by missing volume):
+
+$$V_{\text{replaced}} = \min\left(V_{\text{add}}, \, V_{\text{missing}}\right)$$
+
+- **Overflow Volume** (exceeds missing capacity):
+
+$$V_{\text{overflow}} = V_{\text{add}} - V_{\text{replaced}}$$
+
+**4. Dilution Factor**
+
+The **dilution factor** determines infusion type:
+
+$$d = 
+\begin{cases} 
++1 & \text{saline (dilutes blood)} \\
+-1 & \text{whole blood (restores concentration)}
+\end{cases}$$
+
+**5. Dilution Contribution**
+
+Only **saline in the replaced volume** contributes to dilution:
+
+$$D_{\text{contrib}} = \max(0, d) \cdot V_{\text{replaced}}$$
+
+**6. New Hemodilution (Before Overflow)**
+
+The weighted average after adding the replaced volume is then given by
+
+$$H' = \frac{H \cdot V_{\text{current}} + D_{\text{contrib}}}{V_{\text{current}} + V_{\text{replaced}}}$$
+
+where  
+
+- $H$ = current hemodilution level ($0 \leq H \leq 1$)  
+- $H'$ = hemodilution after replaced volume infusion  
+
+**7. Overflow Contribution**
+
+If there is overflow, it fully adopts the infusion’s dilution factor:
+
+$$H'' = H' + V_{\text{overflow}} \cdot d$$
+
+**8. Final Hemodilution Change**
+
+The final change of hemodilution severity $\Delta H$ is given by the **change relative to baseline**:
+
+$$\Delta H = H'' - H$$
+
+**9. Summary of Core Equation**
+
+Putting everything together yields:
+
+$$\Delta H = \left(\frac{H \cdot V_{\text{current}} + \max(0,d)\cdot V_{\text{replaced}}}{V_{\text{current}} + V_{\text{replaced}}} + V_{\text{overflow}}\cdot d \right) - H$$
 
 <!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
 ---

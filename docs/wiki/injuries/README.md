@@ -7,7 +7,7 @@ _:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [
 The following sections provide an overview of the new injuries and medical conditions added by the More Injuries mod, as well as their effects and treatment options.
 
 <!-- @generate_toc {"source": ".", "indent": 2} -->
-- [Injuries and Medical Conditions A-Z](/docs/wiki/injuries/README.md#injuries-and-medical-conditions-a-z)
+- [Injuries and Medical Conditions A-Z](#injuries-and-medical-conditions-a-z)
   - [Acidosis](/docs/wiki/injuries/acidosis.md#acidosis)
   - [Adrenaline Rush](/docs/wiki/injuries/adrenaline-rush.md#adrenaline-rush)
   - [Brain Damage](/docs/wiki/injuries/brain-damage.md#brain-damage)

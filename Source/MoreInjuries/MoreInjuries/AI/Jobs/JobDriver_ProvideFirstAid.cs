@@ -18,7 +18,7 @@ using Verse.AI;
 
 namespace MoreInjuries.AI.Jobs;
 
-public class JobDriver_ProvideFirstAid : JobDriver
+public sealed class JobDriver_ProvideFirstAid : JobDriver
 {
     private const TargetIndex PATIENT_INDEX = TargetIndex.A;
 
@@ -155,7 +155,8 @@ public class JobDriver_ProvideFirstAid : JobDriver
         {
             Thing medicine = HealthAIUtility.FindBestMedicine(doctor, patient, onlyUseInventory: true);
             job = JobMaker.MakeJob(JobDefOf.TendPatient, patient);
-            job.count = 1;
+            // re-scan after every single tend to prioritize conditions like cardiac arrest as they arrise
+            job.endAfterTendedOnce = true;
             return StartJobAndScheduleScan(doctor, patient, job);
         }
         // since we finished vanilla treatment, we can now remove the tourniquets again

@@ -11,8 +11,8 @@
 
   <!-- EN: ketamine autoinjector -->
   <Ketamine.label>ketamine autoinjector</Ketamine.label>
-  <!-- EN: A pre-loaded autoinjector containing a dissociative anesthetic for rapid sedation and pain relief. Effective in emergency field care for patients in severe pain or to induce anesthesia in patients resisting treatment. -->
-  <Ketamine.description>A pre-loaded autoinjector containing a dissociative anesthetic for rapid sedation and pain relief. Effective in emergency field care for patients in severe pain or to induce anesthesia in patients resisting treatment.</Ketamine.description>
+  <!-- EN: A pre-loaded autoinjector containing a strong dissociative anesthetic. Effective in emergency field care for patients in severe pain or to induce rapid sedation in patients resisting treatment. -->
+  <Ketamine.description>A pre-loaded autoinjector containing a strong dissociative anesthetic. Effective in emergency field care for patients in severe pain or to induce rapid sedation in patients resisting treatment.</Ketamine.description>
   <!-- EN: Use {0} -->
   <Ketamine.ingestible.ingestCommandString>Use {0}</Ketamine.ingestible.ingestCommandString>
   <!-- EN: using {0}. -->
@@ -20,8 +20,8 @@
 
   <!-- EN: morphine autoinjector -->
   <Morphine.label>morphine autoinjector</Morphine.label>
-  <!-- EN: A morphine autoinjector is a medical device used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol or ketamine. -->
-  <Morphine.description>A morphine autoinjector is a medical device used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol or ketamine.</Morphine.description>
+  <!-- EN: A morphine autoinjector is a spring-loaded syringe used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol. -->
+  <Morphine.description>A morphine autoinjector is a spring-loaded syringe used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol.</Morphine.description>
   <!-- EN: Use {0} -->
   <Morphine.ingestible.ingestCommandString>Use {0}</Morphine.ingestible.ingestCommandString>
   <!-- EN: using {0}. -->

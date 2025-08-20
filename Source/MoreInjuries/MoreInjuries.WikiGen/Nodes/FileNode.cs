@@ -129,16 +129,20 @@ internal sealed partial class FileNode(string name, string? displayName, int lev
         return stringBuilder.ToString();
     }
 
-    public override string GetLink(string? childSegment)
+    public override string GetLink(string? childSegment, INode? relativeTo)
     {
         if (!string.IsNullOrEmpty(childSegment))
         {
             childSegment = $"#{childSegment}";
+            if (relativeTo == this)
+            {
+                return childSegment;
+            }
         }
         childSegment = $"/{Name}{childSegment}";
         // files always have a parent
         Debug.Assert(Parent is not null);
-        return Parent.GetLink(childSegment);
+        return Parent.GetLink(childSegment, relativeTo);
     }
 
     public override void Process(bool clean)

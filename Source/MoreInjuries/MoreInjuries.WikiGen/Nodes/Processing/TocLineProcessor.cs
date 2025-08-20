@@ -32,7 +32,7 @@ internal sealed partial class TocLineProcessor : LineProcessorBase
         {
             string indent = indentCache.GetIndent(indentLevel);
             string title = entry.DisplayName ?? "ERR: MISSING TEXT";
-            string link = entry.GetLink();
+            string link = entry.GetLink(childSegment: null, relativeTo: node);
             yield return $"{indent}- [{title}]({link})";
         }
     }

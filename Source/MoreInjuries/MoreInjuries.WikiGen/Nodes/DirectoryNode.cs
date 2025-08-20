@@ -48,7 +48,7 @@ internal sealed class DirectoryNode(string name, string? displayName, int level,
         newChild.AddChild(file, remainingPath);
     }
 
-    public override string GetLink(string? childSegment)
+    public override string GetLink(string? childSegment, INode? relativeTo)
     {
         if (string.IsNullOrEmpty(childSegment))
         {
@@ -57,7 +57,11 @@ internal sealed class DirectoryNode(string name, string? displayName, int level,
         childSegment = $"/{Name}{childSegment}";
         if (Parent is not null)
         {
-            return Parent.GetLink(childSegment);
+            if (Parent == relativeTo)
+            {
+                return $".{childSegment}";
+            }
+            return Parent.GetLink(childSegment, relativeTo);
         }
         return childSegment;
     }

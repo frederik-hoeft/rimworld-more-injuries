@@ -20,9 +20,9 @@ internal abstract class Node(string name, string? displayName, int level) : INod
 
     public abstract FileSystemInfo FileSystemInfo { get; }
 
-    public virtual string GetLink() => GetLink(childSegment: null);
+    public virtual string GetLink() => GetLink(childSegment: null, relativeTo: null);
 
-    public abstract string GetLink(string? childSegment);
+    public abstract string GetLink(string? childSegment, INode? relativeTo);
 
     public abstract void AddChild(FileInfo file, ReadOnlySpan<char> remainingPath);
 

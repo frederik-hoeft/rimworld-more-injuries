@@ -8,16 +8,16 @@ Some injuries and medical conditions require surgical intervention to repair the
 Just like base game surgeries, these new surgeries will be available in the *operations* tab of the selected pawn.
 
 <!-- @generate_toc {"source": "$self", "indent": 2} -->
-- [Surgeries](/docs/wiki/surgeries.md#surgeries)
-  - [Cellular Regenerative Neurosurgery](/docs/wiki/surgeries.md#cellular-regenerative-neurosurgery)
-  - [Cellular Regenerative Otologic Surgery](/docs/wiki/surgeries.md#cellular-regenerative-otologic-surgery)
-  - [Decompressive Craniectomy](/docs/wiki/surgeries.md#decompressive-craniectomy)
-  - [Mechanite Therapy](/docs/wiki/surgeries.md#mechanite-therapy)
-  - [Osteosynthetic Surgery](/docs/wiki/surgeries.md#osteosynthetic-surgery)
-  - [Stereotactic Surgery](/docs/wiki/surgeries.md#stereotactic-surgery)
-  - [Thoracotomy](/docs/wiki/surgeries.md#thoracotomy)
-  - [Trepanation](/docs/wiki/surgeries.md#trepanation)
-  - [Video-Assisted Thoracoscopic Surgery](/docs/wiki/surgeries.md#video-assisted-thoracoscopic-surgery)
+- [Surgeries](#surgeries)
+  - [Cellular Regenerative Neurosurgery](#cellular-regenerative-neurosurgery)
+  - [Cellular Regenerative Otologic Surgery](#cellular-regenerative-otologic-surgery)
+  - [Decompressive Craniectomy](#decompressive-craniectomy)
+  - [Mechanite Therapy](#mechanite-therapy)
+  - [Osteosynthetic Surgery](#osteosynthetic-surgery)
+  - [Stereotactic Surgery](#stereotactic-surgery)
+  - [Thoracotomy](#thoracotomy)
+  - [Trepanation](#trepanation)
+  - [Video-Assisted Thoracoscopic Surgery](#video-assisted-thoracoscopic-surgery)
 <!-- @end_generated_block -->
 
 ## Cellular Regenerative Neurosurgery
@@ -75,8 +75,19 @@ $\rightarrow$ *see [hemorrhagic stroke](/docs/wiki/injuries/hemorrhagic-stroke.m
 
 ## Mechanite Therapy
 
-> [!CAUTION]
-> TODO: update docs
+$\rightarrow$ *see [brain damage](/docs/wiki/injuries/brain-damage.md#brain-damage)*
+
+> **In-Game Description**
+> _"**Treat brain damage: mechanite therapy** &mdash; Mechanite therapy is a glitterworld treatment that uses mechanites to slowly repair neurological damage in the brain on a cellular level. The procedure is expensive and may take several days to complete, but has shown promising results in restoring cognitive function and memory in patients with severe brain damage. Due to the experimental nature of this treatment, it is not widely available and may require multiple sessions to achieve the desired results."_
+
+**Used for**: Treating [brain damage](/docs/wiki/injuries/brain-damage.md#brain-damage) with advanced glitterworld technology. Upon completion of the initial procedure, patients undergoing [mechanite therapy](/docs/wiki/injuries/mechanite-therapy.md#mechanite-therapy) may feel a bit disoriented and fatigued, but these effects will reside once the treatment is complete.
+
+**Skill Requirements**: `Medicine` at level 12  
+**Research Requirements**: [Cellular regenerative medicine](/docs/wiki/research.md#cellular-regenerative-medicine)  
+**Ingredients**: 1x `Glitterworld Medicine`  
+**Surgery Success Chance Factor[^2]**: 200%  
+**Death on Failed Surgery Chance[^3]**: 0%  
+**Work Amount**: 750
 
 ## Osteosynthetic Surgery
 

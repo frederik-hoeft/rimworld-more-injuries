@@ -1,29 +1,28 @@
-# New Research Projects
+# Research Projects
 
 <!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
-_:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [New Research Projects](/docs/wiki/research.md)_
+_:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [Research Projects](/docs/wiki/research.md)_
 <!-- @end_generated_block -->
-
-TODO: update docs
 
 More Injuries introduces several new research projects that can be undertaken to unlock new life-saving treatments and surgical procedures. These research projects expand the medical capabilities of your colony and allow you to treat previously untreatable injuries and medical conditions. As your technology advances, you will be able to provide better care to your colonists and save more lives in the harsh environment of the RimWorld.
 
 <!-- @generate_toc {"source": "$self", "indent": 2} -->
-- [New Research Projects](/docs/wiki/research.md#new-research-projects)
-  - [Basic Anatomy](/docs/wiki/research.md#basic-anatomy)
-  - [Cardiopulmonary Resuscitation (CPR)](/docs/wiki/research.md#cardiopulmonary-resuscitation-cpr)
-  - [Basic First Aid](/docs/wiki/research.md#basic-first-aid)
-  - [Advanced First Aid](/docs/wiki/research.md#advanced-first-aid)
-  - [Emergency Medicine](/docs/wiki/research.md#emergency-medicine)
-  - [Neurosurgery](/docs/wiki/research.md#neurosurgery)
-  - [Advanced Thoracic Surgery](/docs/wiki/research.md#advanced-thoracic-surgery)
-  - [Epinephrine Synthesis](/docs/wiki/research.md#epinephrine-synthesis)
-  - [Cellular Regenerative Medicine](/docs/wiki/research.md#cellular-regenerative-medicine)
+- [Research Projects](#research-projects)
+  - [Basic Anatomy](#basic-anatomy)
+  - [Cardiopulmonary Resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr)
+  - [Basic First Aid](#basic-first-aid)
+  - [Emergency Medicine](#emergency-medicine)
+  - [Advanced First Aid](#advanced-first-aid)
+  - [Morphine Synthesis](#morphine-synthesis)
+  - [Chloroform Synthesis](#chloroform-synthesis)
+  - [Neurosurgery](#neurosurgery)
+  - [Advanced Thoracic Surgery](#advanced-thoracic-surgery)
+  - [Epinephrine Synthesis](#epinephrine-synthesis)
+  - [Ketamine Synthesis](#ketamine-synthesis)
+  - [Cellular Regenerative Medicine](#cellular-regenerative-medicine)
 <!-- @end_generated_block -->
 
 ![An overview of the new research projects added by More Injuries.](/docs/assets/research.png)
-
-TODO: update image
 
 > [!TIP]
 > All new research projects can be found in the new *More Injuries* research tab.
@@ -37,7 +36,7 @@ TODO: update image
 **Unlocks**: [Bandages](/docs/wiki/medical-devices.md#bandage), [splints](/docs/wiki/medical-devices.md#splint), [trepanation](/docs/wiki/surgeries.md#trepanation)  
 **Required Research Bench & Addon**: Simple  
 **Research Requirements**: None  
-**Unlocks Research Projects**: [Basic first aid](/docs/wiki/research.md#basic-first-aid)  
+**Unlocks Research Projects**: [Basic first aid](#basic-first-aid), [cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr)  
 **Research Cost**: 500
 
 > [!TIP]
@@ -52,8 +51,8 @@ TODO: update image
 **Tech Level**: Industrial  
 **Unlocks**: [CPR](/docs/wiki/medical-devices.md#cpr)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Basic anatomy](/docs/wiki/research.md#basic-anatomy)  
-**Unlocks Research Projects**: [Emergency medicine](/docs/wiki/research.md#emergency-medicine)  
+**Research Requirements**: [Basic anatomy](#basic-anatomy)  
+**Unlocks Research Projects**: [Emergency medicine](#emergency-medicine)  
 **Research Cost**: 500
 
 > [!TIP]
@@ -67,9 +66,21 @@ TODO: update image
 **Tech Level**: Medieval  
 **Unlocks**: [Blood transfusions](/docs/wiki/medical-devices.md#blood-bag), [tourniquets](/docs/wiki/medical-devices.md#tourniquet)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Basic anatomy](/docs/wiki/research.md#basic-anatomy), machining  
-**Unlocks Research Projects**: [Cardiopulmonary resuscitation (CPR)](/docs/wiki/research.md#cardiopulmonary-resuscitation-cpr), [advanced first aid](/docs/wiki/research.md#advanced-first-aid)  
+**Research Requirements**: [Basic anatomy](#basic-anatomy), machining  
+**Unlocks Research Projects**: [Emergency medicine](#emergency-medicine), [advanced first aid](#advanced-first-aid), [morphine synthesis](#morphine-synthesis), [chloroform synthesis](#chloroform-synthesis)  
 **Research Cost**: 1000
+
+## Emergency Medicine
+
+> **In-Game Description**
+> _"**Emergency medicine** &mdash; Bringing together advances in first aid, pharmacology, and electrical technology, this research opens the door to modern emergency medicine. Your doctors will learn to rapidly assess and stabilize patients facing life-threatening conditions—trauma, airway obstruction, cardiac arrest, and more. Through intensive training and access to specialized equipment like defibrillators and suction devices, your colony's medical responders will be prepared to perform critical interventions that can make the difference between life and death in the first golden hour. These capabilities also lay the foundation for complex surgical procedures in the future."_
+
+**Tech Level**: Industrial  
+**Unlocks**: [defibrillators](/docs/wiki/medical-devices.md#defibrillator), [airway suction devices](/docs/wiki/medical-devices.md#airway-suction-device), [saline IV bags](/docs/wiki/medical-devices.md#saline-iv-bag), [decompressive craniectomy](/docs/wiki/surgeries.md#decompressive-craniectomy), [osteosynthetic surgery](/docs/wiki/surgeries.md#osteosynthetic-surgery), [thoracotomy](/docs/wiki/surgeries.md#thoracotomy)  
+**Required Research Bench & Addon**: Simple  
+**Research Requirements**: [Cardiopulmonary resuscitation (CPR)](#cardiopulmonary-resuscitation-cpr), [basic first aid](#basic-first-aid), electricity  
+**Unlocks Research Projects**: [Cellular regeneration](#cellular-regenerative-medicine), [advanced thoracic surgery](#advanced-thoracic-surgery), [epinephrine synthesis](#epinephrine-synthesis), [ketamine synthesis](#ketamine-synthesis)  
+**Research Cost**: 2000
 
 ## Advanced First Aid
 
@@ -79,21 +90,34 @@ TODO: update image
 **Tech Level**: Industrial  
 **Unlocks**: [Hemostatic agents](/docs/wiki/medical-devices.md#hemostatic-agent)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Basic first aid](/docs/wiki/research.md#basic-first-aid), drug production  
+**Research Requirements**: [Basic first aid](#basic-first-aid), drug production  
 **Unlocks Research Projects**: None  
 **Research Cost**: 1500
 
-## Emergency Medicine
+## Morphine Synthesis
 
 > **In-Game Description**
-> _"**Emergency medicine** &mdash; Bringing together advances in first aid, pharmacology, and electrical technology, this research opens the door to modern emergency medicine. Your doctors will learn to rapidly assess and stabilize patients facing life-threatening conditions—trauma, airway obstruction, cardiac arrest, and more. Through intensive training and access to specialized equipment like defibrillators and suction devices, your colony's medical responders will be prepared to perform critical interventions that can make the difference between life and death in the first golden hour. These capabilities also lay the foundation for complex surgical procedures in the future."_
+> _"**Morphine synthesis** &mdash; By studying the chemical extraction and synthesis of morphine, your researchers will gain the ability to produce this potent opioid analgesic for medical use. Morphine offers unparalleled pain relief in emergency situations, but it must be administered with caution - its depressive effects on respiration and circulation can complicate resuscitation efforts and worsen outcomes in cases of severe blood loss.  
+> This research unlocks the ability to craft morphine autoinjectors for quick administration on the battlefield or for pain management in the hospital."_
 
 **Tech Level**: Industrial  
-**Unlocks**: [defibrillators](/docs/wiki/medical-devices.md#defibrillator), [airway suction devices](/docs/wiki/medical-devices.md#airway-suction-device), [decompressive craniectomy](/docs/wiki/surgeries.md#decompressive-craniectomy), [osteosynthetic surgery](/docs/wiki/surgeries.md#osteosynthetic-surgery), [thoracotomy](/docs/wiki/surgeries.md#thoracotomy)  
+**Unlocks**: [Morphine autoinjectors](/docs/wiki/medical-devices.md#morphine-autoinjector)  
+**Required Research Bench & Addon**: Hi-tech  
+**Research Requirements**: [Basic first aid](#basic-first-aid), drug production  
+**Unlocks Research Projects**: None  
+**Research Cost**: 1000
+
+## Chloroform Synthesis
+
+> **In-Game Description**
+> _"**Chloroform synthesis** &mdash; By studying the synthesis of chloroform, your researchers will unlock the ability to produce this powerful anesthetic. Chloroform can be used to sedate patients for surgery or other medical procedures, allowing your doctors to perform complex interventions with greater ease and precision. However, it is important to use chloroform carefully due to its high potential for overdose and toxicity."_
+
+**Tech Level**: Industrial  
+**Unlocks**: [Chloroform-soaked cloth](/docs/wiki/medical-devices.md#chloroform-soaked-cloth)  
 **Required Research Bench & Addon**: Simple  
-**Research Requirements**: [Cardiopulmonary resuscitation (CPR)](/docs/wiki/research.md#cardiopulmonary-resuscitation-cpr), [basic first aid](/docs/wiki/research.md#basic-first-aid), electricity  
-**Unlocks Research Projects**: [Cellular regeneration](/docs/wiki/research.md#cellular-regenerative-medicine), [advanced thoracic surgery](/docs/wiki/research.md#advanced-thoracic-surgery), [epinephrine synthesis](/docs/wiki/research.md#epinephrine-synthesis)  
-**Research Cost**: 2000
+**Research Requirements**: [Basic first aid](#basic-first-aid), drug production  
+**Unlocks Research Projects**: [Ketamine synthesis](#ketamine-synthesis)  
+**Research Cost**: 750
 
 ## Neurosurgery
 
@@ -103,7 +127,7 @@ TODO: update image
 **Tech Level**: Industrial  
 **Unlocks**: [Stereotactic surgery](/docs/wiki/surgeries.md#stereotactic-surgery)  
 **Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
-**Research Requirements**: [Emergency medicine](/docs/wiki/research.md#emergency-medicine), fabrication  
+**Research Requirements**: [Emergency medicine](#emergency-medicine), fabrication  
 **Unlocks Research Projects**: None  
 **Research Cost**: 3000
 
@@ -115,7 +139,7 @@ TODO: update image
 **Tech Level**: Industrial  
 **Unlocks**: [Thoracoscopes](/docs/wiki/medical-devices.md#thoracoscope), [video-assisted thoracoscopic surgery](/docs/wiki/surgeries.md#video-assisted-thoracoscopic-surgery)  
 **Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
-**Research Requirements**: [Emergency medicine](/docs/wiki/research.md#emergency-medicine), Vitals monitor  
+**Research Requirements**: [Emergency medicine](#emergency-medicine), Vitals monitor  
 **Unlocks Research Projects**: None  
 **Research Cost**: 2500
 
@@ -128,7 +152,21 @@ TODO: update image
 **Tech Level**: Industrial  
 **Unlocks**: [Epinephrine autoinjectors](/docs/wiki/medical-devices.md#epinephrine-autoinjector)  
 **Required Research Bench & Addon**: Hi-tech  
-**Research Requirements**: [Emergency medicine](/docs/wiki/research.md#emergency-medicine), drug production  
+**Research Requirements**: [Emergency medicine](#emergency-medicine), drug production  
+**Unlocks Research Projects**: None  
+**Research Cost**: 2000
+
+## Ketamine Synthesis
+
+> **In-Game Description**
+> _"**Ketamine synthesis** &mdash; Building upon the fundamentals of drug production, this research explores the synthesis of ketamine for medical use as a dissociative anesthetic with powerful analgesic and sedative properties. Since ancient times, it has been widely used for emergency surgery in field conditions in war zones, for example, during the Vietnam War. A 2011 clinical practice guideline supports the use of ketamine as a sedative in emergency medicine, including during physically painful procedures.  
+> By reverse-engineering the ancient pharmaceutical formulations from the early 2000s and developing precision dosing protocols, your colony will gain the knowledge required to synthesize ketamine safely. This unlocks the ability to craft ketamine for surgical use and to sedate uncooperative patients in the field, allowing your doctors to perform life-saving procedures on even the most unhinged "volunteers" to join your colony.  
+> While usually not addictive when used in therapeutic doses, abuse of ketamine can lead to dangerous buildup of the drug in the body, resulting in toxicity and overdose. Therefore, it is important to monitor patients closely for signs of ketamine buildup and to avoid excessive dosing."_
+
+**Tech Level**: Industrial  
+**Unlocks**: [Epinephrine autoinjectors](/docs/wiki/medical-devices.md#epinephrine-autoinjector)  
+**Required Research Bench & Addon**: Hi-tech  
+**Research Requirements**: [Emergency medicine](#emergency-medicine), drug production, [chloroform synthesis](#chloroform-synthesis)  
 **Unlocks Research Projects**: None  
 **Research Cost**: 2000
 
@@ -138,13 +176,13 @@ TODO: update image
 > _"**Cellular regenerative medicine** &mdash; Unlock the secrets of cellular regeneration, a cutting-edge medical technology that allows for the repair and regrowth of damaged tissues at the cellular level. By using mechanites to stimulate the body's natural healing processes, your doctors will be able to cure injuries that were previously considered untreatable, such as hearing and nerve damage. The same technology is used on glitterworlds to treat paralysis and degenerative diseases, but its application is still experimental and its long-term effects are not yet fully understood."_
 
 **Tech Level**: Spacer  
-**Unlocks**: [Cellular regenerative neurosurgery](/docs/wiki/surgeries.md#cellular-regenerative-neurosurgery), [cellular regenerative otologic surgery](/docs/wiki/surgeries.md#cellular-regenerative-otologic-surgery)  
+**Unlocks**: [Cellular regenerative neurosurgery](/docs/wiki/surgeries.md#cellular-regenerative-neurosurgery), [cellular regenerative otologic surgery](/docs/wiki/surgeries.md#cellular-regenerative-otologic-surgery), [mechanite therapy](/docs/wiki/surgeries.md#mechanite-therapy)  
 **Required Research Bench & Addon**: Hi-tech (Multi-analyzer)  
-**Research Requirements**: [Neurosurgery](/docs/wiki/research.md#neurosurgery), bionics  
+**Research Requirements**: [Neurosurgery](#neurosurgery), bionics  
 **Unlocks Research Projects**: None  
 **Research Cost**: 4000
 
 <!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
 ---
-_[back to the top](#new-research-projects)_
+_[back to the top](#research-projects)_
 <!-- @end_generated_block -->

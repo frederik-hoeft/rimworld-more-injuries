@@ -27,10 +27,12 @@ cardiac_arrest ==> hypothermia[hypothermia]
 hypothermia ==> cardiac_arrest
 ketamine[ketamine] ==> | overdose | cardiac_arrest
 chloroform[chloroform] ==> | overdose | cardiac_arrest
-morphine[morphine] ==> | overdose | cardiac_arrest
+morphine[morphine] ==> cardiac_arrest
+morphine ==> | overdose | cardiac_arrest
 
-linkStyle 0,1,3,4,5,6,7,8,9 stroke: #b10000
+linkStyle 0,1,3,4,5,6,7,8,10 stroke: #b10000
 linkStyle 2 stroke: #549b68, stroke-dasharray: 9,5
+linkStyle 9 stroke: #b10000, stroke-dasharray: 9,5
 style cardiac_arrest stroke-width: 4px
 ```
 
