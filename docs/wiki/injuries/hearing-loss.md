@@ -28,7 +28,7 @@ flowchart LR
 
 *See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
 
-**Causes**: Prolonged exposure to gunfire or explosions without [hearing protection](/docs/wiki/medical-devices.md#hearing-protection). More likely to occur indoors or in close proximity to the source of the noise.
+**Causes**: Prolonged exposure to gunfire or explosions without hearing protection (any apparel covering the ears). More likely to occur indoors or in close proximity to the source of the noise.
 
 **Effects**: Temporary reduction in hearing ability, ranging from mild to complete deafness, depending on the severity of the exposure. May progress to [permanent hearing loss](#permanent-hearing-loss) if the exposure is severe or prolonged.
 
