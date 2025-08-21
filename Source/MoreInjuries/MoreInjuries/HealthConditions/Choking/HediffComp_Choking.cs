@@ -1,4 +1,5 @@
-﻿using MoreInjuries.Defs.WellKnown;
+﻿using MoreInjuries.Caching;
+using MoreInjuries.Defs.WellKnown;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -8,9 +9,22 @@ namespace MoreInjuries.HealthConditions.Choking;
 
 public sealed class HediffComp_Choking : HediffComp
 {
+    private readonly TimedDataField<HediffComp_Choking, bool, Hediff_Injury, TimedDataEntry<bool>> _sourceIsProbablyValid;
     private Std::WeakReference<Hediff_Injury>? _source;
 
     public HediffCompProperties_Choking Properties => (HediffCompProperties_Choking)props;
+
+    public HediffComp_Choking()
+    {
+        _sourceIsProbablyValid = new TimedDataField<HediffComp_Choking, bool, Hediff_Injury, TimedDataEntry<bool>>
+        (
+            owner: this,
+            minRefreshIntervalTicks: GenTicks.TickRareInterval,
+            dataProvider: static (self, source) =>
+                // the object may not have been GC'ed yet, but that doesn't mean it's valid
+                self.parent.pawn.health.hediffSet.hediffs.Contains(source)
+        );
+    }
 
     public override void CompPostMake()
     {
@@ -20,42 +34,53 @@ public sealed class HediffComp_Choking : HediffComp
         }
     }
 
-    public Hediff_Injury? Source
+    public Hediff_Injury? GetSource(bool validate)
     {
-        get
+        // attempt to materialize the reference to our source
+        if (_source is null || !_source.TryGetTarget(out Hediff_Injury? source))
         {
-            if (_source is null || !_source.TryGetTarget(out Hediff_Injury? source))
-            {
-                return null;
-            }
-            return source;
+            return null;
         }
-        set
+        if (!_sourceIsProbablyValid.GetData(source, validate))
         {
-            if (value is null)
-            {
-                _source = null;
-            }
-            else
-            {
-                _source = new Std::WeakReference<Hediff_Injury>(value);
-            }
+            // got a dead reference
+            Logger.LogDebug($"Invalidating dead reference to source hediff {source.def.label}");
+            source = null;
+            _source = null;
+        }
+        return source;
+    }
+
+    public void SetSource(Hediff_Injury? value)
+    {
+        if (value is null)
+        {
+            _source = null;
+        }
+        else
+        {
+            _source = new Std::WeakReference<Hediff_Injury>(value);
         }
     }
 
-    private bool Coughing => 
-        Source is not { Bleeding: true } && (parent.pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.3f
-        || ModLister.BiotechInstalled && parent.pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest));
+    private static bool IsCoughing(Hediff? source, Pawn pawn) =>
+        source is not { Bleeding: true } && (pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.3f
+        || ModLister.BiotechInstalled && pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest));
 
-    public override string CompLabelInBracketsExtra => Coughing
+    public override string CompLabelInBracketsExtra => IsCoughing(GetSource(validate: false), parent.pawn)
         ? "MI_Coughing".Translate()
         : string.Empty;
 
     public override void CompExposeData()
     {
-        Hediff_Injury? source = Source;
-        Scribe_References.Look(ref source, "source");
-        Source = source;
+        base.CompExposeData();
+        Hediff_Injury? source = GetSource(validate: true);
+        Hediff_Injury? oldSource = source;
+        Scribe_References.Look(ref source, "chokingSource");
+        if (!ReferenceEquals(source, oldSource))
+        {
+            SetSource(source);
+        }
     }
 
     public override void CompPostTick(ref float severityAdjustment)
@@ -64,7 +89,8 @@ public sealed class HediffComp_Choking : HediffComp
         {
             return;
         }
-        Hediff_Injury? source = Source;
+        Pawn patient = parent.pawn;
+        Hediff_Injury? source = GetSource(validate: true);
         // a random walk with a bias towards increasing severity, increase depends on the bleed rate of the source injury and whether the patient is tended
         float increase = 0.1f;
         float decrease = 0f;
@@ -81,7 +107,7 @@ public sealed class HediffComp_Choking : HediffComp
             decrease = 0.025f;
         }
         float change = Rand.Range(-decrease, increase);
-        bool coughing = Coughing;
+        bool coughing = IsCoughing(source, patient);
         if (coughing)
         {
             // The patient is conscious and coughing, so the severity decreases faster.
@@ -95,18 +121,18 @@ public sealed class HediffComp_Choking : HediffComp
             parent.Severity = newSeverity;
             if (MoreInjuriesMod.Settings.EnableChokingSounds)
             {
-                SoundDef soundDef = (coughing, parent.pawn.gender) switch
+                SoundDef soundDef = (coughing, patient.gender) switch
                 {
                     (true, Gender.Female) => KnownSoundDefOf.ChokingCoughFemale,
                     (true, _) => KnownSoundDefOf.ChokingCoughMale,
                     _ => KnownSoundDefOf.Choking,
                 };
-                soundDef.PlayOneShot(SoundInfo.InMap(parent.pawn, MaintenanceType.None));
+                soundDef.PlayOneShot(SoundInfo.InMap(patient, MaintenanceType.None));
             }
         }
         else
         {
-            parent.pawn.health.RemoveHediff(parent);
+            patient.health.RemoveHediff(parent);
         }
     }
 }

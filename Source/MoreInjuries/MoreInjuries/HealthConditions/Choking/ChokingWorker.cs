@@ -1,4 +1,5 @@
-﻿using MoreInjuries.Defs.WellKnown;
+﻿using MoreInjuries.Debug;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.Things;
@@ -82,10 +83,12 @@ internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent
                     Logger.Error($"Failed to get ChokingHediffComp from choking hediff! Could not apply choking condition to {patient}. This is a bug.");
                     return;
                 }
-                chokingComp!.Source = injury;
+                DebugAssert.IsNotNull(chokingComp);
+                chokingComp.SetSource(injury);
                 if (choking.TryGetComp(out HediffComp_CausedBy? causedBy))
                 {
-                    causedBy!.AddCause(injury);
+                    DebugAssert.IsNotNull(causedBy);
+                    causedBy.AddCause(injury);
                 }
                 patient.health.AddHediff(choking);
             }
