@@ -33,13 +33,13 @@ internal sealed class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsH
         }
     }
 
-    public void AddGizmosExtra(UIBuilder<Gizmo> builder, Pawn selectedPawn)
+    public void AddGizmosExtra(UIBuilder<Gizmo> builder)
     {
         foreach (ICompFloatMenuOptionsHandler handler in _childHandlers)
         {
             if (handler is ICompGetGizmosExtraHandler gizmoHandler)
             {
-                gizmoHandler.AddGizmosExtra(builder, selectedPawn);
+                gizmoHandler.AddGizmosExtra(builder);
             }
         }
     }

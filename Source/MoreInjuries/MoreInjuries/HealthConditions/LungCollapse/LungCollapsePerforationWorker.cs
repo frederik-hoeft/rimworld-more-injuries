@@ -40,7 +40,7 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
         }
         if (i == 0)
         {
-            Logger.LogVerbose($"Won't apply lung collapse to {pawn.Name} since it's either an internal wound or no cause could be determined");
+            Logger.LogDebug($"Won't apply lung collapse to {pawn.Name} since it's either an internal or non-bleeding wound");
             return;
         }
         ReadOnlySpan<Hediff> causes = causedBy.AsSpan()[..i];

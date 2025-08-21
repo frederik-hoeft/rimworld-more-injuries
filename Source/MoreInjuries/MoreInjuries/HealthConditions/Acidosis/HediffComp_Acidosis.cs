@@ -26,6 +26,13 @@ public sealed class HediffComp_Acidosis : HediffComp
         Tick(initializing: true);
     }
 
+    public override void CompExposeData()
+    {
+        base.CompExposeData();
+        Scribe_Deep.Look(ref _severityChangeHistory, "severityHistory");
+        Scribe_Values.Look(ref _previousSeverity, "previousSeverity");
+    }
+
     public override void CompPostTick(ref float severityAdjustment)
     {
         if (parent.pawn.IsHashIntervalTick(Properties.TickInterval))

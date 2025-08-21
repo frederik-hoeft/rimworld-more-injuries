@@ -129,7 +129,7 @@ public class MoreInjuryComp : ThingComp
         builder.Clear();
         foreach (ICompGetGizmosExtraHandler handler in _compGetGizmosExtraHandlers.GetActive())
         {
-            handler.AddGizmosExtra(builder, pawn);
+            handler.AddGizmosExtra(builder);
         }
         return builder.Options;
     }
