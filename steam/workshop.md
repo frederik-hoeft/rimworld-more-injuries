@@ -6,14 +6,13 @@ Overhaul RimWorld's medical system with deeper injury simulation, cascading comp
 
 More Injuries adds a wide variety of new injuries, treatments, and complications that interact in complex ways, creating realistic medical challenges and high-stakes emergencies. It also expands the simulation with finer-grained body parts, new surgeries, medical equipment, and research - all fully customizable through mod settings.
 
-This is a fully reworked and expanded version of the [original pre-1.5 More Injuries mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2892012512), featuring numerous fixes and additions.
+This is a fully reworked and expanded version of the [original pre-1.5 More Injuries mod](https://steamcommunity.com/sharedfiles/filedetails/?id=2892012512).
 
 ![Features](https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Features.png)
 
-![simulation](https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/simulation.png)
-*An illustration of the pathophysiological model used for injury simulation in More Injuries*
+![simulation](https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/simulation.jpg)
 
-Below is a selection of key features and conditions. For the complete list, along with detailed explanations and treatment options, please visit the [More Injuries Wiki on GitHub](https://github.com/frederik-hoeft/rimworld-more-injuries/wiki).
+Below is a selection of key features and conditions. For the complete list, along with detailed explanations and treatment options, please visit the [More Injuries Wiki on GitHub](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/README.md).
 
 New Injuries and Medical Conditions (excerpt):
 - [Acidosis](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/acidosis.md#acidosis)
@@ -68,7 +67,7 @@ We are always looking for new contributions to the mod who want to help make it 
 
 ### Like what you see?
 
-If you enjoy this mod and want to support its development, consider leaving a like in the Steam Workshop and a star on GitHub!
+If you enjoy this mod and want to support its development, consider leaving a like in the Steam Workshop and a star on [GitHub](https://github.com/frederik-hoeft/rimworld-more-injuries)!
 
 ![Credits](https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Credits.png)
 
