@@ -106,6 +106,22 @@
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag_Disabled">
                 <key>PreventDeathByBloodLoss</key>
               </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowUntracked"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <severityCurve>
+                  <points>
+                    <li>0, 0</li>
+                    <li>0.999, 0</li>
+                    <li>1, 1</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </chanceModifiers>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HediffCompHandler_SecondaryCondition_BloodLossDeath">
+            <tickInterval>60</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_RequireUntracked"></li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
                 <severityCurve>
                   <points>
