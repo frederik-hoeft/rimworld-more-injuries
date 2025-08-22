@@ -1,68 +1,69 @@
-[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Overview.png[/img] 
+Overhaul RimWorld's medical system with deeper injury simulation, cascading complications, and challenging emergency care that can make or break your colony's survival stories.
 
-The 1.5 version of the More Injuries mod (original at https://steamcommunity.com/sharedfiles/filedetails/?id=2892012512), reworked from the ground up with tons of fixes, new injury types, new medical treatment options, new medical work types to allow doctors to treat some conditions automatically, and a new mod settings menu to allow you to basically tweak every single option to your liking. Most conditions can be disabled if you don't like them.
+[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Overview.png[/img]
 
-[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Features.png[/img] 
+More Injuries adds a wide variety of new injuries, treatments, and complications that interact in complex ways, creating realistic medical challenges and high-stakes emergencies. It also expands the simulation with finer-grained body parts, new surgeries, medical equipment, and research - all fully customizable through mod settings.
 
-The following is a list of selected features and health conditions. For a full list of features, details, and treatment options, please refer to the corresponding entry in the [url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md] More Injuries User Manual on GitHub [/url] which is also distributed in form of the README.md file in the install directory of this mod (steamapps/workshop/content/294100/3348840185).
+This is a fully reworked and expanded version of the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2892012512]original pre-1.5 More Injuries mod[/url].
 
-[url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#new-injuries-and-medical-conditions] New Injuries and Medical Conditions [/url]
+[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Features.png[/img]
+
+[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/simulation.jpg[/img]
+
+Below is a selection of key features and conditions. For the complete list, along with detailed explanations and treatment options, please visit the [url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/README.md]More Injuries Wiki on GitHub[/url].
+
+[b]New Injuries and Medical Conditions (excerpt):[/b]
 [list]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#adrenaline-rush] Adrenaline Rush [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#cardiac-arrest] Cardiac Arrest [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#chemical-peritonitis] Chemical Peritonitis [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#choking] Choking [/url]
-    [list]
-    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#choking-on-blood] Choking on Blood [/url]
-    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#choking-on-tourniquet] Choking on Tourniquet [/url]
-    [/list]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#concussion] Concussion [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#emp-shutdown] EMP Shutdown [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#enclosed-injuries] Enclosed Injuries [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#fractures] Fractures [/url]
-    [list]
-    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#bone-fracture] Bone Fracture [/url]
-    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#healing-bone-fracture] Healing Bone Fracture [/url]
-    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#bone-fragment-laceration] Bone Fragment Laceration [/url]
-    [/list]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#gangrene] Gangrene [/url]
-    [list]
-    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#dry-gangrene] Dry Gangrene [/url]
-    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#wet-gangrene] Wet Gangrene [/url]
-    [/list]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hearing-loss] Hearing Loss [/url]
-    [list]
-    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#temporary-hearing-loss] Temporary Hearing Loss [/url]
-    [*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#permanent-hearing-loss] (Permanent) Hearing Loss [/url]
-    [/list]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hemorrhagic-stroke] Hemorrhagic Stroke [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hydrostatic-shock] Hydrostatic Shock [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hypovolemic-shock] Hypovolemic Shock [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#inhalation-injury] Inhalation Injury [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#lung-collapse] Lung Collapse [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#organ-hypoxia] Organ Hypoxia [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#paralysis] Paralysis [/url]
-[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#spalling-injury] Spalling Injury [/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/acidosis.md#acidosis]Acidosis[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/adrenaline-rush.md#adrenaline-rush]Adrenaline Rush[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/brain-damage.md#brain-damage]Brain Damage[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest]Cardiac Arrest[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/chemical-damage.md#chemical-damage]Chemical Damage[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/chemical-peritonitis.md#chemical-peritonitis]Chemical Peritonitis[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/chloroform-buildup.md#chloroform-buildup]Chloroform Buildup[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/choking.md#choking]Choking[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/coagulopathy.md#coagulopathy]Coagulopathy[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/concussion.md#concussion]Concussion[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/emp-shutdown.md#emp-shutdown]EMP Shutdown[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/enclosed-injuries.md#enclosed-injuries]Enclosed Injuries[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/fractures.md#fractures]Fractures[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/gangrene.md#gangrene]Gangrene[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/hearing-loss.md#hearing-loss]Hearing Loss[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/hemodilution.md#hemodilution]Hemodilution[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/hemorrhage.md#hemorrhage-spontaneous]Hemorrhage (Spontaneous)[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/hemorrhagic-stroke.md#hemorrhagic-stroke]Hemorrhagic Stroke[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/hydrostatic-shock.md#hydrostatic-shock]Hydrostatic Shock[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/hypothermia.md#hypothermia]Hypothermia[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/hypovolemic-shock.md#hypovolemic-shock]Hypovolemic Shock[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/hypoxia.md#hypoxia]Hypoxia[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/inhalation-injury.md#inhalation-injury]Inhalation Injury[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/ischemia.md#ischemia-tourniquet]Ischemia (Tourniquet)[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/ketamine-buildup.md#ketamine-buildup]Ketamine Buildup[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/lung-collapse.md#lung-collapse]Lung Collapse[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/mechanite-therapy.md#mechanite-therapy]Mechanite Therapy[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/morphine-high.md#morphine-high]Morphine High[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/paralysis.md#paralysis]Paralysis[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/spalling-injury.md#spalling-injury]Spalling Injury[/url]
+[*][url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/docs/wiki/injuries/vasodilation.md#vasodilation]Vasodilation[/url]
 [/list]
 
-[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_FAQ.png[/img] 
+[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_FAQ.png[/img]
 
-[h3] Do you have ideas for new features? [/h3]
+[h3]Do you have ideas for new features?[/h3]  
+Add your feature request [url=https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/ideas]here[/url]
 
-Add your feature request [url=https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/ideas] here [/url]
+[h3]Did you find a bug?[/h3]  
+Report the issue [url=https://github.com/frederik-hoeft/rimworld-more-injuries/issues]here[/url]
 
-[h3] Did you find a bug? [/h3]
+[h3]Do you have any questions about using this mod?[/h3]  
+Ask the community for help [url=https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/q-a]here[/url]
 
-Report the issue [url=https://github.com/frederik-hoeft/rimworld-more-injuries/issues] here [/url]
+[h3]Want to contribute to the mod?[/h3]  
+We are always looking for new contributions to the mod who want to help make it better for everyone. If you are interested in helping out with the development, translation, or testing of the mod, please refer to the [url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/CONTRIBUTING.md]contributing guidelines[/url] or shoot us a message in the [url=https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/contributing]GitHub Discussions[/url].
 
-[h3] Do you have any questions about using this mod? [/h3]
+[h3]Like what you see?[/h3]  
+If you enjoy this mod and want to support its development, consider leaving a like in the Steam Workshop and a star on [url=https://github.com/frederik-hoeft/rimworld-more-injuries]GitHub[/url]!
 
-Ask the community for help [url=https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/q-a] here [/url]
+[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Credits.png[/img]
 
-[h3] Want to contribute to the mod? [/h3]
-
-We are always looking for new contributions to the mod who want to help make it better for everyone. If you are interested in helping out with the development, translation, or testing of the mod, please refer to the [url=https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/CONTRIBUTING.md]contributing guidelines[/url] or shoot us a message in the [url=https://github.com/frederik-hoeft/rimworld-more-injuries/discussions/categories/contributing]GitHub Discussions[/url]
-
-[img]https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Credits.png[/img] 
-
-Development and maintenance of the More Injuries mod is a community effort. We are grateful for all the help we receive from the community and would like to thank everyone who has contributed to the mod in any way. For a full list of contributors, please refer to the credits.txt file on [url=https://github.com/frederik-hoeft/rimworld-more-injuries/tree/main/About/credits.txt]GitHub[/url] or in the mod directory (/About/credits.txt).
+Development and maintenance of the More Injuries mod is a [url=https://github.com/frederik-hoeft/rimworld-more-injuries/tree/main/About/credits.txt]community effort[/url] driven by volunteers. We are grateful for all the help we receive from the community and would like to thank everyone who has contributed to the mod in any way.
