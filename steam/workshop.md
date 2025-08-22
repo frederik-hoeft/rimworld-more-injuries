@@ -71,4 +71,4 @@ If you enjoy this mod and want to support its development, consider leaving a li
 
 ![Credits](https://raw.githubusercontent.com/frederik-hoeft/rimworld-more-injuries/refs/heads/main/steam/assets/headers/Header_Credits.png)
 
-Development and maintenance of the More Injuries mod is a [community effort ](https://github.com/frederik-hoeft/rimworld-more-injuries/tree/main/About/credits.txt) driven by volunteers. We are grateful for all the help we receive from the community and would like to thank everyone who has contributed to the mod in any way.
+Development and maintenance of the More Injuries mod is a [community effort](https://github.com/frederik-hoeft/rimworld-more-injuries/tree/main/About/credits.txt) driven by volunteers. We are grateful for all the help we receive from the community and would like to thank everyone who has contributed to the mod in any way.
