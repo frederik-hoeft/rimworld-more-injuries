@@ -4,8 +4,7 @@
     <defName>Concussion</defName>
     <label>concussion</label>
     <labelNoun>a concussion</labelNoun>
-    <description>A concussion, also known as a mild traumatic brain injury (mTBI), is a head injury that temporarily affects brain functioning. Symptoms may include loss of consciousness; memory loss; headaches; difficulty with thinking, concentration, or balance; nausea; blurred vision; dizziness; sleep disturbances, and mood changes.
-\nShould resolve on its own within a few days, but can be worsened by repeated head injuries.</description>
+    <description>A concussion, also known as a mild traumatic brain injury (mTBI), is a head injury that temporarily affects brain functioning. Symptoms may include loss of consciousness; memory loss; headaches; difficulty with thinking, concentration, or balance; nausea; blurred vision; dizziness; sleep disturbances, and mood changes.\n\nShould resolve on its own within a few days, but can be worsened by repeated head injuries.</description>
     <isBad>true</isBad>
     <maxSeverity>1</maxSeverity>
     <defaultLabelColor>(140,140,0)</defaultLabelColor>

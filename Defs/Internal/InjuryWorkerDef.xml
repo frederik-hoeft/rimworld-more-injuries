@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <MoreInjuries.Defs.ReferenceableDef>
+    <defName>InjuryWorkerDef</defName>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.WorkerFactoryProps_ModExtension">
+        <workerFactories>
+          <li Class="MoreInjuries.HealthConditions.Paralysis.ParalysisWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.IntestinalSpill.IntestinalSpillWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.CardiacArrest.CardiacArrestWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HeadInjury.HeadInjuryWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.AdrenalineRush.AdrenalineWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HydrostaticShock.HydrostaticShockWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.Fractures.FractureWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.LungCollapse.LungCollapseThermobaricWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.LungCollapse.LungCollapsePerforationWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.InhalationInjury.InhalationInjuryWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.SpallingInjury.SpallingInjuryWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.Choking.ChokingWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.EmpShutdown.EmpShutdownWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HearingLoss.HearingLossWorkerFactory" >
+            <earGroups>
+              <li>UpperHead</li>
+              <li>FullHead</li>
+            </earGroups>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.HearingLoss.HearingLossExplosionsWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HeadInjury.Concussions.ConcussionExplosionsWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.HeavyBleeding.HeavyBleedingWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.ProvideFirstAidWorkerFactory" />
+          <li Class="MoreInjuries.HealthConditions.Drugs.DrugWorkerFactory" />
+        </workerFactories>
+      </li>
+    </modExtensions>
+  </MoreInjuries.Defs.ReferenceableDef>
+</Defs>

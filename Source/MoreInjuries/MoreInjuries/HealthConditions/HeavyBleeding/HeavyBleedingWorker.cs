@@ -6,7 +6,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding;
 
-public class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsHandler, ICompGetGizmosExtraHandler
+internal sealed class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsHandler, ICompGetGizmosExtraHandler
 {
     private readonly ICompFloatMenuOptionsHandler[] _childHandlers;
 
@@ -18,7 +18,8 @@ public class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsHandler, I
             new HemostaticAgentFloatOptionProvider(this),
             new TourniquetFloatOptionProvider(this),
             new UseBloodBagFloatOptionProvider(this),
-            new HarvestBloodFloatOptionProvider(this)
+            new UseSalineBagFloatOptionProvider(this),
+            new HarvestBloodFloatOptionProvider(this),
         ];
     }
 
@@ -32,13 +33,13 @@ public class HeavyBleedingWorker : InjuryWorker, ICompFloatMenuOptionsHandler, I
         }
     }
 
-    public void AddGizmosExtra(UIBuilder<Gizmo> builder, Pawn selectedPawn)
+    public void AddGizmosExtra(UIBuilder<Gizmo> builder)
     {
         foreach (ICompFloatMenuOptionsHandler handler in _childHandlers)
         {
             if (handler is ICompGetGizmosExtraHandler gizmoHandler)
             {
-                gizmoHandler.AddGizmosExtra(builder, selectedPawn);
+                gizmoHandler.AddGizmosExtra(builder);
             }
         }
     }

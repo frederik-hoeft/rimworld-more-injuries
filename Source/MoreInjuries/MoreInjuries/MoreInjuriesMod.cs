@@ -6,10 +6,9 @@ using UnityEngine;
 using MoreInjuries.Initialization;
 using System.Collections.Generic;
 using MoreInjuries.Localization;
+using static MoreInjuries.MoreInjuriesSettings.Defaults;
 
 namespace MoreInjuries;
-
-using static MoreInjuriesSettingsDefaults;
 
 public class MoreInjuriesMod : Mod
 {
@@ -125,9 +124,12 @@ public class MoreInjuriesMod : Mod
             "MI_Settings_Features_Respiratory_EnableInhalationTooltip".Translate());
         list.CheckboxLabeled("MI_Settings_Features_Respiratory_EnableLungCollapseLabel".Translate(ENABLE_LUNG_COLLAPSE_DEFAULT.NamedDefault()), ref Settings.EnableLungCollapse,
             "MI_Settings_Features_Respiratory_EnableLungCollapseTooltip".Translate());
-        list.Label("MI_Settings_Features_Respiratory_LungCollapseChanceLabel".Translate(Settings.LungCollapseChanceOnDamage.NamedValue(), LUNG_COLLAPSE_CHANCE_ON_DAMAGE_DEFAULT.NamedDefault()), -1,
+        list.Label("MI_Settings_Features_Respiratory_LungCollapseChanceLabel".Translate(Settings.LungCollapseChanceOnThermobaricDamage.NamedValue(), LUNG_COLLAPSE_CHANCE_ON_THERMOBARIC_DAMAGE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_Respiratory_LungCollapseChanceTooltip".Translate());
-        Settings.LungCollapseChanceOnDamage = (float)Math.Round(list.Slider(Settings.LungCollapseChanceOnDamage, 0f, 1f), 2);
+        Settings.LungCollapseChanceOnThermobaricDamage = (float)Math.Round(list.Slider(Settings.LungCollapseChanceOnThermobaricDamage, 0f, 1f), 2);
+        list.Label("MI_Settings_Features_Respiratory_LungCollapseOnPerforationChanceLabel".Translate(Settings.LungCollapseChanceOnPerforatingDamage.NamedValue(), LUNG_COLLAPSE_CHANCE_ON_PERFORATING_DAMAGE_DEFAULT.NamedDefault()), -1,
+            "MI_Settings_Features_Respiratory_LungCollapseOnPerforationChanceTooltip".Translate());
+        Settings.LungCollapseChanceOnPerforatingDamage = (float)Math.Round(list.Slider(Settings.LungCollapseChanceOnPerforatingDamage, 0f, 1f), 2);
         list.Label("MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootLabel".Translate(Settings.LungCollapseMaxSeverityRoot.NamedValue(), LUNG_COLLAPSE_MAX_SEVERITY_ROOT_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootTooltip".Translate());
         Settings.LungCollapseMaxSeverityRoot = (float)Math.Round(list.Slider(Mathf.Clamp(Settings.LungCollapseMaxSeverityRoot, 0.1f, 1f), 0.1f, 1f), 2);
@@ -143,7 +145,7 @@ public class MoreInjuriesMod : Mod
         list.Label("MI_Settings_Features_Spalling_ChanceLabel".Translate(Settings.SpallingChance.NamedValue(), SPALLING_CHANCE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_Spalling_ChanceTooltip".Translate());
         Settings.SpallingChance = (float)Math.Round(list.Slider(Settings.SpallingChance, 0f, 1f), 2);
-        // hypovolemic shock
+        // hypovolemic shock and cardiac arrest
         list.GapLine();
         Text.Font = GameFont.Medium;
         list.Label("MI_Settings_Features_HypovolemicShock".Translate());
@@ -164,6 +166,33 @@ public class MoreInjuriesMod : Mod
         list.Label("MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel".Translate(Settings.DefibrillatorMinimumSuccessRate.NamedValue(), DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip".Translate());
         Settings.DefibrillatorMinimumSuccessRate = (float)Math.Round(list.Slider(Settings.DefibrillatorMinimumSuccessRate, 0f, 1f), 2);
+        // trauma simulation
+        list.GapLine();
+        Text.Font = GameFont.Medium;
+        list.Label("MI_Settings_Features_LethalTriad".Translate());
+        Text.Font = GameFont.Small;
+        list.CheckboxLabeled("MI_Settings_Features_LethalTriad_EnableLabel".Translate(ENABLE_ADVANCED_TRAUMA_SIMULATION_DEFAULT.NamedDefault()), ref Settings.EnableAdvancedTraumaSimulation,
+            "MI_Settings_Features_LethalTriad_EnableTooltip".Translate());
+        list.CheckboxLabeled("MI_Settings_Features_LethalTriad_PreventDeathByBloodLoss_Label".Translate(PREVENT_DEATH_BY_BLOOD_LOSS_DEFAULT.NamedDefault()), ref Settings.PreventDeathByBloodLoss,
+            "MI_Settings_Features_LethalTriad_PreventDeathByBloodLoss_Tooltip".Translate());
+        list.Label("MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorLabel".Translate(Math.Round(Settings.HypoxiaAcidosisConversionFactor * 100f, 2).NamedValue(), Math.Round(HYPOXIA_ACIDOSIS_CONVERSION_FACTOR_DEFAULT * 100f, 2).NamedDefault()), -1,
+            "MI_Settings_Features_LethalTriad_HypoxiaAcidosisConversionFactorTooltip".Translate());
+        Settings.HypoxiaAcidosisConversionFactor = (float)Math.Round(list.Slider((float)Math.Round(Settings.HypoxiaAcidosisConversionFactor * 100f, 2), 0f, 5f) / 100f, 4);
+        list.Label("MI_Settings_Features_LethalTriad_CoagulopathySalineIvSafetyThresholdLabel".Translate(Settings.IndependentCoagulopathySalineIvSafetyThreshold.NamedValue(), INDEPENDENT_COAGULOPATHY_SALINE_IV_SAFETY_THRESHOLD_DEFAULT.NamedDefault()), -1,
+            "MI_Settings_Features_LethalTriad_CoagulopathySalineIvSafetyThresholdTooltip".Translate());
+        Settings.IndependentCoagulopathySalineIvSafetyThreshold = (float)Math.Round(list.Slider(Settings.IndependentCoagulopathySalineIvSafetyThreshold, 0f, 1f), 2);
+        // neural damage
+        list.GapLine();
+        Text.Font = GameFont.Medium;
+        list.Label("MI_Settings_Features_NeuralDamage".Translate());
+        Text.Font = GameFont.Small;
+        list.CheckboxLabeled("MI_Settings_Features_NeuralDamage_EnableLabel".Translate(ENABLE_NEURAL_DAMAGE_DEFAULT.NamedDefault()), ref Settings.EnableNeuralDamage,
+            "MI_Settings_Features_NeuralDamage_EnableTooltip".Translate());
+        list.Label("MI_Settings_Features_NeuralDamage_TreatmentReductionFactorLabel".Translate(Settings.NeuralDamageChanceReductionFactor.NamedValue(), NEURAL_DAMAGE_CHANCE_REDUCTION_FACTOR_DEFAULT.NamedDefault()), -1,
+            "MI_Settings_Features_NeuralDamage_TreatmentReductionFactorTooltip".Translate());
+        Settings.NeuralDamageChanceReductionFactor = (float)Math.Round(list.Slider(Settings.NeuralDamageChanceReductionFactor, 0.01f, 1f), 2);
+        list.CheckboxLabeled("MI_Settings_Features_NeuralDamage_EnablePersonalityShiftLabel".Translate(NEURAL_DAMAGE_ENABLE_PERSONALITY_SHIFT_DEFAULT.NamedDefault()), ref Settings.NeuralDamageEnablePersonalityShift,
+            "MI_Settings_Features_NeuralDamage_EnablePersonalityShiftTooltip".Translate());
         // concussion after blunt trauma
         list.GapLine();
         Text.Font = GameFont.Medium;

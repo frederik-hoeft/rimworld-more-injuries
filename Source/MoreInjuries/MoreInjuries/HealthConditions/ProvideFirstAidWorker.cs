@@ -1,21 +1,21 @@
-﻿using MoreInjuries.AI;
+﻿using MoreInjuries.AI.Jobs;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
-using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
 using Verse;
 
 namespace MoreInjuries.HealthConditions;
 
-public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent), ICompFloatMenuOptionsHandler
+internal sealed class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent), ICompFloatMenuOptionsHandler
 {
     public override bool IsEnabled => true;
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (patient != selectedPawn && selectedPawn.Drafted && !builder.Keys.Contains(UITreatmentOption.ProvideFirstAid))
         {
             builder.Keys.Add(UITreatmentOption.ProvideFirstAid);
@@ -28,6 +28,7 @@ public class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorker(parent)
                 return;
             }
             bool canTreat = false;
+            // blood bag usage possible => saline bag usage may be possible as well (no need to check)
             if (JobDriver_UseBloodBag.JobGetMedicalDeviceCountToFullyHeal(patient, fullyHeal: false) > 0)
             {
                 canTreat = true;

@@ -16,22 +16,28 @@
   <MI_RemoveTourniquet>Remove tourniquet</MI_RemoveTourniquet>
   <!-- EN: Apply tourniquet to {BODYPART} -->
   <MI_TourniquetGizmo_UseLabel>Apply tourniquet to {BODYPART}</MI_TourniquetGizmo_UseLabel>
-  <!-- EN: Remove tourniquet from {BODYPART} -->
-  <MI_TourniquetGizmo_RemoveLabel>Remove tourniquet from {BODYPART}</MI_TourniquetGizmo_RemoveLabel>
+  <!-- EN: Remove tourniquet from {BODYPART} (safely) -->
+  <MI_TourniquetGizmo_RemoveLabel>Remove tourniquet from {BODYPART} (safely)</MI_TourniquetGizmo_RemoveLabel>
+  <!-- EN: Remove tourniquet from {BODYPART} (quickly) -->
+  <MI_TourniquetGizmo_RemoveQuicklyLabel>Remove tourniquet from {BODYPART} (quickly)</MI_TourniquetGizmo_RemoveQuicklyLabel>
   <!-- EN: Apply a tourniquet to themselves -->
   <MI_TourniquetGizmo_Description>Apply a tourniquet to themselves</MI_TourniquetGizmo_Description>
   <!-- EN: While downed, the pawn still can attempt applying a tourniquet to themselves -->
   <MI_TourniquetGizmo_Downed_Description>While downed, the pawn still can attempt applying a tourniquet to themselves</MI_TourniquetGizmo_Downed_Description>
-  <!-- EN: Apply tourniquet to {BODYPART} of {PATIENTNAME} -->
-  <MI_TourniquetFloatMenu_UseLabel>Apply tourniquet to {BODYPART} of {PATIENTNAME}</MI_TourniquetFloatMenu_UseLabel>
-  <!-- EN: Remove tourniquet from {BODYPART} of {PATIENTNAME} -->
-  <MI_TourniquetFloatMenu_RemoveLabel>Remove tourniquet from {BODYPART} of {PATIENTNAME}</MI_TourniquetFloatMenu_RemoveLabel>
+  <!-- EN: Apply tourniquet to {BODYPART} -->
+  <MI_TourniquetFloatMenu_UseLabel>Apply tourniquet to {BODYPART}</MI_TourniquetFloatMenu_UseLabel>
+  <!-- EN: Remove tourniquet from {BODYPART} (safely) -->
+  <MI_TourniquetFloatMenu_RemoveSafelyLabel>Remove tourniquet from {BODYPART} (safely)</MI_TourniquetFloatMenu_RemoveSafelyLabel>
+  <!-- EN: Remove tourniquet from {BODYPART} (quickly) -->
+  <MI_TourniquetFloatMenu_RemoveQuicklyLabel>Remove tourniquet from {BODYPART} (quickly)</MI_TourniquetFloatMenu_RemoveQuicklyLabel>
   <!-- EN: Harvest blood (finish off {PATIENT_labelShort}) -->
   <MI_HarvestBlood>Harvest blood (finish off {PATIENT_labelShort})</MI_HarvestBlood>
   <!-- EN: {0}: missing required medical skill ({1}) -->
   <MI_HarvestBloodFailed_MissingMedicalSkill>{0}: missing required medical skill ({1})</MI_HarvestBloodFailed_MissingMedicalSkill>
   <!-- EN: Transfuse blood -->
   <MI_UseBloodBag>Transfuse blood</MI_UseBloodBag>
+  <!-- EN: Infuse saline IV -->
+  <MI_UseSalineBag>Infuse saline IV</MI_UseSalineBag>
   <!-- EN: {0}: no blood bags available -->
   <MI_UseBloodBagFailed_Unavailable>{0}: no blood bags available</MI_UseBloodBagFailed_Unavailable>
   <!-- EN: {PATIENT_labelShort} doesn't have enough blood to safely donate blood. -->
@@ -50,4 +56,8 @@
   <MI_InjuryBleeding_TemporarilyReduced_Tooltip>Hemostasis: {TIME}, bleed rate decreased by {PERCENT}%</MI_InjuryBleeding_TemporarilyReduced_Tooltip>
   <!-- EN: Effective bleed rate: {PERCENT}% -->
   <MI_InjuryBleeding_EffectiveBleedRate_Tooltip>Effective bleed rate: {PERCENT}%</MI_InjuryBleeding_EffectiveBleedRate_Tooltip>
+  <!-- EN: Affected by: -->
+  <MI_InjuryBleeding_CrossInteraction_Tooltip_Header>Affected by:</MI_InjuryBleeding_CrossInteraction_Tooltip_Header>
+  <!-- EN: - {HEDIFF_label}: +{PERCENT}% -->
+  <MI_InjuryBleeding_CrossInteraction_Tooltip>- {HEDIFF_label}: +{PERCENT}%</MI_InjuryBleeding_CrossInteraction_Tooltip>
 </LanguageData>

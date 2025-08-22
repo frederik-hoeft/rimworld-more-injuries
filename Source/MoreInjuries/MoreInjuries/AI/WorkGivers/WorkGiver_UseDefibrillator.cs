@@ -2,7 +2,7 @@
 using Verse;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.Things;
-using MoreInjuries.KnownDefs;
+using MoreInjuries.Defs.WellKnown;
 
 namespace MoreInjuries.AI.WorkGivers;
 

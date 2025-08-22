@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RecipeDef>
+    <defName>Make_SalineBagFive</defName>
+    <label>make saline bags x5</label>
+    <description>Make 5 saline bags by grinding down stone blocks and extracting the natrium chloride required for the saline solution.</description>
+    <jobString>Making 5 saline bags.</jobString>
+    <workAmount>1000</workAmount>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_Drug</soundWorking>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <researchPrerequisites>
+      <li>EmergencyMedicine</li>
+    </researchPrerequisites>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>StoneBlocks</li>
+          </categories>
+        </filter>
+        <count>10</count>
+      </li>
+      <li MayRequire="Dubwise.DubsBadHygiene">
+        <filter>
+          <thingDefs>
+            <li>DBH_WaterBottle</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <products>
+      <SalineBag>5</SalineBag>
+    </products>
+    <fixedIngredientFilter>
+      <categories>
+        <li>StoneBlocks</li>
+      </categories>
+    </fixedIngredientFilter>
+    <recipeUsers>
+      <li>DrugLab</li>
+    </recipeUsers>
+  </RecipeDef>
+
+  <RecipeDef>
+    <defName>Make_SalineBag</defName>
+    <label>make saline bag</label>
+    <description>Make a saline bag by grinding down stone blocks and extracting the natrium chloride required for the saline solution.</description>
+    <jobString>Making a saline bag.</jobString>
+    <workAmount>200</workAmount>
+    <workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_Drug</soundWorking>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <researchPrerequisites>
+      <li>EmergencyMedicine</li>
+    </researchPrerequisites>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>StoneBlocks</li>
+          </categories>
+        </filter>
+        <count>2</count>
+      </li>
+      <li MayRequire="Dubwise.DubsBadHygiene">
+        <filter>
+          <thingDefs>
+            <li>DBH_WaterBottle</li>
+          </thingDefs>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <products>
+      <SalineBag>1</SalineBag>
+    </products>
+    <fixedIngredientFilter>
+      <categories>
+        <li>StoneBlocks</li>
+      </categories>
+    </fixedIngredientFilter>
+    <recipeUsers>
+      <li>DrugLab</li>
+    </recipeUsers>
+  </RecipeDef>
+</Defs>

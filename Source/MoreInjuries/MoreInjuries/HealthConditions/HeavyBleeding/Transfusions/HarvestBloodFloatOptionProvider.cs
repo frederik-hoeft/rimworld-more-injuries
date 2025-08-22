@@ -1,5 +1,5 @@
-﻿using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using MoreInjuries.Localization;
 using MoreInjuries.Things;
 using RimWorld;
@@ -30,8 +30,8 @@ internal class HarvestBloodFloatOptionProvider(InjuryWorker parent) : ICompFloat
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = parent.Target;
-        if (!builder.Keys.Contains(UITreatmentOption.HarvestBlood) && selectedPawn != patient && (patient.Downed || patient.IsPrisoner))
+        Pawn patient = parent.Pawn;
+        if (!builder.Keys.Contains(UITreatmentOption.HarvestBlood) && selectedPawn != patient && (patient.Downed || patient.IsPrisoner) && JobDriver_HarvestBlood.JobCanTreat(patient))
         {
             builder.Keys.Add(UITreatmentOption.HarvestBlood);
             if (!KnownResearchProjectDefOf.BasicFirstAid.IsFinished)

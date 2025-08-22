@@ -1,4 +1,4 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,12 +8,10 @@ namespace MoreInjuries.HealthConditions.HearingLoss;
 
 internal static class HearingLossHelper
 {
-    public static float ChanceToBecomePermanent(float severity)
-    {
+    public static float ChanceToBecomePermanent(float severity) =>
         // f(x)=((chance_factor)/(1+e^(-4.5 (x-2.25))))
         // with increasing severity, the chance of permanent hearing loss increases
-        return (float)(MoreInjuriesMod.Settings.HearingDamagePermanentChanceFactor / (1f + Mathf.Exp(-4.5f * (severity - 2.25f))));
-    }
+        (float)(MoreInjuriesMod.Settings.HearingDamagePermanentChanceFactor / (1f + Mathf.Exp(-4.5f * (severity - 2.25f))));
 
     public static bool TryMakePermanentIfApplicable(Pawn patient, Hediff temporaryHearingLoss)
     {

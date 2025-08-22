@@ -90,4 +90,15 @@
       </li>
     </stages>
   </HediffDef>
+
+  <MoreInjuries.Defs.ReferenceableDef>
+    <defName>HearingLossVerbInfo</defName>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.HearingLoss.HearingLossVerbInfoProperties_ModExtension">
+        <supportedVerbBaseClasses>
+          <li>Verse.Verb_Shoot</li>
+        </supportedVerbBaseClasses>
+      </li>
+    </modExtensions>
+  </MoreInjuries.Defs.ReferenceableDef>
 </Defs>

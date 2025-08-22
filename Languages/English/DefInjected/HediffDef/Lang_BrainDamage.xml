@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: motor dysfunction -->
+  <BrainDamage_MotorDysfunction.label>motor dysfunction</BrainDamage_MotorDysfunction.label>
+  <!-- EN: Neurological damage to the motor cortex has resulted in permanent impairment of the motor system. This can manifest as weakness, tremors, or difficulty coordinating movements. The severity of the dysfunction can vary based on the extent of the damage. -->
+  <BrainDamage_MotorDysfunction.description>Neurological damage to the motor cortex has resulted in permanent impairment of the motor system. This can manifest as weakness, tremors, or difficulty coordinating movements. The severity of the dysfunction can vary based on the extent of the damage.</BrainDamage_MotorDysfunction.description>
+  <!-- EN: minor -->
+  <BrainDamage_MotorDysfunction.stages.minor.label>minor</BrainDamage_MotorDysfunction.stages.minor.label>
+  <!-- EN: moderate -->
+  <BrainDamage_MotorDysfunction.stages.moderate.label>moderate</BrainDamage_MotorDysfunction.stages.moderate.label>
+  <!-- EN: severe -->
+  <BrainDamage_MotorDysfunction.stages.severe.label>severe</BrainDamage_MotorDysfunction.stages.severe.label>
+  <!-- EN: very severe -->
+  <BrainDamage_MotorDysfunction.stages.very_severe.label>very severe</BrainDamage_MotorDysfunction.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <BrainDamage_MotorDysfunction.stages.extreme.label>extreme</BrainDamage_MotorDysfunction.stages.extreme.label>
+
+  <!-- EN: aphasia -->
+  <BrainDamage_LanguageAphasia.label>aphasia</BrainDamage_LanguageAphasia.label>
+  <!-- EN: Permanent damage to nerve cells in the language centers of the brain has resulted in pronounced difficulty with communication. This can manifest as word-finding difficulties, fragmented speech, or even complete muteness. The severity of the aphasia can vary based on the extent of the damage. -->
+  <BrainDamage_LanguageAphasia.description>Permanent damage to nerve cells in the language centers of the brain has resulted in pronounced difficulty with communication. This can manifest as word-finding difficulties, fragmented speech, or even complete muteness. The severity of the aphasia can vary based on the extent of the damage.</BrainDamage_LanguageAphasia.description>
+  <!-- EN: word-finding difficulty -->
+  <BrainDamage_LanguageAphasia.stages.wordfinding_difficulty.label>word-finding difficulty</BrainDamage_LanguageAphasia.stages.wordfinding_difficulty.label>
+  <!-- EN: fragmented speech -->
+  <BrainDamage_LanguageAphasia.stages.fragmented_speech.label>fragmented speech</BrainDamage_LanguageAphasia.stages.fragmented_speech.label>
+  <!-- EN: non-fluent -->
+  <BrainDamage_LanguageAphasia.stages.nonfluent.label>non-fluent</BrainDamage_LanguageAphasia.stages.nonfluent.label>
+  <!-- EN: barely verbal -->
+  <BrainDamage_LanguageAphasia.stages.barely_verbal.label>barely verbal</BrainDamage_LanguageAphasia.stages.barely_verbal.label>
+  <!-- EN: completely nonverbal -->
+  <BrainDamage_LanguageAphasia.stages.completely_nonverbal.label>completely nonverbal</BrainDamage_LanguageAphasia.stages.completely_nonverbal.label>
+
+  <!-- EN: agnosia -->
+  <BrainDamage_VisualAgnosia.label>agnosia</BrainDamage_VisualAgnosia.label>
+  <!-- EN: Damage to the occipital or temporal lobes has impaired the ability to recognize objects or faces, despite normal vision. Affected patients may have trouble identifying items or people, leading to confusion and slower task performance. -->
+  <BrainDamage_VisualAgnosia.description>Damage to the occipital or temporal lobes has impaired the ability to recognize objects or faces, despite normal vision. Affected patients may have trouble identifying items or people, leading to confusion and slower task performance.</BrainDamage_VisualAgnosia.description>
+  <!-- EN: minor -->
+  <BrainDamage_VisualAgnosia.stages.minor.label>minor</BrainDamage_VisualAgnosia.stages.minor.label>
+  <!-- EN: moderate -->
+  <BrainDamage_VisualAgnosia.stages.moderate.label>moderate</BrainDamage_VisualAgnosia.stages.moderate.label>
+  <!-- EN: severe -->
+  <BrainDamage_VisualAgnosia.stages.severe.label>severe</BrainDamage_VisualAgnosia.stages.severe.label>
+  <!-- EN: very severe -->
+  <BrainDamage_VisualAgnosia.stages.very_severe.label>very severe</BrainDamage_VisualAgnosia.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <BrainDamage_VisualAgnosia.stages.extreme.label>extreme</BrainDamage_VisualAgnosia.stages.extreme.label>
+
+  <!-- EN: executive dysfunction -->
+  <BrainDamage_FrontalLobe.label>executive dysfunction</BrainDamage_FrontalLobe.label>
+  <!-- EN: Damage to the frontal lobes has impaired executive functions, including decision-making, planning, and impulse control. Affected individuals may act erratically or inappropriately, and struggle with organization, prioritization, and regulating emotions, leading to difficulties in daily life and social interactions. -->
+  <BrainDamage_FrontalLobe.description>Damage to the frontal lobes has impaired executive functions, including decision-making, planning, and impulse control. Affected individuals may act erratically or inappropriately, and struggle with organization, prioritization, and regulating emotions, leading to difficulties in daily life and social interactions.</BrainDamage_FrontalLobe.description>
+  <!-- EN: minor -->
+  <BrainDamage_FrontalLobe.stages.minor.label>minor</BrainDamage_FrontalLobe.stages.minor.label>
+  <!-- EN: moderate -->
+  <BrainDamage_FrontalLobe.stages.moderate.label>moderate</BrainDamage_FrontalLobe.stages.moderate.label>
+  <!-- EN: severe -->
+  <BrainDamage_FrontalLobe.stages.severe.label>severe</BrainDamage_FrontalLobe.stages.severe.label>
+  <!-- EN: very severe -->
+  <BrainDamage_FrontalLobe.stages.very_severe.label>very severe</BrainDamage_FrontalLobe.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <BrainDamage_FrontalLobe.stages.extreme.label>extreme</BrainDamage_FrontalLobe.stages.extreme.label>
+
+  <!-- EN: personality shift -->
+  <BrainDamage_PersonalityShift.label>personality shift</BrainDamage_PersonalityShift.label>
+  <!-- EN: N/A -->
+  <BrainDamage_PersonalityShift.description>N/A</BrainDamage_PersonalityShift.description>
+  <!-- EN: Personality Shift -->
+  <BrainDamage_PersonalityShift.comps.HediffComp_MessageAfterTicks.letterLabel>Personality Shift</BrainDamage_PersonalityShift.comps.HediffComp_MessageAfterTicks.letterLabel>
+  <!-- EN: Due to severe brain damage, {0} has undergone a significant shift in personality. They may have become more skilled in certain areas, but also may have lost some of their previous skills. This change is permanent and may require some reorientation for their role in the colony. -->
+  <BrainDamage_PersonalityShift.comps.HediffComp_MessageAfterTicks.letterText>Due to severe brain damage, {0} has undergone a significant shift in personality. They may have become more skilled in certain areas, but also may have lost some of their previous skills. This change is permanent and may require some reorientation for their role in the colony.</BrainDamage_PersonalityShift.comps.HediffComp_MessageAfterTicks.letterText>
+  <!-- EN: hidden -->
+  <BrainDamage_PersonalityShift.stages.hidden.label>hidden</BrainDamage_PersonalityShift.stages.hidden.label>
+
+  <!-- EN: hippocampal damage -->
+  <BrainDamage_Confusion.label>hippocampal damage</BrainDamage_Confusion.label>
+  <!-- EN: Damage to the hippocampus has impaired memory formation and spatial navigation. Affected individuals may become confused about their surroundings, forget where they are, and have difficulty navigating or recalling past events. -->
+  <BrainDamage_Confusion.description>Damage to the hippocampus has impaired memory formation and spatial navigation. Affected individuals may become confused about their surroundings, forget where they are, and have difficulty navigating or recalling past events.</BrainDamage_Confusion.description>
+  <!-- EN: minor -->
+  <BrainDamage_Confusion.stages.minor.label>minor</BrainDamage_Confusion.stages.minor.label>
+  <!-- EN: moderate -->
+  <BrainDamage_Confusion.stages.moderate.label>moderate</BrainDamage_Confusion.stages.moderate.label>
+  <!-- EN: severe -->
+  <BrainDamage_Confusion.stages.severe.label>severe</BrainDamage_Confusion.stages.severe.label>
+  <!-- EN: very severe -->
+  <BrainDamage_Confusion.stages.very_severe.label>very severe</BrainDamage_Confusion.stages.very_severe.label>
+  <!-- EN: profound -->
+  <BrainDamage_Confusion.stages.profound.label>profound</BrainDamage_Confusion.stages.profound.label>
+</LanguageData>

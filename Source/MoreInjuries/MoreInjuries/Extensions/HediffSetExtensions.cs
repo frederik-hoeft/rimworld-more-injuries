@@ -1,16 +1,29 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Verse;
 
 namespace MoreInjuries.Extensions;
 
 public static class HediffSetExtensions
 {
+    public static IEnumerable<BodyPartRecord> GetNonMissingPartsOfType(this HediffSet hediffSet, BodyPartDef bodyPartDef)
+    {
+        List<BodyPartRecord> allPartsList = hediffSet.pawn.def.race.body.AllParts;
+        for (int i = 0; i < allPartsList.Count; ++i)
+        {
+            BodyPartRecord part = allPartsList[i];
+            if (part.def == bodyPartDef && !hediffSet.PartIsMissing(part))
+            {
+                yield return part;
+            }
+        }
+    }
+
     public static bool TryGetFirstHediffMatchingPart(this HediffSet hediffSet, BodyPartRecord part, HediffDef hediffDef, [NotNullWhen(returnValue: true)] out Hediff? hediff)
     {
-        for (int index = 0; index < hediffSet.hediffs.Count; ++index)
+        List<Hediff> hediffs = hediffSet.hediffs;
+        for (int i = 0; i < hediffs.Count; ++i)
         {
-            hediff = hediffSet.hediffs[index];
+            hediff = hediffs[i];
             if (hediff.def == hediffDef && hediff.Part == part)
             {
                 return true;
@@ -22,9 +35,10 @@ public static class HediffSetExtensions
 
     public static IEnumerable<Hediff> HediffsMatchingPart(this HediffSet hediffSet, BodyPartRecord part, HediffDef hediffDef)
     {
-        for (int index = 0; index < hediffSet.hediffs.Count; ++index)
+        List<Hediff> hediffs = hediffSet.hediffs;
+        for (int i = 0; i < hediffs.Count; ++i)
         {
-            Hediff hediff = hediffSet.hediffs[index];
+            Hediff hediff = hediffs[i];
             if (hediff.def == hediffDef && hediff.Part == part)
             {
                 yield return hediff;
@@ -34,9 +48,10 @@ public static class HediffSetExtensions
 
     public static IEnumerable<Hediff> HediffsMatchingPart(this HediffSet hediffSet, BodyPartRecord part)
     {
-        for (int index = 0; index < hediffSet.hediffs.Count; ++index)
+        List<Hediff> hediffs = hediffSet.hediffs;
+        for (int i = 0; i < hediffs.Count; ++i)
         {
-            Hediff hediff = hediffSet.hediffs[index];
+            Hediff hediff = hediffs[i];
             if (hediff.Part == part)
             {
                 yield return hediff;
@@ -46,12 +61,12 @@ public static class HediffSetExtensions
 
     public static void RemoveHediffsMatchingPartOrChildren(this HediffSet hediffSet, BodyPartRecord part, Hediff? exception = null)
     {
-        for (int index = hediffSet.hediffs.Count - 1; index >= 0; --index)
+        for (int i = hediffSet.hediffs.Count - 1; i >= 0; --i)
         {
-            Hediff hediff = hediffSet.hediffs[index];
+            Hediff hediff = hediffSet.hediffs[i];
             if (hediff != exception && hediff.IsOnBodyPartOrChildren(part))
             {
-                hediffSet.hediffs.RemoveAt(index);
+                hediffSet.hediffs.RemoveAt(i);
             }
         }
     }

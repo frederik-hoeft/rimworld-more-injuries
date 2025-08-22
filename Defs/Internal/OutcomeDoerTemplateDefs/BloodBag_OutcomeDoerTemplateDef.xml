@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <MoreInjuries.Defs.ReferenceableDef>
+    <defName>BloodBag_OutcomeDoerTemplateDef</defName>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_HasHediff">
+              <hediffDef>BloodLoss</hediffDef>
+            </condition>
+            <goodwillChange>5</goodwillChange>
+            <historyEventDef>TransfusedBloodMember</historyEventDef>
+            <onlyIfFriendly>true</onlyIfFriendly>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_Dynamic">
+            <hediffDef>Hemodilution</hediffDef>
+            <evaluator Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_DynamicRuntime">
+              <instructions>
+                <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_AssignConstant">
+                  <symbol>dilution_factor</symbol>
+                  <value>-1</value>
+                </li>
+                <li Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic.FloatOperator_AssignConstant">
+                  <symbol>added_volume</symbol>
+                  <value>0.35</value>
+                </li>
+                <li Class="MoreInjuries.HealthConditions.Hemodilution.DynamicProcedureCall_CalculateHemodilution"></li>
+              </instructions>
+            </evaluator>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
+            <hediffDef>BloodLoss</hediffDef>
+            <severityOffset>-0.35</severityOffset>
+          </li>
+          <li MayRequire="Dubwise.DubsBadHygiene" Class="MoreInjuries.Integrations.DubsBadHygiene.OutcomeDoer_TransfusionHydration">
+            <needDef>DBHThirst</needDef>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+  </MoreInjuries.Defs.ReferenceableDef>
+</Defs>

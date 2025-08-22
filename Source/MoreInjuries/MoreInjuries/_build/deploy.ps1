@@ -5,26 +5,47 @@ $ErrorActionPreference = "Stop"
 # IMPORTANT: change to Release for stable deployments
 $configuration = "Release"
 $project_name = "MoreInjuries"
-$game_version = "1.5"
+$game_version = "1.6"
 $mod_root = (Get-Item -LiteralPath "${PSScriptRoot}/../../../..").FullName
 $project_path = "${PSScriptRoot}/../${project_name}.csproj"
+# conditional compilation
+$mod_feature_flags = @("ModBadHygiene")
+
+function Log-Message {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$Message
+    )
+    Write-Host "[${project_name} build $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')]: ${Message}"
+}
 
 # Read the hostconfig file
+Log-Message "Reading host configuration file..."
 $config = Get-Content -LiteralPath "${PSScriptRoot}/hostconfig.json" -Raw | ConvertFrom-Json
 
 # Use the path from the JSON file
 $upload_dir = "$($config.steam_root)/steamapps/common/RimWorld/Mods/${project_name}"
 
+# append /p:<mod_feature_flags[i]>="enable" for all defined feature flags
+$mod_flag_properties = @()
+foreach ($flag in $mod_feature_flags) {
+    $mod_flag_properties += "-p:${flag}=enable"
+}
+
+# build and publish the project
+Log-Message "Building and publishing ${project_name} v${game_version}..."
 dotnet clean "${project_path}"
 if (!$?) { exit $LASTEXITCODE }
 dotnet restore "${project_path}" --no-cache
 if (!$?) { exit $LASTEXITCODE }
-dotnet build "${project_path}" -c "${configuration}"
+dotnet build "${project_path}" -c "${configuration}" @mod_flag_properties
 if (!$?) { exit $LASTEXITCODE }
-dotnet publish "${project_path}" -c "${configuration}" -p:PublishProfile=$configuration
+dotnet publish "${project_path}" -c "${configuration}" -p:PublishProfile=$configuration @mod_flag_properties
 if (!$?) { exit $LASTEXITCODE }
 
 # clean upload dir
+Log-Message "Cleaning up the upload directory..."
 if (Test-Path -LiteralPath $upload_dir) {
     Remove-Item -LiteralPath $upload_dir -Recurse
 }
@@ -60,12 +81,46 @@ function Copy-Folder {
 New-Item -ItemType Directory $upload_dir
 # include source files
 New-Item -ItemType Directory "${upload_dir}/Source"
-# copy everything in the oldversions directory to the new upload directory root (exclude git files)
-Copy-Folder -FromPath "${mod_root}/oldversions/*" -ToPath $upload_dir -Exclude ".gitkeep",".gitignore"
+# add oldversions:
+# 1. enumerate subdirectories in the oldversions directory (e.g. 1.5, 1.6, etc.)
+# 2. for each subdirectory, there will be a .ref file that contains a raw download link for the corresponding GitHub (zip) release, download that to a temporary location
+# 3. extract the zip file, and copy the corresponding version folder (e.g. MoreInjuries/1.5, MoreInjuries/1.6, etc., matching the subdirectory name) to the upload directory root
+# 4. delete the temporary zip file
+# enumerate subdirectories in the oldversions directory
+$old_versions_dir = "${mod_root}/oldversions"
+if (Test-Path -LiteralPath $old_versions_dir) {
+    Log-Message "Adding old versions from ${old_versions_dir}..."
+    Get-ChildItem -Path $old_versions_dir -Directory | ForEach-Object {
+        $version_dir = $_.FullName
+        $version_name = $_.Name
+        Log-Message "Processing previous version: ${version_name} ..."
+        # contains a single .ref file with the raw download link, glob the .ref file
+        $ref_file = Get-ChildItem -Path $version_dir -Filter "*.ref" -File | Select-Object -First 1
+        # check if the glob matched a file
+        if ($ref_file -and $ref_file.Exists) {
+            $raw_version = $ref_file.Name -replace '\.ref$', ''
+            # read the raw download link from the .ref file
+            $download_link = Get-Content -LiteralPath $ref_file.FullName -Raw
+            # download the zip file to a temporary location
+            $temp_zip = Join-Path $env:TEMP "${version_name}.zip"
+            Invoke-WebRequest -Verbose -Uri $download_link -OutFile $temp_zip
+            # extract the zip file to a temporary directory
+            $temp_extract_dir = Join-Path $env:TEMP "${version_name}_extract"
+            Expand-Archive -Path $temp_zip -DestinationPath $temp_extract_dir -Force
+            # copy the version folder to the upload directory root
+            Copy-Item -LiteralPath (Join-Path $temp_extract_dir "${project_name}/${version_name}") -Destination $upload_dir -Recurse -Container -Force
+            # delete the temporary zip file and extraction directory
+            Remove-Item -LiteralPath $temp_zip -Force
+            Remove-Item -LiteralPath $temp_extract_dir -Recurse -Force
+            Log-Message "Added old version: ${raw_version} (${version_name})"
+        }
+    }
+}
+
 # create folder for current version
 New-Item -ItemType Directory "${upload_dir}/${game_version}/Assemblies"
-# copy assemblies (deps should be handled via mod dependencies from the workshop)
-Copy-Item -LiteralPath "${mod_root}/artifacts/${project_name}.dll" -Destination "${upload_dir}/${game_version}/Assemblies"
+# copy assemblies (external deps should be handled via mod dependencies from the workshop)
+Copy-Item -LiteralPath "${mod_root}/Source/${project_name}/artifacts/publish/${project_name}/${configuration}/${project_name}.dll" -Destination "${upload_dir}/${game_version}/Assemblies"
 # if there is a Patches directory in the mod root, copy that as well (to the latest version)
 if (Test-Path -LiteralPath "${mod_root}/Patches") {
 	Copy-Item -LiteralPath "${mod_root}/Patches" -Recurse -Destination "${upload_dir}/${game_version}" -Container
@@ -95,4 +150,11 @@ Copy-Folder -FromPath "${mod_root}/Source" -ToPath "${upload_dir}/Source" -Exclu
 # copy README because why not
 Copy-Item -LiteralPath "${mod_root}/README.md" -Destination $upload_dir
 
-Write-Host "========== Deployment succeeded =========="
+# include docs/wiki
+New-Item -ItemType Directory -Path "${upload_dir}/docs"
+Copy-Item -LiteralPath "${mod_root}/docs/wiki" -Recurse -Destination "${upload_dir}/docs/wiki" -Container
+
+# include the LoadFolders.xml file
+Copy-Item -LiteralPath "${mod_root}/LoadFolders.xml" -Destination $upload_dir
+
+Log-Message "========== Deployment succeeded =========="

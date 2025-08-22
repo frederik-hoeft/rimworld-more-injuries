@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>Coagulopathy</defName>
+    <label>coagulopathy</label>
+    <description>Trauma-induced coagulopathy (TIC) is a life-threatening condition in which the blood's ability to clot is impaired, often developing after severe trauma, blood loss, or shock. Without intervention, it can progress into disseminated intravascular coagulation (DIC), where widespread clotting depletes clotting factors and causes uncontrolled internal bleeding, leading to multiple organ failure and, ultimately, death. Treatment requires aggressive management of the underlying causes, such as hypothermia, acidosis, certain toxins, or dilution of clotting factors, and rapid replacement of blood components to restore coagulation function.\n\nTreatment is focused on addressing the underlying causes and may include measures such as warming the patient, correcting acidosis by restoring adequate oxygenation and blood flow, restoring blood volume through transfusions, and triaging patients based on the severity of their condition.</description>
+    <defaultLabelColor>(255, 158, 158)</defaultLabelColor>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <maxSeverity>1</maxSeverity>
+    <isBad>true</isBad>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers.BleedRateModifier_ModExtension">
+        <modifier Class="MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers.BleedRateModifier_SimpleCurve">
+          <severityCurve>
+            <points>
+              <li>0.0, 1.0</li>      <!-- No coagulopathy: normal bleed rate -->
+              <li>0.2, 1.5</li>      <!-- Mild coagulopathy: +50% higher bleed rate -->
+              <li>0.4, 2.0</li>      <!-- Moderate coagulopathy: double baseline -->
+              <li>0.6, 3.0</li>      <!-- Severe coagulopathy: triple baseline -->
+              <li>0.8, 4.0</li>      <!-- Critical coagulopathy: 4.0x baseline -->
+              <li>1.0, 5.0</li>      <!-- Terminal coagulopathy: 5x baseline -->
+            </points>
+          </severityCurve>
+        </modifier>
+      </li>
+    </modExtensions>
+    <comps>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Linked.HediffCompProperties_LinkedSeverity">
+        <tickInterval>250</tickInterval>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy" />
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
+            <tickInterval>250</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
+                <mttfDaysBySeverity>
+                  <points>
+                    <li>0, 10</li>
+                    <li>0.2, 2</li>
+                    <li>0.4, 0.25</li>
+                    <li>0.6, 0.125</li>
+                    <li>0.8, 0.03125</li>
+                    <li>1, 0.00625</li>
+                  </points>
+                </mttfDaysBySeverity>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>SpontaneousBleeding</hediffDef>
+                <minSeverity>0.1</minSeverity>
+                <maxSeverity>1</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>true</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">
+              <depth>Inside</depth>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
+            <tickInterval>250</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
+                <mttfDaysBySeverity>
+                  <points>
+                    <li>0, 10</li>
+                    <li>0.2, 2</li>
+                    <li>0.4, 0.25</li>
+                    <li>0.6, 0.125</li>
+                    <li>0.8, 0.03125</li>
+                    <li>1, 0.00625</li>
+                  </points>
+                </mttfDaysBySeverity>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>Bruise</hediffDef>
+                <minSeverity>0.1</minSeverity>
+                <maxSeverity>1</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>true</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_RandomBleedable">
+              <depth>Outside</depth>
+            </targetEvaluator>
+          </li>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
+            <tickInterval>2000</tickInterval>
+            <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
+                <mttfDaysBySeverity>
+                  <points>
+                    <li>0, 2000</li>
+                    <li>0.2, 500</li>
+                    <li>0.4, 250</li>
+                    <li>0.6, 20</li>
+                    <li>0.8, 4</li>
+                    <li>1, 2</li>
+                  </points>
+                </mttfDaysBySeverity>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>HemorrhagicStroke</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>minor</label>
+        <minSeverity>0</minSeverity>
+      </li>
+      <li>
+        <label>moderate</label>
+        <minSeverity>0.2</minSeverity>
+      </li>
+      <li>
+        <label>severe</label>
+        <minSeverity>0.4</minSeverity>
+      </li>
+      <li>
+        <label>extreme</label>
+        <minSeverity>0.6</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>terminal</label>
+        <minSeverity>0.8</minSeverity>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

@@ -1,16 +1,16 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Things;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.CardiacArrest;
 
-public class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(parent), ICompFloatMenuOptionsHandler
+public sealed class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(parent), ICompFloatMenuOptionsHandler
 {
     public override bool IsEnabled => true; // because we allow the base-game HeartAttack to be treated
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (selectedPawn == patient || !selectedPawn.Drafted)
         {
             return;

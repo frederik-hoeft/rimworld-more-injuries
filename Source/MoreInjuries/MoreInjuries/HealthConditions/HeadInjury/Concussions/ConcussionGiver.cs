@@ -1,10 +1,10 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeadInjury.Concussions;
 
-public class ConcussionGiver() : HeadInjuryGiver()
+public class ConcussionGiver : HeadInjuryGiver
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableConcussion;
 

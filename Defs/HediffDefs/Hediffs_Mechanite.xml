@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>MechaniteTherapy</defName>
+    <label>mechanite therapy</label>
+    <labelNoun>the mechanite therapy</labelNoun>
+    <description>A glitterworld treatment that uses mechanites to slowly repair cellular damage in the body. The mechanites will gradually repair the damage over time, but the process can take several days.</description>
+    <defaultLabelColor>(100, 136, 252)</defaultLabelColor>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.MechaniteTherapy.HediffCompProperties_MechaniteTherapy"></li>
+    </comps>
+    <stages>
+      <li>
+        <label>almost complete</label>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.9</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>in progress</label>
+        <minSeverity>0.5</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.9</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

@@ -1,16 +1,15 @@
-﻿using MoreInjuries.Extensions;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
-using MoreInjuries.KnownDefs;
+using MoreInjuries.HealthConditions.Secondary;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
-public class TourniquetHediffComp : HediffComp
+public sealed class TourniquetHediffComp : HediffComp
 {
-    private const int CHECK_INTERVAL = 300;
-    private int _ticksToNextCheck = CHECK_INTERVAL;
     private bool _isGangreneApplied = false; 
     private float _coagulationMultiplier = 1;
 
@@ -63,36 +62,44 @@ public class TourniquetHediffComp : HediffComp
         base.CompExposeData();
 
         Scribe_Values.Look(ref _coagulationMultiplier, "coagulationMultiplier", 1);
-        Scribe_Values.Look(ref _ticksToNextCheck, "ticksToNextCheck", CHECK_INTERVAL);
         Scribe_Values.Look(ref _isGangreneApplied, "isGangreneApplied", false);
     }
 
     public override void CompPostTick(ref float severityAdjustment)
     {
-        base.CompPostTick(ref severityAdjustment);
-
-        if (MoreInjuriesMod.Settings.TourniquetsCanCauseGangrene && !_isGangreneApplied && parent.CurStage.lifeThreatening && --_ticksToNextCheck <= 0)
+        if (!MoreInjuriesMod.Settings.TourniquetsCanCauseGangrene 
+            || _isGangreneApplied 
+            || !parent.pawn.IsHashIntervalTick(GenTicks.TickRareInterval) 
+            || !parent.CurStage.lifeThreatening)
         {
-            _ticksToNextCheck = CHECK_INTERVAL;
-            float chance = GetGangreneChance(parent.Severity) * CHECK_INTERVAL / MoreInjuriesMod.Settings.MeanTimeBetweenGangreneOnTourniquet;
-            if (Rand.Chance(chance))
+            return;
+        }
+
+        float chance = GetGangreneChance(parent.Severity) * GenTicks.TickRareInterval / MoreInjuriesMod.Settings.MeanTimeBetweenGangreneOnTourniquet;
+        if (Rand.Chance(chance))
+        {
+            BodyPartRecord? target = GetNextGangreneTargetRandomDepthFirst(parent.pawn, parent.Part);
+            if (target is null)
             {
-                BodyPartRecord? target = GetNextGangreneTargetRandomDepthFirst(parent.pawn, parent.Part);
-                if (target is null)
-                {
-                    // we are done here, no more body parts to apply gangrene to
-                    _isGangreneApplied = true;
-                    return;
-                }
-                if (Rand.Chance(MoreInjuriesMod.Settings.DryGangreneChance))
-                {
-                    parent.pawn.health.AddHediff(KnownHediffDefOf.GangreneDry, target);
-                }
-                else
-                {
-                    parent.pawn.health.AddHediff(KnownHediffDefOf.GangreneWet, target);
-                }
+                // we are done here, no more body parts to apply gangrene to
+                _isGangreneApplied = true;
+                return;
             }
+            Hediff gangrene;
+            if (Rand.Chance(MoreInjuriesMod.Settings.DryGangreneChance))
+            {
+                gangrene = HediffMaker.MakeHediff(KnownHediffDefOf.GangreneDry, parent.pawn, target);
+            }
+            else
+            {
+                gangrene = HediffMaker.MakeHediff(KnownHediffDefOf.GangreneWet, parent.pawn, target);
+            }
+            if (gangrene.TryGetComp(out HediffComp_CausedBy? causedBy))
+            {
+                // the tourniquet is the cause of the gangrene
+                causedBy!.AddCause(parent);
+            }
+            parent.pawn.health.AddHediff(gangrene, target);
         }
     }
 

@@ -1,0 +1,42 @@
+# Chloroform Buildup
+
+<!-- @generate_breadcrumb_trail {"template": "_:file_folder: {0}_", "connector": " :arrow_right: "} -->
+_:file_folder: [More Injuries User Manual](/docs/wiki/README.md) :arrow_right: [Injuries and Medical Conditions A-Z](/docs/wiki/injuries/README.md) :arrow_right: [Chloroform Buildup](/docs/wiki/injuries/chloroform-buildup.md)_
+<!-- @end_generated_block -->
+
+Chloroform buildup is a condition that occurs when a pawn is exposed to [chloroform](/docs/wiki/medical-devices.md#chloroform-soaked-cloth). Chloroform is metabolized by the liver and kidneys, and excessive exposure can lead to a severe buildup of chloroform in the body. This can cause [chemical damage](/docs/wiki/injuries/chemical-damage.md#chemical-damage) to the liver and kidneys, leading to organ failure if severe enough.
+
+> **In-Game Description**
+> _"**Chloroform buildup** &mdash; Chloroform is a volatile anesthetic that induces unconsciousness and analgesia by depressing the central nervous system. It was historically used in surgical procedures and as a solvent in laboratories. Chloroform is rapidly absorbed through the lungs, skin, and gastrointestinal tract, leading to systemic distribution and metabolism primarily in the liver.  
+> While effective at low doses, chloroform can cause toxicity and overdose at higher concentrations, leading to symptoms such as renal and hepatic damage, respiratory depression, and cardiac arrest. Due to its potential for severe side effects and the difficulty of controlling dosage through inhalation, chloroform is rarely used in modern medicine."_
+
+```mermaid
+---
+config:
+  flowchart:
+    htmlLabels: true
+---
+flowchart LR
+  chloroform[chloroform inhalation] ==> chloroform_buildup[chloroform buildup]
+  chloroform_buildup ==> | overdose | chemical_damage[chemical damage]
+  chloroform_buildup ==> | overdose | cardiac_arrest[cardiac arrest]
+
+  linkStyle 0,1,2 stroke: #b10000
+  style chloroform_buildup stroke-width: 4px
+```
+
+*See the section on the [pathophysiological system](/docs/wiki/pathophysiological-system.md#pathophysiological-system) for more information on the graphical representation.*
+
+**Causes**: Inhalation of [chloroform](/docs/wiki/medical-devices.md#chloroform-soaked-cloth).
+
+**Effects**: Loss of consciousness, respiratory depression, [chemical damage](/docs/wiki/injuries/chemical-damage.md#chemical-damage) to the liver and kidneys, and [cardiac arrest](/docs/wiki/injuries/cardiac-arrest.md#cardiac-arrest) in severe cases of overdose. The severity of the effects strongly depends on the administered dose and the duration of exposure. Generally, skilled doctors will be able to administer chloroform in a way that prevents overdose, but due to the nature of administration (inhalation), it is difficult to achieve a precise dosage.
+
+**Treatment**: Chloroform is naturally metabolized by the body over time and effects last between a few minutes to a few hours in severe cases. In cases of overdose, the pawn may require medical treatment to treat symptoms and secondary effects.
+
+> [!TIP]
+> Anesthetics offer a wide range of possibilities in RimWorld gameplay. From ensuring hostile pawns stay unconscious while rendering first aid before capturing them, safely "calming down" colonists on violent mental breaks, or even for self-sedation and "playing dead" as a last resort in combat when escape is not an option. Feel free to experiment with the new possibilites. Beware though that sedating someone without medical necessity is considered a hostile action.
+
+<!-- @generate_link_to_top {"template": "---\n_[back to the top]({1})_"} -->
+---
+_[back to the top](#chloroform-buildup)_
+<!-- @end_generated_block -->

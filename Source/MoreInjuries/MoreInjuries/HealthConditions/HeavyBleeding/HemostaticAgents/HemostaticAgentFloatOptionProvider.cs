@@ -1,4 +1,4 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Localization;
 using MoreInjuries.Things;
 using Verse;
@@ -11,7 +11,7 @@ internal class HemostaticAgentFloatOptionProvider(InjuryWorker parent) : ICompFl
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = parent.Target;
+        Pawn patient = parent.Pawn;
         if (!builder.Keys.Contains(UITreatmentOption.UseHemostaticAgent) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(JobDriver_HemostasisBase.JobCanTreat))
         {
             builder.Keys.Add(UITreatmentOption.UseHemostaticAgent);

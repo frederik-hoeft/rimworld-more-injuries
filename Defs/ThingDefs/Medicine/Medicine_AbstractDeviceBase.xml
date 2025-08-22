@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <ThingDef ParentName="ResourceBase" Name="MedicalDeviceBase" Abstract="True">
+  <ThingDef ParentName="ResourceBase" Name="MIMedicalDeviceBase" Abstract="True">
     <stackLimit>10</stackLimit>
     <healthAffectsPrice>false</healthAffectsPrice>
     <uiIconForStackCount>1</uiIconForStackCount>
@@ -24,5 +24,6 @@
   <OrderedTakeGroupDef>
     <defName>MedicalDevice</defName>
     <label>medical device</label>
+    <max>100</max>
   </OrderedTakeGroupDef>
 </Defs>

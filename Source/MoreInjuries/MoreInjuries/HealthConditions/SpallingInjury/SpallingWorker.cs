@@ -1,4 +1,4 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Utils;
 using RimWorld;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.SpallingInjury;
 
-internal class SpallingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
+internal sealed class SpallingInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableSpalling;
 
@@ -18,7 +18,7 @@ internal class SpallingWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
         {
             return;
         }
-        Pawn patient = Target;
+        Pawn patient = Pawn;
 
         // if there is no armor there is nothing for the bullet to fragment off of (quick check)
         if (patient.apparel?.WornApparel.Count is not > 0)

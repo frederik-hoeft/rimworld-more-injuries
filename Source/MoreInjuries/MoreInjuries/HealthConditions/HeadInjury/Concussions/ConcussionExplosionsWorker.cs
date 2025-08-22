@@ -1,16 +1,16 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeadInjury.Concussions;
 
-public class ConcussionExplosionsWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
+internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostPostApplyDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableConcussion;
 
     public void PostPostApplyDamage(ref readonly DamageInfo dinfo)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (dinfo.Def is not null && KnownDamageGroupNames.Explosions.Value.Contains(dinfo.Def.defName))
         {
             // ((1 / e) * x) / ((1 / e) * x + 1)

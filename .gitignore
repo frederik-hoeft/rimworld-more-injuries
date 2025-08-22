@@ -368,3 +368,6 @@ artifacts/
 *~
 *.swp
 *.swo
+
+# articles that aren't open-access
+/assets/simulation/**/sci-hub-*.pdf

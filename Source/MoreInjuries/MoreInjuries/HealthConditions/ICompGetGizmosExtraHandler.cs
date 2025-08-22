@@ -4,5 +4,5 @@ namespace MoreInjuries.HealthConditions;
 
 public interface ICompGetGizmosExtraHandler : IInjuryHandler
 {
-    void AddGizmosExtra(UIBuilder<Gizmo> builder, Pawn selectedPawn);
+    void AddGizmosExtra(UIBuilder<Gizmo> builder);
 }

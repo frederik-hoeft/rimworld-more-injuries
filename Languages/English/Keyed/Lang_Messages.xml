@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <!-- EN: Treatment of {PAWN_labelShort}'s {HEDIFF} has finished. The patient has fully recovered from the condition. -->
+  <MI_Message_BrainDamageTreatment_HediffRemoved>Treatment of {PAWN_labelShort}'s {HEDIFF} has finished. The patient has fully recovered from the condition.</MI_Message_BrainDamageTreatment_HediffRemoved>
+  <!-- EN: Treatment of {PAWN_labelShort}'s {HEDIFF} has finished. The sevity of the condition has beed reduced by {PERCENT}%. -->
+  <MI_Message_BrainDamageTreatment_HediffSeverityDecreased>Treatment of {PAWN_labelShort}'s {HEDIFF} has finished. The sevity of the condition has beed reduced by {PERCENT}%.</MI_Message_BrainDamageTreatment_HediffSeverityDecreased>
+</LanguageData>

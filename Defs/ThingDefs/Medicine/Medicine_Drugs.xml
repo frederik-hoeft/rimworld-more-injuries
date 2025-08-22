@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef Name="MedicalDrugBase" ParentName="MakeableDrugPillBase" Abstract="True">
+    <thingClass>ThingWithComps</thingClass>
+    <possessionCount>32</possessionCount>
+    <graphicData>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <socialPropernessMatters>false</socialPropernessMatters>
+    <rotatable>false</rotatable>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <tradeNeverStack>false</tradeNeverStack>
+    <orderedTakeGroup>MedicalDevice</orderedTakeGroup>
+    <statBases>
+      <WorkToMake>600</WorkToMake>
+      <MarketValue>50</MarketValue>
+      <Mass>0.05</Mass>
+      <Bulk MayRequire="CETeam.CombatExtended">0.05</Bulk>
+      <Flammability>0.7</Flammability>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <ingestible>
+      <drugCategory>Medical</drugCategory>
+      <ingestCommandString>Use {0}</ingestCommandString>
+      <ingestReportString>using {0}.</ingestReportString>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <listOrder>1000</listOrder>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef Name="AutoInjectorBase" ParentName="MedicalDrugBase" Abstract="True">
+    <ingestible>
+      <ingestSound>UseAutoinjector</ingestSound>
+    </ingestible>
+  </ThingDef>
+
+  <ThingDef ParentName="AutoInjectorBase">
+    <defName>Epinephrine</defName>
+    <label>epinephrine autoinjector</label>
+    <description>An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose of epinephrine.</description>
+    <graphicData>
+      <texPath>Thing/Epinephrine</texPath>
+    </graphicData>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
+            <hediffDef>AdrenalineRush</hediffDef>
+            <severityOffset>0.75</severityOffset>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>AdrenalineRush</hediffDef>
+          <severity>0.75</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>EpinephrineSynthesis</li>
+      </researchPrerequisites>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+        <Intellectual>4</Intellectual>
+      </skillRequirements>
+      <soundWorking>Recipe_Drug</soundWorking>
+      <displayPriority>1500</displayPriority>
+    </recipeMaker>
+    <costList>
+      <Chemfuel>4</Chemfuel>
+      <Yayo>1</Yayo>
+      <Flake>1</Flake>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="AutoInjectorBase">
+    <defName>Ketamine</defName>
+    <label>ketamine autoinjector</label>
+    <description>A pre-loaded autoinjector containing a strong dissociative anesthetic. Effective in emergency field care for patients in severe pain or to induce rapid sedation in patients resisting treatment.</description>
+    <graphicData>
+      <texPath>Thing/Ketamine</texPath>
+    </graphicData>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Logic.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+            </condition>
+            <goodwillChange>-15</goodwillChange>
+            <historyEventDef>AnesthetizedMember</historyEventDef>
+            <isViolation>true</isViolation>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_SocialThought">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Logic.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+            </condition>
+            <thoughtDef>SedatedMe</thoughtDef>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
+            <hediffDef>Anesthetic</hediffDef>
+            <severityOffset>1.2</severityOffset>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
+            <hediffDef>KetamineBuildup</hediffDef>
+            <severityOffset>0.35</severityOffset>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>Anesthetic</hediffDef>
+          <severity>1.2</severity>
+        </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>KetamineBuildup</hediffDef>
+          <severity>0.35</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>KetamineSynthesis</li>
+      </researchPrerequisites>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>6</Crafting>
+        <Intellectual>5</Intellectual>
+      </skillRequirements>
+      <soundWorking>Recipe_Drug</soundWorking>
+      <displayPriority>1500</displayPriority>
+    </recipeMaker>
+    <costList>
+      <Yayo>1</Yayo>
+      <SmokeleafLeaves>4</SmokeleafLeaves>
+      <Chemfuel>1</Chemfuel>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <overdoseSeverityOffset>0.05~0.09</overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="MedicalDrugBase">
+    <defName>Chloroform</defName>
+    <label>chloroform-soaked cloth</label>
+    <description>A piece of cloth soaked in chloroform, used to render a patient unconscious for medical procedures. It is effective in emergency situations where rapid sedation is required. However, due to a variety of factors, such as duration of exposure, concentration of chloroform, and individual patient factors, administering an appropriate dose can be difficult and risk of overdose is high. Due to its high potential for side effects, such as respiratory depression, hepatic and renal damage, and cardiac arrest, modern medicine has largely replaced chloroform with safer alternatives.</description>
+    <graphicData>
+      <texPath>Thing/Chloroform</texPath>
+    </graphicData>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_FactionRelations">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Logic.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+            </condition>
+            <goodwillChange>-15</goodwillChange>
+            <historyEventDef>AnesthetizedMember</historyEventDef>
+            <isViolation>true</isViolation>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_SocialThought">
+            <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Logic.OutcomeDoerCondition_Not">
+              <condition Class="MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain.OutcomeDoerCondition_RequiresMedicalAttention"></condition>
+            </condition>
+            <thoughtDef>SedatedMe</thoughtDef>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
+            <hediffDef>Anesthetic</hediffDef>
+            <severityOffset>1.2</severityOffset>
+          </li>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset_DoctorSkillCurve">
+            <hediffDef>ChloroformBuildup</hediffDef>
+            <minSeverityOffsetByDoctorSkill>
+              <points>
+                <!-- always at least 0.35 -->
+                <li>0, 0.35</li>
+                <!-- highly skilled doctors can reduce risk of overdose, since they know what they're doing -->
+                <li>20, 0.3</li>
+              </points>
+            </minSeverityOffsetByDoctorSkill>
+            <maxSeverityOffsetByDoctorSkill>
+              <points>
+                <!-- untrained doctors may cause toxic dosage -->
+                <li>0, 0.85</li>
+                <!-- drops quickly with skill to less severe overdose -->
+                <li>4, 0.65</li>
+                <li>8, 0.5</li>
+                <!-- but there is always a risk of overdose (> 0.4) -->
+                <li>20, 0.45</li>
+              </points>
+            </maxSeverityOffsetByDoctorSkill>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>Anesthetic</hediffDef>
+          <severity>1.2</severity>
+        </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>ChloroformBuildup</hediffDef>
+          <!-- if you chloroform yourself, you drop unconscious as soon as you have reached the minimum severity offset, so pretty safe (probably not, but it's easier to implement) -->
+          <severity>0.35</severity>
+        </li>
+      </outcomeDoers>
+      <ingestCommandString>Inhale chloroform</ingestCommandString>
+      <ingestReportString>inhaling chloroform.</ingestReportString>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>ChloroformSynthesis</li>
+      </researchPrerequisites>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>4</Crafting>
+        <Intellectual>2</Intellectual>
+      </skillRequirements>
+      <soundWorking>Recipe_Drug</soundWorking>
+      <displayPriority>1500</displayPriority>
+    </recipeMaker>
+    <costList>
+      <SmokeleafLeaves>4</SmokeleafLeaves>
+      <Chemfuel>1</Chemfuel>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <overdoseSeverityOffset>0.05~0.09</overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="AutoInjectorBase">
+    <defName>Morphine</defName>
+    <label>morphine autoinjector</label>
+    <description>A morphine autoinjector is a spring-loaded syringe used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol.</description>
+    <graphicData>
+      <texPath>Thing/Morphine</texPath>
+    </graphicData>
+    <modExtensions>
+      <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeProperties_ModExtension">
+        <outcomeDoers>
+          <li Class="MoreInjuries.AI.Jobs.Outcomes.JobOutcomeDoer_HediffOffset">
+            <hediffDef>MorphineBuildup</hediffDef>
+            <severityOffset>0.35</severityOffset>
+          </li>
+        </outcomeDoers>
+      </li>
+    </modExtensions>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>MorphineBuildup</hediffDef>
+          <severity>0.35</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisites>
+        <li>MorphineSynthesis</li>
+      </researchPrerequisites>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <skillRequirements>
+        <Crafting>5</Crafting>
+        <Intellectual>3</Intellectual>
+      </skillRequirements>
+      <soundWorking>Recipe_Drug</soundWorking>
+      <displayPriority>1500</displayPriority>
+    </recipeMaker>
+    <costList>
+      <Flake>1</Flake>
+      <SmokeleafLeaves>4</SmokeleafLeaves>
+      <Chemfuel>1</Chemfuel>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>

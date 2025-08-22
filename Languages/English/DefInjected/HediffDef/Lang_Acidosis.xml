@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: acidosis -->
+  <Acidosis.label>acidosis</Acidosis.label>
+  <!-- EN: Acidosis is a serious metabolic condition characterized by an excessive buildup of acid in the body, typically caused by inadequate oxygen delivery to tissues (hypoxia) following severe blood loss (hypovolemia), cardiac arrest, or other forms of shock. As oxygen becomes scarce, the body shifts to anaerobic metabolism, producing lactic acid and accumulating carbon dioxide, which together lower blood pH.\n\nThe condition contributes to a dangerous cycle known as the "lethal triad" of trauma: acidosis, hypothermia, and coagulopathy. As blood pH drops, clotting function becomes impaired, increasing the risk of uncontrolled bleeding and trauma-induced coagulopathy (TIC). At the same time, mitochondrial function declines and cell-energy production is impaired, hindering thermogenesis and maintaining body temperature, ultimately leading to hypothermia and further exacerbating the cycle of trauma.\n\nAcidosis is treated by restoring oxygen delivery to tissues - typically through rapid control of bleeding, fluid resuscitation with blood products, and correction of hypoxia. Once tissue oxygenation is restored, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys. -->
+  <Acidosis.description>Acidosis is a serious metabolic condition characterized by an excessive buildup of acid in the body, typically caused by inadequate oxygen delivery to tissues (hypoxia) following severe blood loss (hypovolemia), cardiac arrest, or other forms of shock. As oxygen becomes scarce, the body shifts to anaerobic metabolism, producing lactic acid and accumulating carbon dioxide, which together lower blood pH.\n\nThe condition contributes to a dangerous cycle known as the "lethal triad" of trauma: acidosis, hypothermia, and coagulopathy. As blood pH drops, clotting function becomes impaired, increasing the risk of uncontrolled bleeding and trauma-induced coagulopathy (TIC). At the same time, mitochondrial function declines and cell-energy production is impaired, hindering thermogenesis and maintaining body temperature, ultimately leading to hypothermia and further exacerbating the cycle of trauma.\n\nAcidosis is treated by restoring oxygen delivery to tissues - typically through rapid control of bleeding, fluid resuscitation with blood products, and correction of hypoxia. Once tissue oxygenation is restored, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys.</Acidosis.description>
+  <!-- EN: minor -->
+  <Acidosis.stages.minor.label>minor</Acidosis.stages.minor.label>
+  <!-- EN: moderate -->
+  <Acidosis.stages.moderate.label>moderate</Acidosis.stages.moderate.label>
+  <!-- EN: severe -->
+  <Acidosis.stages.severe.label>severe</Acidosis.stages.severe.label>
+  <!-- EN: very severe -->
+  <Acidosis.stages.very_severe.label>very severe</Acidosis.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <Acidosis.stages.extreme.label>extreme</Acidosis.stages.extreme.label>
+  <!-- EN: terminal -->
+  <Acidosis.stages.terminal.label>terminal</Acidosis.stages.terminal.label>
+</LanguageData>

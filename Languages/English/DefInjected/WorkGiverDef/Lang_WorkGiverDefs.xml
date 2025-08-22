@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
-  <!-- EN: stabilize or resuscitate patients with arythmia or cardiac arrest -->
-  <DoctorUseDefibrillator.label>stabilize or resuscitate patients with arythmia or cardiac arrest</DoctorUseDefibrillator.label>
+  <!-- EN: stabilize or resuscitate patients with arrhythmia or cardiac arrest -->
+  <DoctorUseDefibrillator.label>stabilize or resuscitate patients with arrhythmia or cardiac arrest</DoctorUseDefibrillator.label>
   <!-- EN: resuscitate -->
   <DoctorUseDefibrillator.verb>resuscitate</DoctorUseDefibrillator.verb>
   <!-- EN: resuscitating -->
@@ -28,10 +28,24 @@
   <!-- EN: performing blood transfusion on -->
   <DoctorUseBloodBag.gerund>performing blood transfusion on</DoctorUseBloodBag.gerund>
 
+  <!-- EN: perform a saline IV infusion to stabilize patients with severe blood loss -->
+  <DoctorUseSalineBag.label>perform a saline IV infusion to stabilize patients with severe blood loss</DoctorUseSalineBag.label>
+  <!-- EN: perform saline IV infusion on -->
+  <DoctorUseSalineBag.verb>perform saline IV infusion on</DoctorUseSalineBag.verb>
+  <!-- EN: performing saline IV infusion on -->
+  <DoctorUseSalineBag.gerund>performing saline IV infusion on</DoctorUseSalineBag.gerund>
+
   <!-- EN: recover a tourniquet from a deceased patient to reuse it in the future -->
   <DoctorRemoveTourniquetFromDead.label>recover a tourniquet from a deceased patient to reuse it in the future</DoctorRemoveTourniquetFromDead.label>
   <!-- EN: recover tourniquet from -->
   <DoctorRemoveTourniquetFromDead.verb>recover tourniquet from</DoctorRemoveTourniquetFromDead.verb>
   <!-- EN: recovering tourniquet from -->
   <DoctorRemoveTourniquetFromDead.gerund>recovering tourniquet from</DoctorRemoveTourniquetFromDead.gerund>
+
+  <!-- EN: apply a splint to an injured patient to stabilize a fracture and promote healing -->
+  <DoctorUseSplint.label>apply a splint to an injured patient to stabilize a fracture and promote healing</DoctorUseSplint.label>
+  <!-- EN: apply splint to -->
+  <DoctorUseSplint.verb>apply splint to</DoctorUseSplint.verb>
+  <!-- EN: applying splint to -->
+  <DoctorUseSplint.gerund>applying splint to</DoctorUseSplint.gerund>
 </LanguageData>

@@ -1,8 +1,9 @@
-﻿using MoreInjuries.AI;
+﻿using MoreInjuries.AI.Audio;
+using MoreInjuries.AI.Jobs;
+using MoreInjuries.AI.TreatmentModifiers;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
-using MoreInjuries.KnownDefs;
 using MoreInjuries.Things;
-using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -19,7 +20,7 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
 
     protected override ThingDef DeviceDef => KnownThingDefOf.Defibrillator;
 
-    protected override SoundDef SoundDef => KnownSoundDefOf.Defibrillator;
+    protected override ISoundDefProvider<Pawn> SoundDefProvider => CachedSoundDefProvider.Of<Pawn>(KnownSoundDefOf.Defibrillator);
 
     protected override int BaseTendDuration => 180;
 
@@ -41,29 +42,26 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
         return 0;
     }
 
-    protected override void ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
+    protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
+        float minSuccessRate = MoreInjuriesMod.Settings.DefibrillatorMinimumSuccessRate;
         Hediff? heartAttack = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.HeartAttack);
         float doctorSkill = doctor.GetMedicalSkillLevelOrDefault();
-        // global dice roll to ensure consistency between HeartAttack and CardiacArrest treatment outcomes
-        bool success = Rand.Chance(Mathf.Max(MoreInjuriesMod.Settings.DefibrillatorMinimumSuccessRate, doctorSkill / 8f));
-        if (heartAttack is not null && success)
+        // determine the chance of success based on the doctor's medicine skill and the job driver effectiveness modifier
+        if (heartAttack is not null && Rand.Chance(Mathf.Max(minSuccessRate, doctorSkill / 10f * heartAttack.GetTreatmentEffectivenessModifier(job.def))))
         {
             patient.health.RemoveHediff(heartAttack);
         }
-        // only continue if the feature is enabled
-        if (success && MoreInjuriesMod.Settings.EnableCardiacArrestOnHighBloodLoss)
+        Hediff? cardiacArrest = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.CardiacArrest && hediff.CurStageIndex == 0);
+        if (cardiacArrest is not null && Rand.Chance(Mathf.Max(minSuccessRate, doctorSkill / 10f * cardiacArrest.GetTreatmentEffectivenessModifier(job.def))))
         {
-            Hediff? cardiacArrest = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.CardiacArrest && hediff.CurStageIndex == 0);
-            if (cardiacArrest is not null)
-            {
-                patient.health.RemoveHediff(cardiacArrest);
-            }
+            patient.health.RemoveHediff(cardiacArrest);
         }
         if (device is not null)
         {
             ReusabilityUtility.TryDestroyReusableIngredient(device, doctor);
         }
+        return true;
     }
 
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly = false) => 

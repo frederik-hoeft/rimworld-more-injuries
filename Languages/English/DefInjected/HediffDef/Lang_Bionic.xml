@@ -6,4 +6,10 @@
   <BionicSmallIntestine.labelNoun>a bionic small intestine</BionicSmallIntestine.labelNoun>
   <!-- EN: An installed bionic small intestine. -->
   <BionicSmallIntestine.description>An installed bionic small intestine.</BionicSmallIntestine.description>
+  <!-- EN: bionic large intestine -->
+  <BionicLargeIntestine.label>bionic large intestine</BionicLargeIntestine.label>
+  <!-- EN: a bionic large intestine -->
+  <BionicLargeIntestine.labelNoun>a bionic large intestine</BionicLargeIntestine.labelNoun>
+  <!-- EN: An installed bionic large intestine. -->
+  <BionicLargeIntestine.description>An installed bionic large intestine.</BionicLargeIntestine.description>
 </LanguageData>

@@ -1,6 +1,6 @@
-﻿using MoreInjuries.HealthConditions.HeadInjury.Concussions;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.HeadInjury.Concussions;
 using MoreInjuries.HealthConditions.HeadInjury.HemorrhagicStroke;
-using MoreInjuries.KnownDefs;
 using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HeadInjury;
 
-public class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+public sealed class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     private readonly HeadInjuryGiver[] _headInjuryGivers =
     [
@@ -63,7 +63,7 @@ public class HeadInjuryWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
         {
             return;
         }
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         // assuming an even distribution of the damage across all affected body parts, we can calculate the weighted damage to the head
         float weightedHeadTrauma = 0;
         float aggregatedBodyTrauma = bodyParts.Sum(static bodyPart => bodyPart.coverage);

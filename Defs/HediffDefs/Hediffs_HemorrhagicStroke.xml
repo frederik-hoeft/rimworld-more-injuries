@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <HediffDef ParentName="InfectionBase">
+  <HediffDef ParentName="DiseaseBase">
     <defName>HemorrhagicStroke</defName>
     <label>hemorrhagic stroke</label>
-    <description>A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. Symptoms range from initial confusion and vomiting to coma and death.
-\nCan be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture.</description>
+    <description>A life-threatening condition caused by a rupture of a blood vessel in the brain. If left untreated, the patient will quickly lose consciousness as pressure builds up in the brain. As pressure accumulates, additional blood vessels may be compressed or ruptured, leading to cerebral hypoxia. Symptoms range from initial confusion and vomiting to coma, (permanent) brain damage, and death.\n\nCan be temporarily stabilized to slow progression until surgery can be performed to permanently repair the rupture.</description>
     <tendable>true</tendable>
     <makesSickThought>true</makesSickThought>
-    <lethalSeverity>1</lethalSeverity>
+    <maxSeverity>1</maxSeverity>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
     <defaultLabelColor>(255, 158, 158)</defaultLabelColor>
     <comps>
       <li Class="HediffCompProperties_TendDuration">
@@ -15,10 +15,48 @@
         <severityPerDayTended>-2.5</severityPerDayTended>
       </li>
       <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>2.5</severityPerDay>
+        <severityPerDay>2</severityPerDay>
       </li>
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <handlers>
+          <!-- permanent brain damage symptoms will be "discovered" over time, if any -->
+          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+            <tickInterval>250</tickInterval>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve_Hours">
+                <mttfHoursBySeverity>
+                  <points>
+                    <li>0, 2</li>
+                    <li>0.2, 0.5</li>
+                    <li>0.5, 0.25</li>
+                    <li>0.7, 0.15</li>
+                    <li>0.9, 0.075</li>
+                    <li>1, 0.01</li>
+                  </points>
+                </mttfHoursBySeverity>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
+                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>BrainDamage_Hypoxia</hediffDef>
+                <minSeverity>0.1</minSeverity>
+                <maxSeverity>1</maxSeverity>
+                <allowMultiple>true</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Brain</target>
+            </targetEvaluator>
+          </li>
+        </handlers>
       </li>
     </comps>
     <stages>
@@ -27,7 +65,6 @@
         <minSeverity>0</minSeverity>
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
-        <partEfficiencyOffset>-0.1</partEfficiencyOffset>
         <forgetMemoryThoughtMtbDays>0.75</forgetMemoryThoughtMtbDays>
         <vomitMtbDays>0.5</vomitMtbDays>
         <painOffset>0.25</painOffset>
@@ -43,7 +80,6 @@
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
         <minSeverity>0.20</minSeverity>
-        <partEfficiencyOffset>-0.2</partEfficiencyOffset>
         <forgetMemoryThoughtMtbDays>0.5</forgetMemoryThoughtMtbDays>
         <vomitMtbDays>0.25</vomitMtbDays>
         <painOffset>0.25</painOffset>
@@ -59,7 +95,6 @@
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
         <minSeverity>0.5</minSeverity>
-        <partEfficiencyOffset>-0.3</partEfficiencyOffset>
         <forgetMemoryThoughtMtbDays>0.25</forgetMemoryThoughtMtbDays>
         <painOffset>0.25</painOffset>
         <capMods>
@@ -74,7 +109,6 @@
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
         <minSeverity>0.7</minSeverity>
-        <partEfficiencyOffset>-0.4</partEfficiencyOffset>
         <painOffset>0.25</painOffset>
         <capMods>
           <li>
@@ -88,7 +122,6 @@
         <lifeThreatening>true</lifeThreatening>
         <becomeVisible>true</becomeVisible>
         <minSeverity>0.9</minSeverity>
-        <partEfficiencyOffset>-0.5</partEfficiencyOffset>
         <painOffset>0.25</painOffset>
         <capMods>
           <li>

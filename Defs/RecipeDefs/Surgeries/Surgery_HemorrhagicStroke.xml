@@ -5,7 +5,7 @@
     <label>Cure stroke: stereotactic surgery</label>
     <description>Perform stereotactic surgery to cure a hemorrhagic stroke.\nStereotactic surgery is a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of the ruptured blood vessel while minimizing damage to surrounding tissues.\n\nA very complex and delicate procedure that requires a high level of skill and precision but yields a very high success rate.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
-    <jobString>Performing stereotactic surgery</jobString>
+    <jobString>Performing stereotactic surgery.</jobString>
     <workAmount>4500</workAmount>
     <removesHediff>HemorrhagicStroke</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully cured {1}'s stroke.</successfullyRemovedHediffMessage>
@@ -50,7 +50,7 @@
     <label>Cure stroke: decompressive craniectomy</label>
     <description>Perform a decompressive craniectomy to cure a hemorrhagic stroke.\nDecompressive craniectomy is a neurosurgical procedure in which part of the skull is removed to allow a swelling or herniating brain room to expand without being squeezed. It is performed on victims of traumatic brain injury, stroke, Chiari malformation, and other conditions associated with raised intracranial pressure. Use of this surgery is controversial and associated with a higher risk of complications, but it can be life-saving in cases of severe brain swelling.\n\nA challenging surgery that requires familiarity with neurosurgical techniques and a steady hand. Yields a moderate success rate.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
-    <jobString>Performing a decompressive craniectomy</jobString>
+    <jobString>Performing a decompressive craniectomy.</jobString>
     <workAmount>3000</workAmount>
     <removesHediff>HemorrhagicStroke</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully cured {1}'s stroke.</successfullyRemovedHediffMessage>
@@ -87,7 +87,7 @@
     <label>Cure stroke: trepanation</label>
     <description>Perform a trepanation to cure a hemorrhagic stroke.\nTrepanation is a surgical intervention in which a hole is drilled or scraped into the human skull to treat health problems related to intracranial diseases or release pressured blood buildup from an injury. It is one of the oldest surgical procedures known to humanity, with evidence of its practice dating back to the Neolithic era. While it is a simple and straightforward procedure, it carries a high risk of infection and complications.\n\nA basic surgery that can be performed by anyone with rudimentary medical knowledge. Yields a low success rate.</description>
     <workerClass>Recipe_RemoveHediff</workerClass>
-    <jobString>Pefroming a trepanation</jobString>
+    <jobString>Performing a trepanation.</jobString>
     <workAmount>1500</workAmount>
     <removesHediff>HemorrhagicStroke</removesHediff>
     <successfullyRemovedHediffMessage>{0} has successfully cured {1}'s stroke. The patient is lucky to be alive.</successfullyRemovedHediffMessage>

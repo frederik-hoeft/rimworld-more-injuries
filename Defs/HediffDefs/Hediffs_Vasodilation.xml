@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>Vasodilation</defName>
+    <label>vasodilation</label>
+    <description>Vasodilation, also known as vasorelaxation, is the widening of blood vessels, which decreases vascular resistance and increases blood flow. Due to this increase in blood flow, hemorrhagic resistance is reduced, leading to increased bleeding.\n\nVasodilation can be caused by various factors, including the use of certain opioid analgesics like morphine, which suppress the central nervous system and can lead to dangerous hypotension and shock.</description>
+    <defaultLabelColor>(192, 66, 0)</defaultLabelColor>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
+    <isBad>true</isBad>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers.BleedRateModifier_ModExtension">
+        <modifier Class="MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers.BleedRateModifier_Severity">
+          <!-- offset to map 0-severity to 1.0 factor -->
+          <offset>1</offset>
+        </modifier>
+      </li>
+    </modExtensions>
+    <comps>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Linked.HediffCompProperties_LinkedSeverity">
+        <tickInterval>250</tickInterval>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy" />
+    </comps>
+  </HediffDef>
+</Defs>

@@ -41,7 +41,7 @@
     <descriptionHyperlinks>
       <ThingDef>BionicSmallIntestine</ThingDef>
     </descriptionHyperlinks>
-    <jobString>Installing bionic intestine.</jobString>
+    <jobString>Installing bionic small intestine.</jobString>
     <ingredients>
       <li>
         <filter>
@@ -94,5 +94,35 @@
     <appliedOnFixedBodyParts>
       <li>LargeIntestine</li>
     </appliedOnFixedBodyParts>
+  </RecipeDef>
+
+  <!-- bionic large intestine -->
+  <RecipeDef ParentName="SurgeryInstallBodyPartArtificialBase">
+    <defName>InstallBionicLargeIntestine</defName>
+    <label>install bionic large intestine</label>
+    <description>Install a bionic large intestine.</description>
+    <descriptionHyperlinks>
+      <ThingDef>BionicLargeIntestine</ThingDef>
+    </descriptionHyperlinks>
+    <jobString>Installing bionic large intestine.</jobString>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>BionicLargeIntestine</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>BionicLargeIntestine</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <appliedOnFixedBodyParts>
+      <li>LargeIntestine</li>
+    </appliedOnFixedBodyParts>
+    <addsHediff>BionicLargeIntestine</addsHediff>
   </RecipeDef>
 </Defs>

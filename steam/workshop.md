@@ -31,9 +31,9 @@ The following is a list of selected features and health conditions. For a full l
 - [Hemorrhagic Stroke](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hemorrhagic-stroke)
 - [Hydrostatic Shock](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hydrostatic-shock)
 - [Hypovolemic Shock](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hypovolemic-shock)
+- [Hypoxia](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#hypoxia)
 - [Inhalation Injury](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#inhalation-injury)
 - [Lung Collapse](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#lung-collapse)
-- [Organ Hypoxia](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#organ-hypoxia)
 - [Paralysis](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#paralysis)
 - [Spalling Injury](https://github.com/frederik-hoeft/rimworld-more-injuries/blob/main/README.md#spalling-injury)
 

@@ -1,5 +1,4 @@
-﻿using MoreInjuries.Localization;
-using MoreInjuries.Things;
+﻿using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
 using Verse;

@@ -6,7 +6,7 @@ public abstract class InjuryWorker(MoreInjuryComp parent) : IInjuryHandler
 {
     public abstract bool IsEnabled { get; }
 
-    protected MoreInjuryComp Parent { get; } = parent;
+    internal protected MoreInjuryComp Parent { get; } = parent;
 
-    internal protected Pawn Target => (Pawn)Parent.parent;
+    internal protected Pawn Pawn => Parent.Pawn;
 }

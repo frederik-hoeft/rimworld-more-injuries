@@ -22,7 +22,7 @@ jobs:
       uses: nuget/setup-nuget@v2
     - name: Restore NuGet packages
       run: nuget restore Source\MoreInjuries\MoreInjuries.sln
-    - name: Build project for release
+    - name: Ensure project builds in Release configuration
       run: msbuild Source\MoreInjuries\MoreInjuries.sln -t:rebuild -property:Configuration=Release
     - name: Run unit tests
-      run: dotnet test Source\MoreInjuries\MoreInjuries.sln
+      run: dotnet test Source\MoreInjuries\MoreInjuries.sln -c Test

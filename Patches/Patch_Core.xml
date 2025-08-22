@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+  <!-- Inject MoreInjuries Component into all human ThingDefs -->
+  <!-- if you want to add custom races, you'll have to do so as well -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Human"]/comps</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Human"]</xpath>
+      <value>
+        <comps>
+          <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProperties">
+            <workerFactoryDef>InjuryWorkerDef</workerFactoryDef>
+          </li>
+        </comps>
+      </value>
+    </nomatch>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Human"]/comps</xpath>
+      <value>
+        <li Class="MoreInjuries.HealthConditions.MoreInjuryCompProperties">
+          <workerFactoryDef>InjuryWorkerDef</workerFactoryDef>
+        </li>
+      </value>
+    </match>
+  </Operation>
+  <!-- hijack bleeding injury implementations to allow us to simulate dynamic bleed rates (not possible through comps) -->
+  <Operation Class="PatchOperationReplace">
+    <xpath>/Defs/HediffDef[hediffClass="Hediff_Injury"]/hediffClass</xpath>
+    <value>
+      <hediffClass>MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BetterInjury</hediffClass>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>/Defs/HediffDef[hediffClass="Hediff_MissingPart"]/hediffClass</xpath>
+    <value>
+      <hediffClass>MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BetterMissingPart</hediffClass>
+    </value>
+  </Operation>
+</Patch>

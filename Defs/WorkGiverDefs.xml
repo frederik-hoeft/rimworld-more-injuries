@@ -2,7 +2,7 @@
 <Defs>
   <WorkGiverDef>
     <defName>DoctorUseDefibrillator</defName>
-    <label>stabilize or resuscitate patients with arythmia or cardiac arrest</label>
+    <label>stabilize or resuscitate patients with arrhythmia or cardiac arrest</label>
     <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_UseDefibrillator</giverClass>
     <workType>Doctor</workType>
     <emergency>true</emergency>
@@ -42,6 +42,21 @@
       <li>Manipulation</li>
     </requiredCapacities>
     <priorityInType>115</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>DoctorUseSalineBag</defName>
+    <label>perform a saline IV infusion to stabilize patients with severe blood loss</label>
+    <giverClass>MoreInjuries.AI.WorkGivers.WorkGiver_UseSalineBag</giverClass>
+    <workType>Doctor</workType>
+    <emergency>true</emergency>
+    <verb>perform saline IV infusion on</verb>
+    <gerund>performing saline IV infusion on</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>106</priorityInType>
     <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
   

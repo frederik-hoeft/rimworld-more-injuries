@@ -5,6 +5,7 @@
   <author>Th3_Fr3d, Keshash, Caulaflower, Blyatman, Graved</author>
   <supportedVersions>
     <li>1.5</li>
+    <li>1.6</li>
   </supportedVersions>
   <description>The More Injuries mod aims to increase the simulation depth of RimWorld's medical system by adding a variety of new injuries, medical conditions, and treatment options, as well as simulating body part damage in more detail. Its goal is to make the medical system more challenging and interesting in some aspects, while also making it more realistic and immersive. A detailed mod settings menu is provided to allow players to customize many aspects of the mod to their liking.</description>
   <modDependencies>
@@ -18,5 +19,6 @@
     <li>brrainz.harmony</li>
     <li>CETeam.CombatExtended</li>
     <li>Rah.RBSE</li>
+    <li>Dubwise.DubsBadHygiene</li>
   </loadAfter>
 </ModMetaData>

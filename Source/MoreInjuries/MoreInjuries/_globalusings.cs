@@ -1,7 +1,9 @@
 ﻿global using System;
 global using Logger = MoreInjuries.Logging.Logger;
 global using Std = System;
+global using System.Diagnostics.CodeAnalysis;
 global using static MoreInjuries.Globals;
+global using static MoreInjuries.Roslyn.BuildIntrinsics.Suppressions;
 
 namespace MoreInjuries;
 

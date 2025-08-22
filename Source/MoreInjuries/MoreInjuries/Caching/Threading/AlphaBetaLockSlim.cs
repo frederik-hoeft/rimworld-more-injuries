@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
@@ -38,7 +37,7 @@ public sealed class AlphaBetaLockSlim : IDisposable
     private readonly long _lockId;
 
     [ThreadStatic]
-    [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "thread-local variable")]
+    [SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = "thread-local variable")]
     private static AlphaBetaCount? __counts;
 
     private const int MAX_SPIN_COUNT = 20;

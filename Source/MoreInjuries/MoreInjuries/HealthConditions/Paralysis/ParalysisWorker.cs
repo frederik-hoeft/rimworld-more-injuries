@@ -1,10 +1,10 @@
-﻿using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.Defs.WellKnown;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Paralysis;
 
-internal class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
+internal sealed class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler
 {
     public override bool IsEnabled => MoreInjuriesMod.Settings.EnableParalysis;
 
@@ -14,7 +14,7 @@ internal class ParalysisWorker(MoreInjuryComp parent) : InjuryWorker(parent), IP
         {
             return;
         }
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (bodyParts.FirstOrDefault(static bodyPart => bodyPart.def == KnownBodyPartDefOf.SpinalCord) is BodyPartRecord spinalCord && !patient.health.hediffSet.PartIsMissing(spinalCord))
         {
             // determine whether to apply paralysis based on the defined 50% damage threshold

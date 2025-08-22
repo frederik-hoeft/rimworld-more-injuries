@@ -1,5 +1,5 @@
-﻿using MoreInjuries.AI;
-using MoreInjuries.KnownDefs;
+﻿using MoreInjuries.AI.Jobs;
+using MoreInjuries.Defs.WellKnown;
 using RimWorld;
 using System.Collections.Generic;
 using Verse;
@@ -54,7 +54,12 @@ public class JobDriver_RemoveTourniquetFromDead : JobDriver_MedicalBase<Corpse>
         yield return gotoCorpseToil;
         int ticks = CalculateTendDuration();
         Toil waitToil = Toils_General.Wait(ticks, face: CORPSE_INDEX);
-        waitToil.WithProgressBarToilDelay(CORPSE_INDEX).PlaySustainerOrSound(SoundDef);
+        waitToil.WithProgressBarToilDelay(CORPSE_INDEX);
+        SoundDef? soundDef = SoundDefProvider.GetSoundDef(doctor, corpse, null);
+        if (soundDef is not null)
+        {
+            waitToil.PlaySustainerOrSound(soundDef);
+        }
         waitToil.activeSkill = static () => SkillDefOf.Medicine;
         waitToil.handlingFacing = true;
         waitToil.FailOn(() =>

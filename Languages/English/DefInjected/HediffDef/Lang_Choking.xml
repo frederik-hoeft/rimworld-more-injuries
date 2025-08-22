@@ -8,13 +8,15 @@
   <!-- EN: {0} is choking on blood! -->
   <ChokingOnBlood.comps.HediffComp_MessageAfterTicks.message>{0} is choking on blood!</ChokingOnBlood.comps.HediffComp_MessageAfterTicks.message>
   <!-- EN: initial -->
-  <ChokingOnBlood.stages.initial-0.label>initial</ChokingOnBlood.stages.initial-0.label>
-  <!-- EN: initial -->
-  <ChokingOnBlood.stages.initial-1.label>initial</ChokingOnBlood.stages.initial-1.label>
+  <ChokingOnBlood.stages.initial.label>initial</ChokingOnBlood.stages.initial.label>
+  <!-- EN: minor -->
+  <ChokingOnBlood.stages.minor.label>minor</ChokingOnBlood.stages.minor.label>
   <!-- EN: moderate -->
-  <ChokingOnBlood.stages.moderate-0.label>moderate</ChokingOnBlood.stages.moderate-0.label>
-  <!-- EN: moderate -->
-  <ChokingOnBlood.stages.moderate-1.label>moderate</ChokingOnBlood.stages.moderate-1.label>
+  <ChokingOnBlood.stages.moderate.label>moderate</ChokingOnBlood.stages.moderate.label>
+  <!-- EN: severe -->
+  <ChokingOnBlood.stages.severe.label>severe</ChokingOnBlood.stages.severe.label>
+  <!-- EN: very severe -->
+  <ChokingOnBlood.stages.very_severe.label>very severe</ChokingOnBlood.stages.very_severe.label>
   <!-- EN: extreme -->
   <ChokingOnBlood.stages.extreme.label>extreme</ChokingOnBlood.stages.extreme.label>
 

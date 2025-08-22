@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <ThingDef ParentName="MedicalDeviceBase">
+  <ThingDef ParentName="MIMedicalDeviceBase">
     <defName>SuctionDevice</defName>
     <thingClass>ThingWithComps</thingClass>
     <label>airway suction device</label>
@@ -16,6 +16,7 @@
     <useHitPoints>true</useHitPoints>
     <statBases>
       <Mass>0.4</Mass>
+      <Bulk MayRequire="CETeam.CombatExtended">1.5</Bulk>
       <MarketValue>200</MarketValue>
       <MaxHitPoints>80</MaxHitPoints>
     </statBases>

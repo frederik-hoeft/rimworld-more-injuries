@@ -2,19 +2,15 @@
 using Verse;
 using MoreInjuries.Things;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
-using MoreInjuries.HealthConditions.HeavyBleeding;
 using RimWorld;
-using MoreInjuries.KnownDefs;
+using MoreInjuries.Defs.WellKnown;
+
+using static MoreInjuries.HealthConditions.HeavyBleeding.BloodLossConstants;
 
 namespace MoreInjuries.AI.WorkGivers;
 
-using static BloodLossConstants;
-
 public class WorkGiver_UseBloodBag : WorkGiver_MoreInjuriesTreatmentBase
 {
-    protected override bool CanTreat(Hediff hediff) => 
-        JobDriver_UseBloodBag.JobCanTreat(hediff, BLOOD_LOSS_THRESHOLD);
-
     private Thing? TryFindBloodBag(Pawn doctor, Pawn patient) => 
         MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, static hediff => JobDriver_UseBloodBag.JobCanTreat(hediff, BLOOD_LOSS_THRESHOLD));
 
@@ -25,9 +21,7 @@ public class WorkGiver_UseBloodBag : WorkGiver_MoreInjuriesTreatmentBase
 
     public override bool HasJobOnThing(Pawn pawn, Thing thing, bool forced = false)
     {
-        if (IsValidPatient(pawn, thing, out Pawn patient) 
-            && TryFindBloodBag(pawn, patient) is not null 
-            && JobDriver_UseBloodBag.JobGetMedicalDeviceCountToFullyHeal(patient, fullyHeal: false) > 0)
+        if (IsValidPatient(pawn, thing, out Pawn patient) && TryFindBloodBag(pawn, patient) is not null)
         {
             return pawn.CanReserve(patient, ignoreOtherReservations: forced);
         }

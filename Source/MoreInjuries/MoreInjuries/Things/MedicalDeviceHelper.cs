@@ -19,13 +19,14 @@ public static class MedicalDeviceHelper
         return doctor.CanReach(patient, pathEndMode, maxDanger);
     }
 
-    public static DisabledProcedureCause? GetCauseForDisabledProcedure(Pawn doctor, Pawn patient, string jobTitleTranslationKey)
+    public static DisabledProcedureCause? GetCauseForDisabledProcedure(Pawn doctor, Pawn patient, string jobTitleTranslationKey, bool ignoreSelfTendSetting = false)
     {
         if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
         {
             return DisabledProcedureCause.Soft(Named.Keys.ProcedureFailed_CareDisabled.Translate(jobTitleTranslationKey.Translate(), patient.Named(Named.Params.PATIENT)));
         }
-        if (doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
+        if (!ignoreSelfTendSetting 
+            && doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
         {
             return DisabledProcedureCause.Soft(Named.Keys.ProcedureFailed_SelfTendDisabled.Translate(jobTitleTranslationKey.Translate()));
         }
@@ -88,13 +89,23 @@ public static class MedicalDeviceHelper
     public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, HediffDef[] hediffDefs, bool fromInventoryOnly = false) =>
         FindMedicalDevice(doctor, patient, deviceDef, hediff => Array.IndexOf(hediffDefs, hediff.def) != -1, fromInventoryOnly);
 
-    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, Predicate<Hediff>? isTreatableWithDevice = null, bool fromInventoryOnly = false)
+    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, Predicate<Hediff>? isTreatableWithDevice = null, bool fromInventoryOnly = false) =>
+        FindMedicalDevice(
+            doctor: doctor,
+            patient: patient,
+            deviceDef: deviceDef,
+            getNumberOfRequiredMedicalDevices: isTreatableWithDevice is not null 
+                ? patient => GetMedicalDeviceCountToFullyHeal(patient, isTreatableWithDevice) 
+                : null,
+            fromInventoryOnly: fromInventoryOnly);
+
+    public static Thing? FindMedicalDevice(Pawn doctor, Pawn patient, ThingDef deviceDef, Func<Pawn, int>? getNumberOfRequiredMedicalDevices, bool fromInventoryOnly = false)
     {
         if (patient.playerSettings?.medCare is MedicalCareCategory.NoCare)
         {
             return null;
         }
-        if (isTreatableWithDevice is not null && GetMedicalDeviceCountToFullyHeal(patient, isTreatableWithDevice) <= 0)
+        if (getNumberOfRequiredMedicalDevices is not null && getNumberOfRequiredMedicalDevices(patient) <= 0)
         {
             return null;
         }

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>MorphineBuildup</defName>
+    <label>morphine high</label>
+    <labelNoun>being high on morphine</labelNoun>
+    <description>Morphine is a powerful opioid analgesic used for rapid pain relief in battlefield trauma and emergency care. It works by suppressing the central nervous system, blocking pain signals, inducing sedation, and providing a sense of euphoria. However, it can cause dangerous respiratory depression, lower blood pressure, and worsen shock, making it especially hazardous during uncontrolled bleeding or resuscitation efforts, and potentially fatal in overdose.</description>
+    <defaultLabelColor>(255, 0, 128)</defaultLabelColor>
+    <isBad>true</isBad>
+    <maxSeverity>1</maxSeverity>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Secondary.Linked.LinkedSeverityProperties_ModExtension">
+        <modifiedHediffs>
+          <li>
+            <linkedHediffDef>Vasodilation</linkedHediffDef>
+            <severityModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
+                <!-- adjust severity of vasodilation based on morphine dose -->
+                <!-- ref: https://www.tandfonline.com/doi/full/10.1080/10903127.2023.2172493 -->
+                <severityCurve>
+                  <points>
+                    <li>0.0, 0.0</li>      <!-- No morphine: normal bleed rate -->
+                    <li>0.2, 0.6</li>      <!-- ~5mg dose: +60% higher bleed rate -->
+                    <li>0.4, 1.0</li>      <!-- Double baseline: compensatory failure -->
+                    <li>0.6, 1.5</li>      <!-- Subclinical overdose -->
+                    <li>0.8, 2.25</li>     <!-- Severe hypotension -->
+                    <li>1.0, 3.0</li>      <!-- Terminal vasodilatory shock -->
+                  </points>
+                </severityCurve>
+              </li>
+            </severityModifiers>
+          </li>
+        </modifiedHediffs>
+      </li>
+    </modExtensions>
+    <comps>
+      <!-- Initialized to ~0.35 per injection. 12-hour in-game metabolic half-life -->
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.35</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
+        <handlers>
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
+            <tickInterval>2000</tickInterval>
+            <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+            <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve">
+                <mttfDaysBySeverity>
+                  <points>
+                    <li>0, 100</li>
+                    <li>0.4, 1.5</li>
+                    <li>0.6, 0.75</li>
+                    <li>0.8, 0.25</li>
+                  </points>
+                </mttfDaysBySeverity>
+              </li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_LinkedHediff_SimpleCurve">
+                <hediffDef>AlcoholHigh</hediffDef>
+                <severityCurve>
+                  <!-- map alcohol presence/severity to chance factor for cardiac arrest to simulate cross-interactions of other CNS depressants -->
+                  <points>
+                    <!-- 0 alc presence implies no added modifer (1 = base chance) -->
+                    <li>0, 1.0</li>
+                    <li>0.25, 1.25</li>
+                    <li>0.4, 1.5</li>
+                    <li>0.7, 2.0</li>
+                    <li>0.9, 4.0</li>
+                  </points>
+                </severityCurve>
+              </li>
+            </chanceModifiers>
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>CardiacArrest</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+            <targetEvaluator Class="MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators.BodyPartHediffTargetEvaluator_Single">
+              <target>Heart</target>
+            </targetEvaluator>
+          </li>
+          <!-- ref: https://pmc.ncbi.nlm.nih.gov/articles/PMC5543001/ -->
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_PostMake">
+            <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
+              <hediffMakerDef>
+                <hediffDef>Vasodilation</hediffDef>
+                <minSeverity>0.001</minSeverity>
+                <allowMultiple>false</allowMultiple>
+                <allowDuplicate>false</allowDuplicate>
+              </hediffMakerDef>
+            </hediffMakerProps>
+          </li>
+        </handlers>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>trace exposure</label>
+        <minSeverity>0</minSeverity>
+        <painFactor>0.8</painFactor>
+        <!-- ref: https://www.ncbi.nlm.nih.gov/books/NBK526115/ -->
+        <vomitMtbDays>2</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>therapeutic dose</label>
+        <minSeverity>0.1</minSeverity>
+        <painFactor>0.4</painFactor>
+        <vomitMtbDays>1</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.25</offset>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.05</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>maximum safe dose</label>
+        <minSeverity>0.2</minSeverity>
+        <painFactor>0.2</painFactor>
+        <vomitMtbDays>0.5</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.4</offset>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.2</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>minor overdose</label>
+        <minSeverity>0.4</minSeverity>
+        <painFactor>0.2</painFactor>
+        <vomitMtbDays>0.25</vomitMtbDays>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.25</setMax>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <offset>-0.25</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>severe overdose</label>
+        <minSeverity>0.6</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <label>toxic dose</label>
+        <minSeverity>0.8</minSeverity>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

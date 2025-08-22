@@ -2,4 +2,10 @@
 <LanguageData>
   <!-- EN: extracted blood bag from member without consent -->
   <ExtractedWholeBloodBag.label>extracted blood bag from member without consent</ExtractedWholeBloodBag.label>
+  <!-- EN: anesthetized member without consent or medical need -->
+  <AnesthetizedMember.label>anesthetized member without consent or medical need</AnesthetizedMember.label>
+  <!-- EN: provided blood transfusion to member -->
+  <TransfusedBloodMember.label>provided blood transfusion to member</TransfusedBloodMember.label>
+  <!-- EN: performed dangerous medical procedure on member -->
+  <DangerousProcedureOnMember.label>performed dangerous medical procedure on member</DangerousProcedureOnMember.label>
 </LanguageData>

@@ -8,6 +8,8 @@ public interface IInjuryState
 
     float EffectiveBleedRateMultiplier { get; }
 
+    float CrossInteractionMultiplier { get; }
+
     bool IsTemporarilyCoagulated { get; }
 
     int ReducedBleedRateTicksTotal { get; set; }

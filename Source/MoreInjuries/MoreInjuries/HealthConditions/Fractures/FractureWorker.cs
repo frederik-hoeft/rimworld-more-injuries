@@ -1,6 +1,7 @@
-﻿using MoreInjuries.Extensions;
+﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.Fractures.Lacerations;
-using MoreInjuries.KnownDefs;
+using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using Verse.Sound;
 
 namespace MoreInjuries.HealthConditions.Fractures;
 
-internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler, ICompFloatMenuOptionsHandler
+internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPostTakeDamageHandler, ICompFloatMenuOptionsHandler
 {
     private static readonly Dictionary<BodyPartDef, ILacerationHandler> s_lacerationRegistry;
 
@@ -88,7 +89,7 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
 
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
-        Pawn patient = Target;
+        Pawn patient = Pawn;
         if (!builder.Keys.Contains(UITreatmentOption.UseSplint) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(static hediff => hediff.def == KnownHediffDefOf.Fracture))
         {
             builder.Keys.Add(UITreatmentOption.UseSplint);
@@ -125,7 +126,7 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
             return;
         }
 
-        Pawn patient = Target;
+        Pawn patient = Pawn;
 
         if (damage.parts is not null && patient is { Dead: false } && patient.Map is Map map)
         {
@@ -160,6 +161,10 @@ internal class FractureWorker(MoreInjuryComp parent) : InjuryWorker(parent), IPo
                             // severity is random between 0 and 5, but with a curve towards lower values
                             float curve = Rand.Range(0f, 1f);
                             shards.Severity = curve * curve * 5f;
+                            if (shards.TryGetComp(out HediffComp_CausedBy? causedBy))
+                            {
+                                causedBy!.AddCause(fracture);
+                            }
                             patient.health.AddHediff(shards);
                         }
                     }

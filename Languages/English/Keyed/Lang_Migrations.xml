@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
+  <!-- EN: Okay, noted. -->
+  <MI_Migration_Signal_Generic_Continue>Okay, noted.</MI_Migration_Signal_Generic_Continue>
+
   <!-- EN: MoreInjuries v1.5.2 Migration -->
   <MI_Migration_Update_v1_Title>MoreInjuries v1.5.2 Migration</MI_Migration_Update_v1_Title>
   <!-- EN: Suddenly, an awkward feeling of dizziness and confusion overcomes {PAWN_labelShort}. They feel like they have forgotten something important, but they can't quite put their finger on it. Consulting with the other colonists, they realize that everyone is experiencing a severe case of amnesia, specifically regarding the medical field. It seems that the colonists have forgotten how to perform basic medical procedures, and they agree that they should prioritize researching the lost medical knowledge.\n\nMoreInjuries has been updated to v1.5.2 "Shiny Research". Among shiny new textures, localization support, bug fixes, and new features, this update also introduces a new research tree, which can be found in the "More Injuries" tab of the research screen. You are seeing this message because this save file was created with an older version of MoreInjuries, and you now have the option to decide how to proceed with the migration. -->
