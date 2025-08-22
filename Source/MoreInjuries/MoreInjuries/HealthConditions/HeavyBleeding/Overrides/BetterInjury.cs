@@ -1,9 +1,7 @@
 ﻿using MoreInjuries.Caching;
-using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
 using MoreInjuries.Localization;
 using RimWorld;
-using System.Collections.Generic;
 using System.Text;
 using Verse;
 
@@ -11,20 +9,8 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 
 public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
 {
-    private static HashSet<HediffDef>? s_indirectlyAddedInjuries;
     private readonly BetterInjuryState<BetterInjury> _state;
     private readonly TimedDataField<BetterInjury, bool, TimedDataEntry<bool>> _isInternalInjuryCache;
-
-    public static HashSet<HediffDef> IndirectlyAddedInjuries => s_indirectlyAddedInjuries ??=
-    [
-        KnownHediffDefOf.Fracture,
-        KnownHediffDefOf.BoneFragmentLaceration,
-        KnownHediffDefOf.SpallFragmentCut,
-        KnownHediffDefOf.OrganHypoxia,
-        KnownHediffDefOf.BrainDamage_Hypoxia,
-        KnownHediffDefOf.HemorrhagicStroke,
-        KnownHediffDefOf.Bruise,
-    ];
 
     public BetterInjury()
     {
@@ -109,35 +95,6 @@ public class BetterInjury : Hediff_Injury, IStatefulInjury, IInjuryStateOwner
     {
         base.ExposeData();
         _state.ExposeData();
-    }
-
-    public override void PostAdd(DamageInfo? dinfo)
-    {
-        // CE isn't playing nicely with us, so we have to do this
-        if (Part is { coverageAbs: <= 0f } && (MoreInjuriesMod.CombatExtendedLoaded || IndirectlyAddedInjuries.Contains(def)))
-        {
-            // these injuries were added by us, so override "Added injury to <part> but it should be impossible to hit" error
-            // the correct way to do this would be to transpile the error check in the base implementation, but we don't do that for the following reasons:
-            // 1. it's a lot of work for a small gain
-            // 2. it may cause incompatibilities with other mods that transpile the same method
-            // 3. we can actually abuse the base implementation to achieve the same effect
-            // the base implementation throws that error if it thinks the damage def is not supposed to hit the body part
-            // but a built-in suppression mechanism exists for the surgical cut damage def
-            // so, we abuse that mechanism by setting the damage def to surgical cut, bypassing the error check, and hopefully not having any side effects :fingers_crossed:
-            DamageInfo fakeInfo = new
-            (
-                // the only damage def that bypasses the coverage check is surgical cut
-                def: DamageDefOf.SurgicalCut,
-                // and choose other parameters to reduce possible side effects as much as possible
-                amount: 0,
-                instigatorGuilty: false,
-                spawnFilth: false,
-                checkForJobOverride: false
-            );
-            dinfo = fakeInfo;
-            Logger.Warning($"using legacy compatibility fallback for {this.ToStringSafe()} on {Part.ToStringSafe()}");
-        }
-        base.PostAdd(dinfo);
     }
 
     public void AddCustomLabelAnnotations(StringBuilder builder, ref bool hasPreviousInfo)
