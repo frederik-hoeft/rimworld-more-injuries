@@ -8,7 +8,7 @@ public sealed class HediffModifier_RequireUntracked : SecondaryHediffModifier
     {
         if (hediff.pawn.HasComp<MoreInjuryComp>())
         {
-            // if the pawn is not tracked by More Injuries, we return 0 chance
+            // if the pawn is tracked by More Injuries, we return 0 chance
             return 0f;
         }
         // otherwise, we return the base chance
