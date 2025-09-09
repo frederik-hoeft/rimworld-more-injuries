@@ -12,12 +12,10 @@
   <MI_UseTourniquet>Apply tourniquet</MI_UseTourniquet>
   <!-- EN: No tourniquet available -->
   <MI_UseTourniquetFailed_Unavailable>No tourniquet available</MI_UseTourniquetFailed_Unavailable>
-  <!-- EN: Remove tourniquet -->
-  <MI_RemoveTourniquet>Remove tourniquet</MI_RemoveTourniquet>
   <!-- EN: Apply tourniquet to {BODYPART} -->
   <MI_TourniquetGizmo_UseLabel>Apply tourniquet to {BODYPART}</MI_TourniquetGizmo_UseLabel>
   <!-- EN: Remove tourniquet from {BODYPART} (safely) -->
-  <MI_TourniquetGizmo_RemoveLabel>Remove tourniquet from {BODYPART} (safely)</MI_TourniquetGizmo_RemoveLabel>
+  <MI_TourniquetGizmo_RemoveSafelyLabel>Remove tourniquet from {BODYPART} (safely)</MI_TourniquetGizmo_RemoveSafelyLabel>
   <!-- EN: Remove tourniquet from {BODYPART} (quickly) -->
   <MI_TourniquetGizmo_RemoveQuicklyLabel>Remove tourniquet from {BODYPART} (quickly)</MI_TourniquetGizmo_RemoveQuicklyLabel>
   <!-- EN: Apply a tourniquet to themselves -->
@@ -40,6 +38,8 @@
   <MI_UseSalineBag>Infuse saline IV</MI_UseSalineBag>
   <!-- EN: {0}: no blood bags available -->
   <MI_UseBloodBagFailed_Unavailable>{0}: no blood bags available</MI_UseBloodBagFailed_Unavailable>
+  <!-- EN: {0}: no saline bags available -->
+  <MI_UseSalineBagFailed_Unavailable>{0}: no saline bags available</MI_UseSalineBagFailed_Unavailable>
   <!-- EN: {PATIENT_labelShort} doesn't have enough blood to safely donate blood. -->
   <MI_DonateBloodFailed_MissingBloodVolume_Message>{PATIENT_labelShort} doesn't have enough blood to safely donate blood.</MI_DonateBloodFailed_MissingBloodVolume_Message>
   <!-- EN: enclosed -->

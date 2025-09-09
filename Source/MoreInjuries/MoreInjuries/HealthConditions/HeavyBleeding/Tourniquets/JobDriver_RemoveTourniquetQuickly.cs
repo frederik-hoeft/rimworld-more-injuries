@@ -6,8 +6,6 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
 public sealed class JobDriver_RemoveTourniquetQuickly : JobDriver_RemoveTourniquetBase
 {
-    public const string JOB_LABEL_KEY = "MI_RemoveTourniquetQuickly";
-
     protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
         bool success = base.ApplyDevice(doctor, patient, device);
