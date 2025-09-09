@@ -4,6 +4,7 @@
   <MI_Format_TimeHours>{HOURS}h</MI_Format_TimeHours>
   <!-- EN: {DAYS}d -->
   <MI_Format_TimeDays>{DAYS}d</MI_Format_TimeDays>
+  <!-- OPTS: { "allow_unused": true } -->
   <!-- EN: {SECONDS}s -->
   <MI_Format_TimeSeconds>{SECONDS}s</MI_Format_TimeSeconds>
   <!-- EN: {0} (from inventory) -->

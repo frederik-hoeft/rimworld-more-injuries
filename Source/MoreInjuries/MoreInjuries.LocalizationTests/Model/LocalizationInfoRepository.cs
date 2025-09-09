@@ -14,6 +14,9 @@ internal abstract partial class LocalizationInfoRepository(string language)
     [GeneratedRegex(@"^<!-- EN: (?<comment>.+) -->$")]
     private static partial Regex CommentNodeRegex { get; }
 
+    [GeneratedRegex(@"^<!-- OPTS: (?<options>{\s*(""(?<key_1>[A-Za-z][A-Za-z0-9_\-]*)"":\s*(?<value_1>(true|false)))(,\s*""(?<key_n>[A-Za-z][A-Za-z0-9_\-]*)"":\s*(?<value_n>(true|false)))*\s*}) -->$")]
+    private static partial Regex OptionsNodeRegex { get; }
+
     public Dictionary<string, Dictionary<string, LocalizationValue>> ScopedLocalizationInfo { get; } = [];
 
     public Dictionary<string, LocalizationValue> LocalizationInfo { get; } = [];
@@ -52,27 +55,43 @@ internal abstract partial class LocalizationInfoRepository(string language)
         XDocument document = XDocument.Load(stream);
         foreach (XElement element in document.Root?.Elements() ?? [])
         {
-            XNode? commentNode = element.PreviousNode;
-            string? comment = null;
-            if (commentNode is { NodeType: XmlNodeType.Comment })
+            List<XNode> commentNodes = [];
+            for (XNode? node = element.PreviousNode; node is { NodeType: XmlNodeType.Comment }; node = node.PreviousNode)
             {
-                Match match = CommentNodeRegex.Match(commentNode.ToString());
-                if (match.Success)
+                commentNodes.Add(node);
+            }
+            string? comment = null;
+            IReadOnlyDictionary<string, bool> nodeOptions = Options.Empty;
+            foreach (XNode commentNode in commentNodes)
+            {
+                string commentNodeString = commentNode.ToString();
+                if (CommentNodeRegex.Match(commentNodeString) is { Success: true } commentMatch)
                 {
-                    Group commentGroup = match.Groups["comment"];
+                    Group commentGroup = commentMatch.Groups["comment"];
                     comment = commentGroup.Value;
+                    continue;
                 }
-                else
+                if (OptionsNodeRegex.Matches(commentNodeString) is { Count: > 0 } optionsMatches)
                 {
-                    context.ReportInvalidCommentFor(element, commentNode);
+                    Match optionsMatch = optionsMatches[0];
+                    GroupCollection groups = optionsMatch.Groups;
+                    Dictionary<string, bool> options = [];
+                    // key_1 and value_1 are always present if there is a match
+                    options[groups["key_1"].Value] = bool.Parse(groups["value_1"].Value);
+                    for (int i = 0; i < groups["key_n"].Captures.Count; ++i)
+                    {
+                        options[groups["key_n"].Captures[i].Value] = bool.Parse(groups["value_n"].Captures[i].Value);
+                    }
+                    nodeOptions = options;
+                    continue;
                 }
             }
-            else
+            if (string.IsNullOrEmpty(comment))
             {
                 context.ReportMissingCommentFor(element);
             }
             string key = CreateKey(element, context);
-            LocalizationValue localizationValue = new(key, context.RelativePath, element.Value, comment);
+            LocalizationValue localizationValue = new(key, context.RelativePath, element.Value, comment, nodeOptions);
             keyedLocalizationInfo[localizationValue.Key] = localizationValue;
         }
         return keyedLocalizationInfo;

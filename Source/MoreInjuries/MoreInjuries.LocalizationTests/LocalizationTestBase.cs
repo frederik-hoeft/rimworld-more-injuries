@@ -55,6 +55,6 @@ public abstract class LocalizationTestBase : LocalizationBase
                 }
             }
         }
-        Assert.AreEqual(0, errorContext.Errors.Count, $"Found at least one error while loading localization data:\n{string.Join("\n", errorContext.Errors)}");
+        Assert.IsEmpty(errorContext.Errors, $"Found at least one error while loading localization data:\n{string.Join("\n", errorContext.Errors)}");
     }
 }

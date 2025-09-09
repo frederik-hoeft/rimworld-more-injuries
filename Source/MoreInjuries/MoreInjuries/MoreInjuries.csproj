@@ -3,15 +3,15 @@
 		<TargetFramework>net472</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
-		<Version>1.6.0.2</Version>
+		<Version>1.6.0.3</Version>
 		<Platforms>AnyCPU</Platforms>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<Configurations>Debug;Release;Test</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4543" />
-		<PackageReference Include="Lib.Harmony" Version="2.4.0" />
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4566" />
+		<PackageReference Include="Lib.Harmony" Version="2.4.1" />
 	</ItemGroup>
 
 	<ItemGroup>
