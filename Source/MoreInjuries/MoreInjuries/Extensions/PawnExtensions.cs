@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using RimWorld;
 using Verse;
 
 namespace MoreInjuries.Extensions;
@@ -18,5 +19,12 @@ public static class PawnExtensions
             return 15;
         }
         return defaultValue;
+    }
+
+    public static bool IsActivelyHostileTo(this Pawn pawn, Pawn other)
+    {
+        Throw.ArgumentNullException.IfNull(pawn);
+        Throw.ArgumentNullException.IfNull(other);
+        return !pawn.Downed && pawn.HostileTo(other.Faction);
     }
 }

@@ -5,7 +5,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Drugs.Chloroform;
 
-public sealed class JobDriver_UseChloroform : JobDriver_UseMedicalDrug
+public sealed class JobDriver_UseChloroform : JobDriver_UseAnestheticDrug
 {
     private static readonly ChloroformSoundDefProvider s_soundDefProvider = new();
     public const string JOB_LABEL_KEY = "MI_UseChloroform";
@@ -14,7 +14,7 @@ public sealed class JobDriver_UseChloroform : JobDriver_UseMedicalDrug
 
     protected override ISoundDefProvider<Pawn> SoundDefProvider => s_soundDefProvider;
 
-    protected override int BaseTendDuration => 120;
+    protected override int BaseTendDuration => 150;
 
     protected override bool MustReservePatient(Pawn doctor, Pawn patient) => false;
 

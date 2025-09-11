@@ -27,7 +27,7 @@ public class JobOutcomeDoer_FactionRelations : JobOutcomeDoer
     protected override bool DoOutcome(Pawn doctor, Pawn patient, Thing? device)
     {
         if (patient.Faction is Faction factionToInform 
-            && (factionToInform != Faction.OfPlayer || patient.IsQuestLodger()) 
+            && (!factionToInform.IsPlayerSafe() || patient.IsQuestLodger()) 
             && !(onlyIfFriendly && factionToInform.HostileTo(Faction.OfPlayer)))
         {
             Faction.OfPlayer.TryAffectGoodwillWith(factionToInform, goodwillChange, canSendHostilityLetter: !factionToInform.temporary, reason: historyEventDef);
