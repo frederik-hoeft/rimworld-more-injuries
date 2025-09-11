@@ -90,25 +90,29 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Pawn;
-        if (!builder.Keys.Contains(UITreatmentOption.UseSplint) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(static hediff => hediff.def == KnownHediffDefOf.Fracture))
+        if (builder.Keys.Contains(UITreatmentOption.UseSplint) 
+            || !selectedPawn.Drafted 
+            || PatientIsActivelyHostileTo(selectedPawn) 
+            || !patient.health.hediffSet.hediffs.Any(static hediff => hediff.def == KnownHediffDefOf.Fracture))
         {
-            builder.Keys.Add(UITreatmentOption.UseSplint);
-            if (!KnownResearchProjectDefOf.BasicAnatomy.IsFinished)
-            {
-                return;
-            }
-            if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseSplint.JOB_LABEL_KEY) is { FailureReason: string failure })
-            {
-                builder.Options.Add(new FloatMenuOption(failure, null));
-            }
-            else if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Splint, JobDriver_UseSplint.TargetHediffDefs) is not Thing thing)
-            {
-                builder.Options.Add(new FloatMenuOption("MI_UseSplintFailed_Unavailable".Translate(JobDriver_UseSplint.JOB_LABEL_KEY.Translate()), null));
-            }
-            else
-            {
-                builder.Options.Add(new FloatMenuOption(JobDriver_UseSplint.JOB_LABEL_KEY.Translate(), JobDriver_UseSplint.GetDispatcher(selectedPawn, patient, thing).StartJob));
-            }
+            return;
+        }
+        builder.Keys.Add(UITreatmentOption.UseSplint);
+        if (!KnownResearchProjectDefOf.BasicAnatomy.IsFinished)
+        {
+            return;
+        }
+        if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseSplint.JOB_LABEL_KEY) is { FailureReason: string failure })
+        {
+            builder.Options.Add(new FloatMenuOption(failure, null));
+        }
+        else if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Splint, JobDriver_UseSplint.TargetHediffDefs) is not Thing thing)
+        {
+            builder.Options.Add(new FloatMenuOption("MI_UseSplintFailed_Unavailable".Translate(JobDriver_UseSplint.JOB_LABEL_KEY.Translate()), null));
+        }
+        else
+        {
+            builder.Options.Add(new FloatMenuOption(JobDriver_UseSplint.JOB_LABEL_KEY.Translate(), JobDriver_UseSplint.GetDispatcher(selectedPawn, patient, thing).StartJob));
         }
     }
 

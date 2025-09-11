@@ -4,7 +4,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Drugs.Ketamine;
 
-public sealed class JobDriver_UseKetamine : JobDriver_UseMedicalDrug
+public sealed class JobDriver_UseKetamine : JobDriver_UseAnestheticDrug
 {
     public const string JOB_LABEL_KEY = "MI_UseKetamine";
 

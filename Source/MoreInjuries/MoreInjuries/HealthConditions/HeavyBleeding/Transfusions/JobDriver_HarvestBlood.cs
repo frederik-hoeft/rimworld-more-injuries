@@ -67,7 +67,7 @@ public class JobDriver_HarvestBlood : JobDriver_UseMedicalDevice
         {
             Logger.Error($"Could not drop blood bag near {patient.PositionHeld}");
         }
-        if (patient.Faction is Faction factionToInform && (factionToInform != Faction.OfPlayer || patient.IsQuestLodger()))
+        if (patient.Faction is Faction factionToInform && (!factionToInform.IsPlayerSafe() || patient.IsQuestLodger()))
         {
             Faction.OfPlayer.TryAffectGoodwillWith(factionToInform, goodwillChange: -50, canSendHostilityLetter: !factionToInform.temporary, reason: KnownHistoryEventDefOf.ExtractedWholeBloodBag);
             QuestUtility.SendQuestTargetSignals(patient.questTags, QuestUtility.QuestTargetSignalPart_SurgeryViolation, patient.Named("SUBJECT"));

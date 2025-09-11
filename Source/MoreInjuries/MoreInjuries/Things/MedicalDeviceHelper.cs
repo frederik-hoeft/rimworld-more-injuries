@@ -26,7 +26,7 @@ public static class MedicalDeviceHelper
             return DisabledProcedureCause.Soft(Named.Keys.ProcedureFailed_CareDisabled.Translate(jobTitleTranslationKey.Translate(), patient.Named(Named.Params.PATIENT)));
         }
         if (!ignoreSelfTendSetting 
-            && doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
+            && doctor == patient && doctor.Faction.IsPlayerSafe() && doctor.playerSettings?.selfTend is false)
         {
             return DisabledProcedureCause.Soft(Named.Keys.ProcedureFailed_SelfTendDisabled.Translate(jobTitleTranslationKey.Translate()));
         }
