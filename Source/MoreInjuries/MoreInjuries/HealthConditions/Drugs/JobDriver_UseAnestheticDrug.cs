@@ -26,7 +26,8 @@ public abstract class JobDriver_UseAnestheticDrug : JobDriver_UseMedicalDrug
         {
             doctorMeleeSkill = 0f;
         }
-        float meleeFactor = Mathf.Clamp01(doctorMeleeSkill / 20f);
+        const float MAX_SKILL_LEVEL = 20f;
+        float meleeFactor = Mathf.Clamp01(doctorMeleeSkill / MAX_SKILL_LEVEL);
         float resistanceFactor = 1f + ((1f - meleeFactor) * 2f);
         int baseDuration = base.CalculateTendDuration();
         int duration = (int)(baseDuration * resistanceFactor);
