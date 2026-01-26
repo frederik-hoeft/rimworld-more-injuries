@@ -21,8 +21,12 @@
     <techLevel>Industrial</techLevel>
     <ingestible>
       <drugCategory>Medical</drugCategory>
+      <baseIngestTicks>60</baseIngestTicks>
       <ingestCommandString>Use {0}</ingestCommandString>
       <ingestReportString>using {0}.</ingestReportString>
+      <useEatingSpeedStat>false</useEatingSpeedStat>
+      <chairSearchRadius>0</chairSearchRadius>
+      <foodType>Processed, Fluid</foodType>
     </ingestible>
     <comps>
       <li Class="CompProperties_Drug">
@@ -54,6 +58,9 @@
         </outcomeDoers>
       </li>
     </modExtensions>
+    <statBases>
+      <MarketValue>20</MarketValue>
+    </statBases>
     <ingestible>
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
@@ -77,9 +84,10 @@
       <displayPriority>1500</displayPriority>
     </recipeMaker>
     <costList>
-      <Chemfuel>4</Chemfuel>
-      <Yayo>1</Yayo>
-      <Flake>1</Flake>
+      <Chemfuel>1</Chemfuel>
+      <Neutroamine>1</Neutroamine>
+      <PsychoidLeaves>2</PsychoidLeaves>
+      <Steel>1</Steel>
     </costList>
     <comps>
       <li Class="CompProperties_Drug">
@@ -92,6 +100,10 @@
     <defName>Ketamine</defName>
     <label>ketamine autoinjector</label>
     <description>A pre-loaded autoinjector containing a strong dissociative anesthetic. Effective in emergency field care for patients in severe pain or to induce rapid sedation in patients resisting treatment.</description>
+    <descriptionHyperlinks>
+      <HediffDef>KetamineBuildup</HediffDef>
+      <HediffDef>MI_KetamineAddiction</HediffDef>
+    </descriptionHyperlinks>
     <graphicData>
       <texPath>Thing/Ketamine</texPath>
     </graphicData>
@@ -123,7 +135,13 @@
         </outcomeDoers>
       </li>
     </modExtensions>
+    <statBases>
+      <MarketValue>40</MarketValue>
+    </statBases>
     <ingestible>
+      <joyKind>Chemical</joyKind>
+      <joy>0.45</joy>
+      <drugCategory>Hard</drugCategory>
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
           <hediffDef>Anesthetic</hediffDef>
@@ -132,7 +150,15 @@
         <li Class="IngestionOutcomeDoer_GiveHediff">
           <hediffDef>KetamineBuildup</hediffDef>
           <severity>0.35</severity>
+          <divideByBodySize>true</divideByBodySize>
+          <toleranceChemical>MI_Ketamine_Chemical</toleranceChemical>
         </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>MI_KetamineTolerance</hediffDef>
+					<severity>0.1</severity>
+					<divideByBodySize>true</divideByBodySize>
+					<toleranceChemical>MI_Ketamine_Chemical</toleranceChemical>
+				</li>
       </outcomeDoers>
     </ingestible>
     <recipeMaker>
@@ -150,13 +176,19 @@
       <displayPriority>1500</displayPriority>
     </recipeMaker>
     <costList>
-      <Yayo>1</Yayo>
-      <SmokeleafLeaves>4</SmokeleafLeaves>
       <Chemfuel>1</Chemfuel>
+      <Neutroamine>3</Neutroamine>
+      <Steel>1</Steel>
     </costList>
     <comps>
       <li Class="CompProperties_Drug">
+        <chemical>MI_Ketamine_Chemical</chemical>
+				<addictiveness>0.05</addictiveness>
+				<existingAddictionSeverityOffset>0.2</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+				<listOrder>20</listOrder>
         <overdoseSeverityOffset>0.05~0.09</overdoseSeverityOffset>
+        <largeOverdoseChance>0.001</largeOverdoseChance>
       </li>
     </comps>
   </ThingDef>
@@ -214,6 +246,13 @@
         </outcomeDoers>
       </li>
     </modExtensions>
+    <statBases>
+      <WorkToMake>200</WorkToMake>
+      <MarketValue>10</MarketValue>
+      <Mass>0.2</Mass>
+      <Bulk MayRequire="CETeam.CombatExtended">0.3</Bulk>
+      <Flammability>0.9</Flammability>
+    </statBases>
     <ingestible>
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
@@ -228,6 +267,7 @@
       </outcomeDoers>
       <ingestCommandString>Inhale chloroform</ingestCommandString>
       <ingestReportString>inhaling chloroform.</ingestReportString>
+      <baseIngestTicks>360</baseIngestTicks>
     </ingestible>
     <recipeMaker>
       <researchPrerequisites>
@@ -244,8 +284,8 @@
       <displayPriority>1500</displayPriority>
     </recipeMaker>
     <costList>
-      <SmokeleafLeaves>4</SmokeleafLeaves>
-      <Chemfuel>1</Chemfuel>
+      <Chemfuel>2</Chemfuel>
+      <Cloth>1</Cloth>
     </costList>
     <comps>
       <li Class="CompProperties_Drug">
@@ -258,6 +298,11 @@
     <defName>Morphine</defName>
     <label>morphine autoinjector</label>
     <description>A morphine autoinjector is a spring-loaded syringe used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol.</description>
+    <descriptionHyperlinks>
+      <HediffDef>MorphineBuildup</HediffDef>
+      <HediffDef>MI_MorphineAddiction</HediffDef>
+      <HediffDef>MI_MorphineTolerance</HediffDef>
+    </descriptionHyperlinks>
     <graphicData>
       <texPath>Thing/Morphine</texPath>
     </graphicData>
@@ -271,12 +316,26 @@
         </outcomeDoers>
       </li>
     </modExtensions>
+    <statBases>
+      <MarketValue>11</MarketValue>
+    </statBases>
     <ingestible>
+      <drugCategory>Hard</drugCategory>
+      <joyKind>Chemical</joyKind>
+      <joy>0.60</joy>
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
           <hediffDef>MorphineBuildup</hediffDef>
           <severity>0.35</severity>
+          <toleranceChemical>MI_Morphine_Chemical</toleranceChemical>
         </li>
+				<li Class="IngestionOutcomeDoer_GiveHediff">
+					<hediffDef>MI_MorphineTolerance</hediffDef>
+          <toleranceChemical>MI_Morphine_Chemical</toleranceChemical>
+					<severity>0.2</severity>
+					<divideByBodySize>true</divideByBodySize>
+          <multiplyByGeneToleranceFactors>true</multiplyByGeneToleranceFactors>
+				</li>
       </outcomeDoers>
     </ingestible>
     <recipeMaker>
@@ -294,13 +353,19 @@
       <displayPriority>1500</displayPriority>
     </recipeMaker>
     <costList>
-      <Flake>1</Flake>
-      <SmokeleafLeaves>4</SmokeleafLeaves>
-      <Chemfuel>1</Chemfuel>
+      <SmokeleafLeaves>3</SmokeleafLeaves>
+      <Steel>1</Steel>
     </costList>
     <comps>
       <li Class="CompProperties_Drug">
-        <overdoseSeverityOffset>0.08~0.14</overdoseSeverityOffset>
+				<chemical>MI_Morphine_Chemical</chemical>
+				<addictiveness>0.99</addictiveness>
+				<existingAddictionSeverityOffset>0.2</existingAddictionSeverityOffset>
+				<needLevelOffset>1</needLevelOffset>
+        <isCombatEnhancingDrug>true</isCombatEnhancingDrug>
+				<listOrder>20</listOrder>
+        <overdoseSeverityOffset>0.1~0.3</overdoseSeverityOffset>
+        <largeOverdoseChance>0.01</largeOverdoseChance>
       </li>
     </comps>
   </ThingDef>
