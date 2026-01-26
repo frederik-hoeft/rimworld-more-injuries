@@ -51,17 +51,19 @@
       <li>
         <label>trace exposure</label>
         <minSeverity>0</minSeverity>
-        <painFactor>0.95</painFactor>
+        <painFactor>0.8</painFactor>
       </li>
       <li>
         <label>therapeutic dose</label>
         <minSeverity>0.1</minSeverity>
         <forgetMemoryThoughtMtbDays>4</forgetMemoryThoughtMtbDays>
+        <painFactor>0.5</painFactor>
       </li>
       <li>
         <label>maximum safe dose</label>
         <minSeverity>0.2</minSeverity>
         <forgetMemoryThoughtMtbDays>2</forgetMemoryThoughtMtbDays>
+        <painFactor>0.1</painFactor>
       </li>
       <li>
         <label>minor overdose</label>
@@ -190,19 +192,19 @@
       <li>
         <label>trace exposure</label>
         <minSeverity>0</minSeverity>
-        <painFactor>0.95</painFactor>
+        <painFactor>0.9</painFactor>
         <vomitMtbDays>2</vomitMtbDays>
       </li>
       <li>
         <label>therapeutic dose</label>
         <minSeverity>0.1</minSeverity>
-        <painFactor>0.9</painFactor>
+        <painFactor>0.8</painFactor>
         <vomitMtbDays>1</vomitMtbDays>
       </li>
       <li>
         <label>maximum safe dose</label>
         <minSeverity>0.2</minSeverity>
-        <painFactor>0.85</painFactor>
+        <painFactor>0.5</painFactor>
         <vomitMtbDays>0.5</vomitMtbDays>
       </li>
       <li>
@@ -226,7 +228,7 @@
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <setMax>0.01</setMax>
+            <setMax>0.1</setMax>
           </li>
         </capMods>
       </li>
@@ -242,4 +244,76 @@
       </li>
     </stages>
   </HediffDef>
+
+  <ChemicalDef>
+    <defName>MI_Ketamine_Chemical</defName>
+    <label>ketamine</label>
+    <addictionHediff>MI_KetamineAddiction</addictionHediff>
+    <toleranceHediff>MI_KetamineTolerance</toleranceHediff>
+    <geneOverdoseChanceFactorResist>0.5</geneOverdoseChanceFactorResist>
+    <geneOverdoseChanceFactorImmune>0</geneOverdoseChanceFactorImmune>
+  </ChemicalDef>
+
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>MI_Ketamine_Chemical_Need</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>ketamine</label>
+    <description>Because of a ketamine addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+    <fallPerDay>0.2</fallPerDay>
+    <listPriority>25</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>MI_KetamineTolerance</defName>
+    <label>ketamine tolerance</label>
+    <description>A built-up tolerance to ketamine. The more severe this tolerance is, the more ketamine it takes to get the same effect.</description>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.05</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>MI_Ketamine_Chemical</chemical>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>MI_KetamineAddiction</defName>
+    <label>ketamine addiction</label>
+    <description>A psychological dependence on ketamine. Chronic use has altered neurotransmitter systems involved in mood and cognition, creating a powerful craving for the dissociative state it provides.
+\nWithout ketamine, severe psychological withdrawal symptoms will manifest. However, prolonged abstinence will allow brain chemistry to gradually return to normal, resolving the addiction.</description>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <chemicalNeed>MI_Ketamine_Chemical_Need</chemicalNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.05</severityPerDay>
+        <showDaysToRecover>true</showDaysToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>
+		    <socialFightChanceFactor>2.0</socialFightChanceFactor>
+        <statOffsets>
+					<MentalBreakThreshold>5</MentalBreakThreshold>
+          <GlobalLearningFactor>0.6</GlobalLearningFactor>
+				</statOffsets>	
+        <mentalStateGivers>        
+          <li>
+            <mentalState>Binging_DrugMajor</mentalState>
+            <mtbDays>30</mtbDays>
+          </li>
+          <li>
+            <mentalState>Wander_Psychotic</mentalState>   <!-- Dissociative wandering -->
+            <mtbDays>10</mtbDays>
+          </li>
+        </mentalStateGivers>
+      </li>
+    </stages>
+  </HediffDef>
+
+
+
 </Defs>

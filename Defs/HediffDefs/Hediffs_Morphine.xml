@@ -101,7 +101,7 @@
       <li>
         <label>trace exposure</label>
         <minSeverity>0</minSeverity>
-        <painFactor>0.8</painFactor>
+        <painFactor>0.6</painFactor>
         <!-- ref: https://www.ncbi.nlm.nih.gov/books/NBK526115/ -->
         <vomitMtbDays>2</vomitMtbDays>
         <capMods>
@@ -119,7 +119,7 @@
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <offset>-0.25</offset>
+            <offset>-0.2</offset>
           </li>
           <li>
             <capacity>Breathing</capacity>
@@ -135,7 +135,7 @@
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <offset>-0.4</offset>
+            <offset>-0.3</offset>
           </li>
           <li>
             <capacity>Breathing</capacity>
@@ -146,12 +146,12 @@
       <li>
         <label>minor overdose</label>
         <minSeverity>0.4</minSeverity>
-        <painFactor>0.2</painFactor>
+        <painFactor>0.1</painFactor>
         <vomitMtbDays>0.25</vomitMtbDays>
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <setMax>0.25</setMax>
+            <offset>-0.4</offset>
           </li>
           <li>
             <capacity>Breathing</capacity>
@@ -165,7 +165,7 @@
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
-            <setMax>0.01</setMax>
+            <setMax>0.1</setMax>
           </li>
         </capMods>
       </li>
@@ -181,4 +181,72 @@
       </li>
     </stages>
   </HediffDef>
+
+  <ChemicalDef>
+    <defName>MI_Morphine_Chemical</defName>
+    <label>morphine</label>
+    <addictionHediff>MI_MorphineAddiction</addictionHediff>
+    <toleranceHediff>MI_MorphineTolerance</toleranceHediff>
+    <onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+    <geneToleranceBuildupFactorResist>0.5</geneToleranceBuildupFactorResist>
+    <geneToleranceBuildupFactorImmune>0</geneToleranceBuildupFactorImmune>
+    <geneOverdoseChanceFactorResist>0.5</geneOverdoseChanceFactorResist>
+    <geneOverdoseChanceFactorImmune>0</geneOverdoseChanceFactorImmune>
+  </ChemicalDef>
+
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>MI_Morphine_Chemical_Need</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>morphine</label>
+    <description>Because of a morphine addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+    <fallPerDay>0.25</fallPerDay>
+    <listPriority>25</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>MI_MorphineTolerance</defName>
+    <label>morphine tolerance</label>
+    <description>A built-up tolerance to morphine. The more severe this tolerance is, the more morphine it takes to get the same effect.</description>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.05</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>MI_Morphine_Chemical</chemical>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>MI_MorphineAddiction</defName>
+    <label>morphine addiction</label>
+    <description>A chemical addiction to morphine. Long-term use of morphine has caused neurological adaptations at the cellular level, so the brain can no longer function properly without the drug.
+\nWithout regular doses of morphine, withdrawal symptoms will begin. However, extended abstinence will force the brain to adapt back to its normal state, resolving the addiction.</description>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <chemicalNeed>MI_Morphine_Chemical_Need</chemicalNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.0333</severityPerDay>
+        <showDaysToRecover>true</showDaysToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>
+		    <socialFightChanceFactor>2.0</socialFightChanceFactor>
+        <statOffsets>
+					<MentalBreakThreshold>10</MentalBreakThreshold>
+				</statOffsets>	
+        <mentalStateGivers>        
+          <li>
+            <mentalState>Binging_DrugMajor</mentalState>
+            <mtbDays>50</mtbDays>
+          </li>
+        </mentalStateGivers>
+      </li>
+    </stages>
+  </HediffDef>
+
 </Defs>
