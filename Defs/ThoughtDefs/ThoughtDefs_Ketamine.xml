@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThoughtDef>
-    <defName>MorphineHigh</defName>
+    <defName>KetamineHigh</defName>
     <workerClass>ThoughtWorker_Hediff</workerClass>
-    <hediff>MorphineBuildup</hediff>
+    <hediff>KetamineBuildup</hediff>
     <validWhileDespawned>true</validWhileDespawned>
     <developmentalStageFilter>Child, Adult</developmentalStageFilter>
     <stages>
@@ -15,15 +15,15 @@
       <li>
         <label>warm pudding limbs</label>
         <description>Yeah... that's the stuff. My limbs feel like warm pudding.</description>
-        <baseMoodEffect>10</baseMoodEffect>
+        <baseMoodEffect>5</baseMoodEffect>
       </li>
       <li>
-        <label>pure euphoria</label>
+        <label>ketamine relaxation</label>
         <description>Wheeeeeeeeeeeeeeeeeeeeeeee.</description>
-        <baseMoodEffect>25</baseMoodEffect>
+        <baseMoodEffect>5</baseMoodEffect>
       </li>
       <li>
-        <label>drifting away</label>
+        <label>terrible hallucinations</label>
         <description>The pain left, but something stranger came to visit. Whoa... my hands are filled with teeth. Why are they chewing? Huh? ... Oh, the floor just whispered my name and asked me to lie down forever. It's getting hard to breathe... the air is thick like soup, like I'm choking on alphabet letters. Why is gravity apologizing to me? I think I should go to sleep now...</description>
         <baseMoodEffect>-15</baseMoodEffect>
       </li>
@@ -31,20 +31,21 @@
   </ThoughtDef>
 
   <ThoughtDef>
-      <defName>MI_MorphineWithdrawal</defName>
+      <defName>MI_KetamineWithdrawal</defName>
       <workerClass>ThoughtWorker_Hediff</workerClass>
-      <hediff>MI_MorphineAddiction</hediff>
+      <hediff>MI_KetamineAddiction</hediff>
       <validWhileDespawned>true</validWhileDespawned>
       <stages>
         <li>
           <visible>false</visible>
         </li>
         <li>
-          <label>morphine withdrawal</label>
+          <label>ketamine withdrawal</label>
           <description>I really need to go get some relief...</description>
-          <baseMoodEffect>-25</baseMoodEffect>
+          <baseMoodEffect>-15</baseMoodEffect>
         </li>
       </stages>
     </ThoughtDef>
+
 
 </Defs>
