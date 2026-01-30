@@ -14,6 +14,13 @@ public sealed class HediffCompHandler_SecondaryCondition_CardiacArrest : HediffC
         {
             return true;
         }
+
+        // Don't apply cardiac arrest if pawn has an artificial heart
+        if (HasArtificialHeart(comp.parent.pawn))
+        {
+            return true; // Skip - pawn has artificial heart
+        }
+
         // if there is no blood loss, we don't apply cardiac arrest
         if (!comp.parent.pawn.health.hediffSet.TryGetHediff(HediffDefOf.BloodLoss, out Hediff? bloodLoss) || bloodLoss.Severity < Mathf.Epsilon)
         {
@@ -27,5 +34,13 @@ public sealed class HediffCompHandler_SecondaryCondition_CardiacArrest : HediffC
         }
         // continue with the evaluation
         return false;
+    }
+
+    private static bool HasArtificialHeart(Pawn pawn)
+    {
+        // Check if pawn has an artificial heart
+        return pawn.health.hediffSet.hediffs.Any(hediff =>
+            hediff.Part?.def == BodyPartDefOf.Heart && 
+            hediff.def.addedPartProps is not null);
     }
 }
