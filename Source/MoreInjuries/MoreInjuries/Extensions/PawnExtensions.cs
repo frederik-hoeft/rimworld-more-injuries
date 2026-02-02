@@ -38,7 +38,7 @@ public static class PawnExtensions
         }
 
         // Check for Odyssey "Breathless" gene (breathes differently, immune to oxygen deficiency)
-        GeneDef breathlessGene = DefDatabase<GeneDef>.GetNamedSilentFail("Breathless");
+        GeneDef breathlessGene = DefDatabase<GeneDef>.GetNamedSilentFail("VacuumResistance_Total");
         if (breathlessGene != null && pawn.genes.HasActiveGene(breathlessGene))
         {
             return true;
