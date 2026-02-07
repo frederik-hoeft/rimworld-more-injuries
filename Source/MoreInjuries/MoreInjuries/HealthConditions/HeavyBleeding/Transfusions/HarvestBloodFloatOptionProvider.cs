@@ -45,7 +45,6 @@ internal sealed class HarvestBloodFloatOptionProvider(InjuryWorker parent) : ICo
         }
         int doctorSkill = selectedPawn.GetMedicalSkillLevelOrDefault();
         int requiredSkill = MoreInjuriesMod.Settings.BloodTransfusionHarvestMinimumSkill;
-        string jobLabel = string.Format(JobDriver_HarvestBlood.JOB_LABEL_KEY, patient.LabelShort);
         if (doctorSkill < requiredSkill)
         {
             if (selectedPawn.Drafted)

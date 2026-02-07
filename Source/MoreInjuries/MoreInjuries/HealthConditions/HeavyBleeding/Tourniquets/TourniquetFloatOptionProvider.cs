@@ -123,17 +123,17 @@ internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : IComp
                         bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white),
                 JobDriver_RemoveTourniquetQuickly.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
             }
-            else if (tourniquet is not null && selectedPawn.Drafted && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
-            {
+            else if (tourniquet is not null 
+                && selectedPawn.Drafted 
+                && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing) 
                 // applying a tourniquet requires at least knowing what it is
-                if (KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
-                {
-                    builder.Options.Add(new FloatMenuOption(
-                        "MI_TourniquetFloatMenu_UseLabel".Translate(
-                            Colorize(bodyPart, aggregatedBleedRate).Named(Named.Params.BODYPART),
-                            patient.Label.Colorize(Color.yellow).Named(Named.Params.PATIENTNAME)).Colorize(Color.white),
-                        JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));
-                }
+                && KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
+            {
+                builder.Options.Add(new FloatMenuOption(
+                    "MI_TourniquetFloatMenu_UseLabel".Translate(
+                        Colorize(bodyPart, aggregatedBleedRate).Named(Named.Params.BODYPART),
+                        patient.Label.Colorize(Color.yellow).Named(Named.Params.PATIENTNAME)).Colorize(Color.white),
+                    JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));
             }
         }
     }
