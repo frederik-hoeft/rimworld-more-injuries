@@ -14,6 +14,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v6
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
       - name: Restore NuGet packages
         run: dotnet restore Source\MoreInjuries\MoreInjuries.slnx
       - name: Ensure project builds in Release configuration
