@@ -12,7 +12,7 @@ $steam_root = $config.steam_root
 $deps_config = Get-Content -LiteralPath "${PSScriptRoot}/dependencies.json" -Raw | ConvertFrom-Json
 
 # Expand workshop_root template
-$workshop_root = $deps_config.workshop_root -replace '\{steam_root\}', [Regex]::Escape($steam_root) -replace '\\\\', '\'
+$workshop_root = $deps_config.workshop_root -replace '\{steam_root\}', $steam_root -replace '\\\\', '\'
 
 $dest_dir = "${PSScriptRoot}/dependencies"
 New-Item -ItemType Directory -Path $dest_dir -Force | Out-Null

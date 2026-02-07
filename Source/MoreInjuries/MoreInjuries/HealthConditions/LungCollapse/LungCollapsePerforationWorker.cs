@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.Debug;
+using MoreInjuries.Extensions.Bcl;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using RimWorld;
 using System.Buffers;
@@ -25,7 +26,9 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
             return;
         }
         Logger.LogDebug($"Running lung collapse calculations for {pawn.Name}");
-        Hediff?[] causedBy = ArrayPool<Hediff?>.Shared.Rent(result.hediffs.Count);
+        // clear array is critical to not keep hediffs alive longer than necessary
+        using RentedArray<Hediff?> rentedCausedBy = ArrayPool<Hediff?>.Shared.RentDisposable(result.hediffs.Count, clearArray: true);
+        Hediff?[] causedBy = rentedCausedBy.Array;
         int i = 0;
         foreach (Hediff hediff in result.hediffs)
         {
@@ -45,7 +48,5 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
         }
         ReadOnlySpan<Hediff?> causes = causedBy.AsSpan()[..i];
         CollapseLung(lung, causes);
-        // clear array is critical to not keep hediffs alive longer than necessary
-        ArrayPool<Hediff?>.Shared.Return(causedBy, clearArray: true);
     }
 }

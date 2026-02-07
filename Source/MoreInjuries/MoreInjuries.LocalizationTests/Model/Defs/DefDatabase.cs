@@ -1,5 +1,4 @@
-﻿using MoreInjuries.LocalizationTests.Localization;
-using System.Collections.Frozen;
+﻿using System.Collections.Frozen;
 using System.Xml.Linq;
 
 namespace MoreInjuries.LocalizationTests.Model.Defs;

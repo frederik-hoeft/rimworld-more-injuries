@@ -3,7 +3,7 @@ using Verse;
 using MoreInjuries.Debug;
 using System.Linq;
 using MoreInjuries.Roslyn.Future.ThrowHelpers;
-using MoreInjuries.Extensions;
+using MoreInjuries.Extensions.Bcl;
 
 namespace MoreInjuries.HealthConditions;
 

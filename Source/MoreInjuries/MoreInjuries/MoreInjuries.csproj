@@ -26,5 +26,5 @@
         <ModBadHygiene>enable</ModBadHygiene>
     </PropertyGroup>
 
-    <Import Project="MoreInjuries.Integration.Mod.DubsBadHygiene.props"/>
+    <Import Project="MoreInjuries.Integration.Mod.DubsBadHygiene.props" />
 </Project>

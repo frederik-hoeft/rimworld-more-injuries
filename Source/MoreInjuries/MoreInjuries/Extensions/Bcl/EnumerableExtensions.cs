@@ -1,7 +1,7 @@
 ﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
 using System.Collections.Generic;
 
-namespace MoreInjuries.Extensions;
+namespace MoreInjuries.Extensions.Bcl;
 
 public static class EnumerableExtensions
 {
