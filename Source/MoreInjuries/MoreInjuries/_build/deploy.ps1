@@ -1,6 +1,7 @@
 #!/usr/bin/env pwsh
 Set-StrictMode -Version Latest
-$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 
 # IMPORTANT: change to Release for stable deployments
 $configuration = 'Release'
@@ -30,10 +31,10 @@ $steamRoot = [string]$hostConfigJson.steam_root
 $uploadDir = Join-Path $steamRoot "steamapps/common/RimWorld/Mods/$projectName"
 
 # Build mod flag properties
-$modFlagProperties = foreach ($flag in $modFeatureFlags) { "-p:$flag=enable" }
+[string[]]$modFlagProperties = $modFeatureFlags | ForEach-Object { "-p:$($_)=enable" }
 
 # build and publish the project
-Log-Message "Building and publishing $projectName v$gameVersion..."
+Log-Message "Building and publishing $projectName v$gameVersion for configuration '$configuration' with feature flags: $($modFlagProperties -join ' ') ..."
 dotnet clean   $projectPath
 dotnet restore $projectPath --no-cache
 dotnet build   $projectPath -c $configuration @modFlagProperties
@@ -104,10 +105,9 @@ if (Test-Path -LiteralPath $oldVersionsDir -PathType Container) {
     $versionName = $versionDirItem.Name
     Log-Message "Processing previous version: $versionName ..."
 
-    $refFiles = Get-ChildItem -LiteralPath $versionDir -Filter *.ref -File -ErrorAction SilentlyContinue
-    if (-not $refFiles -or $refFiles.Count -eq 0) { continue }
+    $refFile = @(Get-ChildItem -LiteralPath $versionDir -Filter *.ref -File -ErrorAction SilentlyContinue | Select-Object -First 1).FullName
+    if (-not $refFile) { continue }
 
-    $refFile = $refFiles[0].FullName
     $rawVersion = [IO.Path]::GetFileNameWithoutExtension($refFile)
 
     # Read link (trim common whitespace/newlines)
