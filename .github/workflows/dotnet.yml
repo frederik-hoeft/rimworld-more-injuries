@@ -1,4 +1,4 @@
-﻿# This workflow will build a .NET project
+# This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
 name: .NET
@@ -17,6 +17,6 @@ jobs:
       - name: Restore NuGet packages
         run: dotnet restore Source\MoreInjuries\MoreInjuries.slnx
       - name: Ensure project builds in Release configuration
-        run: dotnet build Source\MoreInjuries\MoreInjuries.slnx -c Release
+        run: dotnet build Source\MoreInjuries\MoreInjuries.slnx -c Release --no-restore
       - name: Run unit tests
-        run: dotnet test Source\MoreInjuries\MoreInjuries.slnx -c Test
+        run: dotnet test Source\MoreInjuries\MoreInjuries.slnx -c Test --no-restore
