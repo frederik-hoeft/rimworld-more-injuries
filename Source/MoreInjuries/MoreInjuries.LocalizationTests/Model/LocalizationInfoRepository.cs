@@ -62,6 +62,8 @@ internal abstract partial class LocalizationInfoRepository(string language)
             }
             string? comment = null;
             IReadOnlyDictionary<string, bool> nodeOptions = Options.Empty;
+            bool hasEnComment = false;
+            List<XNode> invalidCommentNodes = [];
             foreach (XNode commentNode in commentNodes)
             {
                 string commentNodeString = commentNode.ToString();
@@ -69,6 +71,7 @@ internal abstract partial class LocalizationInfoRepository(string language)
                 {
                     Group commentGroup = commentMatch.Groups["comment"];
                     comment = commentGroup.Value;
+                    hasEnComment = true;
                     continue;
                 }
                 if (OptionsNodeRegex.Matches(commentNodeString) is { Count: > 0 } optionsMatches)
@@ -84,6 +87,17 @@ internal abstract partial class LocalizationInfoRepository(string language)
                     }
                     nodeOptions = options;
                     continue;
+                }
+                // Comment node doesn't match either expected format - collect it for potential reporting
+                invalidCommentNodes.Add(commentNode);
+            }
+            // Report invalid comments only when an EN comment is present
+            // This helps catch typos in EN comments while allowing organizational section headers
+            if (hasEnComment)
+            {
+                foreach (XNode invalidNode in invalidCommentNodes)
+                {
+                    context.ReportInvalidCommentFor(element, invalidNode);
                 }
             }
             if (string.IsNullOrEmpty(comment))
