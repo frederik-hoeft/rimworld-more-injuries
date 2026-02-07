@@ -1,160 +1,183 @@
-﻿# Ensure abort after errors are encountered (may happen because of BOMs)
+#!/usr/bin/env pwsh
 Set-StrictMode -Version Latest
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = 'Stop'
 
 # IMPORTANT: change to Release for stable deployments
-$configuration = "Release"
-$project_name = "MoreInjuries"
-$game_version = "1.6"
-$mod_root = (Get-Item -LiteralPath "${PSScriptRoot}/../../../..").FullName
-$project_path = "${PSScriptRoot}/../${project_name}.csproj"
-# conditional compilation
-$mod_feature_flags = @("ModBadHygiene")
+$configuration = 'Release'
+$projectName   = 'MoreInjuries'
+$gameVersion   = '1.6'
+
+# conditional compilation flags (mapped to: -p:<flag>=enable)
+$modFeatureFlags = @('ModBadHygiene')
+
+# Resolve script directory (where this script lives)
+$scriptDir = (Resolve-Path -LiteralPath $PSScriptRoot).Path
+# Resolve mod root (4 levels up from script directory)
+$modRoot   = (Resolve-Path -LiteralPath (Join-Path $scriptDir '..\..\..\..')).Path
+$projectPath = Join-Path (Join-Path $scriptDir '..') "$projectName.csproj"
 
 function Log-Message {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory)]
-        [string]$Message
-    )
-    Write-Host "[${project_name} build $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')]: ${Message}"
+  param([Parameter(Mandatory)][string]$Message)
+  $ts = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
+  Write-Host "[$projectName build $ts]: $Message"
 }
 
-# Read the hostconfig file
+# Read the hostconfig file (located next to this script)
 Log-Message "Reading host configuration file..."
-$config = Get-Content -LiteralPath "${PSScriptRoot}/hostconfig.json" -Raw | ConvertFrom-Json
+$hostConfigPath = Join-Path $scriptDir 'hostconfig.json'
+$hostConfigJson = Get-Content -LiteralPath $hostConfigPath -Raw | ConvertFrom-Json
+$steamRoot = [string]$hostConfigJson.steam_root
+$uploadDir = Join-Path $steamRoot "steamapps/common/RimWorld/Mods/$projectName"
 
-# Use the path from the JSON file
-$upload_dir = "$($config.steam_root)/steamapps/common/RimWorld/Mods/${project_name}"
-
-# append /p:<mod_feature_flags[i]>="enable" for all defined feature flags
-$mod_flag_properties = @()
-foreach ($flag in $mod_feature_flags) {
-    $mod_flag_properties += "-p:${flag}=enable"
-}
+# Build mod flag properties
+$modFlagProperties = foreach ($flag in $modFeatureFlags) { "-p:$flag=enable" }
 
 # build and publish the project
-Log-Message "Building and publishing ${project_name} v${game_version}..."
-dotnet clean "${project_path}"
-if (!$?) { exit $LASTEXITCODE }
-dotnet restore "${project_path}" --no-cache
-if (!$?) { exit $LASTEXITCODE }
-dotnet build "${project_path}" -c "${configuration}" @mod_flag_properties
-if (!$?) { exit $LASTEXITCODE }
-dotnet publish "${project_path}" -c "${configuration}" -p:PublishProfile=$configuration @mod_flag_properties
-if (!$?) { exit $LASTEXITCODE }
+Log-Message "Building and publishing $projectName v$gameVersion..."
+dotnet clean   $projectPath
+dotnet restore $projectPath --no-cache
+dotnet build   $projectPath -c $configuration @modFlagProperties
+dotnet publish $projectPath -c $configuration "-p:PublishProfile=$configuration" @modFlagProperties
 
 # clean upload dir
 Log-Message "Cleaning up the upload directory..."
-if (Test-Path -LiteralPath $upload_dir) {
-    Remove-Item -LiteralPath $upload_dir -Recurse
-}
-
-function Copy-Folder {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory)]
-        [String]$FromPath,
-
-        [Parameter(Mandatory)]
-        [String]$ToPath,
-
-        [string[]] $Exclude
-    )
-
-    if (Test-Path $FromPath -PathType Container) {
-        New-Item $ToPath -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
-        Get-ChildItem $FromPath -Force | ForEach-Object {
-            # avoid the nested pipeline variable
-            $item = $_
-            $target_path = Join-Path $ToPath $item.Name
-            if (($Exclude | ForEach-Object { $item.Name -like $_ }) -notcontains $true) {
-                if (Test-Path $target_path) { Remove-Item $target_path -Recurse -Force }
-                Copy-Item $item.FullName $target_path
-                Copy-Folder -FromPath $item.FullName $target_path $Exclude
-            }
-        }
-    }
+if (Test-Path -LiteralPath $uploadDir) {
+  Remove-Item -LiteralPath $uploadDir -Recurse -Force
 }
 
 # create new folder structure
-New-Item -ItemType Directory $upload_dir
-# include source files
-New-Item -ItemType Directory "${upload_dir}/Source"
+New-Item -ItemType Directory -Path $uploadDir | Out-Null
+New-Item -ItemType Directory -Path (Join-Path $uploadDir 'Source') | Out-Null
+
+# Write commit.ref (origin + current commit)
+Log-Message "Writing commit.ref..."
+$commitRef = Join-Path $uploadDir 'Source\commit.ref'
+
+$originUrl = ''
+$commitSha = ''
+
+$git = Get-Command git -ErrorAction SilentlyContinue
+if ($git) {
+  $inside = $false
+  try {
+    $out = & git -C $modRoot rev-parse --is-inside-work-tree 2>$null
+    if ($LASTEXITCODE -eq 0 -and $out.Trim() -eq 'true') { $inside = $true }
+  } catch { $inside = $false }
+
+  if ($inside) {
+    try { $originUrl = (& git -C $modRoot remote get-url origin 2>$null).Trim() } catch { $originUrl = '' }
+    try { $commitSha = (& git -C $modRoot rev-parse HEAD 2>$null).Trim() } catch { $commitSha = '' }
+  }
+}
+
+$originHttps = $originUrl
+
+# git@github.com:Owner/Repo(.git)
+if ($originHttps -match '^git@github\.com:') {
+  $originHttps = $originHttps -replace '^git@github\.com:', 'https://github.com/'
+}
+
+# ssh://git@github.com/Owner/Repo(.git)
+if ($originHttps -match '^ssh://git@github\.com/') {
+  $originHttps = $originHttps -replace '^ssh://git@github\.com/', 'https://github.com/'
+}
+
+# strip trailing .git
+$originHttps = $originHttps -replace '\.git$', ''
+
+$lines = New-Object System.Collections.Generic.List[string]
+$lines.Add("origin=$originUrl")
+$lines.Add("origin_https=$originHttps")
+$lines.Add("commit=$commitSha")
+if (-not [string]::IsNullOrWhiteSpace($originHttps) -and -not [string]::IsNullOrWhiteSpace($commitSha)) {
+  $lines.Add("commit_url=$originHttps/commit/$commitSha")
+}
+Set-Content -LiteralPath $commitRef -Value $lines -Encoding UTF8
+
 # add oldversions:
-# 1. enumerate subdirectories in the oldversions directory (e.g. 1.5, 1.6, etc.)
-# 2. for each subdirectory, there will be a .ref file that contains a raw download link for the corresponding GitHub (zip) release, download that to a temporary location
-# 3. extract the zip file, and copy the corresponding version folder (e.g. MoreInjuries/1.5, MoreInjuries/1.6, etc., matching the subdirectory name) to the upload directory root
-# 4. delete the temporary zip file
-# enumerate subdirectories in the oldversions directory
-$old_versions_dir = "${mod_root}/oldversions"
-if (Test-Path -LiteralPath $old_versions_dir) {
-    Log-Message "Adding old versions from ${old_versions_dir}..."
-    Get-ChildItem -Path $old_versions_dir -Directory | ForEach-Object {
-        $version_dir = $_.FullName
-        $version_name = $_.Name
-        Log-Message "Processing previous version: ${version_name} ..."
-        # contains a single .ref file with the raw download link, glob the .ref file
-        $ref_file = Get-ChildItem -Path $version_dir -Filter "*.ref" -File | Select-Object -First 1
-        # check if the glob matched a file
-        if ($ref_file -and $ref_file.Exists) {
-            $raw_version = $ref_file.Name -replace '\.ref$', ''
-            # read the raw download link from the .ref file
-            $download_link = Get-Content -LiteralPath $ref_file.FullName -Raw
-            # download the zip file to a temporary location
-            $temp_zip = Join-Path $env:TEMP "${version_name}.zip"
-            Invoke-WebRequest -Verbose -Uri $download_link -OutFile $temp_zip
-            # extract the zip file to a temporary directory
-            $temp_extract_dir = Join-Path $env:TEMP "${version_name}_extract"
-            Expand-Archive -Path $temp_zip -DestinationPath $temp_extract_dir -Force
-            # copy the version folder to the upload directory root
-            Copy-Item -LiteralPath (Join-Path $temp_extract_dir "${project_name}/${version_name}") -Destination $upload_dir -Recurse -Container -Force
-            # delete the temporary zip file and extraction directory
-            Remove-Item -LiteralPath $temp_zip -Force
-            Remove-Item -LiteralPath $temp_extract_dir -Recurse -Force
-            Log-Message "Added old version: ${raw_version} (${version_name})"
-        }
+$oldVersionsDir = Join-Path $modRoot 'oldversions'
+if (Test-Path -LiteralPath $oldVersionsDir -PathType Container) {
+  Log-Message "Adding old versions from $oldVersionsDir..."
+
+  foreach ($versionDirItem in Get-ChildItem -LiteralPath $oldVersionsDir -Directory) {
+    $versionDir  = $versionDirItem.FullName
+    $versionName = $versionDirItem.Name
+    Log-Message "Processing previous version: $versionName ..."
+
+    $refFiles = Get-ChildItem -LiteralPath $versionDir -Filter *.ref -File -ErrorAction SilentlyContinue
+    if (-not $refFiles -or $refFiles.Count -eq 0) { continue }
+
+    $refFile = $refFiles[0].FullName
+    $rawVersion = [IO.Path]::GetFileNameWithoutExtension($refFile)
+
+    # Read link (trim common whitespace/newlines)
+    $downloadLink = (Get-Content -LiteralPath $refFile -Raw).Trim()
+    if ([string]::IsNullOrWhiteSpace($downloadLink)) { continue }
+
+    $tmpDir = Join-Path ([IO.Path]::GetTempPath()) ([guid]::NewGuid().ToString('N'))
+    New-Item -ItemType Directory -Path $tmpDir | Out-Null
+
+    $tmpZip     = Join-Path $tmpDir "$versionName.zip"
+    $tmpExtract = Join-Path $tmpDir "${versionName}_extract"
+    New-Item -ItemType Directory -Path $tmpExtract | Out-Null
+
+    # Download
+    Invoke-WebRequest -Uri $downloadLink -OutFile $tmpZip -MaximumRedirection 20
+
+    # Extract
+    Expand-Archive -LiteralPath $tmpZip -DestinationPath $tmpExtract -Force
+
+    $srcOld = Join-Path (Join-Path $tmpExtract $projectName) $versionName
+    if (Test-Path -LiteralPath $srcOld -PathType Container) {
+      Copy-Item -LiteralPath $srcOld -Destination $uploadDir -Recurse -Force
+      Log-Message "Added old version: $rawVersion ($versionName)"
     }
+
+    Remove-Item -LiteralPath $tmpDir -Recurse -Force
+  }
 }
 
 # create folder for current version
-New-Item -ItemType Directory "${upload_dir}/${game_version}/Assemblies"
-# copy assemblies (external deps should be handled via mod dependencies from the workshop)
-Copy-Item -LiteralPath "${mod_root}/Source/${project_name}/artifacts/publish/${project_name}/${configuration}/${project_name}.dll" -Destination "${upload_dir}/${game_version}/Assemblies"
-# if there is a Patches directory in the mod root, copy that as well (to the latest version)
-if (Test-Path -LiteralPath "${mod_root}/Patches") {
-	Copy-Item -LiteralPath "${mod_root}/Patches" -Recurse -Destination "${upload_dir}/${game_version}" -Container
-}
-# if there is a Defs directory in the mod root, copy that as well (to the latest version)
-if (Test-Path -LiteralPath "${mod_root}/Defs") {
-	Copy-Item -LiteralPath "${mod_root}/Defs" -Recurse -Destination "${upload_dir}/${game_version}" -Container
-}
-# if there is a Sounds directory in the mod root, copy that as well (to the latest version)
-if (Test-Path -LiteralPath "${mod_root}/Sounds") {
-	Copy-Item -LiteralPath "${mod_root}/Sounds" -Recurse -Destination "${upload_dir}/${game_version}" -Container
-}
-# if there is a Textures directory in the mod root, copy that as well (to the latest version)
-if (Test-Path -LiteralPath "${mod_root}/Textures") {
-	Copy-Item -LiteralPath "${mod_root}/Textures" -Recurse -Destination "${upload_dir}/${game_version}" -Container
-}
-# copy Languages directory
-if (Test-Path -LiteralPath "${mod_root}/Languages") {
-    Copy-Item -LiteralPath "${mod_root}/Languages" -Recurse -Destination "${upload_dir}/${game_version}" -Container
-}
-# copy About
-Copy-Item -LiteralPath "${mod_root}/About" -Recurse -Destination $upload_dir -Container
+New-Item -ItemType Directory -Path (Join-Path $uploadDir "$gameVersion/Assemblies") -Force | Out-Null
 
-# copy Source (exclude sensitive/unnecessary items)
-Copy-Folder -FromPath "${mod_root}/Source" -ToPath "${upload_dir}/Source" -Exclude ".vs","bin","obj","*.user","TestResults"
+# copy assemblies
+$dllSrc = Join-Path $modRoot "Source/$projectName/artifacts/publish/$projectName/$configuration/$projectName.dll"
+if (-not (Test-Path -LiteralPath $dllSrc -PathType Leaf)) {
+  throw "ERROR: expected build output not found: $dllSrc"
+}
+Copy-Item -LiteralPath $dllSrc -Destination (Join-Path $uploadDir "$gameVersion/Assemblies/") -Force
+
+# copy content folders into latest version
+foreach ($d in @('Patches','Defs','Sounds','Textures','Languages')) {
+  $src = Join-Path $modRoot $d
+  if (Test-Path -LiteralPath $src -PathType Container) {
+    Copy-Item -LiteralPath $src -Destination (Join-Path $uploadDir $gameVersion) -Recurse -Force
+  } else {
+    Log-Message "No $d folder found in mod root; aborting..."
+    exit 1
+  }
+}
+
+# copy About into upload root
+Copy-Item -LiteralPath (Join-Path $modRoot 'About') -Destination $uploadDir -Recurse -Force
 
 # copy README because why not
-Copy-Item -LiteralPath "${mod_root}/README.md" -Destination $upload_dir
+$readme = Join-Path $modRoot 'README.md'
+if (Test-Path -LiteralPath $readme -PathType Leaf) {
+  Copy-Item -LiteralPath $readme -Destination $uploadDir -Force
+}
 
 # include docs/wiki
-New-Item -ItemType Directory -Path "${upload_dir}/docs"
-Copy-Item -LiteralPath "${mod_root}/docs/wiki" -Recurse -Destination "${upload_dir}/docs/wiki" -Container
+New-Item -ItemType Directory -Path (Join-Path $uploadDir 'docs') -Force | Out-Null
+$wiki = Join-Path $modRoot 'docs/wiki'
+if (Test-Path -LiteralPath $wiki -PathType Container) {
+  Copy-Item -LiteralPath $wiki -Destination (Join-Path $uploadDir 'docs') -Recurse -Force
+}
 
-# include the LoadFolders.xml file
-Copy-Item -LiteralPath "${mod_root}/LoadFolders.xml" -Destination $upload_dir
+# include LoadFolders.xml
+$loadFolders = Join-Path $modRoot 'LoadFolders.xml'
+if (Test-Path -LiteralPath $loadFolders -PathType Leaf) {
+  Copy-Item -LiteralPath $loadFolders -Destination $uploadDir -Force
+}
 
 Log-Message "========== Deployment succeeded =========="

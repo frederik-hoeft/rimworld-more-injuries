@@ -1,6 +1,4 @@
-﻿#if MOD_BAD_HYGIENE
-
-using DubsBadHygiene;
+﻿using DubsBadHygiene;
 using MoreInjuries.AI.Jobs.Outcomes;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 using RimWorld;
@@ -26,4 +24,3 @@ public sealed class OutcomeDoer_TransfusionHydration : JobOutcomeDoer_NeedBase
         return true;
     }
 }
-#endif
