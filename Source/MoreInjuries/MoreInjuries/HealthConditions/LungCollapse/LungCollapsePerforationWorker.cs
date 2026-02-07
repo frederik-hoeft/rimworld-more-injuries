@@ -43,7 +43,7 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
             Logger.LogDebug($"Won't apply lung collapse to {pawn.Name} since it's either an internal or non-bleeding wound");
             return;
         }
-        ReadOnlySpan<Hediff> causes = causedBy.AsSpan()[..i];
+        ReadOnlySpan<Hediff?> causes = causedBy.AsSpan()[..i];
         CollapseLung(lung, causes);
         // clear array is critical to not keep hediffs alive longer than necessary
         ArrayPool<Hediff?>.Shared.Return(causedBy, clearArray: true);

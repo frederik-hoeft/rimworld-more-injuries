@@ -23,7 +23,7 @@ public sealed class DefInjectedCoverageTests : LocalizationBase
         Assert.IsNotNull(english, "Missing default 'English' localization data.");
 
         DirectoryInfo[] defsDirectories = ModRoot.GetDirectories("Defs", SearchOption.TopDirectoryOnly);
-        Assert.AreEqual(1, defsDirectories.Length, "Expected exactly one 'Defs' directory in the mod root.");
+        Assert.HasCount(1, defsDirectories, "Expected exactly one 'Defs' directory in the mod root.");
         DirectoryInfo defsRoot = defsDirectories[0];
         DefDatabase defDatabase = new();
         defDatabase.Load(defsRoot, errorContext);

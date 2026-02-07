@@ -21,8 +21,8 @@ jobs:
     - name: Setup NuGet
       uses: nuget/setup-nuget@v2
     - name: Restore NuGet packages
-      run: nuget restore Source\MoreInjuries\MoreInjuries.sln
+      run: nuget restore Source\MoreInjuries\MoreInjuries.slnx
     - name: Ensure project builds in Release configuration
-      run: msbuild Source\MoreInjuries\MoreInjuries.sln -t:rebuild -property:Configuration=Release
+      run: msbuild Source\MoreInjuries\MoreInjuries.slnx -t:rebuild -property:Configuration=Release
     - name: Run unit tests
-      run: dotnet test Source\MoreInjuries\MoreInjuries.sln -c Test
+      run: dotnet test Source\MoreInjuries\MoreInjuries.slnx -c Test

@@ -43,14 +43,16 @@ internal sealed partial class KeyedReferences
                 {
                     continue;
                 }
-                string key = group.Value;
-                if (!References.TryGetValue(key, out List<KeyedReference>? references))
+                foreach (Capture capture in group.Captures)
                 {
-                    references = [];
-                    References[key] = references;
+                    string key = capture.Value;
+                    if (!References.TryGetValue(key, out List<KeyedReference>? references))
+                    {
+                        references = [];
+                        References[key] = references;
+                    }
+                    references.Add(new KeyedReference(key, normalizedFileName, lineNumber));
                 }
-                
-                references.Add(new KeyedReference(key, normalizedFileName, lineNumber));
             }
         }
     }

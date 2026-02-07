@@ -1,0 +1,11 @@
+﻿<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Project Path="MoreInjuries/MoreInjuries.csproj" />
+  <Project Path="MoreInjuries.Roslyn.SourceGen/MoreInjuries.Roslyn.SourceGen.csproj" />
+  <Project Path="MoreInjuries.LocalizationTests/MoreInjuries.LocalizationTests.csproj" />
+  <Project Path="MoreInjuries.Tests/MoreInjuries.Tests.csproj" />
+  <Project Path="MoreInjuries.WikiGen/MoreInjuries.WikiGen.csproj" />
+</Solution>
