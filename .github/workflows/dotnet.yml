@@ -16,10 +16,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v6
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v2
-    - name: Setup NuGet
-      uses: nuget/setup-nuget@v2
     - name: Restore NuGet packages
       run: dotnet restore Source\MoreInjuries\MoreInjuries.slnx
     - name: Ensure project builds in Release configuration
