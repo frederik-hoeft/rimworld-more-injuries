@@ -1,0 +1,24 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <BuildType Name="Test" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Project Path="MoreInjuries/MoreInjuries.csproj" />
+  <Project Path="MoreInjuries.Roslyn.SourceGen/MoreInjuries.Roslyn.SourceGen.csproj">
+    <BuildType Solution="Test|*" Project="Debug" />
+  </Project>
+  <Project Path="MoreInjuries.LocalizationTests/MoreInjuries.LocalizationTests.csproj">
+    <BuildType Solution="Test|*" Project="Debug" />
+  </Project>
+  <Project Path="MoreInjuries.Tests/MoreInjuries.Tests.csproj">
+    <BuildType Solution="Test|*" Project="Debug" />
+  </Project>
+  <Project Path="MoreInjuries.WikiGen/MoreInjuries.WikiGen.csproj">
+    <BuildType Solution="Test|*" Project="Debug" />
+  </Project>
+</Solution>

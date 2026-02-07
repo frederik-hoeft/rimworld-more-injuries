@@ -65,7 +65,7 @@ internal sealed class SpallingInjuryWorker(MoreInjuryComp parent) : InjuryWorker
             // likelihood of spall increases as the angle of the bullet approaches 90 degrees (perpendicular impact)
             // for narrow angles, the bullet is more likely to be deflected and less energy is transferred to deformation and fragmentation
             // normalize the angle to the range [0, 180)
-            float normalizedAngle = MathEx.Modulo(Mathf.Abs(dinfo.Angle), 180f);
+            float normalizedAngle = Math.Modulo(Mathf.Abs(dinfo.Angle), 180f);
             // normalize to the range [0, 90] (of any side)
             if (normalizedAngle > 90f)
             {

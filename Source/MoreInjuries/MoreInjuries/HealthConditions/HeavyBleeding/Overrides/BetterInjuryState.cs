@@ -1,5 +1,5 @@
 ﻿using MoreInjuries.Caching;
-using MoreInjuries.Extensions;
+using MoreInjuries.Extensions.Bcl;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers;
 using MoreInjuries.Localization;
 using System.Collections.Generic;

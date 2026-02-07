@@ -1,5 +1,5 @@
 ﻿using MoreInjuries.Caching;
-using MoreInjuries.Extensions;
+using MoreInjuries.Extensions.Bcl;
 using MoreInjuries.Localization;
 using RimWorld;
 using System.Text;

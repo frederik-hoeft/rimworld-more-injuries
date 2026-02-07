@@ -18,7 +18,7 @@ public abstract class LocalizationBase
         {
             throw new InvalidOperationException("Failed to locate the mod root directory.");
         }
-        Assert.AreEqual(1, modRoot.GetDirectories(".git", SearchOption.TopDirectoryOnly).Length, "Suspected mod root directory is not a git repository.");
+        Assert.HasCount(1, modRoot.GetDirectories(".git", SearchOption.TopDirectoryOnly), "Suspected mod root directory is not a git repository.");
         return modRoot;
     }
 
@@ -26,7 +26,7 @@ public abstract class LocalizationBase
     {
         DirectoryInfo modRoot = ModRoot;
         DirectoryInfo[] languageDirectories = modRoot.GetDirectories("Languages", SearchOption.TopDirectoryOnly);
-        Assert.AreEqual(1, languageDirectories.Length, "Expected exactly one 'Languages' directory in the mod root.");
+        Assert.HasCount(1, languageDirectories, "Expected exactly one 'Languages' directory in the mod root.");
         DirectoryInfo localizationRoot = languageDirectories[0];
         List<LocalizationInfoRepository> languageRepositories = [];
         foreach (DirectoryInfo languageDirectory in localizationRoot.EnumerateDirectories())

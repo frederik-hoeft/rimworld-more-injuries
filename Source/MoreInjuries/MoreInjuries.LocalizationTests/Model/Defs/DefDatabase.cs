@@ -101,7 +101,7 @@ internal sealed class DefDatabase
                 context.ErrorContext.Errors.Add($"[{context.RelativePath}]: Field '{field.Name.LocalName}' in def '{defName}' is empty.");
                 continue;
             }
-            typedDefs[key] = new LocalizationValue(key, context.RelativePath, value, null);
+            typedDefs[key] = new LocalizationValue(key, context.RelativePath, value, Comment: null, Options: Options.Empty);
         }
     }
 
