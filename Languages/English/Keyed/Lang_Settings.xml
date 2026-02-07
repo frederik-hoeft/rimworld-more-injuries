@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
-  <!-- ============ General Settings ============ -->
   <!-- EN: General Settings -->
   <MI_Settings_General>General Settings</MI_Settings_General>
   <!-- EN: Enable logging (default: {DEFAULT}) -->
@@ -9,10 +8,8 @@
   <MI_Settings_General_LoggingVerboseLabel>Enable verbose logging (default: {DEFAULT})</MI_Settings_General_LoggingVerboseLabel>
   <!-- EN: Fix misplaced bionics -->
   <MI_Settings_General_DebugAction_FixBionicsLabel>Fix misplaced bionics</MI_Settings_General_DebugAction_FixBionicsLabel>
-  <!-- ============ Features ============ -->
   <!-- EN: Feature Flags and Values -->
   <MI_Settings_Features>Feature Flags and Values</MI_Settings_Features>
-  <!-- ============ Feature: Fractures ============ -->
   <!-- EN: Fractures -->
   <MI_Settings_Features_Fractures>Fractures</MI_Settings_Features_Fractures>
   <!-- EN: Enable bone fractures (default: {DEFAULT}) -->
@@ -43,7 +40,6 @@
   <MI_Settings_Features_Fractures_ApplySplintJobLabel>Enable splinting work giver for doctors (default: {DEFAULT})</MI_Settings_Features_Fractures_ApplySplintJobLabel>
   <!-- EN: If enabled, doctors will automatically apply splints to patients with fractures. The patient must be in a bed and a splint must be accessible.\n\nIf disabled, doctors will only apply splints to patients when ordered to do so. -->
   <MI_Settings_Features_Fractures_ApplySplintJobTooltip>If enabled, doctors will automatically apply splints to patients with fractures. The patient must be in a bed and a splint must be accessible.\n\nIf disabled, doctors will only apply splints to patients when ordered to do so.</MI_Settings_Features_Fractures_ApplySplintJobTooltip>
-  <!-- ============ Feature: Respiratory Conditions ============ -->
   <!-- EN: Respiratory Conditions -->
   <MI_Settings_Features_Respiratory>Respiratory Conditions</MI_Settings_Features_Respiratory>
   <!-- EN: Enable choking on blood mechanics (default: {DEFAULT}) -->
@@ -86,7 +82,6 @@
   <MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootLabel>Maximum initial lung collapse severity factor: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootLabel>
   <!-- EN: The maximum initial severity of lung collapse is determined by a random factor between 0 and this value, squared. Stacks with subsequent exposure to thermobaric damage. The resulting severity of lung collapse therefore follows a quadratic distribution, with a higher likelihood of low severities and a small chance of very high severities. For example, at 0.5, the severity of lung collapse will follow a quadratic distribution between 0 and 0.25. -->
   <MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootTooltip>The maximum initial severity of lung collapse is determined by a random factor between 0 and this value, squared. Stacks with subsequent exposure to thermobaric damage. The resulting severity of lung collapse therefore follows a quadratic distribution, with a higher likelihood of low severities and a small chance of very high severities. For example, at 0.5, the severity of lung collapse will follow a quadratic distribution between 0 and 0.25.</MI_Settings_Features_Respiratory_LungCollapseMaxSeverityRootTooltip>
-  <!-- ============ Feature: Spalling ============ -->
   <!-- EN: Spalling -->
   <MI_Settings_Features_Spalling>Spalling</MI_Settings_Features_Spalling>
   <!-- EN: Enable spalling mechanics (default: {DEFAULT}) -->
@@ -99,7 +94,6 @@
   <MI_Settings_Features_Spalling_ChanceLabel>Chance of spalling injuries: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Spalling_ChanceLabel>
   <!-- EN: The likelihood of exposed body parts receiving spalling injuries after spalling has occurred. Evaluated per body part. The final chance of spalling injuries depends on this value, the angle of impact, and the hardness and condition of the armor. -->
   <MI_Settings_Features_Spalling_ChanceTooltip>The likelihood of exposed body parts receiving spalling injuries after spalling has occurred. Evaluated per body part. The final chance of spalling injuries depends on this value, the angle of impact, and the hardness and condition of the armor.</MI_Settings_Features_Spalling_ChanceTooltip>
-  <!-- ============ Feature: Hypovolemic Shock ============ -->
   <!-- EN: Blood Loss (Hypovolemic Shock) -->
   <MI_Settings_Features_HypovolemicShock>Blood Loss (Hypovolemic Shock)</MI_Settings_Features_HypovolemicShock>
   <!-- EN: Enable hypovolemic shock mechanics (default: {DEFAULT}) -->
@@ -126,7 +120,6 @@
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>Minimum defibrillator success rate for unskilled user: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>
   <!-- EN: The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill < 8).\n\nThe actual success rate scales with the user's medicine skill: max(<this setting>, <medicine skill> / 8). -->
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8).</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>
-  <!-- =========== Feature: Lethal Triad of Trauma ============ -->
   <!-- EN: Lethal Triad of Trauma -->
   <MI_Settings_Features_LethalTriad>Lethal Triad of Trauma</MI_Settings_Features_LethalTriad>
   <!-- EN: Enable advanced trauma simulation (default: {DEFAULT}) -->
@@ -145,7 +138,6 @@
   <MI_Settings_Features_LethalTriad_CoagulopathySalineIvSafetyThresholdLabel>Saline IV infusion safety threshold of independent coagulopathy: {VALUE} (default: {DEFAULT})</MI_Settings_Features_LethalTriad_CoagulopathySalineIvSafetyThresholdLabel>
   <!-- EN: Doctors will refuse to administer saline IV infusions to patients with independent coagulopathy severity above this threshold for safety reasons. Independent coagulopathy refers to coagulopathy caused by conditions other than hemodilution (e.g., acidosis, hypothermia, etc.).\n\nIf set to 0, doctors will only perform saline infusions if no other conditions than hemodilution are currently are causing coagulopathy, a factor of 1 means that doctors will not consider other conditions contributing to coagulopathy at all. They will only consider hemodilution.\n\nSo basically, 0 means the most safe but most restrictive option, while 1 means "perform that infusion no matter the consequences." -->
   <MI_Settings_Features_LethalTriad_CoagulopathySalineIvSafetyThresholdTooltip>Doctors will refuse to administer saline IV infusions to patients with independent coagulopathy severity above this threshold for safety reasons. Independent coagulopathy refers to coagulopathy caused by conditions other than hemodilution (e.g., acidosis, hypothermia, etc.).\n\nIf set to 0, doctors will only perform saline infusions if no other conditions than hemodilution are currently are causing coagulopathy, a factor of 1 means that doctors will not consider other conditions contributing to coagulopathy at all. They will only consider hemodilution.\n\nSo basically, 0 means the most safe but most restrictive option, while 1 means "perform that infusion no matter the consequences."</MI_Settings_Features_LethalTriad_CoagulopathySalineIvSafetyThresholdTooltip>
-  <!-- =========== Feature: Neurological Damage =========== -->
   <!-- EN: Neurological Damage -->
   <MI_Settings_Features_NeuralDamage>Neurological Damage</MI_Settings_Features_NeuralDamage>
   <!-- EN: Enable neurological damage mechanics (default: {DEFAULT}) -->
@@ -160,7 +152,6 @@
   <MI_Settings_Features_NeuralDamage_EnablePersonalityShiftLabel>Allow neurological damage to personality shifts (default: {DEFAULT})</MI_Settings_Features_NeuralDamage_EnablePersonalityShiftLabel>
   <!-- EN: If enabled, neurological damage may include personality shifts, which can lead to changes in the pawn's skills and interests. The extent of the skill redistribution depends on the severity of the neurological damage. -->
   <MI_Settings_Features_NeuralDamage_EnablePersonalityShiftTooltip>If enabled, neurological damage may include personality shifts, which can lead to changes in the pawn's skills and interests. The extent of the skill redistribution depends on the severity of the neurological damage.</MI_Settings_Features_NeuralDamage_EnablePersonalityShiftTooltip>
-  <!-- ============ Feature: Concussion ============ -->
   <!-- EN: Concussion (Head Injury) -->
   <MI_Settings_Features_Concussion>Concussion (Head Injury)</MI_Settings_Features_Concussion>
   <!-- EN: Enable concussion mechanics (default: {DEFAULT}) -->
@@ -175,7 +166,6 @@
   <MI_Settings_Features_Concussion_ConcussionChanceLabel>Chance of concussion after severe head injuries: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Concussion_ConcussionChanceLabel>
   <!-- EN: Scaling factor for the calculated chance of a concussion after severe head injuries. Evaluated per damage event. If set to 1, the calculated chance is used as-is (every head injury surpassing the configured threshold leads to concussion). Lower values allow to reduce the overall chance of concussions, even if the damage threshold is met. -->
   <MI_Settings_Features_Concussion_ConcussionChanceTooltip>Scaling factor for the calculated chance of a concussion after severe head injuries. Evaluated per damage event. If set to 1, the calculated chance is used as-is (every head injury surpassing the configured threshold leads to concussion). Lower values allow to reduce the overall chance of concussions, even if the damage threshold is met.</MI_Settings_Features_Concussion_ConcussionChanceTooltip>
-  <!-- ============ Feature: Hemorrhagic Stroke ============ -->
   <!-- EN: Hemorrhagic Stroke (Head Injury) -->
   <MI_Settings_Features_HemorrhagicStroke>Hemorrhagic Stroke (Head Injury)</MI_Settings_Features_HemorrhagicStroke>
   <!-- EN: Enable hemorrhagic stroke mechanics (default: {DEFAULT}) -->
@@ -190,7 +180,6 @@
   <MI_Settings_Features_HemorrhagicStroke_StrokeChanceLabel>Chance of hemorrhagic stroke after severe head injuries: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HemorrhagicStroke_StrokeChanceLabel>
   <!-- EN: Scaling factor for the calculated chance of a hemorrhagic stroke after severe head injuries. Evaluated per damage event. If set to 1, the calculated chance is used as-is (every head injury surpassing the configured threshold leads to a hemorrhagic stroke). Lower values allow to reduce the overall chance of hemorrhagic strokes, even if the damage threshold is met. -->
   <MI_Settings_Features_HemorrhagicStroke_StrokeChanceTooltip>Scaling factor for the calculated chance of a hemorrhagic stroke after severe head injuries. Evaluated per damage event. If set to 1, the calculated chance is used as-is (every head injury surpassing the configured threshold leads to a hemorrhagic stroke). Lower values allow to reduce the overall chance of hemorrhagic strokes, even if the damage threshold is met.</MI_Settings_Features_HemorrhagicStroke_StrokeChanceTooltip>
-  <!-- ============ Feature: EMP Damage to Bionics ============ -->
   <!-- EN: EMP Damage to Bionics -->
   <MI_Settings_Features_EmpDamage>EMP Damage to Bionics</MI_Settings_Features_EmpDamage>
   <!-- EN: Enable EMP damage to bionics (default: {DEFAULT}) -->
@@ -201,7 +190,6 @@
   <MI_Settings_Features_EmpDamage_ChanceLabel>Chance of EMP damage to bionics: {VALUE} (default: {DEFAULT})</MI_Settings_Features_EmpDamage_ChanceLabel>
   <!-- EN: The likelihood of EMP damage causing bionic implants to shut down temporarily. Evaluated per bionic implant after EMP damage has been applied. -->
   <MI_Settings_Features_EmpDamage_ChanceTooltip>The likelihood of EMP damage causing bionic implants to shut down temporarily. Evaluated per bionic implant after EMP damage has been applied.</MI_Settings_Features_EmpDamage_ChanceTooltip>
-  <!-- ============ Feature: Adrenaline ============ -->
   <!-- EN: Adrenaline -->
   <MI_Settings_Features_Adrenaline>Adrenaline</MI_Settings_Features_Adrenaline>
   <!-- EN: Enable adrenaline mechanics (default: {DEFAULT}) -->
@@ -216,7 +204,6 @@
   <MI_Settings_Features_Adrenaline_ChanceLabel>Chance of adrenaline rush on damage: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Adrenaline_ChanceLabel>
   <!-- EN: The likelihood of a pawn receiving an adrenaline rush after taking damage. Evaluated per damage event. The intensity of the adrenaline rush depends on the amount of damage taken. -->
   <MI_Settings_Features_Adrenaline_ChanceTooltip>The likelihood of a pawn receiving an adrenaline rush after taking damage. Evaluated per damage event. The intensity of the adrenaline rush depends on the amount of damage taken.</MI_Settings_Features_Adrenaline_ChanceTooltip>
-  <!-- ============ Feature: Hydrostatic Shock ============ -->
   <!-- EN: Hydrostatic Shock (Controversial) -->
   <MI_Settings_Features_HydrostaticShock>Hydrostatic Shock (Controversial)</MI_Settings_Features_HydrostaticShock>
   <!-- EN: Enable hydrostatic shock mechanics (default: {DEFAULT}) -->
@@ -227,7 +214,6 @@
   <MI_Settings_Features_HydrostaticShock_ChanceLabel>Chance of hydrostatic shock on damage: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HydrostaticShock_ChanceLabel>
   <!-- EN: The likelihood of a pawn suffering from hydrostatic shock after being hit by a very-high-energy projectile. Evaluated per damage event. -->
   <MI_Settings_Features_HydrostaticShock_ChanceTooltip>The likelihood of a pawn suffering from hydrostatic shock after being hit by a very-high-energy projectile. Evaluated per damage event.</MI_Settings_Features_HydrostaticShock_ChanceTooltip>
-  <!-- ============ Feature: Tourniquets And Gangrene ============ -->
   <!-- EN: Tourniquets and Gangrene -->
   <MI_Settings_Features_Tourniquets>Tourniquets and Gangrene</MI_Settings_Features_Tourniquets>
   <!-- EN: Enable tourniquets causing gangrene (default: {DEFAULT}) -->
@@ -254,7 +240,6 @@
   <MI_Settings_Features_Tourniquets_MinBleedRateForAutoTourniquetLabel>Minimum bleed rate for auto tourniquet: {VALUE} (default: {DEFAULT})</MI_Settings_Features_Tourniquets_MinBleedRateForAutoTourniquetLabel>
   <!-- EN: The minimum bleed rate for a doctor to automatically apply a tourniquet to an injured limb as part of the "provide first aid" job. If the bleed rate is below this value, the doctor will skip tourniquet application and will tend the injury instead.\n\nThis setting also affects the coloring of the libms in the "Apply Tourniquet" float menu text. -->
   <MI_Settings_Features_Tourniquets_MinBleedRateForAutoTourniquetTooltip>The minimum bleed rate for a doctor to automatically apply a tourniquet to an injured limb as part of the "provide first aid" job. If the bleed rate is below this value, the doctor will skip tourniquet application and will tend the injury instead.\n\nThis setting also affects the coloring of the libms in the "Apply Tourniquet" float menu text.</MI_Settings_Features_Tourniquets_MinBleedRateForAutoTourniquetTooltip>
-  <!-- ============ Feature: Hearing Damage ============ -->
   <!-- EN: Hearing Damage -->
   <MI_Settings_Features_HearingDamage>Hearing Damage</MI_Settings_Features_HearingDamage>
   <!-- EN: Enable hearing damage mechanics (default: {DEFAULT}) -->
@@ -281,7 +266,6 @@
   <MI_Settings_Features_HearingDamage_PermanentMaxChanceLabel>Maximum chance of temporary hearing damage to become permanent: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HearingDamage_PermanentMaxChanceLabel>
   <!-- EN: The maximum likelihood that temporary hearing damage becomes permanent after being exposed to loud noises. The actual chance is based on the severity of the temporary hearing damage and asymptotically approaches this value as the severity increases. -->
   <MI_Settings_Features_HearingDamage_PermanentMaxChanceTooltip>The maximum likelihood that temporary hearing damage becomes permanent after being exposed to loud noises. The actual chance is based on the severity of the temporary hearing damage and asymptotically approaches this value as the severity increases.</MI_Settings_Features_HearingDamage_PermanentMaxChanceTooltip>
-  <!-- ============ Feature: Miscellaneous ============ -->
   <!-- EN: Miscellaneous -->
   <MI_Settings_Features_Misc>Miscellaneous</MI_Settings_Features_Misc>
   <!-- EN: Replace blood bags with Biotech Hemogen packs (default: {DEFAULT}) -->
