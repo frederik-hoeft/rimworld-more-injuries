@@ -4,9 +4,9 @@ namespace MoreInjuries.Extensions.Bcl;
 
 public static class ArrayPoolExtensions
 {
-    extension<T>(ArrayPool<T> arrayPool)
+    extension<T>(ArrayPool<T>)
     {
-        public RentedArray<T> RentDisposable(int minimumLength, bool clearArray = false) => new(arrayPool.Rent(minimumLength), clearArray);
+        public static RentedArray<T> RentDisposable(int minimumLength, bool clearArray = false) => new(ArrayPool<T>.Shared.Rent(minimumLength), clearArray);
     }
 }
 

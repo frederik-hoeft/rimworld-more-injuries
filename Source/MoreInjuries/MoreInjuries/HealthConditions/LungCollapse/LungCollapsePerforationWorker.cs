@@ -27,7 +27,7 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
         }
         Logger.LogDebug($"Running lung collapse calculations for {pawn.Name}");
         // clear array is critical to not keep hediffs alive longer than necessary
-        using RentedArray<Hediff?> rentedCausedBy = ArrayPool<Hediff?>.Shared.RentDisposable(result.hediffs.Count, clearArray: true);
+        using RentedArray<Hediff?> rentedCausedBy = ArrayPool<Hediff?>.RentDisposable(result.hediffs.Count, clearArray: true);
         Hediff?[] causedBy = rentedCausedBy.Array;
         int i = 0;
         foreach (Hediff hediff in result.hediffs)
@@ -37,7 +37,6 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
                 && !injury.GetIsClosedInternalWound(forceRefresh: true))
             {
                 // this lung has been perforated
-                DebugAssert.IsTrue(i < causedBy.Length);
                 causedBy[i++] = hediff;
             }
         }
