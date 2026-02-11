@@ -4,7 +4,6 @@
     <defName>ChokingOnBlood</defName>
     <label>choking on blood</label>
     <description>Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. The bleeding must be stopped and the airways cleared to prevent death. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. Otherwise, the airways must be cleared using a specialized airway suction device or by compressing the chest using CPR to expel the blood and restore breathing.</description>
-    <lethalSeverity>1</lethalSeverity>
     <defaultLabelColor>(255, 102, 102)</defaultLabelColor>
     <tendable>false</tendable>
     <comps>
@@ -47,7 +46,7 @@
         <lifeThreatening>true</lifeThreatening>
       </li>
       <li>
-        <minSeverity>0.250</minSeverity>
+        <minSeverity>0.30</minSeverity>
         <label>moderate</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
@@ -66,10 +65,6 @@
             <capacity>Breathing</capacity>
             <setMax>0.55</setMax>
           </li>
-          <li>
-            <capacity>Moving</capacity>
-            <offset>-0.350</offset>
-          </li>
         </capMods>
       </li>
       <li>
@@ -79,11 +74,18 @@
         <capMods>
           <li>
             <capacity>Breathing</capacity>
-            <setMax>0.4</setMax>
+            <setMax>0.35</setMax>
           </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.70</minSeverity>
+        <label>very severe</label>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
           <li>
-            <capacity>Moving</capacity>
-            <offset>-0.450</offset>
+            <capacity>Breathing</capacity>
+            <setMax>0.3</setMax>
           </li>
         </capMods>
       </li>
@@ -94,11 +96,51 @@
         <capMods>
           <li>
             <capacity>Breathing</capacity>
+            <setMax>0.2</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.85</minSeverity>
+        <label>extreme</label>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
+            <setMax>0.15</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.90</minSeverity>
+        <label>extreme</label>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
             <setMax>0.1</setMax>
           </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.95</minSeverity>
+        <label>extreme</label>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
           <li>
-            <capacity>Moving</capacity>
-            <offset>-0.850</offset>
+            <capacity>Breathing</capacity>
+            <setMax>0.05</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>1.0</minSeverity>
+        <label>lethal</label>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
+            <setMax>0.0</setMax>
           </li>
         </capMods>
       </li>
