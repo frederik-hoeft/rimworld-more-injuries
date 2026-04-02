@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: epinephrine autoinjector -->
+  <Epinephrine.label>auto-injecteur d'adrénaline</Epinephrine.label>
+  <!-- EN: An epinephrine autoinjector (or adrenaline autoinjector) is a medical device for injecting a measured dose of epinephrine. -->
+  <Epinephrine.description>Un auto-injecteur d'adrénaline est un dispositif médical permettant d’injecter une dose mesurée d'adrénaline.</Epinephrine.description>
+  <!-- EN: Use {0} -->
+  <Epinephrine.ingestible.ingestCommandString>utiliser {0}</Epinephrine.ingestible.ingestCommandString>
+  <!-- EN: using {0}. -->
+  <Epinephrine.ingestible.ingestReportString>En train d'utiliser {0}</Epinephrine.ingestible.ingestReportString>
+  <!-- EN: ketamine autoinjector -->
+  <Ketamine.label>auto-injecteur de kétamine</Ketamine.label>
+  <!-- EN: A pre-loaded autoinjector containing a strong dissociative anesthetic. Effective in emergency field care for patients in severe pain or to induce rapid sedation in patients resisting treatment. -->
+  <Ketamine.description>Un auto-injecteur préchargé contenant un puissant anesthésique dissociatif. Efficace en soins d’urgence sur le terrain pour les patients souffrant de douleurs intenses ou pour induire une sédation rapide chez les patients résistants au traitement.</Ketamine.description>
+  <!-- EN: Use {0} -->
+  <Ketamine.ingestible.ingestCommandString>Utiliser {0}</Ketamine.ingestible.ingestCommandString>
+  <!-- EN: using {0}. -->
+  <Ketamine.ingestible.ingestReportString>en train d'utiliser de la {0}.</Ketamine.ingestible.ingestReportString>
+  <!-- EN: morphine autoinjector -->
+  <Morphine.label>auto-injecteur de morphine</Morphine.label>
+  <!-- EN: A morphine autoinjector is a spring-loaded syringe used to deliver a controlled dose of morphine, an opioid pain medication, directly into the bloodstream. Once injected, morphine rapidly suppresses pain but risks respiratory depression and impaired resuscitation if used during severe blood loss or cardiac arrest. Best reserved for controlled environments or after bleeding is stabilized. Should not be mixed with other CNS depressants like alcohol. -->
+  <Morphine.description>Un auto-injecteur de morphine est une seringue à ressort permettant d’administrer une dose contrôlée de morphine directement dans le sang. Une fois injectée, elle supprime rapidement la douleur mais peut provoquer une dépression respiratoire et compliquer la réanimation en cas d’hémorragie ou d’arrêt cardiaque.</Morphine.description>
+  <!-- EN: Use {0} -->
+  <Morphine.ingestible.ingestCommandString>Utiliser {0}</Morphine.ingestible.ingestCommandString>
+  <!-- EN: using {0}. -->
+  <Morphine.ingestible.ingestReportString>en train d’utiliser {0}.</Morphine.ingestible.ingestReportString>
+  <!-- EN: chloroform-soaked cloth -->
+  <Chloroform.label>tissu imbibé de chloroforme</Chloroform.label>
+  <!-- EN: A piece of cloth soaked in chloroform, used to render a patient unconscious for medical procedures. It is effective in emergency situations where rapid sedation is required. However, due to a variety of factors, such as duration of exposure, concentration of chloroform, and individual patient factors, administering an appropriate dose can be difficult and risk of overdose is high. Due to its high potential for side effects, such as respiratory depression, hepatic and renal damage, and cardiac arrest, modern medicine has largely replaced chloroform with safer alternatives. -->
+  <Chloroform.description>Un morceau de tissu imbibé de chloroforme, utilisé pour rendre un patient inconscient lors de procédures médicales. Il est efficace dans les situations d’urgence nécessitant une sédation rapide. Cependant, en raison de plusieurs facteurs, tels que la durée d’exposition, la concentration de chloroforme et les particularités de chaque patient, administrer une dose appropriée peut être difficile et le risque de surdosage est élevé. En raison de son potentiel important d’effets secondaires (dépression respiratoire, atteintes hépatiques et rénales, arrêt cardiaque) la médecine moderne a largement remplacé le chloroforme par des alternatives plus sûres.</Chloroform.description>
+  <!-- EN: Inhale chloroform -->
+  <Chloroform.ingestible.ingestCommandString>respirer du chloroforme</Chloroform.ingestible.ingestCommandString>
+  <!-- EN: inhaling chloroform. -->
+  <Chloroform.ingestible.ingestReportString>en train de respirer du chloroforme</Chloroform.ingestible.ingestReportString>
+</LanguageData>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: defibrillator -->
+  <Defibrillator.label>défribrillateur</Defibrillator.label>
+  <!-- EN: A defibrillator is a reusable device that gives a high energy electric shock to the heart through the chest wall to restore normal heart rhythm in cases of ventricular fibrillation (irregular heartbeat) which may be caused by heart attacks or in early stages of cardiac arrest.\n\nNote that the defibrillator can only be used on patients suffering from heart attack or ventricular fibrillation. In case of full cardiac arrest (clinical death), only CPR can save the patient. -->
+  <Defibrillator.description>Un défibrillateur est un appareil réutilisable qui envoie un choc électrique à haute tension au cœur à travers la paroi thoracique pour rétablir un rythme cardiaque normal en cas de fibrillation ventriculaire (battement irrégulier du cœur), pouvant être causée par des crises cardiaques ou aux premiers stades d’un arrêt cardiaque.\n\nÀ noter que le défibrillateur ne peut être utilisé que sur des patients souffrant d’une crise cardiaque ou d’une fibrillation ventriculaire. En cas d’arrêt cardiaque complet (mort clinique), seule la RCP peut sauver le patient.</Defibrillator.description>
+</LanguageData>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: {HOURS}h -->
+  <MI_Format_TimeHours>{HOURS}h</MI_Format_TimeHours>
+  <!-- EN: {DAYS}d -->
+  <MI_Format_TimeDays>{DAYS}j</MI_Format_TimeDays>
+  <!-- OPTS: { "allow_unused": true } -->
+  <!-- EN: {SECONDS}s -->
+  <MI_Format_TimeSeconds>{SECONDS}s</MI_Format_TimeSeconds>
+  <!-- EN: {0} (from inventory) -->
+  <MI_Procedure_FromInventory>{0} (depuis l’inventaire)</MI_Procedure_FromInventory>
+  <!-- EN: {0} (stabilize) -->
+  <MI_Procedure_Stabilize>{0} (stabiliser)</MI_Procedure_Stabilize>
+  <!-- EN: {0} (fully heal) -->
+  <MI_Procedure_FullyHeal>{0} (soigner complètement)</MI_Procedure_FullyHeal>
+  <!-- EN: {0} (max safe dose) -->
+  <MI_Procedure_MaxDose>{0} (dose maximale sûre)</MI_Procedure_MaxDose>
+  <!-- EN: {0} (single) -->
+  <MI_Procedure_Single>{0} (usage unique)</MI_Procedure_Single>
+  <!-- EN: {0} (from inventory, stabilize) -->
+  <MI_Procedure_FromInventory_Stabilize>{0} (depuis l’inventaire, stabiliser)</MI_Procedure_FromInventory_Stabilize>
+  <!-- EN: {0} (from inventory, fully heal) -->
+  <MI_Procedure_FromInventory_FullyHeal>{0} (depuis l’inventaire, soigner complètement)</MI_Procedure_FromInventory_FullyHeal>
+  <!-- EN: {0} (from inventory, max safe dose) -->
+  <MI_Procedure_FromInventory_MaxDose>{0} (depuis l’inventaire, dose maximale sûre)</MI_Procedure_FromInventory_MaxDose>
+  <!-- EN: {0} (from inventory, single) -->
+  <MI_Procedure_FromInventory_Single>{0} (depuis l’inventaire, usage unique)</MI_Procedure_FromInventory_Single>
+  <!-- EN: {0} and {1} are mutually exclusive -->
+  <MI_Message_OptionMutuallyExclusive>{0} et {1} sont mutuellement exclusifs</MI_Message_OptionMutuallyExclusive>
+  <!-- EN: {0} requires the '{1}' research project to be completed first -->
+  <MI_Message_ResearchRequired>{0} nécessite que le projet de recherche ' {1}' soit terminé au préalable</MI_Message_ResearchRequired>
+  <!-- EN: After the procedure, {DOCTOR_labelShort} noticed that the {THING_label} has broken down and needs to be replaced. -->
+  <MI_Message_ProcedureIngredientDestroyed>Après la procédure, {DOCTOR_labelShort} a remarqué que {THING_label} est tombé en panne et doit être remplacé.</MI_Message_ProcedureIngredientDestroyed>
+  <!-- =========== generic failure messages =========== -->
+  <!-- EN: {0}: medical care for {PATIENT_labelShort} disabled -->
+  <MI_ProcedureFailed_CareDisabled>{0} : soins médicaux pour {PATIENT_labelShort} désactivés</MI_ProcedureFailed_CareDisabled>
+  <!-- EN: {0}: self-tend disabled -->
+  <MI_ProcedureFailed_SelfTendDisabled>{0} : auto-soins désactivés</MI_ProcedureFailed_SelfTendDisabled>
+  <!-- EN: {0}: {DOCTOR_labelShort} is incapable of manipulation -->
+  <MI_ProcedureFailed_IncapableOfManipulation>{0} : {DOCTOR_labelShort} est incapable de manipulation</MI_ProcedureFailed_IncapableOfManipulation>
+  <!-- EN: {0}: {DOCTOR_labelShort} is blind -->
+  <MI_ProcedureFailed_IncapableOfSight>{0} : {DOCTOR_labelShort} est aveugle</MI_ProcedureFailed_IncapableOfSight>
+  <!-- EN: {0}: {DOCTOR_labelShort} is incapable of caring -->
+  <MI_ProcedureFailed_IncapableOfCaring>{0} : {DOCTOR_labelShort} est incapable de soigner</MI_ProcedureFailed_IncapableOfCaring>
+  <!-- EN: {0}: {DOCTOR_labelShort} is incapable of medicine -->
+  <MI_ProcedureFailed_IncapableOfMedicine>{0} : {DOCTOR_labelShort} est incapable de médecine</MI_ProcedureFailed_IncapableOfMedicine>
+  <!-- EN: {0}: no path -->
+  <MI_ProcedureFailed_NoPath>{0} : aucun chemin</MI_ProcedureFailed_NoPath>
+</LanguageData>

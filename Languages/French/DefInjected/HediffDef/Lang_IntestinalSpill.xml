@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: chemical peritonitis -->
+  <StomachAcidBurn.label>péritonite chimique</StomachAcidBurn.label>
+  <!-- EN: As a result of a perforating injury to intestines or stomach, gastric acid has inflicted tissue damage on surrounding organs, causing inflammation. Carries a major risk of infection. -->
+  <StomachAcidBurn.description>À la suite d’une blessure perforante des intestins ou de l’estomac, l’acide gastrique a causé des dommages aux tissus des organes environnants, provoquant une inflammation. Risque majeur d’infection.</StomachAcidBurn.description>
+  <!-- EN: tended -->
+  <StomachAcidBurn.comps.HediffComp_TendDuration.labelTendedWell>soigné</StomachAcidBurn.comps.HediffComp_TendDuration.labelTendedWell>
+  <!-- EN: tended -->
+  <StomachAcidBurn.comps.HediffComp_TendDuration.labelTendedWellInner>soigné</StomachAcidBurn.comps.HediffComp_TendDuration.labelTendedWellInner>
+  <!-- EN: tended -->
+  <StomachAcidBurn.comps.HediffComp_TendDuration.labelSolidTendedWell>soigné</StomachAcidBurn.comps.HediffComp_TendDuration.labelSolidTendedWell>
+  <!-- EN: burn scar -->
+  <StomachAcidBurn.comps.HediffComp_GetsPermanent.permanentLabel>cicatrice de brûlure</StomachAcidBurn.comps.HediffComp_GetsPermanent.permanentLabel>
+  <!-- EN: Burned off -->
+  <StomachAcidBurn.injuryProps.destroyedLabel>Brûlé</StomachAcidBurn.injuryProps.destroyedLabel>
+  <!-- EN: Burned out -->
+  <StomachAcidBurn.injuryProps.destroyedOutLabel>Brûlé</StomachAcidBurn.injuryProps.destroyedOutLabel>
+</LanguageData>

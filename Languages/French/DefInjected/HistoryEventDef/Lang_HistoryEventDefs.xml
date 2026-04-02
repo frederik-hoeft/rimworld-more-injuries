@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: extracted blood bag from member without consent -->
+  <ExtractedWholeBloodBag.label>a extrait une poche de sang sur un membre sans consentement</ExtractedWholeBloodBag.label>
+  <!-- EN: anesthetized member without consent or medical need -->
+  <AnesthetizedMember.label>membre anesthésié sans consentement ni nécessité médicale</AnesthetizedMember.label>
+  <!-- EN: provided blood transfusion to member -->
+  <TransfusedBloodMember.label>transfusion sanguine effectuée sur le membre</TransfusedBloodMember.label>
+  <!-- EN: performed dangerous medical procedure on member -->
+  <DangerousProcedureOnMember.label>a effectué une procédure médicale dangereuse sur un membre</DangerousProcedureOnMember.label>
+</LanguageData>

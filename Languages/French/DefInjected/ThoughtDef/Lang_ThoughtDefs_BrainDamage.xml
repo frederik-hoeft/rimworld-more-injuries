@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: word-finding difficulty -->
+  <LostAbilityToSpeak.stages.wordfinding_difficulty.label>difficulté à trouver ses mots</LostAbilityToSpeak.stages.wordfinding_difficulty.label>
+  <!-- EN: Struggling to find the right words can be frustrating and isolating. I feel embarrassed when I can't express myself clearly. -->
+  <LostAbilityToSpeak.stages.wordfinding_difficulty.description>Avoir du mal à trouver les mots peut être frustrant et isolant. Je me sens embarrassé lorsque je n’arrive pas à m’exprimer clairement.</LostAbilityToSpeak.stages.wordfinding_difficulty.description>
+  <!-- EN: fragmented speech -->
+  <LostAbilityToSpeak.stages.fragmented_speech.label>discours fragmenté</LostAbilityToSpeak.stages.fragmented_speech.label>
+  <!-- EN: I can speak, but my sentences are often incomplete or jumbled. It's like my thoughts are scattered, and I can't put them together. -->
+  <LostAbilityToSpeak.stages.fragmented_speech.description>Je peux parler, mais mes phrases sont souvent incomplètes ou confuses. C’est comme si mes pensées étaient dispersées et que je ne pouvais pas les organiser.</LostAbilityToSpeak.stages.fragmented_speech.description>
+  <!-- EN: non-fluent -->
+  <LostAbilityToSpeak.stages.nonfluent.label>discours malhabile</LostAbilityToSpeak.stages.nonfluent.label>
+  <!-- EN: Every conversation feels like a struggle. I can't form complex sentences, and it's hard to communicate even basic ideas. I want to express myself, but my words fail me. -->
+  <LostAbilityToSpeak.stages.nonfluent.description>Chaque conversation est une lutte. Je n’arrive pas à former des phrases complexes et il est difficile de communiquer même des idées simples. Je veux m’exprimer, mais les mots me font défaut.</LostAbilityToSpeak.stages.nonfluent.description>
+  <!-- EN: barely verbal -->
+  <LostAbilityToSpeak.stages.barely_verbal.label>presque muet</LostAbilityToSpeak.stages.barely_verbal.label>
+  <!-- EN: My ability to speak has been reduced to almost nothing. I can only manage a few words at a time, and even those are difficult to pronounce. I feel trapped in my own silence. -->
+  <LostAbilityToSpeak.stages.barely_verbal.description>Ma capacité à parler a presque été réduite à néant. Je ne peux prononcer que quelques mots à la fois, et même ceux-ci sont difficiles à articuler. Je me sens prisonnier de mon propre silence.</LostAbilityToSpeak.stages.barely_verbal.description>
+  <!-- EN: completely nonverbal -->
+  <LostAbilityToSpeak.stages.completely_nonverbal.label>complètement non verbal</LostAbilityToSpeak.stages.completely_nonverbal.label>
+  <!-- EN: I can no longer speak at all. My thoughts are locked inside me, and I can't communicate with others. I feel alone and isolated, unable to share my feelings or ideas. -->
+  <LostAbilityToSpeak.stages.completely_nonverbal.description>Je ne peux plus parler du tout. Mes pensées sont enfermées en moi et je ne peux pas communiquer avec les autres. Je me sens seul et isolé, incapable de partager mes sentiments ou mes idées.</LostAbilityToSpeak.stages.completely_nonverbal.description>
+  <!-- EN: clumsy -->
+  <LostMotorFunction.stages.clumsy.label>maladroit</LostMotorFunction.stages.clumsy.label>
+  <!-- EN: My movements feel less precise than they used to be. I drop things more often and stumble occasionally. It's frustrating, but manageable. -->
+  <LostMotorFunction.stages.clumsy.description>Mes mouvements semblent moins précis qu’auparavant. Je laisse tomber des objets plus souvent et je trébuche occasionnellement. C’est frustrant, mais gérable.</LostMotorFunction.stages.clumsy.description>
+  <!-- EN: shaky and unsteady -->
+  <LostMotorFunction.stages.shaky_and_unsteady.label>tremblant et instable</LostMotorFunction.stages.shaky_and_unsteady.label>
+  <!-- EN: My hands tremble, and walking in a straight line takes concentration. Tasks that used to be simple now require real effort and care. -->
+  <LostMotorFunction.stages.shaky_and_unsteady.description>Mes mains tremblent et marcher en ligne droite me demande de la concentration. Les tâches qui étaient simples nécessitent maintenant un réel effort et de la précision.</LostMotorFunction.stages.shaky_and_unsteady.description>
+  <!-- EN: struggling to control my body -->
+  <LostMotorFunction.stages.struggling_to_control_my_body.label>difficulté à contrôler mon corps</LostMotorFunction.stages.struggling_to_control_my_body.label>
+  <!-- EN: Basic actions are difficult. My limbs don't always respond the way I want them to, and I often lose coordination. It makes me feel helpless and vulnerable. -->
+  <LostMotorFunction.stages.struggling_to_control_my_body.description>Les actions de base sont difficiles. Mes membres ne répondent pas toujours comme je le veux, et je perds souvent ma coordination. Cela me fait sentir impuissant et vulnérable.</LostMotorFunction.stages.struggling_to_control_my_body.description>
+  <!-- EN: near-paralyzed -->
+  <LostMotorFunction.stages.nearparalyzed.label>à mobilité réduite</LostMotorFunction.stages.nearparalyzed.label>
+  <!-- EN: Moving feels like dragging weights through water. I can barely walk, and using my hands has become incredibly difficult. I rely on others for more than I'd like to admit. -->
+  <LostMotorFunction.stages.nearparalyzed.description>Bouger semble revenir à traîner des poids dans l’eau. Je peux à peine marcher et utiliser mes mains est devenu extrêmement difficile. Je dépends des autres plus que je ne voudrais l’admettre.</LostMotorFunction.stages.nearparalyzed.description>
+  <!-- EN: trapped in a failing body -->
+  <LostMotorFunction.stages.trapped_in_a_failing_body.label>piégé dans un corps défaillant</LostMotorFunction.stages.trapped_in_a_failing_body.label>
+  <!-- EN: My body no longer obeys me. Every step, every grasp is a monumental challenge. I feel like a living vegetable, unable to do anything for myself, and completely dependent on others. It's a nightmare. -->
+  <LostMotorFunction.stages.trapped_in_a_failing_body.description>Mon corps ne m’obéit plus. Chaque pas, chaque geste est un défi monumental. Je me sens comme un légume vivant, incapable de faire quoi que ce soit par moi-même et complètement dépendant des autres. C’est un cauchemar.</LostMotorFunction.stages.trapped_in_a_failing_body.description>
+  <!-- EN: things look unfamiliar -->
+  <LostVisualRecognition.stages.things_look_unfamiliar.label>les choses semblent étrangères</LostVisualRecognition.stages.things_look_unfamiliar.label>
+  <!-- EN: Sometimes I catch myself hesitating, unsure of what I'm looking at. It's subtle, but unsettling - like the world is just slightly off. -->
+  <LostVisualRecognition.stages.things_look_unfamiliar.description>Parfois, je me surprends à hésiter, incertain de ce que je regarde. C’est subtil, mais inquiétant, comme si le monde était légèrement décalé.</LostVisualRecognition.stages.things_look_unfamiliar.description>
+  <!-- EN: misrecognizing people and objects -->
+  <LostVisualRecognition.stages.misrecognizing_people_and_objects.label>confusion des personnes et objets</LostVisualRecognition.stages.misrecognizing_people_and_objects.label>
+  <!-- EN: I keep mistaking objects - or even people - for others. It's confusing, and I often feel embarrassed or disoriented. -->
+  <LostVisualRecognition.stages.misrecognizing_people_and_objects.description>Je confonds souvent les objets, ou même les personnes, avec d’autres. C’est déroutant, et je me sens souvent embarrassé ou désorienté.</LostVisualRecognition.stages.misrecognizing_people_and_objects.description>
+  <!-- EN: faces blur together -->
+  <LostVisualRecognition.stages.faces_blur_together.label>les visages se confondent</LostVisualRecognition.stages.faces_blur_together.label>
+  <!-- EN: Everyone looks the same. I have to rely on voices or context to tell people apart. It's isolating and makes social interaction exhausting. -->
+  <LostVisualRecognition.stages.faces_blur_together.description>Tout le monde se ressemble. Je dois me fier aux voix ou au contexte pour distinguer les personnes. C’est épuisant et rend les interactions sociales difficiles.</LostVisualRecognition.stages.faces_blur_together.description>
+  <!-- EN: nothing makes visual sense -->
+  <LostVisualRecognition.stages.nothing_makes_visual_sense.label>rien n’a de sens visuellement</LostVisualRecognition.stages.nothing_makes_visual_sense.label>
+  <!-- EN: The world around me is a jumble of shapes and colors. I can't rely on sight to recognize what I see anymore. Every task is harder, and I feel disconnected from everything. -->
+  <LostVisualRecognition.stages.nothing_makes_visual_sense.description>Le monde autour de moi est un enchevêtrement de formes et de couleurs. Je ne peux plus me fier à ma vue pour reconnaître ce que je vois. Chaque tâche devient plus difficile et je me sens déconnecté de tout.</LostVisualRecognition.stages.nothing_makes_visual_sense.description>
+  <!-- EN: disoriented -->
+  <ConfusedAndDisoriented.stages.disoriented.label>désorienté</ConfusedAndDisoriented.stages.disoriented.label>
+  <!-- EN: Sometimes I forget why I walked into a room or what I was just doing. It's like my thoughts vanish mid-sentence. -->
+  <ConfusedAndDisoriented.stages.disoriented.description>Parfois, j’oublie pourquoi je suis entré dans une pièce ou ce que je faisais juste avant. C’est comme si mes pensées disparaissaient en plein milieu d’une phrase.</ConfusedAndDisoriented.stages.disoriented.description>
+  <!-- EN: forgetting simple things -->
+  <ConfusedAndDisoriented.stages.forgetting_simple_things.label>perte de mémoire</ConfusedAndDisoriented.stages.forgetting_simple_things.label>
+  <!-- EN: I've started forgetting names, places, tasks. It's frustrating, like sand slipping through my fingers whenever I try to recall something. -->
+  <ConfusedAndDisoriented.stages.forgetting_simple_things.description>J’ai commencé à oublier des noms, des lieux, des tâches. C’est frustrant, comme du sable qui s’écoule entre mes doigts chaque fois que j’essaie de me souvenir de quelque chose.</ConfusedAndDisoriented.stages.forgetting_simple_things.description>
+  <!-- EN: losing track of time -->
+  <ConfusedAndDisoriented.stages.losing_track_of_time.label>altération de la perception du temps</ConfusedAndDisoriented.stages.losing_track_of_time.label>
+  <!-- EN: Hours blur together. Sometimes I wake up not knowing where I am or what day it is. I feel lost - even in familiar places. -->
+  <ConfusedAndDisoriented.stages.losing_track_of_time.description>Les heures se confondent. Parfois, je me réveille sans savoir où je suis ni quel jour nous sommes. Je me sens perdu, même dans des lieux familiers.</ConfusedAndDisoriented.stages.losing_track_of_time.description>
+  <!-- EN: memories feel distant -->
+  <ConfusedAndDisoriented.stages.memories_feel_distant.label>souvenirs flous</ConfusedAndDisoriented.stages.memories_feel_distant.label>
+  <!-- EN: Memories feel like someone else's dreams. Faces, places, and events all seem unfamiliar. I'm scared of forgetting everything. -->
+  <ConfusedAndDisoriented.stages.memories_feel_distant.description>Les souvenirs ressemblent aux rêves de quelqu’un d’autre. Visages, lieux et événements me semblent étrangers. J’ai peur de tout oublier.</ConfusedAndDisoriented.stages.memories_feel_distant.description>
+  <!-- EN: losing sense of self -->
+  <ConfusedAndDisoriented.stages.losing_sense_of_self.label>perte de soi</ConfusedAndDisoriented.stages.losing_sense_of_self.label>
+  <!-- EN: My identity feels fragile. I struggle to remember who I am, what I've done, or what I care about. It's like I'm fading away, and I don't know how to stop it. -->
+  <ConfusedAndDisoriented.stages.losing_sense_of_self.description>Mon identité me paraît fragile. J’ai du mal à me rappeler qui je suis, ce que j’ai fait ou ce qui m’importe. J’ai l’impression de m’effacer, et je ne sais pas comment l’arrêter.</ConfusedAndDisoriented.stages.losing_sense_of_self.description>
+</LanguageData>

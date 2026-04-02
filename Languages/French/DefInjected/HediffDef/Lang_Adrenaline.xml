@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: adrenaline rush -->
+  <AdrenalineRush.label>montée d'adrénaline</AdrenalineRush.label>
+  <!-- EN: an adrenaline rush -->
+  <AdrenalineRush.labelNoun>une montée d'adrénaline</AdrenalineRush.labelNoun>
+  <!-- EN: A rush of adrenaline temporarily increases heart rate and blood pressure, providing a boost of energy and alertness. The body's fight-or-flight response is triggered, increasing strength and speed.\n\nHowever, if the rush is too intense, it can cause anxiety, panic, and overdose symptoms such as dizziness, double vision, and nausea. In extreme overdose cases, the body can go into shock, causing heart attack, stroke, or death. -->
+  <AdrenalineRush.description>Une montée d'adrénaline augmente temporairement la fréquence cardiaque et la tension artérielle, fournissant un regain d'énergie et de vigilance. La réponse combat-fuite du corps est déclenchée, augmentant la force et la vitesse.\n\nCependant, si cette montée est trop intense, elle peut provoquer anxiété, panique, et des symptômes de surdosage comme des vertiges, une vision double, et des nausées. Dans les cas extrêmes de surdosage, le corps peut entrer en choc, entraînant infarctus, AVC ou décès.</AdrenalineRush.description>
+  <!-- EN: initial -->
+  <AdrenalineRush.stages.initial.label>initiale</AdrenalineRush.stages.initial.label>
+  <!-- EN: minor -->
+  <AdrenalineRush.stages.minor.label>mineure</AdrenalineRush.stages.minor.label>
+  <!-- EN: moderate -->
+  <AdrenalineRush.stages.moderate.label>modérée</AdrenalineRush.stages.moderate.label>
+  <!-- EN: severe -->
+  <AdrenalineRush.stages.severe.label>sévère</AdrenalineRush.stages.severe.label>
+  <!-- EN: very severe -->
+  <AdrenalineRush.stages.very_severe.label>très sévère</AdrenalineRush.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <AdrenalineRush.stages.extreme.label>extrême</AdrenalineRush.stages.extreme.label>
+  <!-- EN: overdosing (minor) -->
+  <AdrenalineRush.stages.overdosing_minor.label>surdosage (mineur)</AdrenalineRush.stages.overdosing_minor.label>
+  <!-- EN: overdosing (severe) -->
+  <AdrenalineRush.stages.overdosing_severe.label>surdosage (sévère)</AdrenalineRush.stages.overdosing_severe.label>
+  <!-- EN: overdosing (extreme) -->
+  <AdrenalineRush.stages.overdosing_extreme.label>surdosage (extrême)</AdrenalineRush.stages.overdosing_extreme.label>
+</LanguageData>

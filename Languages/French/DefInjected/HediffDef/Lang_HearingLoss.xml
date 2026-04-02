@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: temporary hearing loss -->
+  <HearingLossTemporary.label>perte temporaire d'audition</HearingLossTemporary.label>
+  <!-- EN: Temporary deafness caused by prolonged exposure to loud noises, such as gunfire, explosions, or machinery. The hair cells in the inner ear are damaged, leading to hearing loss. The damage can become permanent if the exposure is severe or prolonged. -->
+  <HearingLossTemporary.description>Une surdité temporaire causée par une exposition prolongée à des bruits forts, tels que des tirs, des explosions ou des machines. Les cellules ciliées de l’oreille interne sont endommagées, entraînant une perte auditive. Les dommages peuvent devenir permanents si l’exposition est sévère ou prolongée.</HearingLossTemporary.description>
+  <!-- EN: initial -->
+  <HearingLossTemporary.stages.initial.label>initiale</HearingLossTemporary.stages.initial.label>
+  <!-- EN: moderate -->
+  <HearingLossTemporary.stages.moderate.label>modérée</HearingLossTemporary.stages.moderate.label>
+  <!-- EN: severe -->
+  <HearingLossTemporary.stages.severe.label>sévère</HearingLossTemporary.stages.severe.label>
+  <!-- EN: very severe -->
+  <HearingLossTemporary.stages.very_severe.label>très sévère</HearingLossTemporary.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <HearingLossTemporary.stages.extreme.label>extrême</HearingLossTemporary.stages.extreme.label>
+</LanguageData>

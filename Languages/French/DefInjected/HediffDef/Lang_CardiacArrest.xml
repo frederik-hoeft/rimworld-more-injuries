@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: cardiac arrest -->
+  <CardiacArrest.label>arrêt cardiaque</CardiacArrest.label>
+  <!-- EN: Cardiac arrest is a sudden loss of blood flow resulting from the failure of the heart to effectively pump blood. The lack of blood flow causes the body to stop working properly, resulting in loss of consciousness and death if not treated immediately. Causes for cardiac arrest include conditions that starve the heart of oxygen, such as extreme blood loss.\n\nA skilled doctor must perform CPR to restore blood flow and hopefully restart the heart. In early stages of cardiac arrest, during ventricular fibrillation, a defibrillator can also be used to shock the heart back into a normal rhythm, which may be faster and more effective than CPR. -->
+  <CardiacArrest.description>L’arrêt cardiaque est une baisse soudaine du flux sanguin résultant de l’incapacité du cœur à pomper efficacement. La diminution de flux sanguin provoque l’arrêt des fonctions corporelles, entraînant perte de conscience et décès si non traité immédiatement. Les causes d’arrêt cardiaque incluent les conditions privant le cœur d’oxygène, comme l'hémorragie extrême.\n\nUn médecin compétent doit pratiquer la RCP pour rétablir le flux sanguin et, espérons-le, relancer le cœur. Aux premiers stades de l’arrêt cardiaque, durant la fibrillation ventriculaire, un défibrillateur peut aussi être utilisé pour stimuler le cœur vers un rythme normal, ce qui peut être plus rapide et efficace que la RCP.</CardiacArrest.description>
+  <!-- EN: ventricular fibrillation -->
+  <CardiacArrest.stages.ventricular_fibrillation.label>fibrillation ventriculaire</CardiacArrest.stages.ventricular_fibrillation.label>
+  <!-- EN: clinical death -->
+  <CardiacArrest.stages.clinical_death.label>mort clinique</CardiacArrest.stages.clinical_death.label>
+</LanguageData>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Repair fracture: osteosynthetic surgery -->
+  <RepairFracture.label>Réparer une fracture : chirurgie ostéosynthétique</RepairFracture.label>
+  <!-- EN: Surgically repair a bone fracture. The bone will be set in place, realigned, and reinforced with metal plates and screws to prevent micromovements and promote proper healing, allowing the patient to regain full use of the affected limb much faster than with other methods.\n\nAlthough being more invasive than other methods, surgery allows for a more precise and stable repair of the fracture, ensuring a faster and more complete recovery. -->
+  <RepairFracture.description>Réparer chirurgicalement une fracture osseuse. L’os sera remis en place, réaligné et renforcé avec des plaques métalliques et des vis pour prévenir les micromouvements et favoriser une guérison correcte, permettant au patient de retrouver l’usage complet du membre affecté beaucoup plus rapidement qu’avec d’autres méthodes.\n\nBien que plus invasive que d’autres méthodes, la chirurgie permet une réparation plus précise et stable de la fracture, assurant une récupération plus rapide et complète.</RepairFracture.description>
+  <!-- EN: Repairing a fracture. -->
+  <RepairFracture.jobString>En train de réparer une fracture.</RepairFracture.jobString>
+  <!-- EN: {0} has successfully repaired {1}'s bone fracture. -->
+  <RepairFracture.successfullyRemovedHediffMessage>{0} a réussi à réparer la fracture osseuse de {1}.</RepairFracture.successfullyRemovedHediffMessage>
+  <!-- EN: Splint a fracture -->
+  <SplintFracture.label>Immobiliser une fracture</SplintFracture.label>
+  <!-- EN: Apply a splint to immobilize a bone fracture and promote healing over time. The splint will stabilize the bone, prevent further damage, and allow the patient to move around without risking further injury. The stabilized bone will heal naturally over time.\n\nA simple and non-invasive procedure that can be performed by anyone with basic medical knowledge. -->
+  <SplintFracture.description>Appliquer une attelle pour immobiliser une fracture osseuse et favoriser la guérison. L’attelle stabilisera l’os, préviendra d’autres dommages et permettra au patient de se déplacer sans risque de blessure supplémentaire. L’os stabilisé guérira naturellement avec le temps. Une procédure simple et non invasive pouvant être réalisée par toute personne ayant des connaissances médicales de base.</SplintFracture.description>
+  <!-- EN: Splinting a fracture. -->
+  <SplintFracture.jobString>En train d'immobiliser une fracture.</SplintFracture.jobString>
+  <!-- EN: {0} has splinted {1}'s bone fracture. It will take some time to heal. -->
+  <SplintFracture.successfullyRemovedHediffMessage>{0} a immobilisé la fracture osseuse de {1}. La guérison prendra du temps.</SplintFracture.successfullyRemovedHediffMessage>
+  <!-- EN: Restore hearing: cellular regenerative surgery -->
+  <RestoreHearing.label>Restaurer l’audition : chirurgie régénérative cellulaire</RestoreHearing.label>
+  <!-- EN: Cellular regenerative otologic surgery (CROS) is an experimental glitterworld surgery that uses mechanites to repair damaged hair cells in the inner ear, restoring hearing to a person with permanent hearing loss. The procedure is expensive and not widely available, but has shown promising results in restoring hearing, even in very severe cases. -->
+  <RestoreHearing.description>La chirurgie otologique régénérative cellulaire (CROS) est une chirurgie expérimentale des mondes avancés utilisant des mécanites pour réparer les cellules ciliées endommagées de l’oreille interne, restaurant l’audition d’une personne atteinte de surdité permanente. La procédure est coûteuse et peu disponible, mais a montré des résultats prometteurs pour restaurer l’audition, même dans des cas très sévères.</RestoreHearing.description>
+  <!-- EN: Performing hearing restoration surgery on {0}. -->
+  <RestoreHearing.jobString>En train de réaliser une chirurgie de restauration de l’audition sur {0}.</RestoreHearing.jobString>
+  <!-- EN: {0} has successfully restored {1}'s hearing. -->
+  <RestoreHearing.successfullyRemovedHediffMessage>{0} a réussi à restaurer l’audition de {1}.</RestoreHearing.successfullyRemovedHediffMessage>
+  <!-- EN: Cure stroke: stereotactic surgery -->
+  <RemoveHemorrhagicStroke_Ultratech.label>Soigner un AVC : chirurgie stéréotaxique</RemoveHemorrhagicStroke_Ultratech.label>
+  <!-- EN: Perform stereotactic surgery to cure a hemorrhagic stroke.\nStereotactic surgery is a minimally invasive form of surgical intervention that makes use of a three-dimensional coordinate system to locate small targets inside the body, allowing for precise localization of the ruptured blood vessel while minimizing damage to surrounding tissues.\n\nA very complex and delicate procedure that requires a high level of skill and precision but yields a very high success rate. -->
+  <RemoveHemorrhagicStroke_Ultratech.description>Effectuer une chirurgie stéréotaxique pour soigner un AVC hémorragique.\nLa chirurgie stéréotaxique est une intervention chirurgicale minimale utilisant un système de coordonnées tridimensionnelles pour localiser de petites cibles à l’intérieur du corps, permettant une localisation précise des vaisseaux sanguins rompus tout en minimisant les dommages aux tissus environnants. Une procédure très complexe et délicate nécessitant un haut niveau de compétence et de précision, mais avec un taux de réussite très élevé.</RemoveHemorrhagicStroke_Ultratech.description>
+  <!-- EN: Performing stereotactic surgery. -->
+  <RemoveHemorrhagicStroke_Ultratech.jobString>En train de réaliser une chirurgie stéréotaxique.</RemoveHemorrhagicStroke_Ultratech.jobString>
+  <!-- EN: {0} has successfully cured {1}'s stroke. -->
+  <RemoveHemorrhagicStroke_Ultratech.successfullyRemovedHediffMessage>{0} a réussi à soigner l’AVC de {1}.</RemoveHemorrhagicStroke_Ultratech.successfullyRemovedHediffMessage>
+  <!-- EN: Cure stroke: decompressive craniectomy -->
+  <RemoveHemorrhagicStroke_Industrial.label>Soigner un AVC : craniectomie décompressive</RemoveHemorrhagicStroke_Industrial.label>
+  <!-- EN: Perform a decompressive craniectomy to cure a hemorrhagic stroke.\nDecompressive craniectomy is a neurosurgical procedure in which part of the skull is removed to allow a swelling or herniating brain room to expand without being squeezed. It is performed on victims of traumatic brain injury, stroke, Chiari malformation, and other conditions associated with raised intracranial pressure. Use of this surgery is controversial and associated with a higher risk of complications, but it can be life-saving in cases of severe brain swelling.\n\nA challenging surgery that requires familiarity with neurosurgical techniques and a steady hand. Yields a moderate success rate. -->
+  <RemoveHemorrhagicStroke_Industrial.description>Effectuer une craniectomie décompressive pour soigner un AVC hémorragique.\nLa craniectomie décompressive est une procédure neurochirurgicale consistant à retirer une partie du crâne pour permettre au cerveau enflé ou en hernie de se dilater sans être comprimé. Elle est pratiquée sur les victimes de traumatismes crâniens, d’AVC, de malformations de Chiari et d’autres conditions associées à une pression intracrânienne élevée. L’utilisation de cette chirurgie est controversée et comporte un risque plus élevé de complications, mais peut sauver des vies en cas de gonflement cérébral sévère.\n\nUne chirurgie complexe nécessitant une maîtrise des techniques neurochirurgicales et une main stable. Taux de réussite modéré.</RemoveHemorrhagicStroke_Industrial.description>
+  <!-- EN: Performing a decompressive craniectomy. -->
+  <RemoveHemorrhagicStroke_Industrial.jobString>Effectuer une craniectomie décompressive.</RemoveHemorrhagicStroke_Industrial.jobString>
+  <!-- EN: {0} has successfully cured {1}'s stroke. -->
+  <RemoveHemorrhagicStroke_Industrial.successfullyRemovedHediffMessage>{0} a réussi à soigner l’AVC de {1}.</RemoveHemorrhagicStroke_Industrial.successfullyRemovedHediffMessage>
+  <!-- EN: Cure stroke: trepanation -->
+  <RemoveHemorrhagicStroke_Tribal.label>Soigner un AVC : trépanation</RemoveHemorrhagicStroke_Tribal.label>
+  <!-- EN: Perform a trepanation to cure a hemorrhagic stroke.\nTrepanation is a surgical intervention in which a hole is drilled or scraped into the human skull to treat health problems related to intracranial diseases or release pressured blood buildup from an injury. It is one of the oldest surgical procedures known to humanity, with evidence of its practice dating back to the Neolithic era. While it is a simple and straightforward procedure, it carries a high risk of infection and complications.\n\nA basic surgery that can be performed by anyone with rudimentary medical knowledge. Yields a low success rate. -->
+  <RemoveHemorrhagicStroke_Tribal.description>Effectuer une trépanation pour soigner un AVC hémorragique.\nLa trépanation est une intervention chirurgicale consistant à percer ou racler un trou dans le crâne humain pour traiter des problèmes liés aux maladies intracrâniennes ou libérer l’accumulation de sang sous pression due à une blessure. C’est l’une des plus anciennes procédures chirurgicales connues de l’humanité, avec des preuves de sa pratique remontant au Néolithique. Bien que simple et directe, elle comporte un risque élevé d’infection et de complications.\n\nUne chirurgie basique pouvant être réalisée par quiconque ayant des connaissances médicales rudimentaires. Taux de réussite faible.</RemoveHemorrhagicStroke_Tribal.description>
+  <!-- EN: Performing a trepanation. -->
+  <RemoveHemorrhagicStroke_Tribal.jobString>En train de réaliser une trépanation.</RemoveHemorrhagicStroke_Tribal.jobString>
+  <!-- EN: {0} has successfully cured {1}'s stroke. The patient is lucky to be alive. -->
+  <RemoveHemorrhagicStroke_Tribal.successfullyRemovedHediffMessage>{0} a réussi à soigner l’AVC de {1}. Le patient a de la chance d’être en vie.</RemoveHemorrhagicStroke_Tribal.successfullyRemovedHediffMessage>
+  <!-- EN: install small intestine -->
+  <InstallSmallIntestine.label>installer petit intestin</InstallSmallIntestine.label>
+  <!-- EN: Install a small intestine. -->
+  <InstallSmallIntestine.description>Installer un petit intestin.</InstallSmallIntestine.description>
+  <!-- EN: Installing small intestine. -->
+  <InstallSmallIntestine.jobString>En train d'installer un petit intestin.</InstallSmallIntestine.jobString>
+  <!-- EN: install bionic small intestine -->
+  <InstallBionicSmallIntestine.label>installer petit intestin bionique</InstallBionicSmallIntestine.label>
+  <!-- EN: Install a bionic small intestine. -->
+  <InstallBionicSmallIntestine.description>Installer un petit intestin bionique.</InstallBionicSmallIntestine.description>
+  <!-- EN: Installing bionic small intestine. -->
+  <InstallBionicSmallIntestine.jobString>En train d'installer un petit intestin bionique.</InstallBionicSmallIntestine.jobString>
+  <!-- EN: install large intestine -->
+  <InstallLargeIntestine.label>installer gros intestin</InstallLargeIntestine.label>
+  <!-- EN: Install a large intestine. -->
+  <InstallLargeIntestine.description>Installer un gros intestin.</InstallLargeIntestine.description>
+  <!-- EN: Installing large intestine. -->
+  <InstallLargeIntestine.jobString>En train d'installer un gros intestin.</InstallLargeIntestine.jobString>
+  <!-- EN: install bionic large intestine -->
+  <InstallBionicLargeIntestine.label>installer gros intestin bionique</InstallBionicLargeIntestine.label>
+  <!-- EN: Install a bionic large intestine. -->
+  <InstallBionicLargeIntestine.description>Installer un gros intestin bionique.</InstallBionicLargeIntestine.description>
+  <!-- EN: Installing bionic large intestine. -->
+  <InstallBionicLargeIntestine.jobString>En train d'installer un gros intestin bionique.</InstallBionicLargeIntestine.jobString>
+  <!-- EN: repair collapsed lung: thoracotomy -->
+  <RepairCollapsedLung_Industrial.label>Soigner un pneumothorax : thoracotomie</RepairCollapsedLung_Industrial.label>
+  <!-- EN: Perform a thoracotomy to repair a collapsed lung.\nThoracotomy is a surgical procedure that involves making an incision in the chest wall to gain access to the lungs and the surrounding structures. The source of the air leak causing the lung collapse is identified and repaired, and pleural space is drained to allow the lung to re-expand and to relieve the pressure on the heart and other organs. Finally, the chest wall is closed and the incision is sutured.\n\nA complex and invasive surgery that requires a skilled surgeon and yields a moderate success rate. -->
+  <RepairCollapsedLung_Industrial.description>Effectuer une thoracotomie pour soigner un pneumothorax.\nLa thoracotomie est une intervention chirurgicale consistant à pratiquer une incision dans la paroi thoracique pour accéder aux poumons et aux structures environnantes. La source de la fuite d’air provoquant l’effondrement du poumon est identifiée et réparée, et l’espace pleural est drainé pour permettre au poumon de se réexpandre et soulager la pression sur le cœur et les autres organes. Enfin, la paroi thoracique est refermée et l’incision suturée. Une chirurgie complexe et invasive nécessitant un chirurgien qualifié et présentant un taux de réussite modéré.</RepairCollapsedLung_Industrial.description>
+  <!-- EN: Performing a thoracotomy. -->
+  <RepairCollapsedLung_Industrial.jobString>Effectuer une thoracotomie.</RepairCollapsedLung_Industrial.jobString>
+  <!-- EN: {0} has successfully repaired {1}'s collapsed lung. -->
+  <RepairCollapsedLung_Industrial.successfullyRemovedHediffMessage>{0} a réussi à soigner le pneumothorax de {1}.</RepairCollapsedLung_Industrial.successfullyRemovedHediffMessage>
+  <!-- EN: repair collapsed lung: video-assisted thoracoscopic surgery -->
+  <RepairCollapsedLung_Ultratech.label>Soigner un pneumothorax : chirurgie thoracoscopique assistée par vidéo</RepairCollapsedLung_Ultratech.label>
+  <!-- EN: Perform a video-assisted thoracoscopic surgery to repair a collapsed lung.\nVideo-assisted thoracoscopic surgery (VATS) is a minimally invasive surgical procedure that involves making small incisions in the chest wall and using a camera and specialized instruments to repair the collapsed lung. Since the surgery is performed through small incisions, it is associated with less pain, shorter recovery time, and reduced risk of complications compared to traditional open surgery.\n\nWhile VATS is less invasive and offers a higher success rate than thoracotomy, it requires highly specialized equipment, additional training, and takes longer to perform, given the complexity of the procedure. -->
+  <RepairCollapsedLung_Ultratech.description>Effectuer une chirurgie thoracoscopique assistée par vidéo pour réparer un pneumothorax.\nLa chirurgie thoracoscopique assistée par vidéo (VATS) est une intervention chirurgicale minimale consistant à pratiquer de petites incisions dans la paroi thoracique et à utiliser une caméra et des instruments spécialisés pour réparer le poumon effondré. Étant donné que la chirurgie se fait par de petites incisions, elle est associée à moins de douleur, un temps de récupération plus court et un risque de complications réduit par rapport à la chirurgie ouverte traditionnelle.\n\nBien que la VATS soit moins invasive et offre un taux de réussite plus élevé que la thoracotomie, elle nécessite un équipement très spécialisé, une formation supplémentaire et prend plus de temps à réaliser en raison de la complexité de la procédure.</RepairCollapsedLung_Ultratech.description>
+  <!-- EN: Performing a video-assisted thoracoscopic surgery. -->
+  <RepairCollapsedLung_Ultratech.jobString>En train d'effectuer une chirurgie thoracoscopique assistée par vidéo.</RepairCollapsedLung_Ultratech.jobString>
+  <!-- EN: {0} has successfully repaired {1}'s collapsed lung. -->
+  <RepairCollapsedLung_Ultratech.successfullyRemovedHediffMessage>{0} a réussi à soigner le pneumothorax de {1}.</RepairCollapsedLung_Ultratech.successfullyRemovedHediffMessage>
+  <!-- EN: Restore mobility: cellular regenerative surgery -->
+  <TreatParalysis.label>Restaurer la mobilité : chirurgie régénérative cellulaire</TreatParalysis.label>
+  <!-- EN: Cellular regenerative neurosurgery (CRNS) is an experimental glitterworld surgery that uses mechanites to repair damaged nerve cells in the spinal cord, restoring mobility to a person with permanent paralysis. The procedure is expensive and not widely available, but has shown promising results in restoring mobility, even in very severe cases. -->
+  <TreatParalysis.description>La neurochirurgie régénérative cellulaire (CRNS) est une chirurgie expérimentale des mondes avancés utilisant des mécanites pour réparer les cellules nerveuses endommagées de la moelle épinière, restaurant la mobilité d’une personne paralysée. La procédure est coûteuse et peu disponible, mais a montré des résultats prometteurs pour restaurer la mobilité, même dans des cas très sévères.</TreatParalysis.description>
+  <!-- EN: Performing cellular regenerative neurosurgery on {0}. -->
+  <TreatParalysis.jobString>En train de réaliser une neurochirurgie régénérative cellulaire sur {0}.</TreatParalysis.jobString>
+  <!-- EN: {0} has successfully restored {1}'s mobility. -->
+  <TreatParalysis.successfullyRemovedHediffMessage>{0} a réussi à restaurer la mobilité de {1}.</TreatParalysis.successfullyRemovedHediffMessage>
+  <!-- EN: extract blood bag -->
+  <ExtractWholeBloodBag.label>réaliser un prélèvement sanguin</ExtractWholeBloodBag.label>
+  <!-- EN: Extract blood from a patient to retrieve a blood bag that can be used for blood transfusions. If the patient does not have enough blood for a safe donation, the procedure will be aborted. -->
+  <ExtractWholeBloodBag.description>Extraire le sang d’un patient pour récupérer une poche de sang pouvant être utilisée pour des transfusions. Si le patient ne dispose pas d’assez de sang pour un don sans risque, la procédure sera annulée.</ExtractWholeBloodBag.description>
+  <!-- EN: Drawing blood. -->
+  <ExtractWholeBloodBag.jobString>En train de prélever du sang.</ExtractWholeBloodBag.jobString>
+  <!-- EN: Treat brain damage: mechanite therapy -->
+  <TreatBrainDamage.label>Traiter les dommages cérébraux : thérapie par mécanites</TreatBrainDamage.label>
+  <!-- EN: Mechanite therapy is a glitterworld treatment that uses mechanites to slowly repair neurological damage in the brain on a cellular level. The procedure is expensive and may take several days to complete, but has shown promising results in restoring cognitive function and memory in patients with severe brain damage. Due to the experimental nature of this treatment, it is not widely available and may require multiple sessions to achieve the desired results. -->
+  <TreatBrainDamage.description>La thérapie par mécanites est un traitement des mondes avancés utilisant des mécanites pour réparer lentement les dommages neurologiques du cerveau au niveau cellulaire. La procédure est coûteuse et peut prendre plusieurs jours, mais a montré des résultats prometteurs pour restaurer les fonctions cognitives et la mémoire chez les patients avec des lésions cérébrales sévères. En raison de sa nature expérimentale, ce traitement est peu disponible et peut nécessiter plusieurs séances pour atteindre les résultats souhaités.</TreatBrainDamage.description>
+  <!-- EN: Injecting mechanites into {0}'s brain to repair damage. -->
+  <TreatBrainDamage.jobString>En train d'injecter des mécanites dans le cerveau de {0} pour réparer les dommages.</TreatBrainDamage.jobString>
+</LanguageData>

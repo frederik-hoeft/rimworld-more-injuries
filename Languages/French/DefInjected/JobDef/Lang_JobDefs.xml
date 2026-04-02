@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Managing airways of TargetA. -->
+  <UseSuctionDevice.reportString>En train de dégager les voies respiratoires de TargetA.</UseSuctionDevice.reportString>
+  <!-- EN: Performing CPR on TargetA. -->
+  <PerformCpr.reportString>En train de réaliser une RCP sur TargetA.</PerformCpr.reportString>
+  <!-- EN: Evaluating treatment options for TargetA. -->
+  <ProvideFirstAid.reportString>Évaluation des options de traitement pour TargetA.</ProvideFirstAid.reportString>
+  <!-- EN: Using a defibrillator on TargetA. -->
+  <UseDefibrillator.reportString>En train d'utiliser un défibrillateur sur TargetA.</UseDefibrillator.reportString>
+  <!-- EN: Injecting epinephrine into TargetA. -->
+  <UseEpinephrine.reportString>En train d'injecter TargetA avec de l'adrénaline.</UseEpinephrine.reportString>
+  <!-- EN: Splinting a fracture on TargetA. -->
+  <UseSplint.reportString>En train d'immobiliser une fracture sur TargetA.</UseSplint.reportString>
+  <!-- EN: Applying a tourniquet on TargetA. -->
+  <UseTourniquet.reportString>En train d'appliquer un garrot sur TargetA.</UseTourniquet.reportString>
+  <!-- EN: Slowly removing a tourniquet from TargetA to reduce effects of sudden reperfusion. -->
+  <RemoveTourniquetSafely.reportString>En train de retirer lentement un garrot de TargetA pour réduire les effets de la reperfusion soudaine.</RemoveTourniquetSafely.reportString>
+  <!-- EN: Removing a tourniquet from TargetA. -->
+  <RemoveTourniquetQuickly.reportString>En train de retirer un garrot de TargetA.</RemoveTourniquetQuickly.reportString>
+  <!-- EN: Removing a tourniquet from TargetA. -->
+  <RemoveTourniquetFromDead.reportString>En train de retirer un garrot de TargetA.</RemoveTourniquetFromDead.reportString>
+  <!-- EN: Using a hemostatic agent on TargetA. -->
+  <UseHemostaticAgent.reportString>En train d'utiliser un agent hémostatique sur TargetA.</UseHemostaticAgent.reportString>
+  <!-- EN: Bandaging a wound on TargetA. -->
+  <UseBandage.reportString>En train d'appliquer un bandage sur une plaie de TargetA.</UseBandage.reportString>
+  <!-- EN: Performing a blood transfusion on TargetA. -->
+  <UseBloodBag.reportString>En train de réaliser une transfusion sanguine sur TargetA.</UseBloodBag.reportString>
+  <!-- EN: Performing a saline IV infusion on TargetA. -->
+  <UseSalineBag.reportString>En train d'installer une perfusion intraveineuse de solution saline sur TargetA.</UseSalineBag.reportString>
+  <!-- EN: Executing TargetA through blood extraction. -->
+  <HarvestBlood.reportString>En train de prélever jusqu'à la dernière goutte de sang de la cible</HarvestBlood.reportString>
+  <!-- EN: Injecting morphine into TargetA. -->
+  <UseMorphine.reportString>En train d'injecter TargetA avec de la morphine.</UseMorphine.reportString>
+  <!-- EN: Sedating TargetA with ketamine. -->
+  <UseKetamine.reportString>En train de sédater TargetA à la kétamine.</UseKetamine.reportString>
+  <!-- EN: Sedating TargetA with chloroform. -->
+  <UseChloroform.reportString>En train de sédater TargetA au chloroforme.</UseChloroform.reportString>
+</LanguageData>

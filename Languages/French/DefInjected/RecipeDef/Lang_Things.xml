@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: make bandage -->
+  <Make_Bandage.label>fabriquer un bandage</Make_Bandage.label>
+  <!-- EN: Make a bandage. -->
+  <Make_Bandage.description>Fabriquer un bandage.</Make_Bandage.description>
+  <!-- EN: Making a bandage. -->
+  <Make_Bandage.jobString>En train de fariquer un bandage.</Make_Bandage.jobString>
+  <!-- EN: make bandages x5 -->
+  <Make_BandageFive.label>Fabriquer bandage x5</Make_BandageFive.label>
+  <!-- EN: Make 5 bandages. -->
+  <Make_BandageFive.description>Fabriquer 5 bandages.</Make_BandageFive.description>
+  <!-- EN: Making 5 bandages. -->
+  <Make_BandageFive.jobString>En train de fabriquer 5 bandages.</Make_BandageFive.jobString>
+  <!-- EN: make defibrillator -->
+  <Make_Defibrillator.label>faire un défibrillateur</Make_Defibrillator.label>
+  <!-- EN: Make a defibrillator. -->
+  <Make_Defibrillator.description>Fabriquer un défibrillateur.</Make_Defibrillator.description>
+  <!-- EN: Making a defibrillator. -->
+  <Make_Defibrillator.jobString>En train de fabriquer un défibrillateur.</Make_Defibrillator.jobString>
+  <!-- EN: make hemostatic agent x5 -->
+  <Make_HemostatFive.label>fabriquer agent hémostatique x5</Make_HemostatFive.label>
+  <!-- EN: Make 5 hemostatic agents. -->
+  <Make_HemostatFive.description>Fabriquer 5 agents hémostatiques.</Make_HemostatFive.description>
+  <!-- EN: Making 5 hemostatic agents. -->
+  <Make_HemostatFive.jobString>En train de fabriquer 5 agents hémostatiques.</Make_HemostatFive.jobString>
+  <!-- EN: make splints x10 -->
+  <Make_SplintBulk.label>fabriquer attelle x10</Make_SplintBulk.label>
+  <!-- EN: Make 10 splints -->
+  <Make_SplintBulk.description>Fabriquer 10 attelles</Make_SplintBulk.description>
+  <!-- EN: Making 10 splints. -->
+  <Make_SplintBulk.jobString>En train de fabriquer 10 attelles.</Make_SplintBulk.jobString>
+  <!-- EN: make tourniquets x10 -->
+  <Make_TourniquetBulk.label>fabriquer garrot x10</Make_TourniquetBulk.label>
+  <!-- EN: Make 10 tourniquets. -->
+  <Make_TourniquetBulk.description>Fabriquer 10 garrots.</Make_TourniquetBulk.description>
+  <!-- EN: Making 10 tourniquets. -->
+  <Make_TourniquetBulk.jobString>En train de fabriquer 10 garrots.</Make_TourniquetBulk.jobString>
+  <!-- EN: make thoracoscope -->
+  <Make_Thoracoscope.label>fabriquer thoracoscope</Make_Thoracoscope.label>
+  <!-- EN: Make a thoracoscope. -->
+  <Make_Thoracoscope.description>Fabriquer un thoracoscope.</Make_Thoracoscope.description>
+  <!-- EN: Making a thoracoscope. -->
+  <Make_Thoracoscope.jobString>En train de fabriquer un thoracoscope.</Make_Thoracoscope.jobString>
+  <!-- EN: make saline bag -->
+  <Make_SalineBag.label>fabriquer une poche de solution saline</Make_SalineBag.label>
+  <!-- EN: Make a saline bag by grinding down stone blocks and extracting the natrium chloride required for the saline solution. -->
+  <Make_SalineBag.description>Fabriquer une poche de solution saline en broyant des blocs de pierre et en extrayant le chlorure de sodium nécessaire pour la solution saline.</Make_SalineBag.description>
+  <!-- EN: Making a saline bag. -->
+  <Make_SalineBag.jobString>En train de fabriquer une poche de solution saline.</Make_SalineBag.jobString>
+  <!-- EN: make saline bags x5 -->
+  <Make_SalineBagFive.label>fabriquer poche de solution saline x5</Make_SalineBagFive.label>
+  <!-- EN: Make 5 saline bags by grinding down stone blocks and extracting the natrium chloride required for the saline solution. -->
+  <Make_SalineBagFive.description>Fabriquer 5 poches de solution saline en broyant des blocs de pierre et en extrayant le chlorure de sodium nécessaire à la solution saline.</Make_SalineBagFive.description>
+  <!-- EN: Making 5 saline bags. -->
+  <Make_SalineBagFive.jobString>En train de fabriquer 5 poches de solution saline.</Make_SalineBagFive.jobString>
+</LanguageData>

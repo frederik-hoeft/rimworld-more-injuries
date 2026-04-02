@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: hemorrhage -->
+  <SpontaneousBleeding.label>hémorragie</SpontaneousBleeding.label>
+  <!-- EN: a hemorrhage -->
+  <SpontaneousBleeding.labelNoun>une hémorragie</SpontaneousBleeding.labelNoun>
+  <!-- EN: Spontaneous hemorrhaging is a condition where bleeding occurs without any apparent external cause, often due to underlying medical issues such as coagulopathy or vascular abnormalities. It can manifest as bruising, nosebleeds, or internal bleeding and may require medical intervention to manage the underlying causes and prevent complications. In severe cases, it can lead to significant blood loss, multiple organ failure, and death if not treated promptly.\n\nWhile treating the underlying cause is essential, immediate management may include stabilizing the patient, controlling bleeding, and administering blood products for fluid resuscitation. -->
+  <SpontaneousBleeding.description>Les hémorragies spontanées sont une condition où le saignement survient sans cause externe apparente, souvent en raison de problèmes médicaux sous-jacents tels qu’une coagulopathie ou anomalies vasculaires. Elles peuvent se manifester par des ecchymoses, des saignements de nez ou internes et peuvent nécessiter une intervention médicale pour gérer les causes et prévenir les complications. Dans les cas sévères, elles peuvent provoquer une perte de sang importante, une défaillance des organes et la mort si non traitées rapidement.\n\nBien que le traitement de la cause sous-jacente soit essentiel, la prise en charge immédiate peut inclure la stabilisation du patient, le contrôle du saignement et l’administration de produits sanguins pour la réanimation liquidienne.</SpontaneousBleeding.description>
+  <!-- EN: bandaged -->
+  <SpontaneousBleeding.comps.HediffComp_TendDuration.labelTendedWell>bandé</SpontaneousBleeding.comps.HediffComp_TendDuration.labelTendedWell>
+  <!-- EN: sutured -->
+  <SpontaneousBleeding.comps.HediffComp_TendDuration.labelTendedWellInner>suturé</SpontaneousBleeding.comps.HediffComp_TendDuration.labelTendedWellInner>
+  <!-- EN: set -->
+  <SpontaneousBleeding.comps.HediffComp_TendDuration.labelSolidTendedWell>appliqué</SpontaneousBleeding.comps.HediffComp_TendDuration.labelSolidTendedWell>
+  <!-- EN: destroyed -->
+  <SpontaneousBleeding.injuryProps.destroyedLabel>détruit</SpontaneousBleeding.injuryProps.destroyedLabel>
+  <!-- EN: destroyed -->
+  <SpontaneousBleeding.injuryProps.destroyedOutLabel>détruit</SpontaneousBleeding.injuryProps.destroyedOutLabel>
+</LanguageData>

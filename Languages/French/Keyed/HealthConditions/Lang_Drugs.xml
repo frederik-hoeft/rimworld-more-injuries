@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: Inject epinephrine -->
+  <MI_UseEpinephrine>Injecter de l'adrénaline</MI_UseEpinephrine>
+  <!-- EN: Inject morphine -->
+  <MI_UseMorphine>Injecter de la morphine</MI_UseMorphine>
+  <!-- EN: Sedate (ketamine) -->
+  <MI_UseKetamine>Sédater (kétamine)</MI_UseKetamine>
+  <!-- EN: Sedate (chloroform) -->
+  <MI_UseChloroform>Sédater (chloroforme)</MI_UseChloroform>
+</LanguageData>

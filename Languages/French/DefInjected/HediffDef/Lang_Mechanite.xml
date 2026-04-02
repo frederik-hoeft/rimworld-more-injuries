@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: mechanite therapy -->
+  <MechaniteTherapy.label>thérapie par mécanites</MechaniteTherapy.label>
+  <!-- EN: the mechanite therapy -->
+  <MechaniteTherapy.labelNoun>la thérapie par mécanites</MechaniteTherapy.labelNoun>
+  <!-- EN: A glitterworld treatment that uses mechanites to slowly repair cellular damage in the body. The mechanites will gradually repair the damage over time, but the process can take several days. -->
+  <MechaniteTherapy.description>Un traitement de haut niveau technologique utilisant des mécanites pour réparer lentement les dommages cellulaires dans le corps. Les mécanites réparent progressivement les dégâts au fil du temps, mais le processus peut prendre plusieurs jours.</MechaniteTherapy.description>
+  <!-- EN: almost complete -->
+  <MechaniteTherapy.stages.almost_complete.label>presque terminée</MechaniteTherapy.stages.almost_complete.label>
+  <!-- EN: in progress -->
+  <MechaniteTherapy.stages.in_progress.label>en cours</MechaniteTherapy.stages.in_progress.label>
+</LanguageData>
