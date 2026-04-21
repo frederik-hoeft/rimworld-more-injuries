@@ -11,9 +11,9 @@ game_version="1.6"
 mod_feature_flags=( "ModBadHygiene" )
 
 # Resolve script directory (where this script lives)
-script_dir="$(/usr/bin/realpath "$(/usr/bin/dirname "${BASH_SOURCE[0]}")")"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Resolve mod root (4 levels up from script directory)
-mod_root="$(/usr/bin/realpath "${script_dir}/../../../..")"
+mod_root="$(cd "${script_dir}/../../../.." && pwd)"
 project_path="${script_dir}/../${project_name}.csproj"
 
 log_message() {
@@ -27,11 +27,16 @@ log_message() {
 # Read the hostconfig file (located next to this script)
 log_message "Reading host configuration file..."
 steam_root="$(jq -r '.steam_root' "${script_dir}/hostconfig.json")"
-upload_dir="${steam_root}/steamapps/common/RimWorld/Mods/${project_name}"
+if [[ "$steam_root" == "G:/SteamLibrary" ]]
+then
+  echo "Error: You must update the 'steam_root' value in hostconfig.json."
+  exit 1
+fi
+upload_dir="${steam_root}/steamapps/common/RimWorld/RimWorldMac.app/Mods/${project_name}"
 
 # Build mod flag properties
 mod_flag_properties=()
-for flag in "${mod_feature_flags[@]}"; do
+for flag in "${mod_feature_flags[@]:-}"; do
   mod_flag_properties+=( "-p:${flag}=enable" )
 done
 
@@ -45,12 +50,12 @@ dotnet publish "${project_path}" -c "${configuration}" -p:PublishProfile="${conf
 # clean upload dir
 log_message "Cleaning up the upload directory..."
 if [[ -e "${upload_dir}" ]]; then
-  /bin/rm -rf -- "${upload_dir}"
+  rm -rf -- "${upload_dir}"
 fi
 
 # create new folder structure
-/bin/mkdir -p -- "${upload_dir}"
-/bin/mkdir -p -- "${upload_dir}/Source"
+mkdir -p "${upload_dir}"
+mkdir -p "${upload_dir}/Source"
 
 # Write commit.ref (origin + current commit)
 log_message "Writing commit.ref..."
@@ -98,7 +103,7 @@ if [[ -d "${old_versions_dir}" ]]; then
     [[ -d "${version_dir}" ]] || continue
 
     version_dir="${version_dir%/}"
-    version_name="$(/usr/bin/basename "${version_dir}")"
+    version_name="$(basename "${version_dir}")"
     log_message "Processing previous version: ${version_name} ..."
 
     ref_files=( "${version_dir}"/*.ref )
@@ -107,20 +112,20 @@ if [[ -d "${old_versions_dir}" ]]; then
     fi
 
     ref_file="${ref_files[0]}"
-    raw_version="$(/usr/bin/basename "${ref_file}")"
+    raw_version="$(basename "${ref_file}")"
     raw_version="${raw_version%.ref}"
 
     # Read link (trim common whitespace/newlines)
-    download_link="$(/usr/bin/sed -e 's/^[[:space:]]\+//' -e 's/[[:space:]]\+$//' "${ref_file}")"
+    download_link="$(sed -e 's/^[[:space:]]\+//' -e 's/[[:space:]]\+$//' "${ref_file}")"
     [[ -n "${download_link}" ]] || continue
 
-    tmpdir="$(/usr/bin/mktemp -d)"
+    tmpdir="$(mktemp -d)"
     tmpzip="${tmpdir}/${version_name}.zip"
     tmpextract="${tmpdir}/${version_name}_extract"
 
     # Download (curl preferred)
-    if command -v /usr/bin/curl >/dev/null 2>&1; then
-      /usr/bin/curl -fL --retry 3 --retry-delay 1 -o "${tmpzip}" "${download_link}"
+    if command -v /curl >/dev/null 2>&1; then
+      curl -fL --retry 3 --retry-delay 1 -o "${tmpzip}" "${download_link}"
     elif command -v wget >/dev/null 2>&1; then
       wget -O "${tmpzip}" "${download_link}"
     else
@@ -128,21 +133,21 @@ if [[ -d "${old_versions_dir}" ]]; then
       exit 1
     fi
 
-    /bin/mkdir -p -- "${tmpextract}"
-    /usr/bin/unzip -q -o "${tmpzip}" -d "${tmpextract}"
+    mkdir -p -- "${tmpextract}"
+    unzip -q -o "${tmpzip}" -d "${tmpextract}"
 
     src_old="${tmpextract}/${project_name}/${version_name}"
     if [[ -d "${src_old}" ]]; then
-      /bin/cp -a -- "${src_old}" "${upload_dir}/"
+      cp -a -- "${src_old}" "${upload_dir}/"
       log_message "Added old version: ${raw_version} (${version_name})"
     fi
 
-    /bin/rm -rf -- "${tmpdir}"
+    rm -rf -- "${tmpdir}"
   done
 fi
 
 # create folder for current version
-/bin/mkdir -p -- "${upload_dir}/${game_version}/Assemblies"
+mkdir -p -- "${upload_dir}/${game_version}/Assemblies"
 
 # copy assemblies
 dll_src="${mod_root}/Source/${project_name}/artifacts/publish/${project_name}/${configuration}/${project_name}.dll"
@@ -150,12 +155,12 @@ if [[ ! -f "${dll_src}" ]]; then
   echo "ERROR: expected build output not found: ${dll_src}" >&2
   exit 1
 fi
-/bin/cp -a -- "${dll_src}" "${upload_dir}/${game_version}/Assemblies/"
+cp -a -- "${dll_src}" "${upload_dir}/${game_version}/Assemblies/"
 
 # copy  content folders into latest version
 for d in Patches Defs Sounds Textures Languages; do
   if [[ -d "${mod_root}/${d}" ]]; then
-    /bin/cp -a -- "${mod_root}/${d}" "${upload_dir}/${game_version}/"
+    cp -a -- "${mod_root}/${d}" "${upload_dir}/${game_version}/"
   else
     log_message "No ${d} folder found in mod root; aborting..."
     exit 1
@@ -163,22 +168,22 @@ for d in Patches Defs Sounds Textures Languages; do
 done
 
 # copy About into upload root
-/bin/cp -a -- "${mod_root}/About" "${upload_dir}/"
+cp -a -- "${mod_root}/About" "${upload_dir}/"
 
 # copy README because why not
 if [[ -f "${mod_root}/README.md" ]]; then
-  /bin/cp -a -- "${mod_root}/README.md" "${upload_dir}/"
+  cp -a -- "${mod_root}/README.md" "${upload_dir}/"
 fi
 
 # include docs/wiki
-/bin/mkdir -p -- "${upload_dir}/docs"
+mkdir -p -- "${upload_dir}/docs"
 if [[ -d "${mod_root}/docs/wiki" ]]; then
-  /bin/cp -a -- "${mod_root}/docs/wiki" "${upload_dir}/docs/"
+  cp -a -- "${mod_root}/docs/wiki" "${upload_dir}/docs/"
 fi
 
 # include LoadFolders.xml
 if [[ -f "${mod_root}/LoadFolders.xml" ]]; then
-  /bin/cp -a -- "${mod_root}/LoadFolders.xml" "${upload_dir}/"
+  cp -a -- "${mod_root}/LoadFolders.xml" "${upload_dir}/"
 fi
 
 log_message "========== Deployment succeeded =========="
