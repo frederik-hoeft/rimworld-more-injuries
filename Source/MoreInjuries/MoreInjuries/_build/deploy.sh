@@ -36,7 +36,8 @@ upload_dir="${steam_root}/steamapps/common/RimWorld/RimWorldMac.app/Mods/${proje
 
 # Build mod flag properties
 mod_flag_properties=()
-for flag in "${mod_feature_flags[@]:-}"; do
+(( ${#mod_feature_flags[@]} )) && \
+for flag in "${mod_feature_flags[@]}"; do
   mod_flag_properties+=( "-p:${flag}=enable" )
 done
 
@@ -44,8 +45,8 @@ done
 log_message "Building and publishing ${project_name} v${game_version}..."
 dotnet clean "${project_path}"
 dotnet restore "${project_path}" --no-cache
-dotnet build "${project_path}" -c "${configuration}" "${mod_flag_properties[@]}"
-dotnet publish "${project_path}" -c "${configuration}" -p:PublishProfile="${configuration}" "${mod_flag_properties[@]}"
+dotnet build "${project_path}" -c "${configuration}" "${mod_flag_properties[@]:-}"
+dotnet publish "${project_path}" -c "${configuration}" -p:PublishProfile="${configuration}" "${mod_flag_properties[@]:-}"
 
 # clean upload dir
 log_message "Cleaning up the upload directory..."
