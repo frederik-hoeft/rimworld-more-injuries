@@ -11,9 +11,9 @@ game_version="1.6"
 mod_feature_flags=( "ModBadHygiene" )
 
 # Resolve script directory (where this script lives)
-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 # Resolve mod root (4 levels up from script directory)
-mod_root="$(cd "${script_dir}/../../../.." && pwd)"
+mod_root="$(cd -- "${script_dir}/../../../.." && pwd -P)"
 project_path="${script_dir}/../${project_name}.csproj"
 
 log_message() {
@@ -27,12 +27,19 @@ log_message() {
 # Read the hostconfig file (located next to this script)
 log_message "Reading host configuration file..."
 steam_root="$(jq -r '.steam_root' "${script_dir}/hostconfig.json")"
-if [[ "$steam_root" == "G:/SteamLibrary" ]]
-then
-  echo "Error: You must update the 'steam_root' value in hostconfig.json."
+if [ ! -d "$steam_root" ]; then
+  echo "Error: steam_root not found: ${steam_root}"
+  echo "You must update the 'steam_root' value in hostconfig.json."
   exit 1
 fi
-upload_dir="${steam_root}/steamapps/common/RimWorld/RimWorldMac.app/Mods/${project_name}"
+
+kernel_name=$"uname -s"
+if [[ "$kernel_name" == "Darwin" ]]; then
+  # Mac install directory
+  upload_dir="${steam_root}/steamapps/common/RimWorld/RimWorldMac.app/Mods/${project_name}"
+else
+  upload_dir="${steam_root}/steamapps/common/RimWorld/Mods/${project_name}"
+fi
 
 # Build mod flag properties
 mod_flag_properties=()
@@ -55,8 +62,8 @@ if [[ -e "${upload_dir}" ]]; then
 fi
 
 # create new folder structure
-mkdir -p "${upload_dir}"
-mkdir -p "${upload_dir}/Source"
+mkdir -p -- "${upload_dir}"
+mkdir -p -- "${upload_dir}/Source"
 
 # Write commit.ref (origin + current commit)
 log_message "Writing commit.ref..."
@@ -125,7 +132,7 @@ if [[ -d "${old_versions_dir}" ]]; then
     tmpextract="${tmpdir}/${version_name}_extract"
 
     # Download (curl preferred)
-    if command -v /curl >/dev/null 2>&1; then
+    if command -v curl >/dev/null 2>&1; then
       curl -fL --retry 3 --retry-delay 1 -o "${tmpzip}" "${download_link}"
     elif command -v wget >/dev/null 2>&1; then
       wget -O "${tmpzip}" "${download_link}"
