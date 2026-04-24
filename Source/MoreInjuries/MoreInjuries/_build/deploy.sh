@@ -33,7 +33,7 @@ if [ ! -d "$steam_root" ]; then
   exit 1
 fi
 
-kernel_name=$"uname -s"
+kernel_name="$(uname -s)"
 if [[ "$kernel_name" == "Darwin" ]]; then
   # Mac install directory
   upload_dir="${steam_root}/steamapps/common/RimWorld/RimWorldMac.app/Mods/${project_name}"
