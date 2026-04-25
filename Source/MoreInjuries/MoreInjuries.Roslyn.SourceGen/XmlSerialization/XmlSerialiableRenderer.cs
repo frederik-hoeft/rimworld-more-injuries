@@ -8,7 +8,11 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
 internal static class XmlSerialiableRenderer
 {
     private static readonly SymbolDisplayFormat s_fullyQualifiedFormat =
-        SymbolDisplayFormat.FullyQualifiedFormat.WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Included);
+        SymbolDisplayFormat.FullyQualifiedFormat
+            .WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Included)
+            .WithMiscellaneousOptions(
+                SymbolDisplayFormat.FullyQualifiedFormat.MiscellaneousOptions
+                | SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
 
     public static string Render(XmlSerializableGenerationModel model)
     {
@@ -35,7 +39,15 @@ internal static class XmlSerialiableRenderer
     {
         foreach (XmlMemberModel member in model.AnnotatedMembers)
         {
-            builder.AppendLine($"private readonly {member.Property.Type.ToDisplayString(s_fullyQualifiedFormat)} {member.FieldName};");
+            string typeDisplay = member.Property.Type.ToDisplayString(s_fullyQualifiedFormat);
+            if (member.DefaultValueExpression is { } defaultValue)
+            {
+                builder.AppendLine($"private readonly {typeDisplay} {member.FieldName} = {defaultValue};");
+            }
+            else
+            {
+                builder.AppendLine($"private readonly {typeDisplay} {member.FieldName} = default!;");
+            }
         }
     }
 

@@ -14,6 +14,7 @@ public sealed class XmlSerialiableGenerator : IIncrementalGenerator
         {
             postInit.AddEmbeddedSource<XmlSerializableAttribute>();
             postInit.AddEmbeddedSource<XmlMemberAttribute>();
+            postInit.AddEmbeddedSource(typeof(XmlMemberAttribute<>));
         });
 
         IncrementalValuesProvider<XmlSerialiableTarget> targets = context.SyntaxProvider.ForAttributeWithMetadataName(

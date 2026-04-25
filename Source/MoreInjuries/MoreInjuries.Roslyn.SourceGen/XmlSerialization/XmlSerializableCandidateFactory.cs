@@ -1,4 +1,5 @@
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
 using System.Collections.Immutable;
@@ -7,6 +8,8 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
 
 internal static class XmlSerializableCandidateFactory
 {
+    private static readonly string s_xmlMemberGenericFullName = typeof(XmlMemberAttribute<>).FullName;
+
     public static XmlSerializableCandidate Create(XmlSerialiableTarget target)
     {
         ImmutableArray<Diagnostic>.Builder diagnostics = ImmutableArray.CreateBuilder<Diagnostic>();
@@ -26,8 +29,15 @@ internal static class XmlSerializableCandidateFactory
 
         foreach (IPropertySymbol property in typeSymbol.GetMembers().OfType<IPropertySymbol>())
         {
-            if (!property.TryGetAttribute<XmlMemberAttribute>(out AttributeData? xmlMemberAttribute)
-                || xmlMemberAttribute.ConstructorArguments is not [{ Value: string fieldName }])
+            string? fieldName;
+            string? defaultValueExpression = null;
+
+            if (property.TryGetAttribute<XmlMemberAttribute>(out AttributeData? xmlMemberAttribute)
+                && xmlMemberAttribute.ConstructorArguments is [{ Value: string nonGenericFieldName }])
+            {
+                fieldName = nonGenericFieldName;
+            }
+            else if (!TryGetGenericXmlMemberAttribute(property, out fieldName, out defaultValueExpression))
             {
                 continue;
             }
@@ -50,7 +60,7 @@ internal static class XmlSerializableCandidateFactory
                     property.Name));
                 continue;
             }
-            if (!typeSymbol.GetMembers(fieldName).IsEmpty)
+            if (!typeSymbol.GetMembers(fieldName!).IsEmpty)
             {
                 diagnostics.Add(Diagnostic.Create(
                     XmlSerializationGeneratorDiagnostics.MemberNameConflict,
@@ -59,7 +69,7 @@ internal static class XmlSerializableCandidateFactory
                     fieldName));
                 continue;
             }
-            memberModels.Add(new XmlMemberModel(property, fieldName));
+            memberModels.Add(new XmlMemberModel(property, fieldName!, defaultValueExpression));
         }
 
         string namespaceName = typeSymbol.ContainingNamespace?.IsGlobalNamespace is false
@@ -72,5 +82,27 @@ internal static class XmlSerializableCandidateFactory
                 ClassSymbol: typeSymbol,
                 AnnotatedMembers: memberModels.ToImmutable()),
             diagnostics.ToImmutable());
+    }
+
+    private static bool TryGetGenericXmlMemberAttribute(
+        IPropertySymbol property,
+        out string? fieldName,
+        out string? defaultValueExpression)
+    {
+        foreach (AttributeData attribute in property.GetAttributes())
+        {
+            if (attribute.AttributeClass is { IsGenericType: true } attributeClass
+                && attributeClass.ConstructUnboundGenericType().GetFullMetadataName()
+                    .Equals(s_xmlMemberGenericFullName, StringComparison.Ordinal)
+                && attribute.ConstructorArguments is [{ Value: string name }, TypedConstant defaultValue])
+            {
+                fieldName = name;
+                defaultValueExpression = defaultValue.ToCSharpString();
+                return true;
+            }
+        }
+        fieldName = null;
+        defaultValueExpression = null;
+        return false;
     }
 }
