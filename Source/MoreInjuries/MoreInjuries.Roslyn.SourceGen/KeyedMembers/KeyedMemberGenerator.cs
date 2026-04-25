@@ -1,6 +1,7 @@
-﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
+using MoreInjuries.Roslyn.SourceGen.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 

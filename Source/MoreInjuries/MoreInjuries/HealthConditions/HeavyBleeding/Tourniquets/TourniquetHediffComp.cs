@@ -1,4 +1,4 @@
-﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using MoreInjuries.HealthConditions.Secondary;

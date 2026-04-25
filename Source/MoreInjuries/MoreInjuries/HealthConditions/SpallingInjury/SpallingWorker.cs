@@ -1,4 +1,4 @@
-﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Utils;
 using RimWorld;
 using System.Collections.Generic;

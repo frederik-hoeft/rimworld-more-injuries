@@ -1,4 +1,4 @@
-﻿using MoreInjuries.Extensions;
+using MoreInjuries.Extensions;
 using RimWorld;
 using UnityEngine;
 using Verse;
