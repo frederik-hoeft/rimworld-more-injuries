@@ -11,7 +11,7 @@ game_version="1.6"
 mod_feature_flags=( "ModBadHygiene" )
 
 # Resolve script directory (where this script lives)
-script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+script_dir="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 # Resolve mod root (4 levels up from script directory)
 mod_root="$(cd -- "${script_dir}/../../../.." && pwd -P)"
 project_path="${script_dir}/../${project_name}.csproj"
@@ -43,6 +43,7 @@ fi
 
 # Build mod flag properties
 mod_flag_properties=()
+# Check empty since [@] on an empty list fails on old bash versions
 (( ${#mod_feature_flags[@]} )) && \
 for flag in "${mod_feature_flags[@]}"; do
   mod_flag_properties+=( "-p:${flag}=enable" )
