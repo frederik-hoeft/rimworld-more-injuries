@@ -13,7 +13,8 @@ public sealed class ThingModifier_Collection : ThingModifier
     {
         if (modifiers is not [_, ..])
         {
-            throw new InvalidOperationException("ThingModifier_Collection must contain at least one modifier to be evaluated.");
+            Logger.ConfigError($"{nameof(ThingModifier_Collection)} has no modifiers. This is likely a mistake in the XML definition. Returning 1 as the modifier value.");
+            return 1f;
         }
         float modifier = 1f;
         foreach (ThingModifier thingModifier in modifiers)
