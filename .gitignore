@@ -371,3 +371,6 @@ artifacts/
 
 # local config files
 hostconfig.json
+
+# articles that aren't open-access
+/assets/simulation/**/sci-hub-*.pdf
