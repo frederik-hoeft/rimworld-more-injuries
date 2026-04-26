@@ -87,9 +87,9 @@ Since RimWorld is built on Unity engine, above rules apply with the following ex
 public class ReusabilityProps_ModExtension : DefModExtension
 {
     // don't rename this field. XML defs depend on this name
-    private readonly float destroyChance = default;
+    private readonly ThingModifier destroyChanceModifier = default!;
 
-    public float DestroyChance => destroyChance;
+    public ThingModifier DestroyChanceModifier => destroyChanceModifier;
 }
 ```
 
