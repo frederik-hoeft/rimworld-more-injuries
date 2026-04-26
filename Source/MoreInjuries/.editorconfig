@@ -1,12 +1,24 @@
 # Remove the line below if you want to inherit .editorconfig settings from higher directories
 root = true
 
-# Global settings
-[*.{cs,csproj,props,ps1,sh}]
+# All files
+[*]
+charset = utf-8
 indent_style = space
+trim_trailing_whitespace = true
+end_of_line = lf
+insert_final_newline = true
+
+#### Core EditorConfig Options ####
+
+# Indentation and spacing
+indent_size = 4
+tab_width = 4
 
 # C# files
 [*.cs]
+# Visual Studio sometimes guesses UTF-8 files with no BOM as something else
+charset = utf-8-bom
 
 #### C# Coding Conventions ####
 
@@ -41,7 +53,7 @@ csharp_style_conditional_delegate_call = true:suggestion
 
 # Modifier preferences
 csharp_prefer_static_local_function = true:suggestion
-csharp_preferred_modifier_order = public,private,internal,protected,file,static,extern,const,required,virtual,sealed,new,async,abstract,override,readonly,partial,unsafe,volatile:suggestion
+csharp_preferred_modifier_order = public,private,internal,protected,file,static,extern,const,required,virtual,sealed,new,async,abstract,override,readonly,partial,unsafe,volatile:warning
 csharp_style_prefer_readonly_struct = true:suggestion
 csharp_style_prefer_readonly_struct_member = true:suggestion
 
@@ -123,25 +135,35 @@ csharp_space_between_square_brackets = false
 
 # Wrapping preferences
 csharp_preserve_single_line_blocks = true
-csharp_preserve_single_line_statements = false
+csharp_preserve_single_line_statements = true
 
 # Other preferences
 csharp_style_prefer_unbound_generic_type_in_nameof = true:suggestion
 csharp_prefer_static_anonymous_function = true:suggestion
+csharp_style_prefer_simple_property_accessors = true:warning
+
+[*.{csproj,targets,props}]
+# match Visual Studio behavior
+charset = utf-8-bom
+
+# Xml resource files
+[*.resx]
+# match Visual Studio behavior
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+# Data serialization
+[*.{json,yaml,yml}]
+indent_size = 2
+
+# Shell scripts
+[*.sh]
+end_of_line = lf
+[*.{cmd,bat}]
+end_of_line = crlf
 
 # global preferences
 [*.{cs,vb}]
-
-#### Core EditorConfig Options ####
-
-# Indentation and spacing
-indent_size = 4
-indent_style = space
-tab_width = 4
-
-# New line preferences
-end_of_line = crlf
-insert_final_newline = false
 
 #### .NET Coding Conventions ####
 
@@ -226,6 +248,10 @@ dotnet_naming_rule.non_public_field_should_be__camelcase.severity = warning
 dotnet_naming_rule.non_public_field_should_be__camelcase.symbols = non_public_field
 dotnet_naming_rule.non_public_field_should_be__camelcase.style = _camelcase
 
+dotnet_naming_rule.async_methods_should_have_async_suffix.severity = warning
+dotnet_naming_rule.async_methods_should_have_async_suffix.symbols = async_methods
+dotnet_naming_rule.async_methods_should_have_async_suffix.style = async_suffix
+
 dotnet_naming_rule.static_field_should_be_static_fields_begin_with_s_.severity = warning
 dotnet_naming_rule.static_field_should_be_static_fields_begin_with_s_.symbols = static_field
 dotnet_naming_rule.static_field_should_be_static_fields_begin_with_s_.style = static_fields_begin_with_s_
@@ -263,6 +289,10 @@ dotnet_naming_symbols.types.required_modifiers =
 dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, method
 dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
 dotnet_naming_symbols.non_field_members.required_modifiers =
+
+dotnet_naming_symbols.async_methods.applicable_kinds = method
+dotnet_naming_symbols.async_methods.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.async_methods.required_modifiers = async
 
 dotnet_naming_symbols.constants.applicable_kinds = field, local
 dotnet_naming_symbols.constants.applicable_accessibilities = *
@@ -305,6 +335,11 @@ dotnet_naming_style._camelcase.required_suffix =
 dotnet_naming_style._camelcase.word_separator =
 dotnet_naming_style._camelcase.capitalization = camel_case
 
+dotnet_naming_style.async_suffix.required_prefix =
+dotnet_naming_style.async_suffix.required_suffix = Async
+dotnet_naming_style.async_suffix.word_separator =
+dotnet_naming_style.async_suffix.capitalization = pascal_case
+
 dotnet_naming_style.constant_case.required_prefix =
 dotnet_naming_style.constant_case.required_suffix =
 dotnet_naming_style.constant_case.word_separator = _
@@ -332,7 +367,7 @@ dotnet_naming_style.begins_with_t.capitalization = pascal_case
 # Initially, we are enabling most of the built-in analyzers and increasing the severity of some of them.
 # If you believe a rule is too strict, you may bring it up for discussion to reach a consensus.
 
-########################## Opt-out analyzers ##########################
+########################## Opt-in analyzers ##########################
 # The following rules are generally good to follow, but may be too strict / produce a lot of noise in existing codebases.
 # Please discuss with your team before enabling these rules.
 # CA1062: Validate arguments of public methods
@@ -345,11 +380,6 @@ dotnet_diagnostic.CA1851.severity = warning
 # - Visual Studio doesn't recognize valid suppressions targeting ReSharper, so we disable this rule.
 #   There shouldn't be a lot of suppressions in the codebase anyway.
 dotnet_diagnostic.IDE0079.severity = none
-# CA1852: Seal internal types
-dotnet_diagnostic.CA1852.severity = warning
-dotnet_code_quality.CA1852.ignore_internalsvisibleto = true
-# Class can be made sealed (non-inheritable) (private accessibility)
-resharper_class_can_be_sealed_local_highlighting = suggestion
 
 ######################################################################
 
@@ -513,6 +543,9 @@ dotnet_diagnostic.CA1846.severity = warning
 dotnet_diagnostic.CA1847.severity = warning
 # CA1849: Call async methods when in an async method (NOTE: requires -Async suffix to work)
 dotnet_diagnostic.CA1849.severity = warning
+# CA1852: Seal internal types
+dotnet_diagnostic.CA1852.severity = warning
+dotnet_code_quality.CA1852.ignore_internalsvisibleto = true
 # CA1853: Unnecessary call to 'Dictionary.ContainsKey(key)'
 dotnet_diagnostic.CA1853.severity = warning
 # CA1854: Prefer the IDictionary.TryGetValue(TKey, out TValue) method
@@ -804,6 +837,8 @@ resharper_can_replace_cast_with_variable_type_highlighting = suggestion
 resharper_can_replace_cast_with_lambda_return_type_highlighting = suggestion
 # Change lock field type to 'System.Threading.Lock'
 resharper_change_lock_field_type_to_system_threading_lock_highlighting = warning
+# Class can be made sealed (non-inheritable) (private accessibility)
+resharper_class_can_be_sealed_local_highlighting = suggestion
 # Local function can be made static
 resharper_local_function_can_be_made_static_highlighting = warning
 # Member can be made static - managed by default .NET analyzers
@@ -902,34 +937,3 @@ resharper_member_can_be_private_global_highlighting = none
 resharper_enum_underlying_type_is_int_highlighting = hint
 # Redundant lambda expression parameter type specification
 resharper_redundant_lambda_parameter_type_highlighting = hint
-
-#### SonarQube settings ####
-# see https://sonarqube.sodep.io/coding_rules?languages=cs&selected=csharpsquid%3AS1698
-
-# S2436: Types and methods should not have too many generic parameters
-# - the default threshold of max 2 generic parameters is too low for some cases, max 3 is more reasonable
-#   We can't modify the threshold in SonarQube, so just disable it for now
-dotnet_diagnostic.S2436.severity = none
-# S3236: Caller information arguments should not be provided explicitly
-# - technically a valid concern, but this also lights up a lot of cases like these:
-#   Debug.Assert(someCondition, message: "explaining why this is a problem");
-#   where the message also takes the CallerArgumentExpression if not provided explicitly
-#   so while the intention is good, SonarQube's implementation is not
-dotnet_diagnostic.S3236.severity = none
-# S907: "goto" statement should not be used
-# - yes, if you use it to produce spaghetti code, but there are valid use cases for it
-#   when subsequently releasing handles, dealing with out parameters, etc.
-# - I'll always prefer a clean goto-FAILURE pattern over lots of duplicated cleanup code
-# - use common sense and you must be able to justify its usage in code review, but goto isn't evil per se
-dotnet_diagnostic.S907.severity = none
-# S2344: Enumeration type names should not have "Flags" or "Enum" suffixes
-# - I'd argue exactly the opposite: if you're allowing bit-stuff on an enum, you should make that clear in the name
-#   so that call-sites know that multiple values are allowed
-dotnet_diagnostic.S2344.severity = none
-# S127: Do not update the loop counter 'i' within the loop body.
-# - That's a controversial opinion. How are you supposed to easily implement backtracking algorithms or modifying collection enumerations?
-dotnet_diagnostic.S127.severity = none
-# S3267: Loops should be simplified using the "Where" LINQ method
-# - absolutely not. LINQ has its place, but we shouldn't force it on every loop.
-# - explicit loops promote performance and reusing temporary variables, instead of enumerating the collection multiple times
-dotnet_diagnostic.S3267.severity = none
