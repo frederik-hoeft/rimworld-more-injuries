@@ -7,8 +7,6 @@ set -euo pipefail
 # so this works on macOS where realpath is either missing or lives at
 # /opt/homebrew/bin/realpath rather than /usr/bin/realpath.
 script_dir="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
-# Resolve project root (4 levels up from script directory)
-mod_root="$(cd -- "${script_dir}/../../../.." && pwd -P)"
 
 # Read steam_root from hostconfig.json
 steam_root="$(jq -r '.steam_root' "${script_dir}/hostconfig.json")"
