@@ -22,7 +22,9 @@
     </statBases>
     <modExtensions>
       <li Class="MoreInjuries.Things.ReusabilityProps_ModExtension">
-        <destroyChance>0.10</destroyChance>
+        <destroyChanceModifier Class="MoreInjuries.Things.ThingModifier_ConstantFactor">
+          <factor>0.10</factor>
+        </destroyChanceModifier>
       </li>
     </modExtensions>
     <thingCategories>
