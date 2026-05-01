@@ -168,7 +168,7 @@ public class MoreInjuriesMod : Mod
         Settings.DefibrillatorMinimumSuccessRate = (float)Math.Round(list.Slider(Settings.DefibrillatorMinimumSuccessRate, 0f, 1f), 2);
         list.Label("MI_Settings_Features_HypovolemicShock_DestroyDefibrillatorOnUseChanceLabel".Translate(Settings.DefibrillatorBreakOnUseRate.NamedValue(), DEFIBRILLATOR_BREAK_ON_USE_RATE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_HypovolemicShock_DestroyDefibrillatorOnUseChanceTooltip".Translate());
-        Settings.DefibrillatorMinimumSuccessRate = (float)Math.Round(list.Slider(Settings.DefibrillatorBreakOnUseRate, 0f, 1f), 2);
+        Settings.DefibrillatorBreakOnUseRate = (float)Math.Round(list.Slider(Settings.DefibrillatorBreakOnUseRate, 0f, 1f), 2);
         // trauma simulation
         list.GapLine();
         Text.Font = GameFont.Medium;
