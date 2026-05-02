@@ -9,10 +9,10 @@ namespace MoreInjuries;
 public partial class MoreInjuriesSettings : ModSettings
 {
     // logging
-    [SettingsEntry<bool>(DefaultValue = false)] 
+    [SettingsEntry<bool>(DefaultValue = false)]
     internal partial ref bool EnableLogging { get; }
 
-    [SettingsEntry<bool>(DefaultValue = false)] 
+    [SettingsEntry<bool>(DefaultValue = false)]
     internal partial ref bool EnableVerboseLogging { get; }
 
     // adrenaline and epinephrine
@@ -24,25 +24,25 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 15f)]
     internal partial ref float CertainAdrenalineThreshold { get; }
-    
+
     // blood transfusions
     [SettingsEntry<int>(DefaultValue = 5)]
     internal partial ref int BloodTransfusionHarvestMinimumSkill { get; }
-    
+
     // hydrostatic shock
     [SettingsEntry<bool>(DefaultValue = false)]
     internal partial ref bool EnableHydrostaticShock { get; }
 
     [SettingsEntry<float>(DefaultValue = 0.2f)]
     internal partial ref float HydrostaticShockChanceOnDamage { get; }
-    
+
     // EMP
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableEmpDamageToBionics { get; }
 
     [SettingsEntry<float>(DefaultValue = 0.45f)]
     internal partial ref float EmpDamageToBionicsChance { get; }
-    
+
     // hemorrhagic stroke
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableHemorrhagicStroke { get; }
@@ -52,7 +52,7 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 15f)]
     internal partial ref float HemorrhagicStrokeThreshold { get; }
-    
+
     // concussions
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableConcussion { get; }
@@ -62,7 +62,7 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 6f)]
     internal partial ref float ConcussionThreshold { get; }
-    
+
     // choking
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableChoking { get; }
@@ -78,7 +78,7 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 0.25f)]
     internal partial ref float SuctionDeviceMinimumSuccessRate { get; }
-    
+
     // lung collapse
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableLungCollapse { get; }
@@ -91,7 +91,7 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 0.85f)]
     internal partial ref float LungCollapseMaxSeverityRoot { get; }
-    
+
     // spalling
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableSpalling { get; }
@@ -101,7 +101,7 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 0.75f)]
     internal partial ref float SpallingChance { get; }
-    
+
     // hearing damage
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableBasicHearingDamage { get; }
@@ -120,7 +120,7 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 0.25f)]
     internal partial ref float HearingDamagePermanentChanceFactor { get; }
-    
+
     // fractures
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableFractures { get; }
@@ -142,7 +142,7 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableApplySplintJob { get; }
-    
+
     // hypovolemic shock, cardiac arrest, and the trauma triad of death
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableHypovolemicShock { get; }
@@ -162,6 +162,9 @@ public partial class MoreInjuriesSettings : ModSettings
     [SettingsEntry<float>(DefaultValue = 0.5f)]
     internal partial ref float DefibrillatorMinimumSuccessRate { get; }
 
+    [SettingsEntry<float>(DefaultValue = 0.1f)]
+    internal partial ref float DefibrillatorBreakOnUseRate { get; }
+
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableAdvancedTraumaSimulation { get; }
 
@@ -173,7 +176,7 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 0.05f)]
     internal partial ref float IndependentCoagulopathySalineIvSafetyThreshold { get; }
-    
+
     // neural damage and permanent brain injuries
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableNeuralDamage { get; }
@@ -202,7 +205,7 @@ public partial class MoreInjuriesSettings : ModSettings
 
     [SettingsEntry<float>(DefaultValue = 0.5f)]
     internal partial ref float MinBleedRateForAutoTourniquet { get; }
-    
+
     // miscellaneous
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableFireInhalation { get; }

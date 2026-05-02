@@ -31,7 +31,7 @@ public static class ReusabilityUtility
         }
     }
 
-    public static void TryDestroyReusableIngredient(Thing ingredient, Pawn doctor, bool destroyStack = true)
+    public static void TryDestroyReusableIngredient(Thing ingredient, Pawn doctor, bool destroyStack = false)
     {
         if (ingredient.def.GetModExtension<ReusabilityProps_ModExtension>() is { DestroyChanceModifier: { } destroyChanceModifier })
         {
