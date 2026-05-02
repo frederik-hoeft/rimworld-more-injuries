@@ -30,9 +30,8 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
             (KnownBodyPartDefOf.Nose, new SelfLacerationHandler()),                             // nose
             // arms
             (KnownBodyPartDefOf.Clavicle, new ParentLacerationHandler()),                       // shoulder
-            (KnownBodyPartDefOf.Humerus, new ParentLacerationHandler()),                        // arm 
+            (KnownBodyPartDefOf.Humerus, new ParentLacerationHandler()),                        // arm
             (KnownBodyPartDefOf.Radius, new ParentLacerationHandler()),                         // arm
-            (BodyPartDefOf.Arm, new SelfLacerationHandler()),                                   // arm
             (BodyPartDefOf.Hand, new SelfAndDescendantsLacerationHandler(targets:               // hand + fingers
             [
                 KnownBodyPartDefOf.Finger
@@ -61,11 +60,6 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
                 KnownBodyPartDefOf.LargeIntestine
             ])),
             // legs
-            (BodyPartDefOf.Leg, new SelfAndDescendantsLacerationHandler(targets:                // nearby soft tissue
-            [
-                KnownBodyPartDefOf.FemoralArtery,
-                KnownBodyPartDefOf.PoplitealArtery
-            ])),
             (KnownBodyPartDefOf.Femur, new ParentAndSiblingsLacerationHandler(targets:          // nearby soft tissue
             [
                 BodyPartDefOf.Leg,
@@ -90,9 +84,9 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Pawn;
-        if (builder.Keys.Contains(UITreatmentOption.UseSplint) 
-            || !selectedPawn.Drafted 
-            || PatientIsActivelyHostileTo(selectedPawn) 
+        if (builder.Keys.Contains(UITreatmentOption.UseSplint)
+            || !selectedPawn.Drafted
+            || PatientIsActivelyHostileTo(selectedPawn)
             || !patient.health.hediffSet.hediffs.Any(static hediff => hediff.def == KnownHediffDefOf.Fracture))
         {
             return;
@@ -136,7 +130,7 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
         {
             // get all breakable body parts that received damage
             IEnumerable<BodyPartRecord> affectedBones = damage.parts.Where(bodyPart =>
-                s_lacerationRegistry.ContainsKey(bodyPart.def) 
+                s_lacerationRegistry.ContainsKey(bodyPart.def)
                 && !patient.health.hediffSet.PartIsMissing(bodyPart));
 
             foreach (BodyPartRecord bone in affectedBones)
