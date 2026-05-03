@@ -126,6 +126,10 @@
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>Minimum defibrillator success rate for unskilled user: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel>
   <!-- EN: The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill < 8).\n\nThe actual success rate scales with the user's medicine skill: max(<this setting>, <medicine skill> / 8). -->
   <MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>The minimum likelihood of a defibrillator successfully resuscitating a patient when used by an unskilled user (Medicine skill &lt; 8).\n\nThe actual success rate scales with the user's medicine skill: max(&lt;this setting&gt;, &lt;medicine skill&gt; / 8).</MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip>
+  <!-- EN: Chance of a defibrillator breaking after use: {VALUE} (default: {DEFAULT}) -->
+  <MI_Settings_Features_HypovolemicShock_DestroyDefibrillatorOnUseChanceLabel>Chance of a defibrillator breaking after use: {VALUE} (default: {DEFAULT})</MI_Settings_Features_HypovolemicShock_DestroyDefibrillatorOnUseChanceLabel>
+  <!-- EN: A defibrillator has a chance of breaking after each use, which is configurable via this setting. -->
+  <MI_Settings_Features_HypovolemicShock_DestroyDefibrillatorOnUseChanceTooltip>A defibrillator has a chance of breaking after each use, which is configurable via this setting.</MI_Settings_Features_HypovolemicShock_DestroyDefibrillatorOnUseChanceTooltip>
   <!-- =========== Feature: Lethal Triad of Trauma ============ -->
   <!-- EN: Lethal Triad of Trauma -->
   <MI_Settings_Features_LethalTriad>Lethal Triad of Trauma</MI_Settings_Features_LethalTriad>

@@ -1,11 +1,15 @@
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿﻿using MoreInjuries.Things.Modifiers;
 using Verse;
 
 namespace MoreInjuries.Things;
 
-[XmlSerializable]
-public partial class ReusabilityProps_ModExtension : DefModExtension
+// members initialized via XML defs
+[SuppressMessage(CODE_STYLE, STYLE_IDE0032_USE_AUTO_PROPERTY, Justification = JUSTIFY_IDE0032_XML_DEF_REQUIRES_FIELD)]
+[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
+public class ReusabilityProps_ModExtension : DefModExtension
 {
-    [XmlMember("destroyChance")]
-    public partial float DestroyChance { get; }
+    // don't rename this field. XML defs depend on this name
+    private readonly ThingModifier destroyChanceModifier = default!;
+
+    public ThingModifier DestroyChanceModifier => destroyChanceModifier;
 }

@@ -1,10 +1,10 @@
 ﻿using Verse;
 
-namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
+namespace MoreInjuries.Things.Modifiers;
 
-public sealed class HediffModifier_Settings_Gauge : HediffModifier_Settings
+public sealed class ThingModifier_Settings_Gauge : ThingModifier_Settings
 {
-    public override float GetModifier(Hediff hediff, HediffCompHandler compHandler)
+    public override float GetModifier(Thing thing)
     {
         string gaugeKey = Key;
         if (!MoreInjuriesMod.Settings.Keyed.TryGetMember(gaugeKey, out float gauge))

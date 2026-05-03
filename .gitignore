@@ -37,6 +37,9 @@ bld/
 # Visual Studio 2017 auto generated files
 Generated\ Files/
 
+# JetBrains Rider project settings
+.idea/
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -368,6 +371,9 @@ artifacts/
 *~
 *.swp
 *.swo
+
+# local config files
+hostconfig.json
 
 # articles that aren't open-access
 /assets/simulation/**/sci-hub-*.pdf

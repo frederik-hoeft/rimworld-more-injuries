@@ -22,7 +22,9 @@
     </statBases>
     <modExtensions>
       <li Class="MoreInjuries.Things.ReusabilityProps_ModExtension">
-        <destroyChance>0.10</destroyChance>
+        <destroyChanceModifier Class="MoreInjuries.Things.Modifiers.ThingModifier_Settings_Gauge">
+          <key>DefibrillatorBreakOnUseRate</key>
+        </destroyChanceModifier>
       </li>
     </modExtensions>
     <thingCategories>
