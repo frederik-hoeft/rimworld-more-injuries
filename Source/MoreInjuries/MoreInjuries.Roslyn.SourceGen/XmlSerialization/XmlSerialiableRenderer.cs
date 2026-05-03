@@ -10,12 +10,6 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
 internal static class XmlSerialiableRenderer
 {
     private static readonly string s_throwHelperPrefix = $"global::{typeof(XmlFieldThrowHelper).FullName}";
-    private static readonly SymbolDisplayFormat s_fullyQualifiedFormat =
-        SymbolDisplayFormat.FullyQualifiedFormat
-            .WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Included)
-            .WithMiscellaneousOptions(
-                SymbolDisplayFormat.FullyQualifiedFormat.MiscellaneousOptions
-                | SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
 
     public static string Render(XmlSerializableGenerationModel model)
     {
@@ -25,7 +19,7 @@ internal static class XmlSerialiableRenderer
             #nullable enable
 
             {{RenderNamespace(model.Namespace)}}
-            partial class {{model.ClassSymbol.Name}}
+            partial class {{model.ClassName}}
             {
 
             """);
@@ -43,39 +37,37 @@ internal static class XmlSerialiableRenderer
     {
         foreach (XmlMemberModel member in model.AnnotatedMembers)
         {
-            string fieldType = GetFieldTypeDisplay(member);
             string readonlyModifier = member.HasSetter && !member.IsInitOnly ? "" : "readonly ";
             string defaultExpression = GetDefaultExpression(member);
 
             builder.AppendLine($"[global::{typeof(CompilerGeneratedAttribute).FullName}]");
-            builder.AppendLine($"private {readonlyModifier}{fieldType} {member.FieldName} = {defaultExpression};");
+            builder.AppendLine($"private {readonlyModifier}{member.FieldTypeDisplay} {member.FieldName} = {defaultExpression};");
         }
     }
 
     private static void BuildPropertyRegion(XmlSerializableGenerationModel model, IndentedStringBuilder builder)
     {
-        string className = model.ClassSymbol.Name;
+        string className = model.ClassName;
 
         foreach (XmlMemberModel member in model.AnnotatedMembers)
         {
-            string accessKeyword = SyntaxFacts.GetText(member.Property.DeclaredAccessibility);
-            string propertyType = member.Property.Type.ToDisplayString(s_fullyQualifiedFormat);
+            string accessKeyword = SyntaxFacts.GetText(member.PropertyAccessibility);
             string getterExpression = GetGetterExpression(member, className);
 
             if (!member.HasSetter)
             {
                 // Getter-only: expression-bodied property
-                builder.AppendLine($"{accessKeyword} partial {propertyType} {member.Property.Name} => {getterExpression};");
+                builder.AppendLine($"{accessKeyword} partial {member.PropertyTypeDisplay} {member.PropertyName} => {getterExpression};");
             }
             else
             {
                 // Getter + setter: block body
-                string setterAccessKeyword = member.SetterAccessibility != member.Property.DeclaredAccessibility
+                string setterAccessKeyword = member.SetterAccessibility != member.PropertyAccessibility
                     ? SyntaxFacts.GetText(member.SetterAccessibility) + " "
                     : "";
                 string setOrInit = member.IsInitOnly ? "init" : "set";
 
-                builder.AppendLine($"{accessKeyword} partial {propertyType} {member.Property.Name}");
+                builder.AppendLine($"{accessKeyword} partial {member.PropertyTypeDisplay} {member.PropertyName}");
                 builder.AppendLine("{");
                 IndentedStringBuilder inner = builder.IncreaseIndent();
                 inner.AppendLine($"get => {getterExpression};");
@@ -83,18 +75,6 @@ internal static class XmlSerialiableRenderer
                 builder.AppendLine("}");
             }
         }
-    }
-
-    private static string GetFieldTypeDisplay(XmlMemberModel member)
-    {
-        if (member.RequiresNullCheck)
-        {
-            // Make the field type nullable
-            return member.Property.Type
-                .WithNullableAnnotation(NullableAnnotation.Annotated)
-                .ToDisplayString(s_fullyQualifiedFormat);
-        }
-        return member.Property.Type.ToDisplayString(s_fullyQualifiedFormat);
     }
 
     private static string GetDefaultExpression(XmlMemberModel member)

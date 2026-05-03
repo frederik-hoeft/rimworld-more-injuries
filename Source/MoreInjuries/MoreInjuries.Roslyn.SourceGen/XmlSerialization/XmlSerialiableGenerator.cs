@@ -35,7 +35,7 @@ public sealed class XmlSerialiableGenerator : IIncrementalGenerator
             if (candidate.Model is { } model)
             {
                 string source = XmlSerialiableRenderer.Render(model);
-                spc.AddSource($"{model.ClassSymbol.Name}.XmlSerializable.g.cs", source);
+                spc.AddSource($"{model.ClassName}.XmlSerializable.g.cs", source);
             }
         });
     }

@@ -10,6 +10,13 @@ internal static class XmlSerializableCandidateFactory
 {
     private static readonly string s_xmlMemberGenericFullName = typeof(XmlMemberAttribute<>).FullName;
 
+    private static readonly SymbolDisplayFormat s_fullyQualifiedFormat =
+        SymbolDisplayFormat.FullyQualifiedFormat
+            .WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Included)
+            .WithMiscellaneousOptions(
+                SymbolDisplayFormat.FullyQualifiedFormat.MiscellaneousOptions
+                | SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
+
     public static XmlSerializableCandidate Create(XmlSerialiableTarget target)
     {
         ImmutableArray<Diagnostic>.Builder diagnostics = ImmutableArray.CreateBuilder<Diagnostic>();
@@ -79,7 +86,7 @@ internal static class XmlSerializableCandidateFactory
         return new XmlSerializableCandidate(
             new XmlSerializableGenerationModel(
                 Namespace: namespaceName,
-                ClassSymbol: typeSymbol,
+                ClassName: typeSymbol.Name,
                 AnnotatedMembers: memberModels.ToImmutable()),
             diagnostics.ToImmutable());
     }
@@ -96,15 +103,23 @@ internal static class XmlSerializableCandidateFactory
         bool requiresNullCheck = isReferenceType && !isNullableAnnotated && !hasDefaultValue;
         bool isStringType = property.Type.SpecialType == SpecialType.System_String;
 
+        string propertyTypeDisplay = property.Type.ToDisplayString(s_fullyQualifiedFormat);
+        string fieldTypeDisplay = requiresNullCheck
+            ? property.Type.WithNullableAnnotation(NullableAnnotation.Annotated).ToDisplayString(s_fullyQualifiedFormat)
+            : propertyTypeDisplay;
+
         return new XmlMemberModel(
-            property,
-            fieldName,
-            defaultValueExpression,
-            hasSetter,
-            isInitOnly,
-            setterAccessibility,
-            requiresNullCheck,
-            isStringType);
+            PropertyName: property.Name,
+            PropertyTypeDisplay: propertyTypeDisplay,
+            FieldTypeDisplay: fieldTypeDisplay,
+            PropertyAccessibility: property.DeclaredAccessibility,
+            FieldName: fieldName,
+            DefaultValueExpression: defaultValueExpression,
+            HasSetter: hasSetter,
+            IsInitOnly: isInitOnly,
+            SetterAccessibility: setterAccessibility,
+            RequiresNullCheck: requiresNullCheck,
+            IsStringType: isStringType);
     }
 
     private static bool TryGetGenericXmlMemberAttribute(
