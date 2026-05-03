@@ -1,4 +1,4 @@
-﻿﻿using MoreInjuries.Things.Modifiers;
+﻿using MoreInjuries.Things.Modifiers;
 using Verse;
 
 namespace MoreInjuries.Things;
