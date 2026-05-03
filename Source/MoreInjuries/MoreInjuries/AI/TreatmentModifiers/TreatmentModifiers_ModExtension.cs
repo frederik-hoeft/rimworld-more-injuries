@@ -12,13 +12,11 @@ public sealed class TreatmentModifiers_ModExtension : DefModExtension
     // do not rename this field. XML defs depend on this name
     private readonly List<TreatmentModifier>? modifiers = default;
 
-    private Dictionary<JobDef, TreatmentModifier[]>? _treatmentModifiersByJobDef;
-
     private Dictionary<JobDef, TreatmentModifier[]> TreatmentModifiersByJobDef
     {
         get
         {
-            if (Volatile.Read(ref _treatmentModifiersByJobDef) is { } result)
+            if (Volatile.Read(ref field) is { } result)
             {
                 return result;
             }
@@ -27,7 +25,7 @@ public sealed class TreatmentModifiers_ModExtension : DefModExtension
                     .GroupBy(modifier => modifier.JobDef)
                     .ToDictionary(group => group.Key, group => group.ToArray())
                 : [];
-            if (Interlocked.CompareExchange(ref _treatmentModifiersByJobDef, value: treatmentModifiersByJobDef, comparand: null) is { } concurrentResult)
+            if (Interlocked.CompareExchange(ref field, value: treatmentModifiersByJobDef, comparand: null) is { } concurrentResult)
             {
                 // another thread already initialized the dictionary, so we return that one
                 return concurrentResult;

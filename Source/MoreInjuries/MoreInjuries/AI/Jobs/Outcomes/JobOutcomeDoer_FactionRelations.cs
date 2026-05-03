@@ -1,4 +1,4 @@
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
 using RimWorld;
 using Verse;
 
@@ -26,7 +26,7 @@ public partial class JobOutcomeDoer_FactionRelations : JobOutcomeDoer
             && !(OnlyIfFriendly && factionToInform.HostileTo(Faction.OfPlayer)))
         {
             Faction.OfPlayer.TryAffectGoodwillWith(factionToInform, GoodwillChange, canSendHostilityLetter: !factionToInform.temporary, reason: HistoryEventDef);
-            if (isViolation)
+            if (IsViolation)
             {
                 QuestUtility.SendQuestTargetSignals(patient.questTags, QuestUtility.QuestTargetSignalPart_SurgeryViolation, patient.Named("SUBJECT"));
             }
