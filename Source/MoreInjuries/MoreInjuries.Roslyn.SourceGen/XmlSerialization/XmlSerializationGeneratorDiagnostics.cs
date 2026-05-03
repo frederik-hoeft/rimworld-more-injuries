@@ -38,4 +38,20 @@ internal static class XmlSerializationGeneratorDiagnostics
         category: CATEGORY,
         defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true);
+
+    public static DiagnosticDescriptor DefaultValueFromMemberNotFound { get; } = new(
+        id: "MIXML005",
+        title: "defaultValueFrom member not found",
+        messageFormat: $"Property '{{0}}' in class '{{1}}' uses an {nameof(XmlMemberAttribute)} with defaultValueFrom '{{2}}', but no primary constructor parameter or static member with that name was found.",
+        category: CATEGORY,
+        defaultSeverity: DiagnosticSeverity.Error,
+        isEnabledByDefault: true);
+
+    public static DiagnosticDescriptor DefaultValueFromTypeMismatch { get; } = new(
+        id: "MIXML006",
+        title: "defaultValueFrom type mismatch",
+        messageFormat: $"Property '{{0}}' in class '{{1}}' uses an {nameof(XmlMemberAttribute)} with defaultValueFrom '{{2}}', but the source type '{{3}}' is not implicitly convertible to the property type '{{4}}'.",
+        category: CATEGORY,
+        defaultSeverity: DiagnosticSeverity.Error,
+        isEnabledByDefault: true);
 }

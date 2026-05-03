@@ -1,24 +1,14 @@
-﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Iterators.Enumerators;
 
-// memebers initialized via XML defs
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class FloatOperator_Enumerate_HediffSeverities : FloatOperator_Enumerate_Flat
+[XmlSerializable]
+public sealed partial class FloatOperator_Enumerate_HediffSeverities : FloatOperator_Enumerate_Flat
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly HediffDef? hediffDef = default;
-
-    private HediffDef HediffDef
-    {
-        get
-        {
-            Throw.InvalidOperationException.IfNull(this, hediffDef);
-            return hediffDef;
-        }
-    }
+    [XmlMember("hediffDef", AllowRawAccess = true)]
+    private partial HediffDef HediffDef { get; }
 
     protected override IEnumerable<float> FlatEnumerate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState)
     {

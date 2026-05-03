@@ -42,7 +42,10 @@ internal static class XmlSerialiableRenderer
             string defaultExpression = GetDefaultExpression(member);
 
             builder.AppendLine($"[global::{typeof(CompilerGeneratedAttribute).FullName}]");
-            builder.AppendLine($"[global::{typeof(ObsoleteAttribute).FullName}(\"Do not use this field directly. Use the corresponding property instead.\", error: false)]");
+            if (!member.AllowRawAccess)
+            {
+                builder.AppendLine($"[global::{typeof(ObsoleteAttribute).FullName}(\"Do not use this field directly. Use the corresponding property instead.\", error: false)]");
+            }
             builder.AppendLine($"private {readonlyModifier}{member.FieldTypeDisplay} {member.FieldName} = {defaultExpression};");
         }
     }
