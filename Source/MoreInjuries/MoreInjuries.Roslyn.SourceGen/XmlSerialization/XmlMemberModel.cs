@@ -15,5 +15,6 @@ internal sealed record XmlMemberModel
     Accessibility SetterAccessibility,
     bool RequiresNullCheck,
     bool IsStringType,
-    bool AllowRawAccess
+    bool AllowRawAccess,
+    string? SetterCastType
 );

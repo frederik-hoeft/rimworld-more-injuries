@@ -1,20 +1,20 @@
-﻿using Verse;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary;
 
-// members initialized via XML defs
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class FloatOperator_Constant() : FloatOperator
+[XmlSerializable]
+public sealed partial class FloatOperator_Constant() : FloatOperator
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly float value = default;
+    [XmlMember("value")]
+    public partial float Value { get; init; }
 
     internal FloatOperator_Constant(float value) : this()
     {
-        this.value = value;
+        Value = value;
     }
 
-    public override float Evaluate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState) => value;
+    public override float Evaluate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState) => Value;
 
-    public override string ToString() => $"const({value})";
+    public override string ToString() => $"const({Value})";
 }

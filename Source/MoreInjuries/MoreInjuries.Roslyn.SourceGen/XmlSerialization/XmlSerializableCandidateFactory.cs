@@ -39,7 +39,7 @@ internal static class XmlSerializableCandidateFactory
             string? fieldName;
             string? defaultValueExpression = null;
             bool defaultValueIsNullable = false;
-            bool allowRawAccess = false;
+            bool allowRawAccess;
 
             if (property.TryGetAttribute<XmlMemberAttribute>(out AttributeData? xmlMemberAttribute)
                 && xmlMemberAttribute.ConstructorArguments is [{ Value: string nonGenericFieldName }])
@@ -117,9 +117,26 @@ internal static class XmlSerializableCandidateFactory
         bool isStringType = property.Type.SpecialType == SpecialType.System_String;
 
         string propertyTypeDisplay = property.Type.ToDisplayString(s_fullyQualifiedFormat);
-        string fieldTypeDisplay = requiresNullCheck
-            ? property.Type.WithNullableAnnotation(NullableAnnotation.Annotated).ToDisplayString(s_fullyQualifiedFormat)
-            : propertyTypeDisplay;
+
+        // Check if the property type is a collection interface that should bind to a concrete List<T>
+        string? concreteCollectionType = TryGetConcreteCollectionType(property.Type);
+        string? setterCastType = null;
+
+        string fieldTypeDisplay;
+        if (concreteCollectionType is not null)
+        {
+            fieldTypeDisplay = requiresNullCheck ? concreteCollectionType + "?" : concreteCollectionType;
+            if (hasSetter)
+            {
+                setterCastType = concreteCollectionType;
+            }
+        }
+        else
+        {
+            fieldTypeDisplay = requiresNullCheck
+                ? property.Type.WithNullableAnnotation(NullableAnnotation.Annotated).ToDisplayString(s_fullyQualifiedFormat)
+                : propertyTypeDisplay;
+        }
 
         return new XmlMemberModel(
             PropertyName: property.Name,
@@ -133,7 +150,30 @@ internal static class XmlSerializableCandidateFactory
             SetterAccessibility: setterAccessibility,
             RequiresNullCheck: requiresNullCheck,
             IsStringType: isStringType,
-            AllowRawAccess: allowRawAccess);
+            AllowRawAccess: allowRawAccess,
+            SetterCastType: setterCastType);
+    }
+
+    private static string? TryGetConcreteCollectionType(ITypeSymbol type)
+    {
+        // Strip nullable annotation for interface check
+        ITypeSymbol strippedType = type.WithNullableAnnotation(NullableAnnotation.None);
+
+        if (strippedType is INamedTypeSymbol { IsGenericType: true, TypeArguments: [ITypeSymbol elementType] } namedType)
+        {
+            string metadataName = namedType.ConstructedFrom.GetFullMetadataName();
+            if (metadataName is "System.Collections.Generic.IReadOnlyList`1"
+                or "System.Collections.Generic.IReadOnlyCollection`1"
+                or "System.Collections.Generic.IList`1"
+                or "System.Collections.Generic.ICollection`1"
+                or "System.Collections.Generic.IEnumerable`1")
+            {
+                string elementTypeDisplay = elementType.ToDisplayString(s_fullyQualifiedFormat);
+                return $"global::System.Collections.Generic.List<{elementTypeDisplay}>";
+            }
+        }
+
+        return null;
     }
 
     private static bool TryGetGenericXmlMemberAttribute(

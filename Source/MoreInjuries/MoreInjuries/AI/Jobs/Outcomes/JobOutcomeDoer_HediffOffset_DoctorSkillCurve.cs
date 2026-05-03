@@ -1,28 +1,29 @@
 ﻿using MoreInjuries.Extensions;
-using System.Linq;
+using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
 using System.Text;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class JobOutcomeDoer_HediffOffset_DoctorSkillCurve : JobOutcomeDoer_HediffOffsetBase
+[XmlSerializable]
+public sealed partial class JobOutcomeDoer_HediffOffset_DoctorSkillCurve : JobOutcomeDoer_HediffOffsetBase
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly SimpleCurve minSeverityOffsetByDoctorSkill = default!;
-    // don't rename this field. XML defs depend on this name
-    private readonly SimpleCurve? maxSeverityOffsetByDoctorSkill = default!;
+    [XmlMember("minSeverityOffsetByDoctorSkill")]
+    private partial SimpleCurve MinSeverityOffsetByDoctorSkill { get; }
+
+    [XmlMember("maxSeverityOffsetByDoctorSkill")]
+    private partial SimpleCurve? MaxSeverityOffsetByDoctorSkill { get; }
 
     protected override float GetSeverityOffset(Pawn doctor, Pawn patient, Thing? device)
     {
         float doctorSkill = doctor.GetMedicalSkillLevelOrDefault();
-        float minOffset = minSeverityOffsetByDoctorSkill.Evaluate(doctorSkill);
-        if (maxSeverityOffsetByDoctorSkill is null)
+        float minOffset = MinSeverityOffsetByDoctorSkill.Evaluate(doctorSkill);
+        if (MaxSeverityOffsetByDoctorSkill is not { } maxOffsetCurve)
         {
             // if maxSeverityOffsetByDoctorSkill is not defined, use minSeverityOffsetByDoctorSkill
             return minOffset;
         }   
-        float maxOffset = maxSeverityOffsetByDoctorSkill.Evaluate(doctorSkill);
+        float maxOffset = maxOffsetCurve.Evaluate(doctorSkill);
         return Rand.Range(minOffset, maxOffset);
     }
 
@@ -31,9 +32,9 @@ public sealed class JobOutcomeDoer_HediffOffset_DoctorSkillCurve : JobOutcomeDoe
         StringBuilder sb = new();
         sb.Append(base.ToString());
         sb.Append(" with doctor skill curve offsets: min=");
-        AddCurvePoints(minSeverityOffsetByDoctorSkill, sb);
+        AddCurvePoints(MinSeverityOffsetByDoctorSkill, sb);
         sb.Append(", max=");
-        AddCurvePoints(maxSeverityOffsetByDoctorSkill, sb);
+        AddCurvePoints(MaxSeverityOffsetByDoctorSkill, sb);
         return sb.ToString();
 
         static void AddCurvePoints(SimpleCurve? curve, StringBuilder sb)

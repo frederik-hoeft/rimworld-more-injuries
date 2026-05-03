@@ -6,7 +6,7 @@ namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic;
 [XmlSerializable]
 public sealed partial class FloatOperator_Assign : FloatOperator_AssignBase
 {
-    [XmlMember("value", AllowRawAccess = true)]
+    [XmlMember("value")]
     public partial FloatOperator Value { get; init; }
 
     public FloatOperator_Assign() : base(null) { }
@@ -22,5 +22,5 @@ public sealed partial class FloatOperator_Assign : FloatOperator_AssignBase
         return AssignValue(evaluatedValue, runtimeState);
     }
 
-    protected override string ValueToString() => value?.ToString() ?? "null";
+    protected override string ValueToString() => Value.ToString();
 }

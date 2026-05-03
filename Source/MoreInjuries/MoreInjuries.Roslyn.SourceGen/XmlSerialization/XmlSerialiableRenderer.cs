@@ -71,12 +71,15 @@ internal static class XmlSerialiableRenderer
                     ? SyntaxFacts.GetText(member.SetterAccessibility) + " "
                     : "";
                 string setOrInit = member.IsInitOnly ? "init" : "set";
+                string valueExpression = member.SetterCastType is { } castType
+                    ? $"({castType})value"
+                    : "value";
 
                 builder.AppendLine($"{accessKeyword} partial {member.PropertyTypeDisplay} {member.PropertyName}");
                 builder.AppendLine("{");
                 IndentedStringBuilder inner = builder.IncreaseIndent();
                 inner.AppendLine($"get => {getterExpression};");
-                inner.AppendLine($"{setterAccessKeyword}{setOrInit} => this.{member.FieldName} = value;");
+                inner.AppendLine($"{setterAccessKeyword}{setOrInit} => this.{member.FieldName} = {valueExpression};");
                 builder.AppendLine("}");
             }
         }

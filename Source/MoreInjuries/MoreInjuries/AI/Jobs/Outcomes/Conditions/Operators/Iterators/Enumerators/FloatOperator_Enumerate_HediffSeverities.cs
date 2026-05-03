@@ -7,7 +7,7 @@ namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Iterators.Enumerato
 [XmlSerializable]
 public sealed partial class FloatOperator_Enumerate_HediffSeverities : FloatOperator_Enumerate_Flat
 {
-    [XmlMember("hediffDef", AllowRawAccess = true)]
+    [XmlMember("hediffDef")]
     private partial HediffDef HediffDef { get; }
 
     protected override IEnumerable<float> FlatEnumerate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState)
@@ -22,5 +22,5 @@ public sealed partial class FloatOperator_Enumerate_HediffSeverities : FloatOper
         }
     }
 
-    public override string ToString() => $"enumerate_hediff_severities({hediffDef?.defName ?? "null"})";
+    public override string ToString() => $"enumerate_hediff_severities({HediffDef.defName})";
 }
