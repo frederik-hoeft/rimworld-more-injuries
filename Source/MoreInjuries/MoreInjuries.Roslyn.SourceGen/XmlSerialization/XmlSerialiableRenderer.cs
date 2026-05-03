@@ -1,5 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
+﻿using Microsoft.CodeAnalysis.CSharp;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
 using System.Runtime.CompilerServices;
@@ -27,7 +26,9 @@ internal static class XmlSerialiableRenderer
         IndentedStringBuilder indentedBuilder = new(sourceBuilder, indentLevel: 1);
         BuildFieldRegion(model, indentedBuilder);
         indentedBuilder.Raw.AppendLine();
+        sourceBuilder.AppendLine("#pragma warning disable CS0618 // generated property accessors reference [Obsolete] backing fields");
         BuildPropertyRegion(model, indentedBuilder);
+        sourceBuilder.AppendLine("#pragma warning restore CS0618");
         sourceBuilder.AppendLine("}");
 
         return sourceBuilder.ToString();
@@ -41,6 +42,7 @@ internal static class XmlSerialiableRenderer
             string defaultExpression = GetDefaultExpression(member);
 
             builder.AppendLine($"[global::{typeof(CompilerGeneratedAttribute).FullName}]");
+            builder.AppendLine($"[global::{typeof(ObsoleteAttribute).FullName}(\"Do not use this field directly. Use the corresponding property instead.\", error: false)]");
             builder.AppendLine($"private {readonlyModifier}{member.FieldTypeDisplay} {member.FieldName} = {defaultExpression};");
         }
     }
@@ -71,7 +73,7 @@ internal static class XmlSerialiableRenderer
                 builder.AppendLine("{");
                 IndentedStringBuilder inner = builder.IncreaseIndent();
                 inner.AppendLine($"get => {getterExpression};");
-                inner.AppendLine($"{setterAccessKeyword}{setOrInit} => {member.FieldName} = value;");
+                inner.AppendLine($"{setterAccessKeyword}{setOrInit} => this.{member.FieldName} = value;");
                 builder.AppendLine("}");
             }
         }
@@ -92,13 +94,13 @@ internal static class XmlSerialiableRenderer
     {
         if (!member.RequiresNullCheck)
         {
-            return member.FieldName;
+            return $"this.{member.FieldName}";
         }
         if (member.IsStringType)
         {
-            return $"{s_throwHelperPrefix}.{nameof(XmlFieldThrowHelper.NotNullOrEmpty)}({member.FieldName}, \"{className}\")";
+            return $"{s_throwHelperPrefix}.{nameof(XmlFieldThrowHelper.NotNullOrEmpty)}(this.{member.FieldName}, \"{className}\")";
         }
-        return $"{s_throwHelperPrefix}.{nameof(XmlFieldThrowHelper.NotNull)}({member.FieldName}, \"{className}\")";
+        return $"{s_throwHelperPrefix}.{nameof(XmlFieldThrowHelper.NotNull)}(this.{member.FieldName}, \"{className}\")";
     }
 
     private static string RenderNamespace(string namespaceName) =>
