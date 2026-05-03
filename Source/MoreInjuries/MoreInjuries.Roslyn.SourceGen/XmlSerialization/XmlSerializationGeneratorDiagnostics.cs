@@ -1,4 +1,4 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;

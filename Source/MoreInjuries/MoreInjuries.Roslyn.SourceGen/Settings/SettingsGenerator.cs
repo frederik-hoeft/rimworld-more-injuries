@@ -1,4 +1,4 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
@@ -186,7 +186,7 @@ public sealed class SettingsGenerator : IIncrementalGenerator
                 string backingFieldName = SymbolNameGenerator.MakeUnique($"_{ToCamelCase(entry.Property.Name)}");
                 string defaultValueName = $"{ToScreamingSnakeCase(entry.Property.Name)}_DEFAULT";
                 backingFieldResolver[entry.Property.Name] = backingFieldName;
-                defaultValueResolver[entry.Property.Name] = defaultValueName; 
+                defaultValueResolver[entry.Property.Name] = defaultValueName;
                 bobTheBuilder.AppendLine(
                     $$"""
                     {{indent}}[global::{{typeof(CompilerGeneratedAttribute).FullName}}]

@@ -1,4 +1,4 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
@@ -15,6 +15,7 @@ public sealed class XmlSerialiableGenerator : IIncrementalGenerator
             postInit.AddEmbeddedSource<XmlSerializableAttribute>();
             postInit.AddEmbeddedSource<XmlMemberAttribute>();
             postInit.AddEmbeddedSource(typeof(XmlMemberAttribute<>));
+            postInit.AddEmbeddedSource(typeof(XmlFieldThrowHelper));
         });
 
         IncrementalValuesProvider<XmlSerialiableTarget> targets = context.SyntaxProvider.ForAttributeWithMetadataName(

@@ -1,4 +1,4 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Runtime.CompilerServices;
@@ -7,7 +7,7 @@ namespace MoreInjuries.Roslyn.SourceGen.Extensions;
 
 internal static class NamedTypeSymbolExtensions
 {
-    extension (INamedTypeSymbol self)
+    extension(INamedTypeSymbol self)
     {
         /// <summary>
         /// Enumerates the most derived members of the current type, optionally filtering by visibility context.

@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;

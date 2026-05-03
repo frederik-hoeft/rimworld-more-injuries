@@ -1,4 +1,4 @@
-namespace MoreInjuries.Roslyn.SourceGen.Extensions;
+﻿namespace MoreInjuries.Roslyn.SourceGen.Extensions;
 
 internal static class SymbolNameGenerator
 {

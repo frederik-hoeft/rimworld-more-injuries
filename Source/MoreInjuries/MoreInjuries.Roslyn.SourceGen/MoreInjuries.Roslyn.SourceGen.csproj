@@ -20,6 +20,7 @@
     <ItemGroup>
         <!-- Embedded source files injected into the compilation for source generators -->
         <EmbeddedResource Include="Contracts\GeneratorContractRegistrationAttribute`1.cs" />
+        <EmbeddedResource Include="XmlSerialization\Attributes\XmlFieldThrowHelper.cs" />
         <EmbeddedResource Include="XmlSerialization\Attributes\XmlMemberAttribute.cs" />
         <EmbeddedResource Include="XmlSerialization\Attributes\XmlMemberAttribute`1.cs" />
         <EmbeddedResource Include="XmlSerialization\Attributes\XmlSerializableAttribute.cs" />

@@ -1,4 +1,4 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
@@ -69,7 +69,7 @@ internal static class XmlSerializableCandidateFactory
                     fieldName));
                 continue;
             }
-            memberModels.Add(new XmlMemberModel(property, fieldName!, defaultValueExpression));
+            memberModels.Add(CreateMemberModel(property, fieldName!, defaultValueExpression));
         }
 
         string namespaceName = typeSymbol.ContainingNamespace?.IsGlobalNamespace is false
@@ -82,6 +82,29 @@ internal static class XmlSerializableCandidateFactory
                 ClassSymbol: typeSymbol,
                 AnnotatedMembers: memberModels.ToImmutable()),
             diagnostics.ToImmutable());
+    }
+
+    private static XmlMemberModel CreateMemberModel(IPropertySymbol property, string fieldName, string? defaultValueExpression)
+    {
+        bool hasSetter = property.SetMethod is not null;
+        bool isInitOnly = property.SetMethod?.IsInitOnly ?? false;
+        Accessibility setterAccessibility = property.SetMethod?.DeclaredAccessibility ?? Accessibility.NotApplicable;
+
+        bool isReferenceType = property.Type.IsReferenceType;
+        bool isNullableAnnotated = property.Type.NullableAnnotation == NullableAnnotation.Annotated;
+        bool hasDefaultValue = defaultValueExpression is not null;
+        bool requiresNullCheck = isReferenceType && !isNullableAnnotated && !hasDefaultValue;
+        bool isStringType = property.Type.SpecialType == SpecialType.System_String;
+
+        return new XmlMemberModel(
+            property,
+            fieldName,
+            defaultValueExpression,
+            hasSetter,
+            isInitOnly,
+            setterAccessibility,
+            requiresNullCheck,
+            isStringType);
     }
 
     private static bool TryGetGenericXmlMemberAttribute(
