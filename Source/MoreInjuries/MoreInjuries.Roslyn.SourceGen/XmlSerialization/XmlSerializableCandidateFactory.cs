@@ -62,9 +62,9 @@ internal static class XmlSerializableCandidateFactory
                 diagnostics.Add(Diagnostic.Create(
                     XmlSerializationGeneratorDiagnostics.InvalidFieldName,
                     property.Locations.FirstOrDefault(),
-                    fieldName,
+                    property.Name,
                     typeSymbol.Name,
-                    property.Name));
+                    fieldName));
                 continue;
             }
             if (!typeSymbol.GetMembers(fieldName!).IsEmpty)
@@ -72,6 +72,7 @@ internal static class XmlSerializableCandidateFactory
                 diagnostics.Add(Diagnostic.Create(
                     XmlSerializationGeneratorDiagnostics.MemberNameConflict,
                     property.Locations.FirstOrDefault(),
+                    property.Name,
                     typeSymbol.Name,
                     fieldName));
                 continue;
