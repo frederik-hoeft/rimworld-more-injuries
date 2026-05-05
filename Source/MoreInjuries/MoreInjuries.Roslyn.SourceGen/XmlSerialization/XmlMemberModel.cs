@@ -8,6 +8,7 @@ internal sealed record XmlMemberModel
     string PropertyTypeDisplay,
     string FieldTypeDisplay,
     Accessibility PropertyAccessibility,
+    string PropertyModifiers,
     string FieldName,
     string? DefaultValueExpression,
     bool HasSetter,
@@ -16,5 +17,9 @@ internal sealed record XmlMemberModel
     bool RequiresNullCheck,
     bool IsStringType,
     bool AllowRawAccess,
-    string? SetterCastType
+    string? SetterCastType,
+    string? ValidateMethodName,
+    bool ValidateIsStatic,
+    string? TransformMethodName,
+    bool TransformIsStatic
 );

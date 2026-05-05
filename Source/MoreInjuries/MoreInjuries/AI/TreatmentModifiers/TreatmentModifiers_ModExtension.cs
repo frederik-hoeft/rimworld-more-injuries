@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Verse;
 
 namespace MoreInjuries.AI.TreatmentModifiers;
 
-// members initialized via XML defs
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class TreatmentModifiers_ModExtension : DefModExtension
+[XmlSerializable]
+public sealed partial class TreatmentModifiers_ModExtension : DefModExtension
 {
-    // do not rename this field. XML defs depend on this name
-    private readonly List<TreatmentModifier>? modifiers = default;
+    [XmlMember("modifiers")]
+    public partial IReadOnlyList<TreatmentModifier>? Modifiers { get; }
 
     private Dictionary<JobDef, TreatmentModifier[]> TreatmentModifiersByJobDef
     {
@@ -20,11 +20,10 @@ public sealed class TreatmentModifiers_ModExtension : DefModExtension
             {
                 return result;
             }
-            Dictionary<JobDef, TreatmentModifier[]> treatmentModifiersByJobDef = modifiers is not null
-                ? modifiers
-                    .GroupBy(modifier => modifier.JobDef)
-                    .ToDictionary(group => group.Key, group => group.ToArray())
-                : [];
+            Dictionary<JobDef, TreatmentModifier[]> treatmentModifiersByJobDef = Modifiers
+                ?.GroupBy(modifier => modifier.JobDef)
+                .ToDictionary(group => group.Key, group => group.ToArray())
+                ?? [];
             if (Interlocked.CompareExchange(ref field, value: treatmentModifiersByJobDef, comparand: null) is { } concurrentResult)
             {
                 // another thread already initialized the dictionary, so we return that one

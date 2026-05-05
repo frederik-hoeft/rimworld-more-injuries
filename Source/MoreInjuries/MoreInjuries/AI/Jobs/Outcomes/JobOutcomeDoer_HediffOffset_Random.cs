@@ -1,14 +1,15 @@
-﻿using Verse;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class JobOutcomeDoer_HediffOffset_Random : JobOutcomeDoer_HediffOffsetBase
+[XmlSerializable]
+public sealed partial class JobOutcomeDoer_HediffOffset_Random : JobOutcomeDoer_HediffOffsetBase
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly FloatRange severityOffsetRange = default!;
+    [XmlMember("severityOffsetRange")]
+    public partial FloatRange SeverityOffsetRange { get; }
 
-    protected override float GetSeverityOffset(Pawn doctor, Pawn patient, Thing? device) => severityOffsetRange.RandomInRange;
+    protected override float GetSeverityOffset(Pawn doctor, Pawn patient, Thing? device) => SeverityOffsetRange.RandomInRange;
 
-    public override string ToString() => $"{base.ToString()} with random severity offset range {severityOffsetRange}";
+    public override string ToString() => $"{base.ToString()} with random severity offset range {SeverityOffsetRange}";
 }

@@ -57,32 +57,79 @@ internal static class XmlSerialiableRenderer
         foreach (XmlMemberModel member in model.AnnotatedMembers)
         {
             string accessKeyword = SyntaxFacts.GetText(member.PropertyAccessibility);
-            string getterExpression = GetGetterExpression(member, className);
+            string modifiers = member.PropertyModifiers;
+            bool needsBlockGetter = member.ValidateMethodName is not null || member.TransformMethodName is not null;
 
-            if (!member.HasSetter)
+            if (!member.HasSetter && !needsBlockGetter)
             {
-                // Getter-only: expression-bodied property
-                builder.AppendLine($"{accessKeyword} partial {member.PropertyTypeDisplay} {member.PropertyName} => {getterExpression};");
+                // Simple getter-only: expression-bodied property
+                string getterExpression = GetGetterExpression(member, className);
+                builder.AppendLine($"{accessKeyword} {modifiers}partial {member.PropertyTypeDisplay} {member.PropertyName} => {getterExpression};");
             }
             else
             {
-                // Getter + setter: block body
-                string setterAccessKeyword = member.SetterAccessibility != member.PropertyAccessibility
-                    ? SyntaxFacts.GetText(member.SetterAccessibility) + " "
-                    : "";
-                string setOrInit = member.IsInitOnly ? "init" : "set";
-                string valueExpression = member.SetterCastType is { } castType
-                    ? $"({castType})value"
-                    : "value";
-
-                builder.AppendLine($"{accessKeyword} partial {member.PropertyTypeDisplay} {member.PropertyName}");
+                // Block body property
+                builder.AppendLine($"{accessKeyword} {modifiers}partial {member.PropertyTypeDisplay} {member.PropertyName}");
                 builder.AppendLine("{");
                 IndentedStringBuilder inner = builder.IncreaseIndent();
-                inner.AppendLine($"get => {getterExpression};");
-                inner.AppendLine($"{setterAccessKeyword}{setOrInit} => this.{member.FieldName} = {valueExpression};");
+
+                if (needsBlockGetter)
+                {
+                    BuildBlockGetter(inner, member, className);
+                }
+                else
+                {
+                    string getterExpression = GetGetterExpression(member, className);
+                    inner.AppendLine($"get => {getterExpression};");
+                }
+
+                if (member.HasSetter)
+                {
+                    string setterAccessKeyword = member.SetterAccessibility != member.PropertyAccessibility
+                        ? SyntaxFacts.GetText(member.SetterAccessibility) + " "
+                        : "";
+                    string setOrInit = member.IsInitOnly ? "init" : "set";
+                    string valueExpression = member.SetterCastType is { } castType
+                        ? $"({castType})value"
+                        : "value";
+                    inner.AppendLine($"{setterAccessKeyword}{setOrInit} => this.{member.FieldName} = {valueExpression};");
+                }
+
                 builder.AppendLine("}");
             }
         }
+    }
+
+    private static void BuildBlockGetter(IndentedStringBuilder builder, XmlMemberModel member, string className)
+    {
+        builder.AppendLine("get");
+        builder.AppendLine("{");
+        IndentedStringBuilder inner = builder.IncreaseIndent();
+
+        // Step 1: get base value (with null-check if needed)
+        string baseExpression = GetGetterExpression(member, className);
+        inner.AppendLine($"{member.PropertyTypeDisplay} __value = {baseExpression};");
+
+        // Step 2: apply Transform if specified
+        if (member.TransformMethodName is { } transform)
+        {
+            string callPrefix = member.TransformIsStatic ? "" : "this.";
+            inner.AppendLine($"__value = {callPrefix}{transform}(__value);");
+        }
+
+        // Step 3: apply Validate if specified
+        if (member.ValidateMethodName is { } validate)
+        {
+            string callPrefix = member.ValidateIsStatic ? "" : "this.";
+            inner.AppendLine($"if (!{callPrefix}{validate}(__value))");
+            inner.AppendLine("{");
+            IndentedStringBuilder throwInner = inner.IncreaseIndent();
+            throwInner.AppendLine($"{s_throwHelperPrefix}.{nameof(XmlFieldThrowHelper.FailedValidation)}(\"{className}\", \"{member.PropertyName}\");");
+            inner.AppendLine("}");
+        }
+
+        inner.AppendLine("return __value;");
+        builder.AppendLine("}");
     }
 
     private static string GetDefaultExpression(XmlMemberModel member)

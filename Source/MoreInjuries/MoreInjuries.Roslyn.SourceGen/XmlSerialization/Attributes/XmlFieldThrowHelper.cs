@@ -24,6 +24,12 @@ internal static class XmlFieldThrowHelper
             $"XML-bound member '{memberExpression}' of type '{typeName}' was not initialized or is empty. " +
             "Ensure the XML def provides a non-empty value for this field.");
 
+    [DoesNotReturn]
+    private static void ThrowFailedValidation(string typeName, string propertyName) =>
+        throw new InvalidOperationException(
+            $"Validation failed for property '{propertyName}' of type '{typeName}'. " +
+            "The value loaded from the XML def did not pass the configured validator.");
+
     /// <summary>
     /// Returns <paramref name="value"/> if it is not <see langword="null"/>; otherwise throws
     /// an <see cref="InvalidOperationException"/> indicating that the XML-bound field was not initialized.
@@ -51,4 +57,12 @@ internal static class XmlFieldThrowHelper
         }
         return value;
     }
+
+    /// <summary>
+    /// Throws an <see cref="InvalidOperationException"/> indicating that the validator for
+    /// the specified property returned <see langword="false"/>.
+    /// </summary>
+    [DoesNotReturn]
+    public static void FailedValidation(string typeName, string propertyName) =>
+        ThrowFailedValidation(typeName, propertyName);
 }

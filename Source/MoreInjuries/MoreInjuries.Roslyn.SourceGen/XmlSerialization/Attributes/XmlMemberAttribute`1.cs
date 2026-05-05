@@ -23,6 +23,18 @@ public sealed class XmlMemberAttribute<T>(string name, T defaultValue) : Attribu
     public T DefaultValue { get; } = defaultValue;
 
     /// <summary>
+    /// Optional name of a local method (instance or static) with the signature <c>propertyType -&gt; bool</c>.
+    /// The method is invoked by the generated getter before returning, and an exception is thrown if it returns <see langword="false"/>.
+    /// </summary>
+    public string? Validate { get; init; }
+
+    /// <summary>
+    /// Optional name of a local method (instance or static) with the signature <c>propertyType -&gt; propertyType</c>.
+    /// The method is invoked by the generated getter to transform the value before returning it.
+    /// </summary>
+    public string? Transform { get; init; }
+
+    /// <summary>
     /// When set to <see langword="true"/>, the generated backing field will not be marked with
     /// <see cref="ObsoleteAttribute"/>, allowing direct access without compiler warnings.
     /// </summary>

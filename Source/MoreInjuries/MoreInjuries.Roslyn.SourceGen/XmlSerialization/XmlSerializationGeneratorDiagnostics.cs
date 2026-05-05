@@ -54,4 +54,36 @@ internal static class XmlSerializationGeneratorDiagnostics
         category: CATEGORY,
         defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true);
+
+    public static DiagnosticDescriptor DefaultValueProviderMemberNotFound { get; } = new(
+        id: "MIXML007",
+        title: "DefaultValueProvider member not found",
+        messageFormat: $"Property '{{0}}' in class '{{1}}' uses an {nameof(XmlMemberAttribute)} with DefaultValueProvider '{{2}}' and DefaultValueFrom '{{3}}', but no static member with that name was found on the provider type.",
+        category: CATEGORY,
+        defaultSeverity: DiagnosticSeverity.Error,
+        isEnabledByDefault: true);
+
+    public static DiagnosticDescriptor DefaultValueProviderRequiresDefaultValueFrom { get; } = new(
+        id: "MIXML008",
+        title: "DefaultValueProvider requires DefaultValueFrom",
+        messageFormat: $"Property '{{0}}' in class '{{1}}' uses an {nameof(XmlMemberAttribute)} with DefaultValueProvider but DefaultValueFrom is not specified.",
+        category: CATEGORY,
+        defaultSeverity: DiagnosticSeverity.Error,
+        isEnabledByDefault: true);
+
+    public static DiagnosticDescriptor ValidateMethodNotFound { get; } = new(
+        id: "MIXML009",
+        title: "Validate method not found or invalid signature",
+        messageFormat: $"Property '{{0}}' in class '{{1}}' uses an {nameof(XmlMemberAttribute)} with Validate '{{2}}', but no method with the signature '{{3}} -> bool' was found.",
+        category: CATEGORY,
+        defaultSeverity: DiagnosticSeverity.Error,
+        isEnabledByDefault: true);
+
+    public static DiagnosticDescriptor TransformMethodNotFound { get; } = new(
+        id: "MIXML010",
+        title: "Transform method not found or invalid signature",
+        messageFormat: $"Property '{{0}}' in class '{{1}}' uses an {nameof(XmlMemberAttribute)} with Transform '{{2}}', but no method with the signature '{{3}} -> {{3}}' was found.",
+        category: CATEGORY,
+        defaultSeverity: DiagnosticSeverity.Error,
+        isEnabledByDefault: true);
 }

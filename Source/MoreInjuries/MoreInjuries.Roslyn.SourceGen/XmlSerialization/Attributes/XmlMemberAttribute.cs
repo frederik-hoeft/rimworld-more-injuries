@@ -17,8 +17,28 @@ public sealed class XmlMemberAttribute(string name) : Attribute
     /// <summary>
     /// Optional name of a primary constructor parameter or static member (field/property) whose value
     /// is used to initialize the backing field. The source type must be implicitly convertible to the property type.
+    /// When <see cref="DefaultValueProvider"/> is specified, the member is resolved on that type instead.
     /// </summary>
     public string? DefaultValueFrom { get; init; }
+
+    /// <summary>
+    /// Optional type that provides the static member referenced by <see cref="DefaultValueFrom"/>.
+    /// When set, <see cref="DefaultValueFrom"/> must also be specified and refers to a static member
+    /// on this type rather than on the declaring class.
+    /// </summary>
+    public Type? DefaultValueProvider { get; init; }
+
+    /// <summary>
+    /// Optional name of a local method (instance or static) with the signature <c>propertyType -&gt; bool</c>.
+    /// The method is invoked by the generated getter before returning, and an exception is thrown if it returns <see langword="false"/>.
+    /// </summary>
+    public string? Validate { get; init; }
+
+    /// <summary>
+    /// Optional name of a local method (instance or static) with the signature <c>propertyType -&gt; propertyType</c>.
+    /// The method is invoked by the generated getter to transform the value before returning it.
+    /// </summary>
+    public string? Transform { get; init; }
 
     /// <summary>
     /// When set to <see langword="true"/>, the generated backing field will not be marked with

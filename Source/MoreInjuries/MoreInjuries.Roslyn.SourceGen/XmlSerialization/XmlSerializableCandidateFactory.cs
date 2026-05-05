@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
@@ -40,6 +41,10 @@ internal static class XmlSerializableCandidateFactory
             string? defaultValueExpression = null;
             bool defaultValueIsNullable = false;
             bool allowRawAccess;
+            string? validateMethodName = null;
+            bool validateIsStatic = false;
+            string? transformMethodName = null;
+            bool transformIsStatic = false;
 
             if (property.TryGetAttribute<XmlMemberAttribute>(out AttributeData? xmlMemberAttribute)
                 && xmlMemberAttribute.ConstructorArguments is [{ Value: string nonGenericFieldName }])
@@ -47,18 +52,80 @@ internal static class XmlSerializableCandidateFactory
                 fieldName = nonGenericFieldName;
                 allowRawAccess = GetAllowRawAccess(xmlMemberAttribute);
 
-                // Check for DefaultValueFrom named argument
-                if (GetNamedStringArgument(xmlMemberAttribute, nameof(XmlMemberAttribute.DefaultValueFrom)) is { } defaultValueFrom)
+                // Check for DefaultValueProvider + DefaultValueFrom
+                INamedTypeSymbol? defaultValueProvider = GetNamedTypeArgument(xmlMemberAttribute, nameof(XmlMemberAttribute.DefaultValueProvider));
+                string? defaultValueFrom = GetNamedStringArgument(xmlMemberAttribute, nameof(XmlMemberAttribute.DefaultValueFrom));
+
+                if (defaultValueProvider is not null)
+                {
+                    if (defaultValueFrom is null)
+                    {
+                        diagnostics.Add(Diagnostic.Create(
+                            XmlSerializationGeneratorDiagnostics.DefaultValueProviderRequiresDefaultValueFrom,
+                            property.Locations.FirstOrDefault(),
+                            property.Name,
+                            typeSymbol.Name));
+                        continue;
+                    }
+                    if (!TryResolveDefaultValueFromProvider(defaultValueProvider, typeSymbol, property, defaultValueFrom, diagnostics, out defaultValueExpression, out defaultValueIsNullable))
+                    {
+                        continue;
+                    }
+                }
+                else if (defaultValueFrom is not null)
                 {
                     if (!TryResolveDefaultValueFrom(typeSymbol, property, defaultValueFrom, diagnostics, out defaultValueExpression, out defaultValueIsNullable))
                     {
                         continue;
                     }
                 }
+
+                // Validate and Transform
+                if (GetNamedStringArgument(xmlMemberAttribute, nameof(XmlMemberAttribute.Validate)) is { } validateName)
+                {
+                    if (!TryResolveValidateMethod(typeSymbol, property, validateName, diagnostics, out validateIsStatic))
+                    {
+                        continue;
+                    }
+                    validateMethodName = validateName;
+                }
+                if (GetNamedStringArgument(xmlMemberAttribute, nameof(XmlMemberAttribute.Transform)) is { } transformName)
+                {
+                    if (!TryResolveTransformMethod(typeSymbol, property, transformName, diagnostics, out transformIsStatic))
+                    {
+                        continue;
+                    }
+                    transformMethodName = transformName;
+                }
             }
             else if (!TryGetGenericXmlMemberAttribute(property, out fieldName, out defaultValueExpression, out allowRawAccess))
             {
                 continue;
+            }
+            else
+            {
+                // For generic attribute, also extract Validate and Transform
+                AttributeData genericAttribute = property.GetAttributes()
+                    .First(a => a.AttributeClass is { IsGenericType: true } ac
+                        && ac.ConstructUnboundGenericType().GetFullMetadataName()
+                            .Equals(s_xmlMemberGenericFullName, StringComparison.Ordinal));
+
+                if (GetNamedStringArgument(genericAttribute, nameof(XmlMemberAttribute.Validate)) is { } validateName)
+                {
+                    if (!TryResolveValidateMethod(typeSymbol, property, validateName, diagnostics, out validateIsStatic))
+                    {
+                        continue;
+                    }
+                    validateMethodName = validateName;
+                }
+                if (GetNamedStringArgument(genericAttribute, nameof(XmlMemberAttribute.Transform)) is { } transformName)
+                {
+                    if (!TryResolveTransformMethod(typeSymbol, property, transformName, diagnostics, out transformIsStatic))
+                    {
+                        continue;
+                    }
+                    transformMethodName = transformName;
+                }
             }
             if (!property.IsPartialDefinition)
             {
@@ -89,7 +156,7 @@ internal static class XmlSerializableCandidateFactory
                     fieldName));
                 continue;
             }
-            memberModels.Add(CreateMemberModel(property, fieldName!, defaultValueExpression, defaultValueIsNullable, allowRawAccess));
+            memberModels.Add(CreateMemberModel(property, fieldName!, defaultValueExpression, defaultValueIsNullable, allowRawAccess, validateMethodName, validateIsStatic, transformMethodName, transformIsStatic));
         }
 
         string namespaceName = typeSymbol.ContainingNamespace?.IsGlobalNamespace is false
@@ -104,7 +171,7 @@ internal static class XmlSerializableCandidateFactory
             diagnostics.ToImmutable());
     }
 
-    private static XmlMemberModel CreateMemberModel(IPropertySymbol property, string fieldName, string? defaultValueExpression, bool defaultValueIsNullable, bool allowRawAccess)
+    private static XmlMemberModel CreateMemberModel(IPropertySymbol property, string fieldName, string? defaultValueExpression, bool defaultValueIsNullable, bool allowRawAccess, string? validateMethodName, bool validateIsStatic, string? transformMethodName, bool transformIsStatic)
     {
         bool hasSetter = property.SetMethod is not null;
         bool isInitOnly = property.SetMethod?.IsInitOnly ?? false;
@@ -117,6 +184,7 @@ internal static class XmlSerializableCandidateFactory
         bool isStringType = property.Type.SpecialType == SpecialType.System_String;
 
         string propertyTypeDisplay = property.Type.ToDisplayString(s_fullyQualifiedFormat);
+        string propertyModifiers = GetPropertyModifiers(property);
 
         // Check if the property type is a collection interface that should bind to a concrete List<T>
         string? concreteCollectionType = TryGetConcreteCollectionType(property.Type);
@@ -143,6 +211,7 @@ internal static class XmlSerializableCandidateFactory
             PropertyTypeDisplay: propertyTypeDisplay,
             FieldTypeDisplay: fieldTypeDisplay,
             PropertyAccessibility: property.DeclaredAccessibility,
+            PropertyModifiers: propertyModifiers,
             FieldName: fieldName,
             DefaultValueExpression: defaultValueExpression,
             HasSetter: hasSetter,
@@ -151,7 +220,23 @@ internal static class XmlSerializableCandidateFactory
             RequiresNullCheck: requiresNullCheck,
             IsStringType: isStringType,
             AllowRawAccess: allowRawAccess,
-            SetterCastType: setterCastType);
+            SetterCastType: setterCastType,
+            ValidateMethodName: validateMethodName,
+            ValidateIsStatic: validateIsStatic,
+            TransformMethodName: transformMethodName,
+            TransformIsStatic: transformIsStatic);
+    }
+
+    private static string GetPropertyModifiers(IPropertySymbol property)
+    {
+        List<string> modifiers = [];
+        if (property.IsVirtual) modifiers.Add("virtual");
+        if (property.IsOverride) modifiers.Add("override");
+        if (property.IsSealed && property.IsOverride) modifiers.Add("sealed");
+        if (property.IsAbstract) modifiers.Add("abstract");
+        // 'new' is detected from hiding
+        if (property.IsStatic) modifiers.Add("static");
+        return modifiers.Count > 0 ? string.Join(" ", modifiers) + " " : "";
     }
 
     private static string? TryGetConcreteCollectionType(ITypeSymbol type)
@@ -224,6 +309,134 @@ internal static class XmlSerializableCandidateFactory
             }
         }
         return null;
+    }
+
+    private static INamedTypeSymbol? GetNamedTypeArgument(AttributeData attribute, string argumentName)
+    {
+        foreach (KeyValuePair<string, TypedConstant> namedArg in attribute.NamedArguments)
+        {
+            if (namedArg.Key == argumentName && namedArg.Value.Value is INamedTypeSymbol typeSymbol)
+            {
+                return typeSymbol;
+            }
+        }
+        return null;
+    }
+
+    private static bool TryResolveDefaultValueFromProvider(
+        INamedTypeSymbol providerType,
+        INamedTypeSymbol declaringType,
+        IPropertySymbol property,
+        string defaultValueFrom,
+        ImmutableArray<Diagnostic>.Builder diagnostics,
+        out string? defaultValueExpression,
+        out bool isNullable)
+    {
+        ISymbol? staticMember = providerType.GetMembers(defaultValueFrom)
+            .FirstOrDefault(m => m.IsStatic && m is IFieldSymbol or IPropertySymbol);
+
+        if (staticMember is null)
+        {
+            diagnostics.Add(Diagnostic.Create(
+                XmlSerializationGeneratorDiagnostics.DefaultValueProviderMemberNotFound,
+                property.Locations.FirstOrDefault(),
+                property.Name,
+                declaringType.Name,
+                providerType.ToDisplayString(s_fullyQualifiedFormat),
+                defaultValueFrom));
+            defaultValueExpression = null;
+            isNullable = false;
+            return false;
+        }
+
+        ITypeSymbol memberType = staticMember switch
+        {
+            IFieldSymbol field => field.Type,
+            IPropertySymbol prop => prop.Type,
+            _ => throw new InvalidOperationException()
+        };
+
+        ITypeSymbol targetType = property.Type;
+        if (!IsImplicitlyConvertible(memberType, targetType))
+        {
+            diagnostics.Add(Diagnostic.Create(
+                XmlSerializationGeneratorDiagnostics.DefaultValueFromTypeMismatch,
+                property.Locations.FirstOrDefault(),
+                property.Name,
+                declaringType.Name,
+                defaultValueFrom,
+                memberType.ToDisplayString(s_fullyQualifiedFormat),
+                targetType.ToDisplayString(s_fullyQualifiedFormat)));
+            defaultValueExpression = null;
+            isNullable = false;
+            return false;
+        }
+
+        isNullable = memberType.NullableAnnotation == NullableAnnotation.Annotated;
+        defaultValueExpression = $"{providerType.ToDisplayString(s_fullyQualifiedFormat)}.{defaultValueFrom}";
+        return true;
+    }
+
+    private static bool TryResolveValidateMethod(
+        INamedTypeSymbol typeSymbol,
+        IPropertySymbol property,
+        string methodName,
+        ImmutableArray<Diagnostic>.Builder diagnostics,
+        out bool isStatic)
+    {
+        // Look for a method with signature: <property type> -> bool
+        ITypeSymbol propertyType = property.Type;
+        foreach (IMethodSymbol method in typeSymbol.GetMembers(methodName).OfType<IMethodSymbol>())
+        {
+            if (method.Parameters.Length == 1
+                && method.ReturnType.SpecialType == SpecialType.System_Boolean
+                && IsImplicitlyConvertible(propertyType, method.Parameters[0].Type))
+            {
+                isStatic = method.IsStatic;
+                return true;
+            }
+        }
+
+        diagnostics.Add(Diagnostic.Create(
+            XmlSerializationGeneratorDiagnostics.ValidateMethodNotFound,
+            property.Locations.FirstOrDefault(),
+            property.Name,
+            typeSymbol.Name,
+            methodName,
+            propertyType.ToDisplayString(s_fullyQualifiedFormat)));
+        isStatic = false;
+        return false;
+    }
+
+    private static bool TryResolveTransformMethod(
+        INamedTypeSymbol typeSymbol,
+        IPropertySymbol property,
+        string methodName,
+        ImmutableArray<Diagnostic>.Builder diagnostics,
+        out bool isStatic)
+    {
+        // Look for a method with signature: <property type> -> <property type>
+        ITypeSymbol propertyType = property.Type;
+        foreach (IMethodSymbol method in typeSymbol.GetMembers(methodName).OfType<IMethodSymbol>())
+        {
+            if (method.Parameters.Length == 1
+                && IsImplicitlyConvertible(propertyType, method.Parameters[0].Type)
+                && IsImplicitlyConvertible(method.ReturnType, propertyType))
+            {
+                isStatic = method.IsStatic;
+                return true;
+            }
+        }
+
+        diagnostics.Add(Diagnostic.Create(
+            XmlSerializationGeneratorDiagnostics.TransformMethodNotFound,
+            property.Locations.FirstOrDefault(),
+            property.Name,
+            typeSymbol.Name,
+            methodName,
+            propertyType.ToDisplayString(s_fullyQualifiedFormat)));
+        isStatic = false;
+        return false;
     }
 
     private static bool TryResolveDefaultValueFrom(
