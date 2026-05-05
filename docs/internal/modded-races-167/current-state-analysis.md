@@ -185,6 +185,8 @@ All body part coverage adjustments target **only** `BodyDef[defName="Human"]`. N
 
 ## Phase 2 — C#-Based Assumptions
 
+> **Path convention:** All file paths in this section use `Source/.../` as shorthand for `Source/MoreInjuries/MoreInjuries/`. For example, `Source/.../HealthConditions/AdrenalineRush/AdrenalineWorker.cs` resolves to `Source/MoreInjuries/MoreInjuries/HealthConditions/AdrenalineRush/AdrenalineWorker.cs`.
+
 ### Component Bootstrap (MoreInjuryComp)
 
 **File:** `Source/.../HealthConditions/MoreInjuryComp.cs`
@@ -526,7 +528,12 @@ public static bool PawnKnowsWhatTheyreDoing(Pawn pawn)
 - `pawn.story` is accessed without null-guard → if a pawn has no `story` tracker (e.g., mechanoids, some animals), this **throws a `NullReferenceException`**.
 - `pawn.skills` is accessed without null-guard → same crash risk for pawns without a `skills` tracker.
 
-In practice this method is only called from `TourniquetFloatOptionProvider` for the selected pawn (who is always a humanlike colonist), and from the tourniquet gizmo (also only for humanlike pawns). However, it is a latent crash risk if invoked on a non-humanlike pawn.
+Known call sites:
+- `TourniquetFloatOptionProvider` — called with the selected/active pawn (typically a humanlike colonist)
+- The tourniquet gizmo (`AddGizmosExtra`) — called with the patient pawn (typically a humanlike colonist)
+- `JobDriver_ProvideFirstAid` — called with the **doctor** pawn (`Source/.../AI/Jobs/JobDriver_ProvideFirstAid.cs`); this is the most exposed call site, as the first-aid job driver can in principle run for any pawn acting as a doctor, not just humanlike colonists
+
+All three call sites currently operate on humanlike pawns in practice, but the method has no guard against `pawn.story` or `pawn.skills` being `null`, making it a latent crash risk if ever invoked on a non-humanlike pawn (e.g., a modded race that can perform medical tasks but has no story/skills trackers).
 
 ---
 
