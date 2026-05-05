@@ -11,12 +11,7 @@ internal static class XmlSerializableCandidateFactory
 {
     private static readonly string s_xmlMemberGenericFullName = typeof(XmlMemberAttribute<>).FullName;
 
-    private static readonly SymbolDisplayFormat s_fullyQualifiedFormat =
-        SymbolDisplayFormat.FullyQualifiedFormat
-            .WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Included)
-            .WithMiscellaneousOptions(
-                SymbolDisplayFormat.FullyQualifiedFormat.MiscellaneousOptions
-                | SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
+    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.FullyQualifiedWithNullable;
 
     public static XmlSerializableCandidate Create(XmlSerialiableTarget target)
     {
@@ -62,7 +57,7 @@ internal static class XmlSerializableCandidateFactory
             }
 
             // Validate and Transform (shared for both attribute variants)
-            if (!TryExtractGetterPipelineMethods(resolvedAttribute, typeSymbol, property, diagnostics,
+            if (!TryExtractGetterPipelineMethods(resolvedAttribute!, typeSymbol, property, diagnostics,
                 out string? validateMethodName, out bool validateIsStatic,
                 out string? transformMethodName, out bool transformIsStatic))
             {
@@ -125,11 +120,11 @@ internal static class XmlSerializableCandidateFactory
         bool requiresNullCheck = isReferenceType && !isNullableAnnotated && !hasNonNullDefault;
         bool isStringType = property.Type.SpecialType == SpecialType.System_String;
 
-        string propertyTypeDisplay = property.Type.ToDisplayString(s_fullyQualifiedFormat);
+        string propertyTypeDisplay = property.Type.ToDisplayString(FullyQualifiedFormat);
         string propertyModifiers = GetPropertyModifiers(property);
 
         // Check if the property type is a collection interface that should bind to a concrete List<T>
-        string? concreteCollectionType = CollectionTypeMapper.TryGetConcreteType(property.Type, s_fullyQualifiedFormat);
+        string? concreteCollectionType = CollectionTypeMapper.TryGetConcreteType(property.Type, FullyQualifiedFormat);
         string? setterCastType = hasSetter && concreteCollectionType is not null ? concreteCollectionType : null;
 
         string fieldTypeDisplay;
@@ -140,7 +135,7 @@ internal static class XmlSerializableCandidateFactory
         else
         {
             fieldTypeDisplay = requiresNullCheck
-                ? property.Type.WithNullableAnnotation(NullableAnnotation.Annotated).ToDisplayString(s_fullyQualifiedFormat)
+                ? property.Type.WithNullableAnnotation(NullableAnnotation.Annotated).ToDisplayString(FullyQualifiedFormat)
                 : propertyTypeDisplay;
         }
 

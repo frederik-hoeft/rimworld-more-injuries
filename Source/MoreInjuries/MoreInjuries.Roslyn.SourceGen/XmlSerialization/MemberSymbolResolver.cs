@@ -1,5 +1,6 @@
 using Microsoft.CodeAnalysis;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
+using System;
 using System.Collections.Immutable;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
@@ -9,12 +10,7 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
 /// </summary>
 internal static class MemberSymbolResolver
 {
-    private static readonly SymbolDisplayFormat s_fullyQualifiedFormat =
-        SymbolDisplayFormat.FullyQualifiedFormat
-            .WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Included)
-            .WithMiscellaneousOptions(
-                SymbolDisplayFormat.FullyQualifiedFormat.MiscellaneousOptions
-                | SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
+    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.FullyQualifiedWithNullable;
 
     public static bool TryResolveDefaultValueFrom(
         INamedTypeSymbol typeSymbol,
@@ -77,7 +73,7 @@ internal static class MemberSymbolResolver
                 property.Locations.FirstOrDefault(),
                 property.Name,
                 declaringType.Name,
-                providerType.ToDisplayString(s_fullyQualifiedFormat),
+                providerType.ToDisplayString(FullyQualifiedFormat),
                 defaultValueFrom));
             defaultValueExpression = null;
             isNullable = false;
@@ -94,15 +90,15 @@ internal static class MemberSymbolResolver
                 property.Name,
                 declaringType.Name,
                 defaultValueFrom,
-                memberType.ToDisplayString(s_fullyQualifiedFormat),
-                targetType.ToDisplayString(s_fullyQualifiedFormat)));
+                memberType.ToDisplayString(FullyQualifiedFormat),
+                targetType.ToDisplayString(FullyQualifiedFormat)));
             defaultValueExpression = null;
             isNullable = false;
             return false;
         }
 
         isNullable = memberType.NullableAnnotation == NullableAnnotation.Annotated;
-        defaultValueExpression = $"{providerType.ToDisplayString(s_fullyQualifiedFormat)}.{defaultValueFrom}";
+        defaultValueExpression = $"{providerType.ToDisplayString(FullyQualifiedFormat)}.{defaultValueFrom}";
         return true;
     }
 
@@ -111,44 +107,40 @@ internal static class MemberSymbolResolver
         IPropertySymbol property,
         string methodName,
         ImmutableArray<Diagnostic>.Builder diagnostics,
-        out bool isStatic)
-    {
-        ITypeSymbol propertyType = property.Type;
-        foreach (IMethodSymbol method in typeSymbol.GetMembers(methodName).OfType<IMethodSymbol>())
-        {
-            if (method.Parameters.Length == 1
-                && method.ReturnType.SpecialType == SpecialType.System_Boolean
-                && TypeConversions.IsImplicitlyConvertible(propertyType, method.Parameters[0].Type))
-            {
-                isStatic = method.IsStatic;
-                return true;
-            }
-        }
-
-        diagnostics.Add(Diagnostic.Create(
+        out bool isStatic) =>
+        TryResolveMethodBySignature(typeSymbol, property, methodName,
+            static (method, propertyType) =>
+                method.ReturnType.SpecialType == SpecialType.System_Boolean
+                && TypeConversions.IsImplicitlyConvertible(propertyType, method.Parameters[0].Type),
             XmlSerializationGeneratorDiagnostics.ValidateMethodNotFound,
-            property.Locations.FirstOrDefault(),
-            property.Name,
-            typeSymbol.Name,
-            methodName,
-            propertyType.ToDisplayString(s_fullyQualifiedFormat)));
-        isStatic = false;
-        return false;
-    }
+            diagnostics, out isStatic);
 
     public static bool TryResolveTransformMethod(
         INamedTypeSymbol typeSymbol,
         IPropertySymbol property,
         string methodName,
         ImmutableArray<Diagnostic>.Builder diagnostics,
+        out bool isStatic) =>
+        TryResolveMethodBySignature(typeSymbol, property, methodName,
+            static (method, propertyType) =>
+                TypeConversions.IsImplicitlyConvertible(propertyType, method.Parameters[0].Type)
+                && TypeConversions.IsImplicitlyConvertible(method.ReturnType, propertyType),
+            XmlSerializationGeneratorDiagnostics.TransformMethodNotFound,
+            diagnostics, out isStatic);
+
+    private static bool TryResolveMethodBySignature(
+        INamedTypeSymbol typeSymbol,
+        IPropertySymbol property,
+        string methodName,
+        Func<IMethodSymbol, ITypeSymbol, bool> signatureMatch,
+        DiagnosticDescriptor notFoundDescriptor,
+        ImmutableArray<Diagnostic>.Builder diagnostics,
         out bool isStatic)
     {
         ITypeSymbol propertyType = property.Type;
         foreach (IMethodSymbol method in typeSymbol.GetMembers(methodName).OfType<IMethodSymbol>())
         {
-            if (method.Parameters.Length == 1
-                && TypeConversions.IsImplicitlyConvertible(propertyType, method.Parameters[0].Type)
-                && TypeConversions.IsImplicitlyConvertible(method.ReturnType, propertyType))
+            if (method.Parameters.Length == 1 && signatureMatch(method, propertyType))
             {
                 isStatic = method.IsStatic;
                 return true;
@@ -156,12 +148,12 @@ internal static class MemberSymbolResolver
         }
 
         diagnostics.Add(Diagnostic.Create(
-            XmlSerializationGeneratorDiagnostics.TransformMethodNotFound,
+            notFoundDescriptor,
             property.Locations.FirstOrDefault(),
             property.Name,
             typeSymbol.Name,
             methodName,
-            propertyType.ToDisplayString(s_fullyQualifiedFormat)));
+            propertyType.ToDisplayString(FullyQualifiedFormat)));
         isStatic = false;
         return false;
     }
@@ -184,8 +176,8 @@ internal static class MemberSymbolResolver
                 property.Name,
                 typeSymbol.Name,
                 defaultValueFrom,
-                sourceType.ToDisplayString(s_fullyQualifiedFormat),
-                targetType.ToDisplayString(s_fullyQualifiedFormat)));
+                sourceType.ToDisplayString(FullyQualifiedFormat),
+                targetType.ToDisplayString(FullyQualifiedFormat)));
             defaultValueExpression = null;
             isNullable = false;
             return false;
