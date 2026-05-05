@@ -119,6 +119,8 @@ internal static class XmlSerializableCandidateFactory
         bool hasNonNullDefault = defaultValueExpression is not null && !defaultValueIsNullable;
         bool requiresNullCheck = isReferenceType && !isNullableAnnotated && !hasNonNullDefault;
         bool isStringType = property.Type.SpecialType == SpecialType.System_String;
+        // The field must be nullable when it's initialized to 'default' (null) for reference types
+        bool fieldIsNullable = requiresNullCheck || (isReferenceType && defaultValueExpression is null);
 
         string propertyTypeDisplay = property.Type.ToDisplayString(FullyQualifiedFormat);
         string propertyModifiers = GetPropertyModifiers(property);
@@ -130,11 +132,11 @@ internal static class XmlSerializableCandidateFactory
         string fieldTypeDisplay;
         if (concreteCollectionType is not null)
         {
-            fieldTypeDisplay = requiresNullCheck ? concreteCollectionType + "?" : concreteCollectionType;
+            fieldTypeDisplay = fieldIsNullable ? concreteCollectionType + "?" : concreteCollectionType;
         }
         else
         {
-            fieldTypeDisplay = requiresNullCheck
+            fieldTypeDisplay = fieldIsNullable
                 ? property.Type.WithNullableAnnotation(NullableAnnotation.Annotated).ToDisplayString(FullyQualifiedFormat)
                 : propertyTypeDisplay;
         }
