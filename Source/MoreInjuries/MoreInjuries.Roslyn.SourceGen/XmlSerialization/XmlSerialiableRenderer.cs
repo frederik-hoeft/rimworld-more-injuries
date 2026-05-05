@@ -38,8 +38,9 @@ internal static class XmlSerialiableRenderer
     {
         foreach (XmlMemberModel member in model.AnnotatedMembers)
         {
-            string readonlyModifier = member.HasSetter && !member.IsInitOnly ? "" : "readonly ";
-            string defaultExpression = GetDefaultExpression(member);
+            bool isReadonly = member.Setter is not { IsInitOnly: false };
+            string readonlyModifier = isReadonly ? "readonly " : "";
+            string defaultExpression = member.DefaultValueExpression ?? "default";
 
             builder.AppendLine($"[global::{typeof(CompilerGeneratedAttribute).FullName}]");
             if (!member.AllowRawAccess)
@@ -58,7 +59,8 @@ internal static class XmlSerialiableRenderer
         {
             string accessKeyword = SyntaxFacts.GetText(member.PropertyAccessibility);
             string modifiers = member.PropertyModifiers;
-            bool needsBlockGetter = member.ValidateMethodName is not null || member.TransformMethodName is not null;
+            GetterPipelineModel pipeline = member.GetterPipeline;
+            bool needsBlockGetter = pipeline.Transform is not null || pipeline.Validate is not null;
 
             if (!member.HasSetter && !needsBlockGetter)
             {
@@ -83,13 +85,13 @@ internal static class XmlSerialiableRenderer
                     inner.AppendLine($"get => {getterExpression};");
                 }
 
-                if (member.HasSetter)
+                if (member.Setter is { } setter)
                 {
-                    string setterAccessKeyword = member.SetterAccessibility != member.PropertyAccessibility
-                        ? SyntaxFacts.GetText(member.SetterAccessibility) + " "
+                    string setterAccessKeyword = setter.Accessibility != member.PropertyAccessibility
+                        ? SyntaxFacts.GetText(setter.Accessibility) + " "
                         : "";
-                    string setOrInit = member.IsInitOnly ? "init" : "set";
-                    string valueExpression = member.SetterCastType is { } castType
+                    string setOrInit = setter.IsInitOnly ? "init" : "set";
+                    string valueExpression = setter.CastType is { } castType
                         ? $"({castType})value"
                         : "value";
                     inner.AppendLine($"{setterAccessKeyword}{setOrInit} => this.{member.FieldName} = {valueExpression};");
@@ -111,17 +113,17 @@ internal static class XmlSerialiableRenderer
         inner.AppendLine($"{member.PropertyTypeDisplay} __value = {baseExpression};");
 
         // Step 2: apply Transform if specified
-        if (member.TransformMethodName is { } transform)
+        if (member.GetterPipeline.Transform is { } transform)
         {
-            string callPrefix = member.TransformIsStatic ? "" : "this.";
-            inner.AppendLine($"__value = {callPrefix}{transform}(__value);");
+            string callPrefix = transform.IsStatic ? "" : "this.";
+            inner.AppendLine($"__value = {callPrefix}{transform.MethodName}(__value);");
         }
 
         // Step 3: apply Validate if specified
-        if (member.ValidateMethodName is { } validate)
+        if (member.GetterPipeline.Validate is { } validate)
         {
-            string callPrefix = member.ValidateIsStatic ? "" : "this.";
-            inner.AppendLine($"if (!{callPrefix}{validate}(__value))");
+            string callPrefix = validate.IsStatic ? "" : "this.";
+            inner.AppendLine($"if (!{callPrefix}{validate.MethodName}(__value))");
             inner.AppendLine("{");
             IndentedStringBuilder throwInner = inner.IncreaseIndent();
             throwInner.AppendLine($"{s_throwHelperPrefix}.{nameof(XmlFieldThrowHelper.FailedValidation)}(\"{className}\", \"{member.PropertyName}\");");
@@ -132,24 +134,14 @@ internal static class XmlSerialiableRenderer
         builder.AppendLine("}");
     }
 
-    private static string GetDefaultExpression(XmlMemberModel member)
-    {
-        if (member.DefaultValueExpression is { } defaultValue)
-        {
-            return defaultValue;
-        }
-        // Nullable fields (either naturally nullable or made nullable for null-check) use `default`
-        // Value types also use `default` (which is the zero-value)
-        return "default";
-    }
-
     private static string GetGetterExpression(XmlMemberModel member, string className)
     {
-        if (!member.RequiresNullCheck)
+        GetterPipelineModel pipeline = member.GetterPipeline;
+        if (!pipeline.RequiresNullCheck)
         {
             return $"this.{member.FieldName}";
         }
-        if (member.IsStringType)
+        if (pipeline.IsStringType)
         {
             return $"{s_throwHelperPrefix}.{nameof(XmlFieldThrowHelper.NotNullOrEmpty)}(this.{member.FieldName}, \"{className}\")";
         }
