@@ -11,13 +11,13 @@ public static class DefExtensions
             T? modExtension = self.GetModExtension<T>();
             if (modExtension is null)
             {
-                ThrowMissingRequiredModExtensionException<T>(self);
+                self.ThrowMissingRequiredModExtensionException<T>();
             }
             return modExtension;
         }
 
         [DoesNotReturn]
-        private static void ThrowMissingRequiredModExtensionException<T>(Def def) =>
-            throw new InvalidOperationException($"Def {def.defName} is missing required mod extension of type {typeof(T).FullName}");
+        private void ThrowMissingRequiredModExtensionException<T>() =>
+            throw new InvalidOperationException($"Def {self.defName} is missing required mod extension of type {typeof(T).FullName}");
     }
 }

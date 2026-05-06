@@ -41,6 +41,14 @@ public sealed class XmlMemberAttribute(string name) : Attribute
     public string? Transform { get; init; }
 
     /// <summary>
+    /// When set to <see langword="true"/>, the generated backing field uses the nullable form of the type
+    /// (<c>Nullable&lt;T&gt;</c> for value types, <c>T?</c> for reference types) and is initialized to <c>null</c>.
+    /// If the property type is non-nullable, the getter will throw when the backing field has not been initialized.
+    /// This is mutually exclusive with <see cref="DefaultValueFrom"/> and <see cref="DefaultValueProvider"/>.
+    /// </summary>
+    public bool NullableBackingField { get; init; }
+
+    /// <summary>
     /// When set to <see langword="true"/>, the generated backing field will not be marked with
     /// <see cref="ObsoleteAttribute"/>, allowing direct access without compiler warnings.
     /// </summary>

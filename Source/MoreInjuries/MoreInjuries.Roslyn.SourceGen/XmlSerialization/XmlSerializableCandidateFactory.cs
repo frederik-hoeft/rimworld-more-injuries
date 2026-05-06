@@ -45,8 +45,13 @@ internal static class XmlSerializableCandidateFactory
                 allowRawAccess = AttributeDataReader.GetAllowRawAccess(xmlMemberAttribute);
                 resolvedAttribute = xmlMemberAttribute;
 
-                // Resolve default value
-                if (!TryResolveDefaultValue(xmlMemberAttribute, typeSymbol, property, diagnostics, out defaultValueExpression, out defaultValueIsNullable))
+                bool nullableBackingField = AttributeDataReader.GetNamedBoolArgument(xmlMemberAttribute, nameof(XmlMemberAttribute.NullableBackingField));
+                if (nullableBackingField)
+                {
+                    defaultValueExpression = "null";
+                    defaultValueIsNullable = true;
+                }
+                else if (!TryResolveDefaultValue(xmlMemberAttribute, typeSymbol, property, diagnostics, out defaultValueExpression, out defaultValueIsNullable))
                 {
                     continue;
                 }
@@ -224,20 +229,10 @@ internal static class XmlSerializableCandidateFactory
                 && attribute.ConstructorArguments is [{ Value: string name }, TypedConstant defaultValue])
             {
                 fieldName = name;
+                defaultValueExpression = defaultValue.ToCSharpStringWithPostfix();
+                defaultValueIsNullable = false;
                 allowRawAccess = AttributeDataReader.GetAllowRawAccess(attribute);
                 attributeData = attribute;
-
-                bool nullableBackingField = AttributeDataReader.GetNamedBoolArgument(attribute, nameof(XmlMemberAttribute<int>.NullableBackingField));
-                if (nullableBackingField)
-                {
-                    defaultValueExpression = "null";
-                    defaultValueIsNullable = true;
-                }
-                else
-                {
-                    defaultValueExpression = defaultValue.ToCSharpStringWithPostfix();
-                    defaultValueIsNullable = false;
-                }
                 return true;
             }
         }

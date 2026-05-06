@@ -1,12 +1,13 @@
-﻿using Verse;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using Verse;
 
 namespace MoreInjuries.Things.Modifiers;
 
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public class ThingModifier_ConstantFactor : ThingModifier
+[XmlSerializable]
+public sealed partial class ThingModifier_ConstantFactor : ThingModifier
 {
-    // don't rename this field. XML defs depend on this name
-    protected readonly float factor = default!;
+    [XmlMember("factor", NullableBackingField = true)]
+    public partial float Factor { get; }
 
-    public override float GetModifier(Thing thing) => factor;
+    public override float GetModifier(Thing thing) => Factor;
 }
