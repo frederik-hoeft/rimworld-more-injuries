@@ -15,6 +15,7 @@
         <IncludeSymbols>false</IncludeSymbols>
         <DevelopmentDependency>true</DevelopmentDependency>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+        <Configurations>Debug;Release</Configurations>
     </PropertyGroup>
     
     <ItemGroup>

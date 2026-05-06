@@ -1,6 +1,7 @@
 <Solution>
   <Configurations>
     <BuildType Name="Debug" />
+    <BuildType Name="Debug-FullFeatureSet" />
     <BuildType Name="Release" />
     <BuildType Name="Test" />
   </Configurations>
@@ -10,15 +11,19 @@
   </Folder>
   <Project Path="MoreInjuries/MoreInjuries.csproj" />
   <Project Path="MoreInjuries.Roslyn.SourceGen/MoreInjuries.Roslyn.SourceGen.csproj">
+    <BuildType Solution="Debug-FullFeatureSet|*" Project="Debug" />
     <BuildType Solution="Test|*" Project="Debug" />
   </Project>
   <Project Path="MoreInjuries.LocalizationTests/MoreInjuries.LocalizationTests.csproj">
+    <BuildType Solution="Debug-FullFeatureSet|*" Project="Debug" />
     <BuildType Solution="Test|*" Project="Debug" />
   </Project>
   <Project Path="MoreInjuries.Tests/MoreInjuries.Tests.csproj">
+    <BuildType Solution="Debug-FullFeatureSet|*" Project="Debug" />
     <BuildType Solution="Test|*" Project="Debug" />
   </Project>
   <Project Path="MoreInjuries.WikiGen/MoreInjuries.WikiGen.csproj">
+    <BuildType Solution="Debug-FullFeatureSet|*" Project="Debug" />
     <BuildType Solution="Test|*" Project="Debug" />
   </Project>
 </Solution>

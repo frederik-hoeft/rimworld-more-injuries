@@ -8,6 +8,7 @@
     <PublishTrimmed>true</PublishTrimmed>
     <TrimmerRemoveSymbols>true</TrimmerRemoveSymbols>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
