@@ -1,30 +1,22 @@
 ﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public class HediffMakerProperties_RandomFromList : HediffMakerProperties
+[XmlSerializable]
+public partial class HediffMakerProperties_RandomFromList : HediffMakerProperties
 {
     [ThreadStatic]
     private static float[]? t_cdfCache;
 
-    // don't rename this field. XML defs depend on this name
-    private readonly List<HediffMakerDef> hediffMakerDefs = default!;
-    // don't rename this field. XML defs depend on this name
-    private readonly float minSeverityDefault = 0f;
-    // don't rename this field. XML defs depend on this name
-    private readonly float maxSeverityDefault = 0f;
-    // don't rename this field. XML defs depend on this name
-    private readonly bool allowDuplicateDefault = false;
-    // don't rename this field. XML defs depend on this name
-    private readonly bool allowMultipleDefault = false;
+    [XmlMember("hediffMakerDefs")]
+    public partial IReadOnlyList<HediffMakerDef> HediffMakerDefs { get; }
 
     public override HediffMakerDef GetHediffMakerDef(HediffComp parentComp, HediffCompHandler_SecondaryCondition handler, BodyPartRecord? targetBodyPart)
     {
-        Throw.InvalidOperationException.If(hediffMakerDefs is not { Count: > 0 });
+        IReadOnlyList<HediffMakerDef> hediffMakerDefs = HediffMakerDefs;
         t_cdfCache ??= new float[hediffMakerDefs.Count];
         Throw.InvalidOperationException.If(t_cdfCache.Length != hediffMakerDefs.Count);
         float totalWeight = 0f;
@@ -44,16 +36,7 @@ public class HediffMakerProperties_RandomFromList : HediffMakerProperties
         {
             throw new InvalidOperationException($"{nameof(HediffMakerProperties_RandomFromList)}: Random index {index} is out of bounds for hediff maker defs list.");
         }
-        HediffMakerDef selectedDef = hediffMakerDefs[index];
-        // apply defaults if not set
-        return new HediffMakerDef
-        (
-            selectedDef.HediffDef,
-            selectedDef.MinSeverityOrDefault(minSeverityDefault),
-            selectedDef.MaxSeverityOrDefault(maxSeverityDefault),
-            selectedDef.AllowDuplicateOrDefault(allowDuplicateDefault),
-            selectedDef.AllowMultipleOrDefault(allowMultipleDefault)
-        );
+        return hediffMakerDefs[index];
     }
 
     // Binary search to find the index of the first element greater than or equal to the target value

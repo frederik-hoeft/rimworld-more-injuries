@@ -3,6 +3,7 @@ using MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
 using RimWorld;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,31 +11,23 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers;
 
-// members initialized via XML defs
-[SuppressMessage(CODE_STYLE, STYLE_IDE0032_USE_AUTO_PROPERTY, Justification = JUSTIFY_IDE0032_XML_DEF_REQUIRES_FIELD)]
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public abstract class HediffCompHandler_SecondaryCondition : HediffCompHandler
+[XmlSerializable]
+public abstract partial class HediffCompHandler_SecondaryCondition : HediffCompHandler
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly float? baseChance = null;
-    // don't rename this field. XML defs depend on this name
-    private readonly HediffMakerProperties? hediffMakerProps = default;
-    // don't rename this field. XML defs depend on this name
-    private readonly List<SecondaryHediffModifier>? chanceModifiers = default;
-    // don't rename this field. XML defs depend on this name
-    private readonly bool sendLetterWhenDiscovered = false;
-    // don't rename this field. XML defs depend on this name
-    private readonly BodyPartHediffTargetEvaluator? targetEvaluator = default;
+    [XmlMember<float>("baseChance", defaultValue: 1f)]
+    public virtual partial float BaseChance { get; }
 
-    public virtual float BaseChance => baseChance ?? 1f;
+    [XmlMember("hediffMakerProps")]
+    public partial HediffMakerProperties? HediffMakerProps { get; }
 
-    public HediffMakerProperties? HediffMakerProps => hediffMakerProps;
+    [XmlMember("chanceModifiers")]
+    public partial IReadOnlyList<SecondaryHediffModifier>? ChanceModifiers { get; }
 
-    public IReadOnlyList<SecondaryHediffModifier>? ChanceModifiers => chanceModifiers;
+    [XmlMember("sendLetterWhenDiscovered")]
+    public partial bool SendLetterWhenDiscovered { get; }
 
-    public bool SendLetterWhenDiscovered => sendLetterWhenDiscovered;
-
-    public BodyPartHediffTargetEvaluator TargetEvaluator => targetEvaluator ?? BodyPartHediffTargetEvaluator_WholeBody.Instance;
+    [XmlMember("targetEvaluator", DefaultValueProvider = typeof(BodyPartHediffTargetEvaluator_WholeBody), DefaultValueFrom = nameof(BodyPartHediffTargetEvaluator_WholeBody.Instance))]
+    public partial BodyPartHediffTargetEvaluator TargetEvaluator { get; }
 
     public virtual bool ShouldSkip(HediffComp_SecondaryCondition comp)
     {

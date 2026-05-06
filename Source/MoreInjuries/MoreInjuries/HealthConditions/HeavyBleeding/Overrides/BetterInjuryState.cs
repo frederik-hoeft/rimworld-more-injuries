@@ -204,7 +204,7 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
         List<HediffCrossInteraction>? crossInteractions = null;
         foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
         {
-            if (hediff.def.GetModExtension<BleedRateModifier_ModExtension>() is { Modifier: { } modifier })
+            if (hediff.def.GetModExtension<BleedRateModifier_ModExtension>() is { Modifier: var modifier })
             {
                 crossInteractions ??= [];
                 crossInteractions.Add(new HediffCrossInteraction(hediff, modifier));

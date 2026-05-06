@@ -5,17 +5,15 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
 public sealed class BodyPartHediffTargetEvaluator_WholeBody : BodyPartHediffTargetEvaluator
 {
-    private static BodyPartHediffTargetEvaluator_WholeBody? s_instance;
-
     public static BodyPartHediffTargetEvaluator_WholeBody Instance
     {
         get
         {
-            if (Volatile.Read(ref s_instance) is null)
+            if (Volatile.Read(ref field) is null)
             {
-                Interlocked.CompareExchange(ref s_instance, value: new BodyPartHediffTargetEvaluator_WholeBody(), comparand: null);
+                Interlocked.CompareExchange(ref field, value: new BodyPartHediffTargetEvaluator_WholeBody(), comparand: null);
             }
-            return Volatile.Read(ref s_instance)!;
+            return Volatile.Read(ref field)!;
         }
     }
 

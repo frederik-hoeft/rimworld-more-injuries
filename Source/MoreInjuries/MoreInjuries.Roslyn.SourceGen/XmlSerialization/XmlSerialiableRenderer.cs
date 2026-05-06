@@ -39,7 +39,7 @@ internal static class XmlSerialiableRenderer
         foreach (XmlMemberModel member in model.AnnotatedMembers)
         {
             bool isReadonly = member.Setter is not { IsInitOnly: false };
-            string readonlyModifier = isReadonly ? "readonly " : "";
+            string readonlyModifier = isReadonly ? "readonly " : string.Empty;
             string defaultExpression = member.DefaultValueExpression ?? "default";
 
             builder.AppendLine($"[global::{typeof(CompilerGeneratedAttribute).FullName}]");
@@ -89,7 +89,7 @@ internal static class XmlSerialiableRenderer
                 {
                     string setterAccessKeyword = setter.Accessibility != member.PropertyAccessibility
                         ? SyntaxFacts.GetText(setter.Accessibility) + " "
-                        : "";
+                        : string.Empty;
                     string setOrInit = setter.IsInitOnly ? "init" : "set";
                     string valueExpression = setter.CastType is { } castType
                         ? $"({castType})value"
@@ -115,14 +115,14 @@ internal static class XmlSerialiableRenderer
         // Step 2: apply Transform if specified
         if (member.GetterPipeline.Transform is { } transform)
         {
-            string callPrefix = transform.IsStatic ? "" : "this.";
+            string callPrefix = transform.IsStatic ? string.Empty : "this.";
             inner.AppendLine($"__value = {callPrefix}{transform.MethodName}(__value);");
         }
 
         // Step 3: apply Validate if specified
         if (member.GetterPipeline.Validate is { } validate)
         {
-            string callPrefix = validate.IsStatic ? "" : "this.";
+            string callPrefix = validate.IsStatic ? string.Empty : "this.";
             inner.AppendLine($"if (!{callPrefix}{validate.MethodName}(__value))");
             inner.AppendLine("{");
             IndentedStringBuilder throwInner = inner.IncreaseIndent();

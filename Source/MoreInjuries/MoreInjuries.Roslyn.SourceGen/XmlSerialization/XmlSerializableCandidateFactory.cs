@@ -33,7 +33,7 @@ internal static class XmlSerializableCandidateFactory
         foreach (IPropertySymbol property in typeSymbol.GetMembers().OfType<IPropertySymbol>())
         {
             string? fieldName;
-            string? defaultValueExpression = null;
+            string? defaultValueExpression;
             bool defaultValueIsNullable = false;
             bool allowRawAccess;
             AttributeData? resolvedAttribute;
@@ -167,12 +167,22 @@ internal static class XmlSerializableCandidateFactory
     private static string GetPropertyModifiers(IPropertySymbol property)
     {
         List<string> modifiers = [];
-        if (property.IsVirtual) modifiers.Add("virtual");
-        if (property.IsOverride) modifiers.Add("override");
-        if (property.IsSealed && property.IsOverride) modifiers.Add("sealed");
-        if (property.IsAbstract) modifiers.Add("abstract");
-        if (property.IsStatic) modifiers.Add("static");
-        return modifiers.Count > 0 ? string.Join(" ", modifiers) + " " : "";
+        ReadOnlySpan<(Predicate<IPropertySymbol> Predicate, string Modifier)> conditionalModifiers =
+        [
+            (static p => p.IsStatic, "static"),
+            (static p => p.IsVirtual, "virtual"),
+            (static p => p is { IsSealed: true, IsOverride: true }, "sealed"),
+            (static p => p.IsOverride, "override"),
+            (static p => p.IsAbstract, "abstract"),
+        ];
+        foreach ((Predicate<IPropertySymbol> predicate, string modifier) in conditionalModifiers)
+        {
+            if (predicate(property))
+            {
+                modifiers.Add(modifier);
+            }
+        }
+        return modifiers.Count > 0 ? string.Join(" ", modifiers) + " " : string.Empty;
     }
 
     private static bool TryGetGenericXmlMemberAttribute(
@@ -190,7 +200,7 @@ internal static class XmlSerializableCandidateFactory
                 && attribute.ConstructorArguments is [{ Value: string name }, TypedConstant defaultValue])
             {
                 fieldName = name;
-                defaultValueExpression = defaultValue.ToCSharpString();
+                defaultValueExpression = defaultValue.ToCSharpStringWithPostfix();
                 allowRawAccess = AttributeDataReader.GetAllowRawAccess(attribute);
                 attributeData = attribute;
                 return true;
