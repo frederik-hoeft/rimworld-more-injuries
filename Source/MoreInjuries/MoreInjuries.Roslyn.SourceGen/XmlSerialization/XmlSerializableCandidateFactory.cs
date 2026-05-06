@@ -247,6 +247,7 @@ internal static class XmlSerializableCandidateFactory
     /// <summary>
     /// Resolves the DefaultValueFrom/DefaultValueProvider combination from the non-generic attribute.
     /// Returns <see langword="false"/> if resolution fails (diagnostic already emitted).
+    /// Validates against the backing field type (concrete collection type when applicable).
     /// </summary>
     private static bool TryResolveDefaultValue(
         AttributeData xmlMemberAttribute,
@@ -272,17 +273,29 @@ internal static class XmlSerializableCandidateFactory
                 defaultValueIsNullable = false;
                 return false;
             }
-            return MemberSymbolResolver.TryResolveDefaultValueFromProvider(defaultValueProvider, typeSymbol, property, defaultValueFrom, diagnostics, out defaultValueExpression, out defaultValueIsNullable);
+            ITypeSymbol targetType = GetBackingFieldTargetType(property);
+            return MemberSymbolResolver.TryResolveDefaultValueFromProvider(defaultValueProvider, typeSymbol, property, targetType, defaultValueFrom, diagnostics, out defaultValueExpression, out defaultValueIsNullable);
         }
 
         if (defaultValueFrom is not null)
         {
-            return MemberSymbolResolver.TryResolveDefaultValueFrom(typeSymbol, property, defaultValueFrom, diagnostics, out defaultValueExpression, out defaultValueIsNullable);
+            ITypeSymbol targetType = GetBackingFieldTargetType(property);
+            return MemberSymbolResolver.TryResolveDefaultValueFrom(typeSymbol, property, targetType, defaultValueFrom, diagnostics, out defaultValueExpression, out defaultValueIsNullable);
         }
 
         defaultValueExpression = null;
         defaultValueIsNullable = false;
         return true;
+    }
+
+    /// <summary>
+    /// Returns the effective backing field type for a property: the concrete <c>List&lt;T&gt;</c> type symbol
+    /// if the property is typed as a supported collection interface, otherwise the property type itself.
+    /// </summary>
+    private static ITypeSymbol GetBackingFieldTargetType(IPropertySymbol property)
+    {
+        CollectionTypeMapper.TryGetConcreteType(property.Type, FullyQualifiedFormat, out INamedTypeSymbol? concreteTypeSymbol);
+        return concreteTypeSymbol ?? property.Type;
     }
 
     /// <summary>

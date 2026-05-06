@@ -15,6 +15,7 @@ internal static class MemberSymbolResolver
     public static bool TryResolveDefaultValueFrom(
         INamedTypeSymbol typeSymbol,
         IPropertySymbol property,
+        ITypeSymbol targetType,
         string defaultValueFrom,
         ImmutableArray<Diagnostic>.Builder diagnostics,
         out string? defaultValueExpression,
@@ -30,7 +31,7 @@ internal static class MemberSymbolResolver
 
         if (parameter is not null)
         {
-            return ValidateSourceType(typeSymbol, property, defaultValueFrom, parameter.Type, diagnostics, out defaultValueExpression, out isNullable);
+            return ValidateSourceType(typeSymbol, property, targetType, defaultValueFrom, parameter.Type, diagnostics, out defaultValueExpression, out isNullable);
         }
 
         // Next, try to find a static field or property with the given name
@@ -40,7 +41,7 @@ internal static class MemberSymbolResolver
         if (staticMember is not null)
         {
             ITypeSymbol memberType = GetMemberType(staticMember);
-            return ValidateSourceType(typeSymbol, property, defaultValueFrom, memberType, diagnostics, out defaultValueExpression, out isNullable);
+            return ValidateSourceType(typeSymbol, property, targetType, defaultValueFrom, memberType, diagnostics, out defaultValueExpression, out isNullable);
         }
 
         diagnostics.Add(Diagnostic.Create(
@@ -58,6 +59,7 @@ internal static class MemberSymbolResolver
         INamedTypeSymbol providerType,
         INamedTypeSymbol declaringType,
         IPropertySymbol property,
+        ITypeSymbol targetType,
         string defaultValueFrom,
         ImmutableArray<Diagnostic>.Builder diagnostics,
         out string? defaultValueExpression,
@@ -81,7 +83,6 @@ internal static class MemberSymbolResolver
         }
 
         ITypeSymbol memberType = GetMemberType(staticMember);
-        ITypeSymbol targetType = property.Type;
         if (!TypeConversions.IsImplicitlyConvertible(memberType, targetType))
         {
             diagnostics.Add(Diagnostic.Create(
@@ -161,13 +162,13 @@ internal static class MemberSymbolResolver
     private static bool ValidateSourceType(
         INamedTypeSymbol typeSymbol,
         IPropertySymbol property,
+        ITypeSymbol targetType,
         string defaultValueFrom,
         ITypeSymbol sourceType,
         ImmutableArray<Diagnostic>.Builder diagnostics,
         out string? defaultValueExpression,
         out bool isNullable)
     {
-        ITypeSymbol targetType = property.Type;
         if (!TypeConversions.IsImplicitlyConvertible(sourceType, targetType))
         {
             diagnostics.Add(Diagnostic.Create(
