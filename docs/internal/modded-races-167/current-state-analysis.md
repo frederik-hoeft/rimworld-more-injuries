@@ -596,6 +596,7 @@ Several checks use null-safe patterns (`?.`):
 Non-null-safe assumptions:
 - `doctor.WorkTagIsDisabled(WorkTags.Caring)` — standard pawn work tag, race-agnostic
 - `doctor.WorkTypeIsDisabled(WorkTypeDefOf.Doctor)` — standard pawn work type, race-agnostic
+- `doctor.Faction.IsPlayerSafe()` in the self-tend branch — assumes `doctor.Faction` is non-null, which is not guaranteed for all pawn types
 
 #### JobDriver_HarvestBlood
 
