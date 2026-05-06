@@ -36,7 +36,7 @@ internal static class AttributeDataReader
         return null;
     }
 
-    private static bool GetNamedBoolArgument(AttributeData attribute, string argumentName)
+    public static bool GetNamedBoolArgument(AttributeData attribute, string argumentName)
     {
         foreach (KeyValuePair<string, TypedConstant> namedArg in attribute.NamedArguments)
         {

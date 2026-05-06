@@ -18,6 +18,7 @@ internal sealed record MethodCallModel(string MethodName, bool IsStatic);
 internal sealed record GetterPipelineModel(
     bool RequiresNullCheck,
     bool IsStringType,
+    bool IsValueTypeNullCheck,
     MethodCallModel? Transform,
     MethodCallModel? Validate);
 

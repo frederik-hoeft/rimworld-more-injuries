@@ -20,7 +20,7 @@ public sealed class XmlMemberAttribute<T>(string name, T defaultValue) : Attribu
     public string Name { get; } = name;
 
     /// <summary>Gets the compile-time constant default value for the backing field.</summary>
-    public T DefaultValue { get; } = defaultValue;
+    public T DefaultValue { get; set; } = defaultValue;
 
     /// <summary>
     /// Optional name of a local method (instance or static) with the signature <c>propertyType -&gt; bool</c>.
@@ -33,6 +33,13 @@ public sealed class XmlMemberAttribute<T>(string name, T defaultValue) : Attribu
     /// The method is invoked by the generated getter to transform the value before returning it.
     /// </summary>
     public string? Transform { get; init; }
+
+    /// <summary>
+    /// When set to <see langword="true"/>, the generated backing field uses the nullable form of the type
+    /// (<c>Nullable&lt;T&gt;</c> for value types) and is initialized to <c>null</c>.
+    /// If the property type is non-nullable, the getter will throw when the backing field has not been initialized.
+    /// </summary>
+    public bool NullableBackingField { get; init; }
 
     /// <summary>
     /// When set to <see langword="true"/>, the generated backing field will not be marked with

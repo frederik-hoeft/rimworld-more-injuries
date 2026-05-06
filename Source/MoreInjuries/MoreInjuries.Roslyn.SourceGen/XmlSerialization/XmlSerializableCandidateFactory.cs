@@ -51,7 +51,7 @@ internal static class XmlSerializableCandidateFactory
                     continue;
                 }
             }
-            else if (!TryGetGenericXmlMemberAttribute(property, out fieldName, out defaultValueExpression, out allowRawAccess, out resolvedAttribute))
+            else if (!TryGetGenericXmlMemberAttribute(property, out fieldName, out defaultValueExpression, out defaultValueIsNullable, out allowRawAccess, out resolvedAttribute))
             {
                 continue;
             }
@@ -116,11 +116,26 @@ internal static class XmlSerializableCandidateFactory
 
         bool isReferenceType = property.Type.IsReferenceType;
         bool isNullableAnnotated = property.Type.NullableAnnotation == NullableAnnotation.Annotated;
+        bool isNullableValueType = property.Type.IsValueType
+            && property.Type is INamedTypeSymbol { OriginalDefinition.SpecialType: SpecialType.System_Nullable_T };
         bool hasNonNullDefault = defaultValueExpression is not null && !defaultValueIsNullable;
-        bool requiresNullCheck = isReferenceType && !isNullableAnnotated && !hasNonNullDefault;
+
+        // Null check is needed when:
+        // - Reference type that's non-nullable and has no non-null default, OR
+        // - Non-nullable value type whose backing field is nullable (defaultValueIsNullable)
+        bool requiresNullCheck =
+            (isReferenceType && !isNullableAnnotated && !hasNonNullDefault)
+            || (!isReferenceType && !isNullableValueType && defaultValueIsNullable);
+        bool isValueTypeNullCheck = !isReferenceType && !isNullableValueType && defaultValueIsNullable;
         bool isStringType = property.Type.SpecialType == SpecialType.System_String;
-        // The field must be nullable when it's initialized to 'default' (null) for reference types
-        bool fieldIsNullable = requiresNullCheck || (isReferenceType && defaultValueExpression is null);
+
+        // The field must be nullable when:
+        // - Reference type with null check, or reference type with no default value, OR
+        // - Value type with NullableBackingField (defaultValueIsNullable for value types), OR
+        // - Property type is already nullable value type (field matches property type naturally)
+        bool fieldIsNullable = requiresNullCheck
+            || (isReferenceType && defaultValueExpression is null)
+            || (!isReferenceType && defaultValueIsNullable);
 
         string propertyTypeDisplay = property.Type.ToDisplayString(FullyQualifiedFormat);
         string propertyModifiers = GetPropertyModifiers(property);
@@ -134,11 +149,18 @@ internal static class XmlSerializableCandidateFactory
         {
             fieldTypeDisplay = fieldIsNullable ? concreteCollectionType + "?" : concreteCollectionType;
         }
+        else if (fieldIsNullable && isReferenceType)
+        {
+            fieldTypeDisplay = property.Type.WithNullableAnnotation(NullableAnnotation.Annotated).ToDisplayString(FullyQualifiedFormat);
+        }
+        else if (fieldIsNullable && !isReferenceType)
+        {
+            // For value types, append ? to produce Nullable<T> syntax
+            fieldTypeDisplay = propertyTypeDisplay + "?";
+        }
         else
         {
-            fieldTypeDisplay = fieldIsNullable
-                ? property.Type.WithNullableAnnotation(NullableAnnotation.Annotated).ToDisplayString(FullyQualifiedFormat)
-                : propertyTypeDisplay;
+            fieldTypeDisplay = propertyTypeDisplay;
         }
 
         SetterModel? setter = hasSetter
@@ -148,6 +170,7 @@ internal static class XmlSerializableCandidateFactory
         GetterPipelineModel getterPipeline = new(
             RequiresNullCheck: requiresNullCheck,
             IsStringType: isStringType,
+            IsValueTypeNullCheck: isValueTypeNullCheck,
             Transform: transformMethodName is not null ? new MethodCallModel(transformMethodName, transformIsStatic) : null,
             Validate: validateMethodName is not null ? new MethodCallModel(validateMethodName, validateIsStatic) : null);
 
@@ -189,6 +212,7 @@ internal static class XmlSerializableCandidateFactory
         IPropertySymbol property,
         out string? fieldName,
         out string? defaultValueExpression,
+        out bool defaultValueIsNullable,
         out bool allowRawAccess,
         out AttributeData? attributeData)
     {
@@ -200,14 +224,26 @@ internal static class XmlSerializableCandidateFactory
                 && attribute.ConstructorArguments is [{ Value: string name }, TypedConstant defaultValue])
             {
                 fieldName = name;
-                defaultValueExpression = defaultValue.ToCSharpStringWithPostfix();
                 allowRawAccess = AttributeDataReader.GetAllowRawAccess(attribute);
                 attributeData = attribute;
+
+                bool nullableBackingField = AttributeDataReader.GetNamedBoolArgument(attribute, nameof(XmlMemberAttribute<int>.NullableBackingField));
+                if (nullableBackingField)
+                {
+                    defaultValueExpression = "null";
+                    defaultValueIsNullable = true;
+                }
+                else
+                {
+                    defaultValueExpression = defaultValue.ToCSharpStringWithPostfix();
+                    defaultValueIsNullable = false;
+                }
                 return true;
             }
         }
         fieldName = null;
         defaultValueExpression = null;
+        defaultValueIsNullable = false;
         allowRawAccess = false;
         attributeData = null;
         return false;

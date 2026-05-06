@@ -141,6 +141,10 @@ internal static class XmlSerialiableRenderer
         {
             return $"this.{member.FieldName}";
         }
+        if (pipeline.IsValueTypeNullCheck)
+        {
+            return $"{s_throwHelperPrefix}.{nameof(XmlFieldThrowHelper.ValueNotNull)}(this.{member.FieldName}, \"{className}\")";
+        }
         if (pipeline.IsStringType)
         {
             return $"{s_throwHelperPrefix}.{nameof(XmlFieldThrowHelper.NotNullOrEmpty)}(this.{member.FieldName}, \"{className}\")";

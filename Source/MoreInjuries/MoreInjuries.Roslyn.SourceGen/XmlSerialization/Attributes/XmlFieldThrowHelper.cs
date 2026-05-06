@@ -45,6 +45,19 @@ internal static class XmlFieldThrowHelper
     }
 
     /// <summary>
+    /// Returns the value of <paramref name="value"/> if it has one; otherwise throws
+    /// an <see cref="InvalidOperationException"/> indicating that the XML-bound field was not initialized.
+    /// </summary>
+    public static T ValueNotNull<T>(T? value, string typeName, [CallerArgumentExpression(nameof(value))] string? expression = null) where T : struct
+    {
+        if (!value.HasValue)
+        {
+            ThrowNull(typeName, expression);
+        }
+        return value.GetValueOrDefault();
+    }
+
+    /// <summary>
     /// Returns <paramref name="value"/> if it is not <see langword="null"/> or empty; otherwise throws
     /// an <see cref="InvalidOperationException"/> indicating that the XML-bound field was not initialized.
     /// </summary>
