@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.Caching;
 using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using MoreInjuries.Roslyn.Future.ThrowHelpers;
 using RimWorld;
 using System.Collections.Generic;
@@ -32,12 +33,8 @@ internal sealed class HearingLossWorker(MoreInjuryComp parent, IReadOnlyList<Bod
             {
                 return s_supportedVerbBaseClasses;
             }
-            if (KnownReferenceableDefOf.HearingLossVerbInfo.GetModExtension<HearingLossVerbInfoProperties_ModExtension>() is not { SupportedVerbBaseClasses: [_, ..] supportedVerbBaseClasses })
-            {
-                Logger.ConfigError("No verb base classes were defined for hearing loss calculation. Check your XML defs.");
-                return [];
-            }
-            return s_supportedVerbBaseClasses = [.. supportedVerbBaseClasses];
+            HearingLossVerbInfoProperties_ModExtension modExtension = KnownReferenceableDefOf.HearingLossVerbInfo.GetRequiredModExtension<HearingLossVerbInfoProperties_ModExtension>();
+            return s_supportedVerbBaseClasses = [.. modExtension.SupportedVerbBaseClasses];
         }
     }
 
