@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class HediffModifier_LinkedHediff_MeanTimeBetween_SimpleCurve : HediffModifier_MeanTimeBetween_SimpleCurve
 {
-    [XmlMember("hediffDef")]
+    [XmlBinding("hediffDef")]
     public partial HediffDef HediffDef { get; }
 
     public override float GetModifier(Hediff hediff, IHediffComp_TickHandler compHandler)

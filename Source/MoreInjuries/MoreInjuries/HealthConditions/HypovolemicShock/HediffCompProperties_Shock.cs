@@ -1,14 +1,14 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class HediffCompProperties_Shock : HediffCompProperties
 {
     public HediffCompProperties_Shock() => compClass = typeof(HediffComp_Shock);
 
     // TODO: [BREAKING] rename to standardized format (no _ prefix) for consistency
-    [XmlMember("_bleedSeverityCurve")]
+    [XmlBinding("_bleedSeverityCurve")]
     public partial SimpleCurve BleedSeverityCurve { get; }
 }

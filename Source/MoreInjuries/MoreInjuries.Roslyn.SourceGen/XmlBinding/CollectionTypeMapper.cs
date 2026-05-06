@@ -1,7 +1,7 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 
-namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
+namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
 
 /// <summary>
 /// Maps collection interface types to their concrete backing field types.

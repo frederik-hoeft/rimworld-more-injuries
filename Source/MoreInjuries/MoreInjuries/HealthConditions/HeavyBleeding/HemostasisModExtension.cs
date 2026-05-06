@@ -1,14 +1,14 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class HemostasisModExtension : DefModExtension
 {
-    [XmlMember("coagulationMultiplier")]
+    [XmlBinding("coagulationMultiplier")]
     public partial float CoagulationMultiplier { get; }
 
-    [XmlMember("disappearsAfterTicks")]
+    [XmlBinding("disappearsAfterTicks")]
     public partial int DisappearsAfterTicks { get; }
 }

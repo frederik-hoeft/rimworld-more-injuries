@@ -1,10 +1,10 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class HediffModifier_Settings : SecondaryHediffModifier
 {
-    [XmlMember("key")]
+    [XmlBinding("key")]
     public partial string Key { get; }
 }

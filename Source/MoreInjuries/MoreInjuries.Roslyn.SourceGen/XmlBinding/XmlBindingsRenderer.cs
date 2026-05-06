@@ -1,16 +1,16 @@
 ﻿using Microsoft.CodeAnalysis.CSharp;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
+namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
 
-internal static class XmlSerialiableRenderer
+internal static class XmlBindingsRenderer
 {
     private static readonly string s_throwHelperPrefix = $"global::{typeof(XmlFieldThrowHelper).FullName}";
 
-    public static string Render(XmlSerializableGenerationModel model)
+    public static string Render(XmlBindableGenerationModel model)
     {
         StringBuilder sourceBuilder = new(
             $$"""
@@ -34,9 +34,9 @@ internal static class XmlSerialiableRenderer
         return sourceBuilder.ToString();
     }
 
-    private static void BuildFieldRegion(XmlSerializableGenerationModel model, IndentedStringBuilder builder)
+    private static void BuildFieldRegion(XmlBindableGenerationModel model, IndentedStringBuilder builder)
     {
-        foreach (XmlMemberModel member in model.AnnotatedMembers)
+        foreach (XmlBindingModel member in model.AnnotatedMembers)
         {
             bool isReadonly = member.Setter is not { IsInitOnly: false };
             string readonlyModifier = isReadonly ? "readonly " : string.Empty;
@@ -51,11 +51,11 @@ internal static class XmlSerialiableRenderer
         }
     }
 
-    private static void BuildPropertyRegion(XmlSerializableGenerationModel model, IndentedStringBuilder builder)
+    private static void BuildPropertyRegion(XmlBindableGenerationModel model, IndentedStringBuilder builder)
     {
         string className = model.ClassName;
 
-        foreach (XmlMemberModel member in model.AnnotatedMembers)
+        foreach (XmlBindingModel member in model.AnnotatedMembers)
         {
             string accessKeyword = SyntaxFacts.GetText(member.PropertyAccessibility);
             string modifiers = member.PropertyModifiers;
@@ -102,7 +102,7 @@ internal static class XmlSerialiableRenderer
         }
     }
 
-    private static void BuildBlockGetter(IndentedStringBuilder builder, XmlMemberModel member, string className)
+    private static void BuildBlockGetter(IndentedStringBuilder builder, XmlBindingModel member, string className)
     {
         builder.AppendLine("get");
         builder.AppendLine("{");
@@ -134,7 +134,7 @@ internal static class XmlSerialiableRenderer
         builder.AppendLine("}");
     }
 
-    private static string GetGetterExpression(XmlMemberModel member, string className)
+    private static string GetGetterExpression(XmlBindingModel member, string className)
     {
         GetterPipelineModel pipeline = member.GetterPipeline;
         if (!pipeline.RequiresNullCheck)

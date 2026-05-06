@@ -1,19 +1,19 @@
 ﻿using MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Comparison;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class OutcomeDoerCondition_Compare : OutcomeDoerCondition
 {
-    [XmlMember("comparisonOperator")]
+    [XmlBinding("comparisonOperator")]
     public partial ComparisonOperator ComparisonOperator { get; }
 
-    [XmlMember("left")]
+    [XmlBinding("left")]
     public partial FloatOperator Left { get; init; }
 
-    [XmlMember("right")]
+    [XmlBinding("right")]
     public partial FloatOperator Right { get; init; }
 
     public override bool ShouldDoOutcome(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState)

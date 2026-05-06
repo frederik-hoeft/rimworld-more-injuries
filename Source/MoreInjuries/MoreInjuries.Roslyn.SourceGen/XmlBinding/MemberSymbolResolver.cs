@@ -1,9 +1,9 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using System;
 using System.Collections.Immutable;
 
-namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
+namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
 
 /// <summary>
 /// Resolves and validates symbol references from attribute arguments (default values, validate/transform methods).

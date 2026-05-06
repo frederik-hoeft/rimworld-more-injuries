@@ -20,10 +20,10 @@
     
     <ItemGroup>
         <!-- Embedded source files injected into the compilation for source generators -->
-        <EmbeddedResource Include="XmlSerialization\Attributes\XmlFieldThrowHelper.cs" />
-        <EmbeddedResource Include="XmlSerialization\Attributes\XmlMemberAttribute.cs" />
-        <EmbeddedResource Include="XmlSerialization\Attributes\XmlMemberAttribute`1.cs" />
-        <EmbeddedResource Include="XmlSerialization\Attributes\XmlSerializableAttribute.cs" />
+        <EmbeddedResource Include="XmlBinding\Attributes\XmlFieldThrowHelper.cs" />
+        <EmbeddedResource Include="XmlBinding\Attributes\XmlBindingAttribute.cs" />
+        <EmbeddedResource Include="XmlBinding\Attributes\XmlBindingAttribute`1.cs" />
+        <EmbeddedResource Include="XmlBinding\Attributes\XmlBindableAttribute.cs" />
     </ItemGroup>
 
     <ItemGroup>

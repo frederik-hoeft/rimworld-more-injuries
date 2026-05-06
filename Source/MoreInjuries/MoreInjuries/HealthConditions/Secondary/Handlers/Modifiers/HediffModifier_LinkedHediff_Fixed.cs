@@ -1,15 +1,15 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class HediffModifier_LinkedHediff_Fixed : SecondaryHediffModifier
 {
-    [XmlMember("hediffDef")]
+    [XmlBinding("hediffDef")]
     public partial HediffDef HediffDef { get; }
 
-    [XmlMember("chanceModifier", NullableBackingField = true)]
+    [XmlBinding("chanceModifier", NullableBackingField = true)]
     public partial float ChanceModifier { get; }
 
     /// <inheritdoc />

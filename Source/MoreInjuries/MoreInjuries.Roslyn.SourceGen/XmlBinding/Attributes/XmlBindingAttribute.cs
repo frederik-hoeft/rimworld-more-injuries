@@ -1,4 +1,4 @@
-﻿namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 
 /// <summary>
 /// Annotates a partial property to generate a backing field with the specified XML-bound name.
@@ -9,7 +9,7 @@
 /// used in RimWorld def files, as the game's XML deserializer populates fields by name via reflection.
 /// </param>
 [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = false)]
-public sealed class XmlMemberAttribute(string name) : Attribute
+public sealed class XmlBindingAttribute(string name) : Attribute
 {
     /// <summary>Gets the XML-bound backing field name.</summary>
     public string Name { get; } = name;

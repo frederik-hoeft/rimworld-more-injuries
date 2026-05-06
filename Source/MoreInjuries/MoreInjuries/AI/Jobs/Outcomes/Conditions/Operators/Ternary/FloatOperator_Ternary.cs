@@ -1,18 +1,18 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Ternary;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class FloatOperator_Ternary : FloatOperator
 {
-    [XmlMember("condition")]
+    [XmlBinding("condition")]
     public partial OutcomeDoerCondition Condition { get; }
 
-    [XmlMember("whenTrue")]
+    [XmlBinding("whenTrue")]
     public partial FloatOperator WhenTrue { get; }
 
-    [XmlMember("whenFalse")]
+    [XmlBinding("whenFalse")]
     public partial FloatOperator WhenFalse { get; }
 
     public override float Evaluate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState)

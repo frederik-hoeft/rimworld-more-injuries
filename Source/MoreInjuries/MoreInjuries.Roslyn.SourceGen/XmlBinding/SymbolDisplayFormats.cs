@@ -1,6 +1,6 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 
-namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
+namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
 
 /// <summary>
 /// Shared <see cref="SymbolDisplayFormat"/> instances used across the XmlSerialization pipeline.

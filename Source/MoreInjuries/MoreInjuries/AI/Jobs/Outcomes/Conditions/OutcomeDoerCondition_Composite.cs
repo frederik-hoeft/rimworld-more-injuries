@@ -1,13 +1,13 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class OutcomeDoerCondition_Composite : OutcomeDoerCondition
 {
-    [XmlMember("conditions")]
+    [XmlBinding("conditions")]
     public partial IReadOnlyList<OutcomeDoerCondition> Conditions { get; }
 
     protected abstract string OperatorName { get; }

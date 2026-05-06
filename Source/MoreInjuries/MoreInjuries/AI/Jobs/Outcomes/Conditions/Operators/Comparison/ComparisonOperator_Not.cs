@@ -1,11 +1,11 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Comparison;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class ComparisonOperator_Not : ComparisonOperator
 {
-    [XmlMember("inner")]
+    [XmlBinding("inner")]
     public partial ComparisonOperator Inner { get; }
 
     public override bool Compare(float left, float right) => !Inner.Compare(left, right);

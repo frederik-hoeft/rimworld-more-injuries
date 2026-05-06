@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HearingLoss;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class HearingLossVerbInfoProperties_ModExtension : DefModExtension
 {
-    [XmlMember("supportedVerbBaseClasses")]
+    [XmlBinding("supportedVerbBaseClasses")]
     public partial IReadOnlyList<string> SupportedVerbBaseClasses { get; }
 }

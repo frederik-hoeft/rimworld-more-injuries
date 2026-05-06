@@ -1,13 +1,13 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class JobOutcomeDoer_HediffOffsetBase : JobOutcomeDoer
 {
-    [XmlMember("hediffDef")]
+    [XmlBinding("hediffDef")]
     public partial HediffDef HediffDef { get; }
 
     protected abstract float GetSeverityOffset(Pawn doctor, Pawn patient, Thing? device);

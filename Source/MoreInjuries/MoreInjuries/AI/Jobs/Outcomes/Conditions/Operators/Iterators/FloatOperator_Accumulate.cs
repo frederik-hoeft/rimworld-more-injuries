@@ -1,19 +1,19 @@
 ﻿using MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary;
 using MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Iterators.Enumerators;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Iterators;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class FloatOperator_Accumulate : FloatOperator
 {
     private readonly object _accumulationLock = new();
 
-    [XmlMember("accumulationFunction")]
+    [XmlBinding("accumulationFunction")]
     public partial FloatOperator_Binary AccumulationFunction { get; }
 
-    [XmlMember("enumerable")]
+    [XmlBinding("enumerable")]
     public partial FloatOperator_Enumerate Enumerable { get; }
 
     public override float Evaluate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState)

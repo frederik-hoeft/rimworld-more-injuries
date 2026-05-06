@@ -1,17 +1,17 @@
 ﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class HediffMakerProperties_RandomFromList : HediffMakerProperties
 {
     [ThreadStatic]
     private static float[]? t_cdfCache;
 
-    [XmlMember("hediffMakerDefs")]
+    [XmlBinding("hediffMakerDefs")]
     public partial IReadOnlyList<HediffMakerDef> HediffMakerDefs { get; }
 
     public override HediffMakerDef GetHediffMakerDef(HediffComp parentComp, HediffCompHandler_SecondaryCondition handler, BodyPartRecord? targetBodyPart)

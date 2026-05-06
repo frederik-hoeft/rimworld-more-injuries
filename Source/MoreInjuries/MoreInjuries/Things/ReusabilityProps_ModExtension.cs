@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using MoreInjuries.Things.Modifiers;
 using Verse;
 
 namespace MoreInjuries.Things;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class ReusabilityProps_ModExtension : DefModExtension
 {
-    [XmlMember("destroyChanceModifier")]
+    [XmlBinding("destroyChanceModifier")]
     public partial ThingModifier DestroyChanceModifier { get; }
 }

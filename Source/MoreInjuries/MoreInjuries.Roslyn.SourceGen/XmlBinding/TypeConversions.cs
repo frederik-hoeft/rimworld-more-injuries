@@ -1,6 +1,6 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 
-namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
+namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
 
 /// <summary>
 /// Checks type convertibility between Roslyn type symbols without requiring a Compilation.

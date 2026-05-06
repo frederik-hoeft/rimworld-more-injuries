@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class FloatOperator_Assign : FloatOperator_AssignBase
 {
-    [XmlMember("value")]
+    [XmlBinding("value")]
     public partial FloatOperator Value { get; init; }
 
     public FloatOperator_Assign() : base(null) { }

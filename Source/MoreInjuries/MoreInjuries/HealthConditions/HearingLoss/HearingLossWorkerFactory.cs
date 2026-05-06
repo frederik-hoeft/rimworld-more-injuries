@@ -1,13 +1,13 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HearingLoss;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class HearingLossWorkerFactory : IInjuryWorkerFactory
 {
-    [XmlMember("earGroups")]
+    [XmlBinding("earGroups")]
     public partial IReadOnlyList<BodyPartGroupDef> EarGroups { get; }
 
     public InjuryWorker Create(MoreInjuryComp parent) => new HearingLossWorker(parent, EarGroups);

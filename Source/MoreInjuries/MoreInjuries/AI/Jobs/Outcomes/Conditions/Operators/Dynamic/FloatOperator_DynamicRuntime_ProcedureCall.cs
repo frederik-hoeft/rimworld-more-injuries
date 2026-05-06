@@ -1,19 +1,19 @@
 ﻿using MoreInjuries.Defs;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class FloatOperator_DynamicRuntime_ProcedureCall() : FloatOperator_DynamicRuntime_ProcedureBase
 {
     private List<FloatOperator>? _instructions = null;
 
-    [XmlMember("parameters")]
+    [XmlBinding("parameters")]
     public partial List<FloatOperator_Assign>? Parameters { get; init; }
 
-    [XmlMember("procedureDef")]
+    [XmlBinding("procedureDef")]
     public partial ReferenceableDef ProcedureDef { get; init; }
 
     internal FloatOperator_DynamicRuntime_ProcedureCall(ReferenceableDef procedureDef, List<FloatOperator_Assign>? parameters) : this()

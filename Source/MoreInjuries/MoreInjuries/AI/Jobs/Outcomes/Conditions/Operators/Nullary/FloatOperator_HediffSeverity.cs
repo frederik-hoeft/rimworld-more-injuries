@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class FloatOperator_HediffSeverity() : FloatOperator
 {
-    [XmlMember("hediffDef")]
+    [XmlBinding("hediffDef")]
     public partial HediffDef HediffDef { get; init; }
 
     internal FloatOperator_HediffSeverity(HediffDef hediffDef) : this() => HediffDef = hediffDef;

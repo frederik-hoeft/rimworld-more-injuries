@@ -3,7 +3,7 @@ using MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 using MoreInjuries.Roslyn.Future.ThrowHelpers;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using RimWorld;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,22 +11,22 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class HediffCompHandler_SecondaryCondition : HediffCompHandler
 {
-    [XmlMember<float>("baseChance", defaultValue: 1f)]
+    [XmlBinding<float>("baseChance", defaultValue: 1f)]
     public virtual partial float BaseChance { get; }
 
-    [XmlMember("hediffMakerProps")]
+    [XmlBinding("hediffMakerProps")]
     public partial HediffMakerProperties? HediffMakerProps { get; }
 
-    [XmlMember("chanceModifiers")]
+    [XmlBinding("chanceModifiers")]
     public partial IReadOnlyList<SecondaryHediffModifier>? ChanceModifiers { get; }
 
-    [XmlMember("sendLetterWhenDiscovered")]
+    [XmlBinding("sendLetterWhenDiscovered")]
     public partial bool SendLetterWhenDiscovered { get; }
 
-    [XmlMember("targetEvaluator", DefaultValueProvider = typeof(BodyPartHediffTargetEvaluator_WholeBody), DefaultValueFrom = nameof(BodyPartHediffTargetEvaluator_WholeBody.Instance))]
+    [XmlBinding("targetEvaluator", DefaultValueProvider = typeof(BodyPartHediffTargetEvaluator_WholeBody), DefaultValueFrom = nameof(BodyPartHediffTargetEvaluator_WholeBody.Instance))]
     public partial BodyPartHediffTargetEvaluator TargetEvaluator { get; }
 
     public virtual bool ShouldSkip(HediffComp_SecondaryCondition comp)

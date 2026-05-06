@@ -1,19 +1,17 @@
 ﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
-using System.Collections.Generic;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Immutable;
 
-namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
+namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
 
-internal static class XmlSerializableCandidateFactory
+internal static class XmlBindableCandidateFactory
 {
-    private static readonly string s_xmlMemberGenericFullName = typeof(XmlMemberAttribute<>).FullName;
+    private static readonly string s_xmlMemberGenericFullName = typeof(XmlBindingAttribute<>).FullName;
 
     private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.FullyQualifiedWithNullable;
 
-    public static XmlSerializableCandidate Create(XmlSerialiableTarget target)
+    public static XmlBindableCandidate Create(XmlBindableTarget target)
     {
         ImmutableArray<Diagnostic>.Builder diagnostics = ImmutableArray.CreateBuilder<Diagnostic>();
         INamedTypeSymbol typeSymbol = target.TypeSymbol;
@@ -25,27 +23,27 @@ internal static class XmlSerializableCandidateFactory
                 typeSymbol.Locations.FirstOrDefault(),
                 typeSymbol.Name));
 
-            return new XmlSerializableCandidate(null, diagnostics.ToImmutable());
+            return new XmlBindableCandidate(null, diagnostics.ToImmutable());
         }
 
-        ImmutableArray<XmlMemberModel>.Builder memberModels = ImmutableArray.CreateBuilder<XmlMemberModel>();
+        ImmutableArray<XmlBindingModel>.Builder memberModels = ImmutableArray.CreateBuilder<XmlBindingModel>();
 
         foreach (IPropertySymbol property in typeSymbol.GetMembers().OfType<IPropertySymbol>())
         {
             string? fieldName;
             string? defaultValueExpression;
-            bool defaultValueIsNullable = false;
+            bool defaultValueIsNullable;
             bool allowRawAccess;
             AttributeData? resolvedAttribute;
 
-            if (property.TryGetAttribute<XmlMemberAttribute>(out AttributeData? xmlMemberAttribute)
+            if (property.TryGetAttribute<XmlBindingAttribute>(out AttributeData? xmlMemberAttribute)
                 && xmlMemberAttribute.ConstructorArguments is [{ Value: string nonGenericFieldName }])
             {
                 fieldName = nonGenericFieldName;
                 allowRawAccess = AttributeDataReader.GetAllowRawAccess(xmlMemberAttribute);
                 resolvedAttribute = xmlMemberAttribute;
 
-                bool nullableBackingField = AttributeDataReader.GetNamedBoolArgument(xmlMemberAttribute, nameof(XmlMemberAttribute.NullableBackingField));
+                bool nullableBackingField = AttributeDataReader.GetNamedBoolArgument(xmlMemberAttribute, nameof(XmlBindingAttribute.NullableBackingField));
                 if (nullableBackingField)
                 {
                     defaultValueExpression = "null";
@@ -105,15 +103,15 @@ internal static class XmlSerializableCandidateFactory
             ? typeSymbol.ContainingNamespace.ToDisplayString()
             : string.Empty;
 
-        return new XmlSerializableCandidate(
-            new XmlSerializableGenerationModel(
+        return new XmlBindableCandidate(
+            new XmlBindableGenerationModel(
                 Namespace: namespaceName,
                 ClassName: typeSymbol.Name,
                 AnnotatedMembers: memberModels.ToImmutable()),
             diagnostics.ToImmutable());
     }
 
-    private static XmlMemberModel CreateMemberModel(IPropertySymbol property, string fieldName, string? defaultValueExpression, bool defaultValueIsNullable, bool allowRawAccess, string? validateMethodName, bool validateIsStatic, string? transformMethodName, bool transformIsStatic)
+    private static XmlBindingModel CreateMemberModel(IPropertySymbol property, string fieldName, string? defaultValueExpression, bool defaultValueIsNullable, bool allowRawAccess, string? validateMethodName, bool validateIsStatic, string? transformMethodName, bool transformIsStatic)
     {
         bool hasSetter = property.SetMethod is not null;
         bool isInitOnly = property.SetMethod?.IsInitOnly ?? false;
@@ -179,7 +177,7 @@ internal static class XmlSerializableCandidateFactory
             Transform: transformMethodName is not null ? new MethodCallModel(transformMethodName, transformIsStatic) : null,
             Validate: validateMethodName is not null ? new MethodCallModel(validateMethodName, validateIsStatic) : null);
 
-        return new XmlMemberModel(
+        return new XmlBindingModel(
             PropertyName: property.Name,
             PropertyTypeDisplay: propertyTypeDisplay,
             FieldTypeDisplay: fieldTypeDisplay,
@@ -257,8 +255,8 @@ internal static class XmlSerializableCandidateFactory
         out string? defaultValueExpression,
         out bool defaultValueIsNullable)
     {
-        INamedTypeSymbol? defaultValueProvider = AttributeDataReader.GetNamedTypeArgument(xmlMemberAttribute, nameof(XmlMemberAttribute.DefaultValueProvider));
-        string? defaultValueFrom = AttributeDataReader.GetNamedStringArgument(xmlMemberAttribute, nameof(XmlMemberAttribute.DefaultValueFrom));
+        INamedTypeSymbol? defaultValueProvider = AttributeDataReader.GetNamedTypeArgument(xmlMemberAttribute, nameof(XmlBindingAttribute.DefaultValueProvider));
+        string? defaultValueFrom = AttributeDataReader.GetNamedStringArgument(xmlMemberAttribute, nameof(XmlBindingAttribute.DefaultValueFrom));
 
         if (defaultValueProvider is not null)
         {
@@ -317,7 +315,7 @@ internal static class XmlSerializableCandidateFactory
         transformMethodName = null;
         transformIsStatic = false;
 
-        if (AttributeDataReader.GetNamedStringArgument(attribute, nameof(XmlMemberAttribute.Validate)) is { } validateName)
+        if (AttributeDataReader.GetNamedStringArgument(attribute, nameof(XmlBindingAttribute.Validate)) is { } validateName)
         {
             if (!MemberSymbolResolver.TryResolveValidateMethod(typeSymbol, property, validateName, diagnostics, out validateIsStatic))
             {
@@ -326,7 +324,7 @@ internal static class XmlSerializableCandidateFactory
             validateMethodName = validateName;
         }
 
-        if (AttributeDataReader.GetNamedStringArgument(attribute, nameof(XmlMemberAttribute.Transform)) is { } transformName)
+        if (AttributeDataReader.GetNamedStringArgument(attribute, nameof(XmlBindingAttribute.Transform)) is { } transformName)
         {
             if (!MemberSymbolResolver.TryResolveTransformMethod(typeSymbol, property, transformName, diagnostics, out transformIsStatic))
             {

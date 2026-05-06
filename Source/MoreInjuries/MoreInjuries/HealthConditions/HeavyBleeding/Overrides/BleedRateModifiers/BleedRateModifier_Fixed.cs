@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class BleedRateModifier_Fixed : BleedRateModifier
 {
-    [XmlMember<float>("factor", defaultValue: 1f)]
+    [XmlBinding<float>("factor", defaultValue: 1f)]
     public partial float Factor { get; }
 
     public override float GetModifierFor(Hediff hediff, HediffWithComps bleedingHediff) => Factor;

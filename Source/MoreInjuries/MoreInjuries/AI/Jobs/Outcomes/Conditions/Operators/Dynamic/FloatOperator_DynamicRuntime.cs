@@ -1,13 +1,13 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class FloatOperator_DynamicRuntime : FloatOperator_DynamicRuntime_ProcedureBase
 {
-    [XmlMember("instructions")]
+    [XmlBinding("instructions")]
     public partial List<FloatOperator> Instructions { get; }
 
     protected override List<FloatOperator> LoadInstructions() => Instructions;

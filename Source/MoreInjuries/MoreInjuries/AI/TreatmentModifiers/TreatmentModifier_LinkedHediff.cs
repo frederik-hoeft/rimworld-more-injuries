@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.TreatmentModifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class TreatmentModifier_LinkedHediff : TreatmentModifier
 {
-    [XmlMember("otherHediffDef")]
+    [XmlBinding("otherHediffDef")]
     public partial HediffDef OtherHediffDef { get; }
 
     protected abstract float GetEffectiveness(Hediff hediff, Hediff otherHediff);

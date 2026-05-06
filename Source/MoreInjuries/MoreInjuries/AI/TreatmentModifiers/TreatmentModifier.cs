@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.TreatmentModifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class TreatmentModifier
 {
-    [XmlMember("jobDef")]
+    [XmlBinding("jobDef")]
     public partial JobDef JobDef { get; }
 
     public abstract float GetEffectiveness(Hediff hediff);

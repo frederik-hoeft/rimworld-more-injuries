@@ -1,13 +1,13 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using RimWorld;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class JobOutcomeDoer_NeedBase : JobOutcomeDoer
 {
-    [XmlMember("needDef")]
+    [XmlBinding("needDef")]
     public partial NeedDef NeedDef { get; }
 
     protected abstract bool DoOutcome(Pawn doctor, Pawn patient, Thing? device, Need need);

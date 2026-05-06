@@ -1,11 +1,11 @@
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class MedicalJobProperties_ModExtension : DefModExtension
 {
-    [XmlMember<bool>("shouldEverBeTreatedFacingUp", defaultValue: false)]
+    [XmlBinding<bool>("shouldEverBeTreatedFacingUp", defaultValue: false)]
     public partial bool ShouldEverBeTreatedFacingUp { get; }
 }

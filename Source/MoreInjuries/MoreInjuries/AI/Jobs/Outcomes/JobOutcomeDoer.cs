@@ -1,13 +1,13 @@
-using MoreInjuries.AI.Jobs.Outcomes.Conditions;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.AI.Jobs.Outcomes.Conditions;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class JobOutcomeDoer
 {
-    [XmlMember("condition")]
+    [XmlBinding("condition")]
     public partial OutcomeDoerCondition? Condition { get; }
 
     public virtual bool TryDoOutcome(Pawn doctor, Pawn patient, Thing? device)

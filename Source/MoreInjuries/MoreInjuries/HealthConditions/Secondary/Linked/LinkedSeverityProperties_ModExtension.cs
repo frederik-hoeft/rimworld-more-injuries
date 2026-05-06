@@ -1,13 +1,13 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Linked;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class LinkedSeverityProperties_ModExtension : DefModExtension
 {
-    [XmlMember("modifiedHediffs")]
+    [XmlBinding("modifiedHediffs")]
     public partial IReadOnlyList<HediffCompHandler_LinkedSeverity>? ModifiedHediffs { get; }
 
     public IReadOnlyDictionary<HediffDef, HediffCompHandler_LinkedSeverity> LinkedSeverityHandlers

@@ -1,16 +1,16 @@
 ﻿using MoreInjuries.Defs;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class MoreInjuryCompProperties : CompProperties
 {
     public MoreInjuryCompProperties() => compClass = typeof(MoreInjuryComp);
 
-    [XmlMember("workerFactoryDef")]
+    [XmlBinding("workerFactoryDef")]
     public partial ReferenceableDef WorkerFactoryDef { get; }
 
     public IReadOnlyList<IInjuryWorkerFactory> WorkerFactories

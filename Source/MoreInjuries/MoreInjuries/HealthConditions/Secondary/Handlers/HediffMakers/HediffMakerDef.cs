@@ -1,24 +1,24 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class HediffMakerDef
 {
-    [XmlMember("hediffDef")]
+    [XmlBinding("hediffDef")]
     public partial HediffDef HediffDef { get; }
 
-    [XmlMember("minSeverity")]
+    [XmlBinding("minSeverity")]
     public partial float MinSeverity { get; }
 
-    [XmlMember("maxSeverity")]
+    [XmlBinding("maxSeverity")]
     public partial float MaxSeverity { get; }
 
-    [XmlMember("allowDuplicate")]
+    [XmlBinding("allowDuplicate")]
     public partial bool AllowDuplicate { get; }
 
-    [XmlMember("allowMultiple")]
+    [XmlBinding("allowMultiple")]
     public partial bool AllowMultiple { get; }
 
     public float GetInitialSeverity()

@@ -1,13 +1,13 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Iterators.Enumerators;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class FloatOperator_Enumerate_HediffSeverities : FloatOperator_Enumerate_Flat
 {
-    [XmlMember("hediffDef")]
+    [XmlBinding("hediffDef")]
     private partial HediffDef HediffDef { get; }
 
     protected override IEnumerable<float> FlatEnumerate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState)

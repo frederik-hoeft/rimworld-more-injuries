@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Nullary;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class FloatOperator_Constant() : FloatOperator
 {
-    [XmlMember("value")]
+    [XmlBinding("value")]
     public partial float Value { get; init; }
 
     internal FloatOperator_Constant(float value) : this()

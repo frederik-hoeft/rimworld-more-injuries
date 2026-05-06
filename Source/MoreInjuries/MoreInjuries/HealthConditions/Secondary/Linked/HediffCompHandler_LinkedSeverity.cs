@@ -1,19 +1,19 @@
 ﻿using MoreInjuries.HealthConditions.Secondary.Handlers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Linked;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class HediffCompHandler_LinkedSeverity : HediffCompHandler
 {
-    [XmlMember("linkedHediffDef")]
+    [XmlBinding("linkedHediffDef")]
     public partial HediffDef LinkedHediffDef { get; }
 
-    [XmlMember("severityModifiers")]
+    [XmlBinding("severityModifiers")]
     public partial IReadOnlyList<SecondaryHediffModifier>? SeverityModifiers { get; }
 
     public virtual float Evaluate(Hediff hediff)

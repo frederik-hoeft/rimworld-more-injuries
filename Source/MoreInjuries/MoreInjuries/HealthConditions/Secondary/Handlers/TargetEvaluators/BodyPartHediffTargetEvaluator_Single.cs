@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class BodyPartHediffTargetEvaluator_Single : BodyPartHediffTargetEvaluator
 {
-    [XmlMember("target")]
+    [XmlBinding("target")]
     public partial BodyPartDef Target { get; }
 
     public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)

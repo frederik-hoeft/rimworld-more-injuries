@@ -1,22 +1,22 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using RimWorld;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class JobOutcomeDoer_FactionRelations : JobOutcomeDoer
 {
-    [XmlMember<int>("goodwillChange", defaultValue: 0)]
+    [XmlBinding<int>("goodwillChange", defaultValue: 0)]
     public partial int GoodwillChange { get; }
 
-    [XmlMember("historyEventDef")]
+    [XmlBinding("historyEventDef")]
     public partial HistoryEventDef HistoryEventDef { get; }
 
-    [XmlMember<bool>("isViolation", defaultValue: false)]
+    [XmlBinding<bool>("isViolation", defaultValue: false)]
     public partial bool IsViolation { get; }
 
-    [XmlMember<bool>("onlyIfFriendly", defaultValue: false)]
+    [XmlBinding<bool>("onlyIfFriendly", defaultValue: false)]
     public partial bool OnlyIfFriendly { get; }
 
     protected override bool DoOutcome(Pawn doctor, Pawn patient, Thing? device)

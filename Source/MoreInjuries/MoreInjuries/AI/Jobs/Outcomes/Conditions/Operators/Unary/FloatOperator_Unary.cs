@@ -1,10 +1,10 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Unary;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class FloatOperator_Unary : FloatOperator
 {
-    [XmlMember("inner")]
+    [XmlBinding("inner")]
     public partial FloatOperator Inner { get; }
 }

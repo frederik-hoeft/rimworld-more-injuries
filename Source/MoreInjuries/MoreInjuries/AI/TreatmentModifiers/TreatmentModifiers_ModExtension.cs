@@ -1,4 +1,4 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -6,10 +6,10 @@ using Verse;
 
 namespace MoreInjuries.AI.TreatmentModifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class TreatmentModifiers_ModExtension : DefModExtension
 {
-    [XmlMember("modifiers")]
+    [XmlBinding("modifiers")]
     public partial IReadOnlyList<TreatmentModifier>? Modifiers { get; }
 
     private Dictionary<JobDef, TreatmentModifier[]> TreatmentModifiersByJobDef

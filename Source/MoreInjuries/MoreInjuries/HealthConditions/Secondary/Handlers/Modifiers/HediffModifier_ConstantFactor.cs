@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class HediffModifier_ConstantFactor : SecondaryHediffModifier
 {
-    [XmlMember("factor", NullableBackingField = true)]
+    [XmlBinding("factor", NullableBackingField = true)]
     public partial float Factor { get; }
 
     public override float GetModifier(Hediff hediff, HediffCompHandler compHandler) => Factor;

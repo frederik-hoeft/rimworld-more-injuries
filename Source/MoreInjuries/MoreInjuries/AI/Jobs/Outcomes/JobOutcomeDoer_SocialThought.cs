@@ -1,16 +1,16 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using RimWorld;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class JobOutcomeDoer_SocialThought : JobOutcomeDoer
 {
-    [XmlMember("thoughtDef")]
+    [XmlBinding("thoughtDef")]
     public partial ThoughtDef ThoughtDef { get; }
 
-    [XmlMember<bool>("ignoreHostilities", defaultValue: false)]
+    [XmlBinding<bool>("ignoreHostilities", defaultValue: false)]
     public partial bool IgnoreHostilities { get; }
 
     protected override bool DoOutcome(Pawn doctor, Pawn patient, Thing? device)

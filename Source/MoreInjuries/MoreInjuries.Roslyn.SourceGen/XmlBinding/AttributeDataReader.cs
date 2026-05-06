@@ -1,8 +1,8 @@
-using Microsoft.CodeAnalysis;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using Microsoft.CodeAnalysis;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 
-namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
+namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
 
 /// <summary>
 /// Reads named and positional arguments from <see cref="AttributeData"/> instances.
@@ -10,7 +10,7 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
 internal static class AttributeDataReader
 {
     public static bool GetAllowRawAccess(AttributeData attribute) =>
-        GetNamedBoolArgument(attribute, nameof(XmlMemberAttribute.AllowRawAccess));
+        GetNamedBoolArgument(attribute, nameof(XmlBindingAttribute.AllowRawAccess));
 
     public static string? GetNamedStringArgument(AttributeData attribute, string argumentName)
     {

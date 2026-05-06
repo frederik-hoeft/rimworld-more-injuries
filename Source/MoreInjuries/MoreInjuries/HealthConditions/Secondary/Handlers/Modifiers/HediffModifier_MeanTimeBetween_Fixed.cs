@@ -1,4 +1,4 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using RimWorld;
 using System.Threading;
 using UnityEngine;
@@ -6,22 +6,22 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class HediffModifier_MeanTimeBetween_Fixed : HediffModifier_MeanTimeBetween
 {
-    [XmlMember<float>("ticks", defaultValue: 0f)]
+    [XmlBinding<float>("ticks", defaultValue: 0f)]
     public partial float Ticks { get; }
 
-    [XmlMember<float>("hours", defaultValue: 0f)]
+    [XmlBinding<float>("hours", defaultValue: 0f)]
     public partial float Hours { get; }
 
-    [XmlMember<float>("days", defaultValue: 0f)]
+    [XmlBinding<float>("days", defaultValue: 0f)]
     public partial float Days { get; }
 
-    [XmlMember<float>("quadrums", defaultValue: 0f)]
+    [XmlBinding<float>("quadrums", defaultValue: 0f)]
     public partial float Quadrums { get; }
 
-    [XmlMember<float>("years", defaultValue: 0f)]
+    [XmlBinding<float>("years", defaultValue: 0f)]
     public partial float Years { get; }
 
     private float Mttf

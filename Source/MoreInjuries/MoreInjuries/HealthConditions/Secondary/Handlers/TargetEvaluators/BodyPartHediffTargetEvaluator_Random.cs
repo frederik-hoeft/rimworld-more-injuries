@@ -1,24 +1,24 @@
 ﻿using MoreInjuries.Extensions.Bcl;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class BodyPartHediffTargetEvaluator_Random : BodyPartHediffTargetEvaluator
 {
-    [XmlMember<BodyPartHeight>("height", defaultValue: BodyPartHeight.Undefined)]
+    [XmlBinding<BodyPartHeight>("height", defaultValue: BodyPartHeight.Undefined)]
     public partial BodyPartHeight Height { get; }
 
-    [XmlMember<BodyPartDepth>("depth", defaultValue: BodyPartDepth.Undefined)]
+    [XmlBinding<BodyPartDepth>("depth", defaultValue: BodyPartDepth.Undefined)]
     public partial BodyPartDepth Depth { get; }
     
-    [XmlMember("excludedParts")]
+    [XmlBinding("excludedParts")]
     public partial List<BodyPartDef>? ExcludedParts { get; }
 
-    [XmlMember("includedParts")]
+    [XmlBinding("includedParts")]
     public partial List<BodyPartDef>? IncludedParts { get; }
 
     protected virtual bool IncludeBodyPart(BodyPartRecord bodyPart, Pawn pawn) =>

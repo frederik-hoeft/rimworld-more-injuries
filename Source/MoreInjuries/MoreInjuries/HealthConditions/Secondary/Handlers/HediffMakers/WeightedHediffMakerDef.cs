@@ -1,10 +1,10 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class WeightedHediffMakerDef : HediffMakerDef
 {
-    [XmlMember<float>("weight", defaultValue: 1f)]
+    [XmlBinding<float>("weight", defaultValue: 1f)]
     public partial float Weight { get; }
 }

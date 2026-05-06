@@ -1,13 +1,13 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.Things.Modifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class ThingModifier_Collection : ThingModifier
 {
-    [XmlMember("modifiers")]
+    [XmlBinding("modifiers")]
     public partial IReadOnlyList<ThingModifier> Modifiers { get; }
 
     public override float GetModifier(Thing thing)

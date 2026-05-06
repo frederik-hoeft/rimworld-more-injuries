@@ -1,15 +1,15 @@
 ﻿using MoreInjuries.Extensions.Bcl;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class BodyPartHediffTargetEvaluator_RandomFromList : BodyPartHediffTargetEvaluator
 {
-    [XmlMember("targets")]
+    [XmlBinding("targets")]
     public partial IReadOnlyList<BodyPartDef> Targets { get; }
 
     public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)

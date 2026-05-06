@@ -1,14 +1,14 @@
 ﻿using MoreInjuries.Defs;
 using MoreInjuries.Extensions;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class HediffModifier_Reference : SecondaryHediffModifier
 {
-    [XmlMember("hediffModifierDef")]
+    [XmlBinding("hediffModifierDef")]
     public partial ReferenceableDef HediffModifierDef { get; }
 
     public override float GetModifier(Hediff hediff, HediffCompHandler compHandler) =>

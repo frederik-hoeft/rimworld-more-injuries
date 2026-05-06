@@ -1,13 +1,13 @@
 ﻿using MoreInjuries.Defs;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class JobOutcomeProperties_ModExtension_TemplateRef : JobOutcomeProperties_ModExtension
 {
-    [XmlMember("templateDef")]
+    [XmlBinding("templateDef")]
     public partial ReferenceableDef TemplateDef { get; }
 
     public override IReadOnlyList<JobOutcomeDoer> OutcomeDoers

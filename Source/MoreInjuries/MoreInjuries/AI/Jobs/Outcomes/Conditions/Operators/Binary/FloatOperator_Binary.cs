@@ -1,16 +1,16 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class FloatOperator_Binary : FloatOperator
 {
     protected abstract string OperatorSymbol { get; }
 
-    [XmlMember("left")]
+    [XmlBinding("left")]
     public partial FloatOperator Left { get; internal set; }
 
-    [XmlMember("right")]
+    [XmlBinding("right")]
     public partial FloatOperator Right { get; internal set; }
 
     public override string ToString() => $"({Left} {OperatorSymbol} {Right})";

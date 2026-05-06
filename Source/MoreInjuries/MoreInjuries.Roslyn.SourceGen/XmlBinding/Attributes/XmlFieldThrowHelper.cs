@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 
 /// <summary>
 /// Provides throw helpers used by the XML serialization source generator to validate

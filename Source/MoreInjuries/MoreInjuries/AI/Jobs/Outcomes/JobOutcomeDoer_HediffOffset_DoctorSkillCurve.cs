@@ -1,17 +1,17 @@
 ﻿using MoreInjuries.Extensions;
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Text;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class JobOutcomeDoer_HediffOffset_DoctorSkillCurve : JobOutcomeDoer_HediffOffsetBase
 {
-    [XmlMember("minSeverityOffsetByDoctorSkill")]
+    [XmlBinding("minSeverityOffsetByDoctorSkill")]
     private partial SimpleCurve MinSeverityOffsetByDoctorSkill { get; }
 
-    [XmlMember("maxSeverityOffsetByDoctorSkill")]
+    [XmlBinding("maxSeverityOffsetByDoctorSkill")]
     private partial SimpleCurve? MaxSeverityOffsetByDoctorSkill { get; }
 
     protected override float GetSeverityOffset(Pawn doctor, Pawn patient, Thing? device)

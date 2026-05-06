@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[XmlSerializable]
+[XmlBindable]
 public partial class JobOutcomeProperties_ModExtension : DefModExtension
 {
-    [XmlMember("outcomeDoers")]
+    [XmlBinding("outcomeDoers")]
     public virtual partial IReadOnlyList<JobOutcomeDoer> OutcomeDoers { get; }
 }

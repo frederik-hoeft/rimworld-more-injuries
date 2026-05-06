@@ -1,10 +1,10 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 
 namespace MoreInjuries.Things.Modifiers;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class ThingModifier_Settings : ThingModifier
 {
-    [XmlMember("key")]
+    [XmlBinding("key")]
     public partial string Key { get; }
 }

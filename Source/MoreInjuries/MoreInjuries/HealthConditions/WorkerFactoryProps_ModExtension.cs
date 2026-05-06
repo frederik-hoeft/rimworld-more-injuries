@@ -1,12 +1,12 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using Verse;
 
 namespace MoreInjuries.HealthConditions;
 
-[XmlSerializable]
+[XmlBindable]
 public sealed partial class WorkerFactoryProps_ModExtension : DefModExtension
 {
-    [XmlMember("workerFactories")]
+    [XmlBinding("workerFactories")]
     public partial IReadOnlyList<IInjuryWorkerFactory>? WorkerFactories { get; }
 }

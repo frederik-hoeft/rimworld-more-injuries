@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 
-namespace MoreInjuries.Roslyn.SourceGen.XmlSerialization;
+namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
 
 /// <summary>
 /// Describes the setter configuration for a generated property. <see langword="null"/> means no setter.
@@ -25,7 +25,7 @@ internal sealed record GetterPipelineModel(
 /// <summary>
 /// Immutable model for a single annotated XML member. Composed of focused sub-models.
 /// </summary>
-internal sealed record XmlMemberModel(
+internal sealed record XmlBindingModel(
     string PropertyName,
     string PropertyTypeDisplay,
     string FieldTypeDisplay,

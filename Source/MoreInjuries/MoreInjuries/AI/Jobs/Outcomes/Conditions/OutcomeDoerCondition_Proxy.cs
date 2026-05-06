@@ -1,10 +1,10 @@
-using MoreInjuries.Roslyn.SourceGen.XmlSerialization.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions;
 
-[XmlSerializable]
+[XmlBindable]
 public abstract partial class OutcomeDoerCondition_Proxy : OutcomeDoerCondition 
 {
-    [XmlMember("condition")]
+    [XmlBinding("condition")]
     public partial OutcomeDoerCondition Condition { get; }
 }
