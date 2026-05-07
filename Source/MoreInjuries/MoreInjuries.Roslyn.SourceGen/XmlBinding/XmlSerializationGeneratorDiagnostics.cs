@@ -23,6 +23,14 @@ internal static class XmlSerializationGeneratorDiagnostics
         defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true);
 
+    public static DiagnosticDescriptor TargetTypeMustBePartial { get; } = new(
+        id: "MIXML011",
+        title: "Generator target type must be partial",
+        messageFormat: $"Class '{{0}}' must be partial to use {nameof(XmlBindableAttribute)}.",
+        category: CATEGORY,
+        defaultSeverity: DiagnosticSeverity.Error,
+        isEnabledByDefault: true);
+
     public static DiagnosticDescriptor InvalidFieldName { get; } = new(
         id: "MIXML003",
         title: "Invalid field name",

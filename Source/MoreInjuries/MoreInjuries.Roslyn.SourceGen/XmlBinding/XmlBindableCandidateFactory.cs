@@ -26,6 +26,16 @@ internal static class XmlBindableCandidateFactory
             return new XmlBindableCandidate(null, diagnostics.ToImmutable());
         }
 
+        if (!typeSymbol.HasPartialDeclaration())
+        {
+            diagnostics.Add(Diagnostic.Create(
+                XmlSerializationGeneratorDiagnostics.TargetTypeMustBePartial,
+                typeSymbol.Locations.FirstOrDefault(),
+                typeSymbol.Name));
+
+            return new XmlBindableCandidate(null, diagnostics.ToImmutable());
+        }
+
         ImmutableArray<XmlBindingModel>.Builder memberModels = ImmutableArray.CreateBuilder<XmlBindingModel>();
 
         foreach (IPropertySymbol property in typeSymbol.GetMembers().OfType<IPropertySymbol>())
