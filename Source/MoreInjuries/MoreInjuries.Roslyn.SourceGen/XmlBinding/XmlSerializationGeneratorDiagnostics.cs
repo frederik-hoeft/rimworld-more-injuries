@@ -26,7 +26,7 @@ internal static class XmlSerializationGeneratorDiagnostics
     public static DiagnosticDescriptor TargetTypeMustBePartial { get; } = new(
         id: "MIXML011",
         title: "Generator target type must be partial",
-        messageFormat: $"Class '{{0}}' must be partial to use {nameof(XmlBindableAttribute)}.",
+        messageFormat: "Class '{0}' must be partial to use XmlBindableAttribute.",
         category: CATEGORY,
         defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true);
