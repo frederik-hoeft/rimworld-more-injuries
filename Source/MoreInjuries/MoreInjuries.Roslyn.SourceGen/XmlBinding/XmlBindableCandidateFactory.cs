@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Immutable;
@@ -86,7 +87,7 @@ internal static class XmlBindableCandidateFactory
                     typeSymbol.Name));
                 continue;
             }
-            if (string.IsNullOrWhiteSpace(fieldName))
+            if (string.IsNullOrWhiteSpace(fieldName) || !SyntaxFacts.IsValidIdentifier(fieldName))
             {
                 diagnostics.Add(Diagnostic.Create(
                     XmlSerializationGeneratorDiagnostics.InvalidFieldName,
