@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
@@ -38,6 +39,7 @@ internal static class XmlBindableCandidateFactory
         }
 
         ImmutableArray<XmlBindingModel>.Builder memberModels = ImmutableArray.CreateBuilder<XmlBindingModel>();
+        HashSet<string> usedFieldNames = [];
 
         foreach (IPropertySymbol property in typeSymbol.GetMembers().OfType<IPropertySymbol>())
         {
@@ -97,7 +99,7 @@ internal static class XmlBindableCandidateFactory
                     fieldName));
                 continue;
             }
-            if (!typeSymbol.GetMembers(fieldName!).IsEmpty)
+            if (!typeSymbol.GetMembers(fieldName!).IsEmpty || !usedFieldNames.Add(fieldName!))
             {
                 diagnostics.Add(Diagnostic.Create(
                     XmlSerializationGeneratorDiagnostics.MemberNameConflict,
