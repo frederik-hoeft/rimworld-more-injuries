@@ -1,19 +1,18 @@
-﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using RimWorld;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public class HediffModifier_MeanTimeBetween_SimpleCurve_Hours : HediffModifier_MeanTimeBetween
+[XmlBindable]
+public partial class HediffModifier_MeanTimeBetween_SimpleCurve_Hours : HediffModifier_MeanTimeBetween
 {
-    // don't rename this field. XML defs depend on this name
-    protected readonly SimpleCurve mttfHoursBySeverity = default!;
+    [XmlBinding("mttfHoursBySeverity")]
+    public partial SimpleCurve MttfHoursBySeverity { get; }
 
     public override float GetModifier(Hediff hediff, IHediffComp_TickHandler compHandler)
     {
-        Throw.InvalidOperationException.IfNull(this, mttfHoursBySeverity);
-        float mttfHours = mttfHoursBySeverity.Evaluate(hediff.Severity);
+        float mttfHours = MttfHoursBySeverity.Evaluate(hediff.Severity);
         return GetChanceFromMttf(mttfHours * GenDate.TicksPerHour, compHandler.TickInterval);
     }
 }

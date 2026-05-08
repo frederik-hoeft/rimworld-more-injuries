@@ -6,7 +6,7 @@
         <Version>1.6.0.3</Version>
         <Platforms>AnyCPU</Platforms>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-        <Configurations>Debug;Release;Test</Configurations>
+        <Configurations>Debug;Release;Test;Debug-FullFeatureSet</Configurations>
     </PropertyGroup>
     
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|AnyCPU'">
@@ -22,8 +22,8 @@
         <ProjectReference Include="..\MoreInjuries.Roslyn.SourceGen\MoreInjuries.Roslyn.SourceGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
     
-    <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-        <ModBadHygiene>enable</ModBadHygiene>
+    <PropertyGroup Condition="'$(Configuration)'=='Debug-FullFeatureSet'">
+      <ModBadHygiene>enable</ModBadHygiene>
     </PropertyGroup>
 
     <Import Project="MoreInjuries.Integration.Mod.DubsBadHygiene.props" />

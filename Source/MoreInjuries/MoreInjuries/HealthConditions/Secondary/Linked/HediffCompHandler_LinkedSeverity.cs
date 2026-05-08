@@ -1,30 +1,20 @@
 ﻿using MoreInjuries.HealthConditions.Secondary.Handlers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
-using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Linked;
 
-// members initialized via XML defs
-[SuppressMessage(CODE_STYLE, STYLE_IDE0032_USE_AUTO_PROPERTY, Justification = JUSTIFY_IDE0032_XML_DEF_REQUIRES_FIELD)]
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public class HediffCompHandler_LinkedSeverity : HediffCompHandler
+[XmlBindable]
+public partial class HediffCompHandler_LinkedSeverity : HediffCompHandler
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly List<SecondaryHediffModifier>? severityModifiers = default;
-    // don't rename this field. XML defs depend on this name
-    private readonly HediffDef? linkedHediffDef = default;
+    [XmlBinding("linkedHediffDef")]
+    public partial HediffDef LinkedHediffDef { get; }
 
-    public HediffDef LinkedHediffDef
-    {
-        get
-        {
-            Throw.InvalidOperationException.IfNull(this, linkedHediffDef);
-            return linkedHediffDef;
-        }
-    }
+    [XmlBinding("severityModifiers")]
+    public partial IReadOnlyList<SecondaryHediffModifier>? SeverityModifiers { get; }
 
     public virtual float Evaluate(Hediff hediff)
     {
@@ -33,8 +23,9 @@ public class HediffCompHandler_LinkedSeverity : HediffCompHandler
         {
             return 0f;
         }
-        if (severityModifiers is not { Count: > 0 })
+        if (SeverityModifiers is not [_, ..] severityModifiers)
         {
+            // no modifiers, just return the current severity of the hediff
             return severity;
         }
         foreach (SecondaryHediffModifier modifier in severityModifiers)

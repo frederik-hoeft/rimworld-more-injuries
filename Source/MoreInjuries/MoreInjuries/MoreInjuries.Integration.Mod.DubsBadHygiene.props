@@ -1,4 +1,4 @@
-<!-- This file is imported by MoreInjuries.csproj to conditionally enable the Dubs Bad Hygiene integration. -->
+﻿<!-- This file is imported by MoreInjuries.csproj to conditionally enable the Dubs Bad Hygiene integration. -->
 <!-- To enable/disable, set the ModBadHygiene property in the main MoreInjuries.csproj file. -->
 <Project>
     <!-- DLL reference requires _build\install-dependencies.ps1 to be run at least once to populate the dependencies folder. -->

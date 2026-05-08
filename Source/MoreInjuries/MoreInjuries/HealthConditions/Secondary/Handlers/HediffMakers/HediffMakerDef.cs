@@ -1,45 +1,30 @@
-﻿using Verse;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
+using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public class HediffMakerDef(HediffDef hediffDef, float? minSeverity, float? maxSeverity, bool? allowDuplicate, bool? allowMultiple)
+[XmlBindable]
+public partial class HediffMakerDef
 {
-    // don't rename this field. XML defs depend on this name
-    protected readonly HediffDef hediffDef = hediffDef;
-    // don't rename this field. XML defs depend on this name
-    protected readonly float? minSeverity = minSeverity;
-    // don't rename this field. XML defs depend on this name
-    protected readonly float? maxSeverity = maxSeverity;
-    // don't rename this field. XML defs depend on this name
-    protected readonly bool? allowDuplicate = allowDuplicate;
-    // don't rename this field. XML defs depend on this name
-    protected readonly bool? allowMultiple = allowMultiple;
+    [XmlBinding("hediffDef")]
+    public partial HediffDef HediffDef { get; }
 
-    public HediffMakerDef() : this(default!, null, null, null, null) { }
+    [XmlBinding("minSeverity")]
+    public partial float MinSeverity { get; }
 
-    public HediffDef HediffDef => hediffDef ?? throw new InvalidOperationException($"{nameof(HediffMakerDef)}: {nameof(HediffDef)} is not set. Cannot evaluate.");
+    [XmlBinding("maxSeverity")]
+    public partial float MaxSeverity { get; }
 
-    public float MinSeverity => minSeverity ?? 0f;
+    [XmlBinding("allowDuplicate")]
+    public partial bool AllowDuplicate { get; }
 
-    public float MaxSeverity => maxSeverity ?? 0f;
-
-    public bool AllowDuplicate => allowDuplicate ?? false;
-
-    public bool AllowMultiple => allowMultiple ?? false;
-
-    public float MinSeverityOrDefault(float defaultValue = 0f) => minSeverity ?? defaultValue;
-
-    public float MaxSeverityOrDefault(float defaultValue = 0f) => maxSeverity ?? defaultValue;
-
-    public bool AllowDuplicateOrDefault(bool defaultValue = false) => allowDuplicate ?? defaultValue;
-
-    public bool AllowMultipleOrDefault(bool defaultValue = false) => allowMultiple ?? defaultValue;
+    [XmlBinding("allowMultiple")]
+    public partial bool AllowMultiple { get; }
 
     public float GetInitialSeverity()
     {
-        float minSeverity = MinSeverityOrDefault(defaultValue: 0f);
-        float maxSeverity = MaxSeverityOrDefault(defaultValue: 0f);
+        float minSeverity = MinSeverity;
+        float maxSeverity = MaxSeverity;
         if (minSeverity == maxSeverity)
         {
             return minSeverity;

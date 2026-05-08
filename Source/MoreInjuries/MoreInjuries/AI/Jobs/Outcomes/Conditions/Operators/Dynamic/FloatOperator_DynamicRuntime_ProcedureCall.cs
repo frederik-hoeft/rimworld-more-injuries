@@ -1,24 +1,25 @@
 ﻿using MoreInjuries.Defs;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic;
 
-// memebers initialized via XML defs
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class FloatOperator_DynamicRuntime_ProcedureCall() : FloatOperator_DynamicRuntime_ProcedureBase
+[XmlBindable]
+public sealed partial class FloatOperator_DynamicRuntime_ProcedureCall() : FloatOperator_DynamicRuntime_ProcedureBase
 {
     private List<FloatOperator>? _instructions = null;
 
-    // don't rename this field. XML defs depend on this name
-    public readonly List<FloatOperator_Assign>? parameters = default;
-    // don't rename this field. XML defs depend on this name
-    public readonly ReferenceableDef procedureDef = default!;
+    [XmlBinding("parameters")]
+    public partial List<FloatOperator_Assign>? Parameters { get; init; }
+
+    [XmlBinding("procedureDef")]
+    public partial ReferenceableDef ProcedureDef { get; init; }
 
     internal FloatOperator_DynamicRuntime_ProcedureCall(ReferenceableDef procedureDef, List<FloatOperator_Assign>? parameters) : this()
     {
-        this.parameters = parameters;
-        this.procedureDef = procedureDef;
+        Parameters = parameters;
+        ProcedureDef = procedureDef;
     }
 
     protected override List<FloatOperator> LoadInstructions()
@@ -27,14 +28,13 @@ public sealed class FloatOperator_DynamicRuntime_ProcedureCall() : FloatOperator
         {
             return _instructions;
         }
-        _ = procedureDef ?? throw new InvalidOperationException($"{nameof(FloatOperator_DynamicRuntime_ProcedureCall)}: procedureDef cannot be null");
-        if (procedureDef.GetModExtension<DynamicRuntimeProcedureDef_ModExtension>() is not { Instructions: { Count: > 0 } instructions })
+        if (ProcedureDef.GetModExtension<DynamicRuntimeProcedureDef_ModExtension>() is not { Instructions: { Count: > 0 } instructions })
         {
-            throw new InvalidOperationException($"{nameof(FloatOperator_DynamicRuntime_ProcedureCall)}: procedureDef '{procedureDef.defName}' contains no instructions");
+            throw new InvalidOperationException($"{nameof(FloatOperator_DynamicRuntime_ProcedureCall)}: procedureDef '{ProcedureDef.defName}' contains no instructions");
         }
-        return _instructions = parameters switch
+        return _instructions = Parameters switch
         {
-            { Count: > 0 } => [.. parameters, .. instructions],
+            { Count: > 0 } => [.. Parameters, .. instructions],
             _ => instructions
         };
     }
@@ -42,7 +42,7 @@ public sealed class FloatOperator_DynamicRuntime_ProcedureCall() : FloatOperator
     public override string ToString()
     {
         StringBuilder sb = new();
-        sb.Append("call ").Append(procedureDef.defName.Trim()).AppendLine(":");
+        sb.Append("call ").Append(ProcedureDef.defName.Trim()).AppendLine(":");
         List<FloatOperator> instructions = LoadInstructions();
         sb.AppendLine("  instructions:");
         for (int i = 0; i < instructions.Count; i++)

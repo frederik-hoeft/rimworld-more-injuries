@@ -1,38 +1,20 @@
 ﻿using MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Binary;
 using MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Iterators.Enumerators;
-using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Iterators;
 
-// memebers initialized via XML defs
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class FloatOperator_Accumulate : FloatOperator
+[XmlBindable]
+public sealed partial class FloatOperator_Accumulate : FloatOperator
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly FloatOperator_Binary? accumulationFunction = default;
-    // don't rename this field. XML defs depend on this name
-    private readonly FloatOperator_Enumerate? enumerable = default;
-
     private readonly object _accumulationLock = new();
 
-    public FloatOperator_Binary AccumulationFunction
-    {
-        get
-        {
-            Throw.InvalidOperationException.IfNull(this, accumulationFunction);
-            return accumulationFunction;
-        }
-    }
+    [XmlBinding("accumulationFunction")]
+    public partial FloatOperator_Binary AccumulationFunction { get; }
 
-    public FloatOperator_Enumerate Enumerable
-    {
-        get
-        {
-            Throw.InvalidOperationException.IfNull(this, enumerable);
-            return enumerable;
-        }
-    }
+    [XmlBinding("enumerable")]
+    public partial FloatOperator_Enumerate Enumerable { get; }
 
     public override float Evaluate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState)
     {
@@ -61,5 +43,5 @@ public sealed class FloatOperator_Accumulate : FloatOperator
         }
     }
 
-    public override string ToString() => $"accumulate({accumulationFunction?.ToString() ?? "null"}, {Enumerable?.ToString() ?? "null"})";
+    public override string ToString() => $"accumulate({AccumulationFunction}, {Enumerable})";
 }

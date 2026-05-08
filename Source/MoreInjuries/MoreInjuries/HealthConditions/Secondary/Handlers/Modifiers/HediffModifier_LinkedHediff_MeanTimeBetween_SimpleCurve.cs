@@ -1,25 +1,21 @@
-﻿using Verse;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
+using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class HediffModifier_LinkedHediff_MeanTimeBetween_SimpleCurve : HediffModifier_MeanTimeBetween_SimpleCurve
+[XmlBindable]
+public sealed partial class HediffModifier_LinkedHediff_MeanTimeBetween_SimpleCurve : HediffModifier_MeanTimeBetween_SimpleCurve
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly HediffDef hediffDef = default!;
+    [XmlBinding("hediffDef")]
+    public partial HediffDef HediffDef { get; }
 
     public override float GetModifier(Hediff hediff, IHediffComp_TickHandler compHandler)
     {
-        if (mttfDaysBySeverity is null || hediffDef is null)
-        {
-            Logger.ConfigError($"{nameof(HediffModifier_MeanTimeBetween_SimpleCurve)} is not properly initialized. Current MTTF curve is null. Cannot evaluate chance.");
-            return 1f;
-        }
-        if (!hediff.pawn.health.hediffSet.TryGetHediff(hediffDef, out Hediff? linkedHediff))
+        if (!hediff.pawn.health.hediffSet.TryGetHediff(HediffDef, out Hediff? linkedHediff))
         {
             return 1f;
         }
-        float mttf = mttfDaysBySeverity.Evaluate(linkedHediff.Severity);
+        float mttf = MttfDaysBySeverity.Evaluate(linkedHediff.Severity);
         return GetChanceFromMttf(mttf, compHandler.TickInterval);
     }
 }

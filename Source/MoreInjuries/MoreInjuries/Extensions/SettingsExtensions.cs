@@ -1,4 +1,4 @@
-﻿namespace MoreInjuries.Extensions;
+namespace MoreInjuries.Extensions;
 
 internal static class SettingsExtensions
 {

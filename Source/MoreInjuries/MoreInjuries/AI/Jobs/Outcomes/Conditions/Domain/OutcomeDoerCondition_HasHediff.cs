@@ -1,17 +1,17 @@
 ﻿using MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Domain;
 
-// members initialized via XML defs
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class OutcomeDoerCondition_HasHediff : OutcomeDoerCondition
+[XmlBindable]
+public sealed partial class OutcomeDoerCondition_HasHediff : OutcomeDoerCondition
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly HediffDef hediffDef = default!;
+    [XmlBinding("hediffDef")]
+    public partial HediffDef HediffDef { get; }
 
     public override bool ShouldDoOutcome(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState) => 
-        patient.health?.hediffSet.HasHediff(hediffDef) ?? false;
+        patient.health?.hediffSet.HasHediff(HediffDef) ?? false;
 
-    public override string ToString() => $"has_hediff({hediffDef.defName})";
+    public override string ToString() => $"has_hediff({HediffDef.defName})";
 }

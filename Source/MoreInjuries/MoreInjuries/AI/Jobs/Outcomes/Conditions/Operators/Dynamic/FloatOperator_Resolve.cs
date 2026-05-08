@@ -4,7 +4,7 @@ using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic;
 
-public sealed class FloatOperator_Resolve() : FloatOperator_MemoryBase(symbol: null)
+public sealed class FloatOperator_Resolve() : FloatOperator_MemoryBase(defaultSymbol: null)
 {
     public override float Evaluate(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState)
     {

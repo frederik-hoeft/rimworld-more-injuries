@@ -1,4 +1,4 @@
-﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.HealthConditions.Drugs.Epinephrine;

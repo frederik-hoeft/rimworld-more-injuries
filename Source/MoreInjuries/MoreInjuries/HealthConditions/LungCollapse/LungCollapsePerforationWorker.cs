@@ -1,4 +1,4 @@
-﻿using MoreInjuries.Debug;
+using MoreInjuries.Debug;
 using MoreInjuries.Extensions.Bcl;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using RimWorld;

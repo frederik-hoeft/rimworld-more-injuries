@@ -1,4 +1,4 @@
-﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
 using MoreInjuries.Localization;
 using MoreInjuries.Things;

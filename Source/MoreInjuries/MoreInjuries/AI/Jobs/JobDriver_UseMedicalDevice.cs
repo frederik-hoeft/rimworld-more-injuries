@@ -1,4 +1,4 @@
-﻿using MoreInjuries.Debug;
+using MoreInjuries.Debug;
 using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions;
 using MoreInjuries.Things;
