@@ -7,6 +7,8 @@ namespace MoreInjuries.AI.Jobs.Outcomes;
 [XmlBindable]
 public partial class JobOutcomeProperties_ModExtension : DefModExtension
 {
-    [XmlBinding("outcomeDoers")]
+    private static readonly List<JobOutcomeDoer> s_emptyOutcomeDoers = [];
+
+    [XmlBinding("outcomeDoers", DefaultValueFrom = nameof(s_emptyOutcomeDoers))]
     public virtual partial IReadOnlyList<JobOutcomeDoer> OutcomeDoers { get; }
 }
