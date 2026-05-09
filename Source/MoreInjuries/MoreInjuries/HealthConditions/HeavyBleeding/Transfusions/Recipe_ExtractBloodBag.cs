@@ -18,7 +18,7 @@ public sealed class Recipe_ExtractBloodBag : Recipe_Surgery
         {
             return false;
         }
-        
+
         return pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.45f && pawn.health.CanBleed && base.AvailableOnNow(thing, part);
     }
 

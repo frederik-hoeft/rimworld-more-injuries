@@ -47,7 +47,7 @@ public sealed class JobDriver_UseSalineBag : JobDriver_TransfusionBase
                 Dictionary<HediffDef, HediffCompHandler_LinkedSeverity> causes = [];
                 foreach (HediffDef hediffDef in DefDatabase<HediffDef>.AllDefsListForReading)
                 {
-                    if (hediffDef.GetModExtension<LinkedSeverityProperties_ModExtension>() is { } modExtension 
+                    if (hediffDef.GetModExtension<LinkedSeverityProperties_ModExtension>() is { } modExtension
                         && modExtension.LinkedSeverityHandlers.TryGetValue(KnownHediffDefOf.Coagulopathy, out HediffCompHandler_LinkedSeverity? handler))
                     {
                         causes.Add(hediffDef, handler);
@@ -107,9 +107,9 @@ public sealed class JobDriver_UseSalineBag : JobDriver_TransfusionBase
         DebugAssert.IsNotNull(bloodLoss);
         float bloodLossSeverity = bloodLoss.Severity;
         int maxSafeTransfusions = HemodilutionEvaluator.CalculateMaximumSafeSalineTransfusions(
-            hemodilutionSeverity, 
-            bloodLossSeverity, 
-            hemodilutionThreshold: BloodLossConstants.BLOOD_LOSS_THRESHOLD, 
+            hemodilutionSeverity,
+            bloodLossSeverity,
+            hemodilutionThreshold: BloodLossConstants.BLOOD_LOSS_THRESHOLD,
             fluidVolumePerBag);
         int requiredTransfusions = Mathf.Min(requiredTransfusionsForBloodLoss, maxSafeTransfusions);
         return requiredTransfusions;
@@ -118,7 +118,7 @@ public sealed class JobDriver_UseSalineBag : JobDriver_TransfusionBase
     public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly, SalineTransfusionMode transfusionMode) =>
         new SalineTransfusionJobDescriptor(doctor, patient, device, fromInventoryOnly, transfusionMode);
 
-    private sealed class SalineTransfusionJobDescriptor(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly, SalineTransfusionMode transfusionMode) 
+    private sealed class SalineTransfusionJobDescriptor(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly, SalineTransfusionMode transfusionMode)
         : JobDescriptor(KnownJobDefOf.UseSalineBag, doctor, patient, device, fromInventoryOnly, fullyHeal: transfusionMode is SalineTransfusionMode.MaximumSafeDose)
     {
         protected override TransfusionJobParameters CreateParameters(Pawn doctor, bool fromInventoryOnly) =>

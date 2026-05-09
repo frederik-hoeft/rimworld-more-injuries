@@ -3,10 +3,10 @@ using System.Collections.Concurrent;
 
 namespace MoreInjuries.Caching;
 
-public sealed class DataCache<TOwner, TData>(Func<TOwner, TData> dataProvider) 
+public sealed class DataCache<TOwner, TData>(Func<TOwner, TData> dataProvider)
     : DataCache<TOwner, TData, object?>((owner, _) => dataProvider.Invoke(owner)) where TOwner : class
 {
-    public TData GetData(TOwner owner, bool forceRefresh = false) => 
+    public TData GetData(TOwner owner, bool forceRefresh = false) =>
         GetData(owner, state: null, forceRefresh);
 }
 

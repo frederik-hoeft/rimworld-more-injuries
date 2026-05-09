@@ -20,9 +20,9 @@ internal sealed class InhalationInjuryWorker(MoreInjuryComp parent) : InjuryWork
         }
         float flammability = patient.GetStatValue(StatDefOf.Flammability);
         float toxicResistance = Mathf.Clamp01(patient.GetStatValue(StatDefOf.ToxicEnvironmentResistance));
-        if (flammability <= Mathf.Epsilon 
-            || dinfo.Amount <= Mathf.Epsilon 
-            || toxicResistance == 1f 
+        if (flammability <= Mathf.Epsilon
+            || dinfo.Amount <= Mathf.Epsilon
+            || toxicResistance == 1f
             || KnownHediffDefOf.CE_WearingGasMask is { } ceGasMask && patient.health.hediffSet.HasHediff(ceGasMask))
         {
             // this pawn is immune to inhalation injuries

@@ -17,7 +17,7 @@ internal sealed class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorke
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Pawn;
-        if (patient == selectedPawn 
+        if (patient == selectedPawn
             || builder.Keys.Contains(UITreatmentOption.ProvideFirstAid)
             || patient.IsActivelyHostileTo(selectedPawn)
             || !selectedPawn.Drafted)

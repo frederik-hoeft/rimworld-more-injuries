@@ -41,17 +41,18 @@ internal sealed class HearingLossWorker(MoreInjuryComp parent, IReadOnlyList<Bod
     public void Notify_UsedVerb(Pawn pawn, Verb verb)
     {
         // early exit if the pawn is not equipped with a gun
-        if (!IsLoudAction(verb) || verb is not 
-        {
-            caster: Pawn 
-            { 
-                Map: not null 
-            } shooter, 
-            EquipmentSource: { }, 
-            verbProps: 
-            { 
-                muzzleFlashScale: > 0f 
-            } gunProperties })
+        if (!IsLoudAction(verb) || verb is not
+            {
+                caster: Pawn
+                {
+                    Map: not null
+                } shooter,
+                EquipmentSource: { },
+                verbProps:
+                {
+                    muzzleFlashScale: > 0f
+                } gunProperties
+            })
         {
             return;
         }

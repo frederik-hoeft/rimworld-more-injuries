@@ -14,9 +14,9 @@ public static class Patch_Alert_AwaitingMedicalOperation_AwaitingMedicalOperatio
         for (int i = __result.Count - 1; i >= 0; i--)
         {
             Pawn pawn = __result[i];
-            if (pawn.IsPrisonerOfColony 
-                && pawn.health.surgeryBills.Count == 1 
-                && pawn.health.surgeryBills[0].recipe == KnownRecipeDefOf.ExtractWholeBloodBag 
+            if (pawn.IsPrisonerOfColony
+                && pawn.health.surgeryBills.Count == 1
+                && pawn.health.surgeryBills[0].recipe == KnownRecipeDefOf.ExtractWholeBloodBag
                 && pawn.guest.IsInteractionEnabled(KnownPrisonerInteractionModeDefOf.BloodBagFarm))
             {
                 __result.RemoveAt(i);

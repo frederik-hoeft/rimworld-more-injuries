@@ -1,4 +1,4 @@
-using MoreInjuries.LocalizationTests.Localization;
+﻿using MoreInjuries.LocalizationTests.Localization;
 using MoreInjuries.LocalizationTests.Model;
 using MoreInjuries.LocalizationTests.Model.Keyed;
 

@@ -1,4 +1,4 @@
-// shims for modern compiler features in legacy .NET Framework
+﻿// shims for modern compiler features in legacy .NET Framework
 
 namespace System.Diagnostics.CodeAnalysis;
 

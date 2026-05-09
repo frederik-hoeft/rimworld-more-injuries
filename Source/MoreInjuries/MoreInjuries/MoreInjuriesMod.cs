@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using RimWorld;
-using HarmonyLib;
-using Verse;
-using UnityEngine;
+﻿using HarmonyLib;
 using MoreInjuries.Initialization;
-using System.Collections.Generic;
 using MoreInjuries.Localization;
+using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Verse;
 using static MoreInjuries.MoreInjuriesSettings.Defaults;
 
 namespace MoreInjuries;

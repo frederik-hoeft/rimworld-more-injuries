@@ -20,7 +20,7 @@ internal sealed partial class FileNode(string name, string? displayName, int lev
         new ToTopProcessor(),
     ];
 
-    private readonly List<string> _lines = 
+    private readonly List<string> _lines =
     [
         .. File.ReadAllLines(info.FullName)
     ];
@@ -96,7 +96,7 @@ internal sealed partial class FileNode(string name, string? displayName, int lev
         {
             normalized = $"{normalizedRaw}-{i}";
         }
-        return new MarkdownNode(normalized, displayName, Level +  markdownHeaderLevel, info);
+        return new MarkdownNode(normalized, displayName, Level + markdownHeaderLevel, info);
     }
 
     private static string Normalize(string markdownDisplayName)

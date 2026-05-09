@@ -15,14 +15,14 @@ public class ChoiceLetter_MigrateVersion : ChoiceLetter
 
     public override bool CanShowInLetterStack => !IsResolved;
 
-    public bool IsResolved 
-    { 
-        get => _isResolved; 
-        private set => _isResolved = value; 
+    public bool IsResolved
+    {
+        get => _isResolved;
+        private set => _isResolved = value;
     }
 
-    public List<Option>? Options 
-    { 
+    public List<Option>? Options
+    {
         get => _options;
         set => _options = value;
     }

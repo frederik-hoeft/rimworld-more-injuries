@@ -1,4 +1,4 @@
-namespace MoreInjuries.HealthConditions;
+﻿namespace MoreInjuries.HealthConditions;
 
 public sealed class ProvideFirstAidWorkerFactory : IInjuryWorkerFactory
 {

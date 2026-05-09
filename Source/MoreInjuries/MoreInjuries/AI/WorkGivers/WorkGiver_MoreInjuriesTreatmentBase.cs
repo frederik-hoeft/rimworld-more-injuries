@@ -1,13 +1,13 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
-using Verse.AI;
 using Verse;
+using Verse.AI;
 
 namespace MoreInjuries.AI.WorkGivers;
 
 public abstract class WorkGiver_MoreInjuriesTreatmentBase : WorkGiver_Scanner
 {
-    protected virtual bool CanTreat(Hediff hediff) => 
+    protected virtual bool CanTreat(Hediff hediff) =>
         throw new NotSupportedException($"WorkGiver of type {GetType().Name} does not support CanTreat(Hediff) method. Did you forget to override {nameof(HasJobOnThing)}? This is a bug.");
 
     protected abstract Job CreateJob(Pawn doctor, Pawn patient);

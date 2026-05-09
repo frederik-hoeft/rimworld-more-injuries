@@ -8,7 +8,7 @@ internal sealed class WeakTimedDataEntry<TData> : TimedDataEntryBase<TData> wher
 
     public override TData? Data
     {
-        get => _data?.TryGetTarget(out TData? target) is true ? target : null; 
+        get => _data?.TryGetTarget(out TData? target) is true ? target : null;
         protected set => _data = value is not null ? new WeakReference<TData>(value) : null;
     }
 

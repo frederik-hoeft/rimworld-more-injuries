@@ -10,7 +10,7 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 
 public sealed class JobDriver_UseBloodBag : JobDriver_TransfusionBase
 {
-    public const string JOB_LABEL_KEY = "MI_UseBloodBag"; 
+    public const string JOB_LABEL_KEY = "MI_UseBloodBag";
     private static readonly WeakTimedDataCache<Pawn, TransfusionState, bool, TimedDataEntry<TransfusionState>> s_pawnTransfusionStateCache = new
     (
         minCacheRefreshIntervalTicks: GenTicks.TickRareInterval,
@@ -25,7 +25,7 @@ public sealed class JobDriver_UseBloodBag : JobDriver_TransfusionBase
 
     private protected override WeakTimedDataCache<Pawn, TransfusionState, bool, TimedDataEntry<TransfusionState>> PawnTransfusionStateCache => s_pawnTransfusionStateCache;
 
-    public static new bool JobCanTreat(Hediff hediff, float bloodLossThreshold) => 
+    public static new bool JobCanTreat(Hediff hediff, float bloodLossThreshold) =>
         JobDriver_TransfusionBase.JobCanTreat(hediff, bloodLossThreshold)
         || (hediff.def == KnownHediffDefOf.Hemodilution && hediff.Severity > BloodLossConstants.BLOOD_LOSS_THRESHOLD);
 

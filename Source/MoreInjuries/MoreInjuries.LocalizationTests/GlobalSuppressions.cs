@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage(
     category: "Maintainability",
-    checkId: "CA1515:Consider making public types internal", 
+    checkId: "CA1515:Consider making public types internal",
     Justification = "Test classes must be public for test discovery.",
-    Scope = "namespaceanddescendants", 
+    Scope = "namespaceanddescendants",
     Target = "~N:MoreInjuries.LocalizationTests")]

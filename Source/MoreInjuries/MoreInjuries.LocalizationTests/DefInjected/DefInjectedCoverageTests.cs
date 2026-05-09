@@ -41,7 +41,7 @@ public sealed class DefInjectedCoverageTests : LocalizationBase
                 {
                     errorContext.Builder.AppendLine($"[{english.Language}]: Localization mismatch for key '{defValue.Key}' in '{defType}/{defName}'.")
                         .Append(' ', english.Language.Length + 4).AppendLine($"expected (from Def): '{defValue.Value}'")
-                        .Append(' ', english.Language.Length + 4).Append    ($"but found (in Lang): '{englishValue.Value}'");
+                        .Append(' ', english.Language.Length + 4).Append($"but found (in Lang): '{englishValue.Value}'");
                     errorContext.Errors.Add(errorContext.Builder.ToString());
                     errorContext.Builder.Clear();
                 }

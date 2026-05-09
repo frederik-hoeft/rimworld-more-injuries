@@ -7,7 +7,7 @@ internal sealed class StageEntrySegmentBuilder : IKeySegmentBuilder
 {
     public bool TryHandleSegment(ref XElement segment, XElement defNode, List<string> path)
     {
-        if (defNode is { Name.LocalName: "HediffDef" or "ThoughtDef" } 
+        if (defNode is { Name.LocalName: "HediffDef" or "ThoughtDef" }
             && segment is { Name.LocalName: "li", Parent.Name.LocalName: "stages", HasElements: true }
             && segment.Element("label") is { Value: string label })
         {

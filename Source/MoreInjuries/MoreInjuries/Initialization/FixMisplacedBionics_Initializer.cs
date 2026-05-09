@@ -9,11 +9,11 @@ public class FixMisplacedBionics_Initializer
 {
     static FixMisplacedBionics_Initializer()
     {
-        IEnumerable<RecipeDef> bionicsRecipeDefs = DefDatabase<RecipeDef>.AllDefs.Where(static def => def is 
+        IEnumerable<RecipeDef> bionicsRecipeDefs = DefDatabase<RecipeDef>.AllDefs.Where(static def => def is
         {
             // adds a non-natural body part
             addsHediff.addedPartProps: not null,
-            appliedOnFixedBodyParts.Count: > 0 
+            appliedOnFixedBodyParts.Count: > 0
         });
 
         foreach (RecipeDef recipeDef in bionicsRecipeDefs)

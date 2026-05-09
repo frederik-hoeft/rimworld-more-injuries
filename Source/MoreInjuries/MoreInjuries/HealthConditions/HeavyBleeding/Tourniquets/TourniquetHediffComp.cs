@@ -1,4 +1,4 @@
-using MoreInjuries.Defs.WellKnown;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using MoreInjuries.HealthConditions.Secondary;
@@ -12,13 +12,13 @@ namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
 public sealed class TourniquetHediffComp : HediffComp
 {
-    private bool _isGangreneApplied = false; 
+    private bool _isGangreneApplied = false;
     private float _coagulationMultiplier = 1;
 
-    public float CoagulationMultiplier 
-    { 
-        get => _coagulationMultiplier; 
-        set => _coagulationMultiplier = value; 
+    public float CoagulationMultiplier
+    {
+        get => _coagulationMultiplier;
+        set => _coagulationMultiplier = value;
     }
 
     public override void CompPostPostRemoved()
@@ -69,9 +69,9 @@ public sealed class TourniquetHediffComp : HediffComp
 
     public override void CompPostTick(ref float severityAdjustment)
     {
-        if (!MoreInjuriesMod.Settings.TourniquetsCanCauseGangrene 
-            || _isGangreneApplied 
-            || !parent.pawn.IsHashIntervalTick(GenTicks.TickRareInterval) 
+        if (!MoreInjuriesMod.Settings.TourniquetsCanCauseGangrene
+            || _isGangreneApplied
+            || !parent.pawn.IsHashIntervalTick(GenTicks.TickRareInterval)
             || !parent.CurStage.lifeThreatening)
         {
             return;
@@ -148,7 +148,7 @@ public sealed class TourniquetHediffComp : HediffComp
         return parent;
     }
 
-    private static bool CanAddGangrene(Pawn pawn, BodyPartRecord part) => 
+    private static bool CanAddGangrene(Pawn pawn, BodyPartRecord part) =>
         part is not null
         // exclude arteries and solid parts
         && part.def != KnownBodyPartDefOf.FemoralArtery && part.def != KnownBodyPartDefOf.PoplitealArtery

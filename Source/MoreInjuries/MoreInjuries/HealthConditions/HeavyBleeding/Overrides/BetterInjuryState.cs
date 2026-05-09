@@ -13,7 +13,7 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
 {
     private static readonly WeakTimedDataCache<Pawn, IReadOnlyList<HediffCrossInteraction>, TimedDataEntry<IReadOnlyList<HediffCrossInteraction>>> s_crossInteractionCache = new
     (
-        minCacheRefreshIntervalTicks: GenTicks.TickRareInterval, 
+        minCacheRefreshIntervalTicks: GenTicks.TickRareInterval,
         dataProvider: GetCrossInteractions
     );
 

@@ -1,4 +1,4 @@
-using MoreInjuries.Defs.WellKnown;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.HealthConditions.Drugs.Epinephrine;
@@ -69,7 +69,7 @@ public sealed class JobDriver_ProvideFirstAid : JobDriver
             foreach ((BodyPartRecord bodyPart, float bleedRate) in bleedRateCache.OrderByDescending(static kvp => kvp.Value))
             {
                 // only apply a tourniquet if the bleed rate is high enough and we have a tourniquet in our inventory
-                if (bleedRate > MoreInjuriesMod.Settings.MinBleedRateForAutoTourniquet 
+                if (bleedRate > MoreInjuriesMod.Settings.MinBleedRateForAutoTourniquet
                     && MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.Tourniquet, fromInventoryOnly: true) is Thing tourniquet
                     // for medically and intellectually challenged doctors, there's a small chance of certain accidents...
                     && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing && Random.Shared.NextDouble() < 0.2d))

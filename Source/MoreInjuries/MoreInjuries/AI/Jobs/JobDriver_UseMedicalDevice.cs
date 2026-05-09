@@ -1,4 +1,4 @@
-using MoreInjuries.Debug;
+﻿using MoreInjuries.Debug;
 using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions;
 using MoreInjuries.Things;
@@ -27,7 +27,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
     protected ExtendedJobParameters? Parameters => job.source as ExtendedJobParameters;
 
     protected abstract bool RequiresDevice { get; }
-    
+
     protected abstract ThingDef DeviceDef { get; }
 
     protected Pawn Patient => job.targetA.Pawn;
@@ -106,7 +106,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
                 requiredDevices = GetMedicalDeviceCountToFullyHeal(Patient);
             }
             // attempt to reserve a device
-            if (availableDevices >= 1 && doctor.Reserve(DeviceUsed, job, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, 
+            if (availableDevices >= 1 && doctor.Reserve(DeviceUsed, job, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS,
                 Mathf.Min(availableDevices, requiredDevices),
                 errorOnFailed: errorOnFailed))
             {
@@ -186,8 +186,8 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
                 {
                     return;
                 }
-                if (!patientLocal.InBed() 
-                    && (!patientLocal.HostileTo(doctorLocal) || patientLocal.Downed) 
+                if (!patientLocal.InBed()
+                    && (!patientLocal.HostileTo(doctorLocal) || patientLocal.Downed)
                     && waitToil.actor.CurJobDef.GetModExtension<MedicalJobProperties_ModExtension>() is { ShouldEverBeTreatedFacingUp: true })
                 {
                     patientLocal.jobs.posture = PawnPosture.LayingOnGroundFaceUp;

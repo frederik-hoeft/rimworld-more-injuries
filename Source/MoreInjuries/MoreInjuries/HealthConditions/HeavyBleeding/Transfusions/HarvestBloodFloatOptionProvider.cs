@@ -1,4 +1,4 @@
-using MoreInjuries.Defs.WellKnown;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
 using MoreInjuries.Localization;
 using MoreInjuries.Things;
@@ -31,8 +31,8 @@ internal sealed class HarvestBloodFloatOptionProvider(InjuryWorker parent) : ICo
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = parent.Pawn;
-        if (selectedPawn == patient 
-            || builder.Keys.Contains(UITreatmentOption.HarvestBlood) 
+        if (selectedPawn == patient
+            || builder.Keys.Contains(UITreatmentOption.HarvestBlood)
             || !patient.Downed && !patient.IsPrisoner
             || !JobDriver_HarvestBlood.JobCanTreat(patient))
         {

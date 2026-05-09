@@ -12,9 +12,9 @@ internal sealed class HydrostaticShockWorker(MoreInjuryComp parent) : InjuryWork
     public void PostTakeDamage(DamageWorker.DamageResult damage, ref readonly DamageInfo dinfo)
     {
         Pawn patient = Pawn;
-        if (damage is { diminished: false, totalDamageDealt: > 31f } 
-            && dinfo.Def == DamageDefOf.Bullet 
-            && Rand.Chance(MoreInjuriesMod.Settings.HydrostaticShockChanceOnDamage) 
+        if (damage is { diminished: false, totalDamageDealt: > 31f }
+            && dinfo.Def == DamageDefOf.Bullet
+            && Rand.Chance(MoreInjuriesMod.Settings.HydrostaticShockChanceOnDamage)
             && patient.health.hediffSet.GetBrain() is BodyPartRecord brain)
         {
             if (!patient.health.hediffSet.TryGetFirstHediffMatchingPart(brain, KnownHediffDefOf.HemorrhagicStroke, out Hediff? trauma))

@@ -21,8 +21,8 @@ public partial class JobOutcomeDoer_FactionRelations : JobOutcomeDoer
 
     protected override bool DoOutcome(Pawn doctor, Pawn patient, Thing? device)
     {
-        if (patient.Faction is Faction factionToInform 
-            && (!factionToInform.IsPlayerSafe() || patient.IsQuestLodger()) 
+        if (patient.Faction is Faction factionToInform
+            && (!factionToInform.IsPlayerSafe() || patient.IsQuestLodger())
             && !(OnlyIfFriendly && factionToInform.HostileTo(Faction.OfPlayer)))
         {
             Faction.OfPlayer.TryAffectGoodwillWith(factionToInform, GoodwillChange, canSendHostilityLetter: !factionToInform.temporary, reason: HistoryEventDef);
@@ -34,6 +34,6 @@ public partial class JobOutcomeDoer_FactionRelations : JobOutcomeDoer
         return true;
     }
 
-    public override string ToString() => 
+    public override string ToString() =>
         $"{nameof(JobOutcomeDoer_FactionRelations)}(GoodwillChange: {GoodwillChange}, HistoryEventDef: {HistoryEventDef.defName}, IsViolation: {IsViolation})";
 }

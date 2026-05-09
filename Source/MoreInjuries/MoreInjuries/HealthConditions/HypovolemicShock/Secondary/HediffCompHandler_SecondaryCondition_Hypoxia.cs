@@ -8,6 +8,6 @@ public sealed class HediffCompHandler_SecondaryCondition_Hypoxia : HediffCompHan
 {
     public override float BaseChance => MoreInjuriesMod.Settings.OrganHypoxiaChance * base.BaseChance;
 
-    public override bool ShouldSkip(HediffComp_SecondaryCondition comp) => 
+    public override bool ShouldSkip(HediffComp_SecondaryCondition comp) =>
         base.ShouldSkip(comp) || comp.parent.IsTended() && Rand.Chance(MoreInjuriesMod.Settings.OrganHypoxiaChanceReductionFactor);
 }

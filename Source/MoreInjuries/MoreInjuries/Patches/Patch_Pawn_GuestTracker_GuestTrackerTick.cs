@@ -16,7 +16,7 @@ public static class Patch_Pawn_GuestTracker_GuestTrackerTick
 
     internal static void Postfix(Pawn_GuestTracker __instance, int delta)
     {
-        if (GuestTrackerPawnRef.Invoke(__instance) is Pawn pawn 
+        if (GuestTrackerPawnRef.Invoke(__instance) is Pawn pawn
             && pawn.IsHashIntervalTick(interval: 15000, delta)
             && KnownResearchProjectDefOf.BasicFirstAid.IsFinished
             && Recipe_ExtractBloodBag.CanSafelyBeQueued(pawn)
