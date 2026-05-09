@@ -2,10 +2,10 @@
 
 namespace MoreInjuries.Caching;
 
-public sealed class TimedDataField<TOwner, TData, TCacheEntry>(TOwner owner, int minRefreshIntervalTicks, Func<TOwner, TData> dataProvider) 
+public sealed class TimedDataField<TOwner, TData, TCacheEntry>(TOwner owner, int minRefreshIntervalTicks, Func<TOwner, TData> dataProvider)
     : TimedDataField<TOwner, TData, object?, TCacheEntry>(owner, minRefreshIntervalTicks, (owner, _) => dataProvider.Invoke(owner))
     where TOwner : class
-    where TCacheEntry : class, ITimedDataEntry<TData>, new ()
+    where TCacheEntry : class, ITimedDataEntry<TData>, new()
 {
     public TData GetData(bool forceRefresh = false) =>
         GetData(state: null, forceRefresh);

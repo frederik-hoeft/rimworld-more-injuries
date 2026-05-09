@@ -10,7 +10,7 @@ public sealed partial class OutcomeDoerCondition_HasHediff : OutcomeDoerConditio
     [XmlBinding("hediffDef")]
     public partial HediffDef HediffDef { get; }
 
-    public override bool ShouldDoOutcome(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState) => 
+    public override bool ShouldDoOutcome(Pawn doctor, Pawn patient, Thing? device, IRuntimeState? runtimeState) =>
         patient.health?.hediffSet.HasHediff(HediffDef) ?? false;
 
     public override string ToString() => $"has_hediff({HediffDef.defName})";

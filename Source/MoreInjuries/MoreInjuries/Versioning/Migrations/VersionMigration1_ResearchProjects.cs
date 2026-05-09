@@ -1,7 +1,7 @@
-﻿using RimWorld;
-using Verse;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Localization;
-using MoreInjuries.Defs.WellKnown;
+using RimWorld;
+using Verse;
 
 namespace MoreInjuries.Versioning.Migrations;
 

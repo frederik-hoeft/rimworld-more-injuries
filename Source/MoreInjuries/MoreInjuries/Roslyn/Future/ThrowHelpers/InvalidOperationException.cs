@@ -12,7 +12,7 @@ public static partial class Throw
             throw new Std::InvalidOperationException($"Member '{memberName}' of type {instanceName} must not be null. The requested operation was invalid in the current state of the object.");
 
         [DoesNotReturn]
-        private static void ThrowAssertionFailed(string? conditionName) => 
+        private static void ThrowAssertionFailed(string? conditionName) =>
             throw new Std::InvalidOperationException($"The requested operation was invalid in the current state of the object. Assertion '!({conditionName})' failed.");
 
         [DoesNotReturn]

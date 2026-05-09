@@ -17,8 +17,8 @@ public abstract class JobDriver_RemoveTourniquetBase : JobDriver_TourniquetBase
 
     internal static void ApplyDevice(Pawn patient, BodyPartRecord? bodyPart) => ApplyDevice(patient, GetUniqueBodyPartKey(bodyPart));
 
-    protected static Hediff? GetTourniquetHediff(Pawn patient, string bodyPartKey) => patient.health.hediffSet.hediffs.Find(hediff => 
-        hediff.def == KnownHediffDefOf.TourniquetApplied 
+    protected static Hediff? GetTourniquetHediff(Pawn patient, string bodyPartKey) => patient.health.hediffSet.hediffs.Find(hediff =>
+        hediff.def == KnownHediffDefOf.TourniquetApplied
         && GetUniqueBodyPartKey(hediff.Part) == bodyPartKey);
 
     public override void ExposeData()

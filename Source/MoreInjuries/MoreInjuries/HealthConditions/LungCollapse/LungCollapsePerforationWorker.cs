@@ -1,4 +1,4 @@
-using MoreInjuries.Debug;
+﻿using MoreInjuries.Debug;
 using MoreInjuries.Extensions.Bcl;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using RimWorld;
@@ -16,9 +16,9 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
     {
         DebugAssert.IsTrue(pawn == Pawn);
         float chance = MoreInjuriesMod.Settings.LungCollapseChanceOnPerforatingDamage;
-        if (dinfo.HitPart is not { } lung 
-            || lung.def != BodyPartDefOf.Lung 
-            || result.hediffs is not { Count: > 0 } 
+        if (dinfo.HitPart is not { } lung
+            || lung.def != BodyPartDefOf.Lung
+            || result.hediffs is not { Count: > 0 }
             || pawn.health.hediffSet.PartIsMissing(lung)
             // chance * (1 at 50% damage)
             || !Rand.Chance(chance * Mathf.Clamp01(2f * dinfo.Amount / lung.def.hitPoints)))

@@ -19,7 +19,7 @@ public class JobDriver_RemoveTourniquetFromDead : JobDriver_MedicalBase<Corpse>
 
     protected override float BaseExperience => 50f;
 
-    public override bool TryMakePreToilReservations(bool errorOnFailed) => 
+    public override bool TryMakePreToilReservations(bool errorOnFailed) =>
         Doctor.Reserve(Corpse, job, errorOnFailed: errorOnFailed);
 
     private static bool HasTourniquet(Corpse corpse) =>

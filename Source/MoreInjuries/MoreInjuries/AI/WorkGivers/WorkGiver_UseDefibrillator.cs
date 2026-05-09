@@ -1,8 +1,8 @@
-﻿using Verse.AI;
-using Verse;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.Things;
-using MoreInjuries.Defs.WellKnown;
+using Verse;
+using Verse.AI;
 
 namespace MoreInjuries.AI.WorkGivers;
 
@@ -12,8 +12,8 @@ public class WorkGiver_UseDefibrillator : WorkGiver_MoreInjuriesTreatmentBase
 
     public override bool ShouldSkip(Pawn pawn, bool forced = false) => !KnownResearchProjectDefOf.EmergencyMedicine.IsFinished;
 
-    protected override bool CanTreat(Pawn doctor, Pawn patient) => 
-        MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.Defibrillator) is not null 
+    protected override bool CanTreat(Pawn doctor, Pawn patient) =>
+        MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.Defibrillator) is not null
         && base.CanTreat(doctor, patient);
 
     protected override Job CreateJob(Pawn doctor, Pawn patient) => MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.Defibrillator) is Thing defibrillator

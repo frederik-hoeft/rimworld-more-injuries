@@ -159,6 +159,10 @@ indent_size = 2
 # Shell scripts
 [*.sh]
 end_of_line = lf
+[*.ps1]
+end_of_line = crlf
+[*.sln]
+end_of_line = crlf
 [*.{cmd,bat}]
 end_of_line = crlf
 

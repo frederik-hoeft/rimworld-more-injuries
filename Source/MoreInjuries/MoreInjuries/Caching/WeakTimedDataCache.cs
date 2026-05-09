@@ -27,7 +27,7 @@ public class WeakTimedDataCache<TWeakOwner, TData, TState, TCacheEntry>(int minC
         return _cache.Remove(key);
     }
 
-    protected override void Add(TWeakOwner owner, TCacheEntry entry) => 
+    protected override void Add(TWeakOwner owner, TCacheEntry entry) =>
         _cache.Add(owner, entry);
 
     protected override bool TryGetValue(TWeakOwner owner, [NotNullWhen(true)] out TCacheEntry? entry) =>

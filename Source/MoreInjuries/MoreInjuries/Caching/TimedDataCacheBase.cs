@@ -12,7 +12,7 @@ public abstract class TimedDataCacheBase<TOwner, TData, TState, TCacheEntry>
     where TCacheEntry : class, ITimedDataEntry<TData>, new()
 {
     private protected readonly object _lock = new();
-    
+
     public int MinRefreshIntervalTicks => minRefreshIntervalTicks;
 
     protected abstract bool TryGetValue(TOwner owner, [NotNullWhen(true)] out TCacheEntry? entry);

@@ -22,7 +22,7 @@ public sealed partial class JobOutcomeDoer_HediffOffset_DoctorSkillCurve : JobOu
         {
             // if maxSeverityOffsetByDoctorSkill is not defined, use minSeverityOffsetByDoctorSkill
             return minOffset;
-        }   
+        }
         float maxOffset = maxOffsetCurve.Evaluate(doctorSkill);
         return Rand.Range(minOffset, maxOffset);
     }

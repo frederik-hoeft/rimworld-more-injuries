@@ -11,9 +11,9 @@ public sealed class HemodilutionEvaluatorTests
     public void CalculateMaximumSafeSalineTransfusionsTest()
     {
         Assert.AreEqual(0, HemodilutionEvaluator.CalculateMaximumSafeSalineTransfusions(
-            hemodilution: 0.38f, 
-            bloodLoss: 0.7f, 
-            hemodilutionThreshold: 0.449f, 
+            hemodilution: 0.38f,
+            bloodLoss: 0.7f,
+            hemodilutionThreshold: 0.449f,
             salineBagVolume: 0.15f));
 
         Assert.AreEqual(1, HemodilutionEvaluator.CalculateMaximumSafeSalineTransfusions(

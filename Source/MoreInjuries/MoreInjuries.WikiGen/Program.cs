@@ -1,4 +1,4 @@
-using ConsoleAppFramework;
+﻿using ConsoleAppFramework;
 using MoreInjuries.WikiGen.Nodes;
 
 ConsoleApp.Run(args, CreateIndex);

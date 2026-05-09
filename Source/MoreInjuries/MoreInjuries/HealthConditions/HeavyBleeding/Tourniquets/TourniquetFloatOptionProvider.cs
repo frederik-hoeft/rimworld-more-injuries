@@ -1,4 +1,4 @@
-using MoreInjuries.Defs.WellKnown;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
 using MoreInjuries.Localization;
 using MoreInjuries.Things;
@@ -123,9 +123,9 @@ internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : IComp
                         bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white),
                 JobDriver_RemoveTourniquetQuickly.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
             }
-            else if (tourniquet is not null 
-                && selectedPawn.Drafted 
-                && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing) 
+            else if (tourniquet is not null
+                && selectedPawn.Drafted
+                && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing)
                 // applying a tourniquet requires at least knowing what it is
                 && KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
             {

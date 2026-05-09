@@ -64,7 +64,7 @@ public class JobDriver_UseDefibrillator : JobDriver_UseMedicalDevice
         return true;
     }
 
-    public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly = false) => 
+    public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly = false) =>
         new JobDescriptor(doctor, patient, device, fromInventoryOnly);
 
     public class JobDescriptor(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly) : IJobDescriptor

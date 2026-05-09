@@ -1,9 +1,9 @@
-﻿using RimWorld;
-using Verse.AI;
-using Verse;
-using System.Collections.Generic;
-using MoreInjuries.Caching;
+﻿using MoreInjuries.Caching;
 using MoreInjuries.Defs.WellKnown;
+using RimWorld;
+using System.Collections.Generic;
+using Verse;
+using Verse.AI;
 
 namespace MoreInjuries.AI.WorkGivers;
 
@@ -22,7 +22,7 @@ public class WorkGiver_RemoveTourniquetFromDead : WorkGiver_Scanner
     public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
     {
         if (t is not Corpse { InnerPawn: Pawn { RaceProps.Humanlike: true } deadPawn } corpse
-            || corpse.IsForbidden(pawn) 
+            || corpse.IsForbidden(pawn)
             || !deadPawn.health.hediffSet.HasHediff(KnownHediffDefOf.TourniquetApplied))
         {
             return false;
@@ -47,7 +47,7 @@ public class WorkGiver_RemoveTourniquetFromDead : WorkGiver_Scanner
             List<Thing> corpses = map.listerThings.ThingsInGroup(ThingRequestGroup.Corpse);
             foreach (Thing thing in corpses)
             {
-                if (thing is Corpse { InnerPawn: Pawn { RaceProps.Humanlike: true } deadPawn } corpse 
+                if (thing is Corpse { InnerPawn: Pawn { RaceProps.Humanlike: true } deadPawn } corpse
                     && deadPawn.health.hediffSet.HasHediff(KnownHediffDefOf.TourniquetApplied))
                 {
                     yield return corpse;

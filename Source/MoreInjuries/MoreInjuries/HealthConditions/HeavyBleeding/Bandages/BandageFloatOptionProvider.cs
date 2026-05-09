@@ -13,9 +13,9 @@ internal sealed class BandageFloatOptionProvider(InjuryWorker parent) : ICompFlo
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = parent.Pawn;
-        if (builder.Keys.Contains(UITreatmentOption.UseBandage) 
-            || !selectedPawn.Drafted 
-            || patient.IsActivelyHostileTo(selectedPawn) 
+        if (builder.Keys.Contains(UITreatmentOption.UseBandage)
+            || !selectedPawn.Drafted
+            || patient.IsActivelyHostileTo(selectedPawn)
             || !patient.health.hediffSet.hediffs.Any(JobDriver_HemostasisBase.JobCanTreat))
         {
             return;

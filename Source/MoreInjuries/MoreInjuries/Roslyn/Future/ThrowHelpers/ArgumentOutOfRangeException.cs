@@ -1,4 +1,4 @@
-using MoreInjuries.Roslyn.Future.Extensions;
+﻿using MoreInjuries.Roslyn.Future.Extensions;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 

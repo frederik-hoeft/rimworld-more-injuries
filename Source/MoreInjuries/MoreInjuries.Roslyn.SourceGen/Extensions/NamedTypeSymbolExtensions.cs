@@ -92,7 +92,7 @@ internal static class NamedTypeSymbolExtensions
         /// number of generic parameters.</exception>
         public string RenderGlobalWithGenerics(string typeArg, params string[] typeArgs)
         {
-            List<string> allTypeArgs = [typeArg, ..typeArgs];
+            List<string> allTypeArgs = [typeArg, .. typeArgs];
             if (!self.IsGenericType)
             {
                 throw new InvalidOperationException($"Expected a generic type symbol, but got '{self.Name}' which is not generic.");

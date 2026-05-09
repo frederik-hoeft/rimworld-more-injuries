@@ -1,9 +1,9 @@
-﻿using Verse.AI;
-using Verse;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.CardiacArrest;
-using MoreInjuries.Things;
 using MoreInjuries.HealthConditions.Choking;
-using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Things;
+using Verse;
+using Verse.AI;
 
 namespace MoreInjuries.AI.WorkGivers;
 

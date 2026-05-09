@@ -14,7 +14,7 @@ public partial class BodyPartHediffTargetEvaluator_Random : BodyPartHediffTarget
 
     [XmlBinding<BodyPartDepth>("depth", defaultValue: BodyPartDepth.Undefined)]
     public partial BodyPartDepth Depth { get; }
-    
+
     [XmlBinding("excludedParts")]
     public partial List<BodyPartDef>? ExcludedParts { get; }
 
