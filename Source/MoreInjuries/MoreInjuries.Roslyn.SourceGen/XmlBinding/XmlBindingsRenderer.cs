@@ -53,7 +53,8 @@ internal static class XmlBindingsRenderer
             }
             if (member.MayRequire is not null)
             {
-                builder.AppendLine($"[global::RimWorld.MayRequireAttribute(\"{member.MayRequire}\")]");
+                string mayRequireLiteral = SymbolDisplay.FormatLiteral(member.MayRequire, quote: true);
+                builder.AppendLine($"[global::RimWorld.MayRequireAttribute({mayRequireLiteral})]");
             }
             builder.AppendLine($"private {readonlyModifier}{member.FieldTypeDisplay} {member.FieldName} = {defaultExpression};");
         }

@@ -380,8 +380,7 @@ internal static class XmlBindableCandidateFactory
             bool isAttribute = false;
             for (INamedTypeSymbol? baseType = decorateType.BaseType; baseType is not null; baseType = baseType.BaseType)
             {
-                if (baseType.SpecialType == SpecialType.None
-                    && baseType.ToDisplayString() == "System.Attribute")
+                if (baseType.SpecialType == SpecialType.None && baseType.ToDisplayString() == "System.Attribute")
                 {
                     isAttribute = true;
                     break;
@@ -411,14 +410,13 @@ internal static class XmlBindableCandidateFactory
                     if (attr.AttributeClass?.ToDisplayString() == "System.AttributeUsageAttribute"
                         && attr.ConstructorArguments is [{ Value: int targets }])
                     {
-                        // AttributeTargets.Field = 256, AttributeTargets.All = 32767
-                        allowsFields = (targets & 256) != 0;
+                        allowsFields = (targets & (int)AttributeTargets.Field) != 0;
                         break;
                     }
                 }
             }
 
-            if (!isAttribute || !hasParameterlessCtor || !allowsFields)
+            if (!isAttribute || !hasParameterlessCtor || !allowsFields || decorateType.IsAbstract)
             {
                 diagnostics.Add(Diagnostic.Create(
                     XmlSerializationGeneratorDiagnostics.InvalidDecorateAttribute,
