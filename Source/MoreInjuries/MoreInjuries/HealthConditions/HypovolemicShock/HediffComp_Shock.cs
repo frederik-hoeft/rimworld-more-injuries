@@ -45,7 +45,6 @@ public class HediffComp_Shock : HediffComp
         return info;
     }
 
-
     // Helper to check if pawn has oxygen deficiency immunity from Biotech/Odyssey genes
     private static bool HasOxygenDeficiencyImmunity(Pawn pawn)
     {
@@ -71,8 +70,6 @@ public class HediffComp_Shock : HediffComp
 
         return false;
     }
-
-
 
     public override void CompTended(float quality, float maxQuality, int batchPosition = 0)
     {

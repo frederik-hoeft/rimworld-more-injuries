@@ -1,4 +1,4 @@
-﻿﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
 using RimWorld;
 using Verse;
 

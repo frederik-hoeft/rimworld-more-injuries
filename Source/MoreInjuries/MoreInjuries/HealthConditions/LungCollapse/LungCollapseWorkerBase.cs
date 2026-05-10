@@ -13,7 +13,7 @@ internal abstract class LungCollapseWorkerBase(MoreInjuryComp parent) : InjuryWo
     protected void CollapseLung<TCause>(BodyPartRecord lung, params ReadOnlySpan<TCause> causes)
     {
         Pawn patient = Pawn;
-        
+
         // Don't apply lung collapse to artificial lungs
         if (patient.health.hediffSet.IsArtificialPart(lung))
         {

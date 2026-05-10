@@ -22,13 +22,13 @@ internal static class ConcussionBodyPartMultipliers
 {
     /// <summary>Head - Outer head region, provides some protection. Least severe concussion source.</summary>
     public const float Head = 0.5f;
-    
+
     /// <summary>Skull - Bone structure, medium severity. Impacts can transmit through bone.</summary>
     public const float Skull = 1.5f;
-    
+
     /// <summary>Brain - Direct neural tissue damage, most severe concussion source.</summary>
     public const float Brain = 3.0f;
-    
+
     /// <summary>Default multiplier for unknown/unrecognized head-related body parts.</summary>
     public const float Default = 1.0f;
 }
@@ -48,43 +48,43 @@ internal static class ConcussionDamageTypePercentages
 {
     /// <summary>Blunt force trauma - HIGH concussion. Whole-head impact.</summary>
     public const float Blunt = 0.20f; // 20% concussion per 1 damage
-    
+
     /// <summary>Explosive damage - HIGHEST concussion. Blast pressure and fragmentation.</summary>
     public const float Bomb = 0.25f; // 25% concussion per 1 damage
-    
+
     /// <summary>Thermobaric/fuel-air explosives - VERY HIGH concussion. Extreme blast pressure.</summary>
     public const float Thermobaric = 0.25f; // 25% concussion per 1 damage
-    
+
     /// <summary>Bullet impact - LOW concussion. Focused penetrating wound, less whole-head trauma.</summary>
     public const float Bullet = 0.05f; // 5% concussion per 1 damage
-    
+
     /// <summary>Arrow/Bolt impact - LOW concussion. Similar to bullets, penetrating impact.</summary>
     public const float Arrow = 0.05f; // 5% concussion per 1 damage
-    
+
     /// <summary>High-velocity arrows (Combat Extended) - LOW-MODERATE concussion.</summary>
     public const float ArrowHighVelocity = 0.08f; // 8% concussion per 1 damage
-    
+
     /// <summary>Stabbing wound - VERY LOW concussion. Minimal blunt force.</summary>
     public const float Stab = 0.02f; // 2% concussion per 1 damage
-    
+
     /// <summary>Crushing damage - HIGH concussion. Compressive trauma similar to blunt force.</summary>
     public const float Crush = 0.18f; // 18% concussion per 1 damage
-    
+
     /// <summary>Bite damage - MODERATE concussion. Localized impact with some force.</summary>
     public const float Bite = 0.10f; // 10% concussion per 1 damage
-    
+
     /// <summary>Toxic/Caustic damage - LOW concussion. Chemical burns don't cause concussions effectively.</summary>
     public const float Toxic = 0.01f; // 1% concussion per 1 damage
-    
+
     /// <summary>Nerve/EMP damage - MODERATE concussion. Electrical/neural stimulation.</summary>
     public const float Nerve = 0.12f; // 12% concussion per 1 damage
-    
+
     /// <summary>Energy/Plasma bolts - MODERATE-HIGH concussion. Heat + impact.</summary>
     public const float EnergyBolt = 0.15f; // 15% concussion per 1 damage
-    
+
     /// <summary>Beanbag/Non-lethal impact - MODERATE concussion. Designed for blunt trauma.</summary>
     public const float Beanbag = 0.12f; // 12% concussion per 1 damage
-    
+
     /// <summary>Unknown damage types from mods - CONSERVATIVE default.</summary>
     public const float Default = 0.08f; // 8% concussion per 1 damage (conservative middle ground)
 }
@@ -133,24 +133,24 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
         {
             return;
         }
-        
+
         // Get the brain as target for the concussion hediff
         BodyPartRecord? brain = patient.health.hediffSet.GetBrain();
         if (brain is null)
         {
             return;
         }
-        
+
         // Get the damage type concussion percentage
         float concussionPercentPerDamage = GetConcussionPercentageForDamage(dinfo.Def);
-        
+
         // Get the body part multiplier based on the specific hit location
         float bodyPartMultiplier = GetBodyPartMultiplier(hitPart);
-        
+
         // Calculate the percentage of damage that reached this body part
         // This accounts for armor reduction
         float damagePercentageReached = CalculateDamagePercentageReached(dinfo.Amount, hitPart, patient);
-        
+
         // Calculate total concussion severity
         float concussionSeverity = CalculateConcussionSeverity(
             dinfo.Amount,
@@ -159,23 +159,23 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
             concussionPercentPerDamage,
             hitPart
         );
-        
+
         if (concussionSeverity < 0.01f)
         {
             // Ignore negligible concussion
             return;
         }
-        
+
         // Apply or increase concussion hediff
         if (!patient.health.hediffSet.TryGetHediff(KnownHediffDefOf.Concussion, out Hediff? concussion))
         {
             concussion = HediffMaker.MakeHediff(KnownHediffDefOf.Concussion, patient);
             patient.health.AddHediff(concussion, brain);
         }
-        
+
         // Add to existing concussion severity, clamped to max
         concussion.Severity = Mathf.Min(1.0f, concussion.Severity + concussionSeverity);
-        
+
         Logger.LogDebug(
             $"Applied {concussionSeverity:P} concussion to {patient.Name} from {dinfo.Amount:F2} damage " +
             $"to {hitPart.Label} (multiplier: {bodyPartMultiplier}x, damage type: {dinfo.Def?.defName ?? "Unknown"}, " +
@@ -188,13 +188,13 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
     private static bool IsHeadPart(BodyPartRecord part)
     {
         // Check if it's the brain, skull, or any part in the head group
-        if (part.def == KnownBodyPartDefOf.Brain || 
+        if (part.def == KnownBodyPartDefOf.Brain ||
             part.def == KnownBodyPartDefOf.Skull ||
             part.def == BodyPartDefOf.Head)
         {
             return true;
         }
-        
+
         // Check if it's a child/subpart of the head
         for (BodyPartRecord? current = part.parent; current is not null; current = current.parent)
         {
@@ -203,7 +203,7 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
                 return true;
             }
         }
-        
+
         return false;
     }
 
@@ -215,22 +215,22 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
         {
             return 0f;
         }
-        
+
         // Simple approximation: base damage reduction on body part coverage and armor
         // Higher armor = lower percentage of damage reaches the part
         float armorReduction = 1.0f;
-        
+
         // Account for coverage (covered parts reduce impact damage more)
         if (targetPart.coverage > 0f)
         {
             armorReduction *= targetPart.coverage;
         }
-        
+
         // A pawn with heavy armor takes less concussion damage, but some always gets through
         // This is a simplification - a full implementation would use the damage result
         float minDamagePercentage = 0.1f; // At least 10% of damage always reaches (serious hits)
         float maxDamagePercentage = 1.0f; // At most 100% (no armor)
-        
+
         return Mathf.Clamp(armorReduction, minDamagePercentage, maxDamagePercentage);
     }
 
@@ -242,25 +242,25 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
         {
             return ConcussionBodyPartMultipliers.Brain;
         }
-        
+
         // Skull hits are medium severity
         if (hitPart.def == KnownBodyPartDefOf.Skull)
         {
             return ConcussionBodyPartMultipliers.Skull;
         }
-        
+
         // Generic head hits are least severe (dispersed impact)
         if (hitPart.def == BodyPartDefOf.Head)
         {
             return ConcussionBodyPartMultipliers.Head;
         }
-        
+
         // Other head sub-parts (eyes, ears, jaw, etc.) get medium severity
         if (hitPart.parent?.def == BodyPartDefOf.Head || hitPart.parent?.def == KnownBodyPartDefOf.Skull)
         {
             return ConcussionBodyPartMultipliers.Skull;
         }
-        
+
         return ConcussionBodyPartMultipliers.Default;
     }
 
@@ -273,9 +273,9 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
         {
             return ConcussionDamageTypePercentages.Default;
         }
-        
+
         string damageDefName = damageDef.defName;
-        
+
         // Match against known damage types
         return damageDefName switch
         {
@@ -286,7 +286,7 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
             "BulletToxic" => ConcussionDamageTypePercentages.Bullet,
             "Stab" => ConcussionDamageTypePercentages.Stab,
             "Crush" => ConcussionDamageTypePercentages.Crush,
-            
+
             "Arrow" => ConcussionDamageTypePercentages.Arrow,
             "ArrowHighVelocity" => ConcussionDamageTypePercentages.ArrowHighVelocity,
             "Bite" => ConcussionDamageTypePercentages.Bite,
@@ -295,7 +295,7 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
             "EnergyBolt" => ConcussionDamageTypePercentages.EnergyBolt,
             "Nerve" => ConcussionDamageTypePercentages.Nerve,
             "Thermobaric" => ConcussionDamageTypePercentages.Thermobaric,
-            
+
             // Unknown damage type - use conservative default
             _ => ConcussionDamageTypePercentages.Default
         };
@@ -312,10 +312,10 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
     {
         // Actual damage that reached this part after armor/coverage reduction
         float actualReceivedDamage = totalDamage * damagePercentageReached;
-        
+
         // Base concussion = damage * damage type percentage * body part multiplier
         float baseConcussion = actualReceivedDamage * concussionPercentPerDamage * bodyPartMultiplier;
-        
+
         // Scale by target body part health - smaller brain = more concussion per damage
         // This makes the same impact more severe on smaller creatures
         float healthScaling = 1.0f;
@@ -325,11 +325,10 @@ internal sealed class ConcussionExplosionsWorker(MoreInjuryComp parent) : Injury
             const float ReferenceHitPoints = 10.0f;
             healthScaling = ReferenceHitPoints / targetPart.def.hitPoints;
         }
-        
+
         float finalConcussion = baseConcussion * healthScaling;
-        
+
         // Clamp to reasonable range
         return Mathf.Clamp(finalConcussion, 0f, 1.0f);
     }
-
 }
