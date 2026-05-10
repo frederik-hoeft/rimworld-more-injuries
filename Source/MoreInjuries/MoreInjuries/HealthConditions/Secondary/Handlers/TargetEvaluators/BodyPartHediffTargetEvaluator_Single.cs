@@ -1,20 +1,18 @@
-﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
 
-// members initialized via XML defs
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class BodyPartHediffTargetEvaluator_Single : BodyPartHediffTargetEvaluator
+[XmlBindable]
+public sealed partial class BodyPartHediffTargetEvaluator_Single : BodyPartHediffTargetEvaluator
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly BodyPartDef target = default!;
+    [XmlBinding("target")]
+    public partial BodyPartDef Target { get; }
 
     public override BodyPartRecord? GetTargetBodyPart(HediffComp comp, HediffCompHandler_SecondaryCondition handler)
     {
-        Throw.InvalidOperationException.IfNull(this, target);
         HediffSet hediffs = comp.Pawn.health.hediffSet;
-        if (hediffs.GetBodyPartRecord(target) is BodyPartRecord targetRecord && !hediffs.PartIsMissing(targetRecord))
+        if (hediffs.GetBodyPartRecord(Target) is BodyPartRecord targetRecord && !hediffs.PartIsMissing(targetRecord))
         {
             return targetRecord;
         }

@@ -14,16 +14,16 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
 
     protected override bool IsTreatable(Hediff hediff) => JobCanTreat(hediff);
 
-    public static bool JobCanTreat(Hediff hediff) => hediff is 
+    public static bool JobCanTreat(Hediff hediff) => hediff is
         HediffWithComps
         {
             Part.depth: BodyPartDepth.Outside,
             Bleeding: true,
-        } 
-        and 
-        IStatefulInjury 
-        { 
-            State.IsTemporarilyCoagulated: false 
+        }
+        and
+        IStatefulInjury
+        {
+            State.IsTemporarilyCoagulated: false
         };
 
     protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
@@ -44,7 +44,7 @@ public abstract class JobDriver_HemostasisBase : JobDriver_UseMedicalDevice
         return true;
     }
 
-    protected static IJobDescriptor GetDispatcher(JobDef jobDef, Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly) => 
+    protected static IJobDescriptor GetDispatcher(JobDef jobDef, Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly) =>
         new JobDescriptor(jobDef, doctor, patient, device, fromInventoryOnly);
 
     public class JobDescriptor(JobDef jobDef, Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly) : IJobDescriptor

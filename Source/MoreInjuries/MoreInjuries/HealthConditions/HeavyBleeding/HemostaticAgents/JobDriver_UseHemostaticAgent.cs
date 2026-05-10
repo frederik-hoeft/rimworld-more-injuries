@@ -12,6 +12,6 @@ public class JobDriver_UseHemostaticAgent : JobDriver_HemostasisBase
 
     protected override int BaseTendDuration => 60;
 
-    public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly) => 
+    public static IJobDescriptor GetDispatcher(Pawn doctor, Pawn patient, Thing device, bool fromInventoryOnly) =>
         GetDispatcher(KnownJobDefOf.UseHemostaticAgent, doctor, patient, device, fromInventoryOnly);
 }

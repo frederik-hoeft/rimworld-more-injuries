@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using RimWorld;
-using HarmonyLib;
-using Verse;
-using UnityEngine;
+﻿using HarmonyLib;
 using MoreInjuries.Initialization;
-using System.Collections.Generic;
 using MoreInjuries.Localization;
+using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Verse;
 using static MoreInjuries.MoreInjuriesSettings.Defaults;
 
 namespace MoreInjuries;
@@ -16,7 +16,7 @@ public class MoreInjuriesMod : Mod
 
     public static MoreInjuriesSettings Settings { get; private set; } = null!;
 
-    internal static bool CombatExtendedLoaded => 
+    internal static bool CombatExtendedLoaded =>
         s_combatExtendedLoaded ??= LoadedModManager.RunningModsListForReading.Any(static mod => mod.PackageIdPlayerFacing?.Equals("CETeam.CombatExtended") is true);
 
     public MoreInjuriesMod(ModContentPack content) : base(content)
@@ -166,6 +166,9 @@ public class MoreInjuriesMod : Mod
         list.Label("MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceLabel".Translate(Settings.DefibrillatorMinimumSuccessRate.NamedValue(), DEFIBRILLATOR_MINIMUM_SUCCESS_RATE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_HypovolemicShock_CardiacArrestDefibrillationChanceTooltip".Translate());
         Settings.DefibrillatorMinimumSuccessRate = (float)Math.Round(list.Slider(Settings.DefibrillatorMinimumSuccessRate, 0f, 1f), 2);
+        list.Label("MI_Settings_Features_HypovolemicShock_DestroyDefibrillatorOnUseChanceLabel".Translate(Settings.DefibrillatorBreakOnUseRate.NamedValue(), DEFIBRILLATOR_BREAK_ON_USE_RATE_DEFAULT.NamedDefault()), -1,
+            "MI_Settings_Features_HypovolemicShock_DestroyDefibrillatorOnUseChanceTooltip".Translate());
+        Settings.DefibrillatorBreakOnUseRate = (float)Math.Round(list.Slider(Settings.DefibrillatorBreakOnUseRate, 0f, 1f), 2);
         // trauma simulation
         list.GapLine();
         Text.Font = GameFont.Medium;

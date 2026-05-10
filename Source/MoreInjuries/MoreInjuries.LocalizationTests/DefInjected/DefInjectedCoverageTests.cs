@@ -23,7 +23,7 @@ public sealed class DefInjectedCoverageTests : LocalizationBase
         Assert.IsNotNull(english, "Missing default 'English' localization data.");
 
         DirectoryInfo[] defsDirectories = ModRoot.GetDirectories("Defs", SearchOption.TopDirectoryOnly);
-        Assert.AreEqual(1, defsDirectories.Length, "Expected exactly one 'Defs' directory in the mod root.");
+        Assert.HasCount(1, defsDirectories, "Expected exactly one 'Defs' directory in the mod root.");
         DirectoryInfo defsRoot = defsDirectories[0];
         DefDatabase defDatabase = new();
         defDatabase.Load(defsRoot, errorContext);
@@ -41,12 +41,12 @@ public sealed class DefInjectedCoverageTests : LocalizationBase
                 {
                     errorContext.Builder.AppendLine($"[{english.Language}]: Localization mismatch for key '{defValue.Key}' in '{defType}/{defName}'.")
                         .Append(' ', english.Language.Length + 4).AppendLine($"expected (from Def): '{defValue.Value}'")
-                        .Append(' ', english.Language.Length + 4).Append    ($"but found (in Lang): '{englishValue.Value}'");
+                        .Append(' ', english.Language.Length + 4).Append($"but found (in Lang): '{englishValue.Value}'");
                     errorContext.Errors.Add(errorContext.Builder.ToString());
                     errorContext.Builder.Clear();
                 }
             }
         }
-        Assert.AreEqual(0, errorContext.Errors.Count, $"Found at least one error while loading DefInjected localization data:\n{string.Join("\n", errorContext.Errors)}");
+        Assert.IsEmpty(errorContext.Errors, $"Found at least one error while loading DefInjected localization data:\n{string.Join("\n", errorContext.Errors)}");
     }
 }

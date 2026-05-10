@@ -30,9 +30,8 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
             (KnownBodyPartDefOf.Nose, new SelfLacerationHandler()),                             // nose
             // arms
             (KnownBodyPartDefOf.Clavicle, new ParentLacerationHandler()),                       // shoulder
-            (KnownBodyPartDefOf.Humerus, new ParentLacerationHandler()),                        // arm 
+            (KnownBodyPartDefOf.Humerus, new ParentLacerationHandler()),                        // arm
             (KnownBodyPartDefOf.Radius, new ParentLacerationHandler()),                         // arm
-            (BodyPartDefOf.Arm, new SelfLacerationHandler()),                                   // arm
             (BodyPartDefOf.Hand, new SelfAndDescendantsLacerationHandler(targets:               // hand + fingers
             [
                 KnownBodyPartDefOf.Finger
@@ -61,11 +60,6 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
                 KnownBodyPartDefOf.LargeIntestine
             ])),
             // legs
-            (BodyPartDefOf.Leg, new SelfAndDescendantsLacerationHandler(targets:                // nearby soft tissue
-            [
-                KnownBodyPartDefOf.FemoralArtery,
-                KnownBodyPartDefOf.PoplitealArtery
-            ])),
             (KnownBodyPartDefOf.Femur, new ParentAndSiblingsLacerationHandler(targets:          // nearby soft tissue
             [
                 BodyPartDefOf.Leg,
@@ -90,25 +84,29 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Pawn;
-        if (!builder.Keys.Contains(UITreatmentOption.UseSplint) && selectedPawn.Drafted && patient.health.hediffSet.hediffs.Any(static hediff => hediff.def == KnownHediffDefOf.Fracture))
+        if (builder.Keys.Contains(UITreatmentOption.UseSplint)
+            || !selectedPawn.Drafted
+            || PatientIsActivelyHostileTo(selectedPawn)
+            || !patient.health.hediffSet.hediffs.Any(static hediff => hediff.def == KnownHediffDefOf.Fracture))
         {
-            builder.Keys.Add(UITreatmentOption.UseSplint);
-            if (!KnownResearchProjectDefOf.BasicAnatomy.IsFinished)
-            {
-                return;
-            }
-            if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseSplint.JOB_LABEL_KEY) is { FailureReason: string failure })
-            {
-                builder.Options.Add(new FloatMenuOption(failure, null));
-            }
-            else if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Splint, JobDriver_UseSplint.TargetHediffDefs) is not Thing thing)
-            {
-                builder.Options.Add(new FloatMenuOption("MI_UseSplintFailed_Unavailable".Translate(JobDriver_UseSplint.JOB_LABEL_KEY.Translate()), null));
-            }
-            else
-            {
-                builder.Options.Add(new FloatMenuOption(JobDriver_UseSplint.JOB_LABEL_KEY.Translate(), JobDriver_UseSplint.GetDispatcher(selectedPawn, patient, thing).StartJob));
-            }
+            return;
+        }
+        builder.Keys.Add(UITreatmentOption.UseSplint);
+        if (!KnownResearchProjectDefOf.BasicAnatomy.IsFinished)
+        {
+            return;
+        }
+        if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseSplint.JOB_LABEL_KEY) is { FailureReason: string failure })
+        {
+            builder.Options.Add(new FloatMenuOption(failure, null));
+        }
+        else if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Splint, JobDriver_UseSplint.TargetHediffDefs) is not Thing thing)
+        {
+            builder.Options.Add(new FloatMenuOption("MI_UseSplintFailed_Unavailable".Translate(JobDriver_UseSplint.JOB_LABEL_KEY.Translate()), null));
+        }
+        else
+        {
+            builder.Options.Add(new FloatMenuOption(JobDriver_UseSplint.JOB_LABEL_KEY.Translate(), JobDriver_UseSplint.GetDispatcher(selectedPawn, patient, thing).StartJob));
         }
     }
 
@@ -132,7 +130,7 @@ internal sealed class FractureWorker(MoreInjuryComp parent) : InjuryWorker(paren
         {
             // get all breakable body parts that received damage
             IEnumerable<BodyPartRecord> affectedBones = damage.parts.Where(bodyPart =>
-                s_lacerationRegistry.ContainsKey(bodyPart.def) 
+                s_lacerationRegistry.ContainsKey(bodyPart.def)
                 && !patient.health.hediffSet.PartIsMissing(bodyPart));
 
             foreach (BodyPartRecord bone in affectedBones)

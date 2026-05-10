@@ -1,6 +1,5 @@
 ﻿using MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators;
 using System.Collections.Generic;
-using System.Text;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Logic;

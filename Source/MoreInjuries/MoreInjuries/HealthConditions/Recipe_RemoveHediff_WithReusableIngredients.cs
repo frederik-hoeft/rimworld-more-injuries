@@ -22,8 +22,8 @@ public class Recipe_RemoveHediff_WithReusableIngredients : Recipe_RemoveHediff
         TaleRecorder.RecordTale(TaleDefOf.DidSurgery, billDoer, pawn);
         if (PawnUtility.ShouldSendNotificationAbout(pawn) || PawnUtility.ShouldSendNotificationAbout(billDoer))
         {
-            Messages.Message(recipe.successfullyRemovedHediffMessage.NullOrEmpty() 
-                ? "MessageSuccessfullyRemovedHediff".Translate(billDoer.LabelShort, pawn.LabelShort, recipe.removesHediff.label.Named("HEDIFF"), billDoer.Named("SURGEON"), pawn.Named("PATIENT")) 
+            Messages.Message(recipe.successfullyRemovedHediffMessage.NullOrEmpty()
+                ? "MessageSuccessfullyRemovedHediff".Translate(billDoer.LabelShort, pawn.LabelShort, recipe.removesHediff.label.Named("HEDIFF"), billDoer.Named("SURGEON"), pawn.Named("PATIENT"))
                 : recipe.successfullyRemovedHediffMessage.Formatted(billDoer.LabelShort, pawn.LabelShort), pawn, MessageTypeDefOf.PositiveEvent);
         }
         Hediff? hediff = pawn.health.hediffSet.hediffs.Find(x => x.def == recipe.removesHediff && x.Part == part && x.Visible);

@@ -9,9 +9,11 @@ public abstract class DrugFloatOptionsProvider(InjuryWorker parent) : ICompFloat
 {
     public abstract bool IsEnabled { get; }
 
+    protected InjuryWorker Worker => parent;
+
     protected abstract UITreatmentOption UITreatmentOption { get; }
 
-    protected virtual bool RequiresTreatment(Pawn patient) => true;
+    protected abstract bool CanTreat(Pawn patient, Pawn doctor);
 
     protected abstract string JobLabelKey { get; }
 
@@ -22,24 +24,25 @@ public abstract class DrugFloatOptionsProvider(InjuryWorker parent) : ICompFloat
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = parent.Pawn;
-        if (!builder.Keys.Contains(UITreatmentOption) && RequiresTreatment(patient))
+        if (builder.Keys.Contains(UITreatmentOption) || !CanTreat(patient, selectedPawn))
         {
-            builder.Keys.Add(UITreatmentOption);
-
-            if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, DrugThingDef) is not Thing injector)
-            {
-                return;
-            }
-            if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobLabelKey) is { FailureReason: string failure })
-            {
-                builder.Options.Add(new FloatMenuOption(failure, null));
-                return;
-            }
-            TaggedString label = selectedPawn.inventory.Contains(injector)
-                ? Named.Keys.Procedure_FromInventory.Translate(JobLabelKey.Translate())
-                : JobLabelKey.Translate();
-
-            builder.Options.Add(new FloatMenuOption(label, GetDispatcher(selectedPawn, patient, injector).StartJob));
+            return;
         }
+        builder.Keys.Add(UITreatmentOption);
+
+        if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, DrugThingDef) is not Thing injector)
+        {
+            return;
+        }
+        if (MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobLabelKey) is { FailureReason: string failure })
+        {
+            builder.Options.Add(new FloatMenuOption(failure, null));
+            return;
+        }
+        TaggedString label = selectedPawn.inventory.Contains(injector)
+            ? Named.Keys.Procedure_FromInventory.Translate(JobLabelKey.Translate())
+            : JobLabelKey.Translate();
+
+        builder.Options.Add(new FloatMenuOption(label, GetDispatcher(selectedPawn, patient, injector).StartJob));
     }
 }

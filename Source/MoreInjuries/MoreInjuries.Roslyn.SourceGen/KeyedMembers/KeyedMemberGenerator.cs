@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
+using MoreInjuries.Roslyn.SourceGen.Extensions;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -64,8 +65,8 @@ public sealed class KeyedMemberGenerator : IIncrementalGenerator
                 """);
             string indent = new(' ', 8);
             IEnumerable<ISymbol> fields = model.Class.GetMembers()
-                .Where(static member => member is IFieldSymbol or IPropertySymbol 
-                    && !member.IsStatic 
+                .Where(static member => member is IFieldSymbol or IPropertySymbol
+                    && !member.IsStatic
                     && member.GetAttributes().All(static attr => attr.AttributeClass?.Name != nameof(CompilerGeneratedAttribute)));
             foreach (ISymbol field in fields)
             {

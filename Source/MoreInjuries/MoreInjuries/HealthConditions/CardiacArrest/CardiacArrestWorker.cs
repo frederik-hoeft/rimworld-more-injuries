@@ -1,5 +1,6 @@
 ﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Things;
+using RimWorld;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.CardiacArrest;
@@ -11,7 +12,7 @@ public sealed class CardiacArrestWorker(MoreInjuryComp parent) : InjuryWorker(pa
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Pawn;
-        if (selectedPawn == patient || !selectedPawn.Drafted)
+        if (selectedPawn == patient || !selectedPawn.Drafted || PatientIsActivelyHostileTo(selectedPawn))
         {
             return;
         }

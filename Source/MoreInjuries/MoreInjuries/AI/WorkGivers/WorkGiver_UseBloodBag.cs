@@ -1,20 +1,19 @@
-﻿using Verse.AI;
-using Verse;
-using MoreInjuries.Things;
+﻿using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
+using MoreInjuries.Things;
 using RimWorld;
-using MoreInjuries.Defs.WellKnown;
-
+using Verse;
+using Verse.AI;
 using static MoreInjuries.HealthConditions.HeavyBleeding.BloodLossConstants;
 
 namespace MoreInjuries.AI.WorkGivers;
 
 public class WorkGiver_UseBloodBag : WorkGiver_MoreInjuriesTreatmentBase
 {
-    private Thing? TryFindBloodBag(Pawn doctor, Pawn patient) => 
+    private Thing? TryFindBloodBag(Pawn doctor, Pawn patient) =>
         MedicalDeviceHelper.FindMedicalDevice(doctor, patient, JobDriver_UseBloodBag.JobDeviceDef, static hediff => JobDriver_UseBloodBag.JobCanTreat(hediff, BLOOD_LOSS_THRESHOLD));
 
-    protected override bool IsValidPatient(Pawn doctor, Thing thing, out Pawn patient) => base.IsValidPatient(doctor, thing, out patient) 
+    protected override bool IsValidPatient(Pawn doctor, Thing thing, out Pawn patient) => base.IsValidPatient(doctor, thing, out patient)
         && patient.playerSettings?.medCare is not MedicalCareCategory.NoCare and not MedicalCareCategory.NoMeds;
 
     public override bool ShouldSkip(Pawn pawn, bool forced = false) => !KnownResearchProjectDefOf.BasicFirstAid.IsFinished;

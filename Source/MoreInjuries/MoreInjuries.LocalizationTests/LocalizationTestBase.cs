@@ -8,7 +8,7 @@ public abstract class LocalizationTestBase : LocalizationBase
     public virtual void LanguageFileCompletenessTest()
     {
         DirectoryInfo[] languageDirectories = ModRoot.GetDirectories("Languages", SearchOption.TopDirectoryOnly);
-        Assert.AreEqual(1, languageDirectories.Length, "Expected exactly one 'Languages' directory in the mod root.");
+        Assert.HasCount(1, languageDirectories, "Expected exactly one 'Languages' directory in the mod root.");
         DirectoryInfo localizationRoot = languageDirectories[0];
         LoadErrorContext errorContext = new();
         List<LocalizationInfoRepository> languageRepositories = LoadLocalizationInfoRepositories(errorContext);
@@ -55,6 +55,6 @@ public abstract class LocalizationTestBase : LocalizationBase
                 }
             }
         }
-        Assert.AreEqual(0, errorContext.Errors.Count, $"Found at least one error while loading localization data:\n{string.Join("\n", errorContext.Errors)}");
+        Assert.IsEmpty(errorContext.Errors, $"Found at least one error while loading localization data:\n{string.Join("\n", errorContext.Errors)}");
     }
 }

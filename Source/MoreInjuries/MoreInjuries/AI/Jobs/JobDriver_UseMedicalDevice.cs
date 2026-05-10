@@ -27,7 +27,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
     protected ExtendedJobParameters? Parameters => job.source as ExtendedJobParameters;
 
     protected abstract bool RequiresDevice { get; }
-    
+
     protected abstract ThingDef DeviceDef { get; }
 
     protected Pawn Patient => job.targetA.Pawn;
@@ -106,7 +106,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
                 requiredDevices = GetMedicalDeviceCountToFullyHeal(Patient);
             }
             // attempt to reserve a device
-            if (availableDevices >= 1 && doctor.Reserve(DeviceUsed, job, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS, 
+            if (availableDevices >= 1 && doctor.Reserve(DeviceUsed, job, MedicalDeviceHelper.MAX_MEDICAL_DEVICE_RESERVATIONS,
                 Mathf.Min(availableDevices, requiredDevices),
                 errorOnFailed: errorOnFailed))
             {
@@ -125,9 +125,9 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
         this.FailOn(() =>
         {
             // we can't apply a device if the patient is set to no medical care
-            if (doctor.Faction == Faction.OfPlayer && patient.playerSettings?.medCare is MedicalCareCategory.NoCare
+            if (doctor.Faction.IsPlayerSafe() && patient.playerSettings?.medCare is MedicalCareCategory.NoCare
                 // we can't apply a device if the doctor wants to tend himself but is set to no self-tend
-                || doctor == patient && doctor.Faction == Faction.OfPlayer && doctor.playerSettings?.selfTend is false)
+                || doctor == patient && doctor.Faction.IsPlayerSafe() && doctor.playerSettings?.selfTend is false)
             {
                 Logger.Warning($"Failed job {job.def} because of medical care restrictions");
                 return true;
@@ -149,9 +149,9 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
             // continue tending the patient if they have the target hediff ...
             if (RequiresTreatment(patient)
                 // ... and the doctor is able to tend the patient ...
-                && (doctor.Faction == Faction.OfPlayer && HealthAIUtility.ShouldEverReceiveMedicalCareFromPlayer(Patient)
+                && (doctor.Faction.IsPlayerSafe() && HealthAIUtility.ShouldEverReceiveMedicalCareFromPlayer(Patient)
                 // or if the doctor is forced to tend the patient or belongs to a different faction (AI controlled)
-                || job.playerForced || doctor.Faction != Faction.OfPlayer))
+                || job.playerForced || !doctor.Faction.IsPlayerSafe()))
             {
                 return JobCondition.Ongoing;
             }
@@ -186,8 +186,8 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
                 {
                     return;
                 }
-                if (!patientLocal.InBed() 
-                    && (!patientLocal.HostileTo(doctorLocal) || patientLocal.Downed) 
+                if (!patientLocal.InBed()
+                    && (!patientLocal.HostileTo(doctorLocal) || patientLocal.Downed)
                     && waitToil.actor.CurJobDef.GetModExtension<MedicalJobProperties_ModExtension>() is { ShouldEverBeTreatedFacingUp: true })
                 {
                     patientLocal.jobs.posture = PawnPosture.LayingOnGroundFaceUp;
@@ -212,7 +212,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
         waitToil.handlingFacing = true;
         waitToil.tickAction = () =>
         {
-            if (doctor == patient && doctor.Faction != Faction.OfPlayer && doctor.IsHashIntervalTick(TICKS_BETWEEN_SELF_TEND_MOTES) && !doctor.Position.Fogged(doctor.Map))
+            if (doctor == patient && !doctor.Faction.IsPlayerSafe() && doctor.IsHashIntervalTick(TICKS_BETWEEN_SELF_TEND_MOTES) && !doctor.Position.Fogged(doctor.Map))
             {
                 // AI self-heal animation
                 FleckMaker.ThrowMetaIcon(doctor.Position, doctor.Map, FleckDefOf.HealingCross, velocitySpeed: 0.42f);
@@ -256,7 +256,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
     public override void Notify_DamageTaken(DamageInfo dinfo)
     {
         base.Notify_DamageTaken(dinfo);
-        if (!dinfo.Def.ExternalViolenceFor(Doctor) || pawn.Faction == Faction.OfPlayer || Doctor != Patient)
+        if (!dinfo.Def.ExternalViolenceFor(Doctor) || pawn.Faction.IsPlayerSafe() || Doctor != Patient)
         {
             return;
         }

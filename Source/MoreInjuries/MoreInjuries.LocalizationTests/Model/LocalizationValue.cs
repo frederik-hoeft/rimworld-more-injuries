@@ -1,3 +1,3 @@
 ﻿namespace MoreInjuries.LocalizationTests.Model;
 
-public record LocalizationValue(string Key, string Path, string Value, string? Comment);
+public record LocalizationValue(string Key, string Path, string Value, string? Comment, IReadOnlyDictionary<string, bool> Options);

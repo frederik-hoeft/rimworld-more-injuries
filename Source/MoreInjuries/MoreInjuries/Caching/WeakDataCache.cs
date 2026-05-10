@@ -3,10 +3,10 @@ using System.Runtime.CompilerServices;
 
 namespace MoreInjuries.Caching;
 
-public sealed class WeakDataCache<TWeakOwner, TData>(Func<TWeakOwner, TData> dataProvider) 
+public sealed class WeakDataCache<TWeakOwner, TData>(Func<TWeakOwner, TData> dataProvider)
     : WeakDataCache<TWeakOwner, TData, object?>((owner, _) => dataProvider.Invoke(owner)) where TWeakOwner : class
 {
-    public TData GetData(TWeakOwner owner, bool forceRefresh = false) => 
+    public TData GetData(TWeakOwner owner, bool forceRefresh = false) =>
         GetData(owner, state: null, forceRefresh);
 }
 

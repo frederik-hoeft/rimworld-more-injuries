@@ -8,7 +8,7 @@ internal sealed class Poolable<T>(IPool<Poolable<T>> pool, Predicate<T>? canPool
     private bool _isPooled = true;
     private T? _value;
 
-    public T Value 
+    public T Value
     {
         get
         {

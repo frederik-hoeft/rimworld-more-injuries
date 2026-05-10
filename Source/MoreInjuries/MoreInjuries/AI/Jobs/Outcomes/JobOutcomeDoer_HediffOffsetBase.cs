@@ -1,17 +1,14 @@
-﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.AI.Jobs.Outcomes;
 
-[SuppressMessage(CODE_STYLE, STYLE_IDE0032_USE_AUTO_PROPERTY, Justification = JUSTIFY_IDE0032_XML_DEF_REQUIRES_FIELD)]
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public abstract class JobOutcomeDoer_HediffOffsetBase : JobOutcomeDoer
+[XmlBindable]
+public abstract partial class JobOutcomeDoer_HediffOffsetBase : JobOutcomeDoer
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly HediffDef? hediffDef = default;
-
-    public HediffDef HediffDef => Throw.InvalidOperationException.IfNull(this, hediffDef);
+    [XmlBinding("hediffDef")]
+    public partial HediffDef HediffDef { get; }
 
     protected abstract float GetSeverityOffset(Pawn doctor, Pawn patient, Thing? device);
 

@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.Debug;
+using MoreInjuries.Extensions.Bcl;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using RimWorld;
 using System.Buffers;
@@ -15,9 +16,9 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
     {
         DebugAssert.IsTrue(pawn == Pawn);
         float chance = MoreInjuriesMod.Settings.LungCollapseChanceOnPerforatingDamage;
-        if (dinfo.HitPart is not { } lung 
-            || lung.def != BodyPartDefOf.Lung 
-            || result.hediffs is not { Count: > 0 } 
+        if (dinfo.HitPart is not { } lung
+            || lung.def != BodyPartDefOf.Lung
+            || result.hediffs is not { Count: > 0 }
             || pawn.health.hediffSet.PartIsMissing(lung)
             // chance * (1 at 50% damage)
             || !Rand.Chance(chance * Mathf.Clamp01(2f * dinfo.Amount / lung.def.hitPoints)))
@@ -25,7 +26,9 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
             return;
         }
         Logger.LogDebug($"Running lung collapse calculations for {pawn.Name}");
-        Hediff?[] causedBy = ArrayPool<Hediff?>.Shared.Rent(result.hediffs.Count);
+        // clear array is critical to not keep hediffs alive longer than necessary
+        using RentedArray<Hediff?> rentedCausedBy = ArrayPool<Hediff?>.RentDisposable(result.hediffs.Count, clearArray: true);
+        Hediff?[] causedBy = rentedCausedBy.Array;
         int i = 0;
         foreach (Hediff hediff in result.hediffs)
         {
@@ -34,7 +37,6 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
                 && !injury.GetIsClosedInternalWound(forceRefresh: true))
             {
                 // this lung has been perforated
-                DebugAssert.IsTrue(i < causedBy.Length);
                 causedBy[i++] = hediff;
             }
         }
@@ -43,9 +45,7 @@ internal sealed class LungCollapsePerforationWorker(MoreInjuryComp parent) : Lun
             Logger.LogDebug($"Won't apply lung collapse to {pawn.Name} since it's either an internal or non-bleeding wound");
             return;
         }
-        ReadOnlySpan<Hediff> causes = causedBy.AsSpan()[..i];
+        ReadOnlySpan<Hediff?> causes = causedBy.AsSpan()[..i];
         CollapseLung(lung, causes);
-        // clear array is critical to not keep hediffs alive longer than necessary
-        ArrayPool<Hediff?>.Shared.Return(causedBy, clearArray: true);
     }
 }

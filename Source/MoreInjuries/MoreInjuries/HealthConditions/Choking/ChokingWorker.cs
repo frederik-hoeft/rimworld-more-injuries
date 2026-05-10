@@ -19,7 +19,7 @@ internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = Pawn;
-        if (selectedPawn == patient || !selectedPawn.Drafted)
+        if (selectedPawn == patient || !selectedPawn.Drafted || PatientIsActivelyHostileTo(selectedPawn))
         {
             return;
         }

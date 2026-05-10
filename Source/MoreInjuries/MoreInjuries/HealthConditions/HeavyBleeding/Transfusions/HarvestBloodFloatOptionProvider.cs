@@ -7,7 +7,7 @@ using Verse;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
 
-internal class HarvestBloodFloatOptionProvider(InjuryWorker parent) : ICompFloatMenuOptionsHandler
+internal sealed class HarvestBloodFloatOptionProvider(InjuryWorker parent) : ICompFloatMenuOptionsHandler
 {
     public bool IsEnabled => true;
 
@@ -31,33 +31,36 @@ internal class HarvestBloodFloatOptionProvider(InjuryWorker parent) : ICompFloat
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = parent.Pawn;
-        if (!builder.Keys.Contains(UITreatmentOption.HarvestBlood) && selectedPawn != patient && (patient.Downed || patient.IsPrisoner) && JobDriver_HarvestBlood.JobCanTreat(patient))
+        if (selectedPawn == patient
+            || builder.Keys.Contains(UITreatmentOption.HarvestBlood)
+            || !patient.Downed && !patient.IsPrisoner
+            || !JobDriver_HarvestBlood.JobCanTreat(patient))
         {
-            builder.Keys.Add(UITreatmentOption.HarvestBlood);
-            if (!KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
+            return;
+        }
+        builder.Keys.Add(UITreatmentOption.HarvestBlood);
+        if (!KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
+        {
+            return;
+        }
+        int doctorSkill = selectedPawn.GetMedicalSkillLevelOrDefault();
+        int requiredSkill = MoreInjuriesMod.Settings.BloodTransfusionHarvestMinimumSkill;
+        if (doctorSkill < requiredSkill)
+        {
+            if (selectedPawn.Drafted)
             {
-                return;
+                builder.Options.Add(new FloatMenuOption("MI_HarvestBloodFailed_MissingMedicalSkill".Translate(
+                    JobDriver_HarvestBlood.JOB_LABEL_KEY.Translate(patient.Named(Named.Params.PATIENT)), requiredSkill), null));
             }
-            int doctorSkill = selectedPawn.GetMedicalSkillLevelOrDefault();
-            int requiredSkill = MoreInjuriesMod.Settings.BloodTransfusionHarvestMinimumSkill;
-            string jobLabel = string.Format(JobDriver_HarvestBlood.JOB_LABEL_KEY, patient.LabelShort);
-            if (doctorSkill < requiredSkill)
-            {
-                if (selectedPawn.Drafted)
-                {
-                    builder.Options.Add(new FloatMenuOption("MI_HarvestBloodFailed_MissingMedicalSkill".Translate(
-                        JobDriver_HarvestBlood.JOB_LABEL_KEY.Translate(patient.Named(Named.Params.PATIENT)), requiredSkill), null));
-                }
-                return;
-            }
-            if (GetReasonForDisabledProcedure(selectedPawn, JobDriver_HarvestBlood.JOB_LABEL_KEY, patient) is string failure)
-            {
-                builder.Options.Add(new FloatMenuOption(failure, null));
-            }
-            else
-            {
-                builder.Options.Add(new FloatMenuOption(JobDriver_HarvestBlood.JOB_LABEL_KEY.Translate(patient.Named(Named.Params.PATIENT)), JobDriver_HarvestBlood.GetDispatcher(selectedPawn, patient).StartJob));
-            }
+            return;
+        }
+        if (GetReasonForDisabledProcedure(selectedPawn, JobDriver_HarvestBlood.JOB_LABEL_KEY, patient) is string failure)
+        {
+            builder.Options.Add(new FloatMenuOption(failure, null));
+        }
+        else
+        {
+            builder.Options.Add(new FloatMenuOption(JobDriver_HarvestBlood.JOB_LABEL_KEY.Translate(patient.Named(Named.Params.PATIENT)), JobDriver_HarvestBlood.GetDispatcher(selectedPawn, patient).StartJob));
         }
     }
 }

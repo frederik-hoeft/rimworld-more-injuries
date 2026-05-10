@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MoreInjuries.Extensions;
+namespace MoreInjuries.Extensions.Bcl;
 
 public static class StringBuilderExtensions
 {

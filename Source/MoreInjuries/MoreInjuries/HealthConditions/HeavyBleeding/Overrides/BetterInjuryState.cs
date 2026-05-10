@@ -1,5 +1,5 @@
 ﻿using MoreInjuries.Caching;
-using MoreInjuries.Extensions;
+using MoreInjuries.Extensions.Bcl;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides.BleedRateModifiers;
 using MoreInjuries.Localization;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
 {
     private static readonly WeakTimedDataCache<Pawn, IReadOnlyList<HediffCrossInteraction>, TimedDataEntry<IReadOnlyList<HediffCrossInteraction>>> s_crossInteractionCache = new
     (
-        minCacheRefreshIntervalTicks: GenTicks.TickRareInterval, 
+        minCacheRefreshIntervalTicks: GenTicks.TickRareInterval,
         dataProvider: GetCrossInteractions
     );
 
@@ -204,7 +204,7 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
         List<HediffCrossInteraction>? crossInteractions = null;
         foreach (Hediff hediff in pawn.health.hediffSet.hediffs)
         {
-            if (hediff.def.GetModExtension<BleedRateModifier_ModExtension>() is { Modifier: { } modifier })
+            if (hediff.def.GetModExtension<BleedRateModifier_ModExtension>() is { Modifier: var modifier })
             {
                 crossInteractions ??= [];
                 crossInteractions.Add(new HediffCrossInteraction(hediff, modifier));

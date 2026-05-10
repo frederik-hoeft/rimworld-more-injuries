@@ -9,9 +9,10 @@ public static class ReusabilityUtility
 {
     public static void TryReuseSurgeryIngredient(Thing ingredient, Pawn doctor, Pawn patient)
     {
-        if (ingredient.def.GetModExtension<ReusabilityProps_ModExtension>() is { DestroyChance: float destroyChance })
+        if (ingredient.def.GetModExtension<ReusabilityProps_ModExtension>() is { DestroyChanceModifier: { } destroyChanceModifier })
         {
-            if (Rand.Chance(destroyChance))
+            float chance = destroyChanceModifier.GetModifier(ingredient);
+            if (Rand.Chance(chance))
             {
                 Messages.Message(Named.Keys.Message_ProcedureIngredientDestroyed.Translate(doctor.Named(Named.Params.DOCTOR), ingredient.Named(Named.Params.THING)), doctor, MessageTypeDefOf.NegativeEvent);
             }
@@ -30,11 +31,12 @@ public static class ReusabilityUtility
         }
     }
 
-    public static void TryDestroyReusableIngredient(Thing ingredient, Pawn doctor, bool destroyStack = true)
+    public static void TryDestroyReusableIngredient(Thing ingredient, Pawn doctor, bool destroyStack = false)
     {
-        if (ingredient.def.GetModExtension<ReusabilityProps_ModExtension>() is { DestroyChance: float destroyChance })
+        if (ingredient.def.GetModExtension<ReusabilityProps_ModExtension>() is { DestroyChanceModifier: { } destroyChanceModifier })
         {
-            if (Rand.Chance(destroyChance))
+            float chance = destroyChanceModifier.GetModifier(ingredient);
+            if (Rand.Chance(chance))
             {
                 Messages.Message(Named.Keys.Message_ProcedureIngredientDestroyed.Translate(doctor.Named(Named.Params.DOCTOR), ingredient.Named(Named.Params.THING)), doctor, MessageTypeDefOf.NegativeEvent);
                 if (destroyStack)

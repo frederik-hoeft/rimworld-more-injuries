@@ -1,4 +1,5 @@
 ﻿using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.Extensions;
 using MoreInjuries.Localization;
 using MoreInjuries.Things;
 using RimWorld;
@@ -20,7 +21,7 @@ internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : IComp
             return;
         }
         Pawn patient = parent.Pawn;
-        if (patient.Faction != Faction.OfPlayer || patient.Downed && patient.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation) < 0.2f)
+        if (!patient.Faction.IsPlayerSafe() || (patient.Downed && patient.health.capacities.GetLevel(PawnCapacityDefOf.Manipulation) < 0.2f))
         {
             // pawn is downed and has too low manipulation to do anything
             return;
@@ -90,48 +91,49 @@ internal sealed class TourniquetFloatOptionProvider(InjuryWorker parent) : IComp
     public void AddFloatMenuOptions(UIBuilder<FloatMenuOption> builder, Pawn selectedPawn)
     {
         Pawn patient = parent.Pawn;
-        if (!builder.Keys.Contains(UITreatmentOption.UseTourniquet))
+        if (builder.Keys.Contains(UITreatmentOption.UseTourniquet) || patient.IsActivelyHostileTo(selectedPawn))
         {
-            builder.Keys.Add(UITreatmentOption.UseTourniquet);
-            Thing? tourniquet = MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Tourniquet);
-            if (tourniquet is not null && MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL_KEY) is { FailureReason: string failure })
+            return;
+        }
+        builder.Keys.Add(UITreatmentOption.UseTourniquet);
+        Thing? tourniquet = MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.Tourniquet);
+        if (tourniquet is not null && MedicalDeviceHelper.GetCauseForDisabledProcedure(selectedPawn, patient, JobDriver_UseTourniquet.JOB_LABEL_KEY) is { FailureReason: string failure })
+        {
+            if (KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
             {
-                if (KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
-                {
-                    builder.Options.Add(new FloatMenuOption(failure, null));
-                }
-                return;
+                builder.Options.Add(new FloatMenuOption(failure, null));
             }
+            return;
+        }
 
-            bool pawnKnowsWhatTheyreDoing = JobDriver_TourniquetBase.PawnKnowsWhatTheyreDoing(selectedPawn);
+        bool pawnKnowsWhatTheyreDoing = JobDriver_TourniquetBase.PawnKnowsWhatTheyreDoing(selectedPawn);
 
-            using BleedRateByLimbEnumerable bleedRateCache = BleedRateByLimbEnumerable.EvaluateLimbs(patient);
-            foreach ((BodyPartRecord bodyPart, float aggregatedBleedRate) in bleedRateCache)
+        using BleedRateByLimbEnumerable bleedRateCache = BleedRateByLimbEnumerable.EvaluateLimbs(patient);
+        foreach ((BodyPartRecord bodyPart, float aggregatedBleedRate) in bleedRateCache)
+        {
+            if (patient.health.hediffSet.hediffs.Any(hediff => hediff.Part == bodyPart && hediff.def == KnownHediffDefOf.TourniquetApplied))
             {
-                if (patient.health.hediffSet.hediffs.Any(hediff => hediff.Part == bodyPart && hediff.def == KnownHediffDefOf.TourniquetApplied))
-                {
-                    // even if you don't know what a tourniquet is, you can still remove it
-                    builder.Options.Add(new FloatMenuOption(
-                        "MI_TourniquetFloatMenu_RemoveSafelyLabel".Translate(
-                            bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white),
-                    JobDriver_RemoveTourniquetSafely.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
-                    builder.Options.Add(new FloatMenuOption(
-                        "MI_TourniquetFloatMenu_RemoveQuicklyLabel".Translate(
-                            bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white),
-                    JobDriver_RemoveTourniquetQuickly.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
-                }
-                else if (tourniquet is not null && selectedPawn.Drafted && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing))
-                {
-                    // applying a tourniquet requires at least knowing what it is
-                    if (KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
-                    {
-                        builder.Options.Add(new FloatMenuOption(
-                            "MI_TourniquetFloatMenu_UseLabel".Translate(
-                                Colorize(bodyPart, aggregatedBleedRate).Named(Named.Params.BODYPART),
-                                patient.Label.Colorize(Color.yellow).Named(Named.Params.PATIENTNAME)).Colorize(Color.white),
-                            JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));
-                    }
-                }
+                // even if you don't know what a tourniquet is, you can still remove it
+                builder.Options.Add(new FloatMenuOption(
+                    "MI_TourniquetFloatMenu_RemoveSafelyLabel".Translate(
+                        bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white),
+                JobDriver_RemoveTourniquetSafely.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+                builder.Options.Add(new FloatMenuOption(
+                    "MI_TourniquetFloatMenu_RemoveQuicklyLabel".Translate(
+                        bodyPart.Label.Colorize(Color.red).Named(Named.Params.BODYPART)).Colorize(Color.white),
+                JobDriver_RemoveTourniquetQuickly.GetDispatcher(selectedPawn, patient, bodyPart).StartJob));
+            }
+            else if (tourniquet is not null
+                && selectedPawn.Drafted
+                && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing)
+                // applying a tourniquet requires at least knowing what it is
+                && KnownResearchProjectDefOf.BasicFirstAid.IsFinished)
+            {
+                builder.Options.Add(new FloatMenuOption(
+                    "MI_TourniquetFloatMenu_UseLabel".Translate(
+                        Colorize(bodyPart, aggregatedBleedRate).Named(Named.Params.BODYPART),
+                        patient.Label.Colorize(Color.yellow).Named(Named.Params.PATIENTNAME)).Colorize(Color.white),
+                    JobDriver_UseTourniquet.GetDispatcher(selectedPawn, patient, tourniquet, bodyPart).StartJob));
             }
         }
     }

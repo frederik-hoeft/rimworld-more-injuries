@@ -4,6 +4,6 @@ namespace MoreInjuries.AI.Audio;
 
 public static class CachedSoundDefProvider
 {
-    public static ISoundDefProvider<TTarget> Of<TTarget>(SoundDef soundDef) where TTarget : ThingWithComps => 
+    public static ISoundDefProvider<TTarget> Of<TTarget>(SoundDef soundDef) where TTarget : ThingWithComps =>
         FixedSoundDefProviderCache<TTarget>.Get(soundDef);
 }

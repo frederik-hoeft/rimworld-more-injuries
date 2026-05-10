@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Verse;
-using MoreInjuries.Debug;
-using System.Linq;
+﻿using MoreInjuries.Debug;
+using MoreInjuries.Extensions.Bcl;
 using MoreInjuries.Roslyn.Future.ThrowHelpers;
-using MoreInjuries.Extensions;
+using System.Collections.Generic;
+using System.Linq;
+using Verse;
 
 namespace MoreInjuries.HealthConditions;
 
@@ -69,7 +69,7 @@ public class MoreInjuryComp : ThingComp
             // remove dead references
             _weakJobParameters.RemoveAll(static wr => !wr.TryGetTarget(out _));
             // box everything to a list of strong references for serialization
-            jobParameters = 
+            jobParameters =
             [
                 .. _weakJobParameters.Transform(static (Std::WeakReference<IExposable> wr, out IExposable target) => wr.TryGetTarget(out target))
             ];

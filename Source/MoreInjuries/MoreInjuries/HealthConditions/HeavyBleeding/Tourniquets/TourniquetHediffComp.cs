@@ -2,21 +2,23 @@
 using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.HeavyBleeding.Overrides;
 using MoreInjuries.HealthConditions.Secondary;
+using MoreInjuries.Roslyn.Future.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
+using Random = System.Random;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
 public sealed class TourniquetHediffComp : HediffComp
 {
-    private bool _isGangreneApplied = false; 
+    private bool _isGangreneApplied = false;
     private float _coagulationMultiplier = 1;
 
-    public float CoagulationMultiplier 
-    { 
-        get => _coagulationMultiplier; 
-        set => _coagulationMultiplier = value; 
+    public float CoagulationMultiplier
+    {
+        get => _coagulationMultiplier;
+        set => _coagulationMultiplier = value;
     }
 
     public override void CompPostPostRemoved()
@@ -67,9 +69,9 @@ public sealed class TourniquetHediffComp : HediffComp
 
     public override void CompPostTick(ref float severityAdjustment)
     {
-        if (!MoreInjuriesMod.Settings.TourniquetsCanCauseGangrene 
-            || _isGangreneApplied 
-            || !parent.pawn.IsHashIntervalTick(GenTicks.TickRareInterval) 
+        if (!MoreInjuriesMod.Settings.TourniquetsCanCauseGangrene
+            || _isGangreneApplied
+            || !parent.pawn.IsHashIntervalTick(GenTicks.TickRareInterval)
             || !parent.CurStage.lifeThreatening)
         {
             return;
@@ -125,7 +127,7 @@ public sealed class TourniquetHediffComp : HediffComp
             Span<bool> childPartStatus = stackalloc bool[childCount];
             for (int remaining = childCount; remaining > 0; remaining--)
             {
-                int remainingChildIndex = RandomX.Shared.Next(remaining);
+                int remainingChildIndex = Random.Shared.Next(remaining);
                 int childIndex = 0;
                 for (int i = 0; i < childCount; i++)
                 {
@@ -146,7 +148,7 @@ public sealed class TourniquetHediffComp : HediffComp
         return parent;
     }
 
-    private static bool CanAddGangrene(Pawn pawn, BodyPartRecord part) => 
+    private static bool CanAddGangrene(Pawn pawn, BodyPartRecord part) =>
         part is not null
         // exclude arteries and solid parts
         && part.def != KnownBodyPartDefOf.FemoralArtery && part.def != KnownBodyPartDefOf.PoplitealArtery

@@ -1,4 +1,4 @@
-﻿using MoreInjuries.Extensions;
+﻿﻿using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.HealthConditions.Secondary.Handlers;
 using Verse;

@@ -1,5 +1,4 @@
 ﻿using MoreInjuries.Defs.WellKnown;
-using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.CardiacArrest;
 using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.HealthConditions.Drugs.Epinephrine;
@@ -8,6 +7,7 @@ using MoreInjuries.HealthConditions.HeavyBleeding.Bandages;
 using MoreInjuries.HealthConditions.HeavyBleeding.HemostaticAgents;
 using MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 using MoreInjuries.HealthConditions.HeavyBleeding.Transfusions;
+using MoreInjuries.Roslyn.Future.Extensions;
 using MoreInjuries.Things;
 using RimWorld;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Random = System.Random;
 
 namespace MoreInjuries.AI.Jobs;
 
@@ -68,10 +69,10 @@ public sealed class JobDriver_ProvideFirstAid : JobDriver
             foreach ((BodyPartRecord bodyPart, float bleedRate) in bleedRateCache.OrderByDescending(static kvp => kvp.Value))
             {
                 // only apply a tourniquet if the bleed rate is high enough and we have a tourniquet in our inventory
-                if (bleedRate > MoreInjuriesMod.Settings.MinBleedRateForAutoTourniquet 
+                if (bleedRate > MoreInjuriesMod.Settings.MinBleedRateForAutoTourniquet
                     && MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.Tourniquet, fromInventoryOnly: true) is Thing tourniquet
                     // for medically and intellectually challenged doctors, there's a small chance of certain accidents...
-                    && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing && RandomX.Shared.NextDouble() < 0.2d))
+                    && (bodyPart.def != KnownBodyPartDefOf.Neck || !pawnKnowsWhatTheyreDoing && Random.Shared.NextDouble() < 0.2d))
                 {
                     job = JobDriver_UseTourniquet.GetDispatcher(doctor, patient, tourniquet, bodyPart).CreateJob();
                     return StartJobAndScheduleScan(doctor, patient, job);

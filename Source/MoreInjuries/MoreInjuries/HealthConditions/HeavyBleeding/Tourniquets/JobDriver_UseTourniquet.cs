@@ -22,7 +22,7 @@ public class JobDriver_UseTourniquet : JobDriver_TourniquetBase
     protected override bool IsTreatable(Hediff hediff) => true;
 
     // the patient requires treatment until a tourniquet is applied to the targeted body part
-    protected override bool RequiresTreatment(Pawn patient) => 
+    protected override bool RequiresTreatment(Pawn patient) =>
         !patient.health.hediffSet.hediffs.Any(hediff => hediff.def == KnownHediffDefOf.TourniquetApplied && GetUniqueBodyPartKey(hediff.Part) == _bodyPartKey);
 
     internal static void ApplyDevice(Pawn patient, Thing? device, BodyPartRecord? bodyPart) =>

@@ -16,10 +16,10 @@ public class HediffComp_Shock : HediffComp
 
     public bool PastFixedPoint => parent.Severity > 0.55f;
 
-    public bool FixedNow 
-    { 
-        get => _fixedNow; 
-        set => _fixedNow = value; 
+    public bool FixedNow
+    {
+        get => _fixedNow;
+        set => _fixedNow = value;
     }
 
     private Hediff? GetBloodLoss() => parent.pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BloodLoss);

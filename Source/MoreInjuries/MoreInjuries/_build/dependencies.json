@@ -1,0 +1,9 @@
+{
+  "workshop_root": "{steam_root}/steamapps/workshop/content/294100",
+  "dependencies": [
+    {
+      "name": "BadHygiene.dll",
+      "path": "{workshop_root}/836308268/1.6/Assemblies/{name}"
+    }
+  ]
+}

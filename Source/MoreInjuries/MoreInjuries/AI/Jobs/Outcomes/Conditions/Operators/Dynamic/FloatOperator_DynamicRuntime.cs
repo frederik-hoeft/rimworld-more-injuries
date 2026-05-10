@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
+using System.Collections.Generic;
 using System.Text;
 
 namespace MoreInjuries.AI.Jobs.Outcomes.Conditions.Operators.Dynamic;
 
-// memebers initialized via XML defs
-[SuppressMessage(CODE_STYLE, STYLE_IDE1006_NAMING_STYLES, Justification = JUSTIFY_IDE1006_XML_NAMING_CONVENTION)]
-public sealed class FloatOperator_DynamicRuntime : FloatOperator_DynamicRuntime_ProcedureBase
+[XmlBindable]
+public sealed partial class FloatOperator_DynamicRuntime : FloatOperator_DynamicRuntime_ProcedureBase
 {
-    // don't rename this field. XML defs depend on this name
-    private readonly List<FloatOperator> instructions = default!;
+    [XmlBinding("instructions")]
+    public partial List<FloatOperator> Instructions { get; }
 
-    protected override List<FloatOperator> LoadInstructions() => instructions;
+    protected override List<FloatOperator> LoadInstructions() => Instructions;
 
     public override string ToString()
     {
