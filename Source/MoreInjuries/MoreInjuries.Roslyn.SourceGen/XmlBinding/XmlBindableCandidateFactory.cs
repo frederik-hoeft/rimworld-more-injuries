@@ -80,6 +80,13 @@ internal static class XmlBindableCandidateFactory
                 continue;
             }
 
+            // Decorate and MayRequire (shared for both attribute variants)
+            if (!TryExtractFieldDecorations(resolvedAttribute!, typeSymbol, property, diagnostics,
+                out string? decorateAttributeDisplay, out string? mayRequire))
+            {
+                continue;
+            }
+
             if (!property.IsPartialDefinition)
             {
                 diagnostics.Add(Diagnostic.Create(
@@ -109,7 +116,7 @@ internal static class XmlBindableCandidateFactory
                     fieldName));
                 continue;
             }
-            memberModels.Add(CreateMemberModel(property, fieldName!, defaultValueExpression, defaultValueIsNullable, allowRawAccess, validateMethodName, validateIsStatic, transformMethodName, transformIsStatic));
+            memberModels.Add(CreateMemberModel(property, fieldName!, defaultValueExpression, defaultValueIsNullable, allowRawAccess, decorateAttributeDisplay, mayRequire, validateMethodName, validateIsStatic, transformMethodName, transformIsStatic));
         }
 
         string namespaceName = typeSymbol.ContainingNamespace?.IsGlobalNamespace is false
@@ -124,7 +131,7 @@ internal static class XmlBindableCandidateFactory
             diagnostics.ToImmutable());
     }
 
-    private static XmlBindingModel CreateMemberModel(IPropertySymbol property, string fieldName, string? defaultValueExpression, bool defaultValueIsNullable, bool allowRawAccess, string? validateMethodName, bool validateIsStatic, string? transformMethodName, bool transformIsStatic)
+    private static XmlBindingModel CreateMemberModel(IPropertySymbol property, string fieldName, string? defaultValueExpression, bool defaultValueIsNullable, bool allowRawAccess, string? decorateAttributeDisplay, string? mayRequire, string? validateMethodName, bool validateIsStatic, string? transformMethodName, bool transformIsStatic)
     {
         bool hasSetter = property.SetMethod is not null;
         bool isInitOnly = property.SetMethod?.IsInitOnly ?? false;
@@ -199,6 +206,8 @@ internal static class XmlBindableCandidateFactory
             FieldName: fieldName,
             DefaultValueExpression: defaultValueExpression,
             AllowRawAccess: allowRawAccess,
+            DecorateAttributeDisplay: decorateAttributeDisplay,
+            MayRequire: mayRequire,
             Setter: setter,
             GetterPipeline: getterPipeline);
     }
@@ -344,6 +353,83 @@ internal static class XmlBindableCandidateFactory
                 return false;
             }
             transformMethodName = transformName;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Extracts and validates the Decorate and MayRequire properties from any <see cref="AttributeData"/>.
+    /// Returns <see langword="false"/> if validation fails (diagnostic already emitted).
+    /// </summary>
+    private static bool TryExtractFieldDecorations(
+        AttributeData attribute,
+        INamedTypeSymbol typeSymbol,
+        IPropertySymbol property,
+        ImmutableArray<Diagnostic>.Builder diagnostics,
+        out string? decorateAttributeDisplay,
+        out string? mayRequire)
+    {
+        decorateAttributeDisplay = null;
+        mayRequire = AttributeDataReader.GetNamedStringArgument(attribute, nameof(XmlBindingAttribute.MayRequire));
+
+        INamedTypeSymbol? decorateType = AttributeDataReader.GetNamedTypeArgument(attribute, nameof(XmlBindingAttribute.DecorateWith));
+        if (decorateType is not null)
+        {
+            // Verify the type derives from System.Attribute
+            bool isAttribute = false;
+            for (INamedTypeSymbol? baseType = decorateType.BaseType; baseType is not null; baseType = baseType.BaseType)
+            {
+                if (baseType.SpecialType == SpecialType.None
+                    && baseType.ToDisplayString() == "System.Attribute")
+                {
+                    isAttribute = true;
+                    break;
+                }
+            }
+
+            // Verify the type has a parameterless constructor
+            bool hasParameterlessCtor = false;
+            if (isAttribute)
+            {
+                foreach (IMethodSymbol ctor in decorateType.InstanceConstructors)
+                {
+                    if (ctor.Parameters.IsEmpty && ctor.DeclaredAccessibility == Accessibility.Public)
+                    {
+                        hasParameterlessCtor = true;
+                        break;
+                    }
+                }
+            }
+
+            // Verify AttributeUsage allows fields
+            bool allowsFields = true;
+            if (isAttribute && hasParameterlessCtor)
+            {
+                foreach (AttributeData attr in decorateType.GetAttributes())
+                {
+                    if (attr.AttributeClass?.ToDisplayString() == "System.AttributeUsageAttribute"
+                        && attr.ConstructorArguments is [{ Value: int targets }])
+                    {
+                        // AttributeTargets.Field = 256, AttributeTargets.All = 32767
+                        allowsFields = (targets & 256) != 0;
+                        break;
+                    }
+                }
+            }
+
+            if (!isAttribute || !hasParameterlessCtor || !allowsFields)
+            {
+                diagnostics.Add(Diagnostic.Create(
+                    XmlSerializationGeneratorDiagnostics.InvalidDecorateAttribute,
+                    property.Locations.FirstOrDefault(),
+                    property.Name,
+                    typeSymbol.Name,
+                    decorateType.ToDisplayString()));
+                return false;
+            }
+
+            decorateAttributeDisplay = decorateType.ToDisplayString(FullyQualifiedFormat);
         }
 
         return true;

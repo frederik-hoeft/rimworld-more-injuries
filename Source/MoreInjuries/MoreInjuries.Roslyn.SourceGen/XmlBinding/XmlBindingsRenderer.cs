@@ -47,6 +47,14 @@ internal static class XmlBindingsRenderer
             {
                 builder.AppendLine($"[global::{typeof(ObsoleteAttribute).FullName}(\"Do not use this field directly. Use the corresponding property instead.\", error: false)]");
             }
+            if (member.DecorateAttributeDisplay is not null)
+            {
+                builder.AppendLine($"[{member.DecorateAttributeDisplay}]");
+            }
+            if (member.MayRequire is not null)
+            {
+                builder.AppendLine($"[global::RimWorld.MayRequireAttribute(\"{member.MayRequire}\")]");
+            }
             builder.AppendLine($"private {readonlyModifier}{member.FieldTypeDisplay} {member.FieldName} = {defaultExpression};");
         }
     }

@@ -94,4 +94,12 @@ internal static class XmlSerializationGeneratorDiagnostics
         category: CATEGORY,
         defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true);
+
+    public static DiagnosticDescriptor InvalidDecorateAttribute { get; } = new(
+        id: "MIXML012",
+        title: "Invalid DecorateWith attribute type",
+        messageFormat: $"Property '{{0}}' in class '{{1}}' uses an {nameof(XmlBindingAttribute)} with DecorateWith type '{{2}}' that is not a valid parameterless attribute targeting fields.",
+        category: CATEGORY,
+        defaultSeverity: DiagnosticSeverity.Error,
+        isEnabledByDefault: true);
 }
