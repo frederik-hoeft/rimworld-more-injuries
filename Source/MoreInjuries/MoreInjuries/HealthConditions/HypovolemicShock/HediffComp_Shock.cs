@@ -45,6 +45,32 @@ public class HediffComp_Shock : HediffComp
         return info;
     }
 
+    // Helper to check if pawn has oxygen deficiency immunity from Biotech/Odyssey genes
+    private static bool HasOxygenDeficiencyImmunity(Pawn pawn)
+    {
+        // Biotech required for genes system
+        if (!ModsConfig.BiotechActive || pawn.genes == null)
+        {
+            return false;
+        }
+
+        // "Deathless" gene from Biotech DLC - grants immunity to hypoxia and oxygen deficiency
+        GeneDef deathlessGene = DefDatabase<GeneDef>.GetNamedSilentFail("Deathless");
+        if (deathlessGene != null && pawn.genes.HasActiveGene(deathlessGene))
+        {
+            return true;
+        }
+
+        // "Breathless" gene from Odyssey mod - pawn doesn't need to breathe oxygen
+        GeneDef breathlessGene = DefDatabase<GeneDef>.GetNamedSilentFail("Breathless");
+        if (breathlessGene != null && pawn.genes.HasActiveGene(breathlessGene))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public override void CompTended(float quality, float maxQuality, int batchPosition = 0)
     {
         base.CompTended(quality, maxQuality, batchPosition);
@@ -68,6 +94,16 @@ public class HediffComp_Shock : HediffComp
     public override void CompPostTick(ref float severityAdjustment)
     {
         Pawn pawn = parent.pawn;
+
+        // Check for oxygen deficiency immunity from Deathless/Breathless genes
+        // If pawn has either gene, they are immune to hypovolemic shock entirely
+        if (HasOxygenDeficiencyImmunity(pawn))
+        {
+            Logger.LogDebug($"Removing hypovolemic shock from {pawn.Name} due to oxygen-deficiency immunity gene");
+            pawn.health.RemoveHediff(parent);
+            return;
+        }
+
         if (!pawn.IsHashIntervalTick(CYCLE_LENGTH))
         {
             return;

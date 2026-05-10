@@ -1,4 +1,5 @@
-﻿using MoreInjuries.HealthConditions.Secondary;
+﻿using MoreInjuries.Extensions;
+using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.HealthConditions.Secondary.Handlers;
 using Verse;
 
@@ -8,6 +9,14 @@ public sealed class HediffCompHandler_SecondaryCondition_BrainDamage : HediffCom
 {
     public override float BaseChance => MoreInjuriesMod.Settings.EnableNeuralDamage ? base.BaseChance : 0f;
 
-    public override bool ShouldSkip(HediffComp_SecondaryCondition comp) => base.ShouldSkip(comp)
-        || comp.parent.IsTended() && Rand.Chance(MoreInjuriesMod.Settings.NeuralDamageChanceReductionFactor);
+    public override bool ShouldSkip(HediffComp_SecondaryCondition comp)
+    {
+        // Skip if pawn has oxygen-deficiency immunity (Deathless or Breathless genes)
+        if (comp.parent.pawn.HasOxygenDeficiencyImmunity())
+        {
+            return true;
+        }
+
+        return base.ShouldSkip(comp) || comp.parent.IsTended() && Rand.Chance(MoreInjuriesMod.Settings.NeuralDamageChanceReductionFactor);
+    }
 }
