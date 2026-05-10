@@ -73,6 +73,13 @@
               </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowUntracked"></li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_Disallow">
+                <genes>
+                  <!-- if the pawn has the deathless gene, we disable the hypoxia killer too, since they can't die from blood loss in the first place -->
+                  <!-- -->
+                  <li>Deathless</li>
+                </genes>
+              </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
                 <!-- if advanced trauma simulation is enabled, blood loss doesn't kill, hypoxia does -->
                 <severityCurve>
@@ -90,8 +97,8 @@
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>BrainDamage_Hypoxia</hediffDef>
-                <minSeverity>0.00</minSeverity>
-                <maxSeverity>0.00</maxSeverity>
+                <minSeverity>0.01</minSeverity>
+                <maxSeverity>0.5</maxSeverity>
                 <allowMultiple>true</allowMultiple>
                 <allowDuplicate>false</allowDuplicate>
               </hediffMakerDef>
