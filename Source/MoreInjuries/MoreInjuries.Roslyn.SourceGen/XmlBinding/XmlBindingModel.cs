@@ -34,6 +34,8 @@ internal sealed record XmlBindingModel(
     string FieldName,
     string? DefaultValueExpression,
     bool AllowRawAccess,
+    string? DecorateAttributeDisplay,
+    string? MayRequire,
     SetterModel? Setter,
     GetterPipelineModel GetterPipeline
 )
