@@ -73,11 +73,12 @@
               </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowUntracked"></li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_Disallow">
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_Disallow" MayRequire="Ludeon.RimWorld.Biotech">
                 <genes>
                   <!-- if the pawn has the deathless gene, we disable the hypoxia killer too, since they can't die from blood loss in the first place -->
-                  <!-- -->
                   <li>Deathless</li>
+                  <!-- we don't disable Breathless here since this is the path to death by blood loss, which is lethal for pawns with the Breathless gene, even if this is pathologically debatable -->
+                  <!-- <li>Breathless</li> -->
                 </genes>
               </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
