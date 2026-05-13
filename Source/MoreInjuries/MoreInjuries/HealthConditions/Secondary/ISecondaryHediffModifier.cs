@@ -5,5 +5,5 @@ namespace MoreInjuries.HealthConditions.Secondary;
 
 public interface ISecondaryHediffModifier
 {
-    float GetModifier(Hediff hediff, HediffCompHandler compHandler);
+    float GetModifier(Hediff hediff, IHediffCompHandler compHandler);
 }

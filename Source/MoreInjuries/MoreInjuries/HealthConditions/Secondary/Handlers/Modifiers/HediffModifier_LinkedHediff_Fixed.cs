@@ -13,7 +13,7 @@ public partial class HediffModifier_LinkedHediff_Fixed : SecondaryHediffModifier
     public partial float ChanceModifier { get; }
 
     /// <inheritdoc />
-    public override float GetModifier(Hediff hediff, HediffCompHandler compHandler)
+    public override float GetModifier(Hediff hediff, IHediffCompHandler compHandler)
     {
         if (hediff.pawn.health.hediffSet.HasHediff(HediffDef))
         {

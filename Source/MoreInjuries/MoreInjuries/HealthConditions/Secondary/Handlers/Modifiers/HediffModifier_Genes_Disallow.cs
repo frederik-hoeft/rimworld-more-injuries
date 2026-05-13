@@ -4,11 +4,11 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
 public sealed class HediffModifier_Genes_Disallow : HediffModifier_Genes
 {
-    public override float GetModifier(Hediff hediff, HediffCompHandler compHandler)
+    public override float GetModifier(Hediff hediff, IHediffCompHandler compHandler)
     {
-        foreach (GeneDef gene in Genes)
+        foreach (GeneDef geneDef in GeneDefs)
         {
-            if (hediff.pawn.genes.HasActiveGene(gene))
+            if (hediff.pawn.genes.HasActiveGene(geneDef))
             {
                 return 0f;
             }

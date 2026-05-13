@@ -19,6 +19,18 @@
           </li>
         </modifiedHediffs>
       </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffModifier_DownstreamChanceModifiers_ModExtension">
+        <modifiers>
+          <li MayRequire="Ludeon.RimWorld.Biotech" Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_WhenPresent">
+            <geneModifiers>
+              <li>
+                <geneDef>VacuumResistance_Total</geneDef>
+                <modifier>0.05</modifier>
+              </li>
+            </geneModifiers>
+          </li>
+        </modifiers>
+      </li>
     </modExtensions>
     <comps>
       <li Class="HediffCompProperties_TendDuration">
@@ -80,6 +92,18 @@
             </severityModifiers>
           </li>
         </modifiedHediffs>
+      </li>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffModifier_DownstreamChanceModifiers_ModExtension">
+        <modifiers>
+          <li MayRequire="Ludeon.RimWorld.Biotech" Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_WhenPresent">
+            <geneModifiers>
+              <li>
+                <geneDef>VacuumResistance_Total</geneDef>
+                <modifier>0.05</modifier>
+              </li>
+            </geneModifiers>
+          </li>
+        </modifiers>
       </li>
     </modExtensions>
     <comps>

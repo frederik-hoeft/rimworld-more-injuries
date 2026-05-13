@@ -67,6 +67,8 @@
           </li>
           <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>60</tickInterval>
+            <!-- we don't want to apply downstream modifiers for this handler -->
+            <applyDownstreamModifiers>false</applyDownstreamModifiers>
             <chanceModifiers>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag">
                 <key>PreventDeathByBloodLoss</key>

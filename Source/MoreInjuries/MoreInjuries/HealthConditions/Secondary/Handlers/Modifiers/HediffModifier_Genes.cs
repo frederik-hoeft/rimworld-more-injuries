@@ -7,6 +7,6 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 [XmlBindable]
 public abstract partial class HediffModifier_Genes : SecondaryHediffModifier
 {
-    [XmlBinding("genes")]
-    public partial IReadOnlyList<GeneDef> Genes { get; }
+    [XmlBinding("geneDefs")]
+    public partial IReadOnlyList<GeneDef> GeneDefs { get; }
 }

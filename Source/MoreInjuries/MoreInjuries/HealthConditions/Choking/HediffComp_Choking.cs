@@ -1,5 +1,7 @@
 ﻿using MoreInjuries.Caching;
 using MoreInjuries.Defs.WellKnown;
+using MoreInjuries.HealthConditions.Secondary;
+using MoreInjuries.HealthConditions.Secondary.Handlers;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -7,7 +9,7 @@ using Verse.Sound;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
-public sealed class HediffComp_Choking : HediffComp
+public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
 {
     private readonly TimedDataField<HediffComp_Choking, bool, Hediff_Injury, TimedDataEntry<bool>> _sourceIsProbablyValid;
     private Std::WeakReference<Hediff_Injury>? _source;
@@ -94,6 +96,7 @@ public sealed class HediffComp_Choking : HediffComp
         // a random walk with a bias towards increasing severity, increase depends on the bleed rate of the source injury and whether the patient is tended
         float increase = 0.1f;
         float decrease = 0f;
+
         if (source is { BleedRate: > 0.01f })
         {
             increase += Mathf.Clamp(source.BleedRate / 5f, 0.05f, 0.25f);
@@ -105,6 +108,10 @@ public sealed class HediffComp_Choking : HediffComp
         else if (source.BleedRate <= 0.01f)
         {
             decrease = 0.025f;
+        }
+        if (parent.def.GetModExtension<HediffModifier_SeverityModifiers_ModExtension>() is { } downstream)
+        {
+            increase *= downstream.GetModifier(parent, this);
         }
         float change = Rand.Range(-decrease, increase);
         bool coughing = IsCoughing(source, patient);

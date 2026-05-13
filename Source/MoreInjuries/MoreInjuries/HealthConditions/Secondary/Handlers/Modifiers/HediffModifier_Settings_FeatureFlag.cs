@@ -4,7 +4,7 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
 public class HediffModifier_Settings_FeatureFlag : HediffModifier_Settings
 {
-    public override float GetModifier(Hediff hediff, HediffCompHandler compHandler)
+    public override float GetModifier(Hediff hediff, IHediffCompHandler compHandler)
     {
         string feature = Key;
         if (!MoreInjuriesMod.Settings.Keyed.TryGetMember(feature, out bool flag))

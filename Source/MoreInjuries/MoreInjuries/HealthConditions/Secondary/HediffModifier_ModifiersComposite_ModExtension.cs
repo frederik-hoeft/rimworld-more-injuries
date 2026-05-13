@@ -7,12 +7,12 @@ using Verse;
 namespace MoreInjuries.HealthConditions.Secondary;
 
 [XmlBindable]
-public sealed partial class HediffModifier_InboundCauseComposite_ModExtension : DefModExtension, ISecondaryHediffModifier
+public abstract partial class HediffModifier_ModifiersComposite_ModExtension : DefModExtension, ISecondaryHediffModifier
 {
     [XmlBinding("modifiers")]
     public partial IReadOnlyList<SecondaryHediffModifier> Modifiers { get; }
 
-    public float GetModifier(Hediff hediff, HediffCompHandler compHandler)
+    public virtual float GetModifier(Hediff hediff, IHediffCompHandler compHandler)
     {
         float result = 1f;
         foreach (SecondaryHediffModifier modifier in Modifiers)

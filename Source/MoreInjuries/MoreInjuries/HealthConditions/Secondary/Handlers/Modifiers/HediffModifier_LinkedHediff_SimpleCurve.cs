@@ -13,7 +13,7 @@ public partial class HediffModifier_LinkedHediff_SimpleCurve : SecondaryHediffMo
     public partial HediffDef HediffDef { get; }
 
     /// <inheritdoc />
-    public override float GetModifier(Hediff hediff, HediffCompHandler compHandler)
+    public override float GetModifier(Hediff hediff, IHediffCompHandler compHandler)
     {
         if (hediff.pawn.health.hediffSet.TryGetHediff(HediffDef, out Hediff? linkedHediff))
         {

@@ -6,22 +6,15 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 [XmlBindable]
 public sealed partial class HediffModifier_Genes_WhenPresent : HediffModifier_Genes_FactorBased
 {
-    [XmlBinding<bool>("stackDuplicates", defaultValue: false)]
-    public partial bool StackDuplicates { get; }
-
-    public override float GetModifier(Hediff hediff, HediffCompHandler compHandler)
+    public override float GetModifier(Hediff hediff, IHediffCompHandler compHandler)
     {
         Pawn pawn = hediff.pawn;
         float modifier = 1f;
-        foreach (GeneDef gen in Genes)
+        foreach (GenesFactorBasedModifierData geneModifier in GeneModifiers)
         {
-            if (pawn.genes.HasActiveGene(gen))
+            if (pawn.genes.HasActiveGene(geneModifier.GeneDef))
             {
-                modifier *= Factor;
-                if (!StackDuplicates)
-                {
-                    break;
-                }
+                modifier *= geneModifier.Modifier;
             }
         }
         return modifier;

@@ -9,6 +9,6 @@ public partial class HediffModifier_SimpleCurve : SecondaryHediffModifier
     [XmlBinding("severityCurve")]
     public partial SimpleCurve SeverityCurve { get; }
 
-    public override float GetModifier(Hediff hediff, HediffCompHandler compHandler) =>
+    public override float GetModifier(Hediff hediff, IHediffCompHandler compHandler) =>
         SeverityCurve.Evaluate(hediff.Severity);
 }

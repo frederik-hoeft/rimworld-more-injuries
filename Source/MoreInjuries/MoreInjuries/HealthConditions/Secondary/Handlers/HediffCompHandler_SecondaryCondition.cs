@@ -12,7 +12,7 @@ using Verse;
 namespace MoreInjuries.HealthConditions.Secondary.Handlers;
 
 [XmlBindable]
-public abstract partial class HediffCompHandler_SecondaryCondition : HediffCompHandler
+public abstract partial class HediffCompHandler_SecondaryCondition : IHediffCompHandler
 {
     [XmlBinding<float>("baseChance", defaultValue: 1f)]
     public virtual partial float BaseChance { get; }
@@ -26,6 +26,9 @@ public abstract partial class HediffCompHandler_SecondaryCondition : HediffCompH
     [XmlBinding("sendLetterWhenDiscovered")]
     public partial bool SendLetterWhenDiscovered { get; }
 
+    [XmlBinding<bool>("applyDownstreamModifiers", defaultValue: true)]
+    public partial bool ApplyDownstreamModifiers { get; }
+
     [XmlBinding("targetEvaluator", DefaultValueProvider = typeof(BodyPartHediffTargetEvaluator_WholeBody), DefaultValueFrom = nameof(BodyPartHediffTargetEvaluator_WholeBody.Instance))]
     public partial BodyPartHediffTargetEvaluator TargetEvaluator { get; }
 
@@ -35,7 +38,8 @@ public abstract partial class HediffCompHandler_SecondaryCondition : HediffCompH
         {
             return true;
         }
-        if (comp.SeverityCurve is not null && !Rand.Chance(comp.SeverityCurve.Evaluate(comp.parent.Severity)))
+        Hediff hediff = comp.parent;
+        if (comp.SeverityCurve is { } severityCurve && !Rand.Chance(severityCurve.Evaluate(hediff.Severity)))
         {
             return true;
         }
@@ -44,18 +48,19 @@ public abstract partial class HediffCompHandler_SecondaryCondition : HediffCompH
         {
             foreach (SecondaryHediffModifier modifier in ChanceModifiers)
             {
-                chance *= modifier.GetModifier(comp.parent, this);
+                chance *= modifier.GetModifier(hediff, compHandler: this);
                 if (chance <= Mathf.Epsilon)
                 {
                     return true;
                 }
             }
         }
-        if (chance <= Mathf.Epsilon || chance < 1f && !Rand.Chance(chance))
+        if (hediff.def.GetModExtension<HediffModifier_DownstreamChanceModifiers_ModExtension>() is { } downstream)
         {
-            return true;
+            chance *= downstream.GetModifier(hediff, compHandler: this);
         }
-        return false;
+        return chance <= Mathf.Epsilon
+            || chance < 1f && !Rand.Chance(chance);
     }
 
     protected virtual void Evaulate(HediffComp_SecondaryCondition comp)

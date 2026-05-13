@@ -1,0 +1,3 @@
+﻿namespace MoreInjuries.HealthConditions.Secondary;
+
+public sealed class HediffModifier_DownstreamChanceModifiers_ModExtension : HediffModifier_ModifiersComposite_ModExtension;
