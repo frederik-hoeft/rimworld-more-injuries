@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 
 /// <summary>
-/// Small result type used by the XML binding generator's functional core.
+/// Small monadic result type used by the XML binding generator's functional core.
 /// It keeps diagnostics as data instead of mutating a shared collector through the analysis pipeline.
 /// </summary>
 internal readonly record struct BindingResult<T>(T? Value, ImmutableArray<Diagnostic> Diagnostics)
@@ -13,9 +13,16 @@ internal readonly record struct BindingResult<T>(T? Value, ImmutableArray<Diagno
 
     public static BindingResult<T> Success(T value) => new(value, []);
 
-    public static BindingResult<T> Failure(Diagnostic diagnostic) => new(default, [diagnostic]);
+    public static BindingResult<T> Failure(Diagnostic diagnostic) => Failure([diagnostic]);
 
-    public static BindingResult<T> Failure(ImmutableArray<Diagnostic> diagnostics) => new(default, diagnostics);
+    public static BindingResult<T> Failure(ImmutableArray<Diagnostic> diagnostics)
+    {
+        if (diagnostics is not [_, ..])
+        {
+            throw new ArgumentException("Diagnostics array must not be empty.", nameof(diagnostics));
+        }
+        return new BindingResult<T>(default, diagnostics);
+    }
 
     public BindingResult<TResult> Map<TResult>(Func<T, TResult> map) => IsSuccess
         ? BindingResult<TResult>.Success(map(Value!))
