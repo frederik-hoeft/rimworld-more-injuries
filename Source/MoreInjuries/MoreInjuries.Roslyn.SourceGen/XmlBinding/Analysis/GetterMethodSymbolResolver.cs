@@ -9,7 +9,7 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 /// </summary>
 internal static class GetterMethodSymbolResolver
 {
-    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.s_fullyQualifiedWithNullable;
+    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.FullyQualifiedWithNullable;
 
     public static BindingResult<ResolvedMethod> ResolveValidateMethod(PropertyAnalysisContext context, string methodName) =>
         ResolveMethodBySignature(context, methodName, XmlSerializationGeneratorDiagnostics.ValidateMethodNotFound, static (method, propertyType) =>

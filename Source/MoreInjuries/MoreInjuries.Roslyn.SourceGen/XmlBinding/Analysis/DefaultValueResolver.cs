@@ -7,7 +7,7 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 
 internal static class DefaultValueResolver
 {
-    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.s_fullyQualifiedWithNullable;
+    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.FullyQualifiedWithNullable;
 
     public static BindingResult<DefaultValueSpec> Resolve(AttributeData xmlMemberAttribute, PropertyAnalysisContext context)
     {

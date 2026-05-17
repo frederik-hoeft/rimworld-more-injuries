@@ -2,4 +2,8 @@
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 
-internal sealed record GetterPipelineSpec(MethodCallModel? Validate, MethodCallModel? Transform);
+internal sealed record GetterPipelineSpec
+(
+    MethodCallModel? Validate,
+    MethodCallModel? Transform
+);

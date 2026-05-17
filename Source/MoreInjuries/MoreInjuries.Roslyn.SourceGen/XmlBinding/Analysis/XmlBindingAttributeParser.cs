@@ -9,9 +9,11 @@ internal static class XmlBindingAttributeParser
 {
     private static readonly string s_xmlMemberGenericFullName = typeof(XmlBindingAttribute<>).FullName;
 
-    public static BindingResult<ParsedBindingAttribute>? TryParse(PropertyAnalysisContext context) =>
-        TryParseNonGeneric(context)
-        ?? TryParseGeneric(context.Property);
+    extension (PropertyAnalysisContext self)
+    {
+        public BindingResult<ParsedBindingAttribute>? TryParse() =>
+            TryParseNonGeneric(self) ?? TryParseGeneric(self.Property);
+    }
 
     private static BindingResult<ParsedBindingAttribute>? TryParseNonGeneric(PropertyAnalysisContext context)
     {
@@ -35,25 +37,21 @@ internal static class XmlBindingAttributeParser
         };
     }
 
-    private static BindingResult<ParsedBindingAttribute>? TryParseGeneric(IPropertySymbol property) =>
-        property.GetAttributes()
-            .Select(TryParseGeneric)
-            .FirstOrDefault(static result => result is not null);
+    private static BindingResult<ParsedBindingAttribute>? TryParseGeneric(IPropertySymbol property) => property.GetAttributes()
+        .Select(TryParseGeneric)
+        .FirstOrDefault(static result => result is not null);
 
-    private static BindingResult<ParsedBindingAttribute>? TryParseGeneric(AttributeData attribute) =>
-        attribute switch
+    private static BindingResult<ParsedBindingAttribute>? TryParseGeneric(AttributeData attribute) => attribute switch
+    {
         {
-            {
-                AttributeClass: { IsGenericType: true } attributeClass,
-                ConstructorArguments: [{ Value: string fieldName }, TypedConstant defaultValue],
-            } when attributeClass.ConstructUnboundGenericType()
-                .GetFullMetadataName()
-                .Equals(s_xmlMemberGenericFullName, StringComparison.Ordinal) =>
-                BindingResult<ParsedBindingAttribute>.Success(new ParsedBindingAttribute(
-                    fieldName,
-                    DefaultValue: new DefaultValueSpec(defaultValue.ToCSharpStringWithPostfix(), IsNullable: false),
-                    attribute.GetAllowRawAccess(),
-                    attribute)),
-            _ => null,
-        };
+            AttributeClass: { IsGenericType: true } attributeClass,
+            ConstructorArguments: [{ Value: string fieldName }, TypedConstant defaultValue],
+        } when attributeClass.ConstructUnboundGenericType().GetFullMetadataName().Equals(s_xmlMemberGenericFullName, StringComparison.Ordinal) =>
+            BindingResult<ParsedBindingAttribute>.Success(new ParsedBindingAttribute(
+                fieldName,
+                DefaultValue: new DefaultValueSpec(defaultValue.ToCSharpStringWithPostfix(), IsNullable: false),
+                attribute.GetAllowRawAccess(),
+                attribute)),
+        _ => null,
+    };
 }

@@ -15,7 +15,7 @@ internal static class XmlBindingModelFactory
         (static property => property.IsAbstract, "abstract"),
     ];
 
-    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.s_fullyQualifiedWithNullable;
+    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.FullyQualifiedWithNullable;
 
     public static XmlBindingModel Create(
         IPropertySymbol property,

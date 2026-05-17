@@ -9,7 +9,7 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 /// </summary>
 internal static class DefaultValueSymbolResolver
 {
-    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.s_fullyQualifiedWithNullable;
+    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.FullyQualifiedWithNullable;
 
     public static BindingResult<DefaultValueResolution> ResolveFromDeclaringType(DefaultValueSourceContext context) =>
         ResolvePrimaryConstructorParameter(context.TypeSymbol, context.SourceName)

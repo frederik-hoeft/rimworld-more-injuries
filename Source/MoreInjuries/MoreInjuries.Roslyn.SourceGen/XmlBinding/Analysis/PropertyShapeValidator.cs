@@ -6,35 +6,27 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 
 internal static class PropertyShapeValidator
 {
-    public static BindingResult<Unit> Validate(
-        PropertyAnalysisContext context,
-        string fieldName,
-        ImmutableHashSet<string> usedFieldNames) =>
-        context.Property switch
+    extension (PropertyAnalysisContext self)
+    {
+        public BindingResult<Unit> Validate(ParsedBindingAttribute binding, ImmutableHashSet<string> usedFieldNames) => self switch
         {
-            _ when !context.Property.IsPartialDefinition => Failure(
-                XmlSerializationGeneratorDiagnostics.MemberMustBePartial,
-                context),
-            _ when string.IsNullOrWhiteSpace(fieldName) || !SyntaxFacts.IsValidIdentifier(fieldName) => Failure(
-                XmlSerializationGeneratorDiagnostics.InvalidFieldName,
-                context,
-                fieldName),
-            _ when !context.TypeSymbol.GetMembers(fieldName).IsEmpty || usedFieldNames.Contains(fieldName) => Failure(
-                XmlSerializationGeneratorDiagnostics.MemberNameConflict,
-                context,
-                fieldName),
+            _ when !self.Property.IsPartialDefinition =>
+                self.Failure(XmlSerializationGeneratorDiagnostics.MemberMustBePartial),
+            _ when string.IsNullOrWhiteSpace(binding.FieldName) || !SyntaxFacts.IsValidIdentifier(binding.FieldName) =>
+                self.Failure(XmlSerializationGeneratorDiagnostics.InvalidFieldName, binding.FieldName),
+            _ when !self.TypeSymbol.GetMembers(binding.FieldName).IsEmpty || usedFieldNames.Contains(binding.FieldName) =>
+                self.Failure(XmlSerializationGeneratorDiagnostics.MemberNameConflict, binding.FieldName),
             _ => BindingResult<Unit>.Success(Unit.Value),
         };
 
-    private static BindingResult<Unit> Failure(
-        DiagnosticDescriptor descriptor,
-        PropertyAnalysisContext context,
-        params object?[] messageArgs)
-    {
-        object?[] diagnosticArgs = [context.PropertyName, context.TypeName, .. messageArgs];
-        return BindingResult<Unit>.Failure(Diagnostic.Create(
-            descriptor,
-            context.Location,
-            diagnosticArgs));
+        private BindingResult<Unit> Failure(DiagnosticDescriptor descriptor, params object?[] messageArgs) => BindingResult<Unit>.Failure
+        (
+            Diagnostic.Create(descriptor, self.Location,
+            [
+                self.PropertyName,
+                self.TypeName,
+                .. messageArgs
+            ])
+        );
     }
 }

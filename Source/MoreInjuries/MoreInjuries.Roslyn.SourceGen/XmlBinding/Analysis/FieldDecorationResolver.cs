@@ -6,28 +6,28 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 
 internal static class FieldDecorationResolver
 {
-    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.s_fullyQualifiedWithNullable;
-
-    public static BindingResult<FieldDecorationSpec> Resolve(
-        AttributeData attribute,
-        PropertyAnalysisContext context)
+    extension (PropertyAnalysisContext self)
     {
-        string? mayRequire = attribute.GetNamedStringArgument(nameof(XmlBindingAttribute.MayRequire));
-        INamedTypeSymbol? optionalDecorateType = attribute.GetNamedTypeArgument(nameof(XmlBindingAttribute.DecorateWith));
+        public BindingResult<FieldDecorationSpec> ResolveFieldDecorations(ParsedBindingAttribute binding)
+        {
+            AttributeData attribute = binding.Attribute;
+            string? mayRequire = attribute.GetNamedStringArgument(nameof(XmlBindingAttribute.MayRequire));
+            INamedTypeSymbol? optionalDecorateType = attribute.GetNamedTypeArgument(nameof(XmlBindingAttribute.DecorateWith));
 
-        return optionalDecorateType is { } decorateType
-            ? ValidateDecorateAttribute(context, decorateType).Map(display => new FieldDecorationSpec(display, mayRequire))
-            : BindingResult<FieldDecorationSpec>.Success(new FieldDecorationSpec(DecorateAttributeDisplay: null, mayRequire));
+            return optionalDecorateType is { } decorateType
+                ? self.ValidateDecorateAttribute(decorateType).Map(display => new FieldDecorationSpec(binding, display, mayRequire))
+                : BindingResult<FieldDecorationSpec>.Success(new FieldDecorationSpec(binding, DecorateAttributeDisplay: null, mayRequire));
+        }
+
+        private BindingResult<string> ValidateDecorateAttribute(INamedTypeSymbol decorateType) => decorateType switch
+        {
+            _ when FieldAttributeInspector.IsConcreteFieldAttribute(decorateType) => BindingResult<string>.Success(decorateType.ToDisplayString(SymbolDisplayFormats.FullyQualifiedWithNullable)),
+            _ => BindingResult<string>.Failure(Diagnostic.Create(
+                XmlSerializationGeneratorDiagnostics.InvalidDecorateAttribute,
+                self.Location,
+                self.PropertyName,
+                self.TypeName,
+                decorateType.ToDisplayString())),
+        };
     }
-
-    private static BindingResult<string> ValidateDecorateAttribute(PropertyAnalysisContext context, INamedTypeSymbol decorateType) => decorateType switch
-    {
-        _ when FieldAttributeInspector.IsConcreteFieldAttribute(decorateType) => BindingResult<string>.Success(decorateType.ToDisplayString(FullyQualifiedFormat)),
-        _ => BindingResult<string>.Failure(Diagnostic.Create(
-            XmlSerializationGeneratorDiagnostics.InvalidDecorateAttribute,
-            context.Location,
-            context.PropertyName,
-            context.TypeName,
-            decorateType.ToDisplayString())),
-    };
 }

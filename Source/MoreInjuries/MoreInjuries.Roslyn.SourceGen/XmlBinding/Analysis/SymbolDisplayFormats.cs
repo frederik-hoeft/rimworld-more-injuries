@@ -10,10 +10,9 @@ internal static class SymbolDisplayFormats
     /// <summary>
     /// Fully-qualified format including global:: prefix and nullable reference type annotations.
     /// </summary>
-    public static readonly SymbolDisplayFormat s_fullyQualifiedWithNullable =
-        SymbolDisplayFormat.FullyQualifiedFormat
-            .WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Included)
-            .WithMiscellaneousOptions(
-                SymbolDisplayFormat.FullyQualifiedFormat.MiscellaneousOptions
-                | SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
+    public static SymbolDisplayFormat FullyQualifiedWithNullable { get; } = SymbolDisplayFormat.FullyQualifiedFormat
+        .WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Included)
+        .WithMiscellaneousOptions(
+            SymbolDisplayFormat.FullyQualifiedFormat.MiscellaneousOptions
+            | SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
 }

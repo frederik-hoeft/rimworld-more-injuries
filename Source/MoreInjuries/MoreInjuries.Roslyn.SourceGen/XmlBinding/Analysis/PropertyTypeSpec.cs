@@ -9,7 +9,7 @@ internal sealed record PropertyTypeSpec(
     bool RequiresNullCheck,
     bool FieldIsNullable)
 {
-    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.s_fullyQualifiedWithNullable;
+    private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.FullyQualifiedWithNullable;
 
     public static PropertyTypeSpec Create(ITypeSymbol propertyType, DefaultValueSpec defaultValue)
     {
