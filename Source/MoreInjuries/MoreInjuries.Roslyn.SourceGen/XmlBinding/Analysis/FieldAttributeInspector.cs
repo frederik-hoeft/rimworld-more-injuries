@@ -22,19 +22,17 @@ internal static class FieldAttributeInspector
         type.InstanceConstructors.Any(static constructor =>
             constructor.Parameters.IsEmpty && constructor.DeclaredAccessibility == Accessibility.Public);
 
-    private static bool AllowsFieldTargets(INamedTypeSymbol type) =>
-        type.GetAttributes()
-            .Select(TryGetAttributeTargets)
-            .FirstOrDefault(static targets => targets is not null) is not int targets
-        || (targets & (int)AttributeTargets.Field) != 0;
+    private static bool AllowsFieldTargets(INamedTypeSymbol type) => type.GetAttributes()
+        .Select(TryGetAttributeUsageTargets)
+        .FirstOrDefault(static targets => targets is not null) is not AttributeTargets targets
+        || (targets & AttributeTargets.Field) != 0;
 
-    private static int? TryGetAttributeTargets(AttributeData attribute) =>
-        attribute switch
+    private static AttributeTargets? TryGetAttributeUsageTargets(AttributeData attribute) => attribute switch
+    {
         {
-            {
-                AttributeClass: { } attributeClass,
-                ConstructorArguments: [{ Value: int targets }],
-            } when attributeClass.ToDisplayString() == "System.AttributeUsageAttribute" => targets,
-            _ => null,
-        };
+            AttributeClass: { } attributeClass,
+            ConstructorArguments: [{ Value: int targets }],
+        } when attributeClass.ToDisplayString() == "System.AttributeUsageAttribute" => (AttributeTargets)targets,
+        _ => null,
+    };
 }
