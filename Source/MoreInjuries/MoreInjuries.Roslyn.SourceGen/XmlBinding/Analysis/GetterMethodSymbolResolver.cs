@@ -11,33 +11,20 @@ internal static class GetterMethodSymbolResolver
 {
     private static SymbolDisplayFormat FullyQualifiedFormat => SymbolDisplayFormats.s_fullyQualifiedWithNullable;
 
-    public static BindingResult<ResolvedMethod> ResolveValidateMethod(
-        PropertyAnalysisContext context,
-        string methodName) =>
-        ResolveMethodBySignature(
-            context,
-            methodName,
-            static (method, propertyType) =>
-                method.ReturnType.SpecialType == SpecialType.System_Boolean
-                && TypeConversions.IsImplicitlyConvertible(propertyType, method.Parameters[0].Type),
-            XmlSerializationGeneratorDiagnostics.ValidateMethodNotFound);
+    public static BindingResult<ResolvedMethod> ResolveValidateMethod(PropertyAnalysisContext context, string methodName) =>
+        ResolveMethodBySignature(context, methodName, XmlSerializationGeneratorDiagnostics.ValidateMethodNotFound, static (method, propertyType) =>
+            method.ReturnType.SpecialType == SpecialType.System_Boolean
+            && propertyType.IsImplicitlyConvertible(method.Parameters[0].Type));
 
-    public static BindingResult<ResolvedMethod> ResolveTransformMethod(
-        PropertyAnalysisContext context,
-        string methodName) =>
-        ResolveMethodBySignature(
-            context,
-            methodName,
-            static (method, propertyType) =>
-                TypeConversions.IsImplicitlyConvertible(propertyType, method.Parameters[0].Type)
-                && TypeConversions.IsImplicitlyConvertible(method.ReturnType, propertyType),
-            XmlSerializationGeneratorDiagnostics.TransformMethodNotFound);
+    public static BindingResult<ResolvedMethod> ResolveTransformMethod(PropertyAnalysisContext context, string methodName) =>
+        ResolveMethodBySignature(context, methodName, XmlSerializationGeneratorDiagnostics.TransformMethodNotFound, static (method, propertyType) =>
+            propertyType.IsImplicitlyConvertible(method.Parameters[0].Type) && method.ReturnType.IsImplicitlyConvertible(propertyType));
 
     private static BindingResult<ResolvedMethod> ResolveMethodBySignature(
         PropertyAnalysisContext context,
         string methodName,
-        Func<IMethodSymbol, ITypeSymbol, bool> signatureMatch,
-        DiagnosticDescriptor notFoundDescriptor)
+        DiagnosticDescriptor notFoundDescriptor,
+        Func<IMethodSymbol, ITypeSymbol, bool> signatureMatch)
     {
         ITypeSymbol propertyType = context.Property.Type;
 

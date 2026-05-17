@@ -2,8 +2,7 @@
 
 internal static class EnumerableExtensions
 {
-    extension<T>(IEnumerable<T> source)
-        where T : struct
+    extension<T>(IEnumerable<T> source) where T : struct
     {
         public T? FirstOrNull()
         {

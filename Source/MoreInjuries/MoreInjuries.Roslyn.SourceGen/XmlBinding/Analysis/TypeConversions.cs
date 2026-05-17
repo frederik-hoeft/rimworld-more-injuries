@@ -8,26 +8,27 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 /// </summary>
 internal static class TypeConversions
 {
-    public static bool IsImplicitlyConvertible(ITypeSymbol source, ITypeSymbol target)
+    extension (ITypeSymbol self)
     {
-        ITypeSymbol targetStripped = StripNullable(target);
-
-        return source switch
+        public bool IsImplicitlyConvertible(ITypeSymbol target)
         {
-            _ when AreSameType(StripNullable(source), targetStripped) => true,
-            _ when IsImplementedInterface(source, target, targetStripped) => true,
-            _ => source.EnumerateBaseTypes()
-                .Any(baseType => AreSameType(StripNullable(baseType), targetStripped)),
-        };
+            ITypeSymbol targetStripped = target.StripNullable();
+
+            return self switch
+            {
+                _ when self.StripNullable().IsSameTypeAs(targetStripped) => true,
+                _ when self.IsImplementedInterface(target, targetStripped) => true,
+                _ => self.EnumerateBaseTypes()
+                    .Any(baseType => baseType.StripNullable().IsSameTypeAs(targetStripped)),
+            };
+        }
+
+        private ITypeSymbol StripNullable() => self.WithNullableAnnotation(NullableAnnotation.None);
+
+        private bool IsSameTypeAs(ITypeSymbol other) => SymbolEqualityComparer.Default.Equals(self, other);
+
+        private bool IsImplementedInterface(ITypeSymbol target, ITypeSymbol targetStripped) =>
+            target.TypeKind is TypeKind.Interface
+            && self.AllInterfaces.Any(candidate => candidate.StripNullable().IsSameTypeAs(targetStripped));
     }
-
-    private static ITypeSymbol StripNullable(ITypeSymbol symbol) =>
-        symbol.WithNullableAnnotation(NullableAnnotation.None);
-
-    private static bool AreSameType(ITypeSymbol source, ITypeSymbol target) =>
-        SymbolEqualityComparer.Default.Equals(source, target);
-
-    private static bool IsImplementedInterface(ITypeSymbol source, ITypeSymbol target, ITypeSymbol targetStripped) =>
-        target.TypeKind is TypeKind.Interface
-        && source.AllInterfaces.Any(candidate => AreSameType(StripNullable(candidate), targetStripped));
 }

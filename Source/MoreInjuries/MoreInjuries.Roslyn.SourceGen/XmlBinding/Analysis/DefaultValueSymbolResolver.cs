@@ -62,11 +62,8 @@ internal static class DefaultValueSymbolResolver
             sourceType,
             $"{providerType.ToDisplayString(FullyQualifiedFormat)}.{context.SourceName}");
 
-    private static BindingResult<DefaultValueResolution> ValidateSourceType(
-        DefaultValueSourceContext context,
-        ITypeSymbol sourceType,
-        string defaultValueExpression) =>
-        TypeConversions.IsImplicitlyConvertible(sourceType, context.TargetType)
+    private static BindingResult<DefaultValueResolution> ValidateSourceType(DefaultValueSourceContext context, ITypeSymbol sourceType, string defaultValueExpression) =>
+        sourceType.IsImplicitlyConvertible(context.TargetType)
             ? BindingResult<DefaultValueResolution>.Success(new DefaultValueResolution(
                 defaultValueExpression,
                 sourceType.NullableAnnotation == NullableAnnotation.Annotated))
