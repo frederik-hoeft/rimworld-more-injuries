@@ -15,8 +15,8 @@ internal static class FieldDecorationResolver
             INamedTypeSymbol? optionalDecorateType = attribute.GetNamedTypeArgument(nameof(XmlBindingAttribute.DecorateWith));
 
             return optionalDecorateType is { } decorateType
-                ? self.ValidateDecorateAttribute(decorateType).Map(display => new FieldDecorationSpec(binding, display, mayRequire))
-                : BindingResult<FieldDecorationSpec>.Success(new FieldDecorationSpec(binding, DecorateAttributeDisplay: null, mayRequire));
+                ? self.ValidateDecorateAttribute(decorateType).Map(display => new FieldDecorationSpec(display, mayRequire))
+                : BindingResult<FieldDecorationSpec>.Success(new FieldDecorationSpec(DecorateAttributeDisplay: null, mayRequire));
         }
 
         private BindingResult<string> ValidateDecorateAttribute(INamedTypeSymbol decorateType) => decorateType switch

@@ -2,7 +2,6 @@
 
 internal sealed record FieldDecorationSpec
 (
-    ParsedBindingAttribute ParsedAttribute,
     string? DecorateAttributeDisplay,
     string? MayRequire
 );
