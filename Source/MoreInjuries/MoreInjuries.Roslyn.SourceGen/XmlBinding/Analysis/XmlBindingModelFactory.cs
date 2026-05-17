@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Models;
+using System.Text;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 
@@ -72,12 +73,10 @@ internal static class XmlBindingModelFactory
             _ => propertyTypeSpec.PropertyDisplay,
         };
 
-    private static string GetPropertyModifiers(IPropertySymbol property) =>
-        string.Join(" ", s_propertyModifiers
-            .Where(modifier => modifier.Predicate(property))
-            .Select(static modifier => modifier.Modifier)) switch
-        {
-            { Length: > 0 } modifiers => modifiers + " ",
-            _ => string.Empty,
-        };
+    private static string GetPropertyModifiers(IPropertySymbol property) => s_propertyModifiers.Aggregate(
+        seed: new StringBuilder(),
+        func: (builder, modifier) => modifier.Predicate(property)
+            ? builder.Append(modifier.Modifier).Append(' ')
+            : builder,
+        resultSelector: static builder => builder.ToString());
 }
