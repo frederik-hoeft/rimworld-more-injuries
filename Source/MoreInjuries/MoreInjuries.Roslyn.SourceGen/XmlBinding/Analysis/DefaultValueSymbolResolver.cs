@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Models;
 
@@ -48,7 +49,7 @@ internal static class DefaultValueSymbolResolver
 
     private static bool IsPrimaryConstructorLike(IMethodSymbol constructor) =>
         constructor.DeclaringSyntaxReferences.Any(static reference =>
-            reference.GetSyntax() is Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax);
+            reference.GetSyntax() is TypeDeclarationSyntax);
 
     private static IEnumerable<ISymbol> ResolveStaticValueMember(INamedTypeSymbol typeSymbol, string name) =>
         typeSymbol.GetMembers(name).Where(static member => member.IsStatic && member is IFieldSymbol or IPropertySymbol);
