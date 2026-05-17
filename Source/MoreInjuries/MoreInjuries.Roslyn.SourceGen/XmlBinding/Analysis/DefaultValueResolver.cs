@@ -16,7 +16,7 @@ internal static class DefaultValueResolver
 
         if (defaultValueFrom is null)
         {
-            if (defaultValueFrom is null)
+            if (defaultValueProvider is null)
             {
                 return BindingResult<DefaultValueSpec>.Success(new DefaultValueSpec(Expression: null, IsNullable: false));
             }
