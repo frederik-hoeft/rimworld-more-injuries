@@ -7,11 +7,9 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 /// Small monadic result type used by the XML binding generator's functional core.
 /// It keeps diagnostics as data instead of mutating a shared collector through the analysis pipeline.
 /// </summary>
-internal readonly record struct BindingResult<T>(T? Value, ImmutableArray<Diagnostic> Diagnostics)
+internal readonly record struct BindingResult<T>(T? Value, ImmutableArray<Diagnostic> Diagnostics, bool IsSuccess)
 {
-    public bool IsSuccess => Diagnostics.IsDefaultOrEmpty;
-
-    public static BindingResult<T> Success(T value) => new(value, []);
+    public static BindingResult<T> Success(T value) => new(value, Diagnostics: [], IsSuccess: true);
 
     public static BindingResult<T> Failure(Diagnostic diagnostic) => Failure([diagnostic]);
 
@@ -21,7 +19,7 @@ internal readonly record struct BindingResult<T>(T? Value, ImmutableArray<Diagno
         {
             throw new ArgumentException("Diagnostics array must not be empty.", nameof(diagnostics));
         }
-        return new BindingResult<T>(default, diagnostics);
+        return new BindingResult<T>(Value: default, diagnostics, IsSuccess: false);
     }
 
     public BindingResult<TResult> Map<TResult>(Func<T, TResult> map) => IsSuccess
