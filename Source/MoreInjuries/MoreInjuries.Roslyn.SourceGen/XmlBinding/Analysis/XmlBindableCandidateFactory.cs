@@ -30,9 +30,7 @@ internal static class XmlBindableCandidateFactory
     {
         MemberAccumulator accumulator = typeSymbol.GetProperties().Aggregate(
             seed: MemberAccumulator.Empty,
-            func: (state, property) => state.Add(XmlBindableMemberFactory.TryCreate(
-                new PropertyAnalysisContext(typeSymbol, property),
-                state.UsedFieldNames)));
+            func: (state, property) => state.Analyze(new PropertyAnalysisContext(typeSymbol, property)));
 
         return new XmlBindableCandidate
         (
