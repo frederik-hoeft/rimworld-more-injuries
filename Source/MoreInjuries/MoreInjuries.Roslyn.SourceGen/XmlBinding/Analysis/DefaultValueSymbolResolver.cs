@@ -14,10 +14,10 @@ internal static class DefaultValueSymbolResolver
     public static BindingResult<DefaultValueResolution> ResolveFromDeclaringType(DefaultValueSourceContext context) =>
         ResolvePrimaryConstructorParameter(context.TypeSymbol, context.SourceName)
             .Select(parameter => ValidateSourceType(context, parameter.Type, context.SourceName))
-            .FirstOrNull()
+            .FirstAsNullable()
         ?? ResolveStaticValueMember(context.TypeSymbol, context.SourceName)
             .Select(member => ValidateSourceType(context, member.GetValueType(), context.SourceName))
-            .FirstOrNull()
+            .FirstAsNullable()
         ?? BindingResult<DefaultValueResolution>.Failure(Diagnostic.Create(
             XmlSerializationGeneratorDiagnostics.DefaultValueFromMemberNotFound,
             context.PropertyContext.Location,
@@ -30,7 +30,7 @@ internal static class DefaultValueSymbolResolver
         DefaultValueSourceContext context) =>
         ResolveStaticValueMember(providerType, context.SourceName)
             .Select(member => ValidateProviderSourceType(providerType, context, member.GetValueType()))
-            .FirstOrNull()
+            .FirstAsNullable()
         ?? BindingResult<DefaultValueResolution>.Failure(Diagnostic.Create(
             XmlSerializationGeneratorDiagnostics.DefaultValueProviderMemberNotFound,
             context.PropertyContext.Location,

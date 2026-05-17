@@ -32,7 +32,7 @@ internal static class GetterMethodSymbolResolver
             .OfType<IMethodSymbol>()
             .Where(method => method.Parameters.Length == 1 && signatureMatch(method, propertyType))
             .Select(method => BindingResult<ResolvedMethod>.Success(new ResolvedMethod(methodName, method.IsStatic)))
-            .FirstOrNull()
+            .FirstAsNullable()
         ?? BindingResult<ResolvedMethod>.Failure(Diagnostic.Create(
             notFoundDescriptor,
             context.Location,
