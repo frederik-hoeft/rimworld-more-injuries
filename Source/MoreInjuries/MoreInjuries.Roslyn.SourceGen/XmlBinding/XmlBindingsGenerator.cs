@@ -1,7 +1,10 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Models;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Rendering;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
 
