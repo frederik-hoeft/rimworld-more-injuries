@@ -2,6 +2,7 @@
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Models;
+using System.Collections.Immutable;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 
@@ -41,8 +42,8 @@ internal static class XmlBindableCandidateFactory
             new XmlBindableGenerationModel(
                 Namespace: GetNamespaceName(typeSymbol),
                 ClassName: typeSymbol.Name,
-                AnnotatedMembers: accumulator.Members),
-            accumulator.Diagnostics);
+                AnnotatedMembers: [.. accumulator.Members]),
+            [.. accumulator.Diagnostics]);
     }
 
     private static string GetNamespaceName(INamedTypeSymbol typeSymbol) =>
