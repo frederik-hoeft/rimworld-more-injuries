@@ -1,5 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;

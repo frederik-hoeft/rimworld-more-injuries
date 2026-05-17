@@ -15,7 +15,7 @@ internal readonly record struct BindingResult<T>(T? Value, ImmutableArray<Diagno
 
     public static BindingResult<T> Failure(ImmutableArray<Diagnostic> diagnostics)
     {
-        if (diagnostics is not [_, ..])
+        if (diagnostics.IsDefaultOrEmpty)
         {
             throw new ArgumentException("Diagnostics array must not be empty.", nameof(diagnostics));
         }

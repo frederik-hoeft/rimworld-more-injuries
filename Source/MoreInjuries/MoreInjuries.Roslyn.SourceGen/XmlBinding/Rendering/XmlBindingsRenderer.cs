@@ -30,10 +30,5 @@ internal static class XmlBindingsRenderer
         return sourceBuilder.ToString();
     }
 
-    private static string RenderNamespace(string namespaceName) =>
-        namespaceName switch
-        {
-            _ when string.IsNullOrWhiteSpace(namespaceName) => string.Empty,
-            _ => $"namespace {namespaceName};\n",
-        };
+    private static string RenderNamespace(string namespaceName) => string.IsNullOrWhiteSpace(namespaceName) ? string.Empty : $"namespace {namespaceName};\n";
 }

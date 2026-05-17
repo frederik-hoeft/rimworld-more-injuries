@@ -6,14 +6,6 @@ internal static class SymbolTraversalExtensions
 {
     extension(INamedTypeSymbol type)
     {
-        public IEnumerable<INamedTypeSymbol> EnumerateBaseTypes()
-        {
-            for (INamedTypeSymbol? current = type.BaseType; current is not null; current = current.BaseType)
-            {
-                yield return current;
-            }
-        }
-
         public IEnumerable<IPropertySymbol> GetProperties() =>
             type.GetMembers().OfType<IPropertySymbol>();
     }
