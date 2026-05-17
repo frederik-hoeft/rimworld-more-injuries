@@ -10,15 +10,13 @@ internal static class AttributeDataExtensions
 {
     extension(AttributeData attribute)
     {
-        public bool GetAllowRawAccess() =>
-            GetNamedArgumentValue(attribute, nameof(XmlBindingAttribute.AllowRawAccess)) is true;
+        public bool GetAllowRawAccess() => GetNamedArgumentValue(attribute, nameof(XmlBindingAttribute.AllowRawAccess)) is true;
 
-        public string? GetNamedStringArgument(string argumentName) =>
-            GetNamedArgumentValue(attribute, argumentName) switch
-            {
-                string { Length: > 0 } value => value,
-                _ => null,
-            };
+        public string? GetNamedStringArgument(string argumentName) => GetNamedArgumentValue(attribute, argumentName) switch
+        {
+            string { Length: > 0 } value => value,
+            _ => null,
+        };
 
         public INamedTypeSymbol? GetNamedTypeArgument(string argumentName) =>
             GetNamedArgumentValue(attribute, argumentName) as INamedTypeSymbol;
@@ -26,10 +24,9 @@ internal static class AttributeDataExtensions
         public bool GetNamedBoolArgument(string argumentName) =>
             GetNamedArgumentValue(attribute, argumentName) is true;
 
-        private object? GetNamedArgumentValue(string argumentName) =>
-            attribute.NamedArguments
-                .Where(argument => argument.Key == argumentName)
-                .Select(static argument => argument.Value.Value)
-                .FirstOrDefault();
+        private object? GetNamedArgumentValue(string argumentName) => attribute.NamedArguments
+            .Where(argument => argument.Key == argumentName)
+            .Select(static argument => argument.Value.Value)
+            .FirstOrDefault();
     }
 }
