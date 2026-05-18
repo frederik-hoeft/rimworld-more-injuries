@@ -4,7 +4,8 @@ on:
     branches: [ "main", "rc-*" ]
   pull_request:
     branches: [ "main", "rc-*" ]
-
+permissions:
+  contents: read
 jobs:
   validate_links:
     name: Markdown links verifier
