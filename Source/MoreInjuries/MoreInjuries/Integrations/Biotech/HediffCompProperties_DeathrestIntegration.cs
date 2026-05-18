@@ -1,8 +1,5 @@
-﻿using Verse;
+﻿using MoreInjuries.HealthConditions;
 
 namespace MoreInjuries.Integrations.Biotech;
 
-public class HediffCompProperties_DeathrestIntegration : HediffCompProperties
-{
-    public HediffCompProperties_DeathrestIntegration() => compClass = typeof(HediffComp_DeathrestIntegration);
-}
+public class HediffCompProperties_DeathrestIntegration : HediffCompProperties<HediffComp_DeathrestIntegration>;

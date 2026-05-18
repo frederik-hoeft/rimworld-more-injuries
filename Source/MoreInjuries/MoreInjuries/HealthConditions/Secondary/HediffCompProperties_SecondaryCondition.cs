@@ -7,11 +7,9 @@ using Verse;
 namespace MoreInjuries.HealthConditions.Secondary;
 
 [XmlBindable]
-public partial class HediffCompProperties_SecondaryCondition : HediffCompProperties
+public partial class HediffCompProperties_SecondaryCondition : HediffCompProperties<HediffComp_SecondaryCondition>
 {
     private static readonly List<HediffCompHandler_SecondaryCondition> s_emptyHandlers = [];
-
-    public HediffCompProperties_SecondaryCondition() => compClass = typeof(HediffComp_SecondaryCondition);
 
     [XmlBinding("severityCurve")]
     public partial SimpleCurve? SeverityCurve { get; }

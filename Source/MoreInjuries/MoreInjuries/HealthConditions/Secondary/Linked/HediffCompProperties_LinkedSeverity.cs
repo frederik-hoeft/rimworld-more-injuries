@@ -4,10 +4,8 @@ using Verse;
 namespace MoreInjuries.HealthConditions.Secondary.Linked;
 
 [XmlBindable]
-public partial class HediffCompProperties_LinkedSeverity : HediffCompProperties
+public partial class HediffCompProperties_LinkedSeverity : HediffCompProperties<HediffComp_LinkedSeverity>
 {
-    public HediffCompProperties_LinkedSeverity() => compClass = typeof(HediffComp_LinkedSeverity);
-
     [XmlBinding<int>("tickInterval", defaultValue: GenTicks.TickRareInterval)]
     public partial int TickInterval { get; }
 

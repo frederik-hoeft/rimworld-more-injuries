@@ -4,10 +4,8 @@ using Verse;
 namespace MoreInjuries.HealthConditions.HypovolemicShock;
 
 [XmlBindable]
-public partial class HediffCompProperties_Shock : HediffCompProperties
+public partial class HediffCompProperties_Shock : HediffCompProperties<HediffComp_Shock>
 {
-    public HediffCompProperties_Shock() => compClass = typeof(HediffComp_Shock);
-
     // TODO: [BREAKING] rename to standardized format (no _ prefix) for consistency
     [XmlBinding("_bleedSeverityCurve")]
     public partial SimpleCurve BleedSeverityCurve { get; }
