@@ -73,6 +73,9 @@
           <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
             <tickInterval>250</tickInterval>
             <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_Gauge">
+                <key>OrganHypoxiaChance</key>
+              </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
                 <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
               </li>
