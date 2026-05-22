@@ -1,5 +1,4 @@
-﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
-using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
+﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Buffers;
 using System.Collections.Generic;
 using Verse;
