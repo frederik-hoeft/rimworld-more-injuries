@@ -2,7 +2,6 @@
 using MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 using MoreInjuries.HealthConditions.Secondary.Handlers.TargetEvaluators;
-using MoreInjuries.Roslyn.Future.ThrowHelpers;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using RimWorld;
 using System.Collections.Generic;
@@ -18,7 +17,7 @@ public abstract partial class HediffCompHandler_SecondaryCondition : IHediffComp
     public virtual partial float BaseChance { get; }
 
     [XmlBinding("hediffMakerProps")]
-    public partial HediffMakerProperties? HediffMakerProps { get; }
+    public partial HediffMakerProperties HediffMakerProps { get; }
 
     [XmlBinding("chanceModifiers")]
     public partial IReadOnlyList<SecondaryHediffModifier>? ChanceModifiers { get; }
@@ -32,7 +31,7 @@ public abstract partial class HediffCompHandler_SecondaryCondition : IHediffComp
     [XmlBinding("targetEvaluator", DefaultValueProvider = typeof(BodyPartHediffTargetEvaluator_WholeBody), DefaultValueFrom = nameof(BodyPartHediffTargetEvaluator_WholeBody.Instance))]
     public partial BodyPartHediffTargetEvaluator TargetEvaluator { get; }
 
-    public virtual bool ShouldSkip(HediffComp_SecondaryCondition comp)
+    public virtual bool ShouldSkip(HediffComp_SecondaryCondition comp, HediffDef hediffDef)
     {
         if (comp.Pawn.Dead)
         {
@@ -55,7 +54,8 @@ public abstract partial class HediffCompHandler_SecondaryCondition : IHediffComp
                 }
             }
         }
-        if (hediff.def.GetModExtension<HediffModifier_DownstreamChanceModifiers_ModExtension>() is { } downstream)
+        // apply modifiers from the downstream hediff
+        if (hediffDef.GetModExtension<HediffModifier_DownstreamChanceModifiers_ModExtension>() is { } downstream)
         {
             chance *= downstream.GetModifier(hediff, compHandler: this);
         }
@@ -63,15 +63,12 @@ public abstract partial class HediffCompHandler_SecondaryCondition : IHediffComp
             || chance < 1f && !Rand.Chance(chance);
     }
 
-    protected virtual void Evaulate(HediffComp_SecondaryCondition comp)
+    protected virtual void Evaluate(HediffComp_SecondaryCondition comp, HediffMakerDef hediffMakerDef)
     {
-        Throw.InvalidOperationException.IfNull(this, HediffMakerProps);
-
-        BodyPartHediffTargetEvaluator localTargetEvaluator = TargetEvaluator;
-        BodyPartRecord? targetBodyPart = localTargetEvaluator.GetTargetBodyPart(comp, this);
-        HediffMakerDef hediffMakerDef = HediffMakerProps.GetHediffMakerDef(comp, handler: this, targetBodyPart);
         HediffDef hediffDef = hediffMakerDef.HediffDef;
+        BodyPartHediffTargetEvaluator localTargetEvaluator = TargetEvaluator;
         // check if the hediff already exists on the target body part (or anywhere if no body part is specified)
+        BodyPartRecord? targetBodyPart = localTargetEvaluator.GetTargetBodyPart(comp, this);
         Hediff? existingHediff = null;
         if (targetBodyPart is null && !comp.Pawn.health.hediffSet.TryGetHediff(hediffDef, out existingHediff)
             || targetBodyPart is not null && !comp.Pawn.health.hediffSet.TryGetFirstHediffMatchingPart(targetBodyPart, hediffDef, out existingHediff))

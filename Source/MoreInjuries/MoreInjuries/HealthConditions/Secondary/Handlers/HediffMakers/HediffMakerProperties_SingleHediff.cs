@@ -9,5 +9,5 @@ public partial class HediffMakerProperties_SingleHediff : HediffMakerProperties
     [XmlBinding("hediffMakerDef")]
     private partial HediffMakerDef HediffMakerDef { get; }
 
-    public override HediffMakerDef GetHediffMakerDef(HediffComp parentComp, HediffCompHandler_SecondaryCondition handler, BodyPartRecord? targetBodyPart) => HediffMakerDef;
+    public override HediffMakerDef GetHediffMakerDef(HediffComp parentComp, HediffCompHandler_SecondaryCondition handler) => HediffMakerDef;
 }

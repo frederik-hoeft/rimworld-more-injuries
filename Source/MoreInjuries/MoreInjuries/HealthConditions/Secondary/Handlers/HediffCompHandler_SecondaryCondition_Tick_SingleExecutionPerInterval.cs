@@ -8,9 +8,9 @@ public sealed class HediffCompHandler_SecondaryCondition_Tick_SingleExecutionPer
 {
     private readonly ConditionalWeakTable<Pawn, TimedDataEntry<bool>> _perHediffDefSingletonCache = [];
 
-    public override bool ShouldSkip(HediffComp_SecondaryCondition comp)
+    public override bool ShouldSkip(HediffComp_SecondaryCondition comp, HediffDef hediffDef)
     {
-        if (base.ShouldSkip(comp))
+        if (base.ShouldSkip(comp, hediffDef))
         {
             return true;
         }

@@ -11,7 +11,7 @@ public abstract class HediffModifier_MeanTimeBetween : SecondaryHediffModifier
         if (compHandler is not IHediffComp_TickHandler compTickHandler)
         {
             Logger.ConfigError($"Handler is not a tick-based handler. Cannot evaluate MTTF chance for {hediff.LabelCap} on {hediff.pawn.Name}. Got {compHandler.GetType().Name} instead of {nameof(IHediffComp_TickHandler)}.");
-            return 1f; // default chance if not a tick handler
+            return NoChange;
         }
         return GetModifier(hediff, compTickHandler);
     }

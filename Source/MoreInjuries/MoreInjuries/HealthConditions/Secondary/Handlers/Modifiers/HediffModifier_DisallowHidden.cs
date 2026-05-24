@@ -8,10 +8,8 @@ public sealed class HediffModifier_DisallowHidden : SecondaryHediffModifier
     {
         if (hediff.Visible)
         {
-            // if the hediff is visible, we allow it
-            return 1f;
+            return NoChange;
         }
-        // if the hediff is hidden, so return 0-factor
-        return 0f;
+        return Disallow;
     }
 }

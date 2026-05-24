@@ -1,5 +1,5 @@
-﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
-using System.Buffers;
+﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
 using Verse;
 
@@ -11,32 +11,39 @@ public partial class HediffMakerProperties_RandomFromList : HediffMakerPropertie
     [XmlBinding("hediffMakerDefs", Validate = nameof(ValidateHediffMakerDefs))]
     public partial IReadOnlyList<HediffMakerDef> HediffMakerDefs { get; }
 
+    private CachedCdf Cdf
+    {
+        get
+        {
+            if (field is null)
+            {
+                float[] cdf = new float[HediffMakerDefs.Count];
+                float totalWeight = 0f;
+                for (int i = 0; i < cdf.Length; ++i)
+                {
+                    float weight = 1f; // Default weight for non-weighted defs
+                    if (HediffMakerDefs[i] is WeightedHediffMakerDef weightedDef)
+                    {
+                        weight = weightedDef.Weight;
+                    }
+                    totalWeight += weight;
+                    cdf[i] = totalWeight;
+                }
+                field = new CachedCdf(cdf, totalWeight);
+            }
+            return field;
+        }
+    }
+
     private static bool ValidateHediffMakerDefs(IReadOnlyList<HediffMakerDef> defs) => defs is { Count: > 0 };
 
-    public override HediffMakerDef GetHediffMakerDef(HediffComp parentComp, HediffCompHandler_SecondaryCondition handler, BodyPartRecord? targetBodyPart)
+    public override HediffMakerDef GetHediffMakerDef(HediffComp parentComp, HediffCompHandler_SecondaryCondition handler)
     {
         IReadOnlyList<HediffMakerDef> hediffMakerDefs = HediffMakerDefs;
-        // for every evaluation, we need to build a cumulative distribution function (CDF) based on the weights of the hediff maker defs,
-        // then generate a random value and find the corresponding index in the CDF
-        // for that CDF, we can reuse the temporary buffer since the number of defs is unlikely to change frequently
-        float[] cachedCdf = ArrayPool<float>.Shared.Rent(hediffMakerDefs.Count);
-        // we have no idea how long the cached array is, so we clamp it to the working size to avoid out of bounds access
-        Span<float> cdf = cachedCdf.AsSpan(0, hediffMakerDefs.Count);
-        float totalWeight = 0f;
-        // cdf.Length == hediffMakerDefs.Count, so we can safely iterate over either one
-        for (int i = 0; i < cdf.Length; ++i)
-        {
-            float weight = 1f; // Default weight for non-weighted defs
-            if (hediffMakerDefs[i] is WeightedHediffMakerDef weightedDef)
-            {
-                weight = weightedDef.Weight;
-            }
-            totalWeight += weight;
-            cdf[i] = totalWeight;
-        }
+        (float[] cdf, float totalWeight) = Cdf;
+        Throw.InvalidOperationException.If(hediffMakerDefs.Count != cdf.Length, "Cached CDF length does not match the number of HediffMakerDefs. This should never happen.");
         float randomValue = Rand.Range(0f, totalWeight);
         int index = BinarySearch(cdf, randomValue);
-        ArrayPool<float>.Shared.Return(cachedCdf);
         return hediffMakerDefs[index];
     }
 
@@ -64,4 +71,6 @@ public partial class HediffMakerProperties_RandomFromList : HediffMakerPropertie
         }
         return low; // Return the index of the first element greater than the target
     }
+
+    private sealed record CachedCdf(float[] Cdf, float TotalWeight);
 }

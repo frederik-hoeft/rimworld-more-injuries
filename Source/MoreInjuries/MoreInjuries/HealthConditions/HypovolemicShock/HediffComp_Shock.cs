@@ -69,16 +69,6 @@ public class HediffComp_Shock : HediffComp
     public override void CompPostTick(ref float severityAdjustment)
     {
         Pawn pawn = parent.pawn;
-
-        // Check for oxygen deficiency immunity from Deathless/Breathless genes
-        // If pawn has either gene, they are immune to hypovolemic shock entirely
-        if (pawn.HasOxygenDeficiencyImmunity())
-        {
-            Logger.LogDebug($"Removing hypovolemic shock from {pawn.Name} due to oxygen-deficiency immunity gene");
-            pawn.health.RemoveHediff(parent);
-            return;
-        }
-
         if (!pawn.IsHashIntervalTick(CYCLE_LENGTH))
         {
             return;

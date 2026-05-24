@@ -8,11 +8,14 @@ public sealed partial class HediffModifier_Genes_WhenPresent : HediffModifier_Ge
 {
     public override float GetModifier(Hediff hediff, IHediffCompHandler compHandler)
     {
-        Pawn pawn = hediff.pawn;
-        float modifier = 1f;
+        if (hediff.pawn.genes is not { } genes)
+        {
+            return NoChange;
+        }
+        float modifier = NoChange;
         foreach (GenesFactorBasedModifierData geneModifier in GeneModifiers)
         {
-            if (pawn.genes.HasActiveGene(geneModifier.GeneDef))
+            if (genes.HasActiveGene(geneModifier.GeneDef))
             {
                 modifier *= geneModifier.Modifier;
             }

@@ -93,9 +93,6 @@
                   </points>
                 </severityCurve>
               </li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
-                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
-              </li>
             </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>

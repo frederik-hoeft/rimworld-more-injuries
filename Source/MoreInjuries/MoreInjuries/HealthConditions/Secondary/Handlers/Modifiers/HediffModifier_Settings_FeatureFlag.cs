@@ -11,14 +11,12 @@ public class HediffModifier_Settings_FeatureFlag : HediffModifier_Settings
         {
             // if the feature flag does not exist or does not match the expected type, we return the base chance
             Logger.ConfigError($"{feature} is not a valid feature flag in the settings. Cannot evaluate chance.");
-            return 1f;
+            return NoChange;
         }
         if (!flag)
         {
-            // if the feature flag is disabled, we return 0 chance
-            return 0f;
+            return Disallow;
         }
-        // if the feature flag is enabled, we return the base chance
-        return 1f;
+        return NoChange;
     }
 }
