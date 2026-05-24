@@ -148,6 +148,7 @@
                 <key>CardiacArrestChanceOnHighBloodLoss</key>
               </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_LinkedHediff_SimpleCurve">
+                <hediffDef>BloodLoss</hediffDef>
                 <severityCurve>
                   <points>
                     <li>0, 0</li>
