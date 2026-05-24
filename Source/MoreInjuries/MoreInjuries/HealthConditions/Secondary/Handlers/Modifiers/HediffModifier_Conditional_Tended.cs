@@ -17,6 +17,6 @@ public sealed partial class HediffModifier_Conditional_Tended : SecondaryHediffM
     {
         DebugAssert.IsTrue(OnTrue != null || OnFalse != null, "At least one of OnTrue or OnFalse must be defined.");
         SecondaryHediffModifier? modifier = hediff.IsTended() ? OnTrue : OnFalse;
-        return modifier?.GetModifier(hediff, compHandler) ?? NoChange;
+        return modifier?.GetModifier(hediff, compHandler) ?? Unchanged;
     }
 }

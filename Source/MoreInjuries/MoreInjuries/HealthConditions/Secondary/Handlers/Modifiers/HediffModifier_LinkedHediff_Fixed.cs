@@ -16,6 +16,6 @@ public partial class HediffModifier_LinkedHediff_Fixed : HediffModifier_LinkedHe
         {
             return ChanceModifier;
         }
-        return NoChange;
+        return Unchanged;
     }
 }

@@ -8,7 +8,7 @@ public sealed class HediffModifier_DisallowHidden : SecondaryHediffModifier
     {
         if (hediff.Visible)
         {
-            return NoChange;
+            return Unchanged;
         }
         return Disallow;
     }

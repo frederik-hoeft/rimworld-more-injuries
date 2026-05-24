@@ -10,9 +10,9 @@ public sealed partial class HediffModifier_Genes_WhenPresent : HediffModifier_Ge
     {
         if (hediff.pawn.genes is not { } genes)
         {
-            return NoChange;
+            return Unchanged;
         }
-        float modifier = NoChange;
+        float modifier = Unchanged;
         foreach (GenesFactorBasedModifierData geneModifier in GeneModifiers)
         {
             if (genes.HasActiveGene(geneModifier.GeneDef))

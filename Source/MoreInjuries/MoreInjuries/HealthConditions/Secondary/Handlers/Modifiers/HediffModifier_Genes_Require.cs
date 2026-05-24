@@ -11,7 +11,7 @@ public sealed class HediffModifier_Genes_Require : HediffModifier_Genes
         {
             if (hediff.pawn.genes.HasActiveGene(geneDef))
             {
-                return NoChange;
+                return Unchanged;
             }
         }
         return Disallow;

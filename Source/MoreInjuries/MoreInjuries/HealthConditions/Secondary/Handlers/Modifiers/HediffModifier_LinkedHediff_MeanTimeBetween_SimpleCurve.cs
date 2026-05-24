@@ -13,7 +13,7 @@ public sealed partial class HediffModifier_LinkedHediff_MeanTimeBetween_SimpleCu
     {
         if (!hediff.pawn.health.hediffSet.TryGetHediff(HediffDef, out Hediff? linkedHediff))
         {
-            return NoChange;
+            return Unchanged;
         }
         float mttf = MttfDaysBySeverity.Evaluate(linkedHediff.Severity);
         return GetChanceFromMttf(mttf, compHandler.TickInterval);

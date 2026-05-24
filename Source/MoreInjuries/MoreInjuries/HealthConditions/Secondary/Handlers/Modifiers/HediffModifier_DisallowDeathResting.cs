@@ -11,6 +11,6 @@ public sealed class HediffModifier_DisallowDeathResting : SecondaryHediffModifie
         {
             return Disallow;
         }
-        return NoChange;
+        return Unchanged;
     }
 }

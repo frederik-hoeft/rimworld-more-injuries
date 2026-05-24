@@ -17,6 +17,6 @@ public partial class HediffModifier_LinkedHediff_SimpleCurve : HediffModifier_Li
             // if the hediff exists, we evaluate the chance based on the severity curve
             return SeverityCurve.Evaluate(linkedHediff.Severity);
         }
-        return NoChange;
+        return Unchanged;
     }
 }

@@ -11,7 +11,7 @@ public sealed class HediffModifier_Settings_Gauge : HediffModifier_Settings
         {
             // if the key does not exist or does not match the expected type, we return the base chance
             Logger.ConfigError($"{gaugeKey} is not a valid key in the settings. Cannot evaluate chance.");
-            return NoChange;
+            return Unchanged;
         }
         // if there is a valid gauge value associated with the key, we return it
         return gauge;

@@ -14,6 +14,6 @@ public sealed class HediffModifier_Genes_Disallow : HediffModifier_Genes
                 return Disallow;
             }
         }
-        return NoChange;
+        return Unchanged;
     }
 }

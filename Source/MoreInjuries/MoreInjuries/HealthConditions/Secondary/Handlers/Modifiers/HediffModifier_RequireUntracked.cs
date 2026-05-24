@@ -10,6 +10,6 @@ public sealed class HediffModifier_RequireUntracked : SecondaryHediffModifier
         {
             return Disallow;
         }
-        return NoChange;
+        return Unchanged;
     }
 }

@@ -17,7 +17,7 @@ public abstract partial class HediffModifier_Genes : SecondaryHediffModifier
     {
         if (hediff.pawn.genes is not { } genes)
         {
-            return NoChange;
+            return Unchanged;
         }
         return GetModifier(hediff, genes, compHandler);
     }
