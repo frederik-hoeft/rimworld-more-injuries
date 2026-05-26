@@ -46,7 +46,7 @@
         <lifeThreatening>true</lifeThreatening>
       </li>
       <li>
-        <minSeverity>0.30</minSeverity>
+        <minSeverity>0.3</minSeverity>
         <label>moderate</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
@@ -57,7 +57,7 @@
         </capMods>
       </li>
       <li>
-        <minSeverity>0.450</minSeverity>
+        <minSeverity>0.45</minSeverity>
         <label>severe</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
@@ -68,24 +68,13 @@
         </capMods>
       </li>
       <li>
-        <minSeverity>0.650</minSeverity>
+        <minSeverity>0.65</minSeverity>
         <label>very severe</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Breathing</capacity>
-            <setMax>0.35</setMax>
-          </li>
-        </capMods>
-      </li>
-      <li>
-        <minSeverity>0.70</minSeverity>
-        <label>very severe</label>
-        <lifeThreatening>true</lifeThreatening>
-        <capMods>
-          <li>
-            <capacity>Breathing</capacity>
-            <setMax>0.3</setMax>
+            <setMax>0.4</setMax>
           </li>
         </capMods>
       </li>
@@ -96,24 +85,13 @@
         <capMods>
           <li>
             <capacity>Breathing</capacity>
-            <setMax>0.2</setMax>
+            <setMax>0.25</setMax>
           </li>
         </capMods>
       </li>
       <li>
-        <minSeverity>0.85</minSeverity>
-        <label>extreme</label>
-        <lifeThreatening>true</lifeThreatening>
-        <capMods>
-          <li>
-            <capacity>Breathing</capacity>
-            <setMax>0.15</setMax>
-          </li>
-        </capMods>
-      </li>
-      <li>
-        <minSeverity>0.90</minSeverity>
-        <label>extreme</label>
+        <minSeverity>0.9</minSeverity>
+        <label>terminal</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
@@ -123,24 +101,13 @@
         </capMods>
       </li>
       <li>
-        <minSeverity>0.95</minSeverity>
-        <label>extreme</label>
+        <minSeverity>1</minSeverity>
+        <label>fatal</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
           <li>
             <capacity>Breathing</capacity>
-            <setMax>0.05</setMax>
-          </li>
-        </capMods>
-      </li>
-      <li>
-        <minSeverity>1.0</minSeverity>
-        <label>lethal</label>
-        <lifeThreatening>true</lifeThreatening>
-        <capMods>
-          <li>
-            <capacity>Breathing</capacity>
-            <setMax>0.0</setMax>
+            <setMax>0</setMax>
           </li>
         </capMods>
       </li>

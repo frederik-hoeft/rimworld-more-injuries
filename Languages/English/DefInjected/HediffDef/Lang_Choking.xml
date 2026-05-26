@@ -19,6 +19,10 @@
   <ChokingOnBlood.stages.very_severe.label>very severe</ChokingOnBlood.stages.very_severe.label>
   <!-- EN: extreme -->
   <ChokingOnBlood.stages.extreme.label>extreme</ChokingOnBlood.stages.extreme.label>
+  <!-- EN: terminal -->
+  <ChokingOnBlood.stages.terminal.label>terminal</ChokingOnBlood.stages.terminal.label>
+  <!-- EN: fatal -->
+  <ChokingOnBlood.stages.fatal.label>fatal</ChokingOnBlood.stages.fatal.label>
 
   <!-- Localization for ChokingOnTourniquet -->
   <!-- EN: choking on tourniquet -->
