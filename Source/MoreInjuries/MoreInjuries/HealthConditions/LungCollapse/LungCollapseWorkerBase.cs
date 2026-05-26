@@ -13,6 +13,14 @@ internal abstract class LungCollapseWorkerBase(MoreInjuryComp parent) : InjuryWo
     protected void CollapseLung<TCause>(BodyPartRecord lung, params ReadOnlySpan<TCause> causes)
     {
         Pawn patient = Pawn;
+
+        // Don't apply lung collapse to artificial lungs
+        if (patient.health.hediffSet.IsArtificialPart(lung))
+        {
+            Logger.LogDebug($"Won't apply lung collapse to {lung.Label} of {patient.Name} since it's an artificial lung");
+            return;
+        }
+
         float clampedUpperBound = Mathf.Clamp(MoreInjuriesMod.Settings.LungCollapseMaxSeverityRoot, 0.1f, 1.0f);
         float factor = Rand.Range(0.1f, clampedUpperBound);
         // we scale the severity by the square of the factor to make it more likely to be low, but allow for high values with a small chance
