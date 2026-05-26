@@ -11,7 +11,7 @@ public class HediffComp_SeverityPerDay_WithModifiers : HediffComp_SeverityPerDay
         float baseSeverityChange = base.SeverityChangePerDay();
         if (parent.def.GetModExtension<HediffModifier_SeverityModifiers_ModExtension>() is { } downstream)
         {
-            baseSeverityChange *= downstream.GetModifier(parent, this);
+            baseSeverityChange = downstream.ApplyTo(baseSeverityChange, parent, this);
         }
         return baseSeverityChange;
     }
