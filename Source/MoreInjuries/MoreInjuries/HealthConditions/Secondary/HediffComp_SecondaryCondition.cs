@@ -9,27 +9,41 @@ public class HediffComp_SecondaryCondition : HediffComp
 
     public SimpleCurve? SeverityCurve => Properties.SeverityCurve;
 
+    protected virtual bool ShouldSkip()
+    {
+        if (parent.pawn is null or { Dead: true })
+        {
+            return true;
+        }
+        if (SeverityCurve is { } severityCurve && !Rand.Chance(severityCurve.Evaluate(parent.Severity)))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public override void CompPostPostAdd(DamageInfo? dinfo)
     {
-        if (parent.pawn is not { Dead: false })
+        if (!ShouldSkip())
         {
-            return;
-        }
-        foreach (IHediffComp_SecondaryCondition_PostMakeHandler handler in Properties.PostMakeHandlers)
-        {
-            handler.PostMake(this);
+            foreach (IHediffComp_SecondaryCondition_PostMakeHandler handler in Properties.PostMakeHandlers)
+            {
+                handler.Handle(this);
+            }
         }
     }
 
     public override void CompPostTick(ref float severityAdjustment)
     {
-        if (parent.pawn is not { Dead: false })
+        if (!ShouldSkip())
         {
-            return;
-        }
-        foreach (IHediffComp_SecondaryCondition_TickHandler handler in Properties.TickHandlers)
-        {
-            handler.Tick(this);
+            foreach (IHediffComp_SecondaryCondition_TickHandler handler in Properties.TickHandlers)
+            {
+                if (Pawn.IsHashIntervalTick(handler.TickInterval))
+                {
+                    handler.Handle(this);
+                }
+            }
         }
     }
 }
