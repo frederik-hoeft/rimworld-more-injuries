@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace MoreInjuries.Roslyn.SourceGen.XmlBinding;
+namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Models;
 
 internal sealed record XmlBindableGenerationModel
 (
