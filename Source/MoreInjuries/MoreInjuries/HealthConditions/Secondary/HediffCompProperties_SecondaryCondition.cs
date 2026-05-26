@@ -9,13 +9,13 @@ namespace MoreInjuries.HealthConditions.Secondary;
 [XmlBindable]
 public partial class HediffCompProperties_SecondaryCondition : HediffCompProperties<HediffComp_SecondaryCondition>
 {
-    private static readonly List<HediffCompHandler_SecondaryCondition> s_emptyHandlers = [];
+    private static readonly List<IHediffCompHandler<HediffComp_SecondaryCondition>> s_emptyHandlers = [];
 
     [XmlBinding("severityCurve")]
     public partial SimpleCurve? SeverityCurve { get; }
 
     [XmlBinding("handlers", DefaultValueFrom = nameof(s_emptyHandlers))]
-    public partial IReadOnlyList<HediffCompHandler_SecondaryCondition> Handlers { get; }
+    public partial IReadOnlyList<IHediffCompHandler<HediffComp_SecondaryCondition>> Handlers { get; }
 
     public IReadOnlyList<IHediffComp_SecondaryCondition_TickHandler> TickHandlers => field ??=
     [
