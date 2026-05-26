@@ -90,8 +90,8 @@
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
               <hediffMakerDef>
                 <hediffDef>BrainDamage_Hypoxia</hediffDef>
-                <minSeverity>0.01</minSeverity>
-                <maxSeverity>0.5</maxSeverity>
+                <minSeverity>0.00</minSeverity>
+                <maxSeverity>0.00</maxSeverity>
                 <allowMultiple>true</allowMultiple>
                 <allowDuplicate>false</allowDuplicate>
               </hediffMakerDef>
