@@ -24,5 +24,11 @@ public sealed partial class HediffCompHandler_SecondaryCondition_BloodLossDeath 
         bloodLoss.pawn.health.Notify_HediffChanged(bloodLoss);
     }
 
-    public void Handle(HediffComp_SecondaryCondition comp) => Apply(comp.parent);
+    public void Handle(HediffComp_SecondaryCondition comp)
+    {
+        if (!ShouldSkip(comp))
+        {
+            Apply(comp.parent);
+        }
+    }
 }
