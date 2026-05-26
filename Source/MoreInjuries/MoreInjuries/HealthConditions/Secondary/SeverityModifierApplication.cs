@@ -1,4 +1,4 @@
-namespace MoreInjuries.HealthConditions.Secondary;
+﻿namespace MoreInjuries.HealthConditions.Secondary;
 
 /// <summary>
 /// Determines how a <see cref="Handlers.Modifiers.SecondaryHediffModifier"/>'s factor is applied to the
@@ -7,7 +7,7 @@ namespace MoreInjuries.HealthConditions.Secondary;
 public enum SeverityModifierApplication
 {
     /// <summary>Always multiply the current severity change by the factor.</summary>
-    Always,
+    OnChange,
 
     /// <summary>Multiply the current severity change by the factor only when it is positive.</summary>
     OnIncrease,
@@ -16,8 +16,8 @@ public enum SeverityModifierApplication
     OnDecrease,
 
     /// <summary>Skew the current severity change upwards by adding <c>factor * abs(currentChange)</c>.</summary>
-    IncreaseSkew,
+    SkewedIncrease,
 
     /// <summary>Skew the current severity change downwards by subtracting <c>factor * abs(currentChange)</c>.</summary>
-    DecreaseSkew,
+    SkewedDecrease,
 }

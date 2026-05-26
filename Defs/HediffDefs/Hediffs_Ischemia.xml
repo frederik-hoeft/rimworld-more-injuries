@@ -17,7 +17,7 @@
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffModifier_SeverityModifiers_ModExtension">
         <modifiers>
           <li MayRequire="Ludeon.RimWorld.Biotech">
-            <mode>Always</mode>
+            <apply>OnIncrease</apply>
             <modifier Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_WhenPresent">
               <geneModifiers>
                 <li>
