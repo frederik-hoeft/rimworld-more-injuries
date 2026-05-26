@@ -1,6 +1,4 @@
-﻿using System.Collections.Immutable;
-
-namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
+﻿namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 
 internal static class XmlBindableMemberFactory
 {

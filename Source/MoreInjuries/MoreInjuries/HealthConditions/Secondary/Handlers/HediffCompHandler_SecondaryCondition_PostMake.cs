@@ -1,5 +1,3 @@
-﻿using MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
-
-namespace MoreInjuries.HealthConditions.Secondary.Handlers;
+﻿namespace MoreInjuries.HealthConditions.Secondary.Handlers;
 
 public class HediffCompHandler_SecondaryCondition_PostMake : HediffCompHandler_SecondaryCondition, IHediffComp_SecondaryCondition_PostMakeHandler;

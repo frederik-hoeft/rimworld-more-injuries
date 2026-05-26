@@ -1,5 +1,4 @@
 ﻿using MoreInjuries.Defs.WellKnown;
-using MoreInjuries.Extensions;
 using MoreInjuries.HealthConditions.HeavyBleeding;
 using RimWorld;
 using UnityEngine;

@@ -1,6 +1,5 @@
 ﻿using MoreInjuries.LocalizationTests.Localization;
 using MoreInjuries.LocalizationTests.Model;
-using System.Diagnostics.CodeAnalysis;
 using System.Xml.Linq;
 
 namespace MoreInjuries.LocalizationTests.Keyed;
