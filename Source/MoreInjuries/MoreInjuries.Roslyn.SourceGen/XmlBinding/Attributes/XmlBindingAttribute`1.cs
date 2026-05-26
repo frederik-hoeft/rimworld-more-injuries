@@ -43,4 +43,16 @@ public sealed class XmlBindingAttribute<T>(string name, T defaultValue) : global
     /// <see cref="global::System.ObsoleteAttribute"/>, allowing direct access without compiler warnings.
     /// </summary>
     public bool AllowRawAccess { get; init; }
+
+    /// <summary>
+    /// Optional parameterless attribute type to apply to the generated backing field.
+    /// The attribute must have a parameterless constructor and target fields.
+    /// </summary>
+    public global::System.Type? DecorateWith { get; init; }
+
+    /// <summary>
+    /// Optional mod package ID string. When set, the generated backing field is decorated with
+    /// <c>[global::RimWorld.MayRequireAttribute(&lt;value&gt;)]</c>.
+    /// </summary>
+    public string? MayRequire { get; init; }
 }
