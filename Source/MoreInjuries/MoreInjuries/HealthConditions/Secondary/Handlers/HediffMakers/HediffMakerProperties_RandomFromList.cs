@@ -1,6 +1,9 @@
-﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
+﻿using MoreInjuries.Debug;
+using MoreInjuries.Roslyn.Future.ThrowHelpers;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using Verse;
 
 namespace MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers;
@@ -25,6 +28,11 @@ public partial class HediffMakerProperties_RandomFromList : HediffMakerPropertie
                     if (HediffMakerDefs[i] is WeightedHediffMakerDef weightedDef)
                     {
                         weight = weightedDef.Weight;
+                        if (weight <= 0f)
+                        {
+                            Logger.Warning($"HediffMakerDef for {weightedDef.HediffDef.defName} has a zero-or-negative weight. Treating it as a small positive weight.");
+                            weight = Mathf.Epsilon;
+                        }
                     }
                     totalWeight += weight;
                     cdf[i] = totalWeight;
