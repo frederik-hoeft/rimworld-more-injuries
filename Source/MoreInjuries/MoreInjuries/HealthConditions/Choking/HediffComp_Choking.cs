@@ -109,11 +109,11 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
         {
             decrease = 0.025f;
         }
+        float change = Rand.Range(-decrease, increase);
         if (parent.def.GetModExtension<HediffModifier_SeverityModifiers_ModExtension>() is { } downstream)
         {
-            increase *= downstream.GetModifier(parent, this);
+            change = downstream.ApplyTo(change, parent, this);
         }
-        float change = Rand.Range(-decrease, increase);
         bool coughing = IsCoughing(source, patient);
         if (coughing)
         {

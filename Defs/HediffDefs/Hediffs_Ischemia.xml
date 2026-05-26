@@ -16,13 +16,16 @@
     <modExtensions>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffModifier_SeverityModifiers_ModExtension">
         <modifiers>
-          <li MayRequire="Ludeon.RimWorld.Biotech" Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_WhenPresent">
-            <geneModifiers>
-              <li>
-                <geneDef>VacuumResistance_Total</geneDef>
-                <modifier>0.05</modifier>
-              </li>
-            </geneModifiers>
+          <li MayRequire="Ludeon.RimWorld.Biotech">
+            <apply>OnIncrease</apply>
+            <modifier Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_WhenPresent">
+              <geneModifiers>
+                <li>
+                  <geneDef>VacuumResistance_Total</geneDef>
+                  <modifier>0.05</modifier>
+                </li>
+              </geneModifiers>
+            </modifier>
           </li>
         </modifiers>
       </li>
