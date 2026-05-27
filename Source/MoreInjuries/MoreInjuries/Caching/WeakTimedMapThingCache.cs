@@ -53,7 +53,7 @@ public abstract class WeakTimedMapThingCache<TThing> where TThing : Thing
 
     private void TryRefreshCache(Map map, out Dictionary<int, Std::WeakReference<TThing>>? cache)
     {
-        int ticks = Find.TickManager.TicksGame;
+        int ticks = GenTicks.TicksGame;
         // only refresh on the initial query or after the minimum interval has passed
         if (_lastRefreshTicks != 0 && ticks - _lastRefreshTicks < MinCacheRefreshIntervalTicks)
         {

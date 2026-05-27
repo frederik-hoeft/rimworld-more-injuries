@@ -21,7 +21,7 @@ public class TimedDataField<TOwner, TData, TState, TCacheEntry>(TOwner owner, in
 
     public virtual TData GetData(TState state, bool forceRefresh = false)
     {
-        int currentTicks = Find.TickManager.TicksGame;
+        int currentTicks = GenTicks.TicksGame;
         TCacheEntry entry = _timedDataEntry ??= new TCacheEntry();
         if (!forceRefresh && !entry.IsExpired(this, currentTicks) && entry.Data is TData materializedData)
         {

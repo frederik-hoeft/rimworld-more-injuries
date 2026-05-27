@@ -2,7 +2,7 @@
 
 namespace MoreInjuries.Caching;
 
-internal sealed class WeakTimedDataEntry<TData> : TimedDataEntryBase<TData> where TData : class
+public sealed class WeakTimedDataEntry<TData> : TimedDataEntryBase<TData> where TData : class
 {
     private WeakReference<TData>? _data;
 
