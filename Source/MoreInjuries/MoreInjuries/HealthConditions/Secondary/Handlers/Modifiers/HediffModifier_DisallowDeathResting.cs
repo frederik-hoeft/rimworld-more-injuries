@@ -5,13 +5,12 @@ namespace MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers;
 
 public sealed class HediffModifier_DisallowDeathResting : SecondaryHediffModifier
 {
-    public override float GetModifier(Hediff hediff, HediffCompHandler compHandler)
+    public override float GetModifier(Hediff hediff, IHediffCompHandler compHandler)
     {
         if (ModLister.BiotechInstalled && hediff.pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest))
         {
-            return 0f;
+            return Disallow;
         }
-        // if the pawn is not deathresting, we return the base chance
-        return 1f;
+        return Unchanged;
     }
 }

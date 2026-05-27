@@ -8,14 +8,4 @@ public partial class HediffCompHandler_SecondaryCondition_Tick : HediffCompHandl
 {
     [XmlBinding<int>("tickInterval", defaultValue: GenTicks.TickRareInterval)]
     public partial int TickInterval { get; }
-
-    public override bool ShouldSkip(HediffComp_SecondaryCondition comp) => !comp.Pawn.IsHashIntervalTick(TickInterval) || base.ShouldSkip(comp);
-
-    public virtual void Tick(HediffComp_SecondaryCondition comp)
-    {
-        if (!ShouldSkip(comp))
-        {
-            Evaulate(comp);
-        }
-    }
 }

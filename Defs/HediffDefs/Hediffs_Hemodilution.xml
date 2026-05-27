@@ -54,7 +54,7 @@
               </hediffMakerDef>
             </hediffMakerProps>
           </li>
-          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>250</tickInterval>
             <chanceModifiers>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
@@ -66,9 +66,6 @@
                     <li>1, 1</li>
                   </points>
                 </severityCurve>
-              </li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
-                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
               </li>
             </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">
@@ -88,7 +85,7 @@
               </excludedParts>
             </targetEvaluator>
           </li>
-          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>250</tickInterval>
             <baseChance>0.375</baseChance>
             <chanceModifiers>
@@ -101,9 +98,6 @@
                     <li>1, 1</li>
                   </points>
                 </severityCurve>
-              </li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
-                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
               </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_LinkedHediff_SimpleCurve">
                 <hediffDef>BrainDamage_Hypoxia</hediffDef>

@@ -10,6 +10,7 @@ using Random = System.Random;
 
 namespace MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets;
 
+// TODO: [BREAKING] rename to canonical format (HediffComp_Tourniquet) for consistency
 public sealed class TourniquetHediffComp : HediffComp
 {
     private bool _isGangreneApplied = false;
