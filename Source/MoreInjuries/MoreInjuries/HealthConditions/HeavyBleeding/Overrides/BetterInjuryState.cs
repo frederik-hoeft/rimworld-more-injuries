@@ -147,7 +147,7 @@ public class BetterInjuryState<TOwner>(TOwner owner) : IExposable, IInjuryState 
                     bleedRateDecrease.Named(Named.Params.PERCENT)));
                 hasCustomInfo = true;
             }
-            owner.AddCustomLabelAnnotations(builder, ref hasCustomInfo);
+            owner.AddCustomTipStringAnnotations(builder, ref hasCustomInfo);
             if (hasCustomInfo)
             {
                 double effectiveBleedRate = Math.Round(EffectiveBleedRateMultiplier * 100f, 2);

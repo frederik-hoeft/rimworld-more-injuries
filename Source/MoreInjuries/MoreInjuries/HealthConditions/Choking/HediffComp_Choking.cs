@@ -36,6 +36,9 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
 
     public override string CompLabelInBracketsExtra => IsCoughing ? "MI_Coughing".Translate() : string.Empty;
 
+    // TODO: translate
+    public override string CompDescriptionExtra => $"\nAccumulated fluid burden: {_fluidBurden:F2}";
+
     public override void CompPostMake()
     {
         if (MoreInjuriesMod.Settings.EnableChokingSounds)
