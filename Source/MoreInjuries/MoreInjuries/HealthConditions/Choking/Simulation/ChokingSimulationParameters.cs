@@ -93,6 +93,40 @@ internal readonly record struct ChokingSimulationParameters
     public required float CoughSuppressionBleedExponent { get; init; }
 
     /// <summary>
+    /// Additional severity recovery rate per game day when the pawn is conscious,
+    /// coughing effectively, not bleeding, and has little remaining airway fluid.
+    /// This models rapid clearing of the choking condition once the airway is
+    /// effectively clear.
+    /// </summary>
+    public required float CoughSeverityRecoveryPerDay { get; init; }
+
+    /// <summary>
+    /// Fluid burden at which cough-assisted severity recovery is reduced by half.
+    /// Low values make rapid recovery only happen when the airway is nearly clear.
+    /// Since FluidBurden = 1 is critical obstruction, 0.02 means 2% of critical
+    /// obstruction.
+    /// </summary>
+    public required float CoughRecoveryFluidHalfEffect { get; init; }
+
+    /// <summary>
+    /// Exponent controlling how sharply cough-assisted severity recovery shuts down
+    /// as remaining fluid burden rises.
+    /// </summary>
+    public required float CoughRecoveryFluidExponent { get; init; }
+
+    /// <summary>
+    /// Bleed rate at which cough-assisted severity recovery is reduced by half.
+    /// This prevents rapid recovery while the source is still actively bleeding.
+    /// </summary>
+    public required float CoughRecoveryBleedHalfEffect { get; init; }
+
+    /// <summary>
+    /// Exponent controlling how sharply cough-assisted severity recovery shuts down
+    /// as active bleeding rises.
+    /// </summary>
+    public required float CoughRecoveryBleedExponent { get; init; }
+
+    /// <summary>
     /// Maximum effective choking pressure used for severity progression. This keeps
     /// fluid burden above the critical reference point dangerous without allowing
     /// the exponential pressure curve to create multi-severity instant-death jumps.
@@ -100,7 +134,7 @@ internal readonly record struct ChokingSimulationParameters
     public required float MaxChokingPressure { get; init; }
 
     /// <summary>
-    /// Sharpness of the logistic curve controlling how rapidly choking severity ramps
+    /// Sharpness of the curve controlling how rapidly choking severity ramps
     /// as choking pressure approaches the critical reference point. Higher values make
     /// severity rise more abruptly as choking pressure increases; lower values make
     /// the transition more gradual.
@@ -144,7 +178,13 @@ internal readonly record struct ChokingSimulationParameters
 
         MaxChokingPressure = 2f,
         ChokingPressureSharpness = 4f,
-        ChokingSeverityProgressionPerDay = 29.5f,
+        ChokingSeverityProgressionPerDay = 8f,
         ChokingSeverityRecoveryPerDay = 2.0f,
+
+        CoughSeverityRecoveryPerDay = 24f,
+        CoughRecoveryFluidHalfEffect = 0.02f,
+        CoughRecoveryFluidExponent = 2f,
+        CoughRecoveryBleedHalfEffect = 0.05f,
+        CoughRecoveryBleedExponent = 2f,
     };
 }

@@ -55,7 +55,7 @@ internal sealed class ChokingSimulation
         float chokingPressure = CalculateChokingPressure(newFluidBurden);
 
         float oldSeverity = Mathf.Clamp01(state.Severity);
-        float severityChange = CalculateSeverityChange(oldSeverity, chokingPressure);
+        float severityChange = CalculateSeverityChange(oldSeverity, chokingPressure, newFluidBurden, state.BleedRate, coughStrength);
 
         return new NextChokingSimulationState(severityChange, newFluidBurden);
     }
@@ -122,18 +122,33 @@ internal sealed class ChokingSimulation
         return scaledFraction * fluidBurden;
     }
 
-    private float CalculateChokingPressure(float fluidBurden) =>
-        _parameters.MaxChokingPressure * Mathf.Logistic(fluidBurden, 1f, _parameters.ChokingPressureSharpness) * TugToZeroForSmallX(fluidBurden);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static float TugToZeroForSmallX(float x, float strength = 8f) => (-1f / Mathf.Exp(strength * x)) + 1f;
-
-    private float CalculateSeverityChange(float currentSeverity, float chokingPressure)
+    private float CalculateChokingPressure(float fluidBurden)
     {
-        float progressionPerDay = _parameters.ChokingSeverityProgressionPerDay * chokingPressure;
-        float recoveryPerDay = _parameters.ChokingSeverityRecoveryPerDay * currentSeverity / (1f + chokingPressure);
+        float maximumPressure = _parameters.MaxChokingPressure;
+        float sharpness = _parameters.ChokingPressureSharpness;
+        float burdenPower = Mathf.Pow(fluidBurden, sharpness);
+        return maximumPressure * burdenPower / (burdenPower + maximumPressure - 1f);
+    }
 
-        return IntervalDays * (progressionPerDay - recoveryPerDay);
+    private float CalculateAirwayClearRecoveryFactor(float fluidBurden, float bleedRate, float coughStrength)
+    {
+        float lowFluidFactor = Mathf.InverseHillFactor(fluidBurden, _parameters.CoughRecoveryFluidHalfEffect, _parameters.CoughRecoveryFluidExponent);
+        float lowBleedFactor = Mathf.InverseHillFactor(bleedRate, _parameters.CoughRecoveryBleedHalfEffect, _parameters.CoughRecoveryBleedExponent);
+        return coughStrength * lowFluidFactor * lowBleedFactor;
+    }
+
+    private float CalculateSeverityChange(float currentSeverity, float chokingPressure, float fluidBurden, float bleedRate, float coughStrength)
+    {
+        float progression = IntervalDays * _parameters.ChokingSeverityProgressionPerDay * chokingPressure;
+
+        float passiveRecoveryRate = _parameters.ChokingSeverityRecoveryPerDay / (1f + chokingPressure);
+        float coughRecoveryFactor = CalculateAirwayClearRecoveryFactor(fluidBurden, bleedRate, coughStrength);
+        float coughRecoveryRate = _parameters.CoughSeverityRecoveryPerDay * coughRecoveryFactor;
+        float totalRecoveryRate = passiveRecoveryRate + coughRecoveryRate;
+
+        float recoveryFraction = 1f - Mathf.Exp(-totalRecoveryRate * IntervalDays);
+        float recovery = currentSeverity * recoveryFraction;
+        return progression - recovery;
     }
 
     private static float NextMeanOneNoise(float amplitude = 1f)

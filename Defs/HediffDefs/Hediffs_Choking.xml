@@ -7,6 +7,7 @@
     <defaultLabelColor>(255, 102, 102)</defaultLabelColor>
     <alwaysShowSeverity>true</alwaysShowSeverity>
     <tendable>false</tendable>
+    <maxSeverity>1.001</maxSeverity>
     <modExtensions>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffModifier_SeverityModifiers_ModExtension">
         <modifiers>
@@ -36,7 +37,7 @@
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Choking.HediffCompProperties_Choking">
         <tickInterval>250</tickInterval>
-        <soundBackoffInterval>1500</soundBackoffInterval>
+        <soundBackoffInterval>750</soundBackoffInterval>
         <soundTriggerChance>0.25</soundTriggerChance>
         <soundRandomizationChance>0.25</soundRandomizationChance>
       </li>

@@ -10,5 +10,8 @@ public static class MathEx
 
         public static float Logistic(float value, float midpoint, float sharpness) =>
             1f / (1f + Mathf.Exp(-sharpness * (value - midpoint)));
+
+        public static float InverseHillFactor(float x, float halfEffect, float exponent = 2f) =>
+            1f / (1f + Mathf.Pow(x / halfEffect, exponent));
     }
 }
