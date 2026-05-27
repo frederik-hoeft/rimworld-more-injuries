@@ -1,0 +1,8 @@
+# python files
+*.pyc
+# virtual environment
+**/.venv/
+# VS Code settings
+**/.vscode/
+# rendered plots
+**/plots/*.png

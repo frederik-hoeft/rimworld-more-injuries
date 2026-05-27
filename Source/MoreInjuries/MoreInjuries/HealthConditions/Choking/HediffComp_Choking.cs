@@ -4,6 +4,7 @@ using MoreInjuries.HealthConditions.Choking.Simulation;
 using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.HealthConditions.Secondary.Handlers;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.Sound;
 
@@ -33,7 +34,25 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
 
     public override string CompLabelInBracketsExtra => IsCoughing ? "MI_Coughing".Translate() : string.Empty;
 
-    public override string CompDebugString() => $"\n\nAccumulated fluid burden: {_fluidBurden * 100f:F1}%";
+    public float FluidBuildup => _fluidBurden / Simulation.Parameters.MaximumFluidBurden;
+
+    public float ReduceFluidBuildup(float severityReduction)
+    {
+        float maximumFluidBurden = Simulation.Parameters.MaximumFluidBurden;
+        float normalizedSeverity = Mathf.Clamp01(severityReduction);
+        float reduction = normalizedSeverity * maximumFluidBurden;
+        if (reduction <= Mathf.Epsilon)
+        {
+            return 0f;
+        }
+
+        float oldFluidBurden = _fluidBurden;
+        float actualReduction = Mathf.Min(oldFluidBurden, reduction);
+        _fluidBurden = Mathf.Clamp(0f, oldFluidBurden - actualReduction, maximumFluidBurden);
+        return actualReduction / maximumFluidBurden;
+    }
+
+    public override string CompDescriptionExtra => "MI_ChokingDescriptionExtra".Translate(FluidBuildup.ToStringPercent("F1"));
 
     public override void CompPostMake()
     {
@@ -95,7 +114,7 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
         }
         Pawn patient = parent.pawn;
         float currentSeverity = parent.Severity;
-        CurrentChokingSimulationState currentState = new(currentSeverity, _fluidBurden, TryGetSource()?.BleedRate ?? 0f, patient.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness));
+        CurrentChokingSimulationState currentState = new(currentSeverity, FluidBuildup, TryGetSource()?.BleedRate ?? 0f, patient.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness));
         NextChokingSimulationState nextState = Simulation.MoveNext(in currentState);
         float severityChange = nextState.SeverityChange;
         float nextFluidBurden = nextState.FluidBurden;
@@ -117,7 +136,8 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
         if (MoreInjuriesMod.Settings.EnableChokingSounds && SoundEffectRateLimit.CanEnter() && Rand.Chance(Properties.SoundTriggerChance))
         {
             SoundEffectRateLimit.ForceEnter();
-            bool playCoughingSound = IsCoughing && !Rand.Chance(Properties.SoundRandomizationChance);
+            // only play the choking sound if there is enough fluid to warrant it
+            bool playCoughingSound = IsCoughing && !(nextFluidBurden > 0.1f && Rand.Chance(Properties.SoundRandomizationChance));
             SoundDef soundDef = (playCoughingSound, patient.gender) switch
             {
                 (true, Gender.Female) => KnownSoundDefOf.ChokingCoughFemale,

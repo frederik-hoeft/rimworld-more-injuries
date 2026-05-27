@@ -117,9 +117,9 @@ public class MoreInjuriesMod : Mod
         list.Label("MI_Settings_Features_Respiratory_ChokingChanceLabel".Translate(Settings.ChokingChanceOnDamage.NamedValue(), CHOKING_CHANCE_ON_DAMAGE_DEFAULT.NamedDefault()), -1,
             "MI_Settings_Features_Respiratory_ChokingChanceTooltip".Translate());
         Settings.ChokingChanceOnDamage = (float)Math.Round(list.Slider(Settings.ChokingChanceOnDamage, 0f, 1f), 2);
-        list.Label("MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateLabel".Translate(Settings.SuctionDeviceMinimumSuccessRate.NamedValue(), SUCTION_DEVICE_MINIMUM_SUCCESS_RATE_DEFAULT.NamedDefault()), -1,
-            "MI_Settings_Features_Respiratory_ChokingSuctionDeviceMinSuccessRateTooltip".Translate());
-        Settings.SuctionDeviceMinimumSuccessRate = (float)Math.Round(list.Slider(Settings.SuctionDeviceMinimumSuccessRate, 0f, 1f), 2);
+        list.Label("MI_Settings_Features_Respiratory_ChokingSuctionDeviceEffectivenessMultiplierLabel".Translate(Settings.SuctionDeviceEffectivenessMultiplier.NamedValue(), SUCTION_DEVICE_EFFECTIVENESS_MULTIPLIER_DEFAULT.NamedDefault()), -1,
+            "MI_Settings_Features_Respiratory_ChokingSuctionDeviceEffectivenessMultiplierTooltip".Translate());
+        Settings.SuctionDeviceEffectivenessMultiplier = (float)Math.Round(list.Slider(Settings.SuctionDeviceEffectivenessMultiplier, 0f, 3f), 2);
         list.CheckboxLabeled("MI_Settings_Features_Respiratory_EnableInhalationLabel".Translate(ENABLE_FIRE_INHALATION_DEFAULT.NamedDefault()), ref Settings.EnableFireInhalation,
             "MI_Settings_Features_Respiratory_EnableInhalationTooltip".Translate());
         list.CheckboxLabeled("MI_Settings_Features_Respiratory_EnableLungCollapseLabel".Translate(ENABLE_LUNG_COLLAPSE_DEFAULT.NamedDefault()), ref Settings.EnableLungCollapse,

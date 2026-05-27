@@ -1,7 +1,6 @@
 ﻿using MoreInjuries.Roslyn.Future.ThrowHelpers;
 using MoreInjuries.Utils;
 using RimWorld;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using Verse;
 
@@ -21,6 +20,8 @@ internal sealed class ChokingSimulation
         IntervalDays = TickInterval / GenDate.TicksPerDay;
         FluidGainPerBleedRateSimulationStep = parameters.FluidGainPerBleedRateRareTick * ResolutionScale;
     }
+
+    public ref readonly ChokingSimulationParameters Parameters => ref _parameters;
 
     public float IntervalDays { get; }
 

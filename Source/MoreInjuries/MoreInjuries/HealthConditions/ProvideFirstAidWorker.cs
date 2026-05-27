@@ -47,7 +47,7 @@ internal sealed class ProvideFirstAidWorker(MoreInjuryComp parent) : InjuryWorke
                 if (JobDriver_HemostasisBase.JobCanTreat(hediff)
                     || KnownResearchProjectDefOf.EmergencyMedicine.IsFinished
                         && (JobDriver_UseDefibrillator.JobCanTreat(hediff)
-                        || Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1
+                        || JobDriver_UseSuctionDevice.JobCanTreat(hediff)
                         || Array.IndexOf(JobDriver_PerformCpr.TargetHediffDefs, hediff.def) != -1)
                     || patient.Downed && hediff.TendableNow())
                 {

@@ -1,0 +1,11 @@
+services:
+  python-dev:
+    container_name: python-dev
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/lab:cached
+    env_file:
+      - .env
+    command: sleep infinity

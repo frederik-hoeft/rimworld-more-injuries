@@ -13,4 +13,7 @@ public static class TreatmentModifiersExtensions
         }
         return effectiveness;
     }
+
+    public static float GetTreatmentEffectivenessModifier(this HediffComp comp, JobDef jobDef) =>
+        comp.parent.GetTreatmentEffectivenessModifier(jobDef);
 }

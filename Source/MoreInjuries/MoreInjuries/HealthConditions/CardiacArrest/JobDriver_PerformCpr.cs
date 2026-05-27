@@ -3,6 +3,7 @@ using MoreInjuries.AI.Jobs;
 using MoreInjuries.AI.TreatmentModifiers;
 using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.Extensions;
+using MoreInjuries.HealthConditions.Choking;
 using MoreInjuries.Utils;
 using UnityEngine;
 using Verse;
@@ -14,6 +15,10 @@ namespace MoreInjuries.HealthConditions.CardiacArrest;
 public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
 {
     public const string JOB_LABEL_KEY = "MI_PerformCpr";
+
+    private static SkillBasedOutcomeCurve CprChokingSeverityReliefCurve { get; } = new(lower: (-0.05f, 0.35f), upper: (0.15f, 0.60f));
+
+    private static SkillBasedOutcomeCurve CprChokingFluidReductionCurve { get; } = new(lower: (0.00f, 0.06f), upper: (0.04f, 0.16f));
 
     public static HediffDef[] TargetHediffDefs { get; } = [KnownHediffDefOf.ChokingOnBlood, KnownHediffDefOf.CardiacArrest];
 
@@ -30,26 +35,25 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
     protected override bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device)
     {
         Hediff? choking = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.ChokingOnBlood);
-        if (choking is not null)
+        if (choking is HediffWithComps chokingWithComps && chokingWithComps.TryGetComp(out HediffComp_Choking comp))
         {
-            float severity = choking.Severity;
-            float doctorSkill = doctor.GetMedicalSkillLevelOrDefault();
-            // determine the factor based on the doctor's medicine skill where at level 15 the factor is 1
-            float doctorSkillFactor = doctorSkill / 15f;
-            doctorSkillFactor *= choking.GetTreatmentEffectivenessModifier(job.def);
-            // scale severity reduction based on a logistic function with a random offset
-            float severityReductionRaw = DiffusedLogistic(doctorSkillFactor);
-            // we only clamp after the fact to allow a theoretical increase in severity for very poorly performed CPR attempts when the negative random offset is high
-            float newSeverity = Mathf.Clamp01(severity - severityReductionRaw);
-            if (newSeverity > 0)
-            {
-                // TODO: promote fluid burden to a dedicated (hidden) hediff, and only modify that instead of the choking severity directly (addressing the cause, not the symptom)
-                choking.Severity = newSeverity;
-            }
-            else
-            {
-                patient.health.RemoveHediff(choking);
-            }
+            float oldSeverity = choking.Severity;
+            float oldFluidBuildup = comp.FluidBuildup;
+
+            // TODO: add CPR effectiveness settings here
+            float severityReliefFraction = CprChokingSeverityReliefCurve.Evaluate(doctor, comp, job.def).RandomInRange;
+            float fluidReduction = CprChokingFluidReductionCurve.Evaluate(doctor, comp, job.def).RandomInRange;
+
+            choking.Severity = Mathf.Clamp01(oldSeverity * (1f - severityReliefFraction));
+            float removedFluidBurden = comp.ReduceFluidBuildup(fluidReduction);
+
+            Logger.LogDebug(
+                $"CPR performed by {doctor.NameShortColored} on {patient.NameShortColored}: " +
+                $"severity relief={severityReliefFraction.ToStringPercent("F1")}, " +
+                $"severity={oldSeverity.ToStringPercent("F1")}->{choking.Severity.ToStringPercent("F1")}, " +
+                $"fluid reduction capacity={fluidReduction.ToStringPercent("F1")}, " +
+                $"reduce fluid buildup={removedFluidBurden.ToStringPercent("F1")}, " +
+                $"fluid burden={oldFluidBuildup.ToStringPercent("F1")}->{comp.FluidBuildup.ToStringPercent("F1")}");
         }
         Hediff? cardiacArrest = patient.health.hediffSet.hediffs.Find(static hediff => hediff.def == KnownHediffDefOf.CardiacArrest);
         if (cardiacArrest is not null)

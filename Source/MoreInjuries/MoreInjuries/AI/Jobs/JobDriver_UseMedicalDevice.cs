@@ -38,7 +38,7 @@ public abstract class JobDriver_UseMedicalDevice : JobDriver_MedicalBase<Pawn>
 
     protected abstract bool ApplyDevice(Pawn doctor, Pawn patient, Thing? device);
 
-    protected virtual bool IsTreatable(Hediff hediff) => throw new NotSupportedException($"{nameof(IsTreatable)} must be overridden in {GetType().Name} to determine if a hediff is treatable with the device");
+    protected virtual bool IsTreatable(Hediff hediff) => throw new NotImplementedException($"{nameof(IsTreatable)} must be overridden in {GetType().Name} to determine if a hediff is treatable with the device");
 
     protected virtual int GetMedicalDeviceCountToFullyHeal(Pawn patient) => MedicalDeviceHelper.GetMedicalDeviceCountToFullyHeal(patient, IsTreatable);
 

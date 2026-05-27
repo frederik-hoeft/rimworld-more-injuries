@@ -40,7 +40,7 @@ internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent
                 builder.Options.Add(new FloatMenuOption(JobDriver_PerformCpr.JOB_LABEL_KEY.Translate(), JobDriver_PerformCpr.GetDispatcher(selectedPawn, patient).StartJob));
             }
         }
-        if (!builder.Keys.Contains(UITreatmentOption.UseSuctionDevice) && patient.health.hediffSet.hediffs.Any(static hediff => Array.IndexOf(JobDriver_UseSuctionDevice.TargetHediffDefs, hediff.def) != -1))
+        if (!builder.Keys.Contains(UITreatmentOption.UseSuctionDevice) && patient.health.hediffSet.hediffs.Any(JobDriver_UseSuctionDevice.JobCanTreat))
         {
             builder.Keys.Add(UITreatmentOption.UseSuctionDevice);
             if (!KnownResearchProjectDefOf.EmergencyMedicine.IsFinished)
@@ -51,7 +51,7 @@ internal sealed class ChokingWorker(MoreInjuryComp parent) : InjuryWorker(parent
             {
                 builder.Options.Add(new FloatMenuOption(failure, null));
             }
-            else if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.SuctionDevice, JobDriver_UseSuctionDevice.TargetHediffDefs) is not Thing suctionDevice)
+            else if (MedicalDeviceHelper.FindMedicalDevice(selectedPawn, patient, KnownThingDefOf.SuctionDevice, JobDriver_UseSuctionDevice.JobCanTreat) is not Thing suctionDevice)
             {
                 builder.Options.Add(new FloatMenuOption("MI_UseSuctionDeviceFailed_Unavailable".Translate(JobDriver_UseSuctionDevice.JOB_LABEL_KEY.Translate()), null));
             }
