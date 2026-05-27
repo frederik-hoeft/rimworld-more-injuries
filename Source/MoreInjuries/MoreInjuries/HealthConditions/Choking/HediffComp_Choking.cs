@@ -12,17 +12,8 @@ namespace MoreInjuries.HealthConditions.Choking;
 
 public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
 {
-    private readonly ChokingSimulation _simulation;
-    private readonly RateLimit _soundEffectRateLimit;
-
     private Std::WeakReference<Hediff_Injury>? _source;
     private float _fluidBurden;
-
-    public HediffComp_Choking()
-    {
-        _simulation = new ChokingSimulation(context: this, ChokingSimulationParameters.Default);
-        _soundEffectRateLimit = new RateLimit(Properties.SoundBackoffInterval);
-    }
 
     private TimedDataField<HediffComp_Choking, bool, Pawn, TimedDataEntry<bool>> PawnCoughingCache => field ??= new
     (
@@ -32,6 +23,10 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
             pawn.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.3f
             || ModLister.BiotechInstalled && pawn.health.hediffSet.HasHediff(HediffDefOf.Deathrest)
     );
+
+    private RateLimit SoundEffectRateLimit => field ??= new RateLimit(Properties.SoundBackoffInterval);
+
+    private ChokingSimulation Simulation => field ??= new ChokingSimulation(context: this, ChokingSimulationParameters.Default);
 
     private bool IsCoughing => PawnCoughingCache.GetData(parent.pawn);
 
@@ -102,7 +97,7 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
         Pawn patient = parent.pawn;
         float currentSeverity = parent.Severity;
         CurrentChokingSimulationState currentState = new(currentSeverity, _fluidBurden, TryGetSource()?.BleedRate ?? 0f, patient.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness));
-        NextChokingSimulationState nextState = _simulation.MoveNext(in currentState);
+        NextChokingSimulationState nextState = Simulation.MoveNext(in currentState);
         float severityChange = nextState.SeverityChange;
         float nextFluidBurden = nextState.FluidBurden;
         // allow genes, traits, and other hediffs to modify the severity change calculated by the simulation
@@ -121,9 +116,9 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
 
         parent.Severity = nextSeverity;
         _fluidBurden = nextFluidBurden;
-        if (MoreInjuriesMod.Settings.EnableChokingSounds && _soundEffectRateLimit.CanEnter() && Rand.Chance(Properties.SoundTriggerChance))
+        if (MoreInjuriesMod.Settings.EnableChokingSounds && SoundEffectRateLimit.CanEnter() && Rand.Chance(Properties.SoundTriggerChance))
         {
-            _soundEffectRateLimit.ForceEnter();
+            SoundEffectRateLimit.ForceEnter();
             bool playCoughingSound = IsCoughing && !Rand.Chance(Properties.SoundRandomizationChance);
             SoundDef soundDef = (playCoughingSound, patient.gender) switch
             {
