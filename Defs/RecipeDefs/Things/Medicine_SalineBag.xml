@@ -20,7 +20,7 @@
             <li>StoneBlocks</li>
           </categories>
         </filter>
-        <count>10</count>
+        <count>5</count>
       </li>
       <li MayRequire="Dubwise.DubsBadHygiene">
         <filter>
@@ -64,7 +64,7 @@
             <li>StoneBlocks</li>
           </categories>
         </filter>
-        <count>2</count>
+        <count>1</count>
       </li>
       <li MayRequire="Dubwise.DubsBadHygiene">
         <filter>
