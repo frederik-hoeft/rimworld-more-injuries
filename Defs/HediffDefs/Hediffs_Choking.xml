@@ -7,6 +7,23 @@
     <lethalSeverity>1</lethalSeverity>
     <defaultLabelColor>(255, 102, 102)</defaultLabelColor>
     <tendable>false</tendable>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffModifier_SeverityModifiers_ModExtension">
+        <modifiers>
+          <li MayRequire="Ludeon.RimWorld.Biotech">
+            <apply>OnIncrease</apply>
+            <modifier Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_WhenPresent">
+              <geneModifiers>
+                <li>
+                  <geneDef>VacuumResistance_Total</geneDef>
+                  <modifier>0.05</modifier>
+                </li>
+              </geneModifiers>
+            </modifier>
+          </li>
+        </modifiers>
+      </li>
+    </modExtensions>
     <comps>
       <li Class="HediffCompProperties_SeverityPerDay">
         <severityPerDay>2.0</severityPerDay>
@@ -120,8 +137,25 @@
         <li>(1, 1)</li>
       </points>
     </removeOnRedressChanceByDaysCurve>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffModifier_SeverityModifiers_ModExtension">
+        <modifiers>
+          <li MayRequire="Ludeon.RimWorld.Biotech">
+            <apply>OnIncrease</apply>
+            <modifier Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_WhenPresent">
+              <geneModifiers>
+                <li>
+                  <geneDef>VacuumResistance_Total</geneDef>
+                  <modifier>0.05</modifier>
+                </li>
+              </geneModifiers>
+            </modifier>
+          </li>
+        </modifiers>
+      </li>
+    </modExtensions>
     <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
+      <li Class="MoreInjuries.HealthConditions.HediffCompProperties_SeverityPerDay_WithModifiers">
         <severityPerDay>8.0</severityPerDay>
       </li>
       <li Class="HediffCompProperties_Discoverable">

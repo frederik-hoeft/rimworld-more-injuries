@@ -1,13 +1,10 @@
 ﻿using MoreInjuries.Roslyn.SourceGen.XmlBinding.Attributes;
-using Verse;
 
 namespace MoreInjuries.HealthConditions.Acidosis;
 
 [XmlBindable]
-public sealed partial class HediffCompProperties_Acidosis : HediffCompProperties
+public sealed partial class HediffCompProperties_Acidosis : HediffCompProperties<HediffComp_Acidosis>
 {
-    public HediffCompProperties_Acidosis() => compClass = typeof(HediffComp_Acidosis);
-
     [XmlBinding<float>("historyRetentionPeriodHours", defaultValue: 1f)]
     public partial float HistoryRetentionPeriodHours { get; }
 

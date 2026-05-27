@@ -24,9 +24,14 @@
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_SecondaryCondition">
         <handlers>
           <!-- permanent brain damage symptoms will be "discovered" over time, if any -->
-          <li Class="MoreInjuries.HealthConditions.HypovolemicShock.Secondary.HediffCompHandler_SecondaryCondition_Hypoxia">
+          <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>250</tickInterval>
             <chanceModifiers>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Conditional_Tended">
+                <onTrue Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_Gauge">
+                  <key>OrganHypoxiaChanceReductionFactor</key>
+                </onTrue>
+              </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_MeanTimeBetween_SimpleCurve_Hours">
                 <mttfHoursBySeverity>
                   <points>
@@ -38,9 +43,6 @@
                     <li>1, 0.01</li>
                   </points>
                 </mttfHoursBySeverity>
-              </li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
-                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
               </li>
             </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">

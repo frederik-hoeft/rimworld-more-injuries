@@ -1,8 +1,3 @@
-﻿using Verse;
+﻿namespace MoreInjuries.HealthConditions.Secondary;
 
-namespace MoreInjuries.HealthConditions.Secondary;
-
-public sealed class HediffCompProperties_CausedBy : HediffCompProperties
-{
-    public HediffCompProperties_CausedBy() => compClass = typeof(HediffComp_CausedBy);
-}
+public sealed class HediffCompProperties_CausedBy : HediffCompProperties<HediffComp_CausedBy>;

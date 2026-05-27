@@ -67,12 +67,22 @@
           </li>
           <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffCompHandler_SecondaryCondition_Tick">
             <tickInterval>60</tickInterval>
+            <!-- we don't want to apply downstream modifiers for this handler -->
+            <applyDownstreamModifiers>false</applyDownstreamModifiers>
             <chanceModifiers>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Settings_FeatureFlag">
                 <key>PreventDeathByBloodLoss</key>
               </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowUntracked"></li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_DisallowDeathResting"></li>
+              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_Disallow" MayRequire="Ludeon.RimWorld.Biotech">
+                <geneDefs>
+                  <!-- if the pawn has the deathless gene, we disable the hypoxia killer too, since they can't die from blood loss in the first place -->
+                  <li>Deathless</li>
+                  <!-- we don't disable Breathless here since this is the path to death by blood loss, which is lethal for pawns with the Breathless gene, even if this is pathologically debatable -->
+                  <!-- <li>Breathless</li> -->
+                </geneDefs>
+              </li>
               <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_SimpleCurve">
                 <!-- if advanced trauma simulation is enabled, blood loss doesn't kill, hypoxia does -->
                 <severityCurve>
@@ -82,9 +92,6 @@
                     <li>1, 1</li>
                   </points>
                 </severityCurve>
-              </li>
-              <li Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Reference">
-                <hediffModifierDef>HypothermiaReducesHypoxia_ModiferDef</hediffModifierDef>
               </li>
             </chanceModifiers>
             <hediffMakerProps Class="MoreInjuries.HealthConditions.Secondary.Handlers.HediffMakers.HediffMakerProperties_SingleHediff">

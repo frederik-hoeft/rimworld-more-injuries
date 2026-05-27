@@ -8,9 +8,9 @@ public sealed class HediffCompHandler_SecondaryCondition_Tick_SingleExecutionPer
 {
     private readonly ConditionalWeakTable<Pawn, TimedDataEntry<bool>> _perHediffDefSingletonCache = [];
 
-    public override bool ShouldSkip(HediffComp_SecondaryCondition comp)
+    public override bool ShouldSkip(HediffComp_SecondaryCondition comp, HediffDef hediffDef)
     {
-        if (base.ShouldSkip(comp))
+        if (base.ShouldSkip(comp, hediffDef))
         {
             return true;
         }
@@ -31,6 +31,9 @@ public sealed class HediffCompHandler_SecondaryCondition_Tick_SingleExecutionPer
             // first time we execute this handler for this pawn, so we add it to the cache
             entry = new TimedDataEntry<bool>();
             entry.Initialize(true, ticks);
+            // AddOrUpdate comes from the RimWorld References assembly and usually only exists in .NET Core 2.0 and later.
+            // they probably backported it to .NET Framework/mono for RimWorld
+            // the more you know :)
             _perHediffDefSingletonCache.AddOrUpdate(comp.Pawn, entry);
             Logger.LogDebug($"Initialized new entry for {comp.Pawn} in {nameof(HediffCompHandler_SecondaryCondition_Tick_SingleExecutionPerInterval)} for {comp.parent.def.defName}");
         }

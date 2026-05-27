@@ -13,13 +13,28 @@
         <li>(1, 1)</li>
       </points>
     </removeOnRedressChanceByDaysCurve>
+    <modExtensions>
+      <li Class="MoreInjuries.HealthConditions.Secondary.HediffModifier_SeverityModifiers_ModExtension">
+        <modifiers>
+          <li MayRequire="Ludeon.RimWorld.Biotech">
+            <apply>OnIncrease</apply>
+            <modifier Class="MoreInjuries.HealthConditions.Secondary.Handlers.Modifiers.HediffModifier_Genes_WhenPresent">
+              <geneModifiers>
+                <li>
+                  <geneDef>VacuumResistance_Total</geneDef>
+                  <modifier>0.05</modifier>
+                </li>
+              </geneModifiers>
+            </modifier>
+          </li>
+        </modifiers>
+      </li>
+    </modExtensions>
     <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
+      <li Class="MoreInjuries.HealthConditions.HediffCompProperties_SeverityPerDay_WithModifiers">
         <severityPerDay>1</severityPerDay>
       </li>
-      <li>
-        <compClass>MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.TourniquetHediffComp</compClass>
-      </li>
+      <li Class="MoreInjuries.HealthConditions.HeavyBleeding.Tourniquets.HediffCompProperties_Tourniquet"></li>
     </comps>
     <stages>
       <li>

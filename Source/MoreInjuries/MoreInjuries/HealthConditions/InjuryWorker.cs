@@ -1,6 +1,4 @@
 ﻿using MoreInjuries.Extensions;
-using MoreInjuries.Roslyn.Future.ThrowHelpers;
-using RimWorld;
 using Verse;
 
 namespace MoreInjuries.HealthConditions;

@@ -156,7 +156,7 @@ public partial class MoreInjuriesSettings : ModSettings
     [SettingsEntry<bool>(DefaultValue = true)]
     internal partial ref bool EnableCardiacArrestOnHighBloodLoss { get; }
 
-    [SettingsEntry<float>(DefaultValue = 0.05f)]
+    [SettingsEntry<float>(DefaultValue = 0.0625f)]
     internal partial ref float CardiacArrestChanceOnHighBloodLoss { get; }
 
     [SettingsEntry<float>(DefaultValue = 0.5f)]

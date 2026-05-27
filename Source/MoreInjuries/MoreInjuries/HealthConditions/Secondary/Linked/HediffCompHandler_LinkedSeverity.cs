@@ -8,7 +8,7 @@ using Verse;
 namespace MoreInjuries.HealthConditions.Secondary.Linked;
 
 [XmlBindable]
-public partial class HediffCompHandler_LinkedSeverity : HediffCompHandler
+public partial class HediffCompHandler_LinkedSeverity : IHediffCompHandler
 {
     [XmlBinding("linkedHediffDef")]
     public partial HediffDef LinkedHediffDef { get; }
