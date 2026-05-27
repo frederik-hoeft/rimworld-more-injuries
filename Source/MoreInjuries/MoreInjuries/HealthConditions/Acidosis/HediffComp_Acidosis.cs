@@ -54,6 +54,9 @@ public sealed class HediffComp_Acidosis : HediffComp
         {
             // if the average severity change is positive, we increase the severity
             newSeverity = severity + averageSeverityChange;
+            // TODO: tick-based hediff comps should use the ref severityAdjustment parameter to adjust severity instead of directly setting parent.Severity,
+            //       to properly interact with other comps that also want to adjust severity (e.g. for scaling with difficulty)
+            // TODO: FIX THE ABOVE GLOBALLY
             parent.Severity = newSeverity;
         }
         else

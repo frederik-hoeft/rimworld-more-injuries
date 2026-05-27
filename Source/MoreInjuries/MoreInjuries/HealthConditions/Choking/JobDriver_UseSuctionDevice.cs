@@ -31,6 +31,7 @@ public class JobDriver_UseSuctionDevice : JobDriver_UseMedicalDevice_TargetsHedi
         bool success = Rand.Chance(Mathf.Max(MoreInjuriesMod.Settings.SuctionDeviceMinimumSuccessRate, doctorSkill / 8f));
         if (choking is not null && success)
         {
+            // TODO: promote fluid burden to a dedicated (hidden) hediff, and only modify that instead of the choking severity directly (addressing the cause, not the symptom)
             patient.health.RemoveHediff(choking);
         }
         return true;

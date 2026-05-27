@@ -3,19 +3,27 @@
 internal readonly record struct ChokingSimulationParameters
 {
     /// <summary>
-    /// Normalized fluid burden gained per simulation interval at BleedRate = 1.
-    /// Fluid burden is measured relative to the critical obstruction reference,
-    /// where FluidBurden = 1 means the airway is critically obstructed.
-    /// This is the main fluid-timescale dial.
+    /// Normalized fluid burden gained each rare tick at BleedRate = 1.
+    /// Runtime tick interval changes scale this value by elapsed
+    /// time, so lowering the simulation tick interval improves resolution without
+    /// increasing total fluid accumulation.
     /// </summary>
-    public float FluidGainPerBleedRateOneInterval { get; init; }
+    public required float FluidGainPerBleedRateRareTick { get; init; }
+
+    /// <summary>
+    /// Maximum normalized fluid burden retained by the model. FluidBurden = 1 is
+    /// critical reference obstruction, not the physical maximum. Values above 1
+    /// represent severe aspiration, but this cap prevents unbounded accumulation
+    /// from dominating future recovery/rescue behavior.
+    /// </summary>
+    public required float MaximumFluidBurden { get; init; }
 
     /// <summary>
     /// Cough-triggered aspiration gain relative to direct bleeding fluid gain.
     /// For example, 0.25 means coughing while bleeding can add up to 25% of the
     /// direct bleeding contribution, scaled by cough strength and randomness.
     /// </summary>
-    public float CoughAspirationGainRatio { get; init; }
+    public required float CoughAspirationGainRatio { get; init; }
 
     /// <summary>
     /// Maximum cough clearance relative to direct bleeding fluid gain at
@@ -23,14 +31,14 @@ internal readonly record struct ChokingSimulationParameters
     /// half as much fluid as a BleedRate = 1 injury adds per interval, before
     /// scaling by available fluid, bleeding suppression, and randomness.
     /// </summary>
-    public float CoughClearanceRatio { get; init; }
+    public required float CoughClearanceRatio { get; init; }
 
     /// <summary>
-    /// Fraction of current fluid burden passively cleared per interval without
-    /// effective coughing. This should remain tiny; it prevents permanent residue
-    /// but should not rescue a heavily obstructed unconscious pawn quickly.
+    /// Fraction of current fluid burden passively cleared over the model reference
+    /// interval. Runtime tick interval changes scale this exponentially so passive
+    /// clearance remains mostly independent of simulation resolution.
     /// </summary>
-    public float PassiveFluidClearanceFractionPerInterval { get; init; }
+    public required float PassiveFluidClearanceFractionPerRareTick { get; init; }
 
     /// <summary>
     /// RimWorld consciousness level around which coughing should begin to collapse.
@@ -38,7 +46,7 @@ internal readonly record struct ChokingSimulationParameters
     /// cough strength is very low near the pawn unconsciousness threshold.
     /// Vanilla pawns generally become unconscious around 0.30 consciousness.
     /// </summary>
-    public float CoughConsciousnessThreshold { get; init; }
+    public required float CoughConsciousnessThreshold { get; init; }
 
     /// <summary>
     /// Relative random variation of direct bleeding fluid gain.
@@ -47,71 +55,80 @@ internal readonly record struct ChokingSimulationParameters
     /// not from unconscious passive suffocation.
     /// For example, 0.10 means direct bleeding varies by ±10% per interval.
     /// </summary>
-    public float BleedingNoiseAmplitude { get; init; }
+    public required float BleedingNoiseAmplitude { get; init; }
 
     /// <summary>
     /// Desired cough strength at <see cref="CoughConsciousnessThreshold" />.
     /// For example, 0.05 means a pawn at the unconsciousness threshold only has
     /// roughly 5% effective cough strength.
     /// </summary>
-    public float CoughStrengthAtConsciousnessThreshold { get; init; }
+    public required float CoughStrengthAtConsciousnessThreshold { get; init; }
 
     /// <summary>
     /// Sharpness of the logistic transition from ineffective to effective coughing.
     /// Higher values make cough strength rise more abruptly above the consciousness
     /// threshold; lower values make the transition more gradual.
     /// </summary>
-    public float CoughConsciousnessTransitionSharpness { get; init; }
+    public required float CoughConsciousnessTransitionSharpness { get; init; }
 
     /// <summary>
     /// Normalized fluid burden at which coughing has roughly half access to
     /// removable fluid. Since FluidBurden = 1 is critical obstruction, 0.05 means
     /// cough access reaches half effect at 5% of critical obstruction.
     /// </summary>
-    public float CoughFluidHalfEffect { get; init; }
+    public required float CoughFluidHalfEffect { get; init; }
 
     /// <summary>
     /// Bleed rate at which ongoing bleeding suppresses cough clearance by roughly
     /// half. Lower values make even mild bleeding hard to overcome; higher values
     /// allow coughing to compensate for stronger bleeding.
     /// </summary>
-    public float CoughSuppressionBleedHalfEffect { get; init; }
+    public required float CoughSuppressionBleedHalfEffect { get; init; }
 
     /// <summary>
     /// Exponent controlling how sharply cough clearance fails as bleed rate rises.
     /// A value of 1 is gradual; values around 2 create a clearer transition from
     /// manageable minor bleeding to unmanageable moderate or heavy bleeding.
     /// </summary>
-    public float CoughSuppressionBleedExponent { get; init; }
+    public required float CoughSuppressionBleedExponent { get; init; }
 
     /// <summary>
-    /// Exponent used to convert normalized fluid burden into choking pressure.
-    /// Higher values make low fluid burden relatively harmless while making high
-    /// fluid burden escalate much more aggressively.
+    /// Maximum effective choking pressure used for severity progression. This keeps
+    /// fluid burden above the critical reference point dangerous without allowing
+    /// the exponential pressure curve to create multi-severity instant-death jumps.
     /// </summary>
-    public float ChokingPressureExponent { get; init; }
+    public required float MaxChokingPressure { get; init; }
+
+    /// <summary>
+    /// Sharpness of the logistic curve controlling how rapidly choking severity ramps
+    /// as choking pressure approaches the critical reference point. Higher values make
+    /// severity rise more abruptly as choking pressure increases; lower values make
+    /// the transition more gradual.
+    /// </summary>
+    public required float ChokingPressureSharpness { get; init; }
 
     /// <summary>
     /// Severity gained per game day at choking pressure = 1. This is the main
     /// lethality dial once fluid burden reaches the critical reference range.
     /// </summary>
-    public float ChokingSeverityProgressionPerDay { get; init; }
+    public required float ChokingSeverityProgressionPerDay { get; init; }
 
     /// <summary>
     /// Severity recovered per game day when choking pressure is low. Recovery is
     /// dampened as choking pressure rises, so high airway obstruction still gets
     /// worse or remains dangerous.
     /// </summary>
-    public float ChokingSeverityRecoveryPerDay { get; init; }
+    public required float ChokingSeverityRecoveryPerDay { get; init; }
 
     public static ChokingSimulationParameters Default => new()
     {
-        FluidGainPerBleedRateOneInterval = 0.16f,
+        FluidGainPerBleedRateRareTick = 0.05f,
+        MaximumFluidBurden = 3f,
 
         CoughAspirationGainRatio = 0.25f,
         CoughClearanceRatio = 0.50f,
 
-        PassiveFluidClearanceFractionPerInterval = 0.0005f,
+        PassiveFluidClearanceFractionPerRareTick = 0.0002f,
 
         // logistic curve parameters calibrated so that cough strength is around 5% at 30% consciousness,
         // approaches 0% as consciousness approaches 0%, and approaches 100% as consciousness approaches 100%
@@ -125,7 +142,8 @@ internal readonly record struct ChokingSimulationParameters
         CoughSuppressionBleedHalfEffect = 0.35f,
         CoughSuppressionBleedExponent = 2f,
 
-        ChokingPressureExponent = 4f,
+        MaxChokingPressure = 2f,
+        ChokingPressureSharpness = 4f,
         ChokingSeverityProgressionPerDay = 29.5f,
         ChokingSeverityRecoveryPerDay = 2.0f,
     };

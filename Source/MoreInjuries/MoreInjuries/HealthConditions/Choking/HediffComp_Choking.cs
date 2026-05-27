@@ -4,7 +4,6 @@ using MoreInjuries.HealthConditions.Choking.Simulation;
 using MoreInjuries.HealthConditions.Secondary;
 using MoreInjuries.HealthConditions.Secondary.Handlers;
 using RimWorld;
-using UnityEngine;
 using Verse;
 using Verse.Sound;
 
@@ -105,16 +104,15 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
         {
             severityChange = downstream.ApplyTo(severityChange, parent, this);
         }
-        float nextSeverity = Mathf.Clamp01(currentSeverity + severityChange);
-        bool isResolved = nextSeverity < EPSILON && nextFluidBurden < EPSILON;
-
+        Logger.LogDebug($"Choking simulation tick for {patient.NameShortColored}: severity change={severityChange}, original change={nextState.SeverityChange}, fluid burden={nextFluidBurden * 100f:F1}%");
+        bool isResolved = currentSeverity + severityChange < EPSILON && nextFluidBurden < EPSILON;
         if (isResolved)
         {
             patient.health.RemoveHediff(parent);
             return;
         }
 
-        parent.Severity = nextSeverity;
+        severityAdjustment = severityChange;
         _fluidBurden = nextFluidBurden;
         if (MoreInjuriesMod.Settings.EnableChokingSounds && SoundEffectRateLimit.CanEnter() && Rand.Chance(Properties.SoundTriggerChance))
         {
