@@ -9,7 +9,7 @@ internal sealed class ChokingSimulation(HediffComp_Choking context, ChokingSimul
 {
     public NextChokingSimulationState MoveNext(ref readonly CurrentChokingSimulationState state)
     {
-        float intervalDays = context.Properties.ChokingIntervalTicks / GenDate.TicksPerDay;
+        float intervalDays = context.Properties.TickInterval / GenDate.TicksPerDay;
 
         float coughStrength = CalculateCoughStrength(state.Consciousness);
 

@@ -4,7 +4,7 @@ namespace MoreInjuries.Utils;
 
 public static class MathEx
 {
-    extension (Mathf)
+    extension(Mathf)
     {
         public static float Modulo(float a, float b) => a - (b * Mathf.Floor(a / b));
 

@@ -13,12 +13,15 @@ namespace MoreInjuries.HealthConditions.Choking;
 public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
 {
     private readonly ChokingSimulation _simulation;
+    private readonly RateLimit _soundEffectRateLimit;
+
     private Std::WeakReference<Hediff_Injury>? _source;
     private float _fluidBurden;
 
     public HediffComp_Choking()
     {
         _simulation = new ChokingSimulation(context: this, ChokingSimulationParameters.Default);
+        _soundEffectRateLimit = new RateLimit(Properties.SoundBackoffInterval);
     }
 
     private TimedDataField<HediffComp_Choking, bool, Pawn, TimedDataEntry<bool>> PawnCoughingCache => field ??= new
@@ -36,8 +39,7 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
 
     public override string CompLabelInBracketsExtra => IsCoughing ? "MI_Coughing".Translate() : string.Empty;
 
-    // TODO: translate
-    public override string CompDescriptionExtra => $"\nAccumulated fluid burden: {_fluidBurden:F2}";
+    public override string CompDebugString() => $"\n\nAccumulated fluid burden: {_fluidBurden * 100f:F1}%";
 
     public override void CompPostMake()
     {
@@ -93,7 +95,7 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
     {
         const float EPSILON = 0.001f;
 
-        if (!parent.pawn.IsHashIntervalTick(Properties.ChokingIntervalTicks))
+        if (!parent.pawn.IsHashIntervalTick(Properties.TickInterval))
         {
             return;
         }
@@ -119,10 +121,11 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
 
         parent.Severity = nextSeverity;
         _fluidBurden = nextFluidBurden;
-        // TODO: ensure that sounds don't overlap too much
-        if (MoreInjuriesMod.Settings.EnableChokingSounds)
+        if (MoreInjuriesMod.Settings.EnableChokingSounds && _soundEffectRateLimit.CanEnter() && Rand.Chance(Properties.SoundTriggerChance))
         {
-            SoundDef soundDef = (IsCoughing, patient.gender) switch
+            _soundEffectRateLimit.ForceEnter();
+            bool playCoughingSound = IsCoughing && !Rand.Chance(Properties.SoundRandomizationChance);
+            SoundDef soundDef = (playCoughingSound, patient.gender) switch
             {
                 (true, Gender.Female) => KnownSoundDefOf.ChokingCoughFemale,
                 (true, _) => KnownSoundDefOf.ChokingCoughMale,
