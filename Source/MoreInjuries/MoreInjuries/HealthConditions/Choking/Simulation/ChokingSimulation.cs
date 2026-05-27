@@ -11,14 +11,14 @@ internal sealed class ChokingSimulation(HediffComp_Choking context, ChokingSimul
     {
         float intervalDays = context.Properties.ChokingIntervalTicks / GenDate.TicksPerDay;
 
-        float coughStrength = CalculateCoughStrength(state.Consciousness, parameters);
+        float coughStrength = CalculateCoughStrength(state.Consciousness);
 
         float oldFluidBurden = Mathf.Max(0f, state.FluidBurden);
 
-        float bleedingFluidGain = CalculateBleedingFluidGain(state.BleedRate, parameters);
-        float coughTriggeredAspirationGain = CalculateCoughTriggeredAspirationGain(state.BleedRate, coughStrength, parameters);
-        float coughFluidClearance = CalculateCoughFluidClearance(oldFluidBurden, state.BleedRate, coughStrength, parameters);
-        float passiveFluidClearance = CalculatePassiveFluidClearance(oldFluidBurden, parameters);
+        float bleedingFluidGain = CalculateBleedingFluidGain(state.BleedRate);
+        float coughTriggeredAspirationGain = CalculateCoughTriggeredAspirationGain(state.BleedRate, coughStrength);
+        float coughFluidClearance = CalculateCoughFluidClearance(oldFluidBurden, state.BleedRate, coughStrength);
+        float passiveFluidClearance = CalculatePassiveFluidClearance(oldFluidBurden);
 
         float newFluidBurden = Mathf.Max(0f, oldFluidBurden
             + bleedingFluidGain
@@ -26,25 +26,24 @@ internal sealed class ChokingSimulation(HediffComp_Choking context, ChokingSimul
             - coughFluidClearance
             - passiveFluidClearance);
 
-        float chokingPressure = CalculateChokingPressure(newFluidBurden, parameters);
+        float chokingPressure = CalculateChokingPressure(newFluidBurden);
 
         float oldSeverity = Mathf.Clamp01(state.Severity);
-        float severityChange = CalculateSeverityChange(oldSeverity, chokingPressure, intervalDays, parameters);
-        float newSeverity = Mathf.Clamp01(oldSeverity + severityChange);
+        float severityChange = CalculateSeverityChange(oldSeverity, chokingPressure, intervalDays);
 
-        return new NextChokingSimulationState(Severity: newSeverity, FluidBurden: newFluidBurden);
+        return new NextChokingSimulationState(severityChange, newFluidBurden);
     }
 
-    private static float CalculateBleedingFluidGain(float bleedRate, ChokingSimulationParameters parameters) =>
+    private float CalculateBleedingFluidGain(float bleedRate) =>
         parameters.FluidGainPerBleedRateOneInterval * bleedRate // normalized bleed rate contribution
         * NextMeanOneNoise(parameters.BleedingNoiseAmplitude);
 
-    private static float CalculateCoughTriggeredAspirationGain(float bleedRate, float coughStrength, ChokingSimulationParameters parameters) =>
+    private float CalculateCoughTriggeredAspirationGain(float bleedRate, float coughStrength) =>
         parameters.FluidGainPerBleedRateOneInterval * bleedRate // normalized bleed rate contribution
         * parameters.CoughAspirationGainRatio * coughStrength
         * NextMeanOneNoise(coughStrength);
 
-    private static float CalculateCoughFluidClearance(float fluidBurden, float bleedRate, float coughStrength, ChokingSimulationParameters parameters)
+    private float CalculateCoughFluidClearance(float fluidBurden, float bleedRate, float coughStrength)
     {
         float accessibleFluidFraction = CalculateCoughAccessibleFluidFraction(fluidBurden, parameters.CoughFluidHalfEffect);
 
@@ -58,7 +57,7 @@ internal sealed class ChokingSimulation(HediffComp_Choking context, ChokingSimul
             * NextMeanOneNoise(coughStrength);
     }
 
-    private static float CalculateCoughStrength(float consciousness, ChokingSimulationParameters parameters)
+    private float CalculateCoughStrength(float consciousness)
     {
         consciousness = Mathf.Clamp01(consciousness);
         float threshold = Mathf.Clamp01(parameters.CoughConsciousnessThreshold);
@@ -90,10 +89,10 @@ internal sealed class ChokingSimulation(HediffComp_Choking context, ChokingSimul
         return 1f / (1f + suppressionPressure);
     }
 
-    private static float CalculatePassiveFluidClearance(float fluidBurden, ChokingSimulationParameters parameters) =>
+    private float CalculatePassiveFluidClearance(float fluidBurden) =>
         parameters.PassiveFluidClearanceFractionPerInterval * fluidBurden;
 
-    private static float CalculateChokingPressure(float fluidBurden, ChokingSimulationParameters parameters)
+    private float CalculateChokingPressure(float fluidBurden)
     {
         // more fluid => exponentially more pressure
         float exponent = parameters.ChokingPressureExponent;
@@ -103,16 +102,10 @@ internal sealed class ChokingSimulation(HediffComp_Choking context, ChokingSimul
         return numerator / denominator;
     }
 
-    private static float CalculateSeverityChange(float currentSeverity, float chokingPressure, float intervalDays, ChokingSimulationParameters parameters)
+    private float CalculateSeverityChange(float currentSeverity, float chokingPressure, float intervalDays)
     {
-        float progressionPerDay =
-            parameters.ChokingSeverityProgressionPerDay
-            * chokingPressure;
-
-        float recoveryPerDay =
-            parameters.ChokingSeverityRecoveryPerDay
-            * currentSeverity
-            / (1f + chokingPressure);
+        float progressionPerDay = parameters.ChokingSeverityProgressionPerDay * chokingPressure;
+        float recoveryPerDay = parameters.ChokingSeverityRecoveryPerDay * currentSeverity / (1f + chokingPressure);
 
         return intervalDays * (progressionPerDay - recoveryPerDay);
     }

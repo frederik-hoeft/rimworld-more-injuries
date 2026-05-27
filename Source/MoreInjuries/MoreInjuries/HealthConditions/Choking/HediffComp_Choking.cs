@@ -1,13 +1,16 @@
 ﻿using MoreInjuries.Caching;
 using MoreInjuries.Defs.WellKnown;
 using MoreInjuries.HealthConditions.Choking.Simulation;
+using MoreInjuries.HealthConditions.Secondary;
+using MoreInjuries.HealthConditions.Secondary.Handlers;
 using RimWorld;
+using UnityEngine;
 using Verse;
 using Verse.Sound;
 
 namespace MoreInjuries.HealthConditions.Choking;
 
-public sealed class HediffComp_Choking : HediffComp
+public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
 {
     private readonly ChokingSimulation _simulation;
     private Std::WeakReference<Hediff_Injury>? _source;
@@ -85,21 +88,34 @@ public sealed class HediffComp_Choking : HediffComp
 
     public override void CompPostTick(ref float severityAdjustment)
     {
+        const float EPSILON = 0.001f;
+
         if (!parent.pawn.IsHashIntervalTick(Properties.ChokingIntervalTicks))
         {
             return;
         }
         Pawn patient = parent.pawn;
-        CurrentChokingSimulationState currentState = new(parent.Severity, _fluidBurden, TryGetSource()?.BleedRate ?? 0f, patient.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness));
+        float currentSeverity = parent.Severity;
+        CurrentChokingSimulationState currentState = new(currentSeverity, _fluidBurden, TryGetSource()?.BleedRate ?? 0f, patient.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness));
         NextChokingSimulationState nextState = _simulation.MoveNext(in currentState);
+        float severityChange = nextState.SeverityChange;
+        float nextFluidBurden = nextState.FluidBurden;
+        // allow genes, traits, and other hediffs to modify the severity change calculated by the simulation
+        if (parent.def.GetModExtension<HediffModifier_SeverityModifiers_ModExtension>() is { } downstream)
+        {
+            severityChange = downstream.ApplyTo(severityChange, parent, this);
+        }
+        float nextSeverity = Mathf.Clamp01(currentSeverity + severityChange);
+        bool isResolved = nextSeverity < EPSILON && nextFluidBurden < EPSILON;
 
-        if (nextState.IsResolved)
+        if (isResolved)
         {
             patient.health.RemoveHediff(parent);
             return;
         }
-        parent.Severity = nextState.Severity;
-        _fluidBurden = nextState.FluidBurden;
+
+        parent.Severity = nextSeverity;
+        _fluidBurden = nextFluidBurden;
         // TODO: ensure that sounds don't overlap too much
         if (MoreInjuriesMod.Settings.EnableChokingSounds)
         {
