@@ -8,7 +8,7 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 /// </summary>
 internal static class TypeConversions
 {
-    extension (ITypeSymbol self)
+    extension(ITypeSymbol self)
     {
         public bool IsImplicitlyConvertible(ITypeSymbol target)
         {

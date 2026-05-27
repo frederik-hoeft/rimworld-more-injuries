@@ -2,7 +2,7 @@
 
 internal static class XmlBindableMemberFactory
 {
-    extension (MemberAccumulator self)
+    extension(MemberAccumulator self)
     {
         public MemberAccumulator Analyze(PropertyAnalysisContext context) => self.Add(context.TryParse()
             .Bind(binding => context.ResolveGetters(binding)

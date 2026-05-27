@@ -1,12 +1,12 @@
-﻿using System.Collections.Immutable;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 
 internal static class PropertyShapeValidator
 {
-    extension (PropertyAnalysisContext self)
+    extension(PropertyAnalysisContext self)
     {
         public BindingResult<Unit> Validate(ParsedBindingAttribute binding, ImmutableHashSet<string> usedFieldNames) => self switch
         {

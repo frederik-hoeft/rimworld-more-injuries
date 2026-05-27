@@ -1,5 +1,5 @@
-﻿using System.Collections.Immutable;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Models;
 

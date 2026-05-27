@@ -6,7 +6,7 @@ namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 
 internal static class FieldDecorationResolver
 {
-    extension (PropertyAnalysisContext self)
+    extension(PropertyAnalysisContext self)
     {
         public BindingResult<FieldDecorationSpec> ResolveFieldDecorations(ParsedBindingAttribute binding)
         {
