@@ -34,6 +34,8 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
 
     public override string CompLabelInBracketsExtra => IsCoughing ? "MI_Coughing".Translate() : string.Empty;
 
+    public override string CompDescriptionExtra => $"\n{"MI_ChokingDescriptionExtra".Translate(FluidBuildup.ToStringPercent("F1"))}";
+
     public float FluidBuildup => _fluidBurden / Simulation.Parameters.MaximumFluidBurden;
 
     public float ReduceFluidBuildup(float severityReduction)
@@ -51,8 +53,6 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
         _fluidBurden = Mathf.Clamp(0f, oldFluidBurden - actualReduction, maximumFluidBurden);
         return actualReduction / maximumFluidBurden;
     }
-
-    public override string CompDescriptionExtra => "MI_ChokingDescriptionExtra".Translate(FluidBuildup.ToStringPercent("F1"));
 
     public override void CompPostMake()
     {
@@ -114,7 +114,7 @@ public sealed class HediffComp_Choking : HediffComp, IHediffCompHandler
         }
         Pawn patient = parent.pawn;
         float currentSeverity = parent.Severity;
-        CurrentChokingSimulationState currentState = new(currentSeverity, FluidBuildup, TryGetSource()?.BleedRate ?? 0f, patient.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness));
+        CurrentChokingSimulationState currentState = new(currentSeverity, _fluidBurden, TryGetSource()?.BleedRate ?? 0f, patient.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness));
         NextChokingSimulationState nextState = Simulation.MoveNext(in currentState);
         float severityChange = nextState.SeverityChange;
         float nextFluidBurden = nextState.FluidBurden;

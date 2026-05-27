@@ -8,7 +8,7 @@ namespace MoreInjuries.HealthConditions.Choking.Simulation;
 
 internal sealed class ChokingSimulation
 {
-    private const float FLUID_MODEL_REFERENCE_RESOLUTION = 750f;
+    private const float FLUID_MODEL_REFERENCE_RESOLUTION = 250f;
     private readonly ChokingSimulationParameters _parameters;
 
     public ChokingSimulation(HediffComp_Choking context, ChokingSimulationParameters parameters)

@@ -182,6 +182,7 @@ internal readonly record struct ChokingSimulationParameters
         ChokingSeverityRecoveryPerDay = 2.0f,
 
         CoughSeverityRecoveryPerDay = 24f,
+
         CoughRecoveryFluidHalfEffect = 0.02f,
         CoughRecoveryFluidExponent = 2f,
         CoughRecoveryBleedHalfEffect = 0.05f,
