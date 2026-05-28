@@ -77,7 +77,11 @@ public partial class MoreInjuriesSettings : ModSettings
     internal partial ref bool EnableChokingSounds { get; }
 
     [SettingsEntry<float>(DefaultValue = 0.25f)]
+    [Obsolete("This setting is no longer used and will be removed in a future update.")]
     internal partial ref float SuctionDeviceMinimumSuccessRate { get; }
+    
+    [SettingsEntry<float>(DefaultValue = 1.0f)]
+    internal partial ref float SuctionDeviceEffectivenessMultiplier { get; }
 
     // lung collapse
     [SettingsEntry<bool>(DefaultValue = true)]

@@ -5,7 +5,9 @@
     <label>choking on blood</label>
     <description>Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. The bleeding must be stopped and the airways cleared to prevent death. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. Otherwise, the airways must be cleared using a specialized airway suction device or by compressing the chest using CPR to expel the blood and restore breathing.</description>
     <defaultLabelColor>(255, 102, 102)</defaultLabelColor>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
     <tendable>false</tendable>
+    <maxSeverity>1.001</maxSeverity>
     <modExtensions>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffModifier_SeverityModifiers_ModExtension">
         <modifiers>
@@ -24,9 +26,6 @@
       </li>
     </modExtensions>
     <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>2.0</severityPerDay>
-      </li>
       <li Class="HediffCompProperties_Discoverable">
         <sendLetterWhenDiscovered>false</sendLetterWhenDiscovered>
       </li>
@@ -37,7 +36,10 @@
       </li>
       <li Class="MoreInjuries.HealthConditions.Secondary.HediffCompProperties_CausedBy"></li>
       <li Class="MoreInjuries.HealthConditions.Choking.HediffCompProperties_Choking">
-        <chokingIntervalTicks>750</chokingIntervalTicks>
+        <tickInterval>250</tickInterval>
+        <soundBackoffInterval>750</soundBackoffInterval>
+        <soundTriggerChance>0.25</soundTriggerChance>
+        <soundRandomizationChance>0.25</soundRandomizationChance>
       </li>
     </comps>
     <stages>
@@ -82,6 +84,10 @@
             <capacity>Breathing</capacity>
             <setMax>0.55</setMax>
           </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.7</setMax>
+          </li>
         </capMods>
       </li>
       <li>
@@ -92,6 +98,10 @@
           <li>
             <capacity>Breathing</capacity>
             <setMax>0.4</setMax>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.55</setMax>
           </li>
         </capMods>
       </li>
@@ -104,6 +114,10 @@
             <capacity>Breathing</capacity>
             <setMax>0.25</setMax>
           </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.25</setMax>
+          </li>
         </capMods>
       </li>
       <li>
@@ -111,6 +125,10 @@
         <label>terminal</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
           <li>
             <capacity>Breathing</capacity>
             <setMax>0.1</setMax>
@@ -122,6 +140,10 @@
         <label>fatal</label>
         <lifeThreatening>true</lifeThreatening>
         <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.01</setMax>
+          </li>
           <li>
             <capacity>Breathing</capacity>
             <setMax>0</setMax>
@@ -137,9 +159,9 @@
     <description>A severe lack of intellect caused a potentially fatal mishap in form of a misapplied tourniquet.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <makesSickThought>false</makesSickThought>
-    <lethalSeverity>1</lethalSeverity>
     <tendable>false</tendable>
     <initialSeverity>0.001</initialSeverity>
+    <alwaysShowSeverity>true</alwaysShowSeverity>
     <removeOnRedressChanceByDaysCurve>
       <points>
         <li>(0, 1)</li>
@@ -177,7 +199,7 @@
         <label>struggling</label>
         <capMods>
           <li>
-            <capacity>Consciousness</capacity>
+            <capacity>Breathing</capacity>
             <setMax>0.5</setMax>
           </li>
         </capMods>
@@ -190,6 +212,10 @@
             <capacity>Consciousness</capacity>
             <setMax>0.25</setMax>
           </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <setMax>0.25</setMax>
+          </li>
         </capMods>
       </li>
       <li>
@@ -200,6 +226,21 @@
           <li>
             <capacity>Consciousness</capacity>
             <setMax>0.01</setMax>
+          </li>
+          <li>
+            <capacity>Breathing</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>1</minSeverity>
+        <label>fatal</label>
+        <lifeThreatening>true</lifeThreatening>
+        <capMods>
+          <li>
+            <capacity>Breathing</capacity>
+            <setMax>0</setMax>
           </li>
         </capMods>
       </li>

@@ -15,7 +15,7 @@ public sealed class HediffCompHandler_SecondaryCondition_Tick_SingleExecutionPer
             return true;
         }
         // check if we already executed this handler for this pawn in this tick interval
-        int ticks = Find.TickManager.TicksGame;
+        int ticks = GenTicks.TicksGame;
         if (_perHediffDefSingletonCache.TryGetValue(comp.Pawn, out TimedDataEntry<bool> entry))
         {
             if (entry.TimeStamp + TickInterval > ticks)

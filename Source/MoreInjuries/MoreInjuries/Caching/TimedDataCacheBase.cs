@@ -24,7 +24,7 @@ public abstract class TimedDataCacheBase<TOwner, TData, TState, TCacheEntry>
         Throw.ArgumentNullException.IfNull(owner);
         lock (_lock)
         {
-            int currentTicks = Find.TickManager.TicksGame;
+            int currentTicks = GenTicks.TicksGame;
             if (TryGetValue(owner, out TCacheEntry? entry))
             {
                 if (!forceRefresh && !entry.IsExpired(this, currentTicks) && entry.Data is TData materializedData)
@@ -57,7 +57,7 @@ public abstract class TimedDataCacheBase<TOwner, TData, TState, TCacheEntry>
         {
             if (TryGetValue(owner, out TCacheEntry? entry))
             {
-                entry.MarkDirty();
+                entry.Expire();
                 return true;
             }
             return false;

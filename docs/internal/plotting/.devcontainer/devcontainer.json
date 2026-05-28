@@ -1,0 +1,47 @@
+{
+  "name": "Python Development Container",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "python-dev",
+  "workspaceFolder": "/lab",
+  "shutdownAction": "stopCompose",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.pylint",
+        "ms-python.black-formatter",
+        "ms-toolsai.jupyter",
+        "charliermarsh.ruff",
+        "ms-python.isort",
+        "ms-python.debugpy",
+        "mechatroner.rainbow-csv"
+      ],
+      "settings": {
+        "python.terminal.activateEnvironment": true,
+        "python.linting.enabled": true,
+        "python.formatting.provider": "black",
+        "python.linting.pylintEnabled": true,
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "files.autoSave": "afterDelay"
+      }
+    }
+  },
+  "forwardPorts": [8000, 8080, 5000, 8888],
+  "portsAttributes": {
+    "8000": {"label": "Web App", "onAutoForward": "silent"},
+    "8080": {"label": "Alt Web", "onAutoForward": "silent"},
+    "5000": {"label": "Flask/API", "onAutoForward": "silent"},
+    "8888": {"label": "Jupyter", "onAutoForward": "notify"}
+  },
+  "postCreateCommand": "echo '✨ uv is installed! Use: uv sync --dev'",
+  "remoteUser": "dev"
+}

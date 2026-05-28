@@ -20,15 +20,16 @@ public abstract class WorkGiver_MoreInjuriesTreatmentBase : WorkGiver_Scanner
 
     public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn) => pawn.Map.mapPawns.SpawnedHumanlikesWithAnyHediff;
 
-    protected virtual bool IsValidPatient(Pawn doctor, Thing thing, out Pawn patient)
+    protected virtual bool IsValidPatient(Pawn doctor, Thing thing, [NotNullWhen(true)] out Pawn? patient)
     {
-        if (thing is not Pawn)
+        if (thing is not Pawn p)
         {
-            patient = null!;
+            patient = null;
             return false;
         }
-        patient = (Pawn)thing;
+        patient = p;
         return doctor != patient
+            && patient.playerSettings?.medCare is not MedicalCareCategory.NoCare
             && GoodLayingStatusForTend(patient, doctor)
             && !patient.IsForbidden(doctor)
             && (!patient.IsMutant || patient.mutant.Def.entitledToMedicalCare)
@@ -37,7 +38,7 @@ public abstract class WorkGiver_MoreInjuriesTreatmentBase : WorkGiver_Scanner
 
     public override bool HasJobOnThing(Pawn pawn, Thing thing, bool forced = false)
     {
-        if (IsValidPatient(pawn, thing, out Pawn patient) && CanTreat(pawn, patient))
+        if (IsValidPatient(pawn, thing, out Pawn? patient) && CanTreat(pawn, patient))
         {
             return pawn.CanReserve(patient, ignoreOtherReservations: forced);
         }

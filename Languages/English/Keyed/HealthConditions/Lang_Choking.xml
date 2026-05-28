@@ -6,4 +6,6 @@
   <MI_UseSuctionDeviceFailed_Unavailable>{0}: no suction device available</MI_UseSuctionDeviceFailed_Unavailable>
   <!-- EN: coughing -->
   <MI_Coughing>coughing</MI_Coughing>
+  <!-- EN: Airway fluid buildup: {0} -->
+  <MI_ChokingDescriptionExtra>Airway fluid buildup: {0}</MI_ChokingDescriptionExtra>
 </LanguageData>

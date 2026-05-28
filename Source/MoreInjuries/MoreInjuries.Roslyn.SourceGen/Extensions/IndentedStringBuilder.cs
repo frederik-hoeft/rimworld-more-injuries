@@ -26,9 +26,11 @@ internal sealed class IndentedStringBuilder(StringBuilder builder, int indentLev
         return this;
     }
 
-    public IndentedStringBuilder AppendLine(string line)
+    public IndentedStringBuilder AppendLine(string line) => Append(line).AppendLine();
+
+    public IndentedStringBuilder AppendLine()
     {
-        Append(line).Raw.AppendLine();
+        builder.Append('\n');
         return this;
     }
 
@@ -41,13 +43,15 @@ internal sealed class IndentedStringBuilder(StringBuilder builder, int indentLev
         {
             int endIndex = startIndex + lineIndex;
             // string possibly has \r\n line endings, so trim any trailing \r from the line
-            builder.Append(IndentString).AppendLine(blockSpan[startIndex..endIndex].TrimEnd('\r').ToString());
+            AppendLine(blockSpan[startIndex..endIndex].TrimEnd('\r').ToString());
             startIndex = endIndex + 1;
         }
         if (startIndex < blockSpan.Length)
         {
-            builder.Append(IndentString).AppendLine(blockSpan[startIndex..].TrimEnd('\r').ToString());
+            AppendLine(blockSpan[startIndex..].TrimEnd('\r').ToString());
         }
         return this;
     }
+
+    public override string ToString() => builder.ToString();
 }

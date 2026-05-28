@@ -1,7 +1,7 @@
-﻿using System.Collections.Immutable;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Models;
+using System.Collections.Immutable;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Analysis;
 

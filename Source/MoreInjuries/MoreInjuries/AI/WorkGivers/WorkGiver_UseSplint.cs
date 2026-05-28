@@ -11,9 +11,9 @@ public class WorkGiver_UseSplint : WorkGiver_MoreInjuriesTreatmentBase
 {
     protected override bool CanTreat(Hediff hediff) => Array.IndexOf(JobDriver_UseSplint.TargetHediffDefs, hediff.def) != -1;
 
-    protected override bool IsValidPatient(Pawn doctor, Thing thing, out Pawn patient) =>
-        base.IsValidPatient(doctor, thing, out patient)
-        && patient.playerSettings?.medCare is not MedicalCareCategory.NoCare and not MedicalCareCategory.NoMeds;
+    protected override bool IsValidPatient(Pawn doctor, Thing thing, [NotNullWhen(true)] out Pawn? patient) => base.IsValidPatient(doctor, thing, out patient)
+        // base implementation already checks for NoCare, but we further require that we are allowed to use medication
+        && patient.playerSettings?.medCare is not MedicalCareCategory.NoMeds;
 
     protected override bool CanTreat(Pawn doctor, Pawn patient) =>
         MedicalDeviceHelper.FindMedicalDevice(doctor, patient, KnownThingDefOf.Splint, JobDriver_UseSplint.TargetHediffDefs) is not null

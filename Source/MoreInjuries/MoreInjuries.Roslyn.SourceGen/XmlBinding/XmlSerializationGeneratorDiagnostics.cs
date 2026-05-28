@@ -102,4 +102,12 @@ internal static class XmlSerializationGeneratorDiagnostics
         category: CATEGORY,
         defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true);
+
+    public static DiagnosticDescriptor GenericDefaultValueTypeMismatch { get; } = new(
+        id: "MIXML013",
+        title: "Generic default value type mismatch",
+        messageFormat: $"Property '{{0}}' in class '{{1}}' uses XmlBinding<{{2}}> but the property type is '{{3}}'. The generic type argument must be implicitly convertible to the property type.",
+        category: CATEGORY,
+        defaultSeverity: DiagnosticSeverity.Error,
+        isEnabledByDefault: true);
 }

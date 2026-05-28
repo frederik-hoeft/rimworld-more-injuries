@@ -1,0 +1,11 @@
+[project]
+name = "more-injuries-plotting-workspace"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "scipy",
+]

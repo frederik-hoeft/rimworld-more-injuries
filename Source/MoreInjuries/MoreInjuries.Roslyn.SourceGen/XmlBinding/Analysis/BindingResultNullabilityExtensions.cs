@@ -4,7 +4,7 @@
 // Unit() function is implicit since any struct can be implicitly converted to its nullable version, and the extension methods will only execute if the value is not null.
 internal static class BindingResultNullabilityExtensions
 {
-    extension<T> (BindingResult<T>? self)
+    extension<T>(BindingResult<T>? self)
     {
         public BindingResult<TResult>? Map<TResult>(Func<T, TResult> map) => self?.Map(map);
 

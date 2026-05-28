@@ -2,7 +2,7 @@
 
 namespace MoreInjuries.Caching;
 
-internal sealed class TimedDataEntry<TData> : TimedDataEntryBase<TData>
+public sealed class TimedDataEntry<TData> : TimedDataEntryBase<TData>
 {
     public override TData? Data { get; protected set; }
 

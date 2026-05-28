@@ -35,4 +35,6 @@
   <ChokingOnTourniquet.stages.intermittent_consciousness.label>intermittent consciousness</ChokingOnTourniquet.stages.intermittent_consciousness.label>
   <!-- EN: unconscious -->
   <ChokingOnTourniquet.stages.unconscious.label>unconscious</ChokingOnTourniquet.stages.unconscious.label>
+  <!-- EN: fatal -->
+  <ChokingOnTourniquet.stages.fatal.label>fatal</ChokingOnTourniquet.stages.fatal.label>
 </LanguageData>

@@ -3,7 +3,7 @@ using MoreInjuries.Roslyn.Future.ThrowHelpers;
 
 namespace MoreInjuries.Caching;
 
-internal sealed class Poolable<T>(IPool<Poolable<T>> pool, Predicate<T>? canPool = null, Action<T>? reset = null, Func<T>? factory = null) : IDisposable
+public sealed class Poolable<T>(IPool<Poolable<T>> pool, Predicate<T>? canPool = null, Action<T>? reset = null, Func<T>? factory = null) : IDisposable
 {
     private bool _isPooled = true;
     private T? _value;

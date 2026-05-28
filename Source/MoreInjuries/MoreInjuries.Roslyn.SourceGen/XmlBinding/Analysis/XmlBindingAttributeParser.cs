@@ -9,10 +9,10 @@ internal static class XmlBindingAttributeParser
 {
     private static readonly string s_xmlMemberGenericFullName = typeof(XmlBindingAttribute<>).FullName;
 
-    extension (PropertyAnalysisContext self)
+    extension(PropertyAnalysisContext self)
     {
         public BindingResult<ParsedBindingAttribute>? TryParse() =>
-            TryParseNonGeneric(self) ?? TryParseGeneric(self.Property);
+            TryParseNonGeneric(self) ?? TryParseGeneric(self);
     }
 
     private static BindingResult<ParsedBindingAttribute>? TryParseNonGeneric(PropertyAnalysisContext context)
@@ -37,21 +37,45 @@ internal static class XmlBindingAttributeParser
         };
     }
 
-    private static BindingResult<ParsedBindingAttribute>? TryParseGeneric(IPropertySymbol property) => property.GetAttributes()
-        .Select(TryParseGeneric)
+    private static BindingResult<ParsedBindingAttribute>? TryParseGeneric(PropertyAnalysisContext context) => context.Property.GetAttributes()
+        .Select(attribute => TryParseGeneric(context, attribute))
         .FirstOrDefault(static result => result is not null);
 
-    private static BindingResult<ParsedBindingAttribute>? TryParseGeneric(AttributeData attribute) => attribute switch
+    private static BindingResult<ParsedBindingAttribute>? TryParseGeneric(PropertyAnalysisContext context, AttributeData attribute) => attribute switch
     {
         {
             AttributeClass: { IsGenericType: true } attributeClass,
             ConstructorArguments: [{ Value: string fieldName }, TypedConstant defaultValue],
         } when attributeClass.ConstructUnboundGenericType().GetFullMetadataName().Equals(s_xmlMemberGenericFullName, StringComparison.Ordinal) =>
-            BindingResult<ParsedBindingAttribute>.Success(new ParsedBindingAttribute(
-                fieldName,
-                DefaultValue: new DefaultValueSpec(defaultValue.ToCSharpStringWithPostfix(), IsNullable: false),
-                attribute.GetAllowRawAccess(),
-                attribute)),
+            ValidateGenericTypeArgument(context, attributeClass, fieldName, defaultValue, attribute),
         _ => null,
     };
+
+    private static BindingResult<ParsedBindingAttribute> ValidateGenericTypeArgument(
+        PropertyAnalysisContext context,
+        INamedTypeSymbol attributeClass,
+        string fieldName,
+        TypedConstant defaultValue,
+        AttributeData attribute)
+    {
+        ITypeSymbol genericTypeArg = attributeClass.TypeArguments[0];
+        ITypeSymbol propertyType = context.Property.Type;
+
+        if (!genericTypeArg.IsImplicitlyConvertible(propertyType))
+        {
+            return BindingResult<ParsedBindingAttribute>.Failure(Diagnostic.Create(
+                XmlSerializationGeneratorDiagnostics.GenericDefaultValueTypeMismatch,
+                context.Location,
+                context.PropertyName,
+                context.TypeName,
+                genericTypeArg.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat),
+                propertyType.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat)));
+        }
+
+        return BindingResult<ParsedBindingAttribute>.Success(new ParsedBindingAttribute(
+            fieldName,
+            DefaultValue: new DefaultValueSpec(defaultValue.ToCSharpStringWithPostfix(), IsNullable: false),
+            attribute.GetAllowRawAccess(),
+            attribute));
+    }
 }

@@ -1,7 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-using Microsoft.CodeAnalysis.CSharp;
+﻿using Microsoft.CodeAnalysis.CSharp;
 using MoreInjuries.Roslyn.SourceGen.Extensions;
 using MoreInjuries.Roslyn.SourceGen.XmlBinding.Models;
+using System.Runtime.CompilerServices;
 
 namespace MoreInjuries.Roslyn.SourceGen.XmlBinding.Rendering;
 
