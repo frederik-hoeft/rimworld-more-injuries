@@ -26,7 +26,7 @@ internal sealed class SkillBasedOutcomeCurve(OutcomeRange lower, OutcomeRange up
         skill = Mathf.Max(0f, skill);
 
         float midSkillCompetence = Mathf.Logistic(skill, LogisticMidpoint, LogisticSharpness);
-        float basicFalloff = 1f - Mathf.InverseHillFactor(skill, EarlySkillHalfEffect, EarlySkillExponent);
+        float basicFalloff = 1f - Mathf.InverseHill(skill, EarlySkillHalfEffect, EarlySkillExponent);
         return midSkillCompetence * basicFalloff;
     }
 
@@ -38,6 +38,12 @@ internal sealed class SkillBasedOutcomeCurve(OutcomeRange lower, OutcomeRange up
         return new FloatRange(skillBasedMin * scale, skillBasedMax * scale);
     }
 
+    public FloatRange Evaluate(ref readonly TreatmentInfo treatmentInfo, float scale = 1f) =>
+        Evaluate(treatmentInfo.DoctorSkill, treatmentInfo.Effectiveness, scale);
+
     public FloatRange Evaluate(Pawn doctor, HediffComp comp, JobDef jobDef, float scale = 1f) =>
         Evaluate(doctor.GetMedicalSkillLevelOrDefault(), comp.GetTreatmentEffectivenessModifier(jobDef), scale);
+
+    public FloatRange  Evaluate(float skill, HediffComp comp, JobDef jobDef, float scale = 1f) =>
+        Evaluate(skill, comp.GetTreatmentEffectivenessModifier(jobDef), scale);
 }

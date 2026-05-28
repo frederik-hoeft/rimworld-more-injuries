@@ -41,10 +41,15 @@ public class JobDriver_PerformCpr : JobDriver_UseMedicalDevice_TargetsHediffDefs
             float oldFluidBuildup = comp.FluidBuildup;
 
             // TODO: add CPR effectiveness settings here
-            float severityReliefFraction = CprChokingSeverityReliefCurve.Evaluate(doctor, comp, job.def).RandomInRange;
-            float fluidReduction = CprChokingFluidReductionCurve.Evaluate(doctor, comp, job.def).RandomInRange;
+            TreatmentInfo treatmentInfo = this.GetTreatmentInfo(doctor, choking);
+            float severityReliefFraction = CprChokingSeverityReliefCurve.Evaluate(in treatmentInfo).RandomInRange;
+            float severityReliefOffsetMax = 1f / 16f * Mathf.Logistic(treatmentInfo.DoctorSkill,
+                CprChokingSeverityReliefCurve.LogisticMidpoint,
+                CprChokingSeverityReliefCurve.LogisticSharpness);
+            float severityReliefOffset = Rand.Range(0f, severityReliefOffsetMax);
+            choking.Severity = Mathf.Clamp((oldSeverity * (1f - severityReliefFraction)) - severityReliefOffset, min: 0.001f, max: 1f);
 
-            choking.Severity = Mathf.Clamp01(oldSeverity * (1f - severityReliefFraction));
+            float fluidReduction = CprChokingFluidReductionCurve.Evaluate(in treatmentInfo).RandomInRange;
             float removedFluidBurden = comp.ReduceFluidBuildup(fluidReduction);
 
             Logger.LogDebug(

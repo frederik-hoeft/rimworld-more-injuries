@@ -133,8 +133,8 @@ internal sealed class ChokingSimulation
 
     private float CalculateAirwayClearRecoveryFactor(float fluidBurden, float bleedRate, float coughStrength)
     {
-        float lowFluidFactor = Mathf.InverseHillFactor(fluidBurden, _parameters.CoughRecoveryFluidHalfEffect, _parameters.CoughRecoveryFluidExponent);
-        float lowBleedFactor = Mathf.InverseHillFactor(bleedRate, _parameters.CoughRecoveryBleedHalfEffect, _parameters.CoughRecoveryBleedExponent);
+        float lowFluidFactor = Mathf.InverseHill(fluidBurden, _parameters.CoughRecoveryFluidHalfEffect, _parameters.CoughRecoveryFluidExponent);
+        float lowBleedFactor = Mathf.InverseHill(bleedRate, _parameters.CoughRecoveryBleedHalfEffect, _parameters.CoughRecoveryBleedExponent);
         return coughStrength * lowFluidFactor * lowBleedFactor;
     }
 
