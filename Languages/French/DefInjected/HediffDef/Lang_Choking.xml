@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- Localization for ChokingOnBlood -->
+  <!-- EN: choking on blood -->
+  <ChokingOnBlood.label>hémoptysie</ChokingOnBlood.label>
+  <!-- EN: Blood from traumatic injuries being aspirated into the airways triggers coughing and causes suffocation. The bleeding must be stopped and the airways cleared to prevent death. If the patient is conscious, they may be able to cough up the blood on their own and clear the airway. Otherwise, the airways must be cleared using a specialized airway suction device or by compressing the chest using CPR to expel the blood and restore breathing. -->
+  <ChokingOnBlood.description>Le sang provenant de blessures traumatiques, aspiré dans les voies respiratoires, provoque la toux et peut entraîner l’étouffement. Il est essentiel d’arrêter le saignement et de dégager les voies respiratoires pour éviter la mort. Si le patient est conscient, il peut parfois expulser le sang par lui-même et libérer ses voies respiratoires. Sinon, il faut utiliser un dispositif spécialisé d’aspiration des voies respiratoires ou comprimer la poitrine par la RCP pour expulser le sang et rétablir la respiration.</ChokingOnBlood.description>
+  <!-- EN: {0} is choking on blood! -->
+  <ChokingOnBlood.comps.HediffComp_MessageAfterTicks.message>{0} s'étouffe avec son sang !</ChokingOnBlood.comps.HediffComp_MessageAfterTicks.message>
+  <!-- EN: initial -->
+  <ChokingOnBlood.stages.initial.label>initiale</ChokingOnBlood.stages.initial.label>
+  <!-- EN: minor -->
+  <ChokingOnBlood.stages.minor.label>mineure</ChokingOnBlood.stages.minor.label>
+  <!-- EN: moderate -->
+  <ChokingOnBlood.stages.moderate.label>modérée</ChokingOnBlood.stages.moderate.label>
+  <!-- EN: severe -->
+  <ChokingOnBlood.stages.severe.label>sévère</ChokingOnBlood.stages.severe.label>
+  <!-- EN: very severe -->
+  <ChokingOnBlood.stages.very_severe.label>très sévère</ChokingOnBlood.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <ChokingOnBlood.stages.extreme.label>extrême</ChokingOnBlood.stages.extreme.label>
+  <!-- Localization for ChokingOnTourniquet -->
+  <!-- EN: choking on tourniquet -->
+  <ChokingOnTourniquet.label>étouffement avec un garrot</ChokingOnTourniquet.label>
+  <!-- EN: A severe lack of intellect caused a potentially fatal mishap in form of a misapplied tourniquet. -->
+  <ChokingOnTourniquet.description>Un choix douteux a causé un incident potentiellement fatal sous la forme d’un garrot mal appliqué.</ChokingOnTourniquet.description>
+  <!-- EN: struggling -->
+  <ChokingOnTourniquet.stages.struggling.label>en difficulté</ChokingOnTourniquet.stages.struggling.label>
+  <!-- EN: intermittent consciousness -->
+  <ChokingOnTourniquet.stages.intermittent_consciousness.label>conscience intermittente</ChokingOnTourniquet.stages.intermittent_consciousness.label>
+  <!-- EN: unconscious -->
+  <ChokingOnTourniquet.stages.unconscious.label>inconscient</ChokingOnTourniquet.stages.unconscious.label>
+</LanguageData>

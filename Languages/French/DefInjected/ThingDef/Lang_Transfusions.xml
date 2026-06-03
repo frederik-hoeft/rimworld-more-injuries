@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: blood bag -->
+  <WholeBloodBag.label>poche de sang</WholeBloodBag.label>
+  <!-- EN: A 750ml bag of whole blood from a blood donation, ready for transfusion. It is used in the treatment of massive bleeding and allows quick restoration of blood volume to combat the effects of hypovolemic shock. Must be stored in a refrigerator or freezer.\n\nBlood can be drawn from a healthy colonist or prisoner and stored in a blood bag for later use. -->
+  <WholeBloodBag.description>Une poche de 750ml de sang total provenant d’un don sanguin, prêt pour transfusion. Il est utilisé dans le traitement des hémorragies massives et permet une restauration rapide du volume sanguin pour contrer les effets du choc hypovolémique. Doit être conservé au réfrigérateur ou au congélateur. Le sang peut être prélevé sur un coloniste ou prisonnier sain et stocké dans un poche sanguin pour usage ultérieur.</WholeBloodBag.description>
+  <!-- EN: saline IV bag -->
+  <SalineBag.label>poche de perfusion saline</SalineBag.label>
+  <!-- EN: A 250ml bag of 0.9% sodium chloride solution, commonly known as normal saline. This sterile, isotonic fluid is used for intravenous resuscitation to quickly restore circulating volume during hypovolemic shock. While it helps stabilize blood pressure and prevent dehydration, it contains no red blood cells and cannot replace lost oxygen-carrying capacity or clotting factors.\n\nExcessive use may cause hemodilution or coagulopathy, so it should only be used in small amounts or in conjunction with whole blood or other blood products. -->
+  <SalineBag.description>Une poche de 250ml de solution de chlorure de sodium à 0,9%, communément appelée solution saline normale. Ce liquide stérile et isotone est utilisé pour la réanimation intraveineuse afin de restaurer rapidement le volume circulant lors d’un choc hypovolémique. Bien qu’il aide à stabiliser la pression sanguine et prévenir la déshydratation, il ne contient pas de globules rouges et ne peut pas remplacer la capacité de transport d’oxygène ou les facteurs de coagulation perdus.\n\nUne utilisation excessive peut provoquer une hémodilution ou une coagulopathie, il doit donc être utilisé uniquement en petites quantités ou en complément de sang total ou d’autres produits sanguins.</SalineBag.description>
+</LanguageData>

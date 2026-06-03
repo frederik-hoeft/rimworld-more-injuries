@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: bone fracture -->
+  <Fracture.label>fracture osseuse</Fracture.label>
+  <!-- EN: A partial or complete break of a bone caused by trauma, overuse, or disease. The bone may be cracked, splintered, or completely broken into two or more pieces. Until properly treated, the affected limb will be unable to bear weight or move properly, causing severe pain and loss of function.\n\nMust either be splinted to immobilize the bone and promote healing over time, or surgically repaired to realign and stabilize the bone, allowing for quick recovery. -->
+  <Fracture.description>Une fracture partielle ou complète d’un os causée par un traumatisme, une surutilisation ou une maladie. L’os peut être fissuré, éclaté ou complètement brisé en deux ou plusieurs morceaux. Tant qu’elle n’est pas correctement traitée, la partie affectée ne pourra pas supporter de poids ni se déplacer correctement, entraînant une douleur intense et une perte de fonction.\n\nElle doit soit être immobilisée à l’aide d’une attelle pour permettre la guérison au fil du temps, soit être réparée chirurgicalement pour réaligner et stabiliser l’os, permettant une récupération rapide.</Fracture.description>
+  <!-- EN: healing bone fracture -->
+  <FractureHealing.label>fracture osseuse en guérison</FractureHealing.label>
+  <!-- EN: A bone fracture that is in the process of healing. The bone is still weak and restricted in movement, but the limb is slowly regaining function as the bone knits back together.\n\nOver time, the bone will become stronger and the limb will regain full function. -->
+  <FractureHealing.description>Une fracture osseuse en cours de guérison. L’os reste encore fragile et le mouvement est limité, mais le membre retrouve progressivement sa fonction à mesure que l’os se consolide.\n\nAvec le temps, l’os deviendra plus solide et le membre retrouvera sa fonction complète.</FractureHealing.description>
+  <!-- EN: nearly healed -->
+  <FractureHealing.stages.nearly_healed.label>presque guérie</FractureHealing.stages.nearly_healed.label>
+  <!-- EN: cut (bone fragments) -->
+  <BoneFragmentLaceration.label>coupure (fragments d’os)</BoneFragmentLaceration.label>
+  <!-- EN: a bone fragment cut -->
+  <BoneFragmentLaceration.labelNoun>une coupure due à un fragment osseux</BoneFragmentLaceration.labelNoun>
+  <!-- EN: A cut caused by fragments of a bone. -->
+  <BoneFragmentLaceration.description>Une coupure causée par des fragments d’os.</BoneFragmentLaceration.description>
+  <!-- EN: bandaged -->
+  <BoneFragmentLaceration.comps.HediffComp_TendDuration.labelTendedWell>bandée</BoneFragmentLaceration.comps.HediffComp_TendDuration.labelTendedWell>
+  <!-- EN: sutured -->
+  <BoneFragmentLaceration.comps.HediffComp_TendDuration.labelTendedWellInner>suturée</BoneFragmentLaceration.comps.HediffComp_TendDuration.labelTendedWellInner>
+  <!-- EN: set -->
+  <BoneFragmentLaceration.comps.HediffComp_TendDuration.labelSolidTendedWell>appliqué</BoneFragmentLaceration.comps.HediffComp_TendDuration.labelSolidTendedWell>
+  <!-- EN: cut scar -->
+  <BoneFragmentLaceration.comps.HediffComp_GetsPermanent.permanentLabel>cicatrice de coupure</BoneFragmentLaceration.comps.HediffComp_GetsPermanent.permanentLabel>
+  <!-- EN: Cut off -->
+  <BoneFragmentLaceration.injuryProps.destroyedLabel>Amputé</BoneFragmentLaceration.injuryProps.destroyedLabel>
+  <!-- EN: Cut out -->
+  <BoneFragmentLaceration.injuryProps.destroyedOutLabel>Détruit</BoneFragmentLaceration.injuryProps.destroyedOutLabel>
+</LanguageData>

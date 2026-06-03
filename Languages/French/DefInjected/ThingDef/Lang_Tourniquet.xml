@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: tourniquet -->
+  <Tourniquet.label>garrot</Tourniquet.label>
+  <!-- EN: A tourniquet is a constricting or compressing device used to control venous and arterial circulation to an extremity for a period of time. It is used to stop hemorrhaging (bleeding) and is most commonly used in emergency situations, such as battlefield injuries or accidents, to prevent hypovolemic shock and death.\n\nAs a tourniquet restricts blood flow to the limb, it should be removed as soon as possible to prevent ischemia (starvation of oxygen) and necrosis (cell death) in the limb, which can lead to gangrene or death from sepsis. -->
+  <Tourniquet.description>Un garrot est un dispositif de constriction ou de compression utilisé pour contrôler la circulation veineuse et artérielle d’un membre pendant un certain temps. Il sert à arrêter l’hémorragie et est le plus souvent utilisé en situation d’urgence, comme sur le champ de bataille ou lors d’accidents, pour prévenir le choc hypovolémique et la mort.\n\nComme un garrot restreint le flux sanguin vers le membre, il doit être retiré dès que possible pour prévenir l’ischémie (privation d’oxygène) et la nécrose (mort cellulaire), pouvant entraîner la gangrène ou la mort par sepsis.</Tourniquet.description>
+</LanguageData>

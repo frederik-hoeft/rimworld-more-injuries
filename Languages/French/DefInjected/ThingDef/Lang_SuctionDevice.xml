@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: airway suction device -->
+  <SuctionDevice.label>dispositif d’aspiration des voies respiratoires</SuctionDevice.label>
+  <!-- EN: An airway suction device is a medical device used to clear the airway of blood, vomit, or other obstructions that may prevent a patient from breathing properly. It is commonly used in emergency situations, such as when a patient is choking from blood or other fluids, to prevent asphyxiation and death. The hand-operated device uses a vacuum to remove fluids from the airway, allowing the patient to breathe freely and restoring normal respiration. -->
+  <SuctionDevice.description>Un dispositif d’aspiration des voies respiratoires est un appareil médical utilisé pour dégager les voies respiratoires du sang, vomissures ou autres obstructions pouvant empêcher la respiration. Il est couramment utilisé en urgence pour prévenir l’asphyxie et la mort. L’appareil à main utilise un vide pour retirer les fluides, permettant au patient de respirer librement et de rétablir la respiration normale.</SuctionDevice.description>
+</LanguageData>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: hemodilution -->
+  <Hemodilution.label>hémodilution</Hemodilution.label>
+  <!-- EN: Hemodilution is the dilution of the concentration of red blood cells and plasma constituents by partially substituting the blood with colloids or crystalloids. It often occurs as a result of excessive fluid resuscitation, particularly in trauma patients, when large volumes of saline or other intravenous fluids are administered to restore blood volume and pressure after significant blood loss.\n\nWhile the body can compensate for some degree of hemodilution, excessive dilution can lead to a significant reduction in the oxygen-carrying capacity of the blood and impair coagulation. In severe cases, it can result in hypoxia and dilutional coagulopathy, both of which can lead to increased risk of hemorrhage, organ failure, and death if not managed appropriately.\n\nHemodilution is typically treated by carefully managing fluid resuscitation, using blood products to restore red blood cell and plasma levels, and monitoring the patient's hemodynamic status closely to prevent complications. -->
+  <Hemodilution.description>L’hémodilution est la dilution de la concentration des globules rouges et des constituants plasmatiques par substitution partielle du sang avec des colloïdes ou des cristalloïdes. Elle survient souvent à la suite d’une réanimation liquidienne excessive, en particulier chez les patients traumatisés, lorsque de grands volumes de solution saline ou d’autres liquides intraveineux sont administrés pour restaurer le volume sanguin et la pression après une perte de sang importante.\n\nBien que le corps puisse compenser un certain degré d’hémodilution, une dilution excessive peut réduire de manière significative la capacité de transport d’oxygène du sang et altérer la coagulation. Dans les cas graves, elle peut entraîner une hypoxie et une coagulopathie par dilution, augmentant le risque d’hémorragie, de défaillance organique et de décès si elle n’est pas correctement gérée.\n\nL’hémodilution est généralement traitée en gérant avec soin la réanimation liquidienne, en utilisant des produits sanguins pour restaurer les niveaux de globules rouges et de plasma, et en surveillant étroitement l’état hémodynamique du patient pour prévenir les complications.</Hemodilution.description>
+  <!-- EN: minor -->
+  <Hemodilution.stages.minor.label>mineure</Hemodilution.stages.minor.label>
+  <!-- EN: moderate -->
+  <Hemodilution.stages.moderate.label>modérée</Hemodilution.stages.moderate.label>
+  <!-- EN: severe -->
+  <Hemodilution.stages.severe.label>sévère</Hemodilution.stages.severe.label>
+  <!-- EN: extreme -->
+  <Hemodilution.stages.extreme.label>extrême</Hemodilution.stages.extreme.label>
+  <!-- EN: terminal -->
+  <Hemodilution.stages.terminal.label>terminale</Hemodilution.stages.terminal.label>
+</LanguageData>

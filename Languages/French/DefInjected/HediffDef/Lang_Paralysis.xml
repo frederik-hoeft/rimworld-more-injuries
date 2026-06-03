@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: paralysis -->
+  <SpinalCordParalysis.label>paralysie</SpinalCordParalysis.label>
+  <!-- EN: Damage of spinal cord caused irrepairable movement disability, ranging from sensory loss to complete loss of movement. Although there have been reports of successful experimental treatments on distant glitterworlds using cellular regenerative neurosurgery to repair damaged nerve tissue and restore function to paralyzed limbs, for most people paralysis is a life-changing condition that requires the use of bionic implants or prosthetics to restore function. -->
+  <SpinalCordParalysis.description>Dommage à la moelle épinière causant une incapacité motrice irréparable, allant de la perte sensorielle à la perte complète de mouvement. Bien que des traitements expérimentaux aient réussi sur des mondes avancés lointains utilisant la neurochirurgie régénérative cellulaire pour réparer les tissus nerveux endommagés et restaurer la fonction des membres paralysés, pour la plupart des personnes la paralysie est une condition définitive, nécessitant l’usage d’implants bioniques ou de prothèses pour restaurer la motricité.</SpinalCordParalysis.description>
+  <!-- EN: sensory loss -->
+  <SpinalCordParalysis.stages.sensory_loss.label>perte sensorielle</SpinalCordParalysis.stages.sensory_loss.label>
+  <!-- EN: partial -->
+  <SpinalCordParalysis.stages.partial.label>partielle</SpinalCordParalysis.stages.partial.label>
+  <!-- EN: full -->
+  <SpinalCordParalysis.stages.full.label>complète</SpinalCordParalysis.stages.full.label>
+</LanguageData>

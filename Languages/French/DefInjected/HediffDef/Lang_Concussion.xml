@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: concussion -->
+  <Concussion.label>traumatisme crânien</Concussion.label>
+  <!-- EN: a concussion -->
+  <Concussion.labelNoun>un traumatisme crânien</Concussion.labelNoun>
+  <!-- EN: A concussion, also known as a mild traumatic brain injury (mTBI), is a head injury that temporarily affects brain functioning. Symptoms may include loss of consciousness; memory loss; headaches; difficulty with thinking, concentration, or balance; nausea; blurred vision; dizziness; sleep disturbances, and mood changes.\n\nShould resolve on its own within a few days, but can be worsened by repeated head injuries. -->
+  <Concussion.description>Une commotion cérébrale, également appelée traumatisme crânien léger (TCC léger), est une blessure à la tête qui affecte temporairement le fonctionnement du cerveau. Les symptômes peuvent inclure une perte de conscience, des pertes de mémoire, des maux de tête, des difficultés de réflexion, de concentration ou d’équilibre, des nausées, une vision floue, des vertiges, des troubles du sommeil et des changements d’humeur.\n\nElle devrait se résorber d’elle-même en quelques jours, mais peut s’aggraver en cas de blessures répétées à la tête.</Concussion.description>
+  <!-- EN: headache -->
+  <Concussion.stages.headache.label>mal de crâne</Concussion.stages.headache.label>
+  <!-- EN: severe headache -->
+  <Concussion.stages.severe_headache.label>mal de crâne sévère</Concussion.stages.severe_headache.label>
+  <!-- EN: confused -->
+  <Concussion.stages.confused.label>confus</Concussion.stages.confused.label>
+  <!-- EN: blind and confused -->
+  <Concussion.stages.blind_and_confused.label>aveugle et confus</Concussion.stages.blind_and_confused.label>
+  <!-- EN: intermittent consciousness -->
+  <Concussion.stages.intermittent_consciousness.label>conscience intermittente</Concussion.stages.intermittent_consciousness.label>
+  <!-- EN: uncounscious -->
+  <Concussion.stages.uncounscious.label>inconscient</Concussion.stages.uncounscious.label>
+</LanguageData>

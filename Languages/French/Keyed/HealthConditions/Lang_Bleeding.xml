@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: Stabilize with bandages -->
+  <MI_UseBandages>Stabiliser avec des bandages</MI_UseBandages>
+  <!-- EN: {0}: no bandages available -->
+  <MI_UseBandagesFailed_Unavailable>{0} : aucun bandage disponible</MI_UseBandagesFailed_Unavailable>
+  <!-- EN: Stabilize with hemostatic agents -->
+  <MI_UseHemostaticAgent>Stabiliser avec des agents hémostatiques</MI_UseHemostaticAgent>
+  <!-- EN: {0}: no hemostatic agents available -->
+  <MI_UseHemostaticAgentFailed_Unavailable>{0} : aucun agent hémostatique disponible</MI_UseHemostaticAgentFailed_Unavailable>
+  <!-- EN: Apply tourniquet -->
+  <MI_UseTourniquet>Appliquer un garrot</MI_UseTourniquet>
+  <!-- EN: No tourniquet available -->
+  <MI_UseTourniquetFailed_Unavailable>Aucun garrot disponible</MI_UseTourniquetFailed_Unavailable>
+  <!-- EN: Apply tourniquet to {BODYPART} -->
+  <MI_TourniquetGizmo_UseLabel>Appliquer un garrot à {BODYPART}</MI_TourniquetGizmo_UseLabel>
+  <!-- EN: Remove tourniquet from {BODYPART} (safely) -->
+  <MI_TourniquetGizmo_RemoveSafelyLabel>Retirer le garrot de {BODYPART} (en toute sécurité)</MI_TourniquetGizmo_RemoveSafelyLabel>
+  <!-- EN: Remove tourniquet from {BODYPART} (quickly) -->
+  <MI_TourniquetGizmo_RemoveQuicklyLabel>Retirer le garrot de {BODYPART} (rapidement)</MI_TourniquetGizmo_RemoveQuicklyLabel>
+  <!-- EN: Apply a tourniquet to themselves -->
+  <MI_TourniquetGizmo_Description>Appliquer un garrot sur soi</MI_TourniquetGizmo_Description>
+  <!-- EN: While downed, the pawn still can attempt applying a tourniquet to themselves -->
+  <MI_TourniquetGizmo_Downed_Description>Pendant qu’il est à terre, le pion peut toujours tenter d’appliquer un garrot sur lui-même</MI_TourniquetGizmo_Downed_Description>
+  <!-- EN: Apply tourniquet to {BODYPART} -->
+  <MI_TourniquetFloatMenu_UseLabel>Appliquer un garrot à {BODYPART}</MI_TourniquetFloatMenu_UseLabel>
+  <!-- EN: Remove tourniquet from {BODYPART} (safely) -->
+  <MI_TourniquetFloatMenu_RemoveSafelyLabel>Retirer le garrot de {BODYPART} (en toute sécurité)</MI_TourniquetFloatMenu_RemoveSafelyLabel>
+  <!-- EN: Remove tourniquet from {BODYPART} (quickly) -->
+  <MI_TourniquetFloatMenu_RemoveQuicklyLabel>Retirer le garrot de {BODYPART} (rapidement)</MI_TourniquetFloatMenu_RemoveQuicklyLabel>
+  <!-- EN: Harvest blood (finish off {PATIENT_labelShort}) -->
+  <MI_HarvestBlood>Prélever du sang (achever {PATIENT_labelShort})</MI_HarvestBlood>
+  <!-- EN: {0}: missing required medical skill ({1}) -->
+  <MI_HarvestBloodFailed_MissingMedicalSkill>{0} : compétence médicale requise manquante ({1})</MI_HarvestBloodFailed_MissingMedicalSkill>
+  <!-- EN: Transfuse blood -->
+  <MI_UseBloodBag>Transfuser du sang</MI_UseBloodBag>
+  <!-- EN: Infuse saline IV -->
+  <MI_UseSalineBag>Perfuser une solution saline IV</MI_UseSalineBag>
+  <!-- EN: {0}: no blood bags available -->
+  <MI_UseBloodBagFailed_Unavailable>{0} : aucune poche de sang disponible</MI_UseBloodBagFailed_Unavailable>
+  <!-- EN: {0}: no saline bags available -->
+  <MI_UseSalineBagFailed_Unavailable>{0} : aucune poche de solution saline disponible</MI_UseSalineBagFailed_Unavailable>
+  <!-- EN: {PATIENT_labelShort} doesn't have enough blood to safely donate blood. -->
+  <MI_DonateBloodFailed_MissingBloodVolume_Message>{PATIENT_labelShort} n’a pas assez de sang pour faire un don en toute sécurité.</MI_DonateBloodFailed_MissingBloodVolume_Message>
+  <!-- EN: enclosed -->
+  <MI_InjuryEnclosed_Label>refermée</MI_InjuryEnclosed_Label>
+  <!-- EN: Enclosed internal wound, bleed rate decreased by {PERCENT}% -->
+  <MI_InjuryEnclosed_Tooltip>Plaie interne refermée, taux de saignement réduit de {PERCENT}%</MI_InjuryEnclosed_Tooltip>
+  <!-- EN: ischemia -->
+  <MI_InjuryBleeding_ManuallyReduced_Label>ischémie</MI_InjuryBleeding_ManuallyReduced_Label>
+  <!-- EN: Ischemia, bleed rate decreased by {PERCENT}% -->
+  <MI_InjuryBleeding_ManuallyReduced_Tooltip>Ischémie, taux de saignement réduit de {PERCENT}%</MI_InjuryBleeding_ManuallyReduced_Tooltip>
+  <!-- EN: hemostasis: {TIME} -->
+  <MI_InjuryBleeding_TemporarilyReduced_Label>hémostase : {TIME}</MI_InjuryBleeding_TemporarilyReduced_Label>
+  <!-- EN: Hemostasis: {TIME}, bleed rate decreased by {PERCENT}% -->
+  <MI_InjuryBleeding_TemporarilyReduced_Tooltip>Hémostase : {TIME}, taux de saignement réduit de {PERCENT}%</MI_InjuryBleeding_TemporarilyReduced_Tooltip>
+  <!-- EN: Effective bleed rate: {PERCENT}% -->
+  <MI_InjuryBleeding_EffectiveBleedRate_Tooltip>Taux de saignement réel : {PERCENT}%</MI_InjuryBleeding_EffectiveBleedRate_Tooltip>
+  <!-- EN: Affected by: -->
+  <MI_InjuryBleeding_CrossInteraction_Tooltip_Header>Affecté par :</MI_InjuryBleeding_CrossInteraction_Tooltip_Header>
+  <!-- EN: - {HEDIFF_label}: +{PERCENT}% -->
+  <MI_InjuryBleeding_CrossInteraction_Tooltip>-{HEDIFF_label} : +{PERCENT}%'</MI_InjuryBleeding_CrossInteraction_Tooltip>
+</LanguageData>

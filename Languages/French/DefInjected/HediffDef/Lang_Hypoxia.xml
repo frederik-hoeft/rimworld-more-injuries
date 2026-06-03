@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: hypoxia -->
+  <OrganHypoxia.label>hypoxie</OrganHypoxia.label>
+  <!-- EN: insufficient oxygen -->
+  <OrganHypoxia.labelNoun>oxygène insuffisant</OrganHypoxia.labelNoun>
+  <!-- EN: Insufficient oxygen supply to this part of the body has caused cells to start metabolizing anaerobically, leading to the production of lactic acid and acidosis, and to eventually die, causing tissue damage. If the underlying cause of the hypoxia is not immediately treated, the affected tissue will continue to deteriorate, eventually leading to multiple organ failure and death. -->
+  <OrganHypoxia.description>Un apport insuffisant en oxygène à cette partie du corps a provoqué un métabolisme anaérobie des cellules, entraînant la production d’acide lactique et une acidose, et conduisant finalement à leur mort, causant des dommages aux tissus. Si la cause sous-jacente de l’hypoxie n’est pas immédiatement traitée, les tissus affectés continueront de se détériorer, entraînant finalement une défaillance multi-organique et la mort.</OrganHypoxia.description>
+  <!-- EN: tended -->
+  <OrganHypoxia.comps.HediffComp_TendDuration.labelTendedWell>soigné</OrganHypoxia.comps.HediffComp_TendDuration.labelTendedWell>
+  <!-- EN: tended -->
+  <OrganHypoxia.comps.HediffComp_TendDuration.labelTendedWellInner>soigné</OrganHypoxia.comps.HediffComp_TendDuration.labelTendedWellInner>
+  <!-- EN: tended -->
+  <OrganHypoxia.comps.HediffComp_TendDuration.labelSolidTendedWell>soigné</OrganHypoxia.comps.HediffComp_TendDuration.labelSolidTendedWell>
+  <!-- EN: permanent hypoxia damage -->
+  <OrganHypoxia.comps.HediffComp_GetsPermanent.permanentLabel>dommages hypoxiques permanents</OrganHypoxia.comps.HediffComp_GetsPermanent.permanentLabel>
+  <!-- EN: dead -->
+  <OrganHypoxia.injuryProps.destroyedLabel>mort</OrganHypoxia.injuryProps.destroyedLabel>
+  <!-- EN: dead -->
+  <OrganHypoxia.injuryProps.destroyedOutLabel>mort</OrganHypoxia.injuryProps.destroyedOutLabel>
+  <!-- EN: cerebral hypoxia -->
+  <BrainDamage_Hypoxia.label>hypoxie cérébrale</BrainDamage_Hypoxia.label>
+  <!-- EN: Prolonged lack of oxygen to the brain has caused neurological damage. Depending on the severity and duration of the hypoxia, damaged cells may be able to recover, or they may die off and cause permanent brain damage and disability. There's nothing else to do but wait and see. -->
+  <BrainDamage_Hypoxia.description>Un manque prolongé d’oxygène au cerveau a causé des lésions neurologiques. Selon la gravité et la durée de l’hypoxie, les cellules endommagées peuvent récupérer ou mourir, provoquant des lésions cérébrales permanentes et un handicap. Il n’y a rien d’autre à faire que d’attendre.</BrainDamage_Hypoxia.description>
+  <!-- EN: tended -->
+  <BrainDamage_Hypoxia.comps.HediffComp_TendDuration.labelTendedWell>soigné</BrainDamage_Hypoxia.comps.HediffComp_TendDuration.labelTendedWell>
+  <!-- EN: tended -->
+  <BrainDamage_Hypoxia.comps.HediffComp_TendDuration.labelTendedWellInner>soigné</BrainDamage_Hypoxia.comps.HediffComp_TendDuration.labelTendedWellInner>
+  <!-- EN: tended -->
+  <BrainDamage_Hypoxia.comps.HediffComp_TendDuration.labelSolidTendedWell>soigné</BrainDamage_Hypoxia.comps.HediffComp_TendDuration.labelSolidTendedWell>
+  <!-- EN: permanent hypoxia damage -->
+  <BrainDamage_Hypoxia.comps.HediffComp_GetsPermanent.permanentLabel>lésion hypoxique permanente</BrainDamage_Hypoxia.comps.HediffComp_GetsPermanent.permanentLabel>
+  <!-- EN: dead -->
+  <BrainDamage_Hypoxia.injuryProps.destroyedLabel>mort</BrainDamage_Hypoxia.injuryProps.destroyedLabel>
+  <!-- EN: dead -->
+  <BrainDamage_Hypoxia.injuryProps.destroyedOutLabel>mort</BrainDamage_Hypoxia.injuryProps.destroyedOutLabel>
+  <!-- EN: initial -->
+  <BrainDamage_Hypoxia.stages.initial.label>initiale</BrainDamage_Hypoxia.stages.initial.label>
+  <!-- EN: minor -->
+  <BrainDamage_Hypoxia.stages.minor.label>mineure</BrainDamage_Hypoxia.stages.minor.label>
+  <!-- EN: moderate -->
+  <BrainDamage_Hypoxia.stages.moderate.label>modérée</BrainDamage_Hypoxia.stages.moderate.label>
+  <!-- EN: severe -->
+  <BrainDamage_Hypoxia.stages.severe.label>sévère</BrainDamage_Hypoxia.stages.severe.label>
+  <!-- EN: very severe -->
+  <BrainDamage_Hypoxia.stages.very_severe.label>très sévère</BrainDamage_Hypoxia.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <BrainDamage_Hypoxia.stages.extreme.label>extrême</BrainDamage_Hypoxia.stages.extreme.label>
+  <!-- EN: terminal -->
+  <BrainDamage_Hypoxia.stages.terminal.label>terminale</BrainDamage_Hypoxia.stages.terminal.label>
+</LanguageData>

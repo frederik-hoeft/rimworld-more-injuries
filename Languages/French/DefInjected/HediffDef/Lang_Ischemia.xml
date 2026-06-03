@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: tourniquet -->
+  <TourniquetApplied.label>garrot</TourniquetApplied.label>
+  <!-- EN: A tourniquet has been applied to a limb, stopping the bleeding but starving the limb of blood. If the tourniquet is not removed in time, ischemia (starvation of oxygen) and necrosis (cell death) will occur, which can lead to loss of the limb through gangrene or death from sepsis.\n\nThe tourniquet should be removed as soon as the patient is in a safe location and can receive proper medical care. -->
+  <TourniquetApplied.description>Un garrot a été appliqué sur un membre, stoppant le saignement mais privant le membre de sang. Si le garrot n’est pas retiré à temps, l’ischémie et la nécrose surviendront, pouvant entraîner la perte du membre par gangrène ou la mort par sepsis. Le garrot doit être retiré dès que le patient est dans un lieu sûr et peut recevoir des soins médicaux appropriés.</TourniquetApplied.description>
+  <!-- EN: restricted blood flow -->
+  <TourniquetApplied.stages.restricted_blood_flow.label>flux sanguin restreint</TourniquetApplied.stages.restricted_blood_flow.label>
+  <!-- EN: initial ischemia -->
+  <TourniquetApplied.stages.initial_ischemia.label>ischémie initiale</TourniquetApplied.stages.initial_ischemia.label>
+  <!-- EN: advanced ischemia -->
+  <TourniquetApplied.stages.advanced_ischemia.label>ischémie avancée</TourniquetApplied.stages.advanced_ischemia.label>
+  <!-- EN: initial necrosis -->
+  <TourniquetApplied.stages.initial_necrosis.label>nécrose initiale</TourniquetApplied.stages.initial_necrosis.label>
+  <!-- EN: advanced necrosis -->
+  <TourniquetApplied.stages.advanced_necrosis.label>nécrose avancée</TourniquetApplied.stages.advanced_necrosis.label>
+  <!-- EN: quickly removed tourniquet -->
+  <TourniquetQuicklyRemoved.label>garrot retiré rapidement</TourniquetQuicklyRemoved.label>
+  <!-- EN: N/A -->
+  <TourniquetQuicklyRemoved.description>N/A</TourniquetQuicklyRemoved.description>
+  <!-- EN: gangrene -->
+  <GangreneDry.label>gangrène</GangreneDry.label>
+  <!-- EN: Dry gangrene is a form of coagulative necrosis that develops in ischemic tissue, where the blood supply is inadequate to keep tissue viable. The affected part is dry, shrunken, and dark reddish-black. The line of separation usually brings about complete separation, with eventual falling off of the gangrenous tissue if it is not removed surgically, a process called autoamputation.\nOver time, dry gangrene may develop into wet gangrene if an infection develops in the dead tissues.\n\nThe affected body part is irreversibly damaged and should be amputated to prevent sepsis. -->
+  <GangreneDry.description>La gangrène sèche est une forme de nécrose coagulative qui se développe dans un tissu ischémique, lorsque l’apport sanguin est insuffisant pour maintenir le tissu viable. La partie affectée est sèche, rétrécie et d’un rouge-noir sombre. La ligne de séparation entraîne généralement une séparation complète, avec chute éventuelle du tissu gangrené si celui-ci n’est pas retiré chirurgicalement, processus appelé auto-amputation.\nAvec le temps, la gangrène sèche peut évoluer en gangrène humide si une infection se développe dans les tissus morts.\n\nLa partie du corps affectée est irréversiblement endommagée et doit être amputée pour prévenir la septicémie.</GangreneDry.description>
+  <!-- EN: dry -->
+  <GangreneDry.stages.dry.label>sèche</GangreneDry.stages.dry.label>
+  <!-- EN: Fell off -->
+  <GangreneDry.injuryProps.destroyedLabel>Nécrosé</GangreneDry.injuryProps.destroyedLabel>
+  <!-- EN: gangrene -->
+  <GangreneWet.label>gangrène</GangreneWet.label>
+  <!-- EN: Wet, or infected, gangrene is characterized by thriving bacteria and has a poor prognosis (compared to dry gangrene) due to sepsis resulting from the free communication between infected fluid and circulatory fluid. The affected part is saturated with stagnant blood, which promotes the rapid growth of bacteria. The toxic products formed by bacteria are absorbed, causing systemic manifestation of sepsis and finally death.\n\nThe affected body part should be amputated as soon as possible to save the patient's life. -->
+  <GangreneWet.description>La gangrène humide ou infectée se caractérise par la prolifération bactérienne et a un mauvais pronostic (comparé à la gangrène sèche) en raison de la septicémie résultant de la libre communication entre le liquide infecté et le sang circulant. La partie affectée est saturée de sang stagnant, ce qui favorise la croissance rapide des bactéries. Les produits toxiques formés par les bactéries sont absorbés, provoquant une manifestation systémique de la septicémie et finalement la mort.\n\nLa partie du corps affectée doit être amputée dès que possible pour sauver la vie du patient.</GangreneWet.description>
+  <!-- EN: septic -->
+  <GangreneWet.stages.septic.label>septique</GangreneWet.stages.septic.label>
+</LanguageData>

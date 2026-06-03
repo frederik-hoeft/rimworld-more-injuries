@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: Clear airways -->
+  <MI_UseSuctionDevice>Dégager les voies respiratoires</MI_UseSuctionDevice>
+  <!-- EN: {0}: no suction device available -->
+  <MI_UseSuctionDeviceFailed_Unavailable>{0} : aucun dispositif d’aspiration disponible</MI_UseSuctionDeviceFailed_Unavailable>
+  <!-- EN: coughing -->
+  <MI_Coughing>en train de tousser</MI_Coughing>
+</LanguageData>

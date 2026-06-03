@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: Defibrillate -->
+  <MI_UseDefibrillator>Défibriller</MI_UseDefibrillator>
+  <!-- EN: {0}: no defibrillator available -->
+  <MI_UseDefibrillatorFailed_Unavailable>{0} : aucun défibrillateur disponible</MI_UseDefibrillatorFailed_Unavailable>
+  <!-- EN: Perform CPR -->
+  <MI_PerformCpr>Effectuer une RCP</MI_PerformCpr>
+</LanguageData>

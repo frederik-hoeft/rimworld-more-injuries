@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: acidosis -->
+  <Acidosis.label>acidose</Acidosis.label>
+  <!-- EN: Acidosis is a serious metabolic condition characterized by an excessive buildup of acid in the body, typically caused by inadequate oxygen delivery to tissues (hypoxia) following severe blood loss (hypovolemia), cardiac arrest, or other forms of shock. As oxygen becomes scarce, the body shifts to anaerobic metabolism, producing lactic acid and accumulating carbon dioxide, which together lower blood pH.\n\nThe condition contributes to a dangerous cycle known as the "lethal triad" of trauma: acidosis, hypothermia, and coagulopathy. As blood pH drops, clotting function becomes impaired, increasing the risk of uncontrolled bleeding and trauma-induced coagulopathy (TIC). At the same time, mitochondrial function declines and cell-energy production is impaired, hindering thermogenesis and maintaining body temperature, ultimately leading to hypothermia and further exacerbating the cycle of trauma.\n\nAcidosis is treated by restoring oxygen delivery to tissues - typically through rapid control of bleeding, fluid resuscitation with blood products, and correction of hypoxia. Once tissue oxygenation is restored, acid levels gradually normalize as the body clears metabolic byproducts through the lungs, liver, and kidneys. -->
+  <Acidosis.description>L’acidose est une affection métabolique grave caractérisée par une accumulation excessive d’acide dans l’organisme, généralement causée par une oxygénation insuffisante des tissus (hypoxie) suite à une perte de sang sévère (hypovolémie), un arrêt cardiaque ou d’autres formes de choc.\nLorsque l’oxygène se fait rare, le corps passe à un métabolisme anaérobie, produisant de l’acide lactique et accumulant du dioxyde de carbone, ce qui entraîne une baisse du pH sanguin.\n\nCette condition contribue à un cycle dangereux appelé la « triade létale » du traumatisme : acidose, hypothermie et coagulopathie.\nÀ mesure que le pH sanguin diminue, la fonction de coagulation est altérée, augmentant le risque d’hémorragie incontrôlée et de coagulopathie induite par le traumatisme (CIT).\nParallèlement, le fonctionnement des mitochondries décline et la production d’énergie cellulaire est réduite, ce qui entrave la thermogenèse et le maintien de la température corporelle, conduisant finalement à l’hypothermie et aggravant encore le cycle du traumatisme.\n\nLe traitement de l’acidose repose sur la restauration de l’apport en oxygène aux tissus, généralement par un contrôle rapide des saignements, une réanimation liquidienne avec des produits sanguins et la correction de l’hypoxie.\nUne fois l’oxygénation tissulaire rétablie, les niveaux d’acide se normalisent progressivement à mesure que l’organisme élimine les sous-produits métaboliques par les poumons, le foie et les reins.</Acidosis.description>
+  <!-- EN: minor -->
+  <Acidosis.stages.minor.label>mineure</Acidosis.stages.minor.label>
+  <!-- EN: moderate -->
+  <Acidosis.stages.moderate.label>modérée</Acidosis.stages.moderate.label>
+  <!-- EN: severe -->
+  <Acidosis.stages.severe.label>sévère</Acidosis.stages.severe.label>
+  <!-- EN: very severe -->
+  <Acidosis.stages.very_severe.label>très sévère</Acidosis.stages.very_severe.label>
+  <!-- EN: extreme -->
+  <Acidosis.stages.extreme.label>extrême</Acidosis.stages.extreme.label>
+  <!-- EN: terminal -->
+  <Acidosis.stages.terminal.label>terminale</Acidosis.stages.terminal.label>
+</LanguageData>

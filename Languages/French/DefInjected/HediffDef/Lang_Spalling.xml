@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: cut (spall) -->
+  <SpallFragmentCut.label>coupure (éclat)</SpallFragmentCut.label>
+  <!-- EN: a spall fragment cut -->
+  <SpallFragmentCut.labelNoun>fragment d’éclat coupé</SpallFragmentCut.labelNoun>
+  <!-- EN: A cut caused by spall of a bullet or armor fragment. -->
+  <SpallFragmentCut.description>Une coupure causée par un éclat de balle ou un fragment d’armure.</SpallFragmentCut.description>
+  <!-- EN: bandaged -->
+  <SpallFragmentCut.comps.HediffComp_TendDuration.labelTendedWell>bandé</SpallFragmentCut.comps.HediffComp_TendDuration.labelTendedWell>
+  <!-- EN: sutured -->
+  <SpallFragmentCut.comps.HediffComp_TendDuration.labelTendedWellInner>suturé</SpallFragmentCut.comps.HediffComp_TendDuration.labelTendedWellInner>
+  <!-- EN: bandaged -->
+  <SpallFragmentCut.comps.HediffComp_TendDuration.labelSolidTendedWell>bandé</SpallFragmentCut.comps.HediffComp_TendDuration.labelSolidTendedWell>
+  <!-- EN: cut scar -->
+  <SpallFragmentCut.comps.HediffComp_GetsPermanent.permanentLabel>cicatrice de coupure</SpallFragmentCut.comps.HediffComp_GetsPermanent.permanentLabel>
+  <!-- EN: Cut off -->
+  <SpallFragmentCut.injuryProps.destroyedLabel>Amputé</SpallFragmentCut.injuryProps.destroyedLabel>
+  <!-- EN: Cut out -->
+  <SpallFragmentCut.injuryProps.destroyedOutLabel>Détruit</SpallFragmentCut.injuryProps.destroyedOutLabel>
+</LanguageData>

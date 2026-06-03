@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: bionic small intestine -->
+  <BionicSmallIntestine.label>petit intestin bionique</BionicSmallIntestine.label>
+  <!-- EN: a bionic small intestine -->
+  <BionicSmallIntestine.labelNoun>un petit intestin bionique</BionicSmallIntestine.labelNoun>
+  <!-- EN: An installed bionic small intestine. -->
+  <BionicSmallIntestine.description>Un petit intestin bionique installé.</BionicSmallIntestine.description>
+  <!-- EN: bionic large intestine -->
+  <BionicLargeIntestine.label>gros intestin bionique</BionicLargeIntestine.label>
+  <!-- EN: a bionic large intestine -->
+  <BionicLargeIntestine.labelNoun>Un gros intestin bionique</BionicLargeIntestine.labelNoun>
+  <!-- EN: An installed bionic large intestine. -->
+  <BionicLargeIntestine.description>Un gros intestin bionique installé.</BionicLargeIntestine.description>
+</LanguageData>

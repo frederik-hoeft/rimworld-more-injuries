@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: servos disabled -->
+  <EmpShutdown.label>servomoteurs désactivés</EmpShutdown.label>
+  <!-- EN: A bionic bodypart was disabled by an EMP blast. It will take around one day to reboot itself. -->
+  <EmpShutdown.description>Une pièce bionique a été désactivée par une impulsion électromagnétique (EMP). Il faudra environ une journée pour qu’elle redémarre.</EmpShutdown.description>
+  <!-- EN: nearly rebooted -->
+  <EmpShutdown.stages.nearly_rebooted.label>presque réactivé</EmpShutdown.stages.nearly_rebooted.label>
+  <!-- EN: disabled -->
+  <EmpShutdown.stages.disabled.label>désactivé</EmpShutdown.stages.disabled.label>
+</LanguageData>

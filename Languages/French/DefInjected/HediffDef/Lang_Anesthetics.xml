@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: ketamine buildup -->
+  <KetamineBuildup.label>accumulation de kétamine</KetamineBuildup.label>
+  <!-- EN: a buildup of ketamine -->
+  <KetamineBuildup.labelNoun>une accumulation de kétamine</KetamineBuildup.labelNoun>
+  <!-- EN: Ketamine is a fast-acting dissociative anesthetic used for pain relief, sedation, and anesthesia. It works by disrupting communication between the thalamus and cerebral cortex, producing a trance-like, pain-free state without significantly suppressing cardiovascular function at recommended doses.\n\nOnce administered, ketamine is distributed systemically and slowly metabolized by the liver. Blood concentrations diminish over time, but repeated or excessive doses can lead to dangerous accumulation resulting in toxicity and overdose.\n\nSymptoms of ketamine toxicity range from amnesia, confusion, and hallucinations to brain damage, respiratory depression, and death in severe cases of overdose. -->
+  <KetamineBuildup.description>La kétamine est un anesthésique dissociatif à action rapide, utilisé pour le soulagement de la douleur, la sédation et l’anesthésie. Elle agit en perturbant la communication entre le thalamus et le cortex cérébral, produisant un état de transe indolore, sans suppression significative des fonctions cardiovasculaires aux doses recommandées.\n\nUne fois administrée, la kétamine est distribuée dans tout le corps et lentement métabolisée par le foie. Les concentrations sanguines diminuent avec le temps, mais des doses répétées ou excessives peuvent provoquer une accumulation dangereuse entraînant toxicité et surdosage.\n\nLes symptômes de la toxicité de la kétamine vont de l’amnésie, de la confusion et des hallucinations aux lésions cérébrales, à la dépression respiratoire et, dans les cas graves de surdosage, à la mort.</KetamineBuildup.description>
+  <!-- EN: trace exposure -->
+  <KetamineBuildup.stages.trace_exposure.label>exposition résiduelle</KetamineBuildup.stages.trace_exposure.label>
+  <!-- EN: therapeutic dose -->
+  <KetamineBuildup.stages.therapeutic_dose.label>dose thérapeutique</KetamineBuildup.stages.therapeutic_dose.label>
+  <!-- EN: maximum safe dose -->
+  <KetamineBuildup.stages.maximum_safe_dose.label>dose maximale sûre</KetamineBuildup.stages.maximum_safe_dose.label>
+  <!-- EN: minor overdose -->
+  <KetamineBuildup.stages.minor_overdose.label>surdosage mineur</KetamineBuildup.stages.minor_overdose.label>
+  <!-- EN: severe overdose -->
+  <KetamineBuildup.stages.severe_overdose.label>surdosage sévère</KetamineBuildup.stages.severe_overdose.label>
+  <!-- EN: toxic dose -->
+  <KetamineBuildup.stages.toxic_dose.label>dose toxique</KetamineBuildup.stages.toxic_dose.label>
+  <!-- EN: chloroform buildup -->
+  <ChloroformBuildup.label>accumulation de chloroforme</ChloroformBuildup.label>
+  <!-- EN: a buildup of chloroform -->
+  <ChloroformBuildup.labelNoun>une accumulation de chloroforme</ChloroformBuildup.labelNoun>
+  <!-- EN: Chloroform is a volatile anesthetic that induces unconsciousness and analgesia by depressing the central nervous system. It was historically used in surgical procedures and as a solvent in laboratories. Chloroform is rapidly absorbed through the lungs, skin, and gastrointestinal tract, leading to systemic distribution and metabolism primarily in the liver.\n\nWhile effective at low doses, chloroform can cause toxicity and overdose at higher concentrations, leading to symptoms such as renal and hepatic damage, respiratory depression, and cardiac arrest. Due to its potential for severe side effects, chloroform is rarely used in modern medicine. -->
+  <ChloroformBuildup.description>
+  </ChloroformBuildup.description>
+  <!-- EN: trace exposure -->
+  <ChloroformBuildup.stages.trace_exposure.label>exposition résiduelle</ChloroformBuildup.stages.trace_exposure.label>
+  <!-- EN: therapeutic dose -->
+  <ChloroformBuildup.stages.therapeutic_dose.label>dose thérapeutique</ChloroformBuildup.stages.therapeutic_dose.label>
+  <!-- EN: maximum safe dose -->
+  <ChloroformBuildup.stages.maximum_safe_dose.label>dose maximale prudente</ChloroformBuildup.stages.maximum_safe_dose.label>
+  <!-- EN: minor overdose -->
+  <ChloroformBuildup.stages.minor_overdose.label>léger surdosage</ChloroformBuildup.stages.minor_overdose.label>
+  <!-- EN: severe overdose -->
+  <ChloroformBuildup.stages.severe_overdose.label>surdosage sévère</ChloroformBuildup.stages.severe_overdose.label>
+  <!-- EN: toxic dose -->
+  <ChloroformBuildup.stages.toxic_dose.label>dose toxique</ChloroformBuildup.stages.toxic_dose.label>
+</LanguageData>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: coagulopathy -->
+  <Coagulopathy.label>coagulopathie</Coagulopathy.label>
+  <!-- EN: Trauma-induced coagulopathy (TIC) is a life-threatening condition in which the blood's ability to clot is impaired, often developing after severe trauma, blood loss, or shock. Without intervention, it can progress into disseminated intravascular coagulation (DIC), where widespread clotting depletes clotting factors and causes uncontrolled internal bleeding, leading to multiple organ failure and, ultimately, death. Treatment requires aggressive management of the underlying causes, such as hypothermia, acidosis, certain toxins, or dilution of clotting factors, and rapid replacement of blood components to restore coagulation function.\n\nTreatment is focused on addressing the underlying causes and may include measures such as warming the patient, correcting acidosis by restoring adequate oxygenation and blood flow, restoring blood volume through transfusions, and triaging patients based on the severity of their condition. -->
+  <Coagulopathy.description>La coagulopathie induite par un traumatisme (CIT) est une affection potentiellement mortelle dans laquelle la capacité du sang à coaguler est altérée, se développant souvent après un traumatisme sévère, une perte de sang ou un choc. Sans intervention, elle peut évoluer vers une coagulation intravasculaire disséminée (CIVD), où une coagulation généralisée épuise les facteurs de coagulation et provoque des saignements internes incontrôlés, entraînant une défaillance multiviscérale et, finalement, la mort. Le traitement nécessite une gestion agressive des causes sous-jacentes, telles que l’hypothermie, l’acidose, certaines toxines ou la dilution des facteurs de coagulation, ainsi qu’un remplacement rapide des composants sanguins pour rétablir la fonction de coagulation.\n\nLe traitement se concentre sur la résolution des causes sous-jacentes et peut inclure des mesures telles que le réchauffement du patient, la correction de l’acidose par une oxygénation et un flux sanguin adéquats, le rétablissement du volume sanguin par transfusions, et le triage des patients en fonction de la gravité de leur état.</Coagulopathy.description>
+  <!-- EN: minor -->
+  <Coagulopathy.stages.minor.label>mineure</Coagulopathy.stages.minor.label>
+  <!-- EN: moderate -->
+  <Coagulopathy.stages.moderate.label>modérée</Coagulopathy.stages.moderate.label>
+  <!-- EN: severe -->
+  <Coagulopathy.stages.severe.label>sévère</Coagulopathy.stages.severe.label>
+  <!-- EN: extreme -->
+  <Coagulopathy.stages.extreme.label>extrême</Coagulopathy.stages.extreme.label>
+  <!-- EN: terminal -->
+  <Coagulopathy.stages.terminal.label>terminale</Coagulopathy.stages.terminal.label>
+</LanguageData>

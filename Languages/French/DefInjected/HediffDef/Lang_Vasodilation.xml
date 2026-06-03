@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: vasodilation -->
+  <Vasodilation.label>vasodilatation</Vasodilation.label>
+  <!-- EN: Vasodilation, also known as vasorelaxation, is the widening of blood vessels, which decreases vascular resistance and increases blood flow. Due to this increase in blood flow, hemorrhagic resistance is reduced, leading to increased bleeding.\n\nVasodilation can be caused by various factors, including the use of certain opioid analgesics like morphine, which suppress the central nervous system and can lead to dangerous hypotension and shock. -->
+  <Vasodilation.description>La vasodilatation, également appelée vasorelaxation, est l’élargissement des vaisseaux sanguins, diminuant la résistance vasculaire et augmentant le flux sanguin. Cette augmentation réduit la résistance hémorragique, entraînant une augmentation du saignement.\n\nLa vasodilatation peut être causée par divers facteurs, y compris l’utilisation de certains analgésiques opioïdes comme la morphine, qui inhibent le système nerveux central et peuvent provoquer une hypotension et un choc dangereux.</Vasodilation.description>
+</LanguageData>
